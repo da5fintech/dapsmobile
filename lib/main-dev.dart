@@ -11,7 +11,8 @@ Future main() async {
     color: Colors.green,
     name: 'PREVIEW',
     properties: {
-      packageIdKey: "ph.packetworx.packetthings.dev",
+      namespaceKey: "dev_",
+      packageIdKey: "ph.kabootek.swipe.dev",
     },
   );
   setupApp();
