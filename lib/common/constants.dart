@@ -23,6 +23,7 @@ const themeBlue2 = Color(0xFF2A3952);
 const themeRed2 = Color(0xFF4F3449);
 // const green3 = Color(0xFF4EAE97);
 // const green4 = Color(0xFF83E799);
+const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
 
 const kUpdateDialogKeyName = 'kUpdateDialogKeyName';
 

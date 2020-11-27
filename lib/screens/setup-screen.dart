@@ -12,15 +12,23 @@ import '../main.dart';
 
 final store = getIt<ApplicationStore>();
 
-class LoginScreen extends StatefulWidget {
+class SetupScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SetupScreenState createState() => _SetupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SetupScreenState extends State<SetupScreen> {
+  Map<Permission, PermissionStatus> _permissionsMap = Map.from({
+    Permission.contacts: PermissionStatus.undetermined,
+    Permission.storage: PermissionStatus.undetermined,
+    Permission.location: PermissionStatus.undetermined,
+    Permission.camera: PermissionStatus.undetermined,
+  });
   @override
   void initState() {
     super.initState();
+    // _initialize();
+    SchedulerBinding.instance.addPostFrameCallback((_) => _initialize(context));
   }
 
   @override
@@ -56,31 +64,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     )),
               ),
             ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text('Login',
-                            style: GoogleFonts.roboto(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 15)),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    )),
-              ),
-            ),
           ],
         ),
       ),
     );
+  }
+
+  _initialize(BuildContext context) async {
+    bool response = await showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return RequestAccessPermissionDialog();
+        });
+
+    if (response == true) {
+      var results = await _permissionsMap.keys.toList().request();
+      results.removeWhere((key, value) => !_permissionsMap.keys.contains(key));
+      _permissionsMap = results;
+      store.setPermissionsGranted();
+    }
   }
 
   @override

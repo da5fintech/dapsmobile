@@ -1,8 +1,18 @@
+import 'package:flutter/scheduler.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart' as Constants;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/screens/login-screen.dart';
+import 'package:swipe/screens/setup-screen.dart';
+import 'package:swipe/store/application-store.dart';
+import 'package:swipe/widgets/access-permission-dialog.dart';
+
+import '../main.dart';
+
+final store = getIt<ApplicationStore>();
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,7 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _initialize();
+    // _initialize();
+    SchedulerBinding.instance.addPostFrameCallback((_) => _initialize(context));
   }
 
   @override
@@ -24,47 +35,26 @@ class _SplashScreenState extends State<SplashScreen> {
       // backgroundColor: Constants.backgroundColor2,
       body: Container(
         decoration: BoxDecoration(
-          // color: getBlack1818(),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Constants.themeRed,
-              Constants.themeRed2,
-              Constants.themeBlue,
-              Constants.themeBlue
-            ],
-          ),
+          color: Constants.COLOR_DARK_PURPLE,
         ),
         child: Column(
           children: <Widget>[
             Expanded(
               child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: SizeConfig.screenDiagonal * .25,
-                  child: Image.asset('assets/icons/curiociti-REV-VER.png'),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.topCenter,
                 child: Padding(
-                    padding: EdgeInsets.only(bottom: 40),
+                    padding: EdgeInsets.only(top: 80),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                          'From',
-                          style: Constants.poppinsNormalWhite11,
-                        ),
+                        Text('SWIPE',
+                            style: GoogleFonts.roboto(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: 15)),
                         SizedBox(
                           height: 5,
-                        ),
-                        Image.asset(
-                          'assets/images/thingsph_logo_white.png',
-                          width: 100,
                         ),
                       ],
                     )),
@@ -76,24 +66,15 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  _initialize() async {
-    // await store.initUser();
-
-    // if (null == store.user) {
-    //   await store.logout();
-    //   Get.off(LoginScreen());
-    // } else {
-    //   if (store.onboarded) {
-    //     if (store.permitted) {
-    //       await store.initApp();
-    //       Get.off(HomeScreen(checkUpdate: true));
-    //     } else {
-    //       Get.off(SetupScreen(checkUpdate: true));
-    //     }
-    //   } else {
-    //     Get.off(OnboardingScreen(checkUpdate: true));
-    //   }
-    // }
+  _initialize(BuildContext context) async {
+    // await store
+    print("granted");
+    print(store.permissionsGranted);
+    if (store.permissionsGranted) {
+      Get.off(LoginScreen());
+    } else {
+      Get.off(SetupScreen());
+    }
   }
 
   @override

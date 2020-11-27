@@ -10,5 +10,15 @@ abstract class _ApplicationStore with Store {
   @observable
   UserModel user;
 
-  _ApplicationStore(SharedPreferences prefs) {}
+  bool permissionsGranted;
+  SharedPreferences prefs;
+
+  _ApplicationStore({this.prefs}) {
+    permissionsGranted = prefs.getBool('permissionGranted') ?? false;
+  }
+
+  setPermissionsGranted() {
+    permissionsGranted = true;
+    prefs.setBool('permissionGranted', true);
+  }
 }

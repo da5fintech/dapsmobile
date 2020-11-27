@@ -46,7 +46,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    ApplicationStore store = ApplicationStore(getIt.get<SharedPreferences>());
+    ApplicationStore store =
+        ApplicationStore(prefs: getIt.get<SharedPreferences>());
     getIt.registerSingleton<ApplicationStore>(store);
 
     super.initState();
