@@ -60,16 +60,37 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                    padding: EdgeInsets.only(bottom: 20),
+                    padding: EdgeInsets.only(bottom: 20, left: 40, right: 40),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text('Login',
-                            style: GoogleFonts.roboto(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 15)),
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlineButton(
+                            onPressed: () {
+                              _handleLogin();
+                            },
+                            borderSide: BorderSide(color: Colors.white),
+                            child: Text("LOG IN",
+                                style: Constants.secondaryButtonText),
+                          ),
+                        ),
+
+                        SizedBox(
+                          width: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {
+                              _handleRegister();
+                            },
+                            color: Colors.white,
+                            child: Text("REGISTER",
+                                style: Constants.primaryButtonText),
+                          ),
+                        ),
+                        // OutlineButton(
+                        //   child: Text("REGISTER",
+                        //       style: Constants.primaryButtonText),
+                        // ),
                         SizedBox(
                           height: 5,
                         ),
@@ -82,6 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  _handleLogin() {}
+
+  _handleRegister() {}
 
   @override
   void dispose() {

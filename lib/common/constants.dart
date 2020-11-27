@@ -225,3 +225,6 @@ TextStyle poppinsNormalWhite9 = GoogleFonts.montserrat(
   color: Colors.white,
   fontSize: appUtil.normalizeSize(9),
 );
+
+TextStyle secondaryButtonText = GoogleFonts.roboto(color: Colors.white);
+TextStyle primaryButtonText = GoogleFonts.roboto(color: COLOR_DARK_PURPLE);
