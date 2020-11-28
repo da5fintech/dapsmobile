@@ -54,7 +54,6 @@ class _SetupScreenState extends State<SetupScreen> {
                         Text('SWIPE',
                             style: GoogleFonts.roboto(
                                 fontSize: 20,
-                                color: Colors.white,
                                 fontWeight: FontWeight.w800,
                                 letterSpacing: 15)),
                         SizedBox(

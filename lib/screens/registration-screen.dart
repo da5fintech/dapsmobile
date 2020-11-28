@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +10,12 @@ import '../main.dart';
 
 final store = getIt<ApplicationStore>();
 
-class LoginScreen extends StatefulWidget {
+class RegistrationScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   void initState() {
     super.initState();
@@ -62,31 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SizedBox(
-                            width: double.infinity,
-                            child: SecondaryButtonWidget(
-                              onPressed: () {
-                                _handleLogin();
-                              },
-                              text: "LOG IN",
-                            )),
-
-                        SizedBox(
-                            width: double.infinity,
-                            child: PrimaryButtonWidget(
-                              onPressed: () {
-                                _handleRegister();
-                              },
-                              text: "REGISTER",
-                            )),
-
-                        // OutlineButton(
-                        //   child: Text("REGISTER",
-                        //       style: Constants.primaryButtonText),
-                        // ),
+                        Text("Registration Screen"),
                         Row(
                           children: [
-                            Text("Help Center"),
+                            Text("Registration"),
                             Text("v1.1.1"),
                           ],
                         ),
@@ -105,9 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _handleLogin() {}
 
-  _handleRegister() {
-    Get.offNamed("/registration");
-  }
+  _handleRegister() {}
 
   @override
   void dispose() {

@@ -12,9 +12,6 @@ const backgroundColor2 = Color(0xFFEEF2F4);
 const black181818 = Color(0xFF181818);
 const black282828 = Color(0xFF282828);
 
-const COLOR_000407 = Color(0xFF000407);
-const COLOR_000D14 = Color(0xFF000D14);
-
 const charcoalColor = Color(0xFF454545);
 const themeRed = Color(0xFFED1F24);
 // const lightBlue = Color(0xFF93FBAA);
@@ -78,153 +75,48 @@ BoxDecoration appbarBgDecor = BoxDecoration(
   color: Colors.black,
 );
 
-TextStyle poppinsNormalWhite12 =
-    GoogleFonts.montserrat(fontSize: 12, color: Colors.white);
-TextStyle poppinsNormalWhite13 =
-    GoogleFonts.montserrat(fontSize: 13, color: Colors.white);
-TextStyle poppinsNormalWhite14 =
-    GoogleFonts.montserrat(fontSize: 14, color: Colors.white);
-TextStyle poppinsNormalWhite11 =
-    GoogleFonts.montserrat(fontSize: 11, color: Colors.white);
-TextStyle poppinsNormalGray11 =
-    GoogleFonts.montserrat(fontSize: 11, color: Colors.grey.shade500);
-TextStyle poppinsNormalGray12 =
-    GoogleFonts.montserrat(fontSize: 12, color: Colors.grey.shade500);
-TextStyle poppinsNormalGray13 =
-    GoogleFonts.montserrat(fontSize: 13, color: Colors.grey.shade500);
-TextStyle poppinsNormalGrayS60013 =
-    GoogleFonts.montserrat(fontSize: 13, color: Colors.grey.shade600);
-TextStyle poppinsNormalBlack11 =
-    GoogleFonts.montserrat(fontSize: 11, color: Color(0xFF2F2F2F));
-TextStyle poppinsNormalBlack13 =
-    GoogleFonts.montserrat(fontSize: 13, color: Color(0xFF2F2F2F));
-TextStyle poppinsW500Black11 = GoogleFonts.montserrat(
-    fontSize: 11, color: Color(0xFF2F2F2F), fontWeight: FontWeight.w500);
-TextStyle poppinsW500Black13 = GoogleFonts.montserrat(
-    fontSize: 13, color: Color(0xFF2F2F2F), fontWeight: FontWeight.w500);
-TextStyle poppinsW500White13 = GoogleFonts.montserrat(
-    fontSize: 13, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle poppinsW500White9 = GoogleFonts.montserrat(
-    fontSize: 9, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle poppinsW500White11 = GoogleFonts.montserrat(
-    fontSize: 11, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle poppinsW500White12 = GoogleFonts.montserrat(
-    fontSize: 12, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle poppinsNormalBlack14 =
-    GoogleFonts.montserrat(fontSize: 14, color: Color(0xFF2F2F2F));
-TextStyle poppinsNormalBlack12 =
-    GoogleFonts.montserrat(fontSize: 12, color: Color(0xFF5F5F5F));
-TextStyle poppinsW500Black14 = GoogleFonts.montserrat(
-    fontSize: 14, color: Color(0xFF2F2F2F), fontWeight: FontWeight.w500);
-TextStyle poppinsW500White14 = GoogleFonts.montserrat(
-    fontSize: 14, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle poppinsW200White11 = GoogleFonts.montserrat(
-    fontSize: 11, color: Colors.white, fontWeight: FontWeight.w200);
-TextStyle poppinsW200Black11 = GoogleFonts.montserrat(
-    fontSize: 11, color: Colors.black, fontWeight: FontWeight.w200);
-TextStyle poppinsW500WhiteShadow14 = GoogleFonts.montserrat(
-    fontSize: 14,
-    color: Colors.white,
-    fontWeight: FontWeight.w500,
-    shadows: shadowLight);
-TextStyle poppinsW500WhiteShadow11 = GoogleFonts.montserrat(
-    fontSize: 11,
-    color: Colors.white,
-    fontWeight: FontWeight.normal,
-    shadows: shadowLight);
-TextStyle poppinsW500WhiteShadow9 = GoogleFonts.montserrat(
-    fontSize: 9,
-    color: Colors.white,
-    fontWeight: FontWeight.w500,
-    shadows: shadowHard);
-TextStyle poppinsW500WhiteShadow7 = GoogleFonts.montserrat(
-    fontSize: 7,
-    color: Colors.white,
-    fontWeight: FontWeight.w500,
-    shadows: shadowHard);
-TextStyle poppinsW500WhiteShadow16 = GoogleFonts.montserrat(
-    fontSize: 16,
-    color: Colors.white,
-    fontWeight: FontWeight.w500,
-    shadows: shadowLight);
-TextStyle poppinsW500WhiteShadow32 = GoogleFonts.montserrat(
-    fontSize: 32,
-    color: Colors.white,
-    fontWeight: FontWeight.w500,
-    shadows: shadowLight);
-TextStyle poppinsW500Black18 = GoogleFonts.montserrat(
-    fontSize: 18, color: Color(0xFF2F2F2F), fontWeight: FontWeight.w500);
-TextStyle poppinsW500Black24 = GoogleFonts.montserrat(
-    fontSize: 24, color: Color(0xFF2F2F2F), fontWeight: FontWeight.w500);
-
-TextStyle poppinsW500White16 = GoogleFonts.montserrat(
+TextStyle pageTitleWhite = GoogleFonts.roboto(
     fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle poppinsW500Black16 = GoogleFonts.montserrat(
-    fontSize: 16, color: Colors.black87, fontWeight: FontWeight.w500);
-TextStyle poppinsNormalBlack16 = GoogleFonts.montserrat(
-  fontSize: 16,
-  color: Colors.black87,
-);
-TextStyle poppinsW500White18 = GoogleFonts.montserrat(
-  fontSize: 18,
-  color: Colors.white,
-  fontWeight: FontWeight.w500,
-  // shadows: shadowLight
-);
-TextStyle poppinsW500White24 = GoogleFonts.montserrat(
-    fontSize: 24, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle poppinsW500White32 = GoogleFonts.montserrat(
-    fontSize: 32, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle poppinsW500White48 = GoogleFonts.montserrat(
-    fontSize: 48, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle poppinsW500Black48 = GoogleFonts.montserrat(
-    fontSize: 48,
-    color: Colors.black.withOpacity(0.8),
-    fontWeight: FontWeight.w500);
-TextStyle poppinsBoldBlack18 = GoogleFonts.montserrat(
-    fontSize: 18, color: Color(0xFF2F2F2F), fontWeight: FontWeight.bold);
-TextStyle poppinsBoldBlack16 = GoogleFonts.montserrat(
-    fontSize: 16, color: Color(0xFF2F2F2F), fontWeight: FontWeight.bold);
-TextStyle poppinsNormalGray14 =
-    GoogleFonts.montserrat(fontSize: 14, color: Color.fromRGBO(69, 69, 69, .5));
-TextStyle poppinsBoldBlack13 = GoogleFonts.montserrat(
-    fontSize: 13, color: Color(0xFF2F2F2F), fontWeight: FontWeight.bold);
-TextStyle poppinsBoldWhite13 = GoogleFonts.montserrat(
-    fontSize: 13, color: Colors.white, fontWeight: FontWeight.bold);
-TextStyle poppinsBoldWhite12 = GoogleFonts.montserrat(
-    fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold);
-TextStyle poppinsBoldBlack14 = GoogleFonts.montserrat(
-    fontSize: 14, color: Color(0xFF2F2F2F), fontWeight: FontWeight.bold);
-TextStyle poppinsBoldWhite14 = GoogleFonts.montserrat(
-    fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold);
-TextStyle textStyleTitleCharcoal = GoogleFonts.montserrat(
-    fontSize: 24, color: charcoalColor, fontWeight: FontWeight.bold);
-TextStyle poppinsBoldTheme24 = GoogleFonts.montserrat(
-    fontSize: 24, color: themeBlue, fontWeight: FontWeight.bold);
-TextStyle poppinsBoldCharcoal24 = GoogleFonts.montserrat(
-    fontSize: 24, color: charcoalColor, fontWeight: FontWeight.bold);
-TextStyle poppinsBoldCharcoal16 = GoogleFonts.montserrat(
-    fontSize: 16, color: charcoalColor, fontWeight: FontWeight.bold);
-TextStyle poppinsBoldCharcoal30 = GoogleFonts.montserrat(
-    fontSize: 30, color: charcoalColor, fontWeight: FontWeight.bold);
-TextStyle pageTitleWhite = GoogleFonts.montserrat(
-    fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500);
-TextStyle pageTitleGreen = GoogleFonts.montserrat(
-    fontSize: 20, color: themeBlue, fontWeight: FontWeight.w500);
-TextStyle poppinsBoldWhite20 = GoogleFonts.montserrat(
-    fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold);
-TextStyle poppinsBoldWhite18 = GoogleFonts.montserrat(
-    fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold);
-TextStyle poppinsBoldWhite30 = GoogleFonts.montserrat(
-    fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold);
-TextStyle poppinsNormalWhite15 = GoogleFonts.montserrat(
-  color: Colors.white,
-  fontSize: 15,
-);
-TextStyle poppinsNormalWhite9 = GoogleFonts.montserrat(
-  color: Colors.white,
-  fontSize: appUtil.normalizeSize(9),
-);
 
 TextStyle secondaryButtonText = GoogleFonts.roboto(color: Colors.white);
 TextStyle primaryButtonText = GoogleFonts.roboto(color: COLOR_DARK_PURPLE);
+
+ThemeData createTheme(BuildContext context) {
+  return ThemeData(
+      appBarTheme: AppBarTheme(
+          textTheme: TextTheme(headline6: pageTitleWhite),
+          color: Colors.deepPurple,
+          elevation: 2,
+          shadowColor: Colors.grey,
+          centerTitle: false,
+          actionsIconTheme: IconThemeData(color: Colors.white)),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: Colors.deepPurple,
+      ),
+      scaffoldBackgroundColor: Colors.deepPurple,
+      primarySwatch: Colors.deepPurple,
+      accentColor: Colors.white,
+      textTheme: TextTheme(
+        headline5: GoogleFonts.roboto(),
+        headline6: GoogleFonts.roboto(),
+        bodyText2: GoogleFonts.roboto(
+          color: Colors.white,
+        ),
+        bodyText1: GoogleFonts.roboto(),
+        headline4: GoogleFonts.roboto(
+            fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+        headline3: GoogleFonts.roboto(),
+        headline2: GoogleFonts.roboto(),
+        headline1: GoogleFonts.roboto(),
+        subtitle2: GoogleFonts.roboto(),
+        subtitle1: GoogleFonts.roboto(color: Colors.white),
+        caption: GoogleFonts.roboto(),
+      ),
+      buttonTheme: ButtonThemeData(
+          buttonColor: Colors.white,
+          textTheme: ButtonTextTheme.accent,
+          colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: Colors.white,
+              // secondary will be the textColor, when the textTheme is set to accent
+              secondary: Colors.deepPurple)));
+}
