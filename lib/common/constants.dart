@@ -112,6 +112,18 @@ ThemeData createTheme(BuildContext context) {
         subtitle1: GoogleFonts.roboto(color: Colors.white),
         caption: GoogleFonts.roboto(),
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white.withOpacity(.6))),
+        disabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white.withOpacity(.6))),
+        focusedBorder:
+            UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        labelStyle: GoogleFonts.roboto(color: Colors.white),
+        hintStyle: GoogleFonts.roboto(
+          color: Colors.white.withOpacity(0.6),
+        ),
+      ),
       buttonTheme: ButtonThemeData(
           buttonColor: Colors.white,
           textTheme: ButtonTextTheme.accent,

@@ -33,7 +33,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         // ),
         child: Column(
           children: <Widget>[
-            Expanded(
+            Container(
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Padding(
@@ -55,22 +55,61 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             Expanded(
               child: Align(
+                // alignment: Alignment.topLeft,
+                child: Padding(
+                    padding: EdgeInsets.only(left: 40, right: 40),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextFormField(
+                          decoration: InputDecoration(hintText: "First Name"),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(hintText: "Last Name"),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(hintText: "MM/DD/YY"),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "Mobile Number", hintText: "63"),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(labelText: "Email"),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              hintText: "Create Password",
+                              suffixIcon: Icon(Icons.visibility_off,
+                                  color: Colors.white.withOpacity(.6))),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              hintText: "Confirm Password",
+                              suffixIcon: Icon(
+                                Icons.visibility_off,
+                                color: Colors.white.withOpacity(0.6),
+                              )),
+                        )
+                      ],
+                    )),
+              ),
+            ),
+            Container(
+              child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                    padding: EdgeInsets.only(bottom: 20, left: 40, right: 40),
+                    padding: EdgeInsets.only(left: 40, right: 40, bottom: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text("Registration Screen"),
-                        Row(
-                          children: [
-                            Text("Registration"),
-                            Text("v1.1.1"),
-                          ],
-                        ),
                         SizedBox(
-                          height: 5,
-                        ),
+                            width: double.infinity,
+                            child: PrimaryButtonWidget(
+                                onPressed: () {
+                                  _handleRegister();
+                                },
+                                text: "Next"))
                       ],
                     )),
               ),
@@ -80,8 +119,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
     );
   }
-
-  _handleLogin() {}
 
   _handleRegister() {}
 
