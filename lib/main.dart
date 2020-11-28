@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/registration-screen.dart';
+import 'package:swipe/screens/services-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
@@ -77,6 +78,8 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => LoginScreen());
               case '/registration':
                 return MaterialPageRoute(builder: (_) => RegistrationScreen());
+              case '/services':
+                return MaterialPageRoute(builder: (_) => ServicesScreen());
               default:
                 return null;
             }

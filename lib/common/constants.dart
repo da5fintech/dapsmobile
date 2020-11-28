@@ -6,21 +6,10 @@ import 'package:swipe/common/util.dart';
 
 const BLUR_RADIUS = 10;
 
-const backgroundColor1 = Color(0xFFE5E5E5);
-const backgroundColor2 = Color(0xFFEEF2F4);
-
-const black181818 = Color(0xFF181818);
-const black282828 = Color(0xFF282828);
-
-const charcoalColor = Color(0xFF454545);
-const themeRed = Color(0xFFED1F24);
-// const lightBlue = Color(0xFF93FBAA);
-const themeBlue = Color(0xFF003F5C);
-const themeBlue2 = Color(0xFF2A3952);
-const themeRed2 = Color(0xFF4F3449);
-// const green3 = Color(0xFF4EAE97);
-// const green4 = Color(0xFF83E799);
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
+const COLOR_ORANGE = Color(0xffF2A819);
+const COLOR_GREEN = Color(0xff25BA96);
+const COLOR_GRAY = Color(0xffC4C4C4);
 
 const kUpdateDialogKeyName = 'kUpdateDialogKeyName';
 

@@ -101,7 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  _handleLogin() {}
+  _handleLogin() {
+    Get.offAllNamed("/services");
+  }
 
   _handleRegister() {
     Get.toNamed("/registration");
