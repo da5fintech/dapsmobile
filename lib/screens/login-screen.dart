@@ -29,9 +29,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
       body: Container(
-        // decoration: BoxDecoration(
-        //   color: Colors.deepPurple,
-        // ),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -85,6 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         //       style: Constants.primaryButtonText),
                         // ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Help Center"),
                             Text("v1.1.1"),
@@ -106,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
   _handleLogin() {}
 
   _handleRegister() {
-    Get.offNamed("/registration");
+    Get.toNamed("/registration");
   }
 
   @override

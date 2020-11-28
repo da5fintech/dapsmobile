@@ -28,9 +28,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
       body: Container(
-        // decoration: BoxDecoration(
-        //   color: Colors.deepPurple,
-        // ),
         child: Column(
           children: <Widget>[
             Container(
@@ -109,7 +106,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 onPressed: () {
                                   _handleRegister();
                                 },
-                                text: "Next"))
+                                text: "Next")),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Help Center"),
+                            Text("v1.1.1"),
+                          ],
+                        ),
                       ],
                     )),
               ),

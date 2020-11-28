@@ -85,15 +85,15 @@ ThemeData createTheme(BuildContext context) {
   return ThemeData(
       appBarTheme: AppBarTheme(
           textTheme: TextTheme(headline6: pageTitleWhite),
-          color: Colors.deepPurple,
+          color: COLOR_DARK_PURPLE,
           elevation: 2,
           shadowColor: Colors.grey,
           centerTitle: false,
           actionsIconTheme: IconThemeData(color: Colors.white)),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: COLOR_DARK_PURPLE,
       ),
-      scaffoldBackgroundColor: Colors.deepPurple,
+      scaffoldBackgroundColor: COLOR_DARK_PURPLE,
       primarySwatch: Colors.deepPurple,
       accentColor: Colors.white,
       textTheme: TextTheme(
@@ -102,14 +102,16 @@ ThemeData createTheme(BuildContext context) {
         bodyText2: GoogleFonts.roboto(
           color: Colors.white,
         ),
-        bodyText1: GoogleFonts.roboto(),
+        bodyText1: GoogleFonts.roboto(fontSize: 16, color: Colors.red),
         headline4: GoogleFonts.roboto(
             fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
         headline3: GoogleFonts.roboto(),
         headline2: GoogleFonts.roboto(),
         headline1: GoogleFonts.roboto(),
         subtitle2: GoogleFonts.roboto(),
-        subtitle1: GoogleFonts.roboto(color: Colors.white),
+
+        // used in text fields
+        subtitle1: GoogleFonts.roboto(color: Colors.white, fontSize: 16),
         caption: GoogleFonts.roboto(),
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -119,8 +121,10 @@ ThemeData createTheme(BuildContext context) {
             borderSide: BorderSide(color: Colors.white.withOpacity(.6))),
         focusedBorder:
             UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-        labelStyle: GoogleFonts.roboto(color: Colors.white),
+        labelStyle: GoogleFonts.roboto(
+            fontSize: 16, color: Colors.white.withOpacity(0.6)),
         hintStyle: GoogleFonts.roboto(
+          fontSize: 16,
           color: Colors.white.withOpacity(0.6),
         ),
       ),
@@ -130,5 +134,5 @@ ThemeData createTheme(BuildContext context) {
           colorScheme: Theme.of(context).colorScheme.copyWith(
               primary: Colors.white,
               // secondary will be the textColor, when the textTheme is set to accent
-              secondary: Colors.deepPurple)));
+              secondary: COLOR_DARK_PURPLE)));
 }
