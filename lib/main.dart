@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:swipe/screens/buy_load/buy-load-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/registration-screen.dart';
 import 'package:swipe/screens/services-screen.dart';
@@ -81,6 +82,11 @@ class _MyAppState extends State<MyApp> {
               case '/services':
                 return MaterialPageRoute(builder: (_) => ServicesScreen());
               default:
+                if (settings.name ==
+                    Constants.SwipeServiceOffering.BUY_LOAD.toString()) {
+                  print("seding to buy load");
+                  return MaterialPageRoute(builder: (_) => BuyLoadScreen());
+                }
                 return null;
             }
           },

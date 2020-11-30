@@ -2,7 +2,6 @@ library constants;
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/util.dart';
 
 const BLUR_RADIUS = 10;
 
@@ -70,18 +69,17 @@ TextStyle pageTitleWhite = GoogleFonts.roboto(
 TextStyle secondaryButtonText = GoogleFonts.roboto(color: Colors.white);
 TextStyle primaryButtonText = GoogleFonts.roboto(color: COLOR_DARK_PURPLE);
 
+final appBarTheme = AppBarTheme(
+    textTheme: TextTheme(headline6: pageTitleWhite),
+    color: COLOR_DARK_PURPLE,
+    elevation: 2,
+    shadowColor: Colors.grey,
+    centerTitle: false,
+    actionsIconTheme: IconThemeData(color: Colors.white));
+
 ThemeData createTheme(BuildContext context) {
   return ThemeData(
-      appBarTheme: AppBarTheme(
-          textTheme: TextTheme(headline6: pageTitleWhite),
-          color: COLOR_DARK_PURPLE,
-          elevation: 2,
-          shadowColor: Colors.grey,
-          centerTitle: false,
-          actionsIconTheme: IconThemeData(color: Colors.white)),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: COLOR_DARK_PURPLE,
-      ),
+      appBarTheme: appBarTheme,
       scaffoldBackgroundColor: COLOR_DARK_PURPLE,
       primarySwatch: Colors.deepPurple,
       accentColor: Colors.white,
@@ -125,3 +123,68 @@ ThemeData createTheme(BuildContext context) {
               // secondary will be the textColor, when the textTheme is set to accent
               secondary: COLOR_DARK_PURPLE)));
 }
+
+ThemeData createThemePurpleOnWhite(BuildContext context) {
+  return ThemeData(
+      appBarTheme: appBarTheme,
+      scaffoldBackgroundColor: Colors.white,
+      primarySwatch: Colors.deepPurple,
+      accentColor: Colors.white,
+      textTheme: TextTheme(
+        headline5: GoogleFonts.roboto(),
+        headline6: GoogleFonts.roboto(),
+        bodyText2: GoogleFonts.roboto(
+          fontSize: 14,
+          fontStyle: FontStyle.normal,
+          color: Colors.black.withOpacity(.6),
+        ),
+        bodyText1: GoogleFonts.roboto(fontSize: 16, color: Colors.red),
+        headline4: GoogleFonts.roboto(
+            fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+        headline3: GoogleFonts.roboto(),
+        headline2: GoogleFonts.roboto(),
+        headline1: GoogleFonts.roboto(),
+        subtitle2: GoogleFonts.roboto(),
+
+        // used in text fields
+        subtitle1: GoogleFonts.roboto(
+            color: Colors.black.withOpacity(.6), fontSize: 16),
+        caption: GoogleFonts.roboto(),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: COLOR_DARK_PURPLE)),
+        disabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black.withOpacity(.6))),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: COLOR_DARK_PURPLE)),
+        labelStyle: GoogleFonts.roboto(fontSize: 14, color: COLOR_DARK_PURPLE),
+        hintStyle: GoogleFonts.roboto(
+          fontSize: 16,
+          color: Colors.black.withOpacity(.6),
+        ),
+      ),
+      buttonTheme: ButtonThemeData(
+          buttonColor: Colors.white,
+          textTheme: ButtonTextTheme.accent,
+          colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: Colors.white,
+              // secondary will be the textColor, when the textTheme is set to accent
+              secondary: Colors.black.withOpacity(0.6))));
+}
+
+enum SwipeServiceOffering {
+  BUY_LOAD,
+  CASH_IN,
+  PAY_QR,
+  REMITTANCE,
+  PAY_BILLS,
+  INSURANCE,
+  BANK_TRANSFER,
+  REQUEST_MONEY,
+  MORE
+}
+
+Map<SwipeServiceOffering, String> SwipeServiceRoutes = {
+  SwipeServiceOffering.BUY_LOAD: '..'
+};

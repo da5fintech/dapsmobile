@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/store/application-store.dart';
-import 'package:swipe/widgets/primary-button.widget.dart';
-import 'package:swipe/widgets/secondary-button.widget.dart';
-import 'package:swipe/widgets/service-button.dart';
+import 'package:swipe/common/widgets/main-app-bar.widget.dart';
+import 'package:swipe/common/widgets/service-button.dart';
 
 import '../main.dart';
 
@@ -30,23 +29,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
 
     return Scaffold(
         // backgroundColor: Constants.backgroundColor2,
-        appBar: AppBar(
-          leading: Icon(Icons.list),
-          title: Text("SWIPE",
-              style: GoogleFonts.roboto(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 15)),
-          actions: [
-            Icon(
-              Icons.notifications,
-              size: 16,
-            ),
-            SizedBox(
-              width: 10,
-            )
-          ],
-        ),
+        appBar: MainAppBarWidget(),
         body: Container(
           child: Column(
             children: [
@@ -126,6 +109,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               ServiceButtonWidget(
+                                offering: SwipeServiceOffering.CASH_IN,
+                                onPressed: _handleButtonClick,
                                 icon: Icon(Icons.circle),
                                 text: "Cash In",
                               ),
@@ -133,6 +118,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 height: 30,
                               ),
                               ServiceButtonWidget(
+                                offering: SwipeServiceOffering.BUY_LOAD,
+                                onPressed: _handleButtonClick,
                                 icon: Icon(Icons.circle),
                                 text: "Buy Load",
                               ),
@@ -140,6 +127,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 height: 30,
                               ),
                               ServiceButtonWidget(
+                                offering: SwipeServiceOffering.PAY_QR,
+                                onPressed: _handleButtonClick,
                                 icon: Icon(Icons.circle),
                                 text: "Pay QR",
                               ),
@@ -149,6 +138,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               ServiceButtonWidget(
+                                offering: SwipeServiceOffering.REMITTANCE,
+                                onPressed: _handleButtonClick,
                                 icon: Icon(Icons.circle),
                                 text: "Remittance",
                               ),
@@ -156,6 +147,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 height: 30,
                               ),
                               ServiceButtonWidget(
+                                offering: SwipeServiceOffering.PAY_BILLS,
+                                onPressed: _handleButtonClick,
                                 icon: Icon(Icons.circle),
                                 text: "Pay Bills",
                               ),
@@ -163,6 +156,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 height: 30,
                               ),
                               ServiceButtonWidget(
+                                offering: SwipeServiceOffering.INSURANCE,
+                                onPressed: _handleButtonClick,
                                 icon: Icon(Icons.circle),
                                 text: "Insurance",
                               ),
@@ -172,6 +167,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               ServiceButtonWidget(
+                                offering: SwipeServiceOffering.BANK_TRANSFER,
+                                onPressed: _handleButtonClick,
                                 icon: Icon(Icons.circle),
                                 text: "Bank Transfer",
                               ),
@@ -179,6 +176,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 height: 30,
                               ),
                               ServiceButtonWidget(
+                                offering: SwipeServiceOffering.REQUEST_MONEY,
+                                onPressed: _handleButtonClick,
                                 icon: Icon(Icons.circle),
                                 text: "Request Money",
                               ),
@@ -186,6 +185,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 height: 30,
                               ),
                               ServiceButtonWidget(
+                                offering: SwipeServiceOffering.MORE,
+                                onPressed: _handleButtonClick,
                                 icon: Icon(Icons.more_horiz),
                                 text: "More",
                               ),
@@ -201,5 +202,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  _handleButtonClick(SwipeServiceOffering offering) {
+    Get.toNamed(offering.toString());
   }
 }

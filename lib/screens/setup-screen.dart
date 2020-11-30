@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/store/application-store.dart';
-import 'package:swipe/widgets/access-permission-dialog.dart';
+import 'package:swipe/common/widgets/access-permission-dialog.dart';
 
 import '../main.dart';
 

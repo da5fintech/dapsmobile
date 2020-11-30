@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/widgets/primary-button.widget.dart';
-import 'package:swipe/widgets/secondary-button.widget.dart';
+import 'package:swipe/common/widgets/primary-button.widget.dart';
+import 'package:swipe/common/widgets/secondary-button.widget.dart';
 
 class CommonAlertDialog extends StatelessWidget {
   final backgroundColor;

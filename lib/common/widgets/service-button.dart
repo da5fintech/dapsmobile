@@ -3,12 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 
 class ServiceButtonWidget extends StatelessWidget {
+  final SwipeServiceOffering offering;
   final Icon icon;
   final String text;
   final Function onPressed;
 
   const ServiceButtonWidget({
     Key key,
+    @required this.offering,
     @required this.text,
     @required this.icon,
     this.onPressed,
@@ -21,7 +23,9 @@ class ServiceButtonWidget extends StatelessWidget {
         IconButton(
           color: COLOR_GRAY,
           icon: icon,
-          onPressed: () {},
+          onPressed: () {
+            this.onPressed(offering);
+          },
         ),
         Text(
           text,
