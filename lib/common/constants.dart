@@ -149,6 +149,8 @@ ThemeData createThemePurpleOnWhite(BuildContext context) {
         // used in text fields
         subtitle1: GoogleFonts.roboto(
             color: Colors.black.withOpacity(.6), fontSize: 16),
+        button: GoogleFonts.roboto(
+            fontSize: 14, fontWeight: FontWeight.w500, color: Colors.red),
         caption: GoogleFonts.roboto(),
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -165,12 +167,12 @@ ThemeData createThemePurpleOnWhite(BuildContext context) {
         ),
       ),
       buttonTheme: ButtonThemeData(
-          buttonColor: Colors.white,
-          textTheme: ButtonTextTheme.accent,
+          buttonColor: COLOR_DARK_PURPLE,
+          textTheme: ButtonTextTheme.primary,
           colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: Colors.white,
+              primary: COLOR_DARK_PURPLE,
               // secondary will be the textColor, when the textTheme is set to accent
-              secondary: Colors.black.withOpacity(0.6))));
+              secondary: Colors.white)));
 }
 
 enum SwipeServiceOffering {
