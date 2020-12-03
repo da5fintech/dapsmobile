@@ -1,12 +1,13 @@
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/models/product-model.dart';
 
 class TransactionModel {
   String id;
   SwipeServiceOffering offering;
+  ProductModel product;
   String recipient;
-  double amount;
 
-  TransactionModel({this.id, this.offering, this.recipient, this.amount});
+  TransactionModel({this.id, this.offering, this.recipient, this.product});
 
   factory TransactionModel.fromJson(Map<String, dynamic> data, {id}) {
     // Map geoLocationMap = json['geoLocation'] as Map;

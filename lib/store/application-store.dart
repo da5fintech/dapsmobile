@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
 part 'application-store.g.dart';
@@ -35,7 +36,7 @@ abstract class _ApplicationStore with Store {
   }
 
   @action
-  setTransactionAmount(double amount) {
-    transaction.amount = amount;
+  setTransactionProduct(ProductModel product) {
+    transaction.product = product;
   }
 }

@@ -71,7 +71,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                                   fontSize: 12,
                                   color: Colors.black.withOpacity(.60),
                                   fontWeight: FontWeight.w400)),
-                          Text("PHP " + store.balance.toString(),
+                          Text(formatter.format(store.balance),
                               style: GoogleFonts.roboto(
                                   fontSize: 14,
                                   color: COLOR_DARK_PURPLE.withOpacity(.87),
@@ -129,7 +129,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                     children: [
                       Text("Amount Due"),
                       Spacer(),
-                      Text("PHP " + store.transaction.amount.toString()),
+                      Text(formatter.format(store.transaction.product.amount)),
                     ],
                   ),
                 ),
@@ -159,7 +159,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                     children: [
                       Text("Total Amount"),
                       Spacer(),
-                      Text("PHP " + store.transaction.amount.toString()),
+                      Text(formatter.format(store.transaction.product.amount)),
                     ],
                   ),
                 ),
