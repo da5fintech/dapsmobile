@@ -205,6 +205,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
   }
 
   _handleButtonClick(SwipeServiceOffering offering) {
-    Get.toNamed(offering.toString());
+    if (offering == SwipeServiceOffering.BUY_LOAD) {
+      Get.toNamed("/services/buy-load/buy-load-recipient-screen");
+    }
   }
 }

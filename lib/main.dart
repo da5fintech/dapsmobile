@@ -9,8 +9,10 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:swipe/screens/buy_load/buy-load-screen.dart';
+import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
+import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
+import 'package:swipe/screens/payment/payment-verification-screen.dart';
 import 'package:swipe/screens/registration-screen.dart';
 import 'package:swipe/screens/services-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
@@ -81,12 +83,15 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => RegistrationScreen());
               case '/services':
                 return MaterialPageRoute(builder: (_) => ServicesScreen());
+              case '/services/buy-load/buy-load-recipient-screen':
+                return MaterialPageRoute(
+                    builder: (_) => BuyLoadRecipientScreen());
+              case '/services/buy-load/buy-load-amount-screen':
+                return MaterialPageRoute(builder: (_) => BuyLoadAmountScreen());
+              case '/services/payment/payment-verification-screen':
+                return MaterialPageRoute(
+                    builder: (_) => PaymentVerificationScreen());
               default:
-                if (settings.name ==
-                    Constants.SwipeServiceOffering.BUY_LOAD.toString()) {
-                  print("seding to buy load");
-                  return MaterialPageRoute(builder: (_) => BuyLoadScreen());
-                }
                 return null;
             }
           },

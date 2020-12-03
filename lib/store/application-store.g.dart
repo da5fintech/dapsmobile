@@ -24,6 +24,31 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     });
   }
 
+  final _$_ApplicationStoreActionController =
+      ActionController(name: '_ApplicationStore');
+
+  @override
+  dynamic createTransaction(SwipeServiceOffering offering, dynamic recipient) {
+    final _$actionInfo = _$_ApplicationStoreActionController.startAction(
+        name: '_ApplicationStore.createTransaction');
+    try {
+      return super.createTransaction(offering, recipient);
+    } finally {
+      _$_ApplicationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setTransactionAmount(double amount) {
+    final _$actionInfo = _$_ApplicationStoreActionController.startAction(
+        name: '_ApplicationStore.setTransactionAmount');
+    try {
+      return super.setTransactionAmount(amount);
+    } finally {
+      _$_ApplicationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

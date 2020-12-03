@@ -6,9 +6,11 @@ class SubAppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize; // default is 56.0
   final String title;
+  final Widget bottom;
+  final double height;
 
-  SubAppbarWidget({Key key, @required this.title})
-      : preferredSize = Size.fromHeight(kToolbarHeight),
+  SubAppbarWidget({Key key, @required this.title, this.bottom, this.height})
+      : preferredSize = Size.fromHeight(height ?? 56.0),
         super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class SubAppbarWidget extends StatelessWidget implements PreferredSizeWidget {
           style: GoogleFonts.roboto(
               fontSize: 14, fontWeight: FontWeight.w800, letterSpacing: 2)),
       actions: [],
+      bottom: bottom,
     );
   }
 
