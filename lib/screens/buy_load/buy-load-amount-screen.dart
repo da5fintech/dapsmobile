@@ -242,6 +242,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                                       ],
                                     ),
                                   ),
+                                  Spacer(),
                                   Radio(
                                       onChanged: (value) {
                                         setSelectedRadio(value);
