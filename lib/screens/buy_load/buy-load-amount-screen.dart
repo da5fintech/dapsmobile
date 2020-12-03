@@ -21,19 +21,25 @@ class BuyLoadAmountScreen extends StatefulWidget {
 
 class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
   final _formKey = GlobalKey<FormState>();
-
+  String selectedRadio = "";
   TextEditingController controller = new TextEditingController();
+  ProductModel selectedPromo;
 
   @override
   void initState() {
     super.initState();
   }
 
+  setSelectedRadio(String code) {
+    selectedRadio = code;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
-    double width = MediaQuery.of(context).size.width * 0.8;
+    double width = MediaQuery.of(context).size.width * 0.60;
     double height = MediaQuery.of(context).size.height * 0.70;
     return DefaultTabController(
       length: 2,
@@ -177,7 +183,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                               child: RaisedButton(
                                 // shape: ,
                                 onPressed: () {
-                                  _handleNext();
+                                  _handleNextRegular();
                                 },
                                 child: Text(
                                   "NEXT",
@@ -236,6 +242,14 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                                       ],
                                     ),
                                   ),
+                                  Radio(
+                                      onChanged: (value) {
+                                        setSelectedRadio(value);
+                                        selectedPromo =
+                                            loadPromoProducts[index];
+                                      },
+                                      groupValue: selectedRadio,
+                                      value: loadPromoProducts[index].code)
                                 ],
                               ),
                             );
@@ -249,7 +263,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                           child: RaisedButton(
                             // shape: ,
                             onPressed: () {
-                              _handleNext();
+                              _handleNextPromo();
                             },
                             child: Text(
                               "NEXT",
@@ -269,12 +283,19 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
     super.dispose();
   }
 
-  void _handleNext() {
+  void _handleNextRegular() {
     bool status = _formKey.currentState.validate();
     if (status) {
       ProductModel product =
           ProductModel(amount: double.parse(controller.text), code: "REGULAR");
       store.setTransactionProduct(product);
+      Get.toNamed("/services/payment/payment-verification-screen");
+    }
+  }
+
+  void _handleNextPromo() {
+    if (selectedPromo != null) {
+      store.setTransactionProduct(selectedPromo);
       Get.toNamed("/services/payment/payment-verification-screen");
     }
   }

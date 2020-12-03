@@ -156,6 +156,7 @@ ThemeData createThemePurpleOnWhite(BuildContext context) {
             fontSize: 14, fontWeight: FontWeight.w500, color: Colors.red),
         caption: GoogleFonts.roboto(),
       ),
+      toggleableActiveColor: COLOR_DARK_PURPLE,
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: COLOR_DARK_PURPLE)),
