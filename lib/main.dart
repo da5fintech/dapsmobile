@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
+import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
 import 'package:swipe/screens/registration-screen.dart';
 import 'package:swipe/screens/services-screen.dart';
@@ -91,6 +92,8 @@ class _MyAppState extends State<MyApp> {
               case '/services/payment/payment-verification-screen':
                 return MaterialPageRoute(
                     builder: (_) => PaymentVerificationScreen());
+              case '/services/payment/payment-mpin-screen':
+                return MaterialPageRoute(builder: (_) => PaymentMpinScreen());
               default:
                 return null;
             }

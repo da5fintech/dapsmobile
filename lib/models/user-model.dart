@@ -1,7 +1,6 @@
 class UserModel {
   String id;
+  String mpin;
 
-  UserModel({
-    this.id,
-  });
+  UserModel({this.id, this.mpin});
 }

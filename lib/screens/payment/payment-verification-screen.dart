@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
-import 'package:swipe/screens/buy_load/amount-button-widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
@@ -34,7 +33,28 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
       child: Scaffold(
           // backgroundColor: Constants.backgroundColor2,
           appBar: SubAppbarWidget(
+            height: 96,
             title: "Payment",
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(10),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("${store.transaction.product.name}",
+                        style: GoogleFonts.roboto(
+                            fontSize: 14,
+                            color: Colors.white.withOpacity(.87))),
+                    Text(formatter.format(store.transaction.product.amount),
+                        style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24,
+                            color: Colors.white)),
+                  ],
+                ),
+              ),
+            ),
           ),
           body: Padding(
             padding: const EdgeInsets.all(0.0),
@@ -189,5 +209,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
     super.dispose();
   }
 
-  void _handlePay() {}
+  void _handlePay() {
+    Get.toNamed('/services/payment/payment-mpin-screen');
+  }
 }

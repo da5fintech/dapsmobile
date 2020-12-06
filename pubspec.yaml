@@ -43,6 +43,7 @@ dependencies:
     git:
       url: "git@github.com:slowlearner/http.git"
       ref: preserve-headers-case
+  pin_code_fields: ^6.0.1
 
 dev_dependencies:
   build_runner: ^1.8.1
