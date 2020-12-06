@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-const BLUR_RADIUS = 10;
+const AUTH_MERCHANT_ID = "0910";
+const AUTH_NETWORK_ID = "0625";
+const AUTH_USERNAME = "kabootekph";
+const AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
+const ELOADING_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
 
+const BLUR_RADIUS = 10;
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
 const COLOR_ORANGE = Color(0xffF2A819);
 const COLOR_GREEN = Color(0xff25BA96);

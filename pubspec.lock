@@ -276,7 +276,7 @@ packages:
     source: hosted
     version: "0.2.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -513,6 +513,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  sensitive_http:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: preserve-headers-case
+      resolved-ref: "4f41ef7a36b7375f06abbb403cde2cf219a98651"
+      url: "git@github.com:slowlearner/http.git"
+    source: git
+    version: "0.12.2"
   shared_preferences:
     dependency: "direct main"
     description:

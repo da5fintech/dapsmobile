@@ -5,6 +5,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
+import 'package:swipe/services/eloading-service.dart';
 part 'application-store.g.dart';
 
 class ApplicationStore = _ApplicationStore with _$ApplicationStore;
@@ -12,6 +13,8 @@ class ApplicationStore = _ApplicationStore with _$ApplicationStore;
 abstract class _ApplicationStore with Store {
   @observable
   UserModel user;
+
+  EloadingService eloadingService;
 
   bool permissionsGranted;
   SharedPreferences prefs;
@@ -22,6 +25,8 @@ abstract class _ApplicationStore with Store {
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
     balance = 28000;
+
+    eloadingService = new EloadingService();
   }
 
   setPermissionsGranted() {

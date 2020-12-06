@@ -7,6 +7,7 @@ import 'package:swipe/common/load-promo-products.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/screens/buy_load/amount-button-widget.dart';
+import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
@@ -24,10 +25,19 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
   String selectedRadio = "";
   TextEditingController controller = new TextEditingController();
   ProductModel selectedPromo;
+  List<ProductModel> promoProducts = new List<ProductModel>();
 
   @override
   void initState() {
     super.initState();
+
+    store.eloadingService
+        .getProducts(store.transaction.recipient)
+        .then((value) {
+      setState(() {
+        promoProducts = value;
+      });
+    });
   }
 
   setSelectedRadio(String code) {
@@ -201,7 +211,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                       child: ListView.builder(
                           physics: AlwaysScrollableScrollPhysics(),
                           padding: const EdgeInsets.all(8),
-                          itemCount: loadPromoProducts.length,
+                          itemCount: promoProducts.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -222,7 +232,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('${loadPromoProducts[index].name}',
+                                        Text('${promoProducts[index].name}',
                                             textAlign: TextAlign.left,
                                             style: GoogleFonts.roboto(
                                                 color: Colors.black
@@ -233,7 +243,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                                           height: 2,
                                         ),
                                         Text(
-                                            'Entry ${loadPromoProducts[index].description}',
+                                            '${promoProducts[index].description}',
                                             style: GoogleFonts.roboto(
                                                 color: COLOR_DARK_GRAY
                                                     .withOpacity(.87),
@@ -246,11 +256,10 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                                   Radio(
                                       onChanged: (value) {
                                         setSelectedRadio(value);
-                                        selectedPromo =
-                                            loadPromoProducts[index];
+                                        selectedPromo = promoProducts[index];
                                       },
                                       groupValue: selectedRadio,
-                                      value: loadPromoProducts[index].code)
+                                      value: promoProducts[index].code)
                                 ],
                               ),
                             );
@@ -284,13 +293,16 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
     super.dispose();
   }
 
-  void _handleNextRegular() {
+  void _handleNextRegular() async {
     bool status = _formKey.currentState.validate();
     if (status) {
       ProductModel product =
           ProductModel(amount: double.parse(controller.text), code: "REGULAR");
       store.setTransactionProduct(product);
-      Get.toNamed("/services/payment/payment-verification-screen");
+      // Get.toNamed("/services/payment/payment-verification-screen");
+
+      var service = new EloadingService();
+      await service.getProducts("639672057407");
     }
   }
 
