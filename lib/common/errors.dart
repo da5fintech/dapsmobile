@@ -6,3 +6,7 @@ class GenericError extends Error {
 class ApiResponseError extends GenericError {
   ApiResponseError(String message) : super(message);
 }
+
+class EloadProcessingError extends GenericError {
+  EloadProcessingError(String message) : super(message);
+}

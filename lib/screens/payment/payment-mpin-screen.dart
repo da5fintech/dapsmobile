@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/errors.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/models/product-model.dart';
+import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
@@ -30,6 +35,37 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
     ThemeData td = createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height * 0.70;
     double width = MediaQuery.of(context).size.width * 0.50;
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text("Processing...",
+                style: GoogleFonts.roboto(color: Colors.white)),
+          ],
+        ),
+      ),
+      'dialog': CustomOverlayScreen(
+          backgroundColor: Colors.white.withOpacity(.2),
+          content: WrongMpinDialog(
+            onOk: () {
+              _handleOk();
+            },
+          )),
+      'processing error': CustomOverlayScreen(
+          backgroundColor: Colors.white.withOpacity(.2),
+          content: WrongMpinDialog(
+            onOk: () {
+              _handleOk();
+            },
+          )),
+    });
     return Theme(
       data: td,
       child: Scaffold(
@@ -110,11 +146,34 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
     super.dispose();
   }
 
-  void _handlePay() {
-    if (controller.text == store.user.mpin) {
-      print("pin: ${controller.text}");
+  void _handlePay() async {
+    try {
       AirtimeProduct airtime = store.transaction.product;
-      print("network: ${airtime.network}");
+      if (controller.text == store.user.mpin) {
+        OverlayScreen().show(
+          context,
+          identifier: 'progress',
+        );
+
+        var result = await store.eloadingService
+            .process(store.transaction.recipient, airtime);
+
+        store.lastTransactionResponse = result;
+        OverlayScreen().pop();
+
+        Get.toNamed('/services/payment/payment-confirmation-screen');
+      } else {
+        OverlayScreen().show(
+          context,
+          identifier: 'dialog',
+        );
+      }
+    } on EloadProcessingError catch (e) {
+      print(e.message);
     }
+  }
+
+  void _handleOk() {
+    OverlayScreen().pop();
   }
 }

@@ -324,6 +324,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
+  loading_overlay:
+    dependency: "direct main"
+    description:
+      name: loading_overlay
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   logging:
     dependency: transitive
     description:
@@ -387,6 +394,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  overlay_screen:
+    dependency: "direct main"
+    description:
+      name: overlay_screen
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0+1"
   package_config:
     dependency: transitive
     description:

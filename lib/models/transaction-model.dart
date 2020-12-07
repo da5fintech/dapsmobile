@@ -8,3 +8,13 @@ class TransactionModel {
   String recipient;
   TransactionModel({this.id, this.offering, this.recipient, this.product});
 }
+
+abstract class TransactionProcessingResponse {
+  int status;
+  String reference;
+  String message;
+  String result;
+
+  TransactionProcessingResponse(
+      {this.status, this.reference, this.message, this.result});
+}

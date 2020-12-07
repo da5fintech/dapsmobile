@@ -7,20 +7,20 @@ abstract class ProductModel {
   ProductModel({this.code, this.name, this.amount, this.description = ""});
 }
 
-enum Network { SMART, GLOBE }
+enum Network { SMART, GLOBE, NONE }
 
-toNetwork(String network) {
+Network toNetwork(String network) {
   switch (network) {
     case "GLOBE":
       return Network.GLOBE;
     case "SMART":
       return Network.SMART;
     default:
-      return "";
+      return Network.NONE;
   }
 }
 
-fromNetwork(Network network) {
+String fromNetwork(Network network) {
   switch (network) {
     case Network.GLOBE:
       return "GLOBE";

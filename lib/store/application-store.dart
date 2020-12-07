@@ -20,12 +20,14 @@ abstract class _ApplicationStore with Store {
   SharedPreferences prefs;
 
   TransactionModel transaction;
+  TransactionProcessingResponse lastTransactionResponse;
   double balance;
 
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
     balance = 28000;
     eloadingService = new EloadingService();
+
     user = UserModel(id: "", mpin: "888888");
   }
 
