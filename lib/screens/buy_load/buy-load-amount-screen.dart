@@ -51,6 +51,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
     ThemeData td = createThemePurpleOnWhite(context);
     double width = MediaQuery.of(context).size.width * 0.60;
     double height = MediaQuery.of(context).size.height * 0.70;
+    AirtimeProduct product = store.transaction.product;
     return DefaultTabController(
       length: 2,
       child: Theme(
@@ -296,8 +297,10 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
   void _handleNextRegular() async {
     bool status = _formKey.currentState.validate();
     if (status) {
-      ProductModel product =
-          ProductModel(amount: double.parse(controller.text), code: "REGULAR");
+      ProductModel product = AirtimeProduct(
+        amount: double.parse(controller.text),
+        code: "REGULAR",
+      );
       store.setTransactionProduct(product);
       // Get.toNamed("/services/payment/payment-verification-screen");
 

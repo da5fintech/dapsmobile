@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/models/product-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
@@ -17,6 +18,7 @@ class PaymentMpinScreen extends StatefulWidget {
 }
 
 class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
+  TextEditingController controller = new TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -65,8 +67,11 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
                       Container(
                         width: width,
                         child: PinCodeTextField(
+                          controller: controller,
                           keyboardType: TextInputType.number,
-                          onChanged: (str) {},
+                          onChanged: (str) {
+                            print("change ${str}");
+                          },
                           appContext: context,
                           length: 6,
                           pinTheme: PinTheme(
@@ -105,5 +110,11 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
     super.dispose();
   }
 
-  void _handlePay() {}
+  void _handlePay() {
+    if (controller.text == store.user.mpin) {
+      print("pin: ${controller.text}");
+      AirtimeProduct airtime = store.transaction.product;
+      print("network: ${airtime.network}");
+    }
+  }
 }

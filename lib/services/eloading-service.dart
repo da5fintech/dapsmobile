@@ -23,7 +23,8 @@ class EloadingService extends Da5Service {
             "Expected collection in response but was missing");
       }
       (products["collection"]["data"]).forEach((p) {
-        var product = ProductModel(
+        var product = AirtimeProduct(
+            network: toNetwork(p["Network"]),
             code: p["ProductCode"],
             name: p["ProductName"],
             amount: double.parse(p["MinAmount"]));

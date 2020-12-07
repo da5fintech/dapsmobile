@@ -6,6 +6,5 @@ class TransactionModel {
   SwipeServiceOffering offering;
   ProductModel product;
   String recipient;
-
   TransactionModel({this.id, this.offering, this.recipient, this.product});
 }
