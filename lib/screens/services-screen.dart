@@ -147,7 +147,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 height: 30,
                               ),
                               ServiceButtonWidget(
-                                offering: SwipeServiceOffering.PAY_BILLS,
+                                offering: SwipeServiceOffering.BILLS_PAYMENT,
                                 onPressed: _handleButtonClick,
                                 icon: Icon(Icons.circle),
                                 text: "Pay Bills",
@@ -207,6 +207,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
   _handleButtonClick(SwipeServiceOffering offering) {
     if (offering == SwipeServiceOffering.BUY_LOAD) {
       Get.toNamed("/services/buy-load/buy-load-recipient-screen");
+    } else if (offering == SwipeServiceOffering.BILLS_PAYMENT) {
+      Get.toNamed("/services/bills-payment/bills-payment-categories-screen");
     }
   }
 }

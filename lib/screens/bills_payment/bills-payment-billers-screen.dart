@@ -1,0 +1,121 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/models/product-model.dart';
+import 'package:swipe/store/application-store.dart';
+
+import '../../main.dart';
+
+final store = getIt<ApplicationStore>();
+
+class BillsPaymentBillersScreen extends StatefulWidget {
+  @override
+  _BillsPaymentBillersScreenState createState() =>
+      _BillsPaymentBillersScreenState();
+}
+
+class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
+  List<BillerProduct> billers = store.billers;
+  @override
+  void initState() {
+    // WidgetsBinding.instance.addPostFrameCallback((_) => initBillers());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    print("building: ${billers.length} ");
+    double width = MediaQuery.of(context).size.width * 0.70;
+    double height = MediaQuery.of(context).size.height * 0.80;
+    ThemeData td = createThemePurpleOnWhite(context);
+    return Theme(
+      data: td,
+      child: Scaffold(
+          // backgroundColor: Constants.backgroundColor2,
+          appBar: SubAppbarWidget(
+            title: "All Billers",
+            actions: [IconButton(icon: Icon(Icons.search), onPressed: () {})],
+          ),
+          body: Column(
+            children: [
+              Container(
+                  padding: EdgeInsets.all(2),
+                  width: double.infinity,
+                  color: Colors.white,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: height,
+                        child: ListView.builder(
+                            physics: AlwaysScrollableScrollPhysics(),
+                            padding: const EdgeInsets.all(5),
+                            itemCount: billers.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              color: Colors.black
+                                                  .withOpacity(.36)))),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 35,
+                                        width: width,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(billers[index].name,
+                                                style: GoogleFonts.roboto(
+                                                    color: Colors.black
+                                                        .withOpacity(.87),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                          ],
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.favorite,
+                                          color: Colors.black.withOpacity(.54),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                onTap: () {
+                                  _handleTap(billers[index]);
+                                },
+                              );
+                            }),
+                      ),
+                    ],
+                  ))
+            ],
+          )),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void _handleTap(BillerProduct biller) {
+    store.selectedBiller = biller;
+    Get.toNamed('/services/bills-payment/bills-payment-biller-form-screen');
+  }
+}

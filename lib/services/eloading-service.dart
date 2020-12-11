@@ -36,12 +36,17 @@ class EloadingService extends Da5Service {
     List<ProductModel> list = new List<ProductModel>();
     try {
       var products = await post("/API_eloading/products",
-          {"Scope": "eloading", "MobileNumber": mobile});
+          {"Scope": ELOADING_SCOPE, "MobileNumber": mobile});
 
+      if (products['status'] != 200) {
+        throw new ApiResponseError(
+            "Unexpected api response: ${products['status']}");
+      }
       if (!products.containsKey("collection")) {
         throw new ApiResponseError(
             "Expected collection in response but was missing");
       }
+
       (products["collection"]["data"]).forEach((p) {
         var product = AirtimeProduct(
             network: toNetwork(p["Network"]),
@@ -64,7 +69,7 @@ class EloadingService extends Da5Service {
     List<ProductModel> list = new List<ProductModel>();
     try {
       var response = await post("/API_eloading/process", {
-        "Scope": "eloading",
+        "Scope": ELOADING_SCOPE,
         "MobileNumber": mobile,
         "Amount": product.amount.toString(),
         "Network": fromNetwork(product.network),

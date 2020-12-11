@@ -5,6 +5,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
+import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 part 'application-store.g.dart';
 
@@ -15,6 +16,7 @@ abstract class _ApplicationStore with Store {
   UserModel user;
 
   EloadingService eloadingService;
+  BillsPaymentService billsPaymentService;
 
   bool permissionsGranted;
   SharedPreferences prefs;
@@ -23,10 +25,15 @@ abstract class _ApplicationStore with Store {
   TransactionProcessingResponse lastTransactionResponse;
   double balance;
 
+  String selectedBillerCategory;
+  List<BillerProduct> billers;
+  BillerProduct selectedBiller;
+
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
     balance = 28000;
     eloadingService = new EloadingService();
+    billsPaymentService = new BillsPaymentService();
 
     user = UserModel(id: "", mpin: "888888");
   }

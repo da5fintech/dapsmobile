@@ -9,6 +9,8 @@ const AUTH_NETWORK_ID = "0625";
 const AUTH_USERNAME = "kabootekph";
 const AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
 const ELOADING_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
+const ELOADING_SCOPE = 'eloading';
+const BILLS_PAYMENT_SCOPE = 'billspayment';
 
 const BLUR_RADIUS = 10;
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
@@ -189,7 +191,7 @@ enum SwipeServiceOffering {
   CASH_IN,
   PAY_QR,
   REMITTANCE,
-  PAY_BILLS,
+  BILLS_PAYMENT,
   INSURANCE,
   BANK_TRANSFER,
   REQUEST_MONEY,

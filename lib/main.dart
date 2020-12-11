@@ -9,6 +9,9 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:swipe/screens/bills_payment/bills-payment-biller-form-screen.dart';
+import 'package:swipe/screens/bills_payment/bills-payment-billers-screen.dart';
+import 'package:swipe/screens/bills_payment/bills-payment-categories-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
@@ -98,6 +101,15 @@ class _MyAppState extends State<MyApp> {
               case '/services/payment/payment-confirmation-screen':
                 return MaterialPageRoute(
                     builder: (_) => PaymentConfirmationScreen());
+              case '/services/bills-payment/bills-payment-categories-screen':
+                return MaterialPageRoute(
+                    builder: (_) => BillsPaymentCategoriesScreen());
+              case '/services/bills-payment/bills-payment-billers-screen':
+                return MaterialPageRoute(
+                    builder: (_) => BillsPaymentBillersScreen());
+              case '/services/bills-payment/bills-payment-biller-form-screen':
+                return MaterialPageRoute(
+                    builder: (_) => BillsPaymentBillerFormScreen());
               default:
                 return null;
             }

@@ -8,8 +8,10 @@ class SubAppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget bottom;
   final double height;
+  final List<Widget> actions;
 
-  SubAppbarWidget({Key key, @required this.title, this.bottom, this.height})
+  SubAppbarWidget(
+      {Key key, @required this.title, this.bottom, this.height, this.actions})
       : preferredSize = Size.fromHeight(height ?? 56.0),
         super(key: key);
 
@@ -25,9 +27,8 @@ class SubAppbarWidget extends StatelessWidget implements PreferredSizeWidget {
             color: Colors.white,
           )),
       title: Text(title,
-          style: GoogleFonts.roboto(
-              fontSize: 14, fontWeight: FontWeight.w800, letterSpacing: 2)),
-      actions: [],
+          style: GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.w500)),
+      actions: actions,
       bottom: bottom,
     );
   }
