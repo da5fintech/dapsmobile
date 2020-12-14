@@ -60,26 +60,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
 
     if (offering == SwipeServiceOffering.BILLS_PAYMENT) {
       BillerProduct product = store.transaction.product;
-      var fields = product.fields.map((element) {
-        return element.field != 'amount'
-            ? Container(
-                height: 60,
-                padding: EdgeInsets.only(left: 10, right: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("${element.label}"),
-                    Spacer(),
-                    Text("${element.value}"),
-                  ],
-                ),
-              )
-            : Container();
-      }).toList();
       var widget = Column(
         children: [
           Container(
-            height: 40,
             padding: EdgeInsets.only(left: 10),
             color: COLOR_DARK_PURPLE.withOpacity(.05),
             child: Row(
@@ -95,6 +78,25 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
         ],
       );
 
+      var fields = product.fields.map((element) {
+        var value = product.getFieldValue(element.field);
+
+        return element.field != 'amount'
+            ? Container(
+                height: 60,
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(child: Text("${element.label}")),
+                    Spacer(),
+                    Expanded(child: Text("${value}")),
+                  ],
+                ),
+              )
+            : Container();
+      }).toList();
+
       widget.children.addAll(fields);
       return widget;
     }
@@ -107,6 +109,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height * 0.70;
+
     double amount = store.transactionService.getAmount(store.transaction);
 
     return Theme(

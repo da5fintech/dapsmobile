@@ -66,7 +66,9 @@ class BillsPaymentService extends Da5Service {
     } on ApiResponseError catch (e) {
       print("Got api error ${e.message}");
       return billers;
-    } catch (e) {}
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   Future<BillsPaymentProcessResponse> process(BillerProduct product) async {

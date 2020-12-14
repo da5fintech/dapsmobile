@@ -10,16 +10,19 @@ class TransactionService {
   Future<TransactionProcessingResponse> process(
       TransactionModel transaction) async {
     TransactionProcessingResponse response;
-    if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
-      var service = getIt.get<EloadingService>();
-      response =
-          await service.process(transaction.recipient, transaction.product);
-    } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
-      var service = getIt.get<BillsPaymentService>();
-      response = await service.process(transaction.product);
+    try {
+      if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
+        var service = getIt.get<EloadingService>();
+        response =
+            await service.process(transaction.recipient, transaction.product);
+      } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
+        var service = getIt.get<BillsPaymentService>();
+        response = await service.process(transaction.product);
+      }
+      return response;
+    } catch (e) {
+      return response;
     }
-
-    return response;
   }
 
   double getAmount(TransactionModel transaction) {

@@ -41,13 +41,15 @@ class Da5Service {
       if (body != null) {
         requestBody = {...requestBody, ...body};
       }
-      // print("sending body $requestBody");
+      print("sending body $requestBody");
 
       var result = await http.post(
         uri,
         headers: headers,
         body: requestBody,
       );
+
+      print("result ${result.body}");
 
       var response = jsonDecode(result.body);
 

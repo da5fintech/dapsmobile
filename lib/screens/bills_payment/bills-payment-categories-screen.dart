@@ -150,6 +150,7 @@ class _BillsPaymentCategoriesScreenState
       var billers =
           await store.billsPaymentService.getBillersByCategory(category);
       store.billers = billers;
+
       OverlayScreen().pop();
     }
 

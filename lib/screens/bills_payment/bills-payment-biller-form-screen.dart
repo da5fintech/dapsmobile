@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,6 +40,68 @@ class _BillsPaymentBillerFormScreenState
     setState(() {});
   }
 
+  Widget createTextField(BillerField field) {
+    return TextFormField(
+      initialValue: "${field.defaultValue}",
+      onSaved: (v) {
+        values[field.field] = v;
+      },
+      keyboardType: field.fieldType == BillerFieldType.NUMBER
+          ? TextInputType.number
+          : TextInputType.text,
+      validator: (text) {
+        if (!field.isRequired) {
+          return null;
+        } else {
+          if (text == null || text.isEmpty) {
+            return '${field.label} is required';
+          }
+        }
+        return null;
+      },
+      // controller: controller,
+      decoration: InputDecoration(
+          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+          labelText: "${field.label}",
+          hintText: ""),
+    );
+  }
+
+  Widget createDropdownField(BillerField field) {
+    print("options length ${field.options.length}");
+    var dropdownItems = field.options.map((opt) {
+      print("value ${opt.key} ${opt.value}");
+      return DropdownMenuItem(
+        child: Text(opt.key),
+        value: opt.value,
+      );
+    }).toList();
+
+    dynamic value =
+        field.defaultValue == "" ? field.options[0].value : field.defaultValue;
+
+    if (values[field.field] != null) {
+      value = values[field.field];
+    }
+
+    if (value == null) {
+      value = field.options[0].value;
+    }
+
+    values[field.field] = value;
+
+    var dd = DropdownButton(
+      isExpanded: true,
+      value: value,
+      items: dropdownItems,
+      onChanged: (str) {
+        values[field.field] = str;
+        setState(() {});
+      },
+    );
+    return dd;
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -45,30 +109,11 @@ class _BillsPaymentBillerFormScreenState
 
     var fields = store.selectedBiller.fields.map((field) {
       print("${field.field}, ${field.fieldType}");
-      return TextFormField(
-        initialValue: "${field.defaultValue}",
-        onSaved: (v) {
-          values[field.field] = v;
-        },
-        keyboardType: field.fieldType == BillerFieldType.NUMBER
-            ? TextInputType.number
-            : TextInputType.text,
-        validator: (text) {
-          if (!field.isRequired) {
-            return null;
-          } else {
-            if (text == null || text.isEmpty) {
-              return '${field.label} is required';
-            }
-          }
-          return null;
-        },
-        // controller: controller,
-        decoration: InputDecoration(
-            prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
-            labelText: "${field.label}",
-            hintText: ""),
-      );
+      if (field.fieldType == BillerFieldType.DROPDOWN) {
+        return createDropdownField(field);
+      } else {
+        return createTextField(field);
+      }
     }).toList();
 
     double width = MediaQuery.of(context).size.width * 0.70;
@@ -171,6 +216,7 @@ class _BillsPaymentBillerFormScreenState
       _formKey.currentState.save();
 
       values.forEach((key, value) {
+        print("setting field ${key} ${value}");
         store.selectedBiller.setFieldValue(key, value);
       });
 

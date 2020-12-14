@@ -28,6 +28,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
+
     double amount = store.transactionService.getAmount(store.transaction);
     String recipient = store.transactionService.getRecipient(store.transaction);
     String transactionType =

@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/errors.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/screens/payment/processing-failed-dialog.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -21,6 +21,7 @@ class PaymentMpinScreen extends StatefulWidget {
 }
 
 class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
+  String processingFailedMessage = "";
   TextEditingController controller = new TextEditingController();
   @override
   void initState() {
@@ -50,16 +51,17 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
           ],
         ),
       ),
-      'dialog': CustomOverlayScreen(
+      'wrong-mpin': CustomOverlayScreen(
           backgroundColor: Colors.white.withOpacity(.2),
           content: WrongMpinDialog(
             onOk: () {
               _handleOk();
             },
           )),
-      'processing error': CustomOverlayScreen(
+      'processing-failed': CustomOverlayScreen(
           backgroundColor: Colors.white.withOpacity(.2),
-          content: WrongMpinDialog(
+          content: ProcessingFailedDialog(
+            message: processingFailedMessage,
             onOk: () {
               _handleOk();
             },
@@ -156,19 +158,27 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
         store.lastTransactionResponse =
             await store.transactionService.process(store.transaction);
 
-        await Future.delayed(Duration(seconds: 1));
         OverlayScreen().pop();
+        await Future.delayed(Duration(seconds: 1));
 
-        Get.toNamed('/services/payment/payment-confirmation-screen');
+        if (store.lastTransactionResponse == null ||
+            store.lastTransactionResponse.status == false) {
+          processingFailedMessage = store.lastTransactionResponse.message;
+          setState(() {});
+          OverlayScreen().show(
+            context,
+            identifier: 'processing-failed',
+          );
+        } else {
+          Get.toNamed('/services/payment/payment-confirmation-screen');
+        }
       } else {
         OverlayScreen().show(
           context,
-          identifier: 'dialog',
+          identifier: 'wrong-mpin',
         );
       }
-    } on EloadProcessingError catch (e) {
-      OverlayScreen().pop();
-    } finally {}
+    } catch (e) {}
   }
 
   void _handleOk() {

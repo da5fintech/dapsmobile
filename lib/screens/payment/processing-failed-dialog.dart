@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/store/application-store.dart';
 
-class WrongMpinDialog extends StatelessWidget {
+import '../../main.dart';
+
+final store = getIt<ApplicationStore>();
+
+class ProcessingFailedDialog extends StatelessWidget {
   final Function onOk;
-  const WrongMpinDialog({Key key, this.onOk}) : super(key: key);
+  final String message;
+  const ProcessingFailedDialog({Key key, this.onOk, this.message})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +40,7 @@ class WrongMpinDialog extends StatelessWidget {
         ],
       ),
       content: Text(
-        'You have entered an incorrect\nMPIN. Please try again',
+        store.lastTransactionResponse.message,
         style: GoogleFonts.roboto(
           color: Colors.black,
           // fontSize: normalizeSize(15),

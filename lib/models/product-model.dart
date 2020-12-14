@@ -47,7 +47,13 @@ class AirtimeProduct extends ProductModel {
   }
 }
 
-enum BillerFieldType { TEXT, NUMBER, CALENDAR }
+enum BillerFieldType { TEXT, NUMBER, CALENDAR, DROPDOWN }
+
+class KeyValuePair {
+  String key;
+  String value;
+  KeyValuePair({this.key, this.value});
+}
 
 class BillerField {
   String label;
@@ -56,14 +62,17 @@ class BillerField {
   bool isRequired;
   dynamic value;
   dynamic defaultValue;
+  List<KeyValuePair> options;
 
-  BillerField(
-      {this.label,
-      this.field,
-      this.fieldType,
-      this.isRequired,
-      this.value = "",
-      this.defaultValue = ""});
+  BillerField({
+    this.label,
+    this.field,
+    this.fieldType,
+    this.isRequired,
+    this.value = "",
+    this.defaultValue = "",
+    this.options,
+  });
 
   factory BillerField.fromMap(Map<String, dynamic> map) {
     var billerField = new BillerField();
@@ -75,11 +84,19 @@ class BillerField {
       billerField.fieldType = BillerFieldType.TEXT;
     } else if (map["type"] == "Calendar") {
       billerField.fieldType = BillerFieldType.CALENDAR;
+    } else if (map["type"] == "Dropdown") {
+      billerField.fieldType = BillerFieldType.DROPDOWN;
+      List<KeyValuePair> options = [];
+      map["options"].forEach((opt) {
+        options
+            .add(KeyValuePair(key: "${opt["key"]}", value: "${opt["value"]}"));
+      });
+      billerField.options = options;
     } else {
       billerField.fieldType = BillerFieldType.TEXT;
     }
-
     billerField.isRequired = map['is_required'];
+
     return billerField;
   }
 }
@@ -91,12 +108,9 @@ class BillerProduct extends ProductModel {
   String category;
   List<BillerField> fields;
 
-  BillerProduct({
-    String code,
-    String name,
-    double amount,
-    String description = "",
-  }) : super(code: code, name: name, amount: amount, description: description);
+  BillerProduct(
+      {String code, String name, double amount, String description = "", List})
+      : super(code: code, name: name, amount: amount, description: description);
   test() {
     print(name);
   }
@@ -119,6 +133,14 @@ class BillerProduct extends ProductModel {
         biller.setDefaultFieldValue('account_number', '302293899');
         biller.setDefaultFieldValue('amount', 0.00);
         biller.setDefaultFieldValue('phone_number', '0464508296');
+        biller.setDefaultFieldValue('customer_name', 'Test Customer');
+      }
+
+      if (biller.code == "BC_MECOA") {
+        biller.setDefaultFieldValue(
+            'account_number', '00123982449200708420080806');
+        biller.setDefaultFieldValue('amount', 20.00);
+        biller.setDefaultFieldValue('pay_for', 'T');
         biller.setDefaultFieldValue('customer_name', 'Test Customer');
       }
     }
@@ -145,7 +167,15 @@ class BillerProduct extends ProductModel {
   dynamic getFieldValue(String field) {
     dynamic result;
     fields.forEach((element) {
-      if (element.field == field) {
+      if (element.field != field) {
+        return;
+      }
+
+      if (element.fieldType == BillerFieldType.DROPDOWN) {
+        var option = element.options
+            .singleWhere((option) => option.value == element.value);
+        result = option.key;
+      } else {
         result = element.value;
       }
     });

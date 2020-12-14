@@ -32,7 +32,6 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print("building: ${billers.length} ");
     double width = MediaQuery.of(context).size.width * 0.70;
     double height = MediaQuery.of(context).size.height * 0.80;
     ThemeData td = createThemePurpleOnWhite(context);
