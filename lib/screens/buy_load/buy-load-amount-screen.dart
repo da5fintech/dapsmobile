@@ -50,7 +50,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
     int perRow = 3;
 
     List<ProductModel> promos = promoProducts.where((element) {
-      return element.code == 'AMAX';
+      return element.code == 'AMAX' || element.code == "SMARTLOAD";
     }).toList();
 
     var column = Column(

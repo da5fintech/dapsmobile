@@ -206,4 +206,5 @@ Map<SwipeServiceOffering, String> SwipeServiceRoutes = {
 NumberFormat formatter = NumberFormat.currency(name: 'PHP ', decimalDigits: 2);
 NumberFormat formatterWithoutPHP =
     NumberFormat.currency(name: " ", decimalDigits: 2);
-NumberFormat formatterInt = NumberFormat.currency(name: " ", decimalDigits: 0);
+NumberFormat formatterInt =
+    NumberFormat.currency(name: " ", decimalDigits: 0, customPattern: "###");
