@@ -41,6 +41,7 @@ class Da5Service {
       if (body != null) {
         requestBody = {...requestBody, ...body};
       }
+      // print("sending body $requestBody");
 
       var result = await http.post(
         uri,
@@ -53,7 +54,8 @@ class Da5Service {
       if (result.statusCode >= 200 && result.statusCode < 400) {
         return response;
       } else {
-        throw ApiResponseError(response['message']);
+        throw ApiResponseError(
+            code: response["code"], message: response['message']["reason"]);
       }
     } catch (e) {
       throw e;

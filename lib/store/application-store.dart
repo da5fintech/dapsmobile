@@ -2,11 +2,13 @@ import 'dart:async';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/main.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
+import 'package:swipe/services/transaction-service.dart';
 part 'application-store.g.dart';
 
 class ApplicationStore = _ApplicationStore with _$ApplicationStore;
@@ -17,6 +19,7 @@ abstract class _ApplicationStore with Store {
 
   EloadingService eloadingService;
   BillsPaymentService billsPaymentService;
+  TransactionService transactionService;
 
   bool permissionsGranted;
   SharedPreferences prefs;
@@ -32,8 +35,13 @@ abstract class _ApplicationStore with Store {
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
     balance = 28000;
-    eloadingService = new EloadingService();
-    billsPaymentService = new BillsPaymentService();
+    eloadingService = EloadingService();
+    billsPaymentService = BillsPaymentService();
+    transactionService = TransactionService();
+
+    getIt.registerSingleton(eloadingService);
+    getIt.registerSingleton(billsPaymentService);
+    getIt.registerSingleton(transactionService);
 
     user = UserModel(id: "", mpin: "888888");
   }

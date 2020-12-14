@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/amount-widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
@@ -27,14 +28,17 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
-
+    double amount = store.transactionService.getAmount(store.transaction);
+    String recipient = store.transactionService.getRecipient(store.transaction);
+    String transactionType =
+        store.transactionService.getTransactionType(store.transaction);
     return Theme(
       data: td,
       child: Scaffold(
           // backgroundColor: Constants.backgroundColor2,
           appBar: SubAppbarWidget(
             height: 170,
-            title: "Reciept",
+            title: "Receipt",
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(10),
               child: Center(
@@ -53,11 +57,9 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
                             color: Colors.white.withOpacity(.87))),
-                    Text(formatter.format(store.transaction.product.amount),
-                        style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 24,
-                            color: Colors.white)),
+                    AmountWidget(
+                      amount: amount,
+                    ),
                     SizedBox(height: 15),
                   ],
                 ),
@@ -81,7 +83,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                     children: [
                       Text("Transaction"),
                       Spacer(),
-                      Text("Buy a Load",
+                      Text(transactionType,
                           style: GoogleFonts.roboto(
                               fontSize: 12,
                               color: Colors.black.withOpacity(.60),
@@ -101,7 +103,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                     children: [
                       Text("Sent to"),
                       Spacer(),
-                      Text("${store.transaction.recipient}",
+                      Text("$recipient",
                           style: GoogleFonts.roboto(
                               fontSize: 12,
                               color: Colors.black.withOpacity(.60),
@@ -121,7 +123,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                     children: [
                       Text("Amount due"),
                       Spacer(),
-                      Text(formatter.format(store.transaction.product.amount),
+                      Text(formatter.format(amount),
                           style: GoogleFonts.roboto(
                               fontSize: 12,
                               color: Colors.black.withOpacity(.60),
@@ -141,7 +143,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                     children: [
                       Text("Date"),
                       Spacer(),
-                      Text(formatter.format(store.transaction.product.amount),
+                      Text(formatter.format(amount),
                           style: GoogleFonts.roboto(
                               fontSize: 12,
                               color: Colors.black.withOpacity(.60),

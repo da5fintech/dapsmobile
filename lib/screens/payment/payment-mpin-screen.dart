@@ -2,13 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loading_overlay/loading_overlay.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/common/size.config.dart';
-import 'package:swipe/models/product-model.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -27,6 +25,7 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _cleanupOverlay());
   }
 
   @override
@@ -148,17 +147,16 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
 
   void _handlePay() async {
     try {
-      AirtimeProduct airtime = store.transaction.product;
       if (controller.text == store.user.mpin) {
         OverlayScreen().show(
           context,
           identifier: 'progress',
         );
 
-        var result = await store.eloadingService
-            .process(store.transaction.recipient, airtime);
+        store.lastTransactionResponse =
+            await store.transactionService.process(store.transaction);
 
-        store.lastTransactionResponse = result;
+        await Future.delayed(Duration(seconds: 1));
         OverlayScreen().pop();
 
         Get.toNamed('/services/payment/payment-confirmation-screen');
@@ -169,11 +167,15 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
         );
       }
     } on EloadProcessingError catch (e) {
-      print(e.message);
-    }
+      OverlayScreen().pop();
+    } finally {}
   }
 
   void _handleOk() {
     OverlayScreen().pop();
+  }
+
+  _cleanupOverlay() {
+    // OverlayScreen().removeScreens(identifiers)
   }
 }

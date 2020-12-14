@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/amount-widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/main-app-bar.widget.dart';
 import 'package:swipe/common/widgets/service-button.dart';
@@ -29,7 +30,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
 
     return Scaffold(
         // backgroundColor: Constants.backgroundColor2,
-        appBar: MainAppBarWidget(),
+        appBar: MainAppBarWidget(
+          elevation: 0,
+        ),
         body: Container(
           child: Column(
             children: [
@@ -85,11 +88,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               style: GoogleFonts.roboto(
                                   fontSize: 12,
                                   color: Colors.white.withOpacity(0.7))),
-                          Text("PHP 28,000.00",
-                              style: GoogleFonts.roboto(
-                                  fontSize: 24,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700))
+                          AmountWidget(amount: 28000),
                         ],
                       ),
                       SizedBox(

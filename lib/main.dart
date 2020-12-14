@@ -2,12 +2,10 @@ import 'dart:async';
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flavor/flavor.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-biller-form-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-billers-screen.dart';
@@ -23,7 +21,6 @@ import 'package:swipe/screens/services-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
-import 'common/constants.dart' as Constants;
 import 'common/constants.dart';
 
 const String namespaceKey = 'namespace';

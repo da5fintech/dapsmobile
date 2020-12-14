@@ -20,6 +20,9 @@ class BillsPaymentBillersScreen extends StatefulWidget {
 
 class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
   List<BillerProduct> billers = store.billers;
+  List<BillerProduct> filteredBillers = store.billers;
+  TextEditingController searchController = TextEditingController();
+  bool isSearch = false;
   @override
   void initState() {
     // WidgetsBinding.instance.addPostFrameCallback((_) => initBillers());
@@ -38,8 +41,18 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
       child: Scaffold(
           // backgroundColor: Constants.backgroundColor2,
           appBar: SubAppbarWidget(
-            title: "All Billers",
-            actions: [IconButton(icon: Icon(Icons.search), onPressed: () {})],
+            title: "All Billers (${store.selectedBillerCategory})",
+            enableSearch: true,
+            onSearch: (text) {
+              print("searching ${text}");
+              filteredBillers = billers.where((element) {
+                return element.name
+                    .toLowerCase()
+                    .contains(text.toString().toLowerCase());
+              }).toList();
+
+              setState(() {});
+            },
           ),
           body: Column(
             children: [
@@ -55,7 +68,7 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
                         child: ListView.builder(
                             physics: AlwaysScrollableScrollPhysics(),
                             padding: const EdgeInsets.all(5),
-                            itemCount: billers.length,
+                            itemCount: filteredBillers.length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                 child: Container(
@@ -75,7 +88,7 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(billers[index].name,
+                                            Text(filteredBillers[index].name,
                                                 style: GoogleFonts.roboto(
                                                     color: Colors.black
                                                         .withOpacity(.87),
@@ -97,7 +110,7 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
                                   ),
                                 ),
                                 onTap: () {
-                                  _handleTap(billers[index]);
+                                  _handleTap(filteredBillers[index]);
                                 },
                               );
                             }),

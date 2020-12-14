@@ -13,13 +13,19 @@ class BillsPaymentProcessResponse extends TransactionProcessingResponse {
             result: result);
 
   factory BillsPaymentProcessResponse.fromMap(Map<String, dynamic> map) {
-    var obj = BillsPaymentProcessResponse(
-        message: map["message"],
-        result: map["result"],
-        reference: map["trans_status"],
-        status: map["status"]);
+    if (map.containsKey("status") && map["status"] == 200) {
+      return BillsPaymentProcessResponse(
+          message: map["reason"],
+          result: map["reason"],
+          reference: map["data"]["txnid"],
+          status: true);
+    }
 
-    return obj;
+    return BillsPaymentProcessResponse(
+        message: map["code"],
+        result: map["code"],
+        reference: "",
+        status: false);
   }
 }
 
@@ -40,12 +46,14 @@ class BillsPaymentService extends Da5Service {
 
       if (billersRaw['status'] != 200) {
         throw new ApiResponseError(
-            "Unexpected api response: ${billersRaw['status']}");
+            code: billersRaw["code"],
+            message: "Unexpected api response: ${billersRaw['status']}");
       }
 
       if (!billersRaw.containsKey("collection")) {
         throw new ApiResponseError(
-            "Expected collection in response but was missing");
+            code: ErrorCode.MISSING_COLLECTION,
+            message: "Expected collection in response but was missing");
       }
 
       var list = billersRaw['collection']['data']['listings']['billers'];
@@ -58,32 +66,48 @@ class BillsPaymentService extends Da5Service {
     } on ApiResponseError catch (e) {
       print("Got api error ${e.message}");
       return billers;
-    } catch (e) {
-      throw e;
-    }
+    } catch (e) {}
   }
 
-  // Future<BillsPaymentProcessResponse> process(
-  //     String mobile, AirtimeProduct product) async {
-  //   List<ProductModel> list = new List<ProductModel>();
-  //   try {
-  //     var response = await post("/API_eloading/process", {
-  //       "Scope": "eloading",
-  //       "MobileNumber": mobile,
-  //       "Amount": product.amount.toString(),
-  //       "Network": fromNetwork(product.network),
-  //       "Products": product.name,
-  //       "ProductCode": product.code
-  //     });
+  Future<BillsPaymentProcessResponse> process(BillerProduct product) async {
+    try {
+      Map<String, String> params = {
+        "Scope": BILLS_PAYMENT_SCOPE,
+        "Biller": product.code,
+        "Channel": BILLS_PAYMENT_CHANNEL,
+      };
 
-  //     if (response.containsKey("result") &&
-  //         response["result"] == 'successful') {
-  //       return BillsPaymentProcessResponse.fromMap(response);
-  //     } else {
-  //       throw EloadProcessingError("Unsuccesfull: ${response["result"]}");
-  //     }
-  //   } on ApiResponseError catch (e) {
-  //     throw EloadProcessingError("Processing failed: ${e.message}");
-  //   }
-  // }
+      product.fields.forEach((field) {
+        params[field.field] = "${field.value}";
+      });
+
+      print("sending params ${params}");
+
+      var response = await post("/API_billspayment/process", params);
+
+      print("response ${response}");
+
+      if (response.containsKey("status") && response["status"] == 200) {
+        return BillsPaymentProcessResponse.fromMap(response);
+      } else {
+        throw BillsPaymentProcessingError(
+            code: response["code"],
+            message: "Unsuccesfull: ${response["status"]}");
+      }
+    } on ApiResponseError catch (e) {
+      return BillsPaymentProcessResponse(
+        status: false,
+        reference: "",
+        message: "fail processing, reason: ${e.message}",
+        result: "",
+      );
+    } catch (e) {
+      return BillsPaymentProcessResponse(
+        status: false,
+        reference: "",
+        message: "fail processing, reason: unknown",
+        result: "",
+      );
+    }
+  }
 }

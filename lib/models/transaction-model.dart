@@ -10,7 +10,7 @@ class TransactionModel {
 }
 
 abstract class TransactionProcessingResponse {
-  int status;
+  bool status;
   String reference;
   String message;
   String result;

@@ -1,12 +1,20 @@
+enum ErrorCode { MISSING_COLLECTION, MISSING_RESULT }
+
 class GenericError extends Error {
+  final String code;
   final String message;
-  GenericError(this.message);
+  GenericError({this.code, this.message});
 }
 
 class ApiResponseError extends GenericError {
-  ApiResponseError(String message) : super(message);
+  ApiResponseError({code, message}) : super(code: code, message: message);
 }
 
 class EloadProcessingError extends GenericError {
-  EloadProcessingError(String message) : super(message);
+  EloadProcessingError({code, message}) : super(code: code, message: message);
+}
+
+class BillsPaymentProcessingError extends GenericError {
+  BillsPaymentProcessingError({code, message})
+      : super(code: code, message: message);
 }

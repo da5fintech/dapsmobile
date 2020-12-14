@@ -11,6 +11,7 @@ const AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
 const ELOADING_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
 const ELOADING_SCOPE = 'eloading';
 const BILLS_PAYMENT_SCOPE = 'billspayment';
+const BILLS_PAYMENT_CHANNEL = 'X2B2';
 
 const BLUR_RADIUS = 10;
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
@@ -203,3 +204,5 @@ Map<SwipeServiceOffering, String> SwipeServiceRoutes = {
 };
 
 NumberFormat formatter = NumberFormat.currency(name: 'PHP ', decimalDigits: 2);
+NumberFormat formatterWithoutPHP =
+    NumberFormat.currency(name: " ", decimalDigits: 2);

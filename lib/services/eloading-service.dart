@@ -40,11 +40,13 @@ class EloadingService extends Da5Service {
 
       if (products['status'] != 200) {
         throw new ApiResponseError(
-            "Unexpected api response: ${products['status']}");
+            code: products['code'],
+            message: "Unexpected api response: ${products['status']}");
       }
       if (!products.containsKey("collection")) {
         throw new ApiResponseError(
-            "Expected collection in response but was missing");
+            code: ErrorCode.MISSING_COLLECTION,
+            message: "Expected collection in response but was missing");
       }
 
       (products["collection"]["data"]).forEach((p) {
@@ -81,10 +83,16 @@ class EloadingService extends Da5Service {
           response["result"] == 'successful') {
         return EloadProcessResponse.fromMap(response);
       } else {
-        throw EloadProcessingError("Unsuccesfull: ${response["result"]}");
+        throw EloadProcessingError(
+            code: ErrorCode.MISSING_RESULT,
+            message: "Unsuccesfull: ${response["result"]}");
       }
     } on ApiResponseError catch (e) {
-      throw EloadProcessingError("Processing failed: ${e.message}");
+      return EloadProcessResponse(
+          status: false,
+          message: "failed processing, reason: ${e.message}",
+          reference: "",
+          result: "");
     }
   }
 }
