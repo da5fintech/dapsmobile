@@ -121,6 +121,7 @@ class BillerProduct extends ProductModel {
     biller.name = map["name"];
     biller.type = map["type"];
     biller.logo = map["logo"];
+    biller.fee = double.parse(map["fee"]);
     biller.category = map["category"];
     biller.fields = new List<BillerField>();
 

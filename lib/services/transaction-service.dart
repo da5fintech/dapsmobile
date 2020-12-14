@@ -36,6 +36,17 @@ class TransactionService {
     return amount;
   }
 
+  double getTotalAmount(TransactionModel transaction) {
+    double amount = 0.00;
+    if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
+      amount = transaction.product.amount;
+    } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
+      BillerProduct product = transaction.product;
+      amount = double.parse(product.getFieldValue('amount')) + product.fee;
+    }
+    return amount;
+  }
+
   String getRecipient(TransactionModel transaction) {
     if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
       return transaction.recipient;

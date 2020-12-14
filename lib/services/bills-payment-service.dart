@@ -80,14 +80,17 @@ class BillsPaymentService extends Da5Service {
       };
 
       product.fields.forEach((field) {
-        params[field.field] = "${field.value}";
+        if (field.field != 'amount') {
+          params[field.field] = "${field.value}";
+        }
       });
 
-      print("sending params ${params}");
+      double total =
+          double.parse(product.getFieldValue('amount')) + product.fee;
+
+      params['amount'] = "$total";
 
       var response = await post("/API_billspayment/process", params);
-
-      print("response ${response}");
 
       if (response.containsKey("status") && response["status"] == 200) {
         return BillsPaymentProcessResponse.fromMap(response);

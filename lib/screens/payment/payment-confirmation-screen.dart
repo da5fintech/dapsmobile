@@ -30,6 +30,8 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
     ThemeData td = createThemePurpleOnWhite(context);
 
     double amount = store.transactionService.getAmount(store.transaction);
+    double totalAmount =
+        store.transactionService.getTotalAmount(store.transaction);
     String recipient = store.transactionService.getRecipient(store.transaction);
     String transactionType =
         store.transactionService.getTransactionType(store.transaction);
@@ -124,7 +126,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                     children: [
                       Text("Amount due"),
                       Spacer(),
-                      Text(formatter.format(amount),
+                      Text(formatter.format(totalAmount),
                           style: GoogleFonts.roboto(
                               fontSize: 12,
                               color: Colors.black.withOpacity(.60),

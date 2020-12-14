@@ -90,14 +90,36 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                   children: [
                     Expanded(child: Text("${element.label}")),
                     Spacer(),
-                    Expanded(child: Text("${value}")),
+                    Expanded(
+                        child: Text(
+                      "$value",
+                      textAlign: TextAlign.right,
+                    )),
                   ],
                 ),
               )
             : Container();
       }).toList();
+      var fee = Container(
+        height: 60,
+        padding: EdgeInsets.only(left: 10, right: 10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(child: Text("Fee")),
+            Spacer(),
+            Expanded(
+                child: Text(
+              formatter.format(product.fee),
+              textAlign: TextAlign.right,
+            )),
+          ],
+        ),
+      );
 
       widget.children.addAll(fields);
+      widget.children.add(fee);
+
       return widget;
     }
 
@@ -111,6 +133,8 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
     double height = MediaQuery.of(context).size.height * 0.70;
 
     double amount = store.transactionService.getAmount(store.transaction);
+    double totalAmount =
+        store.transactionService.getTotalAmount(store.transaction);
 
     return Theme(
       data: td,
@@ -245,7 +269,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                             children: [
                               Text("Total Amount"),
                               Spacer(),
-                              Text(formatter.format(amount)),
+                              Text(formatter.format(totalAmount)),
                             ],
                           ),
                         ),

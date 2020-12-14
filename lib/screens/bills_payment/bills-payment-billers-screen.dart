@@ -32,6 +32,7 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    print("building: ${billers.length} ");
     double width = MediaQuery.of(context).size.width * 0.70;
     double height = MediaQuery.of(context).size.height * 0.80;
     ThemeData td = createThemePurpleOnWhite(context);
@@ -54,68 +55,55 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
             },
           ),
           body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                  padding: EdgeInsets.all(2),
-                  width: double.infinity,
-                  color: Colors.white,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: height,
-                        child: ListView.builder(
-                            physics: AlwaysScrollableScrollPhysics(),
-                            padding: const EdgeInsets.all(5),
-                            itemCount: filteredBillers.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: Colors.black
-                                                  .withOpacity(.36)))),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 35,
-                                        width: width,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(filteredBillers[index].name,
-                                                style: GoogleFonts.roboto(
-                                                    color: Colors.black
-                                                        .withOpacity(.87),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w500)),
-                                          ],
-                                        ),
-                                      ),
-                                      Spacer(),
-                                      IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.favorite,
-                                          color: Colors.black.withOpacity(.54),
-                                        ),
-                                      )
-                                    ],
-                                  ),
+              Expanded(
+                child: ListView.builder(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    padding: const EdgeInsets.all(5),
+                    itemCount: filteredBillers.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      color: Colors.black.withOpacity(.36)))),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 35,
+                                width: width,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(filteredBillers[index].name,
+                                        style: GoogleFonts.roboto(
+                                            color:
+                                                Colors.black.withOpacity(.87),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500)),
+                                  ],
                                 ),
-                                onTap: () {
-                                  _handleTap(filteredBillers[index]);
-                                },
-                              );
-                            }),
-                      ),
-                    ],
-                  ))
+                              ),
+                              Spacer(),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.favorite,
+                                  color: Colors.black.withOpacity(.54),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          _handleTap(filteredBillers[index]);
+                        },
+                      );
+                    }),
+              ),
             ],
           )),
     );
