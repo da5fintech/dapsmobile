@@ -102,15 +102,20 @@ class BillerField {
 }
 
 class BillerProduct extends ProductModel {
+  bool enabled;
   String type;
   double fee;
   String logo;
   String category;
   List<BillerField> fields;
 
-  BillerProduct(
-      {String code, String name, double amount, String description = "", List})
-      : super(code: code, name: name, amount: amount, description: description);
+  BillerProduct({
+    this.enabled,
+    String code,
+    String name,
+    double amount,
+    String description = "",
+  }) : super(code: code, name: name, amount: amount, description: description);
   test() {
     print(name);
   }
@@ -146,6 +151,11 @@ class BillerProduct extends ProductModel {
       }
     }
 
+    if (biller.fields.length == 0) {
+      biller.enabled = false;
+    } else {
+      biller.enabled = true;
+    }
     return biller;
   }
 

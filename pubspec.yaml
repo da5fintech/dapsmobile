@@ -25,6 +25,7 @@ dependencies:
   mobx: ^1.1.1
   flutter:
     sdk: flutter
+
   flavor: ^1.0.1
   get_it: ^4.0.2
   get: ^2.14.1
@@ -63,9 +64,17 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+
+  assets:
+    - assets/icons/services/bank-transfer.png
+    - assets/icons/services/buy-load.png
+    - assets/icons/services/cash-in.png
+    - assets/icons/services/insurance.png
+    - assets/icons/services/more.png
+    - assets/icons/services/pay-bills.png
+    - assets/icons/services/pay-qr.png
+    - assets/icons/services/remittance.png
+    - assets/icons/services/request-money.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

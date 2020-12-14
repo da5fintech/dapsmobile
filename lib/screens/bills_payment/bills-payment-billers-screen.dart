@@ -34,8 +34,8 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
     SizeConfig().init(context);
     print("building: ${billers.length} ");
     double width = MediaQuery.of(context).size.width * 0.70;
-    double height = MediaQuery.of(context).size.height * 0.80;
     ThemeData td = createThemePurpleOnWhite(context);
+
     return Theme(
       data: td,
       child: Scaffold(
@@ -63,45 +63,50 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
                     padding: const EdgeInsets.all(5),
                     itemCount: filteredBillers.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color: Colors.black.withOpacity(.36)))),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 35,
-                                width: width,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                      return filteredBillers[index].enabled == false
+                          ? Container()
+                          : GestureDetector(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            color: Colors.black
+                                                .withOpacity(.36)))),
+                                child: Row(
                                   children: [
-                                    Text(filteredBillers[index].name,
-                                        style: GoogleFonts.roboto(
-                                            color:
-                                                Colors.black.withOpacity(.87),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500)),
+                                    Container(
+                                      height: 35,
+                                      width: width,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(filteredBillers[index].name,
+                                              style: GoogleFonts.roboto(
+                                                  color: Colors.black
+                                                      .withOpacity(.87),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500)),
+                                        ],
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.favorite,
+                                        color: Colors.black.withOpacity(.54),
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),
-                              Spacer(),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.favorite,
-                                  color: Colors.black.withOpacity(.54),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        onTap: () {
-                          _handleTap(filteredBillers[index]);
-                        },
-                      );
+                              onTap: () {
+                                _handleTap(filteredBillers[index]);
+                              },
+                            );
                     }),
               ),
             ],

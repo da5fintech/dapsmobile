@@ -4,7 +4,7 @@ import 'package:swipe/common/constants.dart';
 
 class ServiceButtonWidget extends StatelessWidget {
   final SwipeServiceOffering offering;
-  final Icon icon;
+  final Widget icon;
   final String text;
   final Function onPressed;
 

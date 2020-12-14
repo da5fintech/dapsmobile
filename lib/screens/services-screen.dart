@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+
 import 'package:swipe/common/widgets/amount-widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/main-app-bar.widget.dart';
@@ -110,7 +111,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ServiceButtonWidget(
                                 offering: SwipeServiceOffering.CASH_IN,
                                 onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
+                                icon: ImageIcon(
+                                    AssetImage(
+                                        "assets/icons/services/cash-in.png"),
+                                    color: COLOR_DARK_PURPLE),
                                 text: "Cash In",
                               ),
                               SizedBox(
@@ -119,7 +123,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ServiceButtonWidget(
                                 offering: SwipeServiceOffering.BUY_LOAD,
                                 onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
+                                icon: ImageIcon(
+                                    AssetImage(
+                                        "assets/icons/services/buy-load.png"),
+                                    color: COLOR_DARK_PURPLE),
                                 text: "Buy Load",
                               ),
                               SizedBox(
@@ -128,7 +135,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ServiceButtonWidget(
                                 offering: SwipeServiceOffering.PAY_QR,
                                 onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
+                                icon: ImageIcon(
+                                    AssetImage(
+                                        "assets/icons/services/pay-qr.png"),
+                                    color: COLOR_DARK_PURPLE),
                                 text: "Pay QR",
                               ),
                             ],
@@ -139,7 +149,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ServiceButtonWidget(
                                 offering: SwipeServiceOffering.REMITTANCE,
                                 onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
+                                icon: ImageIcon(
+                                    AssetImage(
+                                        "assets/icons/services/remittance.png"),
+                                    color: COLOR_DARK_PURPLE),
                                 text: "Remittance",
                               ),
                               SizedBox(
@@ -148,7 +161,11 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ServiceButtonWidget(
                                 offering: SwipeServiceOffering.BILLS_PAYMENT,
                                 onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
+                                icon: ImageIcon(
+                                  AssetImage(
+                                      "assets/icons/services/pay-bills.png"),
+                                  color: COLOR_DARK_PURPLE,
+                                ),
                                 text: "Pay Bills",
                               ),
                               SizedBox(
@@ -157,7 +174,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ServiceButtonWidget(
                                 offering: SwipeServiceOffering.INSURANCE,
                                 onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
+                                icon: ImageIcon(
+                                    AssetImage(
+                                        "assets/icons/services/insurance.png"),
+                                    color: COLOR_DARK_PURPLE),
                                 text: "Insurance",
                               ),
                             ],
@@ -168,7 +188,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ServiceButtonWidget(
                                 offering: SwipeServiceOffering.BANK_TRANSFER,
                                 onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
+                                icon: ImageIcon(
+                                    AssetImage(
+                                        "assets/icons/services/bank-transfer.png"),
+                                    color: COLOR_DARK_PURPLE),
                                 text: "Bank Transfer",
                               ),
                               SizedBox(
@@ -177,7 +200,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ServiceButtonWidget(
                                 offering: SwipeServiceOffering.REQUEST_MONEY,
                                 onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
+                                icon: ImageIcon(
+                                    AssetImage(
+                                        "assets/icons/services/request-money.png"),
+                                    color: COLOR_DARK_PURPLE),
                                 text: "Request Money",
                               ),
                               SizedBox(
@@ -186,7 +212,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ServiceButtonWidget(
                                 offering: SwipeServiceOffering.MORE,
                                 onPressed: _handleButtonClick,
-                                icon: Icon(Icons.more_horiz),
+                                icon: ImageIcon(
+                                    AssetImage(
+                                        "assets/icons/services/more.png"),
+                                    color: COLOR_DARK_PURPLE),
                                 text: "More",
                               ),
                             ],
