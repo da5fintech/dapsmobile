@@ -13,13 +13,19 @@ class EloadProcessResponse extends TransactionProcessingResponse {
             result: result);
 
   factory EloadProcessResponse.fromMap(Map<String, dynamic> map) {
-    var obj = EloadProcessResponse(
-        message: map["message"],
-        result: map["result"],
-        reference: map["trans_status"],
-        status: map["status"]);
+    if (map.containsKey("result") && map["result"] == 'successful') {
+      return EloadProcessResponse(
+          message: map["message"],
+          result: map["result"],
+          reference: map["trans_status"],
+          status: true);
+    }
 
-    return obj;
+    return EloadProcessResponse(
+        status: false,
+        message: "failed processing, reason: ${map["message"]}",
+        reference: "",
+        result: "");
   }
 }
 
@@ -90,7 +96,21 @@ class EloadingService extends Da5Service {
     } on ApiResponseError catch (e) {
       return EloadProcessResponse(
           status: false,
-          message: "failed processing, reason: ${e.message}",
+          message:
+              "Failed processing. \ncode: ${e.code} \nreason: ${e.message}",
+          reference: "",
+          result: "");
+    } on EloadProcessingError catch (e) {
+      return EloadProcessResponse(
+          status: false,
+          message:
+              "Failed processing. \ncode: ${e.code} \nreason: ${e.message}",
+          reference: "",
+          result: "");
+    } catch (e) {
+      return EloadProcessResponse(
+          status: false,
+          message: "Failed processing. reason: UNKNOWN",
           reference: "",
           result: "");
     }

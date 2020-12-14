@@ -100,7 +100,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
               Expanded(
                   child: Container(
                       padding: EdgeInsets.all(25),
-                      width: double.infinity,
                       color: Colors.white,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -150,9 +149,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 offering: SwipeServiceOffering.REMITTANCE,
                                 onPressed: _handleButtonClick,
                                 icon: ImageIcon(
-                                    AssetImage(
-                                        "assets/icons/services/remittance.png"),
-                                    color: COLOR_DARK_PURPLE),
+                                  AssetImage(
+                                      "assets/icons/services/remittance.png"),
+                                  color: COLOR_DARK_PURPLE,
+                                ),
                                 text: "Remittance",
                               ),
                               SizedBox(

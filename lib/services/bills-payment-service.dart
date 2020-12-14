@@ -103,14 +103,21 @@ class BillsPaymentService extends Da5Service {
       return BillsPaymentProcessResponse(
         status: false,
         reference: "",
-        message: "fail processing, reason: ${e.message}",
+        message: "Failed processing. \ncode: ${e.code} \nreason: ${e.message}",
+        result: "",
+      );
+    } on BillsPaymentProcessingError catch (e) {
+      return BillsPaymentProcessResponse(
+        status: false,
+        reference: "",
+        message: "Failed processing. \ncode: ${e.code}, \nreason: ${e.message}",
         result: "",
       );
     } catch (e) {
       return BillsPaymentProcessResponse(
         status: false,
         reference: "",
-        message: "fail processing, reason: unknown",
+        message: "Failed processing. \nreason: UNKOWN",
         result: "",
       );
     }

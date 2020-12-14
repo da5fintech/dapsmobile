@@ -21,7 +21,6 @@ class PaymentMpinScreen extends StatefulWidget {
 }
 
 class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
-  String processingFailedMessage = "";
   TextEditingController controller = new TextEditingController();
   @override
   void initState() {
@@ -61,7 +60,6 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
       'processing-failed': CustomOverlayScreen(
           backgroundColor: Colors.white.withOpacity(.2),
           content: ProcessingFailedDialog(
-            message: processingFailedMessage,
             onOk: () {
               _handleOk();
             },
@@ -160,16 +158,16 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
 
         OverlayScreen().pop();
         await Future.delayed(Duration(seconds: 1));
-
         if (store.lastTransactionResponse == null ||
             store.lastTransactionResponse.status == false) {
-          processingFailedMessage = store.lastTransactionResponse.message;
           setState(() {});
           OverlayScreen().show(
             context,
             identifier: 'processing-failed',
           );
         } else {
+          print("transaction ok");
+          print("switching to next screen");
           Get.toNamed('/services/payment/payment-confirmation-screen');
         }
       } else {
@@ -178,7 +176,10 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
           identifier: 'wrong-mpin',
         );
       }
-    } catch (e) {}
+    } catch (e) {
+      print('error caught ');
+      throw Exception(e);
+    }
   }
 
   void _handleOk() {
