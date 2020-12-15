@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
-import 'package:swipe/common/widgets/secondary-button.widget.dart';
 
 import '../main.dart';
 

@@ -1,3 +1,4 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +7,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
 import 'package:swipe/common/widgets/secondary-button.widget.dart';
+import 'package:swipe/common/constants.dart' as Constants;
 
 import '../main.dart';
 
@@ -81,6 +83,85 @@ class _LoginScreenState extends State<LoginScreen> {
                         //   child: Text("REGISTER",
                         //       style: Constants.primaryButtonText),
                         // ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(children: <Widget>[
+                          Expanded(
+                              child: Divider(
+                            color: Colors.white.withOpacity(.87),
+                          )),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5, right: 5),
+                            child: Text("OR SIGNUP USING"),
+                          ),
+                          Expanded(
+                              child: Divider(
+                                  color: Colors.white.withOpacity(.87))),
+                        ]),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 8),
+                              child: CircleAvatar(
+                                radius: 26,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
+                                  radius: 25,
+                                  child: IconButton(
+                                      iconSize: 30,
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.facebookF,
+                                        color: Colors.white.withOpacity(.87),
+                                      ),
+                                      onPressed: () {}),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(right: 8),
+                              child: CircleAvatar(
+                                radius: 26,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
+                                  radius: 25,
+                                  child: IconButton(
+                                      iconSize: 30,
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.google,
+                                        color: Colors.white.withOpacity(.87),
+                                      ),
+                                      onPressed: () {}),
+                                ),
+                              ),
+                            ),
+                            CircleAvatar(
+                              radius: 26,
+                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                backgroundColor: Constants.COLOR_DARK_PURPLE,
+                                radius: 25,
+                                child: IconButton(
+                                    iconSize: 30,
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.linkedinIn,
+                                      color: Colors.white.withOpacity(.87),
+                                    ),
+                                    onPressed: () {}),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SizedBox(
+                          height: 20,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
