@@ -17,6 +17,7 @@ import 'package:swipe/screens/payment/payment-confirmation-screen.dart';
 import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
 import 'package:swipe/screens/registration-screen.dart';
+import 'package:swipe/screens/remittance/remittance-categories-screen.dart';
 import 'package:swipe/screens/services-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/store/application-store.dart';
@@ -107,6 +108,10 @@ class _MyAppState extends State<MyApp> {
               case '/services/bills-payment/bills-payment-biller-form-screen':
                 return MaterialPageRoute(
                     builder: (_) => BillsPaymentBillerFormScreen());
+              case '/services/remittance/remittance-categories-screen':
+                return MaterialPageRoute(
+                    builder: (_) => RemittanceCategoriesScreen());
+
               default:
                 return null;
             }
