@@ -12,6 +12,7 @@ const ELOADING_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
 const ELOADING_SCOPE = 'eloading';
 const BILLS_PAYMENT_SCOPE = 'billspayment';
 const BILLS_PAYMENT_CHANNEL = 'X2B2';
+const INSTAPAY_SCOPE = 'instapay';
 
 const BLUR_RADIUS = 10;
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);

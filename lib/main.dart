@@ -17,7 +17,9 @@ import 'package:swipe/screens/payment/payment-confirmation-screen.dart';
 import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
 import 'package:swipe/screens/registration-screen.dart';
+import 'package:swipe/screens/remittance/instapay/remittance-instapay-bank-form-screen.dart';
 import 'package:swipe/screens/remittance/remittance-categories-screen.dart';
+import 'package:swipe/screens/remittance/instapay/remittance-instapay-banks-screen.dart';
 import 'package:swipe/screens/services-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/store/application-store.dart';
@@ -111,6 +113,12 @@ class _MyAppState extends State<MyApp> {
               case '/services/remittance/remittance-categories-screen':
                 return MaterialPageRoute(
                     builder: (_) => RemittanceCategoriesScreen());
+              case '/services/remittance/instapay/remittance-instapay-banks-screen':
+                return MaterialPageRoute(
+                    builder: (_) => RemittanceInstapayBanksScreen());
+              case '/services/remittance/instapay/remittance-instapay-bank-form-screen':
+                return MaterialPageRoute(
+                    builder: (_) => RemittanceInstapayBankFormScreen());
 
               default:
                 return null;

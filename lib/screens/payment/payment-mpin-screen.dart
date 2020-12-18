@@ -77,49 +77,50 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
-                  height: height,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.mobile_friendly,
-                        size: 45,
-                        color: COLOR_DARK_PURPLE,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text("Fantastic!",
-                          style: GoogleFonts.roboto(
-                              fontSize: 16,
-                              color: COLOR_DARK_PURPLE,
-                              fontWeight: FontWeight.w500)),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text("Please enter your 6-digit MPIN to proceed."),
-                      Container(
-                        width: width,
-                        child: PinCodeTextField(
-                          controller: controller,
-                          keyboardType: TextInputType.number,
-                          onChanged: (str) {
-                            print("change ${str}");
-                          },
-                          appContext: context,
-                          length: 6,
-                          pinTheme: PinTheme(
-                            activeColor: COLOR_DARK_PURPLE,
-                            inactiveColor: Colors.black.withOpacity(.30),
-                            fieldWidth: 20,
+                Expanded(
+                  child: Container(
+                    height: height,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.mobile_friendly,
+                          size: 45,
+                          color: COLOR_DARK_PURPLE,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text("Fantastic!",
+                            style: GoogleFonts.roboto(
+                                fontSize: 16,
+                                color: COLOR_DARK_PURPLE,
+                                fontWeight: FontWeight.w500)),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text("Please enter your 6-digit MPIN to proceed."),
+                        Container(
+                          width: width,
+                          child: PinCodeTextField(
+                            controller: controller,
+                            keyboardType: TextInputType.number,
+                            onChanged: (str) {
+                              print("change ${str}");
+                            },
+                            appContext: context,
+                            length: 6,
+                            pinTheme: PinTheme(
+                              activeColor: COLOR_DARK_PURPLE,
+                              inactiveColor: Colors.black.withOpacity(.30),
+                              fieldWidth: 20,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-                Spacer(),
                 Padding(
                     padding: EdgeInsets.only(left: 10, right: 10),
                     child: SizedBox(

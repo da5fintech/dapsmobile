@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -50,7 +52,7 @@ class _RemittanceCategoriesScreenState
         ),
         GestureDetector(
           onTap: () {
-            print("instapay...");
+            _openInstapay();
           },
           child: Card(
             elevation: 2,
@@ -223,6 +225,24 @@ class _RemittanceCategoriesScreenState
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text("Processing...",
+                style: GoogleFonts.roboto(color: Colors.white)),
+          ],
+        ),
+      ),
+    });
+
     return DefaultTabController(
       length: 2,
       child: Theme(
@@ -315,5 +335,17 @@ class _RemittanceCategoriesScreenState
     if (category == "Banks") {
       _panelController.open();
     }
+  }
+
+  void _openInstapay() async {
+    OverlayScreen().show(
+      context,
+      identifier: 'progress',
+    );
+    var banks = await store.instapayService.getBanks();
+    OverlayScreen().pop();
+    store.instapayBanks = banks;
+    Get.toNamed(
+        "/services/remittance/instapay/remittance-instapay-banks-screen");
   }
 }

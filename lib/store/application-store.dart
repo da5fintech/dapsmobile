@@ -8,6 +8,7 @@ import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
+import 'package:swipe/services/instapay-service.dart';
 import 'package:swipe/services/transaction-service.dart';
 part 'application-store.g.dart';
 
@@ -19,6 +20,7 @@ abstract class _ApplicationStore with Store {
 
   EloadingService eloadingService;
   BillsPaymentService billsPaymentService;
+  InstapayService instapayService;
   TransactionService transactionService;
 
   bool permissionsGranted;
@@ -32,16 +34,21 @@ abstract class _ApplicationStore with Store {
   List<BillerProduct> billers;
   BillerProduct selectedBiller;
 
+  List<InstapayBankProduct> instapayBanks;
+  InstapayBankProduct selectedInstapayBank;
+
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
     balance = 28000;
     eloadingService = EloadingService();
     billsPaymentService = BillsPaymentService();
     transactionService = TransactionService();
+    instapayService = InstapayService();
 
     getIt.registerSingleton(eloadingService);
     getIt.registerSingleton(billsPaymentService);
     getIt.registerSingleton(transactionService);
+    getIt.registerSingleton(instapayService);
 
     user = UserModel(id: "", mpin: "888888");
   }
