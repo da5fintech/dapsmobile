@@ -42,7 +42,6 @@ abstract class _ApplicationStore with Store {
 
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
-    balance = 28000;
     accountService = AccountService();
     eloadingService = EloadingService();
     billsPaymentService = BillsPaymentService();

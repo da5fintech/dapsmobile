@@ -50,45 +50,47 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
             ),
             Expanded(
-              child: Align(
-                // alignment: Alignment.topLeft,
-                child: Padding(
-                    padding: EdgeInsets.only(left: 40, right: 40),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "First Name"),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "Last Name"),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "MM/DD/YY"),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: "Mobile Number", hintText: "63"),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(labelText: "Email"),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              hintText: "Create Password",
-                              suffixIcon: Icon(Icons.visibility_off,
-                                  color: Colors.white.withOpacity(.6))),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              hintText: "Confirm Password",
-                              suffixIcon: Icon(
-                                Icons.visibility_off,
-                                color: Colors.white.withOpacity(0.6),
-                              )),
-                        )
-                      ],
-                    )),
+              child: SingleChildScrollView(
+                child: Align(
+                  // alignment: Alignment.topLeft,
+                  child: Padding(
+                      padding: EdgeInsets.only(left: 40, right: 40),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          TextFormField(
+                            decoration: InputDecoration(hintText: "First Name"),
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(hintText: "Last Name"),
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(hintText: "MM/DD/YY"),
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(
+                                labelText: "Mobile Number", hintText: "63"),
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(labelText: "Email"),
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(
+                                hintText: "Create Password",
+                                suffixIcon: Icon(Icons.visibility_off,
+                                    color: Colors.white.withOpacity(.6))),
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(
+                                hintText: "Confirm Password",
+                                suffixIcon: Icon(
+                                  Icons.visibility_off,
+                                  color: Colors.white.withOpacity(0.6),
+                                )),
+                          )
+                        ],
+                      )),
+                ),
               ),
             ),
             Container(
