@@ -78,7 +78,6 @@ class BillsPaymentService extends Da5Service {
         "Biller": product.code,
         "Channel": BILLS_PAYMENT_CHANNEL,
       };
-
       product.fields.forEach((field) {
         if (field.field != 'amount') {
           params[field.field] = "${field.value}";
@@ -89,16 +88,8 @@ class BillsPaymentService extends Da5Service {
           double.parse(product.getFieldValue('amount')) + product.fee;
 
       params['amount'] = "$total";
-
       var response = await post("/API_billspayment/process", params);
-
-      if (response.containsKey("status") && response["status"] == 200) {
-        return BillsPaymentProcessResponse.fromMap(response);
-      } else {
-        throw BillsPaymentProcessingError(
-            code: response["code"],
-            message: "Unsuccesfull: ${response["status"]}");
-      }
+      return BillsPaymentProcessResponse.fromMap(response);
     } on ApiResponseError catch (e) {
       return BillsPaymentProcessResponse(
         status: false,

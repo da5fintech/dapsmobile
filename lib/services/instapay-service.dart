@@ -22,11 +22,13 @@ class InstapayProcessingResponse extends TransactionProcessingResponse {
           status: true);
     }
 
+    var errors = map["message"]["errors"];
+    String message = "UNKNOWN ERROR";
+    if (errors.length > 0) {
+      message = map["message"]["errors"][0]["description"];
+    }
     return InstapayProcessingResponse(
-        message: map["code"],
-        result: map["code"],
-        reference: "",
-        status: false);
+        message: message, result: message, reference: "", status: false);
   }
 }
 
@@ -101,14 +103,7 @@ class InstapayService extends Da5Service {
       };
 
       var response = await post("/API_instapay/process", params);
-
-      if (response.containsKey("status") && response["status"] == 200) {
-        return InstapayProcessingResponse.fromMap(response);
-      } else {
-        throw InstapayProcessingError(
-            code: response["code"],
-            message: "Unsuccesfull: ${response["status"]}");
-      }
+      return InstapayProcessingResponse.fromMap(response);
     } on ApiResponseError catch (e) {
       print("caught2");
       return InstapayProcessingResponse(

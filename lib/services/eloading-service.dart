@@ -85,14 +85,7 @@ class EloadingService extends Da5Service {
         "ProductCode": product.code
       });
 
-      if (response.containsKey("result") &&
-          response["result"] == 'successful') {
-        return EloadProcessResponse.fromMap(response);
-      } else {
-        throw EloadProcessingError(
-            code: ErrorCode.MISSING_RESULT,
-            message: "Unsuccesfull: ${response["result"]}");
-      }
+      return EloadProcessResponse.fromMap(response);
     } on ApiResponseError catch (e) {
       return EloadProcessResponse(
           status: false,

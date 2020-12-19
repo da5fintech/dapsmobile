@@ -189,7 +189,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
             children: [
               Text("Fee"),
               Spacer(),
-              Text("$INSTAPAY_FEE"),
+              Text(formatter.format(INSTAPAY_FEE)),
             ],
           ),
         ),
