@@ -21,10 +21,12 @@ const COLOR_GREEN = Color(0xff25BA96);
 const COLOR_GRAY = Color(0xffC4C4C4);
 const COLOR_BLUE = Color(0xff46C4F2);
 const COLOR_DARK_GRAY = Color(0xff545454);
+const COLOR_GLOBE_BLUE = Color(0xff46C4F2);
+const COLOR_SMART_GREEN = Color(0xff25BA96);
 
 const INSTAPAY_SENDER_NAME = 'SWIPE INSTAPAY';
-const INSTAPAY_ADDRESS1 = 'Block 3 Lot 34 Torino Street';
-const INSTAPAY_ADDRESS2 = 'IL Giardino Residences Buenavista 1';
+const INSTAPAY_ADDRESS1 = 'Torino';
+const INSTAPAY_ADDRESS2 = 'Buenavista 1';
 const INSTAPAY_CITY = 'General Trias';
 const INSTAPAY_PROVINCE = 'Cavite';
 const INSTAPAY_ZIP = '4107';

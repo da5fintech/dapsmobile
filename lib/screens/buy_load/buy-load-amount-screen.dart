@@ -6,6 +6,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/screens/buy_load/amount-button-widget.dart';
+import 'package:swipe/screens/buy_load/promo-circle-amount-widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
@@ -189,66 +190,59 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                 ),
                 Column(
                   children: [
-                    Container(
-                      height: height,
+                    Expanded(
                       child: ListView.builder(
                           physics: AlwaysScrollableScrollPhysics(),
                           padding: const EdgeInsets.all(8),
                           itemCount: promoProducts.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: COLOR_BLUE,
-                                    child: Text(
-                                      'G',
-                                      style: GoogleFonts.roboto(
-                                          color: Colors.white),
+                            return Container(
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color:
+                                              Colors.grey.withOpacity(.36)))),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    PromoCircleAmountWidget(
+                                      promo: promoProducts[index],
                                     ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(left: 10),
-                                    width: width,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('${promoProducts[index].name}',
-                                            textAlign: TextAlign.left,
-                                            style: GoogleFonts.roboto(
-                                                color: Colors.black
-                                                    .withOpacity(0.87),
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500)),
-                                        SizedBox(
-                                          height: 2,
-                                        ),
-                                        Text(
-                                            '${promoProducts[index].description}',
-                                            style: GoogleFonts.roboto(
-                                                color: COLOR_DARK_GRAY
-                                                    .withOpacity(.87),
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w500)),
-                                      ],
+                                    Container(
+                                      padding: EdgeInsets.only(left: 10),
+                                      width: width,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text('${promoProducts[index].name}',
+                                              textAlign: TextAlign.left,
+                                              style: GoogleFonts.roboto(
+                                                  color: Colors.black
+                                                      .withOpacity(0.87),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500)),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Spacer(),
-                                  Radio(
-                                      onChanged: (value) {
-                                        setSelectedRadio(value);
-                                        selectedPromo = promoProducts[index];
-                                      },
-                                      groupValue: selectedRadio,
-                                      value: promoProducts[index].code)
-                                ],
+                                    Spacer(),
+                                    Radio(
+                                        onChanged: (value) {
+                                          setSelectedRadio(value);
+                                          selectedPromo = promoProducts[index];
+                                        },
+                                        groupValue: selectedRadio,
+                                        value: promoProducts[index].code)
+                                  ],
+                                ),
                               ),
                             );
                           }),
                     ),
-                    Spacer(),
                     Padding(
                         padding: EdgeInsets.only(left: 25, right: 25),
                         child: SizedBox(

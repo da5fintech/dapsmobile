@@ -24,6 +24,21 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     });
   }
 
+  final _$balanceAtom = Atom(name: '_ApplicationStore.balance');
+
+  @override
+  double get balance {
+    _$balanceAtom.reportRead();
+    return super.balance;
+  }
+
+  @override
+  set balance(double value) {
+    _$balanceAtom.reportWrite(value, super.balance, () {
+      super.balance = value;
+    });
+  }
+
   final _$_ApplicationStoreActionController =
       ActionController(name: '_ApplicationStore');
 
@@ -50,9 +65,21 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
   }
 
   @override
+  dynamic setNewBalance(double amount) {
+    final _$actionInfo = _$_ApplicationStoreActionController.startAction(
+        name: '_ApplicationStore.setNewBalance');
+    try {
+      return super.setNewBalance(amount);
+    } finally {
+      _$_ApplicationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-user: ${user}
+user: ${user},
+balance: ${balance}
     ''';
   }
 }

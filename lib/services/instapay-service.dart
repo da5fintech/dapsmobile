@@ -76,7 +76,7 @@ class InstapayService extends Da5Service {
   Future<InstapayProcessingResponse> process(
       InstapayBankProduct product, double amount) async {
     try {
-      double total = product.amount + INSTAPAY_FEE;
+      double total = amount + INSTAPAY_FEE;
       Map<String, String> params = {
         "Scope": INSTAPAY_SCOPE,
         "SenName": INSTAPAY_SENDER_NAME,
@@ -93,7 +93,7 @@ class InstapayService extends Da5Service {
         "BenCity": INSTAPAY_CITY,
         "BenProvince": INSTAPAY_PROVINCE,
         "BenZipCode": INSTAPAY_ZIP,
-        "BenZipCountry": INSTAPAY_COUNTRY,
+        "BenCountry": INSTAPAY_COUNTRY,
         "Amount": formatterWithoutPHP.format(total).replaceFirst(" ", ""),
         "Currency": INSTAPAY_CURRENCY,
         "Bank": product.code,

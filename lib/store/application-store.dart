@@ -6,6 +6,7 @@ import 'package:swipe/main.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
+import 'package:swipe/services/account-service.dart';
 import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/instapay-service.dart';
@@ -17,7 +18,10 @@ class ApplicationStore = _ApplicationStore with _$ApplicationStore;
 abstract class _ApplicationStore with Store {
   @observable
   UserModel user;
+  @observable
+  double balance = 0;
 
+  AccountService accountService;
   EloadingService eloadingService;
   BillsPaymentService billsPaymentService;
   InstapayService instapayService;
@@ -28,7 +32,6 @@ abstract class _ApplicationStore with Store {
 
   TransactionModel transaction;
   TransactionProcessingResponse lastTransactionResponse;
-  double balance;
 
   String selectedBillerCategory;
   List<BillerProduct> billers;
@@ -40,11 +43,13 @@ abstract class _ApplicationStore with Store {
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
     balance = 28000;
+    accountService = AccountService();
     eloadingService = EloadingService();
     billsPaymentService = BillsPaymentService();
     transactionService = TransactionService();
     instapayService = InstapayService();
 
+    getIt.registerSingleton(accountService);
     getIt.registerSingleton(eloadingService);
     getIt.registerSingleton(billsPaymentService);
     getIt.registerSingleton(transactionService);
@@ -66,7 +71,13 @@ abstract class _ApplicationStore with Store {
 
   @action
   setTransactionProduct(ProductModel product, double amount) {
+    print("setting transaction amount to ${amount}");
     transaction.product = product;
     transaction.amount = amount;
+  }
+
+  @action
+  setNewBalance(double amount) {
+    balance = amount;
   }
 }

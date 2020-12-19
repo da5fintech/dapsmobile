@@ -20,6 +20,7 @@ class PaymentVerificationScreen extends StatefulWidget {
 }
 
 class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
+  bool hasDiscount = true;
   @override
   void initState() {
     super.initState();
@@ -206,6 +207,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
     }
 
     if (offering == SwipeServiceOffering.REMITTANCE_INSTAPAY) {
+      hasDiscount = false;
       return buildRemittanceInstapaySection();
     }
 
@@ -328,18 +330,20 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                             ],
                           ),
                         ),
-                        Container(
-                          height: 60,
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("Discount"),
-                              Spacer(),
-                              Text("No available voucher"),
-                            ],
-                          ),
-                        ),
+                        hasDiscount
+                            ? Container(
+                                height: 60,
+                                padding: EdgeInsets.only(left: 10, right: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text("Discount"),
+                                    Spacer(),
+                                    Text("No available voucher"),
+                                  ],
+                                ),
+                              )
+                            : Container(),
                         Container(
                             padding: EdgeInsets.only(left: 10, right: 10),
                             child: Divider(

@@ -20,10 +20,10 @@ class Da5Service {
       [Map<String, String> body]) async {
     String token = await getToken();
     print("token is $token");
-    return await _post(resource, body, token);
+    return await rawPost(resource, body, token);
   }
 
-  Future<Map<String, dynamic>> _post(String resource,
+  Future<Map<String, dynamic>> rawPost(String resource,
       [Map<String, String> body, String token]) async {
     try {
       String uri = "$endpoint$resource";
@@ -71,7 +71,7 @@ class Da5Service {
 
   Future<String> getToken() async {
     try {
-      var response = await _post("/authtimeout/token");
+      var response = await rawPost("/authtimeout/token");
       return response['token'];
     } catch (e) {
       return null;

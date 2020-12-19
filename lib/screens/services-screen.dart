@@ -1,3 +1,4 @@
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,6 +24,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
   @override
   void initState() {
     super.initState();
+
+    store.accountService.getWalletAmount().then((value) {
+      store.setNewBalance(value);
+    });
   }
 
   @override
@@ -89,7 +94,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               style: GoogleFonts.roboto(
                                   fontSize: 12,
                                   color: Colors.white.withOpacity(0.7))),
-                          AmountWidget(amount: 28000),
+                          Observer(builder: (_) {
+                            return AmountWidget(amount: store.balance);
+                          })
                         ],
                       ),
                       SizedBox(
