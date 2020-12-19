@@ -14,10 +14,11 @@ class InstapayProcessingResponse extends TransactionProcessingResponse {
 
   factory InstapayProcessingResponse.fromMap(Map<String, dynamic> map) {
     if (map.containsKey("status") && map["status"] == 200) {
+      var ref = map["trans_status"]["senderRefId"];
       return InstapayProcessingResponse(
-          message: map["reason"],
-          result: map["reason"],
-          reference: map["data"]["txnid"],
+          message: map["message"],
+          result: map["message"],
+          reference: ref,
           status: true);
     }
 

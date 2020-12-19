@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/amount-widget.dart';
@@ -107,6 +108,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                       Text("Sent to"),
                       Spacer(),
                       Text("$recipient",
+                          textAlign: TextAlign.right,
                           style: GoogleFonts.roboto(
                               fontSize: 12,
                               color: Colors.black.withOpacity(.60),
@@ -146,7 +148,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                     children: [
                       Text("Date"),
                       Spacer(),
-                      Text(formatter.format(amount),
+                      Text(DateFormat.yMMMMEEEEd().format(DateTime.now()),
                           style: GoogleFonts.roboto(
                               fontSize: 12,
                               color: Colors.black.withOpacity(.60),

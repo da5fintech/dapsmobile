@@ -63,6 +63,10 @@ class TransactionService {
       return transaction.recipient;
     } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
       return transaction.product.name;
+    } else if (transaction.offering ==
+        SwipeServiceOffering.REMITTANCE_INSTAPAY) {
+      InstapayBankProduct product = transaction.product;
+      return "${product.name}\n${product.accountNumber}";
     }
   }
 
@@ -70,6 +74,9 @@ class TransactionService {
     if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
       return "Buy a Load";
     } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
+      return "Pay Bills";
+    } else if (transaction.offering ==
+        SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       return "Pay Bills";
     }
   }
