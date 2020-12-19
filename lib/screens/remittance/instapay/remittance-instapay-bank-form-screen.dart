@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -136,10 +137,9 @@ class _RemittanceInstapayBankFormScreenState
                           TextFormField(
                             // initialValue: "${field.defaultValue}",
                             onSaved: (v) {
-                              // values[field.field] = v;
+                              values['amount'] = v;
                             },
                             keyboardType: TextInputType.number,
-
                             validator: (text) {
                               if (text == null || text.isEmpty) {
                                 return 'Amount is required';
@@ -156,10 +156,9 @@ class _RemittanceInstapayBankFormScreenState
                           TextFormField(
                             // initialValue: "${field.defaultValue}",
                             onSaved: (v) {
-                              // values[field.field] = v;
+                              values['accountNumber'] = v;
                             },
-                            keyboardType: TextInputType.number,
-
+                            keyboardType: TextInputType.text,
                             validator: (text) {
                               if (text == null || text.isEmpty) {
                                 return 'Account number is required';
@@ -176,10 +175,9 @@ class _RemittanceInstapayBankFormScreenState
                           TextFormField(
                             // initialValue: "${field.defaultValue}",
                             onSaved: (v) {
-                              // values[field.field] = v;
+                              values["recipientName"] = v;
                             },
-                            keyboardType: TextInputType.number,
-
+                            keyboardType: TextInputType.text,
                             validator: (text) {
                               if (text == null || text.isEmpty) {
                                 return 'Recipient  is required';
@@ -224,20 +222,20 @@ class _RemittanceInstapayBankFormScreenState
   }
 
   void _handleNext() {
-    // bool status = _formKey.currentState.validate();
-    // if (status == true) {
-    //   store.createTransaction(SwipeServiceOffering.BILLS_PAYMENT, "");
-    //   _formKey.currentState.save();
+    bool status = _formKey.currentState.validate();
+    if (status == true) {
+      store.createTransaction(SwipeServiceOffering.REMITTANCE_INSTAPAY, "");
+      _formKey.currentState.save();
 
-    //   values.forEach((key, value) {
-    //     print("setting field ${key} ${value}");
-    //     store.selectedInstapayBank.setFieldValue(key, value);
-    //   });
-
-    //   store.setTransactionProduct(store.selectedInstapayBank);
-    //   Get.toNamed("/services/payment/payment-verification-screen");
-    // } else {
-    //   print("failed validation");
-    // }
+      // store.selectedInstapayBank.accountNumber = values["accountNumber"];
+      // store.selectedIns
+      store.selectedInstapayBank.accountNumber = values["accountNumber"];
+      store.selectedInstapayBank.recipientName = values["recipientName"];
+      store.setTransactionProduct(
+          store.selectedInstapayBank, double.parse(values["amount"]));
+      Get.toNamed("/services/payment/payment-verification-screen");
+    } else {
+      print("failed validation");
+    }
   }
 }

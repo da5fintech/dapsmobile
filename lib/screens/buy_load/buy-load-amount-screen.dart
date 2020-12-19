@@ -279,14 +279,15 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
   void _handleNextRegular() async {
     bool status = _formKey.currentState.validate();
     if (status) {
-      store.setTransactionProduct(chosenRegularPromo);
+      store.setTransactionProduct(
+          chosenRegularPromo, chosenRegularPromo.amount);
       Get.toNamed("/services/payment/payment-verification-screen");
     }
   }
 
   void _handleNextPromo() {
     if (selectedPromo != null) {
-      store.setTransactionProduct(selectedPromo);
+      store.setTransactionProduct(selectedPromo, selectedPromo.amount);
       Get.toNamed("/services/payment/payment-verification-screen");
     }
   }

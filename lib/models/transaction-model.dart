@@ -6,6 +6,8 @@ class TransactionModel {
   SwipeServiceOffering offering;
   ProductModel product;
   String recipient;
+  // Amount to be paid for by user for the product
+  double amount;
   TransactionModel({this.id, this.offering, this.recipient, this.product});
 }
 

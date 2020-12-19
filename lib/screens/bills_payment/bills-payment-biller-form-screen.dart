@@ -217,7 +217,10 @@ class _BillsPaymentBillerFormScreenState
         store.selectedBiller.setFieldValue(key, value);
       });
 
-      store.setTransactionProduct(store.selectedBiller);
+      double amount =
+          double.parse(store.selectedBiller.getFieldValue('amount')) +
+              store.selectedBiller.fee;
+      store.setTransactionProduct(store.selectedBiller, amount);
       Get.toNamed("/services/payment/payment-verification-screen");
     } else {
       print("failed validation");

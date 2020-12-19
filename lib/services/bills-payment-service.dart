@@ -32,7 +32,7 @@ class BillsPaymentProcessResponse extends TransactionProcessingResponse {
 class BillsPaymentService extends Da5Service {
   BillsPaymentService()
       : super(
-            endpoint: ELOADING_ENDPOINT,
+            endpoint: API_ENDPOINT,
             merchantId: AUTH_MERCHANT_ID,
             networkId: AUTH_NETWORK_ID,
             signature: AUTH_SIGNATURE,

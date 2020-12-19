@@ -39,11 +39,11 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
   }
 
   @override
-  dynamic setTransactionProduct(ProductModel product) {
+  dynamic setTransactionProduct(ProductModel product, double amount) {
     final _$actionInfo = _$_ApplicationStoreActionController.startAction(
         name: '_ApplicationStore.setTransactionProduct');
     try {
-      return super.setTransactionProduct(product);
+      return super.setTransactionProduct(product, amount);
     } finally {
       _$_ApplicationStoreActionController.endAction(_$actionInfo);
     }

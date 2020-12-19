@@ -195,6 +195,9 @@ class BillerProduct extends ProductModel {
 }
 
 class InstapayBankProduct extends ProductModel {
+  String accountNumber;
+  String recipientName;
+
   InstapayBankProduct({String code, String name})
       : super(code: code, name: name, amount: 0.0, description: "");
 }

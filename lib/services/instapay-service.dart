@@ -4,24 +4,24 @@ import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/services/da5-service.dart';
 
-class BillsPaymentProcessResponse extends TransactionProcessingResponse {
-  BillsPaymentProcessResponse({status, reference, message, result})
+class InstapayProcessingResponse extends TransactionProcessingResponse {
+  InstapayProcessingResponse({status, reference, message, result})
       : super(
             status: status,
             reference: reference,
             message: message,
             result: result);
 
-  factory BillsPaymentProcessResponse.fromMap(Map<String, dynamic> map) {
+  factory InstapayProcessingResponse.fromMap(Map<String, dynamic> map) {
     if (map.containsKey("status") && map["status"] == 200) {
-      return BillsPaymentProcessResponse(
+      return InstapayProcessingResponse(
           message: map["reason"],
           result: map["reason"],
           reference: map["data"]["txnid"],
           status: true);
     }
 
-    return BillsPaymentProcessResponse(
+    return InstapayProcessingResponse(
         message: map["code"],
         result: map["code"],
         reference: "",
@@ -32,7 +32,7 @@ class BillsPaymentProcessResponse extends TransactionProcessingResponse {
 class InstapayService extends Da5Service {
   InstapayService()
       : super(
-            endpoint: ELOADING_ENDPOINT,
+            endpoint: API_ENDPOINT,
             merchantId: AUTH_MERCHANT_ID,
             networkId: AUTH_NETWORK_ID,
             signature: AUTH_SIGNATURE,
@@ -73,50 +73,62 @@ class InstapayService extends Da5Service {
     }
   }
 
-  Future<BillsPaymentProcessResponse> process(BillerProduct product) async {
+  Future<InstapayProcessingResponse> process(
+      InstapayBankProduct product, double amount) async {
     try {
+      double total = product.amount + INSTAPAY_FEE;
       Map<String, String> params = {
-        "Scope": BILLS_PAYMENT_SCOPE,
-        "Biller": product.code,
-        "Channel": BILLS_PAYMENT_CHANNEL,
+        "Scope": INSTAPAY_SCOPE,
+        "SenName": INSTAPAY_SENDER_NAME,
+        "SenAddress1": INSTAPAY_ADDRESS1,
+        "SenAddress2": INSTAPAY_ADDRESS2,
+        "SenCity": INSTAPAY_CITY,
+        "SenProvince": INSTAPAY_PROVINCE,
+        "SenZipCode": INSTAPAY_ZIP,
+        "SenCountry": INSTAPAY_COUNTRY,
+        "BenAccountNumber": product.accountNumber,
+        "BenName": product.recipientName,
+        "BenAddress1": INSTAPAY_ADDRESS1,
+        "BenAddress2": INSTAPAY_ADDRESS2,
+        "BenCity": INSTAPAY_CITY,
+        "BenProvince": INSTAPAY_PROVINCE,
+        "BenZipCode": INSTAPAY_ZIP,
+        "BenZipCountry": INSTAPAY_COUNTRY,
+        "Amount": formatterWithoutPHP.format(total).replaceFirst(" ", ""),
+        "Currency": INSTAPAY_CURRENCY,
+        "Bank": product.code,
       };
 
-      product.fields.forEach((field) {
-        if (field.field != 'amount') {
-          params[field.field] = "${field.value}";
-        }
-      });
-
-      double total =
-          double.parse(product.getFieldValue('amount')) + product.fee;
-
-      params['amount'] = "$total";
-
-      var response = await post("/API_billspayment/process", params);
+      var response = await post("/API_instapay/process", params);
 
       if (response.containsKey("status") && response["status"] == 200) {
-        return BillsPaymentProcessResponse.fromMap(response);
+        return InstapayProcessingResponse.fromMap(response);
       } else {
-        throw BillsPaymentProcessingError(
+        throw InstapayProcessingError(
             code: response["code"],
             message: "Unsuccesfull: ${response["status"]}");
       }
     } on ApiResponseError catch (e) {
-      return BillsPaymentProcessResponse(
+      print("caught2");
+      return InstapayProcessingResponse(
         status: false,
         reference: "",
         message: "Failed processing. \ncode: ${e.code} \nreason: ${e.message}",
         result: "",
       );
-    } on BillsPaymentProcessingError catch (e) {
-      return BillsPaymentProcessResponse(
+    } on InstapayProcessingError catch (e) {
+      print("caught1");
+      return InstapayProcessingResponse(
         status: false,
         reference: "",
         message: "Failed processing. \ncode: ${e.code}, \nreason: ${e.message}",
         result: "",
       );
-    } catch (e) {
-      return BillsPaymentProcessResponse(
+    } catch (e, stack) {
+      print("caught ${e}");
+      print(stack);
+
+      return InstapayProcessingResponse(
         status: false,
         reference: "",
         message: "Failed processing. \nreason: UNKOWN",

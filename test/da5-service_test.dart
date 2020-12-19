@@ -7,7 +7,7 @@ import 'package:swipe/services/da5-service.dart';
 void main() {
   test('da5 must return token', () async {
     final da5 = new Da5Service(
-        endpoint: ELOADING_ENDPOINT,
+        endpoint: API_ENDPOINT,
         username: AUTH_USERNAME,
         merchantId: AUTH_MERCHANT_ID,
         networkId: AUTH_NETWORK_ID,

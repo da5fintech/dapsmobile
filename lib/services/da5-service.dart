@@ -56,8 +56,13 @@ class Da5Service {
       if (result.statusCode >= 200 && result.statusCode < 400) {
         return response;
       } else {
-        throw ApiResponseError(
-            code: response["code"], message: response['message']["reason"]);
+        String message;
+        if (response["message"].runtimeType == String) {
+          message = response["message"];
+        } else {
+          message = response['message']["reason"];
+        }
+        throw ApiResponseError(code: response["code"], message: message);
       }
     } catch (e) {
       throw e;

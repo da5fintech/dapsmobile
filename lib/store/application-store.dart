@@ -65,7 +65,8 @@ abstract class _ApplicationStore with Store {
   }
 
   @action
-  setTransactionProduct(ProductModel product) {
+  setTransactionProduct(ProductModel product, double amount) {
     transaction.product = product;
+    transaction.amount = amount;
   }
 }

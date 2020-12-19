@@ -8,7 +8,7 @@ const AUTH_MERCHANT_ID = "0910";
 const AUTH_NETWORK_ID = "0625";
 const AUTH_USERNAME = "kabootekph";
 const AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
-const ELOADING_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
+const API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
 const ELOADING_SCOPE = 'eloading';
 const BILLS_PAYMENT_SCOPE = 'billspayment';
 const BILLS_PAYMENT_CHANNEL = 'X2B2';
@@ -21,6 +21,16 @@ const COLOR_GREEN = Color(0xff25BA96);
 const COLOR_GRAY = Color(0xffC4C4C4);
 const COLOR_BLUE = Color(0xff46C4F2);
 const COLOR_DARK_GRAY = Color(0xff545454);
+
+const INSTAPAY_SENDER_NAME = 'SWIPE INSTAPAY';
+const INSTAPAY_ADDRESS1 = 'Block 3 Lot 34 Torino Street';
+const INSTAPAY_ADDRESS2 = 'IL Giardino Residences Buenavista 1';
+const INSTAPAY_CITY = 'General Trias';
+const INSTAPAY_PROVINCE = 'Cavite';
+const INSTAPAY_ZIP = '4107';
+const INSTAPAY_COUNTRY = 'Philippines';
+const INSTAPAY_CURRENCY = 'PHP';
+const INSTAPAY_FEE = 25.00;
 
 const kUpdateDialogKeyName = 'kUpdateDialogKeyName';
 
@@ -193,6 +203,7 @@ enum SwipeServiceOffering {
   CASH_IN,
   PAY_QR,
   REMITTANCE,
+  REMITTANCE_INSTAPAY,
   BILLS_PAYMENT,
   INSURANCE,
   BANK_TRANSFER,

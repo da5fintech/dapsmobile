@@ -3,6 +3,7 @@ import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
+import 'package:swipe/services/instapay-service.dart';
 
 import '../main.dart';
 
@@ -18,6 +19,11 @@ class TransactionService {
       } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
         var service = getIt.get<BillsPaymentService>();
         response = await service.process(transaction.product);
+      } else if (transaction.offering ==
+          SwipeServiceOffering.REMITTANCE_INSTAPAY) {
+        var service = getIt.get<InstapayService>();
+        response =
+            await service.process(transaction.product, transaction.amount);
       }
       return response;
     } catch (e) {
@@ -32,6 +38,8 @@ class TransactionService {
     } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
       BillerProduct product = transaction.product;
       amount = double.parse(product.getFieldValue('amount'));
+    } else {
+      return transaction.amount;
     }
     return amount;
   }
@@ -43,6 +51,9 @@ class TransactionService {
     } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
       BillerProduct product = transaction.product;
       amount = double.parse(product.getFieldValue('amount')) + product.fee;
+    } else if (transaction.offering ==
+        SwipeServiceOffering.REMITTANCE_INSTAPAY) {
+      amount = transaction.amount + INSTAPAY_FEE;
     }
     return amount;
   }

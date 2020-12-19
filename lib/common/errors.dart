@@ -18,3 +18,8 @@ class BillsPaymentProcessingError extends GenericError {
   BillsPaymentProcessingError({code, message})
       : super(code: code, message: message);
 }
+
+class InstapayProcessingError extends GenericError {
+  InstapayProcessingError({code, message})
+      : super(code: code, message: message);
+}
