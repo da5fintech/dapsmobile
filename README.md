@@ -15,6 +15,11 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+# Retrieve Debug Signing Key
+After retrieving the signing key. Register the sha1 and sha2 fingerprints in firebase console project.
+- `keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore`
+# Generate Development Key (for deployment purpose)
+- `keytool -genkey -v -keystore ~/swipeapp.jks -keyalg RSA -keysize 2048 -validity 10000 -alias swipekey`
 
 # Running the project
 

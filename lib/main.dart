@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:feature_discovery/feature_discovery.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flavor/flavor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,10 +34,8 @@ GetIt getIt = GetIt.instance;
 
 void setupApp() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  WidgetsFlutterBinding.ensureInitialized();
-
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+  await Firebase.initializeApp();
   var cache = await SharedPreferences.getInstance();
   getIt.registerSingleton(cache);
 

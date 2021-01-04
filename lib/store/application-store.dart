@@ -7,6 +7,7 @@ import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/account-service.dart';
+import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/instapay-service.dart';
@@ -21,6 +22,7 @@ abstract class _ApplicationStore with Store {
   @observable
   double balance = 0;
 
+  AuthenticationService authService;
   AccountService accountService;
   EloadingService eloadingService;
   BillsPaymentService billsPaymentService;
@@ -42,6 +44,8 @@ abstract class _ApplicationStore with Store {
 
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
+
+    authService = AuthenticationService();
     accountService = AccountService();
     eloadingService = EloadingService();
     billsPaymentService = BillsPaymentService();

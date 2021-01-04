@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "723551623949",
+    "project_id": "swipe-app-8a6e4",
+    "storage_bucket": "swipe-app-8a6e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723551623949:android:fd8d42037e069df8782e44",
+        "android_client_info": {
+          "package_name": "ph.kabootek.swipeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCefcbM7lPx_MLnunqEcGiBYSUhqY6ZLko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723551623949:android:4dfeb6a23c87e47e782e44",
+        "android_client_info": {
+          "package_name": "ph.kabootek.swipeapp.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCefcbM7lPx_MLnunqEcGiBYSUhqY6ZLko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
