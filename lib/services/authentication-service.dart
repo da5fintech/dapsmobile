@@ -92,4 +92,14 @@ class AuthenticationService {
       throw Exception('Error encountered. Please try again.');
     }
   }
+
+  Future<User> createAuth({String email, String password}) async {
+    try {
+      var result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return result.user;
+    } catch (e) {
+      throw Exception('Error encountered. Please try again.');
+    }
+  }
 }

@@ -187,11 +187,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _handleLogin() {
-    Get.offAllNamed("/services");
+    Get.toNamed("/login/login-mpin-screen");
   }
 
   _handleRegister() {
-    Get.toNamed("/registration/details-screen");
+    Get.toNamed("/registration/registration-details-screen");
   }
 
   @override
@@ -214,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
       //     name: res.displayName, photoURL: res.photoURL);
       // print("user url ${user.toMap()}");
       // store.setUser(user);
-      Get.toNamed("/registration/details-screen");
+      Get.toNamed("/registration/registration-details-screen");
     } catch (e) {}
   }
 }

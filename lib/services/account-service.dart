@@ -18,6 +18,15 @@ class AccountService extends FireStoreService {
     return user;
   }
 
+  Future<UserModel> getAccount(String uid) async {
+    var result = await findById(uid);
+    print("result.exists ${result.exists}");
+    if (result.exists) {
+      return UserModel.fromDocumentSnapshot(result);
+    }
+    return null;
+  }
+
   Future<UserModel> findOrCreate(String uid, String email,
       {String name, String photoURL}) async {
     var result = await findById(uid);

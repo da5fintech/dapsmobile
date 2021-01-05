@@ -14,6 +14,7 @@ import 'package:swipe/screens/bills_payment/bills-payment-categories-screen.dart
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
+import 'package:swipe/screens/login/login-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-confirmation-screen.dart';
 import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
@@ -84,10 +85,12 @@ class _MyAppState extends State<MyApp> {
             switch (settings.name) {
               case '/login':
                 return MaterialPageRoute(builder: (_) => LoginScreen());
-              case '/registration/details-screen':
+              case '/login/login-mpin-screen':
+                return MaterialPageRoute(builder: (_) => LoginMpinScreen());
+              case '/registration/registration-details-screen':
                 return MaterialPageRoute(
                     builder: (_) => RegistrationDetailsScreen());
-              case '/registration/create-mpin-screen':
+              case '/registration/registration-create-mpin-screen':
                 return MaterialPageRoute(
                     builder: (_) => RegistrationCreateMpinScreen());
               case '/services':

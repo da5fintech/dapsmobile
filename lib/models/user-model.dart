@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
+  bool isNew;
   String id;
   String displayName;
   String firstName;
@@ -15,7 +16,8 @@ class UserModel {
   String password;
 
   UserModel(
-      {this.id,
+      {this.isNew = false,
+      this.id,
       this.displayName,
       this.firstName,
       this.lastName,
@@ -56,7 +58,7 @@ class UserModel {
     var ts = data["creationDate"] as Timestamp;
 
     model.id = document.id;
-    model.displayName = data["name"];
+    model.displayName = data["displayName"];
     model.firstName = data["firstName"];
     model.lastName = data["lastName"];
     model.birthdate = data["birthdate"];
@@ -65,7 +67,6 @@ class UserModel {
     model.mpin = data['mpin'];
     model.email = data['email'];
     model.photoURL = data['photoURL'];
-
     model.creationDate = ts.toDate();
     return model;
   }

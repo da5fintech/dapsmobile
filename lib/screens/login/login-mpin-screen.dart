@@ -1,13 +1,13 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_screen/overlay_screen.dart';
+import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
-import 'package:swipe/services/authentication-service.dart';
+import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
-import 'package:swipe/common/widgets/secondary-button.widget.dart';
 import 'package:swipe/common/constants.dart' as Constants;
 
 import '../../main.dart';
@@ -20,6 +20,7 @@ class LoginMpinScreen extends StatefulWidget {
 }
 
 class _LoginMpinScreenState extends State<LoginMpinScreen> {
+  TextEditingController mpin = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -29,12 +30,22 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
+    OverlayScreen().saveScreens({
+      'wrong-mpin': CustomOverlayScreen(
+          backgroundColor: Colors.white.withOpacity(.2),
+          content: WrongMpinDialog(
+            onOk: () {
+              _handleOk();
+            },
+          )),
+    });
+
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
       body: Container(
         child: Column(
           children: <Widget>[
-            Expanded(
+            Container(
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Padding(
@@ -54,129 +65,85 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                     )),
               ),
             ),
+            Padding(
+              padding: EdgeInsets.only(left: 40, right: 40, top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Login"),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                          backgroundColor: COLOR_ORANGE,
+                          child: store.user.photoURL == null
+                              ? Text(
+                                  store.user.getInitials(),
+                                  style:
+                                      GoogleFonts.roboto(color: Colors.white),
+                                )
+                              : ClipOval(
+                                  child: Image.network(store.user.photoURL))),
+                      Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: Text(store.user.displayName,
+                              style: GoogleFonts.roboto(fontSize: 14))),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                    padding: EdgeInsets.only(bottom: 20, left: 40, right: 40),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                            width: double.infinity,
-                            child: SecondaryButtonWidget(
-                              onPressed: () {
-                                _handleLogin();
-                              },
-                              text: "LOG IN",
-                            )),
-
-                        SizedBox(
-                            width: double.infinity,
-                            child: PrimaryButtonWidget(
-                              onPressed: () {
-                                _handleRegister();
-                              },
-                              text: "REGISTER",
-                            )),
-
-                        // OutlineButton(
-                        //   child: Text("REGISTER",
-                        //       style: Constants.primaryButtonText),
-                        // ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(children: <Widget>[
-                          Expanded(
-                              child: Divider(
-                            color: Colors.white.withOpacity(.87),
-                          )),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5, right: 5),
-                            child: Text("OR SIGNUP USING"),
+              child: Padding(
+                  padding: EdgeInsets.only(left: 40, right: 40),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          TextFormField(
+                            controller: mpin,
+                            keyboardType: TextInputType.number,
+                            onSaved: (v) {},
+                            validator: (text) {
+                              if (text == null || text.isEmpty) {
+                                return 'mpin is required';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                                hintText: "Enter your 6-digit MPIN",
+                                suffixIcon: Icon(Icons.visibility_off,
+                                    color: Colors.white.withOpacity(.6))),
                           ),
-                          Expanded(
-                              child: Divider(
-                                  color: Colors.white.withOpacity(.87))),
-                        ]),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 8),
-                              child: CircleAvatar(
-                                radius: 26,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                  radius: 25,
-                                  child: IconButton(
-                                      iconSize: 30,
-                                      icon: FaIcon(
-                                        FontAwesomeIcons.facebookF,
-                                        color: Colors.white.withOpacity(.87),
-                                      ),
-                                      onPressed: () {}),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 8),
-                              child: CircleAvatar(
-                                radius: 26,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                  radius: 25,
-                                  child: IconButton(
-                                      iconSize: 30,
-                                      icon: FaIcon(
-                                        FontAwesomeIcons.google,
-                                        color: Colors.white.withOpacity(.87),
-                                      ),
-                                      onPressed: () {
-                                        _handleSignup(LoginProvider.GOOGLE);
-                                      }),
-                                ),
-                              ),
-                            ),
-                            CircleAvatar(
-                              radius: 26,
-                              backgroundColor: Colors.white,
-                              child: CircleAvatar(
-                                backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                radius: 25,
-                                child: IconButton(
-                                    iconSize: 30,
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.linkedinIn,
-                                      color: Colors.white.withOpacity(.87),
-                                    ),
-                                    onPressed: () {}),
-                              ),
-                            ),
-                          ],
-                        ),
+                          SizedBox(
+                              width: double.infinity,
+                              child: PrimaryButtonWidget(
+                                onPressed: () {
+                                  _handleLogin();
+                                },
+                                text: "LOG IN",
+                              )),
+                        ],
+                      ),
 
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Help Center"),
-                            Text("v1.1.1"),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    )),
+                      // OutlineButton(
+                      //   child: Text("REGISTER",
+                      //       style: Constants.primaryButtonText),
+                      // ),
+                    ],
+                  )),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10, left: 40, right: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Help Center"),
+                  Text("v1.1.1"),
+                ],
               ),
             ),
           ],
@@ -186,27 +153,17 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
   }
 
   _handleLogin() {
-    Get.offAllNamed("/services");
-  }
-
-  _handleRegister() {
-    Get.toNamed("/registration/details-screen");
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  void _handleSignup(LoginProvider provider) async {
-    try {
-      var res = await store.authService.login(provider);
-
-      var user = await store.accountService.findOrCreate(res.uid, res.email,
-          name: res.displayName, photoURL: res.photoURL);
-      print("user url ${user.toMap()}");
-      store.setUser(user);
+    if (mpin.text != store.user.mpin) {
+      OverlayScreen().show(
+        context,
+        identifier: 'wrong-mpin',
+      );
+    } else {
       Get.offAllNamed("/services");
-    } catch (e) {}
+    }
+  }
+
+  void _handleOk() {
+    OverlayScreen().pop();
   }
 }

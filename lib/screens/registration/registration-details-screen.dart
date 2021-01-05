@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/models/user-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
 
@@ -115,9 +116,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                                 labelText: "Mobile Number", hintText: "63"),
                           ),
                           TextFormField(
-                            readOnly:
-                                store.registrant.email != null ? true : false,
-                            initialValue: store.registrant.email != null
+                            readOnly: store.registrant != null ? true : false,
+                            initialValue: store.registrant != null
                                 ? store.registrant.email
                                 : "",
                             onSaved: (v) {
@@ -205,16 +205,24 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
     super.dispose();
   }
 
-  void _handleNext() {
+  void _handleNext() async {
     bool status = _formKey.currentState.validate();
     if (status) {
       _formKey.currentState.save();
+
+      if (store.registrant == null) {
+        store.registrant = UserModel(
+            isNew: true,
+            email: values["email"],
+            displayName: "${values["firstName"]} ${values["lastName"]}");
+      }
+
       store.registrant.firstName = values["firstName"];
       store.registrant.lastName = values["lastName"];
       store.registrant.birthdate = values["birthdate"];
       store.registrant.mobileNumber = values["mobileNumber"];
       store.registrant.password = values["password"];
-      Get.toNamed("/registration/create-mpin-screen");
+      Get.toNamed("/registration/registration-create-mpin-screen");
     }
   }
 }

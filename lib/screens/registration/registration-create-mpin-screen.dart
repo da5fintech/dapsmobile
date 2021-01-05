@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -207,6 +209,14 @@ class _RegistrationCreateMpinScreenState
         );
         await Future.delayed(Duration(seconds: 5));
         OverlayScreen().pop();
+
+        if (store.registrant.isNew) {
+          User creds = await store.authService.createAuth(
+              email: store.registrant.email,
+              password: store.registrant.password);
+          store.registrant.id = creds.uid;
+        }
+
         await store.accountService.create(store.registrant);
         store.setUser(store.registrant);
         OverlayScreen().show(
@@ -224,5 +234,6 @@ class _RegistrationCreateMpinScreenState
 
   void _handleOk() {
     OverlayScreen().pop();
+    Get.toNamed("/login/login-mpin-screen");
   }
 }
