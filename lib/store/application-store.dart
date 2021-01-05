@@ -22,6 +22,9 @@ abstract class _ApplicationStore with Store {
   @observable
   double balance = 0;
 
+  //used to track user registration
+  UserModel registrant;
+
   AuthenticationService authService;
   AccountService accountService;
   EloadingService eloadingService;

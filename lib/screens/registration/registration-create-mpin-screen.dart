@@ -1,7 +1,10 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_screen/overlay_screen.dart';
+import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/screens/registration/registration-success-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
 
@@ -17,6 +20,10 @@ class RegistrationCreateMpinScreen extends StatefulWidget {
 
 class _RegistrationCreateMpinScreenState
     extends State<RegistrationCreateMpinScreen> {
+  final _formKey = GlobalKey<FormState>();
+  Map<String, dynamic> values = Map<String, dynamic>();
+  TextEditingController mpin = TextEditingController();
+  TextEditingController confirmMpin = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -26,9 +33,34 @@ class _RegistrationCreateMpinScreenState
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text("Processing...",
+                style: GoogleFonts.roboto(color: Colors.white)),
+          ],
+        ),
+      ),
+      'registration-success': CustomOverlayScreen(
+          backgroundColor: Colors.white.withOpacity(.2),
+          content: RegistrationSuccessDialog(
+            onOk: () {
+              _handleOk();
+            },
+          )),
+    });
+
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
-      body: Container(
+      body: Form(
+        key: _formKey,
         child: Column(
           children: <Widget>[
             Container(
@@ -88,12 +120,37 @@ class _RegistrationCreateMpinScreenState
                             height: 15,
                           ),
                           TextFormField(
+                            controller: mpin,
+                            onSaved: (v) {
+                              values["mpin"] = v;
+                            },
+                            validator: (text) {
+                              if (text == null || text.isEmpty) {
+                                return 'MPIN is required';
+                              }
+
+                              if (text.length != 6) {
+                                return 'MPIN must be 6 digits';
+                              }
+                              return null;
+                            },
                             decoration: InputDecoration(
                                 hintText: "Create your MPIN",
                                 suffixIcon: Icon(Icons.visibility_off,
                                     color: Colors.white.withOpacity(.6))),
                           ),
                           TextFormField(
+                            controller: confirmMpin,
+                            validator: (text) {
+                              if (text == null || text.isEmpty) {
+                                return 'Confirm MPIN is required';
+                              }
+
+                              if (mpin.text != confirmMpin.text) {
+                                return "MPINs must match";
+                              }
+                              return null;
+                            },
                             decoration: InputDecoration(
                                 hintText: "Verify MPIN",
                                 suffixIcon: Icon(
@@ -138,10 +195,34 @@ class _RegistrationCreateMpinScreenState
     );
   }
 
-  _handleRegister() {}
+  _handleRegister() async {
+    bool status = _formKey.currentState.validate();
+    if (status) {
+      try {
+        _formKey.currentState.save();
+        store.registrant.mpin = values["mpin"];
+        OverlayScreen().show(
+          context,
+          identifier: 'progress',
+        );
+        await Future.delayed(Duration(seconds: 5));
+        OverlayScreen().pop();
+        await store.accountService.create(store.registrant);
+        store.setUser(store.registrant);
+        OverlayScreen().show(
+          context,
+          identifier: 'registration-success',
+        );
+      } catch (e) {}
+    }
+  }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _handleOk() {
+    OverlayScreen().pop();
   }
 }

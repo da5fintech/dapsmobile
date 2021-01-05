@@ -68,21 +68,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _initialize(BuildContext context) async {
     User creds = store.authService.getCurrentUser();
-    if (creds != null) {
-      var user = await store.accountService.findOrCreate(creds.uid, creds.email,
-          name: creds.displayName, photoURL: creds.photoURL);
-      store.setUser(user);
-      Get.offAllNamed("/services");
+    // if (creds != null) {
+    //   var user = await store.accountService.findOrCreate(creds.uid, creds.email,
+    //       name: creds.displayName, photoURL: creds.photoURL);
+    //   store.setUser(user);
+    //   Get.offAllNamed("/services");
+    // } else {
+    // await store
+    print("granted");
+    print(store.permissionsGranted);
+    if (store.permissionsGranted) {
+      Get.off(LoginScreen());
     } else {
-      // await store
-      print("granted");
-      print(store.permissionsGranted);
-      if (store.permissionsGranted) {
-        Get.off(LoginScreen());
-      } else {
-        Get.off(SetupScreen());
-      }
+      Get.off(SetupScreen());
     }
+    // }
   }
 
   @override

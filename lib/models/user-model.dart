@@ -3,15 +3,25 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserModel {
   String id;
   String displayName;
+  String firstName;
+  String lastName;
+  String birthdate;
+  String mobileNumber;
   String mpin;
   String email;
   String photoURL;
   double balance;
   DateTime creationDate;
+  String password;
 
   UserModel(
       {this.id,
       this.displayName,
+      this.firstName,
+      this.lastName,
+      this.birthdate,
+      this.mobileNumber,
+      this.password,
       this.mpin,
       this.email,
       this.photoURL,
@@ -23,7 +33,11 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return {
       "id": id,
-      "name": displayName,
+      "displayName": displayName,
+      "firstName": firstName,
+      "lastName": lastName,
+      "birthdate": birthdate,
+      "mobileNumber": mobileNumber,
       "mpin": mpin,
       "email": email,
       "photoURL": photoURL,
@@ -43,6 +57,11 @@ class UserModel {
 
     model.id = document.id;
     model.displayName = data["name"];
+    model.firstName = data["firstName"];
+    model.lastName = data["lastName"];
+    model.birthdate = data["birthdate"];
+    model.mobileNumber = data["mobileNumber"];
+    model.password = data["password"];
     model.mpin = data['mpin'];
     model.email = data['email'];
     model.photoURL = data['photoURL'];

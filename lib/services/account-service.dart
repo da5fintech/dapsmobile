@@ -13,6 +13,11 @@ class AccountService extends FireStoreService {
     }
   }
 
+  Future<UserModel> create(UserModel user) async {
+    await update(user.id, user.toMap());
+    return user;
+  }
+
   Future<UserModel> findOrCreate(String uid, String email,
       {String name, String photoURL}) async {
     var result = await findById(uid);
