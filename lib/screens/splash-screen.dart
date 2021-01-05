@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -66,13 +67,21 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _initialize(BuildContext context) async {
-    // await store
-    print("granted");
-    print(store.permissionsGranted);
-    if (store.permissionsGranted) {
-      Get.off(LoginScreen());
+    User creds = store.authService.getCurrentUser();
+    if (creds != null) {
+      var user = await store.accountService.findOrCreate(creds.uid, creds.email,
+          name: creds.displayName, photoURL: creds.photoURL);
+      store.setUser(user);
+      Get.offAllNamed("/services");
     } else {
-      Get.off(SetupScreen());
+      // await store
+      print("granted");
+      print(store.permissionsGranted);
+      if (store.permissionsGranted) {
+        Get.off(LoginScreen());
+      } else {
+        Get.off(SetupScreen());
+      }
     }
   }
 

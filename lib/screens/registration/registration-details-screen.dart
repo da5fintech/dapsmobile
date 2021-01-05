@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,16 +6,17 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 final store = getIt<ApplicationStore>();
 
-class RegistrationScreen extends StatefulWidget {
+class RegistrationDetailsScreen extends StatefulWidget {
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _RegistrationDetailsScreenState createState() =>
+      _RegistrationDetailsScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   @override
   void initState() {
     super.initState();
@@ -105,7 +107,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             width: double.infinity,
                             child: PrimaryButtonWidget(
                                 onPressed: () {
-                                  _handleRegister();
+                                  _handleNext();
                                 },
                                 text: "Next")),
                         Row(
@@ -125,10 +127,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  _handleRegister() {}
-
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _handleNext() {
+    Get.toNamed("/registration/create-mpin-screen");
   }
 }

@@ -25,6 +25,10 @@ class AuthenticationService {
     return;
   }
 
+  User getCurrentUser() {
+    return _auth.currentUser;
+  }
+
   Future<User> login(LoginProvider provider) {
     switch (provider) {
       case LoginProvider.GOOGLE:

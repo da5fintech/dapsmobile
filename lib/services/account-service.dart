@@ -19,8 +19,8 @@ class AccountService extends FireStoreService {
     if (result.exists) {
       return UserModel.fromDocumentSnapshot(result);
     } else {
-      var user =
-          UserModel(id: uid, email: email, name: name, photoURL: photoURL);
+      var user = UserModel(
+          id: uid, email: email, displayName: name, photoURL: photoURL);
       await update(uid, user.toMap());
       return user;
     }

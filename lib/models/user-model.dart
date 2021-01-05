@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
   String id;
-  String name;
+  String displayName;
   String mpin;
   String email;
   String photoURL;
@@ -11,7 +11,7 @@ class UserModel {
 
   UserModel(
       {this.id,
-      this.name,
+      this.displayName,
       this.mpin,
       this.email,
       this.photoURL,
@@ -23,7 +23,7 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return {
       "id": id,
-      "name": name,
+      "name": displayName,
       "mpin": mpin,
       "email": email,
       "photoURL": photoURL,
@@ -33,7 +33,7 @@ class UserModel {
   }
 
   String getInitials() {
-    return name.substring(0, 1).toUpperCase();
+    return displayName.substring(0, 1).toUpperCase();
   }
 
   factory UserModel.fromDocumentSnapshot(DocumentSnapshot document) {
@@ -42,7 +42,7 @@ class UserModel {
     var ts = data["creationDate"] as Timestamp;
 
     model.id = document.id;
-    model.name = data["name"];
+    model.displayName = data["name"];
     model.mpin = data['mpin'];
     model.email = data['email'];
     model.photoURL = data['photoURL'];

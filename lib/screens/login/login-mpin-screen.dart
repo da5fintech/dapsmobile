@@ -10,16 +10,16 @@ import 'package:swipe/common/widgets/primary-button.widget.dart';
 import 'package:swipe/common/widgets/secondary-button.widget.dart';
 import 'package:swipe/common/constants.dart' as Constants;
 
-import '../main.dart';
+import '../../main.dart';
 
 final store = getIt<ApplicationStore>();
 
-class LoginScreen extends StatefulWidget {
+class LoginMpinScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginMpinScreenState createState() => _LoginMpinScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginMpinScreenState extends State<LoginMpinScreen> {
   @override
   void initState() {
     super.initState();

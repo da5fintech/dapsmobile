@@ -17,7 +17,8 @@ import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/payment/payment-confirmation-screen.dart';
 import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
-import 'package:swipe/screens/registration-screen.dart';
+import 'package:swipe/screens/registration/registration-create-mpin-screen.dart';
+import 'package:swipe/screens/registration/registration-details-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-bank-form-screen.dart';
 import 'package:swipe/screens/remittance/remittance-categories-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-banks-screen.dart';
@@ -83,8 +84,12 @@ class _MyAppState extends State<MyApp> {
             switch (settings.name) {
               case '/login':
                 return MaterialPageRoute(builder: (_) => LoginScreen());
-              case '/registration':
-                return MaterialPageRoute(builder: (_) => RegistrationScreen());
+              case '/registration/details-screen':
+                return MaterialPageRoute(
+                    builder: (_) => RegistrationDetailsScreen());
+              case '/registration/create-mpin-screen':
+                return MaterialPageRoute(
+                    builder: (_) => RegistrationCreateMpinScreen());
               case '/services':
                 return MaterialPageRoute(builder: (_) => ServicesScreen());
               case '/services/buy-load/buy-load-recipient-screen':
