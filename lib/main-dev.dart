@@ -12,7 +12,7 @@ Future main() async {
     name: 'PREVIEW',
     properties: {
       namespaceKey: "dev_",
-      packageIdKey: "ph.kabootek.swipe.dev",
+      packageIdKey: "ph.kabootek.swipeapp.dev",
     },
   );
   setupApp();

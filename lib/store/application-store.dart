@@ -58,7 +58,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(transactionService);
     getIt.registerSingleton(instapayService);
 
-    user = UserModel(id: "", mpin: "888888");
+    // user = UserModel(id: "", mpin: "888888");
   }
 
   setPermissionsGranted() {
@@ -82,5 +82,10 @@ abstract class _ApplicationStore with Store {
   @action
   setNewBalance(double amount) {
     balance = amount;
+  }
+
+  @action
+  setUser(UserModel user) {
+    user = user;
   }
 }

@@ -198,7 +198,13 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _handleSignup(LoginProvider provider) {
-    store.authService.login(provider);
+  void _handleSignup(LoginProvider provider) async {
+    try {
+      var res = await store.authService.login(provider);
+      var user = await store.accountService.findOrCreate(res.uid, res.email);
+      print("user ${user.toMap()}");
+      store.setUser(user);
+      Get.offAllNamed("/services");
+    } catch (e) {}
   }
 }

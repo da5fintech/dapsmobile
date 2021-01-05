@@ -25,15 +25,16 @@ class AuthenticationService {
     return;
   }
 
-  login(LoginProvider provider) {
+  Future<User> login(LoginProvider provider) {
     switch (provider) {
       case LoginProvider.GOOGLE:
         return _googleLogin();
       default:
+        return _googleLogin();
     }
   }
 
-  _googleLogin() async {
+  Future<User> _googleLogin() async {
     try {
       if (null == _googleSignIn) {
         _googleSignIn = GoogleSignIn(
