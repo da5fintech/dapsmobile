@@ -86,6 +86,6 @@ abstract class _ApplicationStore with Store {
 
   @action
   setUser(UserModel user) {
-    user = user;
+    this.user = user;
   }
 }

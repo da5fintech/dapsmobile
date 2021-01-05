@@ -201,8 +201,10 @@ class _LoginScreenState extends State<LoginScreen> {
   void _handleSignup(LoginProvider provider) async {
     try {
       var res = await store.authService.login(provider);
-      var user = await store.accountService.findOrCreate(res.uid, res.email);
-      print("user ${user.toMap()}");
+
+      var user = await store.accountService.findOrCreate(res.uid, res.email,
+          name: res.displayName, photoURL: res.photoURL);
+      print("user url ${user.toMap()}");
       store.setUser(user);
       Get.offAllNamed("/services");
     } catch (e) {}

@@ -49,15 +49,19 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: COLOR_ORANGE,
-                            child: Text(
-                              'AH',
-                              style: GoogleFonts.roboto(color: Colors.white),
-                            ),
-                          ),
+                              backgroundColor: COLOR_ORANGE,
+                              child: store.user.photoURL == null
+                                  ? Text(
+                                      store.user.getInitials(),
+                                      style: GoogleFonts.roboto(
+                                          color: Colors.white),
+                                    )
+                                  : ClipOval(
+                                      child:
+                                          Image.network(store.user.photoURL))),
                           Container(
                               margin: EdgeInsets.only(left: 10),
-                              child: Text("Juan Mateo Matipid",
+                              child: Text(store.user.name,
                                   style: GoogleFonts.roboto(fontSize: 14))),
                           Spacer(),
                           Container(
