@@ -187,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _handleLogin() {
-    Get.toNamed("/login/login-mpin-screen");
+    Get.toNamed("/login/login-email-screen");
   }
 
   _handleRegister() {

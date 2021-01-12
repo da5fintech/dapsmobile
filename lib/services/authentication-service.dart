@@ -83,22 +83,29 @@ class AuthenticationService {
     }
   }
 
-  Future<FirebaseUser> emailLogin({String email, String password}) async {
+  Future<User> emailLogin({String email, String password}) async {
     try {
       var result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       return result.user;
+    } on FirebaseAuthException catch (e) {
+      print("email login failed ${email} ${password}");
+      throw e;
     } catch (e) {
-      throw Exception('Error encountered. Please try again.');
+      throw e;
     }
   }
 
   Future<User> createAuth({String email, String password}) async {
     try {
+      print("creating auth user ${email} ${password}");
       var result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      _auth.signInWithEmailAndPassword(email: email, password: password);
+      await result.user.sendEmailVerification();
       return result.user;
     } catch (e) {
+      print("failed creating email password");
       throw Exception('Error encountered. Please try again.');
     }
   }

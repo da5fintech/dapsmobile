@@ -5,8 +5,9 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize; // default is 56.0
   final double elevation;
+  final Function onPressed;
 
-  MainAppBarWidget({Key key, this.elevation})
+  MainAppBarWidget({Key key, this.elevation, this.onPressed})
       : preferredSize = Size.fromHeight(kToolbarHeight),
         super(key: key);
 
@@ -14,7 +15,11 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: elevation,
-      leading: Icon(Icons.list),
+      leading: IconButton(
+          icon: Icon(Icons.list),
+          onPressed: () {
+            onPressed();
+          }),
       title: Text("SWIPE",
           style: GoogleFonts.roboto(
               fontSize: 12, fontWeight: FontWeight.w800, letterSpacing: 15)),

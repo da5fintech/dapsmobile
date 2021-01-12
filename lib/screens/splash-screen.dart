@@ -71,9 +71,15 @@ class _SplashScreenState extends State<SplashScreen> {
     if (creds != null) {
       print("creds ${creds.uid}");
       var user = await store.accountService.getAccount(creds.uid);
-      store.setUser(user);
+      if (user != null) {
+        store.setUser(user);
+        Get.offAllNamed("/login/login-mpin-screen");
+      } else {
+        Get.offAllNamed("/login");
+      }
+
       // await store.authService.logout();
-      Get.offAllNamed("/login/login-mpin-screen");
+
     } else {
       print("granted");
       print(store.permissionsGranted);

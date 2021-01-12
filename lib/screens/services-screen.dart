@@ -33,11 +33,30 @@ class _ServicesScreenState extends State<ServicesScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
     return Scaffold(
         // backgroundColor: Constants.backgroundColor2,
+        key: _drawerKey,
+        drawer: Drawer(
+          child: ListView(
+            children: <Widget>[
+              ListTile(
+                title: Text("Logout"),
+                trailing: Icon(Icons.arrow_forward),
+                onTap: () async {
+                  await store.authService.logout();
+                  Get.toNamed("/login");
+                },
+              ),
+            ],
+          ),
+        ),
         appBar: MainAppBarWidget(
           elevation: 0,
+          onPressed: () {
+            _drawerKey.currentState.openDrawer();
+          },
         ),
         body: Column(
           children: [
