@@ -24,10 +24,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
   @override
   void initState() {
     super.initState();
-
-    store.accountService.getWalletAmount().then((value) {
-      store.setNewBalance(value);
-    });
   }
 
   @override
@@ -242,27 +238,34 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     )
                   ],
                 )),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10, bottom: 4, top: 10),
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.book,
-                        color: COLOR_GREEN,
-                      ),
-                      Text(
-                        "Transaction History",
-                        style: GoogleFonts.roboto(
-                            fontSize: 14, color: Colors.black.withOpacity(.87)),
-                      ),
-                    ],
-                  ),
-                  Icon(Icons.chevron_right),
-                ],
+            GestureDetector(
+              onTap: () {
+                Get.toNamed("/transactions/transaction-history-screen");
+              },
+              child: Container(
+                padding:
+                    EdgeInsets.only(left: 10, right: 10, bottom: 4, top: 10),
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.book,
+                          color: COLOR_GREEN,
+                        ),
+                        Text(
+                          "Transaction History",
+                          style: GoogleFonts.roboto(
+                              fontSize: 14,
+                              color: Colors.black.withOpacity(.87)),
+                        ),
+                      ],
+                    ),
+                    Icon(Icons.chevron_right),
+                  ],
+                ),
               ),
             ),
             SizedBox(

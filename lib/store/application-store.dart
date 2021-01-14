@@ -52,7 +52,7 @@ abstract class _ApplicationStore with Store {
     accountService = AccountService();
     eloadingService = EloadingService();
     billsPaymentService = BillsPaymentService();
-    transactionService = TransactionService();
+    transactionService = TransactionService(accountService: accountService);
     instapayService = InstapayService();
 
     getIt.registerSingleton(accountService);
@@ -90,5 +90,7 @@ abstract class _ApplicationStore with Store {
   @action
   setUser(UserModel user) {
     this.user = user;
+    print('setting user balance ${user.balance}');
+    setNewBalance(user.balance);
   }
 }

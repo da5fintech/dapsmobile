@@ -1,13 +1,15 @@
 import 'package:swipe/common/errors.dart';
+import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/firestore-service.dart';
 
 class AccountService extends FireStoreService {
   AccountService() : super(collectionName: "accounts");
 
-  Future<double> getWalletAmount() async {
+  Future<double> getWalletAmount(UserModel user) async {
     try {
-      return 25.00;
+      var updatedUser = await getAccount(user.id);
+      return updatedUser.balance;
     } on ApiResponseError catch (e) {
       return 0;
     }
@@ -38,5 +40,19 @@ class AccountService extends FireStoreService {
       await update(uid, user.toMap());
       return user;
     }
+  }
+
+  Future<List<TransactionRecordModel>> getTransactionRecords(String uid) async {
+    var result = await collection
+        .doc(uid)
+        .collection('transactions')
+        .orderBy("creationDate", descending: true)
+        .get();
+
+    var records = result.docs.map((e) {
+      return TransactionRecordModel.fromDocumentSnapshot(e);
+    }).toList();
+
+    return records;
   }
 }

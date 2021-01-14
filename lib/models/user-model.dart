@@ -58,6 +58,7 @@ class UserModel {
     var ts = data["creationDate"] as Timestamp;
 
     model.id = document.id;
+    model.balance = data["balance"] + .0;
     model.displayName = data["displayName"];
     model.firstName = data["firstName"];
     model.lastName = data["lastName"];

@@ -223,3 +223,5 @@ NumberFormat formatterWithoutPHP =
     NumberFormat.currency(name: " ", decimalDigits: 2);
 NumberFormat formatterInt =
     NumberFormat.currency(name: " ", decimalDigits: 0, customPattern: "###");
+
+DateFormat dateformatter = DateFormat("M/d/y");
