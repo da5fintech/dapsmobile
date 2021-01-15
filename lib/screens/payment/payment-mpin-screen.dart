@@ -154,10 +154,11 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
           identifier: 'progress',
         );
 
-        store.lastTransactionResponse =
-            await store.transactionService.process(store.transaction);
+        store.lastTransactionResponse = await store.transactionService
+            .process(store.user, store.transaction);
 
         OverlayScreen().pop();
+        print('here we goooo');
         await Future.delayed(Duration(seconds: 1));
         if (store.lastTransactionResponse == null ||
             store.lastTransactionResponse.status == false) {
@@ -167,6 +168,9 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
             identifier: 'processing-failed',
           );
         } else {
+          double amount =
+              await store.accountService.getWalletAmount(store.user);
+          store.setNewBalance(amount);
           print("transaction ok");
           print("switching to next screen");
           Get.toNamed('/services/payment/payment-confirmation-screen');
@@ -179,7 +183,7 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
       }
     } catch (e) {
       print('error caught ');
-      throw Exception(e);
+      throw e;
     }
   }
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:feature_discovery/feature_discovery.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flavor/flavor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,15 +14,19 @@ import 'package:swipe/screens/bills_payment/bills-payment-categories-screen.dart
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
+import 'package:swipe/screens/login/login-email-screen.dart';
+import 'package:swipe/screens/login/login-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-confirmation-screen.dart';
 import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
-import 'package:swipe/screens/registration-screen.dart';
+import 'package:swipe/screens/registration/registration-create-mpin-screen.dart';
+import 'package:swipe/screens/registration/registration-details-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-bank-form-screen.dart';
 import 'package:swipe/screens/remittance/remittance-categories-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-banks-screen.dart';
 import 'package:swipe/screens/services-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
+import 'package:swipe/screens/transactions/transaction-history-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
 import 'common/constants.dart';
@@ -33,10 +38,8 @@ GetIt getIt = GetIt.instance;
 
 void setupApp() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  WidgetsFlutterBinding.ensureInitialized();
-
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+  await Firebase.initializeApp();
   var cache = await SharedPreferences.getInstance();
   getIt.registerSingleton(cache);
 
@@ -84,8 +87,19 @@ class _MyAppState extends State<MyApp> {
             switch (settings.name) {
               case '/login':
                 return MaterialPageRoute(builder: (_) => LoginScreen());
-              case '/registration':
-                return MaterialPageRoute(builder: (_) => RegistrationScreen());
+              case '/login/login-email-screen':
+                return MaterialPageRoute(builder: (_) => LoginEmailScreen());
+              case '/login/login-mpin-screen':
+                return MaterialPageRoute(builder: (_) => LoginMpinScreen());
+              case '/registration/registration-details-screen':
+                return MaterialPageRoute(
+                    builder: (_) => RegistrationDetailsScreen());
+              case '/registration/registration-create-mpin-screen':
+                return MaterialPageRoute(
+                    builder: (_) => RegistrationCreateMpinScreen());
+              case '/transactions/transaction-history-screen':
+                return MaterialPageRoute(
+                    builder: (_) => TransactionHistoryScreen());
               case '/services':
                 return MaterialPageRoute(builder: (_) => ServicesScreen());
               case '/services/buy-load/buy-load-recipient-screen':

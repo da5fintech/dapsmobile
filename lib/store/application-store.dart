@@ -7,6 +7,7 @@ import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/account-service.dart';
+import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/instapay-service.dart';
@@ -21,6 +22,10 @@ abstract class _ApplicationStore with Store {
   @observable
   double balance = 0;
 
+  //used to track user registration
+  UserModel registrant;
+
+  AuthenticationService authService;
   AccountService accountService;
   EloadingService eloadingService;
   BillsPaymentService billsPaymentService;
@@ -42,10 +47,12 @@ abstract class _ApplicationStore with Store {
 
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
+
+    authService = AuthenticationService();
     accountService = AccountService();
     eloadingService = EloadingService();
     billsPaymentService = BillsPaymentService();
-    transactionService = TransactionService();
+    transactionService = TransactionService(accountService: accountService);
     instapayService = InstapayService();
 
     getIt.registerSingleton(accountService);
@@ -54,7 +61,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(transactionService);
     getIt.registerSingleton(instapayService);
 
-    user = UserModel(id: "", mpin: "888888");
+    // user = UserModel(id: "", mpin: "888888");
   }
 
   setPermissionsGranted() {
@@ -78,5 +85,12 @@ abstract class _ApplicationStore with Store {
   @action
   setNewBalance(double amount) {
     balance = amount;
+  }
+
+  @action
+  setUser(UserModel user) {
+    this.user = user;
+    print('setting user balance ${user.balance}');
+    setNewBalance(user.balance);
   }
 }

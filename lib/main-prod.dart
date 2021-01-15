@@ -9,7 +9,7 @@ Future main() async {
     Environment.production,
     properties: {
       namespaceKey: "",
-      packageIdKey: "ph.kabootek.swipe",
+      packageIdKey: "ph.kabootek.swipeapp",
     },
   );
   setupApp();

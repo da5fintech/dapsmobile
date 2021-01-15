@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/models/user-model.dart';
+import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
 import 'package:swipe/common/widgets/secondary-button.widget.dart';
@@ -137,7 +139,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         FontAwesomeIcons.google,
                                         color: Colors.white.withOpacity(.87),
                                       ),
-                                      onPressed: () {}),
+                                      onPressed: () {
+                                        _handleSignup(LoginProvider.GOOGLE);
+                                      }),
                                 ),
                               ),
                             ),
@@ -183,15 +187,34 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _handleLogin() {
-    Get.offAllNamed("/services");
+    Get.toNamed("/login/login-email-screen");
   }
 
   _handleRegister() {
-    Get.toNamed("/registration");
+    Get.toNamed("/registration/registration-details-screen");
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _handleSignup(LoginProvider provider) async {
+    try {
+      var res = await store.authService.login(provider);
+
+      UserModel registrant = UserModel(
+          id: res.uid,
+          displayName: res.displayName,
+          photoURL: res.photoURL,
+          email: res.email);
+      store.registrant = registrant;
+      print("setting registrant to ${store.registrant.id}");
+      // var user = await store.accountService.findOrCreate(res.uid, res.email,
+      //     name: res.displayName, photoURL: res.photoURL);
+      // print("user url ${user.toMap()}");
+      // store.setUser(user);
+      Get.toNamed("/registration/registration-details-screen");
+    } catch (e) {}
   }
 }

@@ -23,3 +23,11 @@ class InstapayProcessingError extends GenericError {
   InstapayProcessingError({code, message})
       : super(code: code, message: message);
 }
+
+class NotEnoughFundsError extends GenericError {
+  NotEnoughFundsError({code, message}) : super(code: code, message: message);
+}
+
+class AuthenticationError extends GenericError {
+  AuthenticationError({code, message}) : super(code: code, message: message);
+}

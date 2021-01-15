@@ -15,6 +15,7 @@ const BILLS_PAYMENT_CHANNEL = 'X2B2';
 const INSTAPAY_SCOPE = 'instapay';
 
 const BLUR_RADIUS = 10;
+const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
 const COLOR_ORANGE = Color(0xffF2A819);
 const COLOR_GREEN = Color(0xff25BA96);
@@ -222,3 +223,5 @@ NumberFormat formatterWithoutPHP =
     NumberFormat.currency(name: " ", decimalDigits: 2);
 NumberFormat formatterInt =
     NumberFormat.currency(name: " ", decimalDigits: 0, customPattern: "###");
+
+DateFormat dateformatter = DateFormat("M/d/y");

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -66,13 +67,29 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _initialize(BuildContext context) async {
-    // await store
-    print("granted");
-    print(store.permissionsGranted);
-    if (store.permissionsGranted) {
-      Get.off(LoginScreen());
+    User creds = store.authService.getCurrentUser();
+    if (creds != null) {
+      print("creds ${creds.uid}");
+      var user = await store.accountService.getAccount(creds.uid);
+      if (user != null) {
+        store.setUser(user);
+        Get.offAllNamed("/login/login-mpin-screen");
+      } else {
+        Get.offAllNamed("/login");
+      }
+
+      // await store.authService.logout();
+
     } else {
-      Get.off(SetupScreen());
+      // store.setPermissionsGranted();
+      // print("granted");
+      // print(store.permissionsGranted);
+      // if (store.permissionsGranted) {
+      //   Get.off(LoginScreen());
+      // } else {
+      //   Get.off(SetupScreen());
+      // }
+      Get.offAllNamed("/login");
     }
   }
 

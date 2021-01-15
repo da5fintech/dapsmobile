@@ -19,10 +19,10 @@ class SetupScreen extends StatefulWidget {
 
 class _SetupScreenState extends State<SetupScreen> {
   Map<Permission, PermissionStatus> _permissionsMap = Map.from({
-    Permission.contacts: PermissionStatus.undetermined,
-    Permission.storage: PermissionStatus.undetermined,
-    Permission.location: PermissionStatus.undetermined,
-    Permission.camera: PermissionStatus.undetermined,
+    // Permission.contacts: PermissionStatus.undetermined,
+    // Permission.storage: PermissionStatus.undetermined,
+    // Permission.location: PermissionStatus.undetermined,
+    // Permission.camera: PermissionStatus.undetermined,
   });
   @override
   void initState() {
@@ -70,19 +70,22 @@ class _SetupScreenState extends State<SetupScreen> {
   }
 
   _initialize(BuildContext context) async {
-    bool response = await showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return RequestAccessPermissionDialog();
-        });
+    // bool response = await showDialog(
+    //     context: context,
+    //     barrierDismissible: true,
+    //     builder: (BuildContext context) {
+    //       return RequestAccessPermissionDialog();
+    //     });
 
-    if (response == true) {
-      var results = await _permissionsMap.keys.toList().request();
-      results.removeWhere((key, value) => !_permissionsMap.keys.contains(key));
-      _permissionsMap = results;
-      store.setPermissionsGranted();
-    }
+    // var response = true;
+    // if (response == true) {
+    //   var results = await _permissionsMap.keys.toList().request();
+    //   results.removeWhere((key, value) => !_permissionsMap.keys.contains(key));
+    //   _permissionsMap = results;
+    store.setPermissionsGranted();
+    // }
+
+    // for now we do not need to request for permissions
   }
 
   @override
