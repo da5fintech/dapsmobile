@@ -81,13 +81,15 @@ class _SplashScreenState extends State<SplashScreen> {
       // await store.authService.logout();
 
     } else {
-      print("granted");
-      print(store.permissionsGranted);
-      if (store.permissionsGranted) {
-        Get.off(LoginScreen());
-      } else {
-        Get.off(SetupScreen());
-      }
+      // store.setPermissionsGranted();
+      // print("granted");
+      // print(store.permissionsGranted);
+      // if (store.permissionsGranted) {
+      //   Get.off(LoginScreen());
+      // } else {
+      //   Get.off(SetupScreen());
+      // }
+      Get.offAllNamed("/login");
     }
   }
 
