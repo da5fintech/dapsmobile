@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-biller-form-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-billers-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-categories-screen.dart';
+import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
@@ -28,6 +29,7 @@ import 'package:swipe/screens/services-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/screens/transactions/transaction-history-screen.dart';
 import 'package:swipe/store/application-store.dart';
+import 'package:swipe/screens/bills_payment/transportation/transportation-categories-screen.dart';
 
 import 'common/constants.dart';
 
@@ -133,7 +135,12 @@ class _MyAppState extends State<MyApp> {
               case '/services/remittance/instapay/remittance-instapay-bank-form-screen':
                 return MaterialPageRoute(
                     builder: (_) => RemittanceInstapayBankFormScreen());
-
+              case '/services/bills-payment/transportation/transportation-categories-screen':
+                return MaterialPageRoute(
+                    builder: (_) => TransportationCategoriesScreen());
+              case '/services/bills-payment/transportation/autosweep-biller-form-screen':
+                return MaterialPageRoute(
+                    builder: (_) => AutosweepBillerFormScreen());
               default:
                 return null;
             }

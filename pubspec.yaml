@@ -43,7 +43,7 @@ dependencies:
   http: ^0.12.2
   sensitive_http:
     git:
-      url: "git@github.com:slowlearner/http.git"
+      url: "https://github.com/slowlearner/http.git"
       ref: preserve-headers-case
   pin_code_fields: ^6.0.1
   overlay_screen: ^1.2.0+1
@@ -81,6 +81,21 @@ flutter:
     - assets/icons/services/pay-qr.png
     - assets/icons/services/remittance.png
     - assets/icons/services/request-money.png
+    - assets/icons/services/bills-payment/cable-internet.png
+    - assets/icons/services/bills-payment/credit-card.png
+    - assets/icons/services/bills-payment/electricity.png
+    - assets/icons/services/bills-payment/favorites.png
+    - assets/icons/services/bills-payment/food.png
+    - assets/icons/services/bills-payment/government.png
+    - assets/icons/services/bills-payment/healthcare.png
+    - assets/icons/services/bills-payment/insurance.png
+    - assets/icons/services/bills-payment/loans.png
+    - assets/icons/services/bills-payment/others.png
+    - assets/icons/services/bills-payment/real-estate.png
+    - assets/icons/services/bills-payment/school.png
+    - assets/icons/services/bills-payment/telecom.png
+    - assets/icons/services/bills-payment/transportation.png
+    - assets/icons/services/bills-payment/water-utility.png
     - assets/icons/instapay.png
     - assets/icons/pesonet.png
 

@@ -64,7 +64,8 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
     var widget = Column(
       children: [
         Container(
-          padding: EdgeInsets.only(left: 10),
+          height: 40,
+          padding: EdgeInsets.only(left: 10, right: 10),
           color: COLOR_DARK_PURPLE.withOpacity(.05),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
