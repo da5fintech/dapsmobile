@@ -5,6 +5,7 @@ import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/account-service.dart';
+import 'package:swipe/services/autosweep-service.dart';
 import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/firestore-service.dart';
@@ -33,6 +34,10 @@ class TransactionService extends FireStoreService {
       } else if (transaction.offering ==
           SwipeServiceOffering.REMITTANCE_INSTAPAY) {
         var service = getIt.get<InstapayService>();
+        response =
+            await service.process(transaction.product, transaction.amount);
+      } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
+        var service = getIt.get<AutosweepService>();
         response =
             await service.process(transaction.product, transaction.amount);
       }
@@ -122,6 +127,23 @@ class TransactionService extends FireStoreService {
     return amount;
   }
 
+  double getFee(TransactionModel transaction) {
+    double fee = 0.00;
+
+    if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
+      fee = fee;
+    } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
+      BillerProduct product = transaction.product;
+      fee = product.fee;
+    } else if (transaction.offering ==
+        SwipeServiceOffering.REMITTANCE_INSTAPAY) {
+      fee = INSTAPAY_FEE;
+    } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
+      fee = AUTOSWEEP_FEE;
+    }
+    return fee;
+  }
+
   String getRecipient(TransactionModel transaction) {
     if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
       return transaction.recipient;
@@ -131,6 +153,8 @@ class TransactionService extends FireStoreService {
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       InstapayBankProduct product = transaction.product;
       return "${product.name}\n${product.accountNumber}";
+    } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
+      return transaction.recipient;
     }
   }
 
@@ -142,6 +166,8 @@ class TransactionService extends FireStoreService {
     } else if (transaction.offering ==
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       return "Instapay";
+    } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
+      return AUTOSWEEP_TRANSACTION_TYPE;
     }
   }
 }

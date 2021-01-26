@@ -33,6 +33,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
     double amount = store.transactionService.getAmount(store.transaction);
     double totalAmount =
         store.transactionService.getTotalAmount(store.transaction);
+    double fee = store.transactionService.getFee(store.transaction);
     String recipient = store.transactionService.getRecipient(store.transaction);
     String transactionType =
         store.transactionService.getTransactionType(store.transaction);
@@ -62,7 +63,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                             fontSize: 16,
                             color: Colors.white.withOpacity(.87))),
                     AmountWidget(
-                      amount: amount,
+                      amount: totalAmount,
                     ),
                     SizedBox(height: 15),
                   ],
@@ -109,6 +110,46 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                       Spacer(),
                       Text("$recipient",
                           textAlign: TextAlign.right,
+                          style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              color: Colors.black.withOpacity(.60),
+                              fontWeight: FontWeight.w400)),
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom:
+                              BorderSide(color: COLOR_GRAY.withOpacity(.36)))),
+                  height: 40,
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text("Amount"),
+                      Spacer(),
+                      Text(formatter.format(amount),
+                          style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              color: Colors.black.withOpacity(.60),
+                              fontWeight: FontWeight.w400)),
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom:
+                              BorderSide(color: COLOR_GRAY.withOpacity(.36)))),
+                  height: 40,
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text("Fee"),
+                      Spacer(),
+                      Text(formatter.format(fee),
                           style: GoogleFonts.roboto(
                               fontSize: 12,
                               color: Colors.black.withOpacity(.60),
