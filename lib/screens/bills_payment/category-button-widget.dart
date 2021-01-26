@@ -4,7 +4,7 @@ import 'package:swipe/common/constants.dart';
 
 class CategoryButtonWidget extends StatelessWidget {
   final String category;
-  final Icon icon;
+  final Widget icon;
   final String text;
   final Function onPressed;
 

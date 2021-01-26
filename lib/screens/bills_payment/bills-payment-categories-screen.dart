@@ -6,6 +6,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/bills_payment/transportation/transportation-categories-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
 import '../../main.dart';
@@ -49,93 +50,156 @@ class _BillsPaymentCategoriesScreenState
     });
 
     return Scaffold(
-        // backgroundColor: Constants.backgroundColor2,
-        appBar: SubAppbarWidget(
-          title: "Pay Bills",
-        ),
-        body: Container(
-          child: Column(
-            children: [
-              Expanded(
-                  child: Container(
-                      padding: EdgeInsets.all(25),
-                      width: double.infinity,
-                      color: Colors.white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CategoryButtonWidget(
-                                category: "AIRLINES",
-                                onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
-                                text: "AIRLINES",
-                              ),
-                              CategoryButtonWidget(
-                                category: "CABLE",
-                                onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
-                                text: "CABLE",
-                              ),
-                              CategoryButtonWidget(
-                                category: "ELECTRICITY",
-                                onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
-                                text: "ELECTRICITY",
-                              ),
-                            ],
+      // backgroundColor: Constants.backgroundColor2,
+      appBar: SubAppbarWidget(
+        title: "Pay Bills",
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(25),
+                width: double.infinity,
+                color: Colors.white,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CategoryButtonWidget(
+                          category: "Airlines",
+                          onPressed: _handleButtonClick,
+                          icon: ImageIcon(
+                            AssetImage("assets/icons/services/cash-in.png"),
+                            color: COLOR_DARK_PURPLE,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CategoryButtonWidget(
-                                category: "INSURANCE",
-                                onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
-                                text: "INSURANCE",
-                              ),
-                              CategoryButtonWidget(
-                                category: "ONLINE SHOPPING",
-                                onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
-                                text: "ONLINE SHOPPING",
-                              ),
-                              CategoryButtonWidget(
-                                category: "UTILITIES",
-                                onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
-                                text: "UTILITIES",
-                              ),
-                            ],
+                          text: "Airlines",
+                        ),
+                        CategoryButtonWidget(
+                          category: "Cable / Internet",
+                          onPressed: _handleButtonClick,
+                          icon: ImageIcon(
+                            AssetImage(
+                                "assets/icons/services/bills-payment/cable-internet.png"),
+                            color: COLOR_DARK_PURPLE,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          text: "Cable / Internet",
+                        ),
+                        CategoryButtonWidget(
+                          category: "Electricity",
+                          onPressed: _handleButtonClick,
+                          icon: ImageIcon(
+                            AssetImage(
+                                "assets/icons/services/bills-payment/electricity.png"),
+                            color: COLOR_DARK_PURPLE,
+                          ),
+                          text: "Electricity",
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CategoryButtonWidget(
+                          category: "Insurance",
+                          onPressed: _handleButtonClick,
+                          icon: ImageIcon(
+                            AssetImage(
+                                "assets/icons/services/bills-payment/loans.png"),
+                            color: COLOR_DARK_PURPLE,
+                          ),
+                          text: "Insurance",
+                        ),
+                        Container(
+                          width: 90,
+                          height: 90,
+                          child: Column(
                             children: [
-                              CategoryButtonWidget(
-                                category: "WATER",
-                                onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
-                                text: "WATER",
+                              IconButton(
+                                color: COLOR_GRAY,
+                                icon: ImageIcon(
+                                  AssetImage(
+                                      "assets/icons/services/bills-payment/transportation.png"),
+                                  color: COLOR_DARK_PURPLE,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          TransportationCategoriesScreen(),
+                                    ),
+                                  );
+                                },
                               ),
-                              CategoryButtonWidget(
-                                category: "OTHERS",
-                                onPressed: _handleButtonClick,
-                                icon: Icon(Icons.circle),
-                                text: "OTHERS",
-                              ),
-                              Container(
-                                height: 90,
-                                width: 90,
+                              Text(
+                                "Transportation",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                ),
                               )
                             ],
                           ),
-                        ],
-                      )))
-            ],
-          ),
-        ));
+                        ),
+                        CategoryButtonWidget(
+                          category: "Online Shopping",
+                          onPressed: _handleButtonClick,
+                          icon: ImageIcon(
+                            AssetImage(
+                                "assets/icons/services/bills-payment/credit-card.png"),
+                            color: COLOR_DARK_PURPLE,
+                          ),
+                          text: "Online Shopping",
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CategoryButtonWidget(
+                          category: "Utilities",
+                          onPressed: _handleButtonClick,
+                          icon: ImageIcon(
+                            AssetImage(
+                                "assets/icons/services/bills-payment/real-estate.png"),
+                            color: COLOR_DARK_PURPLE,
+                          ),
+                          text: "Utilities",
+                        ),
+                        CategoryButtonWidget(
+                          category: "Water",
+                          onPressed: _handleButtonClick,
+                          icon: ImageIcon(
+                            AssetImage(
+                                "assets/icons/services/bills-payment/water-utility.png"),
+                            color: COLOR_DARK_PURPLE,
+                          ),
+                          text: "Water",
+                        ),
+                        CategoryButtonWidget(
+                          category: "Others",
+                          onPressed: _handleButtonClick,
+                          icon: ImageIcon(
+                            AssetImage(
+                                "assets/icons/services/bills-payment/others.png"),
+                            color: COLOR_DARK_PURPLE,
+                          ),
+                          text: "Others",
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -147,6 +211,7 @@ class _BillsPaymentCategoriesScreenState
     if (store.selectedBillerCategory != category) {
       OverlayScreen().show(context);
       store.selectedBillerCategory = category;
+      print(category);
       var billers =
           await store.billsPaymentService.getBillersByCategory(category);
       store.billers = billers;

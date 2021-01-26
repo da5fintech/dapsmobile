@@ -9,12 +9,14 @@ class Da5Service {
   final String merchantId;
   final String networkId;
   final String signature;
-  Da5Service(
-      {@required this.endpoint,
-      @required this.username,
-      @required this.merchantId,
-      @required this.networkId,
-      @required this.signature});
+
+  Da5Service({
+    @required this.endpoint,
+    @required this.username,
+    @required this.merchantId,
+    @required this.networkId,
+    @required this.signature,
+  });
 
   Future<Map<String, dynamic>> post(String resource,
       [Map<String, String> body]) async {

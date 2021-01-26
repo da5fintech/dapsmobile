@@ -45,17 +45,18 @@ class TransactionRecordModel {
   String reason;
   DateTime creationDate;
 
-  TransactionRecordModel(
-      {this.reference,
-      this.product,
-      this.transactionType,
-      this.transactionTypePretty,
-      this.amount,
-      this.totalAmount,
-      this.recipient,
-      this.status,
-      this.reason,
-      this.creationDate});
+  TransactionRecordModel({
+    this.reference,
+    this.product,
+    this.transactionType,
+    this.transactionTypePretty,
+    this.amount,
+    this.totalAmount,
+    this.recipient,
+    this.status,
+    this.reason,
+    this.creationDate,
+  });
 
   Map<String, dynamic> toMap() {
     return {

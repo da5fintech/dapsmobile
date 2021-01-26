@@ -624,7 +624,7 @@ packages:
       path: "."
       ref: preserve-headers-case
       resolved-ref: "4f41ef7a36b7375f06abbb403cde2cf219a98651"
-      url: "git@github.com:slowlearner/http.git"
+      url: "https://github.com/slowlearner/http.git"
     source: git
     version: "0.12.2"
   shared_preferences:
