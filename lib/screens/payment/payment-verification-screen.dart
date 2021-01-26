@@ -36,10 +36,12 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Buy Load for",
-                  style: GoogleFonts.roboto(
-                      color: COLOR_DARK_PURPLE.withOpacity(.87),
-                      fontWeight: FontWeight.w500))
+              Text(
+                "Buy Load for",
+                style: GoogleFonts.roboto(
+                    color: COLOR_DARK_PURPLE.withOpacity(.87),
+                    fontWeight: FontWeight.w500),
+              ),
             ],
           ),
         ),
@@ -70,10 +72,12 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Pay bills for",
-                  style: GoogleFonts.roboto(
-                      color: COLOR_DARK_PURPLE.withOpacity(.87),
-                      fontWeight: FontWeight.w500))
+              Text(
+                "Pay bills for",
+                style: GoogleFonts.roboto(
+                    color: COLOR_DARK_PURPLE.withOpacity(.87),
+                    fontWeight: FontWeight.w500),
+              ),
             ],
           ),
         ),
@@ -90,13 +94,18 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(child: Text("${element.label}")),
+                  Expanded(
+                    child: Text(
+                      "${element.label}",
+                    ),
+                  ),
                   Spacer(),
                   Expanded(
-                      child: Text(
-                    "$value",
-                    textAlign: TextAlign.right,
-                  )),
+                    child: Text(
+                      "$value",
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
                 ],
               ),
             )
@@ -108,7 +117,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(child: Text("Fee")),
+          Expanded(
+            child: Text("Fee"),
+          ),
           Spacer(),
           Expanded(
               child: Text(
@@ -136,10 +147,12 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Send money for",
-                  style: GoogleFonts.roboto(
-                      color: COLOR_DARK_PURPLE.withOpacity(.87),
-                      fontWeight: FontWeight.w500))
+              Text(
+                "Send money for",
+                style: GoogleFonts.roboto(
+                    color: COLOR_DARK_PURPLE.withOpacity(.87),
+                    fontWeight: FontWeight.w500),
+              ),
             ],
           ),
         ),
@@ -154,7 +167,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
               Image(
                 width: 90,
                 image: AssetImage("assets/icons/instapay.png"),
-              )
+              ),
             ],
           ),
         ),
@@ -190,7 +203,53 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
             children: [
               Text("Fee"),
               Spacer(),
-              Text(formatter.format(INSTAPAY_FEE)),
+              Text(
+                formatter.format(INSTAPAY_FEE),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildAutosweepSection() {
+    AutosweepProduct product = store.transaction.product;
+
+    return Column(
+      children: [
+        Container(
+          height: 40.0,
+          padding: EdgeInsets.only(
+            left: 10.0,
+          ),
+          color: COLOR_DARK_PURPLE.withOpacity(.05),
+          child: Row(
+            children: [
+              Text(
+                "Buy Load for",
+                style: GoogleFonts.roboto(
+                  color: COLOR_DARK_PURPLE.withOpacity(.87),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(
+            left: 10.0,
+            right: 10.0,
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text("Plate Number"),
+                  Spacer(),
+                  Text("${product.plateNumber}")
+                ],
+              ),
             ],
           ),
         ),
@@ -210,6 +269,11 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
     if (offering == SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       hasDiscount = false;
       return buildRemittanceInstapaySection();
+    }
+
+    if (offering == SwipeServiceOffering.AUTOSWEEP) {
+      hasDiscount = false;
+      return buildAutosweepSection();
     }
 
     return Container();

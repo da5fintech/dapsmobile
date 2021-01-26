@@ -144,7 +144,12 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
       store.createTransaction(SwipeServiceOffering.AUTOSWEEP, "");
       _formKey.currentState.save();
 
-      store.setTransactionProduct(AutosweepProduct(), amount);
+      store.setTransactionProduct(
+        AutosweepProduct(
+          plateNumber: plateNumber,
+        ),
+        amount,
+      );
 
       Get.toNamed("/services/payment/payment-verification-screen");
     } else {
