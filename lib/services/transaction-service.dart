@@ -116,6 +116,8 @@ class TransactionService extends FireStoreService {
     } else if (transaction.offering ==
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       amount = transaction.amount + INSTAPAY_FEE;
+    } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
+      amount = transaction.amount + AUTOSWEEP_FEE;
     }
     return amount;
   }

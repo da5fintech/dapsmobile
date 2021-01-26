@@ -145,9 +145,7 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
       _formKey.currentState.save();
 
       store.setTransactionProduct(
-        AutosweepProduct(
-          plateNumber: plateNumber,
-        ),
+        AutosweepProduct(plateNumber: plateNumber),
         amount,
       );
 

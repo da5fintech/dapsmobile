@@ -39,8 +39,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
               Text(
                 "Buy Load for",
                 style: GoogleFonts.roboto(
-                    color: COLOR_DARK_PURPLE.withOpacity(.87),
-                    fontWeight: FontWeight.w500),
+                  color: COLOR_DARK_PURPLE.withOpacity(.87),
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ),
@@ -118,7 +119,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            child: Text("Fee"),
+            child: Text(
+              "Fee",
+            ),
           ),
           Spacer(),
           Expanded(
@@ -201,7 +204,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Fee"),
+              Text(
+                "Fee",
+              ),
               Spacer(),
               Text(
                 formatter.format(INSTAPAY_FEE),
@@ -223,14 +228,18 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           padding: EdgeInsets.only(
             left: 10.0,
           ),
-          color: COLOR_DARK_PURPLE.withOpacity(.05),
+          color: AUTOSWEEP_VERIFICATION_TEXT_CONTAINER_COLOR.withOpacity(
+            AUTOSWEEP_VERIFICATION_TEXT_CONTAINER_OPACITY,
+          ),
           child: Row(
             children: [
               Text(
-                "Buy Load for",
+                AUTOSWEEP_VERIFICATION_TEXT,
                 style: GoogleFonts.roboto(
-                  color: COLOR_DARK_PURPLE.withOpacity(.87),
-                  fontWeight: FontWeight.w500,
+                  color: AUTOSWEEP_VERIFICATION_TEXT_COLOR.withOpacity(
+                    AUTOSWEEP_VERIFICATION_TEXT_COLOR_OPACITY,
+                  ),
+                  fontWeight: AUTOSWEEP_VERIFICATION_TEXT_FONT_WEIGHT,
                 ),
               ),
             ],
@@ -243,12 +252,27 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           ),
           child: Column(
             children: [
-              Row(
-                children: [
-                  Text("Plate Number"),
-                  Spacer(),
-                  Text("${product.plateNumber}")
-                ],
+              Container(
+                height: 40.0,
+                child: Row(
+                  children: [
+                    Text(AUTOSWEEP_VERIFICATION_TEXT_PAY_FOR),
+                    Spacer(),
+                    Text("${product.plateNumber}")
+                  ],
+                ),
+              ),
+              Container(
+                height: 40.0,
+                child: Row(
+                  children: [
+                    Text(AUTOSWEEP_VERIFICATION_TEXT_FEE),
+                    Spacer(),
+                    Text(
+                      formatter.format(AUTOSWEEP_FEE),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -303,10 +327,13 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Text("${store.transaction.product.name}",
-                          style: GoogleFonts.roboto(
-                              fontSize: 14,
-                              color: Colors.white.withOpacity(.87))),
+                      child: Text(
+                        "${store.transaction.product.name}",
+                        style: GoogleFonts.roboto(
+                          fontSize: 14,
+                          color: Colors.white.withOpacity(.87),
+                        ),
+                      ),
                     ),
                     SizedBox(
                       width: 10,
@@ -327,22 +354,25 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                     child: Column(
                       children: [
                         Container(
-                          height: 40,
-                          padding: EdgeInsets.only(left: 10),
+                          height: 40.0,
+                          padding: EdgeInsets.only(left: 10.0),
                           color: COLOR_DARK_PURPLE.withOpacity(.05),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text("Pay with wallet",
-                                  style: GoogleFonts.roboto(
-                                      color: COLOR_DARK_PURPLE.withOpacity(.87),
-                                      fontWeight: FontWeight.w500))
+                              Text(
+                                "Pay with wallet",
+                                style: GoogleFonts.roboto(
+                                  color: COLOR_DARK_PURPLE.withOpacity(.87),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                             ],
                           ),
                         ),
                         Container(
                           height: 60,
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                          padding: EdgeInsets.only(left: 10.0, right: 10.0),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -351,19 +381,24 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Available Balance",
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 12,
-                                          color: Colors.black.withOpacity(.60),
-                                          fontWeight: FontWeight.w400)),
-                                  Text(formatter.format(store.balance),
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 14,
-                                          color: COLOR_DARK_PURPLE
-                                              .withOpacity(.87),
-                                          fontWeight: FontWeight.w700))
+                                  Text(
+                                    "Available Balance",
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 12,
+                                      color: Colors.black.withOpacity(.60),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    formatter.format(store.balance),
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 14,
+                                      color: COLOR_DARK_PURPLE.withOpacity(.87),
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -376,10 +411,13 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text("You are about to pay",
-                                  style: GoogleFonts.roboto(
-                                      color: COLOR_DARK_PURPLE.withOpacity(.87),
-                                      fontWeight: FontWeight.w500))
+                              Text(
+                                "You are about to pay",
+                                style: GoogleFonts.roboto(
+                                  color: COLOR_DARK_PURPLE.withOpacity(.87),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                             ],
                           ),
                         ),
