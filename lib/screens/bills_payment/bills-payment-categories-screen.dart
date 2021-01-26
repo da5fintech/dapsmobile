@@ -70,7 +70,7 @@ class _BillsPaymentCategoriesScreenState
                               CategoryButtonWidget(
                                 category: "AIRLINES",
                                 onPressed: _handleButtonClick,
-                                icon: Image.asset('assets/icons/services/bank-transfer.png'),
+                                icon: Icon(Icons.circle),
                                 text: "AIRLINES",
                               ),
                               CategoryButtonWidget(
