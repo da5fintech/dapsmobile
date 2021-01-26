@@ -201,3 +201,5 @@ class InstapayBankProduct extends ProductModel {
   InstapayBankProduct({String code, String name})
       : super(code: code, name: name, amount: 0.0, description: "");
 }
+
+class AutosweepProduct extends ProductModel {}

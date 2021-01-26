@@ -211,6 +211,7 @@ enum SwipeServiceOffering {
   INSURANCE,
   BANK_TRANSFER,
   REQUEST_MONEY,
+  AUTOSWEEP,
   MORE
 }
 

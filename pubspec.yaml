@@ -98,6 +98,7 @@ flutter:
     - assets/icons/services/bills-payment/water-utility.png
     - assets/icons/instapay.png
     - assets/icons/pesonet.png
+    - assets/icons/autosweep.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
