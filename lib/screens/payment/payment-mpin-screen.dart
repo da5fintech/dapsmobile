@@ -22,6 +22,7 @@ class PaymentMpinScreen extends StatefulWidget {
 
 class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
   TextEditingController controller = new TextEditingController();
+  bool obscureText = true;
   @override
   void initState() {
     super.initState();
@@ -100,10 +101,19 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
                           height: 10,
                         ),
                         Text("Please enter your 6-digit MPIN to proceed."),
+                        IconButton(
+                          onPressed: () => setState(() => obscureText = !obscureText),
+                          icon: IconButton(
+                            icon: !obscureText ?
+                              Icon(Icons.visibility) :
+                                Icon(Icons.visibility_off)
+                          )
+                        ),
                         Container(
                           width: width,
                           child: PinCodeTextField(
                             controller: controller,
+                            obscureText: obscureText,
                             keyboardType: TextInputType.number,
                             onChanged: (str) {
                               print("change ${str}");
