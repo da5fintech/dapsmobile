@@ -82,7 +82,9 @@ class _BillsPaymentCategoriesScreenState
                                   maxRadius: 30,
                                   backgroundColor: COLOR_DARK_PURPLE,
                                   child: InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      print('Add Biller');
+                                    },
                                     child: CircleAvatar(
                                         maxRadius: 29,
                                         backgroundColor: Colors.white,
