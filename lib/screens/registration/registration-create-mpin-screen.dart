@@ -122,6 +122,7 @@ class _RegistrationCreateMpinScreenState
                             height: 15,
                           ),
                           TextFormField(
+                            maxLength: 6,
                             controller: mpin,
                             onSaved: (v) {
                               values["mpin"] = v;
@@ -138,10 +139,12 @@ class _RegistrationCreateMpinScreenState
                             },
                             decoration: InputDecoration(
                                 hintText: "Create your MPIN",
+                                counterStyle: GoogleFonts.roboto(color: Colors.white),
                                 suffixIcon: Icon(Icons.visibility_off,
                                     color: Colors.white.withOpacity(.6))),
                           ),
                           TextFormField(
+                            maxLength: 6,
                             controller: confirmMpin,
                             validator: (text) {
                               if (text == null || text.isEmpty) {
@@ -155,6 +158,7 @@ class _RegistrationCreateMpinScreenState
                             },
                             decoration: InputDecoration(
                                 hintText: "Verify MPIN",
+                                counterStyle: GoogleFonts.roboto(color: Colors.white),
                                 suffixIcon: Icon(
                                   Icons.visibility_off,
                                   color: Colors.white.withOpacity(0.6),

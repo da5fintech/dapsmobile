@@ -104,6 +104,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                       Column(
                         children: [
                           TextFormField(
+                            maxLength: 6,
                             controller: mpin,
                             keyboardType: TextInputType.number,
                             onSaved: (v) {},
@@ -115,6 +116,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                             },
                             decoration: InputDecoration(
                                 hintText: "Enter your 6-digit MPIN",
+                                counterStyle: GoogleFonts.roboto(color: Colors.white),
                                 suffixIcon: Icon(Icons.visibility_off,
                                     color: Colors.white.withOpacity(.6))),
                           ),
