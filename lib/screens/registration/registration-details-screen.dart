@@ -20,6 +20,9 @@ class RegistrationDetailsScreen extends StatefulWidget {
 class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> values = Map<String, dynamic>();
+  bool obscureTextPass = true;
+  bool obscureTextConPass = true;
+
   @override
   void initState() {
     super.initState();
@@ -116,6 +119,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                                 labelText: "Mobile Number", hintText: "63"),
                           ),
                           TextFormField(
+                            keyboardType: TextInputType.emailAddress,
                             readOnly: store.registrant != null ? true : false,
                             initialValue: store.registrant != null
                                 ? store.registrant.email
@@ -132,6 +136,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             decoration: InputDecoration(labelText: "Email"),
                           ),
                           TextFormField(
+                            obscureText: obscureTextPass,
                             onSaved: (v) {
                               values["password"] = v;
                             },
@@ -143,10 +148,18 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             decoration: InputDecoration(
                                 hintText: "Create Password",
-                                suffixIcon: Icon(Icons.visibility_off,
-                                    color: Colors.white.withOpacity(.6))),
+                                suffixIcon: IconButton(
+                                    onPressed: () => setState(() =>
+                                        obscureTextPass = !obscureTextPass),
+                                    icon: obscureTextPass
+                                        ? Icon(Icons.visibility_off,
+                                            color: Colors.white.withOpacity(.6))
+                                        : Icon(Icons.visibility,
+                                            color:
+                                                Colors.white.withOpacity(.6)))),
                           ),
                           TextFormField(
+                            obscureText: obscureTextConPass,
                             onSaved: (v) {
                               values["confirmPassword"] = v;
                             },
@@ -158,10 +171,21 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             decoration: InputDecoration(
                                 hintText: "Confirm Password",
-                                suffixIcon: Icon(
-                                  Icons.visibility_off,
-                                  color: Colors.white.withOpacity(0.6),
-                                )),
+                                suffixIcon: IconButton(
+                                    onPressed: () => setState(() =>
+                                        obscureTextConPass =
+                                            !obscureTextConPass),
+                                    icon: obscureTextConPass
+                                        ? Icon(
+                                            Icons.visibility_off,
+                                            color:
+                                                Colors.white.withOpacity(0.6),
+                                          )
+                                        : Icon(
+                                            Icons.visibility,
+                                            color:
+                                                Colors.white.withOpacity(0.6),
+                                          ))),
                           )
                         ],
                       )),
