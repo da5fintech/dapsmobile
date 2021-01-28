@@ -125,6 +125,7 @@ class _RegistrationCreateMpinScreenState
                             height: 15,
                           ),
                           TextFormField(
+                            maxLength: 6,
                             keyboardType: TextInputType.number,
                             obscureText: obscurePin,
                             controller: mpin,
@@ -143,16 +144,12 @@ class _RegistrationCreateMpinScreenState
                             },
                             decoration: InputDecoration(
                                 hintText: "Create your MPIN",
-                                suffixIcon: IconButton(
-                                    onPressed: () => setState( () => obscurePin = !obscurePin),
-                                    icon: obscurePin
-                                        ? Icon(Icons.visibility_off,
-                                            color: Colors.white.withOpacity(.6))
-                                        : Icon(Icons.visibility,
-                                            color:
-                                                Colors.white.withOpacity(.6)))),
+                                counterStyle: GoogleFonts.roboto(color: Colors.white),
+                                suffixIcon: Icon(Icons.visibility_off,
+                                    color: Colors.white.withOpacity(.6))),
                           ),
                           TextFormField(
+                            maxLength: 6,
                             keyboardType: TextInputType.number,
                             obscureText: obscureVerifyPin,
                             controller: confirmMpin,
@@ -168,6 +165,7 @@ class _RegistrationCreateMpinScreenState
                             },
                             decoration: InputDecoration(
                                 hintText: "Verify MPIN",
+                                counterStyle: GoogleFonts.roboto(color: Colors.white),
                                 suffixIcon: IconButton(
                                     onPressed: () => setState(() => obscureVerifyPin = !obscureVerifyPin),
                                     icon: obscureVerifyPin
