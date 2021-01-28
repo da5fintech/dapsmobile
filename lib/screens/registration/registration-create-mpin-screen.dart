@@ -26,6 +26,9 @@ class _RegistrationCreateMpinScreenState
   Map<String, dynamic> values = Map<String, dynamic>();
   TextEditingController mpin = TextEditingController();
   TextEditingController confirmMpin = TextEditingController();
+  bool obscurePin = true;
+  bool obscureVerifyPin = true;
+
   @override
   void initState() {
     super.initState();
@@ -123,6 +126,8 @@ class _RegistrationCreateMpinScreenState
                           ),
                           TextFormField(
                             maxLength: 6,
+                            keyboardType: TextInputType.number,
+                            obscureText: obscurePin,
                             controller: mpin,
                             onSaved: (v) {
                               values["mpin"] = v;
@@ -145,6 +150,8 @@ class _RegistrationCreateMpinScreenState
                           ),
                           TextFormField(
                             maxLength: 6,
+                            keyboardType: TextInputType.number,
+                            obscureText: obscureVerifyPin,
                             controller: confirmMpin,
                             validator: (text) {
                               if (text == null || text.isEmpty) {
@@ -159,10 +166,19 @@ class _RegistrationCreateMpinScreenState
                             decoration: InputDecoration(
                                 hintText: "Verify MPIN",
                                 counterStyle: GoogleFonts.roboto(color: Colors.white),
-                                suffixIcon: Icon(
-                                  Icons.visibility_off,
-                                  color: Colors.white.withOpacity(0.6),
-                                )),
+                                suffixIcon: IconButton(
+                                    onPressed: () => setState(() => obscureVerifyPin = !obscureVerifyPin),
+                                    icon: obscureVerifyPin
+                                        ? Icon(
+                                            Icons.visibility_off,
+                                            color:
+                                                Colors.white.withOpacity(0.6),
+                                          )
+                                        : Icon(
+                                            Icons.visibility,
+                                            color:
+                                                Colors.white.withOpacity(0.6),
+                                          ))),
                           )
                         ],
                       )),
