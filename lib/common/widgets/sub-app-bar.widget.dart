@@ -102,7 +102,8 @@ class _SubAppbarWidgetState extends State<SubAppbarWidget> {
                     style: GoogleFonts.roboto(color: Colors.white),
                     decoration: InputDecoration(
                         hintStyle: GoogleFonts.roboto(color: Colors.white),
-                        labelText: "Search Biller", hintText: "Search Biller"),
+                        labelText: "Search Biller",
+                        hintText: "Search Biller"),
                   ),
                 ],
               ),
