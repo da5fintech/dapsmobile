@@ -121,123 +121,97 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     )
                   ],
                 )),
-            Container(
-                padding: EdgeInsets.all(25),
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ServiceButtonWidget(
-                          offering: SwipeServiceOffering.CASH_IN,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                              AssetImage("assets/icons/services/cash-in.png"),
-                              color: COLOR_DARK_PURPLE),
-                          text: "Cash In",
+            Flexible(
+              flex: 3,
+              child: Container(
+                  padding: EdgeInsets.only(top: 20),
+                  color: Colors.white,
+                  width: MediaQuery.of(context).size.width,
+                  child: GridView.count(
+                    physics: NeverScrollableScrollPhysics(),
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 0,
+                    crossAxisSpacing: 20,
+                    children: [
+                      ServiceButtonWidget(
+                        offering: SwipeServiceOffering.CASH_IN,
+                        onPressed: _handleButtonClick,
+                        icon: ImageIcon(
+                            AssetImage("assets/icons/services/cash-in.png"),
+                            color: COLOR_DARK_PURPLE),
+                        text: "Cash In",
+                      ),
+                      ServiceButtonWidget(
+                        offering: SwipeServiceOffering.REMITTANCE,
+                        onPressed: _handleButtonClick,
+                        icon: ImageIcon(
+                          AssetImage("assets/icons/services/remittance.png"),
+                          color: COLOR_DARK_PURPLE,
                         ),
-                        SizedBox(
-                          height: 15,
+                        text: "Remittance",
+                      ),
+                      ServiceButtonWidget(
+                        offering: SwipeServiceOffering.BANK_TRANSFER,
+                        onPressed: _handleButtonClick,
+                        icon: ImageIcon(
+                            AssetImage(
+                                "assets/icons/services/bank-transfer.png"),
+                            color: COLOR_DARK_PURPLE),
+                        text: "Bank Transfer",
+                      ),
+                      ServiceButtonWidget(
+                        offering: SwipeServiceOffering.BUY_LOAD,
+                        onPressed: _handleButtonClick,
+                        icon: ImageIcon(
+                            AssetImage("assets/icons/services/buy-load.png"),
+                            color: COLOR_DARK_PURPLE),
+                        text: "Buy Load",
+                      ),
+                      ServiceButtonWidget(
+                        offering: SwipeServiceOffering.BILLS_PAYMENT,
+                        onPressed: _handleButtonClick,
+                        icon: ImageIcon(
+                          AssetImage("assets/icons/services/pay-bills.png"),
+                          color: COLOR_DARK_PURPLE,
                         ),
-                        ServiceButtonWidget(
-                          offering: SwipeServiceOffering.BUY_LOAD,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                              AssetImage("assets/icons/services/buy-load.png"),
-                              color: COLOR_DARK_PURPLE),
-                          text: "Buy Load",
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        ServiceButtonWidget(
-                          offering: SwipeServiceOffering.PAY_QR,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                              AssetImage("assets/icons/services/pay-qr.png"),
-                              color: COLOR_DARK_PURPLE),
-                          text: "Pay QR",
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ServiceButtonWidget(
-                          offering: SwipeServiceOffering.REMITTANCE,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage("assets/icons/services/remittance.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text: "Remittance",
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        ServiceButtonWidget(
-                          offering: SwipeServiceOffering.BILLS_PAYMENT,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage("assets/icons/services/pay-bills.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text: "Pay Bills",
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        ServiceButtonWidget(
-                          offering: SwipeServiceOffering.INSURANCE,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                              AssetImage("assets/icons/services/insurance.png"),
-                              color: COLOR_DARK_PURPLE),
-                          text: "Insurance",
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ServiceButtonWidget(
-                          offering: SwipeServiceOffering.BANK_TRANSFER,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                              AssetImage(
-                                  "assets/icons/services/bank-transfer.png"),
-                              color: COLOR_DARK_PURPLE),
-                          text: "Bank Transfer",
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        ServiceButtonWidget(
-                          offering: SwipeServiceOffering.REQUEST_MONEY,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                              AssetImage(
-                                  "assets/icons/services/request-money.png"),
-                              color: COLOR_DARK_PURPLE),
-                          text: "Request Money",
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        ServiceButtonWidget(
-                          offering: SwipeServiceOffering.MORE,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                              AssetImage("assets/icons/services/more.png"),
-                              color: COLOR_DARK_PURPLE),
-                          text: "More",
-                        ),
-                      ],
-                    )
-                  ],
-                )),
+                        text: "Pay Bills",
+                      ),
+                      ServiceButtonWidget(
+                        offering: SwipeServiceOffering.REQUEST_MONEY,
+                        onPressed: _handleButtonClick,
+                        icon: ImageIcon(
+                            AssetImage(
+                                "assets/icons/services/request-money.png"),
+                            color: COLOR_DARK_PURPLE),
+                        text: "Request Money",
+                      ),
+                      ServiceButtonWidget(
+                        offering: SwipeServiceOffering.PAY_QR,
+                        onPressed: _handleButtonClick,
+                        icon: ImageIcon(
+                            AssetImage("assets/icons/services/pay-qr.png"),
+                            color: COLOR_DARK_PURPLE),
+                        text: "Pay QR",
+                      ),
+                      ServiceButtonWidget(
+                        offering: SwipeServiceOffering.INSURANCE,
+                        onPressed: _handleButtonClick,
+                        icon: ImageIcon(
+                            AssetImage("assets/icons/services/insurance.png"),
+                            color: COLOR_DARK_PURPLE),
+                        text: "Insurance",
+                      ),
+                      ServiceButtonWidget(
+                        offering: SwipeServiceOffering.MORE,
+                        onPressed: _handleButtonClick,
+                        icon: ImageIcon(
+                            AssetImage("assets/icons/services/more.png"),
+                            color: COLOR_DARK_PURPLE),
+                        text: "More",
+                      ),
+                    ],
+                  )),
+            ),
             GestureDetector(
               onTap: () {
                 Get.toNamed("/transactions/transaction-history-screen");
@@ -275,11 +249,36 @@ class _ServicesScreenState extends State<ServicesScreen> {
               ),
             ),
             Expanded(
+              flex: 1,
                 child: Container(
               color: Colors.white,
-              child: Row(
-                children: [Text("Helo")],
-              ),
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15, left: 15),
+                    child: Text(
+                      'More Advantages to know about Swipe',
+                      style: GoogleFonts.roboto(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      )
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2, left: 15),
+                    child: Text(
+                        'Because you deserve bettwer from us.',
+                        style: GoogleFonts.roboto(
+                          color: COLOR_DARK_GRAY,
+                          fontSize: 12,
+                        )
+                    ),
+                  ),
+                ]
+              )
             ))
           ],
         ));
