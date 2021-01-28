@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
@@ -183,12 +184,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             onSaved: (v) {
                               values["email"] = v;
                             },
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return '${REGISTER_SCREEN_EMAIL_TEXT} is required';
-                              }
-                              return null;
-                            },
+                            validator: AppUtil().validateEmail,
                             decoration: InputDecoration(
                                 errorStyle:
                                     TextStyle(fontSize: 12, height: 0.3),
@@ -228,6 +224,9 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             validator: (text) {
                               if (text == null || text.isEmpty) {
                                 return 'Confirm ${REGISTER_SCREEN_PASSWORD_TEXT} is required';
+                              }
+                              else if(text != values['password']) {
+                                return 'Confirmation ${REGISTER_SCREEN_PASSWORD_TEXT} not match with ${REGISTER_SCREEN_PASSWORD_TEXT}';
                               }
                               return null;
                             },
@@ -296,8 +295,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
 
   void _handleNext() async {
     bool status = _formKey.currentState.validate();
+    _formKey.currentState.save();
     if (status) {
-      _formKey.currentState.save();
 
       if (store.registrant == null) {
         store.registrant = UserModel(
@@ -315,3 +314,5 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
     }
   }
 }
+
+
