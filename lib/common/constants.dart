@@ -4,6 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+const APP_NAME = "SWIPE";
+const APP_NAME_FONT_SIZE = 20.0;
+const APP_HELP_CENTER = "Help Center";
+const APP_VERSION = "v1.1.1";
+
+const LOGIN_SCREEN_LOGIN_TEXT = "LOG IN";
+const LOGIN_SCREEN_REGISTER_TEXT = "REGISTER";
+const LOGIN_SCREEN_SIGN_UP_TEXT = "OR SIGN-UP USING";
+const LOGIN_SCREEN_APP_NAME = "SWIPE";
+const LOGIN_SCREEN_APP_NAME_LETTER_SPACING = 15.0;
+const LOGIN_SCREEN_APP_NAME_FONT_SIZE = 20.0;
+
 const AUTH_MERCHANT_ID = "0910";
 const AUTH_NETWORK_ID = "0625";
 const AUTH_USERNAME = "kabootekph";
