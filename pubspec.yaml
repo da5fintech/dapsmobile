@@ -96,6 +96,9 @@ flutter:
     - assets/icons/services/bills-payment/telecom.png
     - assets/icons/services/bills-payment/transportation.png
     - assets/icons/services/bills-payment/water-utility.png
+    - assets/icons/services/pay-qr/generate-qr.png
+    - assets/icons/services/pay-qr/scan-qr.png
+    - assets/icons/services/pay-qr/upload-qr.png
     - assets/icons/instapay.png
     - assets/icons/pesonet.png
     - assets/icons/autosweep.jpg
