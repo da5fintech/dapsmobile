@@ -136,77 +136,55 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       ServiceButtonWidget(
                         offering: SwipeServiceOffering.CASH_IN,
                         onPressed: _handleButtonClick,
-                        icon: ImageIcon(
-                            AssetImage("assets/icons/services/cash-in.png"),
-                            color: COLOR_DARK_PURPLE),
+                        icon: Image.asset('assets/icons/services/cash-in.png'),
                         text: "Cash In",
                       ),
                       ServiceButtonWidget(
                         offering: SwipeServiceOffering.REMITTANCE,
                         onPressed: _handleButtonClick,
-                        icon: ImageIcon(
-                          AssetImage("assets/icons/services/remittance.png"),
-                          color: COLOR_DARK_PURPLE,
-                        ),
+                        icon: Image.asset('assets/icons/services/remittance.png'),
                         text: "Remittance",
                       ),
                       ServiceButtonWidget(
                         offering: SwipeServiceOffering.BANK_TRANSFER,
                         onPressed: _handleButtonClick,
-                        icon: ImageIcon(
-                            AssetImage(
-                                "assets/icons/services/bank-transfer.png"),
-                            color: COLOR_DARK_PURPLE),
+                        icon: Image.asset('assets/icons/services/bank-transfer.png'),
                         text: "Bank Transfer",
                       ),
                       ServiceButtonWidget(
                         offering: SwipeServiceOffering.BUY_LOAD,
                         onPressed: _handleButtonClick,
-                        icon: ImageIcon(
-                            AssetImage("assets/icons/services/buy-load.png"),
-                            color: COLOR_DARK_PURPLE),
+                        icon: Image.asset('assets/icons/services/buy-load.png'),
                         text: "Buy Load",
                       ),
                       ServiceButtonWidget(
                         offering: SwipeServiceOffering.BILLS_PAYMENT,
                         onPressed: _handleButtonClick,
-                        icon: ImageIcon(
-                          AssetImage("assets/icons/services/pay-bills.png"),
-                          color: COLOR_DARK_PURPLE,
-                        ),
+                        icon: Image.asset('assets/icons/services/pay-bills.png'),
                         text: "Pay Bills",
                       ),
                       ServiceButtonWidget(
                         offering: SwipeServiceOffering.REQUEST_MONEY,
                         onPressed: _handleButtonClick,
-                        icon: ImageIcon(
-                            AssetImage(
-                                "assets/icons/services/request-money.png"),
-                            color: COLOR_DARK_PURPLE),
+                        icon: Image.asset('assets/icons/services/request-money.png'),
                         text: "Request Money",
                       ),
                       ServiceButtonWidget(
                         offering: SwipeServiceOffering.PAY_QR,
                         onPressed: _handleButtonClick,
-                        icon: ImageIcon(
-                            AssetImage("assets/icons/services/pay-qr.png"),
-                            color: COLOR_DARK_PURPLE),
+                        icon: Image.asset('assets/icons/services/pay-qr.png'),
                         text: "Pay QR",
                       ),
                       ServiceButtonWidget(
                         offering: SwipeServiceOffering.INSURANCE,
                         onPressed: _handleButtonClick,
-                        icon: ImageIcon(
-                            AssetImage("assets/icons/services/insurance.png"),
-                            color: COLOR_DARK_PURPLE),
+                        icon: Image.asset('assets/icons/services/insurance.png'),
                         text: "Insurance",
                       ),
                       ServiceButtonWidget(
                         offering: SwipeServiceOffering.MORE,
                         onPressed: _handleButtonClick,
-                        icon: ImageIcon(
-                            AssetImage("assets/icons/services/more.png"),
-                            color: COLOR_DARK_PURPLE),
+                        icon: Image.asset('assets/icons/services/more.png'),
                         text: "More",
                       ),
                     ],
