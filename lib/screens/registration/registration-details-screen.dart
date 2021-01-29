@@ -2,10 +2,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../main.dart';
 
@@ -20,6 +23,7 @@ class RegistrationDetailsScreen extends StatefulWidget {
 class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> values = Map<String, dynamic>();
+  var maskFormatter = MaskTextInputFormatter(mask: "##/##/##");
   bool obscureTextPass = true;
   bool obscureTextConPass = true;
 
@@ -96,13 +100,26 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             onSaved: (v) {
                               values["birthdate"] = v;
                             },
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return 'Birthdate is required';
-                              }
-                              return null;
-                            },
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Birth Date is Required';
+                                }
+                                final components = value.split("/");
+                                if (components.length == 3) {
+                                  final day = int.tryParse(components[0]);
+                                  final month = int.tryParse(components[1]);
+                                  final year = int.tryParse(components[2]);
+                                  if (day != null && month != null && year != null) {
+                                    final date = DateTime(year, month, day);
+                                    if (date.year == year && date.month == month && date.day == day) {
+                                      return null;
+                                    }
+                                  }
+                                }
+                                return "Wrong Date Format";
+                              },
                             decoration: InputDecoration(hintText: "MM/DD/YY"),
+                            inputFormatters: [maskFormatter],
                           ),
                           TextFormField(
                             keyboardType: TextInputType.phone,
