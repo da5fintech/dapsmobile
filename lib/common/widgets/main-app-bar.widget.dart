@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/common/constants.dart';
 
 class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -20,7 +21,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {
             onPressed();
           }),
-      title: Text("SWIPE",
+      title: Text(APP_NAME,
           style: GoogleFonts.roboto(
               fontSize: 12, fontWeight: FontWeight.w800, letterSpacing: 15)),
       actions: [
