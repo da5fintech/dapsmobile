@@ -26,6 +26,14 @@ const BILLS_PAYMENT_SCOPE = 'billspayment';
 const BILLS_PAYMENT_CHANNEL = 'X2B2';
 const INSTAPAY_SCOPE = 'instapay';
 
+const REGISTER_MPIN_SCREEN_SET_PIN_TEXT = "Set your Mobile Pin";
+const REGISTER_MPIN_SCREEN_NOTE_TEXT =
+    "MPIN is a 6 digit security codes used to authenticate"
+    "\nlogin request and transactions."
+    "\n\nNote: Please avoid using weak MPINs like your"
+    "\nBirthdate, 123456, 888888.";
+const REGISTER_MPIN_SCREEN_TEXT = "MPIN";
+
 const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
