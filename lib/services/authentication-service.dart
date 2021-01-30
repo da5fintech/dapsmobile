@@ -1,16 +1,17 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 enum LoginProvider {
   GOOGLE,
+  FACEBOOK,
 }
 
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   GoogleSignIn _googleSignIn;
-  // FacebookLogin _facebookSignIn;
 
   AuthenticationService();
 
@@ -33,6 +34,8 @@ class AuthenticationService {
     switch (provider) {
       case LoginProvider.GOOGLE:
         return _googleLogin();
+      case LoginProvider.FACEBOOK:
+        return _facebookLogin();
       default:
         return _googleLogin();
     }
@@ -81,6 +84,10 @@ class AuthenticationService {
       print(e);
       throw Exception('Error encountered. Please try again.');
     }
+  }
+
+  Future<User> _facebookLogin() async {
+    print("starting up");
   }
 
   Future<User> emailLogin({String email, String password}) async {
