@@ -104,6 +104,7 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
                           width: width,
                           child: PinCodeTextField(
                             controller: controller,
+                            obscureText: true,
                             keyboardType: TextInputType.number,
                             onChanged: (str) {
                               print("change ${str}");

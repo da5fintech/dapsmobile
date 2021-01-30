@@ -76,7 +76,7 @@ class _SubAppbarWidgetState extends State<SubAppbarWidget> {
             _handleBack();
           },
           icon: Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: Colors.white,
           )),
       title: widget.enableSearch && isSearching

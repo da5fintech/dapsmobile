@@ -21,6 +21,8 @@ class LoginMpinScreen extends StatefulWidget {
 
 class _LoginMpinScreenState extends State<LoginMpinScreen> {
   TextEditingController mpin = TextEditingController();
+  bool obscureText = true;
+
   @override
   void initState() {
     super.initState();
@@ -104,8 +106,10 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                       Column(
                         children: [
                           TextFormField(
+                            maxLength: 6,
                             controller: mpin,
                             keyboardType: TextInputType.number,
+                            obscureText: obscureText,
                             onSaved: (v) {},
                             validator: (text) {
                               if (text == null || text.isEmpty) {
@@ -114,9 +118,17 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                               return null;
                             },
                             decoration: InputDecoration(
-                                hintText: "Enter your 6-digit MPIN",
-                                suffixIcon: Icon(Icons.visibility_off,
-                                    color: Colors.white.withOpacity(.6))),
+                              hintText: "Enter your 6-digit MPIN",
+                              counterStyle: GoogleFonts.roboto(color: Colors.white),
+                              suffixIcon: IconButton(
+                                  onPressed: () => setState(
+                                      () => obscureText = !obscureText),
+                                  icon: obscureText
+                                      ? Icon(Icons.visibility_off,
+                                          color: Colors.white.withOpacity(.6))
+                                      : Icon(Icons.visibility,
+                                          color: Colors.white.withOpacity(.6))),
+                            ),
                           ),
                           SizedBox(
                               width: double.infinity,
