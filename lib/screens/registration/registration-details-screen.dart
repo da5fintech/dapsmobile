@@ -2,7 +2,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
@@ -20,6 +22,9 @@ class RegistrationDetailsScreen extends StatefulWidget {
 class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> values = Map<String, dynamic>();
+  bool obscureTextPass = true;
+  bool obscureTextConPass = true;
+
   @override
   void initState() {
     super.initState();
@@ -28,6 +33,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    double scrollHeight = MediaQuery.of(context).size.height * 0.75;
 
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
@@ -39,30 +45,37 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Padding(
-                    padding: EdgeInsets.only(top: 80),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('SWIPE',
-                            style: GoogleFonts.roboto(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 15)),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    )),
+                  padding: EdgeInsets.only(top: 80),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('SWIPE',
+                          style: GoogleFonts.roboto(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 15)),
+                      SizedBox(
+                        height: 5,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             Expanded(
-              child: SingleChildScrollView(
-                child: Align(
-                  // alignment: Alignment.topLeft,
-                  child: Padding(
-                      padding: EdgeInsets.only(left: 40, right: 40),
+              child: NotificationListener<OverscrollIndicatorNotification>(
+                onNotification: (OverscrollIndicatorNotification overscroll) {
+                  overscroll.disallowGlow();
+                  return;
+                },
+                child: SingleChildScrollView(
+                  child: Align(
+                    // alignment: Alignment.topLeft,
+                    child: Container(
+                      height: scrollHeight,
+                      padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           TextFormField(
                             onSaved: (v) {
@@ -70,11 +83,14 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
-                                return 'First Name is required';
+                                return '${REGISTER_SCREEN_FIRSTNAME_TEXT} is required';
                               }
                               return null;
                             },
-                            decoration: InputDecoration(hintText: "First Name"),
+                            decoration: InputDecoration(
+                              hintText: REGISTER_SCREEN_FIRSTNAME_TEXT,
+                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                            ),
                           ),
                           TextFormField(
                             onSaved: (v) {
@@ -82,11 +98,29 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
-                                return 'Last Name is required';
+                                return '${REGISTER_SCREEN_LASTNAME_TEXT} is required';
                               }
                               return null;
                             },
-                            decoration: InputDecoration(hintText: "Last Name"),
+                            decoration: InputDecoration(
+                              hintText: REGISTER_SCREEN_LASTNAME_TEXT,
+                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                            ),
+                          ),
+                          TextFormField(
+                            onSaved: (v) {
+                              values["address"] = v;
+                            },
+                            validator: (text) {
+                              if (text == null || text.isEmpty) {
+                                return '${REGISTER_SCREEN_ADDRESS_TEXT} is required';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              hintText: REGISTER_SCREEN_ADDRESS_TEXT,
+                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                            ),
                           ),
                           TextFormField(
                             keyboardType: TextInputType.number,
@@ -95,11 +129,17 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
-                                return 'Birthdate is required';
+                                return '${REGISTER_SCREEN_BIRTHDAY_TEXT} is required';
                               }
                               return null;
                             },
-                            decoration: InputDecoration(hintText: "MM/DD/YY"),
+                            decoration: InputDecoration(
+                              labelText: REGISTER_SCREEN_BIRTHDAY_TEXT,
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                              hintText: REGISTER_SCREEN_BIRTHDAY_FORMAT,
+                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                            ),
                           ),
                           TextFormField(
                             keyboardType: TextInputType.phone,
@@ -108,14 +148,35 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
-                                return 'Mobile number is required';
+                                return '${REGISTER_SCREEN_MOBIILE_TEXT} is required';
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                                labelText: "Mobile Number", hintText: "63"),
+                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                              labelText: REGISTER_SCREEN_MOBIILE_TEXT,
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                              prefix: Container(
+                                padding: EdgeInsets.only(right: 10),
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    right: BorderSide(
+                                      color: Colors.white,
+                                      width: 0.5,
+                                    ),
+                                  ),
+                                ),
+                                child: Text(
+                                  '+63',
+                                  style:
+                                      GoogleFonts.roboto(color: Colors.white),
+                                ),
+                              ),
+                            ),
                           ),
                           TextFormField(
+                            keyboardType: TextInputType.emailAddress,
                             readOnly: store.registrant != null ? true : false,
                             initialValue: store.registrant != null
                                 ? store.registrant.email
@@ -123,48 +184,75 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             onSaved: (v) {
                               values["email"] = v;
                             },
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return 'email is required';
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(labelText: "Email"),
+                            validator: AppUtil().validateEmail,
+                            decoration: InputDecoration(
+                                errorStyle:
+                                    TextStyle(fontSize: 12, height: 0.3),
+                                hintText: "Email"),
                           ),
                           TextFormField(
+                            obscureText: obscureTextPass,
                             onSaved: (v) {
                               values["password"] = v;
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
-                                return 'password is required';
+                                return '${REGISTER_SCREEN_PASSWORD_TEXT} is required';
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                                hintText: "Create Password",
-                                suffixIcon: Icon(Icons.visibility_off,
-                                    color: Colors.white.withOpacity(.6))),
+                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                              hintText:
+                                  "Create ${REGISTER_SCREEN_PASSWORD_TEXT}",
+                              suffixIcon: IconButton(
+                                onPressed: () => setState(
+                                    () => obscureTextPass = !obscureTextPass),
+                                icon: obscureTextPass
+                                    ? Icon(Icons.visibility_off,
+                                        color: Colors.white.withOpacity(.6))
+                                    : Icon(Icons.visibility,
+                                        color: Colors.white.withOpacity(.6)),
+                              ),
+                            ),
                           ),
                           TextFormField(
+                            obscureText: obscureTextConPass,
                             onSaved: (v) {
                               values["confirmPassword"] = v;
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
-                                return 'Confirm Password is required';
+                                return 'Confirm ${REGISTER_SCREEN_PASSWORD_TEXT} is required';
+                              }
+                              else if(text != values['password']) {
+                                return 'Confirmation ${REGISTER_SCREEN_PASSWORD_TEXT} not match with ${REGISTER_SCREEN_PASSWORD_TEXT}';
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                                hintText: "Confirm Password",
-                                suffixIcon: Icon(
-                                  Icons.visibility_off,
-                                  color: Colors.white.withOpacity(0.6),
-                                )),
+                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                              hintText:
+                                  "Confirm ${REGISTER_SCREEN_PASSWORD_TEXT}",
+                              suffixIcon: IconButton(
+                                onPressed: () => setState(() =>
+                                    obscureTextConPass = !obscureTextConPass),
+                                icon: obscureTextConPass
+                                    ? Icon(
+                                        Icons.visibility_off,
+                                        color: Colors.white.withOpacity(0.6),
+                                      )
+                                    : Icon(
+                                        Icons.visibility,
+                                        color: Colors.white.withOpacity(0.6),
+                                      ),
+                              ),
+                            ),
                           )
                         ],
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -207,8 +295,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
 
   void _handleNext() async {
     bool status = _formKey.currentState.validate();
+    _formKey.currentState.save();
     if (status) {
-      _formKey.currentState.save();
 
       if (store.registrant == null) {
         store.registrant = UserModel(
@@ -226,3 +314,5 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
     }
   }
 }
+
+

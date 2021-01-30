@@ -1,5 +1,6 @@
 import 'package:flavor/flavor.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:swipe/common/constants.dart';
 
 abstract class ProductModel {
   String name;
@@ -206,5 +207,6 @@ class InstapayBankProduct extends ProductModel {
 class AutosweepProduct extends ProductModel {
   String plateNumber;
 
-  AutosweepProduct({@required this.plateNumber});
+  AutosweepProduct({@required this.plateNumber})
+      : super(name: AUTOSWEEP_PRODUCT_NAME);
 }

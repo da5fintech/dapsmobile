@@ -26,6 +26,8 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool loginError = false;
+  bool obscureText = true;
+
   @override
   void initState() {
     super.initState();
@@ -95,6 +97,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                           TextFormField(
                             controller: password,
                             keyboardType: TextInputType.visiblePassword,
+                            obscureText: obscureText,
                             onSaved: (v) {},
                             validator: (text) {
                               if (text == null || text.isEmpty) {
@@ -104,8 +107,15 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                             },
                             decoration: InputDecoration(
                                 hintText: "Password",
-                                suffixIcon: Icon(Icons.visibility_off,
-                                    color: Colors.white.withOpacity(.6))),
+                                suffixIcon: IconButton(
+                                    onPressed: () => setState(
+                                        () => obscureText = !obscureText),
+                                    icon: obscureText
+                                        ? Icon(Icons.visibility_off,
+                                            color: Colors.white.withOpacity(.6))
+                                        : Icon(Icons.visibility,
+                                            color:
+                                                Colors.white.withOpacity(.6)))),
                           ),
                           SizedBox(
                             height: 15,

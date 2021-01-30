@@ -141,13 +141,11 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
     bool status = _formKey.currentState.validate();
 
     if (status == true) {
-      store.createTransaction(SwipeServiceOffering.AUTOSWEEP, "");
+      store.createTransaction(SwipeServiceOffering.AUTOSWEEP, plateNumber);
       _formKey.currentState.save();
 
       store.setTransactionProduct(
-        AutosweepProduct(
-          plateNumber: plateNumber,
-        ),
+        AutosweepProduct(plateNumber: plateNumber),
         amount,
       );
 
