@@ -54,12 +54,13 @@ class _RegistrationCreateMpinScreenState
         ),
       ),
       'registration-success': CustomOverlayScreen(
-          backgroundColor: Colors.white.withOpacity(.2),
-          content: RegistrationSuccessDialog(
-            onOk: () {
-              _handleOk();
-            },
-          )),
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: RegistrationSuccessDialog(
+          onOk: () {
+            _handleOk();
+          },
+        ),
+      ),
     });
 
     return Scaffold(
@@ -72,20 +73,21 @@ class _RegistrationCreateMpinScreenState
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Padding(
-                    padding: EdgeInsets.only(top: 80),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('SWIPE',
-                            style: GoogleFonts.roboto(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 15)),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    )),
+                  padding: EdgeInsets.only(top: 80),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(APP_NAME,
+                          style: GoogleFonts.roboto(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 15)),
+                      SizedBox(
+                        height: 5,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -93,95 +95,96 @@ class _RegistrationCreateMpinScreenState
                 child: Align(
                   // alignment: Alignment.topLeft,
                   child: Padding(
-                      padding: EdgeInsets.only(left: 40, right: 40),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(top: 15),
-                            child: Text(
-                              "Set you Mobile Pin",
-                              textAlign: TextAlign.left,
-                              style: GoogleFonts.roboto(
-                                  fontSize: 20, fontWeight: FontWeight.w500),
+                    padding: EdgeInsets.only(left: 40, right: 40),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 15),
+                          child: Text(
+                            REGISTER_MPIN_SCREEN_SET_PIN_TEXT,
+                            textAlign: TextAlign.left,
+                            style: GoogleFonts.roboto(
+                                fontSize: 20, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 15),
+                          child: Text(
+                            REGISTER_MPIN_SCREEN_NOTE_TEXT,
+                            style: GoogleFonts.roboto(
+                              fontSize: 14,
+                              height: 1.5,
+                              color: Colors.white.withOpacity(.87),
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(top: 15),
-                            child: Text(
-                              "MPIN is a 6 digit security codes used to authenticate"
-                              "\nlogin request and transactions."
-                              "\n\nNote: Please avoid using weak MPINs like your"
-                              "\nBirthdate, 123456, 888888.",
-                              style: GoogleFonts.roboto(
-                                fontSize: 14,
-                                height: 1.5,
-                                color: Colors.white.withOpacity(.87),
-                              ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        TextFormField(
+                          maxLength: 6,
+                          keyboardType: TextInputType.number,
+                          obscureText: obscurePin,
+                          controller: mpin,
+                          onSaved: (v) {
+                            values["mpin"] = v;
+                          },
+                          validator: (text) {
+                            if (text == null || text.isEmpty) {
+                              return '${REGISTER_MPIN_SCREEN_TEXT} is required';
+                            }
+
+                            if (text.length != 6) {
+                              return '${REGISTER_MPIN_SCREEN_TEXT} must be 6 digits';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                              hintText: "Create your ${REGISTER_MPIN_SCREEN_TEXT}",
+                              counterStyle:
+                                  GoogleFonts.roboto(color: Colors.white),
+                              suffixIcon: Icon(Icons.visibility_off,
+                                  color: Colors.white.withOpacity(.6))),
+                        ),
+                        TextFormField(
+                          maxLength: 6,
+                          keyboardType: TextInputType.number,
+                          obscureText: obscureVerifyPin,
+                          controller: confirmMpin,
+                          validator: (text) {
+                            if (text == null || text.isEmpty) {
+                              return 'Confirm ${REGISTER_MPIN_SCREEN_TEXT} is required';
+                            }
+
+                            if (mpin.text != confirmMpin.text) {
+                              return "${REGISTER_MPIN_SCREEN_TEXT}s must match";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            hintText: "Verify ${REGISTER_MPIN_SCREEN_TEXT}",
+                            counterStyle:
+                                GoogleFonts.roboto(color: Colors.white),
+                            suffixIcon: IconButton(
+                              onPressed: () => setState(
+                                  () => obscureVerifyPin = !obscureVerifyPin),
+                              icon: obscureVerifyPin
+                                  ? Icon(
+                                      Icons.visibility_off,
+                                      color: Colors.white.withOpacity(0.6),
+                                    )
+                                  : Icon(
+                                      Icons.visibility,
+                                      color: Colors.white.withOpacity(0.6),
+                                    ),
                             ),
                           ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          TextFormField(
-                            maxLength: 6,
-                            keyboardType: TextInputType.number,
-                            obscureText: obscurePin,
-                            controller: mpin,
-                            onSaved: (v) {
-                              values["mpin"] = v;
-                            },
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return 'MPIN is required';
-                              }
-
-                              if (text.length != 6) {
-                                return 'MPIN must be 6 digits';
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                hintText: "Create your MPIN",
-                                counterStyle: GoogleFonts.roboto(color: Colors.white),
-                                suffixIcon: Icon(Icons.visibility_off,
-                                    color: Colors.white.withOpacity(.6))),
-                          ),
-                          TextFormField(
-                            maxLength: 6,
-                            keyboardType: TextInputType.number,
-                            obscureText: obscureVerifyPin,
-                            controller: confirmMpin,
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return 'Confirm MPIN is required';
-                              }
-
-                              if (mpin.text != confirmMpin.text) {
-                                return "MPINs must match";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                hintText: "Verify MPIN",
-                                counterStyle: GoogleFonts.roboto(color: Colors.white),
-                                suffixIcon: IconButton(
-                                    onPressed: () => setState(() => obscureVerifyPin = !obscureVerifyPin),
-                                    icon: obscureVerifyPin
-                                        ? Icon(
-                                            Icons.visibility_off,
-                                            color:
-                                                Colors.white.withOpacity(0.6),
-                                          )
-                                        : Icon(
-                                            Icons.visibility,
-                                            color:
-                                                Colors.white.withOpacity(0.6),
-                                          ))),
-                          )
-                        ],
-                      )),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -189,26 +192,27 @@ class _RegistrationCreateMpinScreenState
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                    padding: EdgeInsets.only(left: 40, right: 40, bottom: 10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                            width: double.infinity,
-                            child: PrimaryButtonWidget(
-                                onPressed: () {
-                                  _handleRegister();
-                                },
-                                text: "Next")),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Help Center"),
-                            Text("v1.1.1"),
-                          ],
-                        ),
-                      ],
-                    )),
+                  padding: EdgeInsets.only(left: 40, right: 40, bottom: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                          width: double.infinity,
+                          child: PrimaryButtonWidget(
+                              onPressed: () {
+                                _handleRegister();
+                              },
+                              text: "Next")),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(APP_HELP_CENTER),
+                          Text(APP_VERSION),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
