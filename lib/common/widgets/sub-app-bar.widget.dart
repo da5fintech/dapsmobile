@@ -99,8 +99,11 @@ class _SubAppbarWidgetState extends State<SubAppbarWidget> {
                     keyboardType: TextInputType.text,
                     validator: (text) {},
                     controller: controller,
+                    style: GoogleFonts.roboto(color: Colors.white),
                     decoration: InputDecoration(
-                        labelText: "Search Biller", hintText: "Search Biller"),
+                        hintStyle: GoogleFonts.roboto(color: Colors.white),
+                        labelText: "Search Biller",
+                        hintText: "Search Biller"),
                   ),
                 ],
               ),
