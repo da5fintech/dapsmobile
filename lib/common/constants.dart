@@ -71,6 +71,10 @@ const PAYMENT_CONFIRMATION_SCREEN_REF_TEXT = "Reference No";
 const PAYMENT_CONFIRMATION_SCREEN_PROCESSED_TEXT =
     "Your payment is being processed. \n You will receive a text message regarding this transaction.";
 const PAYMENT_CONFIRMATION_SCREEN_DONE_TEXT = "DONE";
+const PAYMENT_MPIN_SCREEN_TITLE = "Payment";
+const PAYMENT_MPIN_SCREEN_GREET = "Fantastic";
+const PAYMENT_MPIN_SCREEN_DIGIT_LIMIT = "Please enter your 6-digit MPIN to proceed.";
+const PAYMENT_MPIN_SCREEN_PROCEED_TEXT = "PROCEED";
 
 
 const BLUR_RADIUS = 10;
