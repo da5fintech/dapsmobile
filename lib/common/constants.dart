@@ -16,6 +16,23 @@ const LOGIN_SCREEN_APP_NAME = "SWIPE";
 const LOGIN_SCREEN_APP_NAME_LETTER_SPACING = 15.0;
 const LOGIN_SCREEN_APP_NAME_FONT_SIZE = 20.0;
 
+const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
+const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
+const SERVICES_SCREEN_CASH_IN_TEXT = "Cash in";
+const SERVICES_SCREEN_REMITTANCE_TEXT = "Remittance";
+const SERVICES_SCREEN_BANK_TRANSFER_TEXT = "Back Transfer";
+const SERVICES_SCREEN_BUY_LOAD_TEXT = "BuY Load";
+const SERVICES_SCREEN_PAY_BILLS_TEXT = "Pay Bills";
+const SERVICES_SCREEN_REQUEST_MONEY_TEXT = "Request Money";
+const SERVICES_SCREEN_PAY_QR_TEXT = "Pay QR";
+const SERVICES_SCREEN_INSURANCE_TEXT = "Insurance";
+const SERVICES_SCREEN_MORE_TEXT = "More";
+const SERVICES_SCREEN_TRANSACTION_TEXT = "Transaction History";
+const SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT =
+    "More Advantages to know about Swipe";
+const SERVICES_SCREEN_REASON_SWIPE_TEXT =
+    "Because you deserve bettwer from us.";
+
 const AUTH_MERCHANT_ID = "0910";
 const AUTH_NETWORK_ID = "0625";
 const AUTH_USERNAME = "kabootekph";
@@ -31,6 +48,23 @@ const TRANSACTION_HISTORY_SCREEN_BUTTON_ALL_TEXT = "ALL";
 const TRANSACTION_HISTORY_SCREEN_BUTTON_RECEIVED_TEXT = "RECEIVED";
 const TRANSACTION_HISTORY_SCREEN_BUTTON_SENT_TEXT = "SENT";
 const TRANSACTION_HISTORY_SCREEN_DETAILS_TEXT = "Details";
+
+const REGISTER_MPIN_SCREEN_SET_PIN_TEXT = "Set your Mobile Pin";
+const REGISTER_MPIN_SCREEN_NOTE_TEXT =
+    "MPIN is a 6 digit security codes used to authenticate"
+    "\nlogin request and transactions."
+    "\n\nNote: Please avoid using weak MPINs like your"
+    "\nBirthdate, 123456, 888888.";
+const REGISTER_MPIN_SCREEN_TEXT = "MPIN";
+const REGISTER_SCREEN_FIRSTNAME_TEXT = "First Name";
+const REGISTER_SCREEN_LASTNAME_TEXT = "Last Name";
+const REGISTER_SCREEN_ADDRESS_TEXT = "Address";
+const REGISTER_SCREEN_BIRTHDAY_TEXT = "Birth Date";
+const REGISTER_SCREEN_BIRTHDAY_FORMAT = "MM/DD/YY";
+const REGISTER_SCREEN_MOBIILE_TEXT = "Mobile Number";
+const REGISTER_SCREEN_EMAIL_TEXT = "Email";
+const REGISTER_SCREEN_PASSWORD_TEXT = "Password";
+
 
 const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);

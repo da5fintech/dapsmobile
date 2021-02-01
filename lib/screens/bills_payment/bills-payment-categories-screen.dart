@@ -57,6 +57,55 @@ class _BillsPaymentCategoriesScreenState
       body: Container(
         child: Column(
           children: [
+            Container(
+                color: Colors.white,
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Saved Biller(s)',
+                        style: GoogleFonts.roboto(
+                            color: Colors.black, fontWeight: FontWeight.w500)),
+                    SizedBox(height: 10),
+                    Container(
+                      height: 100,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          Container(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                  maxRadius: 30,
+                                  backgroundColor: COLOR_DARK_PURPLE,
+                                  child: InkWell(
+                                    onTap: () {
+                                      print('Add Biller');
+                                    },
+                                    child: CircleAvatar(
+                                        maxRadius: 29,
+                                        backgroundColor: Colors.white,
+                                        child: Icon(Icons.add)),
+                                  )),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text(
+                                  'Add Biller',
+                                  style: GoogleFonts.roboto(
+                                      color: COLOR_DARK_GRAY,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              )
+                            ],
+                          ))
+                        ],
+                      ),
+                    )
+                  ],
+                )),
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(25),
