@@ -59,10 +59,19 @@ const REGISTER_SCREEN_MOBIILE_TEXT = "Mobile Number";
 const REGISTER_SCREEN_EMAIL_TEXT = "Email";
 const REGISTER_SCREEN_PASSWORD_TEXT = "Password";
 
-const BUY_LOAD_RECIPIENT_SCREEN_TITLE_TEXT = "Buy Load";
-const BUY_LOAD_RECIPIENT_SCREEN_MOBILE_TEXT = "Mobile";
+const BUY_LOAD_TITLE_TEXT = "Buy Load";
+const BUY_LOAD_MOBILE_TEXT = "Mobile";
+const BUY_LOAD_NEXT_TEXT = "Next";
 const BUY_LOAD_RECIPIENT_SCREEN_LOAD_FOR_TEXT = "Buy Load For";
-const BUY_LOAD_RECIPIENT_SCREEN_NEXT_TEXT = "Buy Load For";
+
+const BUY_LOAD_AMOUNT_SCREEN_TAB_OPTION_1 = "Regular Load";
+const BUY_LOAD_AMOUNT_SCREEN_TAB_OPTION_2 = "Load Promos";
+const BUY_LOAD_AMOUNT_SCREEN_AMOUNT_TEXT = "Amount";
+const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION = "Enter amount between 10-1000";
+const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION_OR = "or choose denomination below:";
+
+
+
 
 const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);

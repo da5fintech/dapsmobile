@@ -34,7 +34,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
       child: Scaffold(
         // backgroundColor: Constants.backgroundColor2,
         appBar: SubAppbarWidget(
-          title: BUY_LOAD_RECIPIENT_SCREEN_TITLE_TEXT,
+          title: BUY_LOAD_TITLE_TEXT,
         ),
         body: Form(
           key: _formKey,
@@ -55,7 +55,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                               keyboardType: TextInputType.phone,
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
-                                  return '${BUY_LOAD_RECIPIENT_SCREEN_MOBILE_TEXT} number is required';
+                                  return '${BUY_LOAD_MOBILE_TEXT} number is required';
                                 }
                                 return null;
                               },
@@ -86,7 +86,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                         _handleNext();
                       },
                       child: Text(
-                        BUY_LOAD_RECIPIENT_SCREEN_NEXT_TEXT,
+                        BUY_LOAD_NEXT_TEXT,
                       ),
                     ),
                   ),
