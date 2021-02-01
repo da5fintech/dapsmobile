@@ -33,6 +33,10 @@ const SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT =
 const SERVICES_SCREEN_REASON_SWIPE_TEXT =
     "Because you deserve bettwer from us.";
 
+const BILLS_PAYMENT_TITLE_TEXT = "Pay Bills";
+const BILLS_PAYMENT_NEXT_TEXT = "Next";
+const BILLS_PAYMENT_SCREEN_IMMEDIATE_POST_TEXT= "Payment will be posted immediately";
+
 const AUTH_MERCHANT_ID = "0910";
 const AUTH_NETWORK_ID = "0625";
 const AUTH_USERNAME = "kabootekph";
@@ -79,6 +83,9 @@ const INSTAPAY_ZIP = '4107';
 const INSTAPAY_COUNTRY = 'Philippines';
 const INSTAPAY_CURRENCY = 'PHP';
 const INSTAPAY_FEE = 25.00;
+
+
+
 
 const AUTOSWEEP_TRANSACTION_TYPE = "AUTOSWEEP";
 const AUTOSWEEP_SCOPE = "autosweep";

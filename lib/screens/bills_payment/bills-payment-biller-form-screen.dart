@@ -131,73 +131,82 @@ class _BillsPaymentBillerFormScreenState
     return Theme(
       data: td,
       child: Scaffold(
-          // backgroundColor: Constants.backgroundColor2,
-          appBar: SubAppbarWidget(
-            elevation: 0,
-            title: "Pay Bills",
-          ),
-          body: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(
-                    bottom: 15,
-                    top: 5,
-                    left: 5,
-                    right: 5,
-                  ),
-                  color: COLOR_DARK_PURPLE,
-                  child: Row(
-                    children: [
-                      avatar,
-                      Container(
-                          width: width,
-                          margin: EdgeInsets.only(left: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${store.selectedBiller.name}",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500)),
-                              Text("Payment will be posted immediately",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 12,
-                                      color: Colors.white.withOpacity(.6))),
-                            ],
-                          )),
-                    ],
-                  ),
+        // backgroundColor: Constants.backgroundColor2,
+        appBar: SubAppbarWidget(
+          elevation: 0,
+          title: BILLS_PAYMENT_TITLE_TEXT,
+        ),
+        body: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(
+                  bottom: 15,
+                  top: 5,
+                  left: 5,
+                  right: 5,
                 ),
-                Expanded(
-                  child: Container(
-                      padding: EdgeInsets.only(left: 25, right: 25),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: fields,
-                        ),
-                      )),
-                ),
-                Padding(
-                    padding: EdgeInsets.only(left: 25, right: 25),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: RaisedButton(
-                        // shape: ,
-                        onPressed: () {
-                          _handleNext();
-                        },
-                        child: Text(
-                          "NEXT",
-                        ),
+                color: COLOR_DARK_PURPLE,
+                child: Row(
+                  children: [
+                    avatar,
+                    Container(
+                      width: width,
+                      margin: EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${store.selectedBiller.name}",
+                            style: GoogleFonts.roboto(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            BILLS_PAYMENT_SCREEN_IMMEDIATE_POST_TEXT,
+                            style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              color: Colors.white.withOpacity(.6),
+                            ),
+                          ),
+                        ],
                       ),
-                    ))
-              ],
-            ),
-          )),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(left: 25, right: 25),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: fields,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 25, right: 25),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: RaisedButton(
+                    // shape: ,
+                    onPressed: () {
+                      _handleNext();
+                    },
+                    child: Text(
+                      BILLS_PAYMENT_NEXT_TEXT,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 
