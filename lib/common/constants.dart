@@ -61,6 +61,7 @@ const REGISTER_SCREEN_PASSWORD_TEXT = "Password";
 
 const BUY_LOAD_TITLE_TEXT = "Buy Load";
 const BUY_LOAD_MOBILE_TEXT = "Mobile";
+const BUY_LOAD_PHP_TEXT = "PHP";
 const BUY_LOAD_NEXT_TEXT = "Next";
 const BUY_LOAD_RECIPIENT_SCREEN_LOAD_FOR_TEXT = "Buy Load For";
 
