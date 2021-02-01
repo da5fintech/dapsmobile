@@ -11,7 +11,9 @@ enum LoginProvider {
 
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   GoogleSignIn _googleSignIn;
+  FacebookLogin _facebookSignIn;
 
   AuthenticationService();
 
@@ -87,7 +89,55 @@ class AuthenticationService {
   }
 
   Future<User> _facebookLogin() async {
-    print("starting up");
+    try {
+      final _facebookSignIn = FacebookLogin();
+      final res = await _facebookSignIn.logIn(
+        permissions: [
+          FacebookPermission.publicProfile,
+          FacebookPermission.email
+        ],
+      );
+
+      print(res);
+
+      // Check result status
+      switch (res.status) {
+        case FacebookLoginStatus.success:
+          // Logged in
+
+          // Send access token to server for validation and auth
+          final FacebookAccessToken accessToken = res.accessToken;
+          print('Access token: ${accessToken.token}');
+
+          // Get profile data
+          final profile = await _facebookSignIn.getUserProfile();
+          print('Hello, ${profile.name}! You ID: ${profile.userId}');
+
+          // Get user profile image url
+          final imageUrl = await _facebookSignIn.getProfileImageUrl(width: 100);
+          print('Your profile image: $imageUrl');
+
+          // Get email (since we request email permission)
+          final email = await _facebookSignIn.getUserEmail();
+          // But user can decline permission
+          if (email != null) print('And your email is $email');
+
+          break;
+        case FacebookLoginStatus.cancel:
+          // User cancel log in
+          break;
+        case FacebookLoginStatus.error:
+          // Log in failed
+          print('Error while log in: ${res.error}');
+          break;
+      }
+    } on NoSuchMethodError catch (e) {
+      print("WTF ${e}");
+      return null;
+    } catch (e) {
+      print(e);
+      throw Exception('Error encountered. Please try again.');
+    }
   }
 
   Future<User> emailLogin({String email, String password}) async {
