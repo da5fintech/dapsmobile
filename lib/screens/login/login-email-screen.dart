@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
@@ -42,12 +41,13 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
 
     OverlayScreen().saveScreens({
       'wrong-mpin': CustomOverlayScreen(
-          backgroundColor: Colors.white.withOpacity(.2),
-          content: WrongMpinDialog(
-            onOk: () {
-              _handleOk();
-            },
-          )),
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: WrongMpinDialog(
+          onOk: () {
+            _handleOk();
+          },
+        ),
+      ),
     });
 
     return Scaffold(
@@ -59,171 +59,192 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Padding(
-                    padding: EdgeInsets.only(top: 80),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('SWIPE',
-                            style: GoogleFonts.roboto(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 15)),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    )),
+                  padding: EdgeInsets.only(top: 80),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        Constants.APP_NAME,
+                        style: GoogleFonts.roboto(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 15),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             Expanded(
               child: Padding(
-                  padding: EdgeInsets.only(left: 40, right: 40),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              controller: email,
-                              keyboardType: TextInputType.emailAddress,
-                              onSaved: (v) {},
-                              validator: _appUtil.validateEmail,
-                              decoration: InputDecoration(
-                                hintText: "Email",
+                padding: EdgeInsets.only(left: 40, right: 40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: email,
+                            keyboardType: TextInputType.emailAddress,
+                            onSaved: (v) {},
+                            validator: _appUtil.validateEmail,
+                            decoration: InputDecoration(
+                              hintText: Constants.LOGIN_EMAIL_SCREEN_EMAIL_TEXT,
+                            ),
+                          ),
+                          TextFormField(
+                            controller: password,
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: obscureText,
+                            onSaved: (v) {},
+                            validator: (text) {
+                              if (text == null || text.isEmpty) {
+                                return '${Constants.LOGIN_EMAIL_SCREEN_PASSWORD_TEXT} is required';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              hintText:
+                                  Constants.LOGIN_EMAIL_SCREEN_PASSWORD_TEXT,
+                              suffixIcon: IconButton(
+                                onPressed: () =>
+                                    setState(() => obscureText = !obscureText),
+                                icon: obscureText
+                                    ? Icon(Icons.visibility_off,
+                                        color: Colors.white.withOpacity(.6))
+                                    : Icon(
+                                        Icons.visibility,
+                                        color: Colors.white.withOpacity(.6),
+                                      ),
                               ),
                             ),
-                            TextFormField(
-                              controller: password,
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: obscureText,
-                              onSaved: (v) {},
-                              validator: (text) {
-                                if (text == null || text.isEmpty) {
-                                  return 'password is required';
-                                }
-                                return null;
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          loginError
+                              ? Text(Constants
+                                  .LOGIN_EMAIL_SCREEN_FAILED_ATTEMPT_TEXT)
+                              : Container(),
+                          SizedBox(
+                            width: double.infinity,
+                            child: PrimaryButtonWidget(
+                              onPressed: () {
+                                _handleLogin();
                               },
-                              decoration: InputDecoration(
-                                  hintText: "Password",
-                                  suffixIcon: IconButton(
-                                      onPressed: () => setState(
-                                          () => obscureText = !obscureText),
-                                      icon: obscureText
-                                          ? Icon(Icons.visibility_off,
-                                              color: Colors.white.withOpacity(.6))
-                                          : Icon(Icons.visibility,
-                                              color:
-                                                  Colors.white.withOpacity(.6)))),
+                              text: Constants.LOGIN_EMAIL_SCREEN_LOGIN_TEXT,
                             ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            loginError ? Text("Login error") : Container(),
-                            SizedBox(
-                                width: double.infinity,
-                                child: PrimaryButtonWidget(
-                                  onPressed: () {
-                                    _handleLogin();
-                                  },
-                                  text: "LOG IN",
-                                )),
-                            Row(children: <Widget>[
+                          ),
+                          Row(
+                            children: <Widget>[
                               Expanded(
-                                  child: Divider(
-                                color: Colors.white.withOpacity(.87),
-                              )),
+                                child: Divider(
+                                  color: Colors.white.withOpacity(.87),
+                                ),
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 5, right: 5, top: 15),
-                                child: Text("OR LOGIN USING"),
+                                child: Text(Constants
+                                    .LOGIN_EMAIL_SCREEN_ALTERNATE_LOGIN_TEXT),
                               ),
                               Expanded(
-                                  child: Divider(
-                                      color: Colors.white.withOpacity(.87))),
-                            ]),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(right: 8),
-                                  child: CircleAvatar(
-                                    radius: 26,
-                                    backgroundColor: Colors.white,
-                                    child: CircleAvatar(
-                                      backgroundColor:
-                                          Constants.COLOR_DARK_PURPLE,
-                                      radius: 25,
-                                      child: IconButton(
-                                          iconSize: 30,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.facebookF,
-                                            color: Colors.white.withOpacity(.87),
-                                          ),
-                                          onPressed: () {}),
-                                    ),
-                                  ),
+                                child: Divider(
+                                  color: Colors.white.withOpacity(.87),
                                 ),
-                                Container(
-                                  margin: EdgeInsets.only(right: 8),
-                                  child: CircleAvatar(
-                                    radius: 26,
-                                    backgroundColor: Colors.white,
-                                    child: CircleAvatar(
-                                      backgroundColor:
-                                          Constants.COLOR_DARK_PURPLE,
-                                      radius: 25,
-                                      child: IconButton(
-                                          iconSize: 30,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.google,
-                                            color: Colors.white.withOpacity(.87),
-                                          ),
-                                          onPressed: () {
-                                            _handleSSOLogin(LoginProvider.GOOGLE);
-                                          }),
-                                    ),
-                                  ),
-                                ),
-                                CircleAvatar(
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 8),
+                                child: CircleAvatar(
                                   radius: 26,
                                   backgroundColor: Colors.white,
                                   child: CircleAvatar(
-                                    backgroundColor: Constants.COLOR_DARK_PURPLE,
+                                    backgroundColor:
+                                        Constants.COLOR_DARK_PURPLE,
                                     radius: 25,
                                     child: IconButton(
-                                        iconSize: 30,
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.linkedinIn,
-                                          color: Colors.white.withOpacity(.87),
-                                        ),
-                                        onPressed: () {}),
+                                      iconSize: 30,
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.facebookF,
+                                        color: Colors.white.withOpacity(.87),
+                                      ),
+                                      onPressed: () {},
+                                    ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(right: 8),
+                                child: CircleAvatar(
+                                  radius: 26,
+                                  backgroundColor: Colors.white,
+                                  child: CircleAvatar(
+                                    backgroundColor:
+                                        Constants.COLOR_DARK_PURPLE,
+                                    radius: 25,
+                                    child: IconButton(
+                                      iconSize: 30,
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.google,
+                                        color: Colors.white.withOpacity(.87),
+                                      ),
+                                      onPressed: () {
+                                        _handleSSOLogin(LoginProvider.GOOGLE);
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              CircleAvatar(
+                                radius: 26,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
+                                  radius: 25,
+                                  child: IconButton(
+                                    iconSize: 30,
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.linkedinIn,
+                                      color: Colors.white.withOpacity(.87),
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
+                    ),
 
-                      // OutlineButton(
-                      //   child: Text("REGISTER",
-                      //       style: Constants.primaryButtonText),
-                      // ),
-                    ],
-                  )),
+                    // OutlineButton(
+                    //   child: Text("REGISTER",
+                    //       style: Constants.primaryButtonText),
+                    // ),
+                  ],
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 10, left: 40, right: 40),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Help Center"),
-                  Text("v1.1.1"),
+                  Text(Constants.APP_HELP_CENTER),
+                  Text(Constants.APP_VERSION),
                 ],
               ),
             ),
@@ -235,7 +256,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
 
   _handleLogin() async {
     bool status = _formKey.currentState.validate();
-    if(!status) return null;
+    if (!status) return null;
     try {
       loginError = false;
       setState(() {});
