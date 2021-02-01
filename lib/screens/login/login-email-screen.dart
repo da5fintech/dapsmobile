@@ -7,6 +7,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
@@ -23,6 +24,8 @@ class LoginEmailScreen extends StatefulWidget {
 }
 
 class _LoginEmailScreenState extends State<LoginEmailScreen> {
+  final _formKey = GlobalKey<FormState>();
+  AppUtil _appUtil = AppUtil();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool loginError = false;
@@ -78,135 +81,133 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(
-                        children: [
-                          TextFormField(
-                            controller: email,
-                            keyboardType: TextInputType.emailAddress,
-                            onSaved: (v) {},
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return 'email is required';
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              hintText: "Email",
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              controller: email,
+                              keyboardType: TextInputType.emailAddress,
+                              onSaved: (v) {},
+                              validator: _appUtil.validateEmail,
+                              decoration: InputDecoration(
+                                hintText: "Email",
+                              ),
                             ),
-                          ),
-                          TextFormField(
-                            controller: password,
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: obscureText,
-                            onSaved: (v) {},
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return 'password is required';
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                hintText: "Password",
-                                suffixIcon: IconButton(
-                                    onPressed: () => setState(
-                                        () => obscureText = !obscureText),
-                                    icon: obscureText
-                                        ? Icon(Icons.visibility_off,
-                                            color: Colors.white.withOpacity(.6))
-                                        : Icon(Icons.visibility,
-                                            color:
-                                                Colors.white.withOpacity(.6)))),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          loginError ? Text("Login error") : Container(),
-                          SizedBox(
-                              width: double.infinity,
-                              child: PrimaryButtonWidget(
-                                onPressed: () {
-                                  _handleLogin();
-                                },
-                                text: "LOG IN",
+                            TextFormField(
+                              controller: password,
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: obscureText,
+                              onSaved: (v) {},
+                              validator: (text) {
+                                if (text == null || text.isEmpty) {
+                                  return 'password is required';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  hintText: "Password",
+                                  suffixIcon: IconButton(
+                                      onPressed: () => setState(
+                                          () => obscureText = !obscureText),
+                                      icon: obscureText
+                                          ? Icon(Icons.visibility_off,
+                                              color: Colors.white.withOpacity(.6))
+                                          : Icon(Icons.visibility,
+                                              color:
+                                                  Colors.white.withOpacity(.6)))),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            loginError ? Text("Login error") : Container(),
+                            SizedBox(
+                                width: double.infinity,
+                                child: PrimaryButtonWidget(
+                                  onPressed: () {
+                                    _handleLogin();
+                                  },
+                                  text: "LOG IN",
+                                )),
+                            Row(children: <Widget>[
+                              Expanded(
+                                  child: Divider(
+                                color: Colors.white.withOpacity(.87),
                               )),
-                          Row(children: <Widget>[
-                            Expanded(
-                                child: Divider(
-                              color: Colors.white.withOpacity(.87),
-                            )),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 5, right: 5, top: 15),
-                              child: Text("OR LOGIN USING"),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 5, right: 5, top: 15),
+                                child: Text("OR LOGIN USING"),
+                              ),
+                              Expanded(
+                                  child: Divider(
+                                      color: Colors.white.withOpacity(.87))),
+                            ]),
+                            SizedBox(
+                              height: 15,
                             ),
-                            Expanded(
-                                child: Divider(
-                                    color: Colors.white.withOpacity(.87))),
-                          ]),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(right: 8),
-                                child: CircleAvatar(
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(right: 8),
+                                  child: CircleAvatar(
+                                    radius: 26,
+                                    backgroundColor: Colors.white,
+                                    child: CircleAvatar(
+                                      backgroundColor:
+                                          Constants.COLOR_DARK_PURPLE,
+                                      radius: 25,
+                                      child: IconButton(
+                                          iconSize: 30,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.facebookF,
+                                            color: Colors.white.withOpacity(.87),
+                                          ),
+                                          onPressed: () {}),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(right: 8),
+                                  child: CircleAvatar(
+                                    radius: 26,
+                                    backgroundColor: Colors.white,
+                                    child: CircleAvatar(
+                                      backgroundColor:
+                                          Constants.COLOR_DARK_PURPLE,
+                                      radius: 25,
+                                      child: IconButton(
+                                          iconSize: 30,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.google,
+                                            color: Colors.white.withOpacity(.87),
+                                          ),
+                                          onPressed: () {
+                                            _handleSSOLogin(LoginProvider.GOOGLE);
+                                          }),
+                                    ),
+                                  ),
+                                ),
+                                CircleAvatar(
                                   radius: 26,
                                   backgroundColor: Colors.white,
                                   child: CircleAvatar(
-                                    backgroundColor:
-                                        Constants.COLOR_DARK_PURPLE,
+                                    backgroundColor: Constants.COLOR_DARK_PURPLE,
                                     radius: 25,
                                     child: IconButton(
                                         iconSize: 30,
                                         icon: FaIcon(
-                                          FontAwesomeIcons.facebookF,
+                                          FontAwesomeIcons.linkedinIn,
                                           color: Colors.white.withOpacity(.87),
                                         ),
                                         onPressed: () {}),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: 8),
-                                child: CircleAvatar(
-                                  radius: 26,
-                                  backgroundColor: Colors.white,
-                                  child: CircleAvatar(
-                                    backgroundColor:
-                                        Constants.COLOR_DARK_PURPLE,
-                                    radius: 25,
-                                    child: IconButton(
-                                        iconSize: 30,
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.google,
-                                          color: Colors.white.withOpacity(.87),
-                                        ),
-                                        onPressed: () {
-                                          _handleSSOLogin(LoginProvider.GOOGLE);
-                                        }),
-                                  ),
-                                ),
-                              ),
-                              CircleAvatar(
-                                radius: 26,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                  radius: 25,
-                                  child: IconButton(
-                                      iconSize: 30,
-                                      icon: FaIcon(
-                                        FontAwesomeIcons.linkedinIn,
-                                        color: Colors.white.withOpacity(.87),
-                                      ),
-                                      onPressed: () {}),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
 
                       // OutlineButton(
@@ -233,6 +234,8 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
   }
 
   _handleLogin() async {
+    bool status = _formKey.currentState.validate();
+    if(!status) return null;
     try {
       loginError = false;
       setState(() {});
