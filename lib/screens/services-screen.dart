@@ -288,6 +288,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
       Get.toNamed("/services/bills-payment/bills-payment-categories-screen");
     } else if (offering == SwipeServiceOffering.REMITTANCE) {
       Get.toNamed("/services/remittance/remittance-categories-screen");
+    } else if(offering == SwipeServiceOffering.PAY_QR) {
+      Get.toNamed("/services/pay-qr/pay-qr-screen");
     }
   }
 }
