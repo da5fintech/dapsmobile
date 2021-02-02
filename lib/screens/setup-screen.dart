@@ -24,6 +24,7 @@ class _SetupScreenState extends State<SetupScreen> {
     // Permission.location: PermissionStatus.undetermined,
     // Permission.camera: PermissionStatus.undetermined,
   });
+
   @override
   void initState() {
     super.initState();
@@ -47,20 +48,23 @@ class _SetupScreenState extends State<SetupScreen> {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Padding(
-                    padding: EdgeInsets.only(top: 80),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('SWIPE',
-                            style: GoogleFonts.roboto(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 15)),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    )),
+                  padding: EdgeInsets.only(top: 80),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        Constants.APP_NAME,
+                        style: GoogleFonts.roboto(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 15),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
