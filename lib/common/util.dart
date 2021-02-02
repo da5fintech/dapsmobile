@@ -74,7 +74,6 @@ class AppUtil {
     else
       return null;
   }
-
 }
 
 var appUtil = AppUtil();
