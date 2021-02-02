@@ -117,144 +117,79 @@ class _BillsPaymentCategoriesScreenState
                 padding: EdgeInsets.all(25),
                 width: double.infinity,
                 color: Colors.white,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                child: GridView.count(
+                  physics: BouncingScrollPhysics(),
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 50,
+                  crossAxisSpacing: 20,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CategoryButtonWidget(
-                          category:
-                              BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage("assets/icons/services/cash-in.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text: BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
-                        ),
-                        CategoryButtonWidget(
-                          category:
-                              BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage(
-                                "assets/icons/services/bills-payment/cable-internet.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text:
-                              BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
-                        ),
-                        CategoryButtonWidget(
-                          category:
-                              BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage(
-                                "assets/icons/services/bills-payment/electricity.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text:
-                              BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
-                        ),
-                      ],
+                    CategoryButtonWidget(
+                      category: BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
+                      onPressed: _handleButtonClick,
+                      icon: Image.asset("assets/icons/services/cash-in.png"),
+                      text: BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CategoryButtonWidget(
-                          category:
-                              BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage(
-                                "assets/icons/services/bills-payment/loans.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text: BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
-                        ),
-                        Container(
-                          width: 90,
-                          height: 90,
-                          child: Column(
-                            children: [
-                              IconButton(
-                                color: COLOR_GRAY,
-                                icon: ImageIcon(
-                                  AssetImage(
-                                      "assets/icons/services/bills-payment/transportation.png"),
-                                  color: COLOR_DARK_PURPLE,
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          TransportationCategoriesScreen(),
-                                    ),
-                                  );
-                                },
-                              ),
-                              Text(
-                                BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        CategoryButtonWidget(
-                          category:
-                              BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage(
-                                "assets/icons/services/bills-payment/credit-card.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text:
-                              BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
-                        ),
-                      ],
+                    CategoryButtonWidget(
+                      category:
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
+                      onPressed: _handleButtonClick,
+                      icon: Image.asset(
+                          "assets/icons/services/bills-payment/cable-internet.png"),
+                      text: BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CategoryButtonWidget(
-                          category:
-                              BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage(
-                                "assets/icons/services/bills-payment/real-estate.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
-                        ),
-                        CategoryButtonWidget(
-                          category: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage(
-                                "assets/icons/services/bills-payment/water-utility.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
-                        ),
-                        CategoryButtonWidget(
-                          category: "Others",
-                          onPressed: _handleButtonClick,
-                          icon: ImageIcon(
-                            AssetImage(
-                                "assets/icons/services/bills-payment/others.png"),
-                            color: COLOR_DARK_PURPLE,
-                          ),
-                          text: BILLS_PAYMENT_CATEGORIES_SCREEN_OTHERS_TEXT,
-                        ),
-                      ],
+                    CategoryButtonWidget(
+                      category:
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
+                      onPressed: _handleButtonClick,
+                      icon: Image.asset(
+                          "assets/icons/services/bills-payment/electricity.png"),
+                      text: BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
+                    ),
+                    CategoryButtonWidget(
+                      category: BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
+                      onPressed: _handleButtonClick,
+                      icon: Image.asset(
+                          "assets/icons/services/bills-payment/loans.png"),
+                      text: BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
+                    ),
+                    CategoryButtonWidget(
+                      category:
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
+                      onPressed: (category) => Get.toNamed(
+                          '/services/bills-payment/transportation/transportation-categories-screen'),
+                      icon: Image.asset(
+                          "assets/icons/services/bills-payment/transportation.png"),
+                      text: BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
+                    ),
+                    CategoryButtonWidget(
+                      category:
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
+                      onPressed: _handleButtonClick,
+                      icon: Image.asset(
+                          "assets/icons/services/bills-payment/credit-card.png"),
+                      text:
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
+                    ),
+                    CategoryButtonWidget(
+                      category: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
+                      onPressed: _handleButtonClick,
+                      icon: Image.asset(
+                          "assets/icons/services/bills-payment/real-estate.png"),
+                      text: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
+                    ),
+                    CategoryButtonWidget(
+                      category: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
+                      onPressed: _handleButtonClick,
+                      icon: Image.asset(
+                          "assets/icons/services/bills-payment/water-utility.png"),
+                      text: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
+                    ),
+                    CategoryButtonWidget(
+                      category: "Others",
+                      onPressed: _handleButtonClick,
+                      icon: Image.asset(
+                          "assets/icons/services/bills-payment/others.png"),
+                      text: BILLS_PAYMENT_CATEGORIES_SCREEN_OTHERS_TEXT,
                     ),
                   ],
                 ),
