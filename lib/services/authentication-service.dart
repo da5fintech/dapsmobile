@@ -1,16 +1,19 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 enum LoginProvider {
   GOOGLE,
+  FACEBOOK,
 }
 
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   GoogleSignIn _googleSignIn;
-  // FacebookLogin _facebookSignIn;
+  FacebookLogin _facebookSignIn;
 
   AuthenticationService();
 
@@ -33,6 +36,8 @@ class AuthenticationService {
     switch (provider) {
       case LoginProvider.GOOGLE:
         return _googleLogin();
+      case LoginProvider.FACEBOOK:
+        return _facebookLogin();
       default:
         return _googleLogin();
     }
@@ -74,6 +79,67 @@ class AuthenticationService {
       }
 
       return res.user;
+    } on NoSuchMethodError catch (e) {
+      print('User cancelled');
+      return null;
+    } catch (e) {
+      print(e);
+      throw Exception('Error encountered. Please try again.');
+    }
+  }
+
+  Future<User> _facebookLogin() async {
+    try {
+      final _facebookSignIn = FacebookLogin();
+      final res = await _facebookSignIn.logIn(
+        permissions: [
+          FacebookPermission.publicProfile,
+          FacebookPermission.email
+        ],
+      );
+
+      // Check result status
+      switch (res.status) {
+        case FacebookLoginStatus.success:
+          // Logged in
+
+          // Send access token to server for validation and auth
+          final FacebookAccessToken accessToken = res.accessToken;
+          print('Access token: ${accessToken.token}');
+
+          // Get profile data
+          final profile = await _facebookSignIn.getUserProfile();
+          print('Hello, ${profile.name}! You ID: ${profile.userId}');
+
+          // Get user profile image url
+          final imageUrl = await _facebookSignIn.getProfileImageUrl(width: 100);
+          print('Your profile image: $imageUrl');
+
+          // Get email (since we request email permission)
+          final email = await _facebookSignIn.getUserEmail();
+
+          // But user can decline permission
+          if (email != null) print('And your email is $email');
+
+          final AuthCredential credential =
+              FacebookAuthProvider.credential(accessToken.token);
+
+          var result = await _auth.signInWithCredential(credential);
+
+          if (null != result.user) {
+            print('Logged in: ${result.user.email}');
+          }
+
+          return result.user;
+          break;
+        case FacebookLoginStatus.cancel:
+          // User cancel log in
+          break;
+        case FacebookLoginStatus.error:
+          // Log in failed
+          print('Error while log in: ${res.error}');
+          break;
+      }
     } on NoSuchMethodError catch (e) {
       print('User cancelled');
       return null;
