@@ -29,6 +29,10 @@ const PAYQR_SCREEN_SCAN_TEXT = "Scan QR";
 const PAYQR_UPLOAD_SCREEN_TITLE = "Photos";
 const PAYQR_UPLOAD_TAB_1 = "All Photos";
 const PAYQR_UPLOAD_TAB_2 = "Albums";
+const PAYQR_GENERATE_TITLE = "Generate Code";
+const PAYQR_GENERATE_SCREEN_NOTE_TEXT =
+    "Show one of this code to the cashier of any participating\n "
+    "merchant to pay your purchase.";
 
 const LOGIN_MPIN_SCREEN_LOGIN_TEXT = 'Login';
 

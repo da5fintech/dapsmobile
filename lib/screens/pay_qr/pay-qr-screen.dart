@@ -5,6 +5,8 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
+enum ScreenNav {upload, generate, scan}
+
 class PayQRScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,11 +14,19 @@ class PayQRScreen extends StatelessWidget {
     ThemeData td = createThemePurpleOnWhite(context);
     double width = MediaQuery.of(context).size.width;
 
-    Widget _card ({String imagePath, String title}) {
+    Widget _card ({String imagePath, String title, ScreenNav navTo}) {
       return GestureDetector(
         onTap: () {
-          if(title == PAYQR_SCREEN_UPLOAD_TEXT) {
-            Get.toNamed('/services/pay-qr/pay-qr-upload-screen');
+          switch(navTo) {
+            case ScreenNav.upload:
+              Get.toNamed('/services/pay-qr/pay-qr-upload-screen');
+              return;
+            case ScreenNav.generate:
+              Get.toNamed('/services/pay-qr/pay-qr-generate-screen');
+              return;
+            default:
+              return null;
+
           }
         },
         child: Container(
@@ -52,9 +62,9 @@ class PayQRScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            _card(imagePath: "assets/icons/services/pay-qr/upload-qr.png", title: PAYQR_SCREEN_UPLOAD_TEXT),
-            _card(imagePath: "assets/icons/services/pay-qr/generate-qr.png", title: PAYQR_SCREEN_GENERATE_QR_TEXT),
-            _card(imagePath: "assets/icons/services/pay-qr/scan-qr.png", title: PAYQR_SCREEN_SCAN_TEXT),
+            _card(imagePath: "assets/icons/services/pay-qr/upload-qr.png", title: PAYQR_SCREEN_UPLOAD_TEXT, navTo: ScreenNav.upload),
+            _card(imagePath: "assets/icons/services/pay-qr/generate-qr.png", title: PAYQR_SCREEN_GENERATE_QR_TEXT, navTo: ScreenNav.generate),
+            _card(imagePath: "assets/icons/services/pay-qr/scan-qr.png", title: PAYQR_SCREEN_SCAN_TEXT, navTo: ScreenNav.upload),
           ],
         )
       ),

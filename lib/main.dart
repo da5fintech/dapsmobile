@@ -17,6 +17,7 @@ import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/login/login-email-screen.dart';
 import 'package:swipe/screens/login/login-mpin-screen.dart';
+import 'package:swipe/screens/pay_qr/pay-qr-generate-screen.dart';
 import 'package:swipe/screens/pay_qr/pay-qr-screen.dart';
 import 'package:swipe/screens/pay_qr/pay-qr-upload-screen.dart';
 import 'package:swipe/screens/payment/payment-confirmation-screen.dart';
@@ -149,6 +150,9 @@ class _MyAppState extends State<MyApp> {
               case '/services/pay-qr/pay-qr-upload-screen':
                 return MaterialPageRoute(
                   builder: (_) => PayQrUploadScreen());
+              case '/services/pay-qr/pay-qr-generate-screen':
+                return MaterialPageRoute(
+                  builder: (_) => PayQrGenerateScreen());
               default:
                 return null;
             }
