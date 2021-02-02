@@ -33,6 +33,11 @@ const SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT =
 const SERVICES_SCREEN_REASON_SWIPE_TEXT =
     "Because you deserve bettwer from us.";
 
+const PAYQR_SCREEN_TITLE_TEXT = "Pay QR/Barcode";
+const PAYQR_SCREEN_UPLOAD_TEXT = "Upload QR";
+const PAYQR_SCREEN_GENERATE_QR_TEXT = "Generate QR / Bar code";
+const PAYQR_SCREEN_SCAN_TEXT = "Scan QR";
+
 const AUTH_MERCHANT_ID = "0910";
 const AUTH_NETWORK_ID = "0625";
 const AUTH_USERNAME = "kabootekph";
