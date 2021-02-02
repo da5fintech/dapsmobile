@@ -17,6 +17,7 @@ import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/login/login-email-screen.dart';
 import 'package:swipe/screens/login/login-mpin-screen.dart';
+import 'package:swipe/screens/pay_qr/pay-qr-screen.dart';
 import 'package:swipe/screens/payment/payment-confirmation-screen.dart';
 import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
@@ -141,6 +142,9 @@ class _MyAppState extends State<MyApp> {
               case '/services/bills-payment/transportation/autosweep-biller-form-screen':
                 return MaterialPageRoute(
                     builder: (_) => AutosweepBillerFormScreen());
+              case '/services/pay-qr/pay-qr-screen':
+                return MaterialPageRoute(
+                  builder: (_) => PayQRScreen());
               default:
                 return null;
             }
