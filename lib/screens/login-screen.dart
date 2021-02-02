@@ -127,7 +127,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     FontAwesomeIcons.facebookF,
                                     color: Colors.white.withOpacity(.87),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _handleSignup(LoginProvider.FACEBOOK);
+                                  },
                                 ),
                               ),
                             ),

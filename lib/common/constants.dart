@@ -16,6 +16,26 @@ const LOGIN_SCREEN_APP_NAME = "SWIPE";
 const LOGIN_SCREEN_APP_NAME_LETTER_SPACING = 15.0;
 const LOGIN_SCREEN_APP_NAME_FONT_SIZE = 20.0;
 
+
+const LOGIN_EMAIL_SCREEN_EMAIL_TEXT = "Email";
+const LOGIN_EMAIL_SCREEN_PASSWORD_TEXT = "Password";
+const LOGIN_EMAIL_SCREEN_LOGIN_TEXT = "Log in";
+const LOGIN_EMAIL_SCREEN_ALTERNATE_LOGIN_TEXT = "OR LOGIN USING";
+const LOGIN_EMAIL_SCREEN_FAILED_ATTEMPT_TEXT = "Login Error";
+
+
+const PAYQR_SCREEN_TITLE_TEXT = "Pay QR/Barcode";
+const PAYQR_SCREEN_UPLOAD_TEXT = "Upload QR";
+const PAYQR_SCREEN_GENERATE_QR_TEXT = "Generate QR / Bar code";
+const PAYQR_SCREEN_SCAN_TEXT = "Scan QR";
+
+const LOGIN_MPIN_SCREEN_LOGIN_TEXT = 'Login';
+
+const REGISTRATION_SCREEN_SUCCESS_TEXT = "Congratulations";
+const REGISTRATION_SCREEN_USER_CREATION_TEXT = 'We\'ve successfully created your account!';
+const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
+
+
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
 const SERVICES_SCREEN_CASH_IN_TEXT = "Cash in";
@@ -32,6 +52,7 @@ const SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT =
     "More Advantages to know about Swipe";
 const SERVICES_SCREEN_REASON_SWIPE_TEXT =
     "Because you deserve bettwer from us.";
+
 
 const BILLS_PAYMENT_TITLE_TEXT = "Pay Bills";
 const BILLS_PAYMENT_NEXT_TEXT = "Next";
@@ -58,6 +79,15 @@ const BILLS_PAYMENT_TRANSPORTATION_CATEGORIES_OPTION_2 = "Easytrip";
 const BILLS_PAYMENT_TRANSPORTATION_CATEGORIES_OPTION_3 = "Beep";
 
 
+const REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_SEND_TEXT = "Send Money";
+const REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_PAYMENT_POSTED_TEXT = "Payment will be posted immediately";
+const REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_AMOUNT_TEXT = "Amount";
+const REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_ACCOUNT_TEXT = "Account";
+const REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_RECIPIENT_TEXT = "Recipient";
+const REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_NEXT_TEXT = "Next";
+const REMITTANCE_INSTAPAY_BANK_SCREEN_SELECT_BANK_TEXT = "Select Bank";
+
+
 
 const AUTH_MERCHANT_ID = "0910";
 const AUTH_NETWORK_ID = "0625";
@@ -68,6 +98,29 @@ const ELOADING_SCOPE = 'eloading';
 const BILLS_PAYMENT_SCOPE = 'billspayment';
 const BILLS_PAYMENT_CHANNEL = 'X2B2';
 const INSTAPAY_SCOPE = 'instapay';
+
+const REMITTANCE_SCREEN_CATEGORIES_BANK_TEXT = "Banks";
+const REMITTANCE_SCREEN_CATEGORIES_WALLET_TEXT = "Wallets";
+const REMITTANCE_SCREEN_CATEGORIES_CENTERS_TEXT = "Remittance Centers";
+const REMITTANCE_SCREEN_PANEL_SEND_MONEY_TEXT = "Send money via:";
+const REMITTANCE_SCREEN_PANEL_SEND_INSTANCE_FREE_TEXT = "Send Instantly for free";
+const REMITTANCE_SCREEN_PANEL_SEND_OTHER_BANKS_TEXT = "Send to other banks and Wallets, Received instantly";
+const REMITTANCE_SCREEN_PANEL_CUT_OFF_TEXT = "No Cutoff";
+const REMITTANCE_SCREEN_PANEL_TRANSACTION_LIMIT = "50,000.00 transaction Limit";
+const REMITTANCE_SCREEN_PANEL_SEND_FOR_FREE = "Send for free";
+const REMITTANCE_SCREEN_PANEL_SEND_TO_OTHER_BANKS_INSTANCE_TEXT =
+    "Send to other banks and Wallets, Receive by end of the day";
+const REMITTANCE_SCREEN_PANEL_TRANSACTION_NOTE =
+    "Transactions before 3:00 PM cut-off are processed same banking day. Transactions after cut-off, weekends of holidays are processed the next banking day";
+const REMITTANCE_SCREEN_TITLE_TEXT = "Send/Request Money";
+const REMITTANCE_SCREEN_TAB_SEND_TEXT = "Send";
+const REMITTANCE_SCREEN_TAB_REQUEST_TEXT = "Request";
+
+const TRANSACTION_HISTORY_SCREEN_TITLE_TEXT = "Transaction History";
+const TRANSACTION_HISTORY_SCREEN_BUTTON_ALL_TEXT = "ALL";
+const TRANSACTION_HISTORY_SCREEN_BUTTON_RECEIVED_TEXT = "RECEIVED";
+const TRANSACTION_HISTORY_SCREEN_BUTTON_SENT_TEXT = "SENT";
+const TRANSACTION_HISTORY_SCREEN_DETAILS_TEXT = "Details";
 
 const REGISTER_MPIN_SCREEN_SET_PIN_TEXT = "Set your Mobile Pin";
 const REGISTER_MPIN_SCREEN_NOTE_TEXT =
@@ -84,6 +137,39 @@ const REGISTER_SCREEN_BIRTHDAY_FORMAT = "MM/DD/YY";
 const REGISTER_SCREEN_MOBIILE_TEXT = "Mobile Number";
 const REGISTER_SCREEN_EMAIL_TEXT = "Email";
 const REGISTER_SCREEN_PASSWORD_TEXT = "Password";
+
+
+const BUY_LOAD_TITLE_TEXT = "Buy Load";
+const BUY_LOAD_MOBILE_TEXT = "Mobile";
+const BUY_LOAD_PHP_TEXT = "PHP";
+const BUY_LOAD_NEXT_TEXT = "Next";
+const BUY_LOAD_RECIPIENT_SCREEN_LOAD_FOR_TEXT = "Buy Load For";
+
+const BUY_LOAD_AMOUNT_SCREEN_TAB_OPTION_1 = "Regular Load";
+const BUY_LOAD_AMOUNT_SCREEN_TAB_OPTION_2 = "Load Promos";
+const BUY_LOAD_AMOUNT_SCREEN_AMOUNT_TEXT = "Amount";
+const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION = "Enter amount between 10-1000";
+const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION_OR = "or choose denomination below:";
+
+const REMITTANCE_SCREEN_CATEGORIES_BANK_TEXT = "Banks";
+const REMITTANCE_SCREEN_CATEGORIES_WALLET_TEXT = "Wallets";
+const REMITTANCE_SCREEN_CATEGORIES_CENTERS_TEXT = "Remittance Centers";
+const REMITTANCE_SCREEN_PANEL_SEND_MONEY_TEXT = "Send money via:";
+const REMITTANCE_SCREEN_PANEL_SEND_INSTANCE_FREE_TEXT =
+    "Send Instantly for free";
+const REMITTANCE_SCREEN_PANEL_SEND_OTHER_BANKS_TEXT =
+    "Send to other banks and Wallets, Received instantly";
+const REMITTANCE_SCREEN_PANEL_CUT_OFF_TEXT = "No Cutoff";
+const REMITTANCE_SCREEN_PANEL_TRANSACTION_LIMIT = "50,000.00 transaction Limit";
+const REMITTANCE_SCREEN_PANEL_SEND_FOR_FREE = "Send for free";
+const REMITTANCE_SCREEN_PANEL_SEND_TO_OTHER_BANKS_INSTANCE_TEXT =
+    "Send to other banks and Wallets, Receive by end of the day";
+const REMITTANCE_SCREEN_PANEL_TRANSACTION_NOTE =
+    "Transactions before 3:00 PM cut-off are processed same banking day. Transactions after cut-off, weekends of holidays are processed the next banking day";
+const REMITTANCE_SCREEN_TITLE_TEXT = "Send/Request Money";
+const REMITTANCE_SCREEN_TAB_SEND_TEXT = "Send";
+const REMITTANCE_SCREEN_TAB_REQUEST_TEXT = "Request";
+
 
 const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);

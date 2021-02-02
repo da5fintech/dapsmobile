@@ -21,9 +21,14 @@ class RemittanceCategoriesScreen extends StatefulWidget {
 
 class _RemittanceCategoriesScreenState
     extends State<RemittanceCategoriesScreen> {
-  List<String> categories = ["Banks", "Wallets", "Remittance Centers"];
+  List<String> categories = [
+    REMITTANCE_SCREEN_CATEGORIES_BANK_TEXT,
+    REMITTANCE_SCREEN_CATEGORIES_WALLET_TEXT,
+    REMITTANCE_SCREEN_CATEGORIES_CENTERS_TEXT
+  ];
   PanelController _panelController = PanelController();
   bool panelOpened = false;
+
   @override
   void initState() {
     super.initState();
@@ -35,20 +40,25 @@ class _RemittanceCategoriesScreenState
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 8, right: 8),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text("Send money via: ",
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                REMITTANCE_SCREEN_PANEL_SEND_MONEY_TEXT,
                 style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black.withOpacity(.87))),
-            IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                _panelController.close();
-              },
-            )
-          ]),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black.withOpacity(.87),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  _panelController.close();
+                },
+              )
+            ],
+          ),
         ),
         GestureDetector(
           onTap: () {
@@ -59,84 +69,87 @@ class _RemittanceCategoriesScreenState
             child: Row(
               children: [
                 Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Send Instantly for free",
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              REMITTANCE_SCREEN_PANEL_SEND_INSTANCE_FREE_TEXT,
                               style: GoogleFonts.roboto(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
-                                  color: COLOR_DARK_PURPLE)),
-                          Image(
-                            width: 90,
-                            image: AssetImage("assets/icons/instapay.png"),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 4.0,
-                            width: 4.0,
-                            decoration: new BoxDecoration(
-                                color: COLOR_ORANGE, shape: BoxShape.circle),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "Send to other banks and Wallets, Received instantly",
-                            style: GoogleFonts.roboto(fontSize: 12),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 4.0,
-                            width: 4.0,
-                            decoration: new BoxDecoration(
-                                color: COLOR_ORANGE, shape: BoxShape.circle),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "No Cutoff",
-                            style: GoogleFonts.roboto(fontSize: 12),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 4.0,
-                            width: 4.0,
-                            decoration: new BoxDecoration(
-                                color: COLOR_ORANGE, shape: BoxShape.circle),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "50,000.00 transaction Limit",
-                            style: GoogleFonts.roboto(fontSize: 12),
-                          )
-                        ],
-                      ),
-                    ],
+                                  color: COLOR_DARK_PURPLE),
+                            ),
+                            Image(
+                              width: 90,
+                              image: AssetImage("assets/icons/instapay.png"),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 4.0,
+                              width: 4.0,
+                              decoration: new BoxDecoration(
+                                  color: COLOR_ORANGE, shape: BoxShape.circle),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              REMITTANCE_SCREEN_PANEL_SEND_OTHER_BANKS_TEXT,
+                              style: GoogleFonts.roboto(fontSize: 12),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 4.0,
+                              width: 4.0,
+                              decoration: new BoxDecoration(
+                                  color: COLOR_ORANGE, shape: BoxShape.circle),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              REMITTANCE_SCREEN_PANEL_CUT_OFF_TEXT,
+                              style: GoogleFonts.roboto(fontSize: 12),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 4.0,
+                              width: 4.0,
+                              decoration: new BoxDecoration(
+                                  color: COLOR_ORANGE, shape: BoxShape.circle),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              REMITTANCE_SCREEN_PANEL_TRANSACTION_LIMIT,
+                              style: GoogleFonts.roboto(fontSize: 12),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                )),
+                ),
               ],
             ),
           ),
@@ -150,73 +163,76 @@ class _RemittanceCategoriesScreenState
             child: Row(
               children: [
                 Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Send for free",
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              REMITTANCE_SCREEN_PANEL_SEND_FOR_FREE,
                               style: GoogleFonts.roboto(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
-                                  color: COLOR_DARK_PURPLE)),
-                          Image(
-                            width: 90,
-                            image: AssetImage("assets/icons/pesonet.png"),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 4.0,
-                            width: 4.0,
-                            decoration: new BoxDecoration(
-                                color: COLOR_ORANGE, shape: BoxShape.circle),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "Send to other banks and Wallets, Receive by end of the day",
-                            style: GoogleFonts.roboto(fontSize: 12),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 4.0,
-                            width: 4.0,
-                            decoration: new BoxDecoration(
-                                color: COLOR_ORANGE, shape: BoxShape.circle),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "Transactions before 3:00 PM cut-off are processed same banking day. Transactions after cut-off, weekends of holidays are processed the next banking day",
+                                  color: COLOR_DARK_PURPLE),
+                            ),
+                            Image(
+                              width: 90,
+                              image: AssetImage("assets/icons/pesonet.png"),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 4.0,
+                              width: 4.0,
+                              decoration: new BoxDecoration(
+                                  color: COLOR_ORANGE, shape: BoxShape.circle),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              REMITTANCE_SCREEN_PANEL_SEND_TO_OTHER_BANKS_INSTANCE_TEXT,
                               style: GoogleFonts.roboto(fontSize: 12),
                             ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                    ],
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 4.0,
+                              width: 4.0,
+                              decoration: new BoxDecoration(
+                                  color: COLOR_ORANGE, shape: BoxShape.circle),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Expanded(
+                              child: Text(
+                                REMITTANCE_SCREEN_PANEL_TRANSACTION_NOTE,
+                                style: GoogleFonts.roboto(fontSize: 12),
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ],
+                    ),
                   ),
-                )),
+                ),
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -226,102 +242,110 @@ class _RemittanceCategoriesScreenState
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
 
-    OverlayScreen().saveScreens({
-      'progress': CustomOverlayScreen(
-        backgroundColor: Colors.white.withOpacity(.2),
-        content: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
-            ),
-            SizedBox(height: 10.0),
-            Text("Processing...",
-                style: GoogleFonts.roboto(color: Colors.white)),
-          ],
+    OverlayScreen().saveScreens(
+      {
+        'progress': CustomOverlayScreen(
+          backgroundColor: Colors.white.withOpacity(.2),
+          content: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new CircularProgressIndicator(
+                valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+              ),
+              SizedBox(height: 10.0),
+              Text("Processing...",
+                  style: GoogleFonts.roboto(color: Colors.white)),
+            ],
+          ),
         ),
-      ),
-    });
+      },
+    );
 
     return DefaultTabController(
       length: 2,
       child: Theme(
         data: td,
         child: Scaffold(
-            // backgroundColor: Constants.backgroundColor2,
-            appBar: SubAppbarWidget(
-                height: 90.0,
-                title: "Send/Request Money",
-                bottom: TabBar(
-                  tabs: [
-                    Tab(icon: Text("Send")),
-                    Tab(icon: Text("Request")),
-                  ],
-                )),
-            body: SlidingUpPanel(
-              color: Colors.white,
-              controller: _panelController,
-              minHeight: 0,
-              maxHeight: 350,
-              backdropEnabled: true,
-              panel: createSlideupPanelContent(),
-              body: TabBarView(
-                children: [
-                  Column(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                            physics: AlwaysScrollableScrollPhysics(),
-                            padding: const EdgeInsets.all(5),
-                            itemCount: categories.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: Colors.grey
-                                                  .withOpacity(.36)))),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 40,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(categories[index],
-                                                style: GoogleFonts.roboto(
-                                                    color: Colors.black
-                                                        .withOpacity(.87),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w500)),
-                                          ],
-                                        ),
-                                      ),
-                                      Spacer(),
-                                      Icon(
-                                        Icons.chevron_right,
-                                        color: Colors.black.withOpacity(.54),
-                                      ),
-                                    ],
+          // backgroundColor: Constants.backgroundColor2,
+          appBar: SubAppbarWidget(
+            height: 90.0,
+            title: REMITTANCE_SCREEN_TITLE_TEXT,
+            bottom: TabBar(
+              tabs: [
+                Tab(icon: Text(REMITTANCE_SCREEN_TAB_SEND_TEXT)),
+                Tab(icon: Text(REMITTANCE_SCREEN_TAB_REQUEST_TEXT)),
+              ],
+            ),
+          ),
+          body: SlidingUpPanel(
+            color: Colors.white,
+            controller: _panelController,
+            minHeight: 0,
+            maxHeight: 350,
+            backdropEnabled: true,
+            panel: createSlideupPanelContent(),
+            body: TabBarView(
+              children: [
+                Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        padding: const EdgeInsets.all(5),
+                        itemCount: categories.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.grey.withOpacity(.36),
                                   ),
                                 ),
-                                onTap: () {
-                                  _handleTap(categories[index]);
-                                },
-                              );
-                            }),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 40,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          categories[index],
+                                          style: GoogleFonts.roboto(
+                                              color:
+                                                  Colors.black.withOpacity(.87),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Icon(
+                                    Icons.chevron_right,
+                                    color: Colors.black.withOpacity(.54),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            onTap: () {
+                              _handleTap(categories[index]);
+                            },
+                          );
+                        },
                       ),
-                    ],
-                  ),
-                  Text("Hello tab2")
-                ],
-              ),
-            )),
+                    ),
+                  ],
+                ),
+                Text("Hello tab2")
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
