@@ -26,6 +26,9 @@ const PAYQR_SCREEN_TITLE_TEXT = "Pay QR/Barcode";
 const PAYQR_SCREEN_UPLOAD_TEXT = "Upload QR";
 const PAYQR_SCREEN_GENERATE_QR_TEXT = "Generate QR / Bar code";
 const PAYQR_SCREEN_SCAN_TEXT = "Scan QR";
+const PAYQR_UPLOAD_SCREEN_TITLE = "Photos";
+const PAYQR_UPLOAD_TAB_1 = "All Photos";
+const PAYQR_UPLOAD_TAB_2 = "Albums";
 
 const LOGIN_MPIN_SCREEN_LOGIN_TEXT = 'Login';
 
