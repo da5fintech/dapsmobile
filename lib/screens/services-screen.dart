@@ -7,6 +7,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 
 import 'package:swipe/common/widgets/amount-widget.dart';
+import 'package:swipe/common/widgets/drawer-menu-widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/main-app-bar.widget.dart';
 import 'package:swipe/common/widgets/service-button.dart';
@@ -34,20 +35,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
       key: _drawerKey,
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text("Logout"),
-              trailing: Icon(Icons.arrow_forward),
-              onTap: () async {
-                await store.authService.logout();
-                Get.toNamed("/login");
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: DrawerMenuWidget(),
       appBar: MainAppBarWidget(
         elevation: 0,
         onPressed: () {
@@ -177,7 +165,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   ServiceButtonWidget(
                     offering: SwipeServiceOffering.REQUEST_MONEY,
                     onPressed: _handleButtonClick,
-                    icon: Image.asset('assets/icons/services/request-money.png'),
+                    icon:
+                        Image.asset('assets/icons/services/request-money.png'),
                     text: SERVICES_SCREEN_REQUEST_MONEY_TEXT,
                   ),
                   ServiceButtonWidget(

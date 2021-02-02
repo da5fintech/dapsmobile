@@ -37,7 +37,7 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
       child: Scaffold(
         appBar: SubAppbarWidget(
           elevation: 0,
-          title: 'All Billers (Transportation)',
+          title: BILLS_PAYMENT_TRANSPORTATION_AUTOSWEEP_TITLE,
         ),
         body: Form(
           key: _formKey,
@@ -66,7 +66,7 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Autosweep',
+                            BILLS_PAYMENT_TRANSPORTATION_AUTOSWEEP_TEXT,
                             style: GoogleFonts.roboto(
                               fontSize: 16.0,
                               color: Colors.white,
@@ -74,7 +74,7 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                             ),
                           ),
                           Text(
-                            'Payment will be posted immediately',
+                            BILLS_PAYMENT_TRANSPORTATION_POSTED_IMMEDIATELY,
                             style: GoogleFonts.roboto(
                               fontSize: 12.0,
                               color: Colors.white.withOpacity(0.6),
@@ -97,7 +97,7 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                             plateNumber = value;
                           },
                           decoration: InputDecoration(
-                            labelText: 'Plate Number',
+                            labelText: BILLS_PAYMENT_TRANSPORTATION_PLATE_NUMBER_TEXT,
                           ),
                         ),
                         TextField(
@@ -105,7 +105,7 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                             amount = double.parse(value);
                           },
                           decoration: InputDecoration(
-                            labelText: 'Amount',
+                            labelText: BILLS_PAYMENT_TRANSPORTATION_AMOUNT_TEXT,
                           ),
                         ),
                       ],
@@ -121,7 +121,7 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                     onPressed: () => {
                       _handleNext(),
                     },
-                    text: "NEXT",
+                    text: BILLS_PAYMENT_NEXT_TEXT,
                   ),
                 ),
               ),

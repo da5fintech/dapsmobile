@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/store/application-store.dart';
 
@@ -17,13 +18,17 @@ class TransportationCategoriesScreen extends StatefulWidget {
 
 class _TransportationCategoriesScreenState
     extends State<TransportationCategoriesScreen> {
-  List<String> categories = ["Autosweep", "Easytrip", "Beep"];
+  List<String> categories = [
+    BILLS_PAYMENT_TRANSPORTATION_CATEGORIES_OPTION_1,
+    BILLS_PAYMENT_TRANSPORTATION_CATEGORIES_OPTION_2,
+    BILLS_PAYMENT_TRANSPORTATION_CATEGORIES_OPTION_3
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SubAppbarWidget(
-        title: 'All Billers (Transportation)',
+        title: BILLS_PAYMENT_TRANSPORTATION_AUTOSWEEP_TITLE,
       ),
       backgroundColor: Colors.white,
       body: Column(

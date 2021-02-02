@@ -25,6 +25,7 @@ dependencies:
   mobx: ^1.1.1
   flutter:
     sdk: flutter
+  flutter_login_facebook: ^0.4.2+3
 
   flavor: ^1.0.1
   get_it: ^4.0.2

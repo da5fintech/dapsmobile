@@ -29,7 +29,7 @@ class PromoCircleAmountWidget extends StatelessWidget {
                 color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
           ),
           Text(
-            "PHP",
+            BUY_LOAD_PHP_TEXT,
             style: GoogleFonts.roboto(
                 color: Colors.black.withOpacity(.87),
                 fontSize: 8,
