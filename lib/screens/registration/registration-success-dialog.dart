@@ -4,6 +4,7 @@ import 'package:swipe/common/constants.dart';
 
 class RegistrationSuccessDialog extends StatelessWidget {
   final Function onOk;
+
   const RegistrationSuccessDialog({Key key, this.onOk}) : super(key: key);
 
   @override
@@ -23,7 +24,7 @@ class RegistrationSuccessDialog extends StatelessWidget {
             width: 5,
           ),
           Text(
-            "Congratulations",
+            REGISTRATION_SCREEN_SUCCESS_TEXT,
             style: GoogleFonts.roboto(
               color: Colors.black,
               fontSize: 15,
@@ -33,7 +34,7 @@ class RegistrationSuccessDialog extends StatelessWidget {
         ],
       ),
       content: Text(
-        'We\'ve successfully created your account!',
+        REGISTRATION_SCREEN_USER_CREATION_TEXT,
         style: GoogleFonts.roboto(
           color: Colors.black,
           // fontSize: normalizeSize(15),
@@ -44,18 +45,19 @@ class RegistrationSuccessDialog extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 15),
           child: FlatButton(
-              child: Text(
-                "PROCEED TO LOGIN",
-                style: GoogleFonts.roboto(
-                    color: COLOR_DARK_PURPLE,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500),
-              ),
-              onPressed: () {
-                if (onOk != null) {
-                  onOk();
-                }
-              }),
+            child: Text(
+              REGISTRATION_SCREEN_USER_LOGIN_TEXT,
+              style: GoogleFonts.roboto(
+                  color: COLOR_DARK_PURPLE,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500),
+            ),
+            onPressed: () {
+              if (onOk != null) {
+                onOk();
+              }
+            },
+          ),
         ),
       ],
     );
