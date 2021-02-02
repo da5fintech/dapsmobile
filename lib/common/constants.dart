@@ -176,6 +176,21 @@ const PAYMENT_PROCESSING_INVALID_INPUT_TEXT =
     "You have entered an incorrect\nMPIN. Please try again,";
 const PAYMENT_PROCESSING_CONFIRM_TEXT = "OK";
 
+const DRAWER_MENU_SCREEN_VIEW_BENEFITS_TEXT = "View Benefits";
+const DRAWER_MENU_SCREEN_BASIC_LEVEL = "Basic Level";
+const DRAWER_MENU_SCREEN_SEMI_VERIFIED = "Semi Verified";
+const DRAWER_MENU_SCREEN_FULLY_VERIFIED = "Fully Verified";
+const DRAWER_MENU_SCREEN_LINK_ACCOUNTS = "My Links Account";
+const DRAWER_MENU_SCREEN_PARTNER_MERCHANTS = "Partner Merchants";
+const DRAWER_MENU_SCREEN_PROMOS = "Promos";
+const DRAWER_MENU_SCREEN_VOUCHER = "Voucher Pocket";
+const DRAWER_MENU_SCREEN_SETTINGS = "Settings";
+const DRAWER_MENU_SCREEN_HELP = "Help";
+const DRAWER_MENU_SCREEN_LOGOUT= "Log out";
+
+
+
+
 const BUY_LOAD_TITLE_TEXT = "Buy Load";
 const BUY_LOAD_MOBILE_TEXT = "Mobile";
 const BUY_LOAD_PHP_TEXT = "PHP";
