@@ -98,8 +98,6 @@ class AuthenticationService {
         ],
       );
 
-      print(res);
-
       // Check result status
       switch (res.status) {
         case FacebookLoginStatus.success:
@@ -119,9 +117,20 @@ class AuthenticationService {
 
           // Get email (since we request email permission)
           final email = await _facebookSignIn.getUserEmail();
+
           // But user can decline permission
           if (email != null) print('And your email is $email');
 
+          final AuthCredential credential =
+              FacebookAuthProvider.credential(accessToken.token);
+
+          var result = await _auth.signInWithCredential(credential);
+
+          if (null != result.user) {
+            print('Logged in: ${result.user.email}');
+          }
+
+          return result.user;
           break;
         case FacebookLoginStatus.cancel:
           // User cancel log in
@@ -132,7 +141,7 @@ class AuthenticationService {
           break;
       }
     } on NoSuchMethodError catch (e) {
-      print("WTF ${e}");
+      print('User cancelled');
       return null;
     } catch (e) {
       print(e);
