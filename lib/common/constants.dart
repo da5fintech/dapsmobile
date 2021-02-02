@@ -49,6 +49,23 @@ const BILLS_PAYMENT_SCOPE = 'billspayment';
 const BILLS_PAYMENT_CHANNEL = 'X2B2';
 const INSTAPAY_SCOPE = 'instapay';
 
+const REMITTANCE_SCREEN_CATEGORIES_BANK_TEXT = "Banks";
+const REMITTANCE_SCREEN_CATEGORIES_WALLET_TEXT = "Wallets";
+const REMITTANCE_SCREEN_CATEGORIES_CENTERS_TEXT = "Remittance Centers";
+const REMITTANCE_SCREEN_PANEL_SEND_MONEY_TEXT = "Send money via:";
+const REMITTANCE_SCREEN_PANEL_SEND_INSTANCE_FREE_TEXT = "Send Instantly for free";
+const REMITTANCE_SCREEN_PANEL_SEND_OTHER_BANKS_TEXT = "Send to other banks and Wallets, Received instantly";
+const REMITTANCE_SCREEN_PANEL_CUT_OFF_TEXT = "No Cutoff";
+const REMITTANCE_SCREEN_PANEL_TRANSACTION_LIMIT = "50,000.00 transaction Limit";
+const REMITTANCE_SCREEN_PANEL_SEND_FOR_FREE = "Send for free";
+const REMITTANCE_SCREEN_PANEL_SEND_TO_OTHER_BANKS_INSTANCE_TEXT =
+    "Send to other banks and Wallets, Receive by end of the day";
+const REMITTANCE_SCREEN_PANEL_TRANSACTION_NOTE =
+    "Transactions before 3:00 PM cut-off are processed same banking day. Transactions after cut-off, weekends of holidays are processed the next banking day";
+const REMITTANCE_SCREEN_TITLE_TEXT = "Send/Request Money";
+const REMITTANCE_SCREEN_TAB_SEND_TEXT = "Send";
+const REMITTANCE_SCREEN_TAB_REQUEST_TEXT = "Request";
+
 const TRANSACTION_HISTORY_SCREEN_TITLE_TEXT = "Transaction History";
 const TRANSACTION_HISTORY_SCREEN_BUTTON_ALL_TEXT = "ALL";
 const TRANSACTION_HISTORY_SCREEN_BUTTON_RECEIVED_TEXT = "RECEIVED";
@@ -71,6 +88,7 @@ const REGISTER_SCREEN_MOBIILE_TEXT = "Mobile Number";
 const REGISTER_SCREEN_EMAIL_TEXT = "Email";
 const REGISTER_SCREEN_PASSWORD_TEXT = "Password";
 
+
 const REMITTANCE_SCREEN_CATEGORIES_BANK_TEXT = "Banks";
 const REMITTANCE_SCREEN_CATEGORIES_WALLET_TEXT = "Wallets";
 const REMITTANCE_SCREEN_CATEGORIES_CENTERS_TEXT = "Remittance Centers";
@@ -89,6 +107,7 @@ const REMITTANCE_SCREEN_PANEL_TRANSACTION_NOTE =
 const REMITTANCE_SCREEN_TITLE_TEXT = "Send/Request Money";
 const REMITTANCE_SCREEN_TAB_SEND_TEXT = "Send";
 const REMITTANCE_SCREEN_TAB_REQUEST_TEXT = "Request";
+
 
 const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);
