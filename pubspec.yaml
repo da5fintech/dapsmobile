@@ -25,6 +25,7 @@ dependencies:
   mobx: ^1.1.1
   flutter:
     sdk: flutter
+  flutter_login_facebook: ^0.4.2+3
 
   flavor: ^1.0.1
   get_it: ^4.0.2
@@ -97,6 +98,9 @@ flutter:
     - assets/icons/services/bills-payment/telecom.png
     - assets/icons/services/bills-payment/transportation.png
     - assets/icons/services/bills-payment/water-utility.png
+    - assets/icons/services/pay-qr/generate-qr.png
+    - assets/icons/services/pay-qr/scan-qr.png
+    - assets/icons/services/pay-qr/upload-qr.png
     - assets/icons/instapay.png
     - assets/icons/pesonet.png
     - assets/icons/autosweep.jpg

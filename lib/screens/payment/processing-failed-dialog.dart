@@ -10,6 +10,7 @@ final store = getIt<ApplicationStore>();
 class ProcessingFailedDialog extends StatelessWidget {
   final Function onOk;
   final String message;
+
   const ProcessingFailedDialog({Key key, this.onOk, this.message})
       : super(key: key);
 
@@ -30,7 +31,7 @@ class ProcessingFailedDialog extends StatelessWidget {
             width: 5,
           ),
           Text(
-            "Ooops.",
+            PAYMENT_PROCESSING_INVALID_TEXT,
             style: GoogleFonts.roboto(
               color: Colors.black,
               fontSize: 15,
@@ -51,16 +52,16 @@ class ProcessingFailedDialog extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 15),
           child: FlatButton(
-              child: Text(
-                "OK",
-                style:
-                    GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontSize: 14),
-              ),
-              onPressed: () {
-                if (onOk != null) {
-                  onOk();
-                }
-              }),
+            child: Text(
+              PAYMENT_PROCESSING_CONFIRM_TEXT,
+              style: GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontSize: 14),
+            ),
+            onPressed: () {
+              if (onOk != null) {
+                onOk();
+              }
+            },
+          ),
         ),
       ],
     );

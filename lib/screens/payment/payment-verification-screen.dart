@@ -21,6 +21,7 @@ class PaymentVerificationScreen extends StatefulWidget {
 
 class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
   bool hasDiscount = true;
+
   @override
   void initState() {
     super.initState();
@@ -37,7 +38,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Buy Load for",
+                PAYMENT_VERIFICATION_SCREEN_LOAD_FOR_TEXT,
                 style: GoogleFonts.roboto(
                   color: COLOR_DARK_PURPLE.withOpacity(.87),
                   fontWeight: FontWeight.w500,
@@ -52,7 +53,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("My Number"),
+              Text(PAYMENT_VERIFICATION_SCREEN_MY_NUMBER_TEXT),
               Spacer(),
               Text(store.transaction.recipient),
             ],
@@ -74,7 +75,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Pay bills for",
+                PAYMENT_VERIFICATION_SCREEN_PAY_BILLS_TEXT,
                 style: GoogleFonts.roboto(
                     color: COLOR_DARK_PURPLE.withOpacity(.87),
                     fontWeight: FontWeight.w500),
@@ -120,7 +121,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
         children: [
           Expanded(
             child: Text(
-              "Fee",
+              PAYMENT_VERIFICATION_SCREEN_FEE_TEXT,
             ),
           ),
           Spacer(),
@@ -151,7 +152,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Send money for",
+                PAYMENT_VERIFICATION_SCREEN_SEND_MONEY_TEXT,
                 style: GoogleFonts.roboto(
                     color: COLOR_DARK_PURPLE.withOpacity(.87),
                     fontWeight: FontWeight.w500),
@@ -165,7 +166,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Send via"),
+              Text(PAYMENT_VERIFICATION_SCREEN_SEND_VIA_TEXT),
               Spacer(),
               Image(
                 width: 90,
@@ -180,7 +181,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Account Number"),
+              Text(PAYMENT_VERIFICATION_SCREEN_ACCOUNT_NUMBER_TEXT),
               Spacer(),
               Text("${product.accountNumber}"),
             ],
@@ -192,7 +193,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Recipient's Name"),
+              Text(PAYMENT_VERIFICATION_SCREEN_RECIPIENT_TEXT),
               Spacer(),
               Text("${product.recipientName}"),
             ],
@@ -205,7 +206,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Fee",
+                PAYMENT_VERIFICATION_SCREEN_FEE_TEXT,
               ),
               Spacer(),
               Text(
@@ -315,177 +316,183 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
     return Theme(
       data: td,
       child: Scaffold(
-          // backgroundColor: Constants.backgroundColor2,
-          appBar: SubAppbarWidget(
-            height: 96,
-            title: "Payment",
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(10),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        "${store.transaction.product.name}",
-                        style: GoogleFonts.roboto(
-                          fontSize: 14,
-                          color: Colors.white.withOpacity(.87),
-                        ),
+        // backgroundColor: Constants.backgroundColor2,
+        appBar: SubAppbarWidget(
+          height: 96,
+          title: PAYMENT_MPIN_SCREEN_TITLE,
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(10),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      "${store.transaction.product.name}",
+                      style: GoogleFonts.roboto(
+                        fontSize: 14,
+                        color: Colors.white.withOpacity(.87),
                       ),
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    AmountWidget(amount: amount)
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  AmountWidget(amount: amount)
+                ],
               ),
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(0.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 40.0,
-                          padding: EdgeInsets.only(left: 10.0),
-                          color: COLOR_DARK_PURPLE.withOpacity(.05),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Pay with wallet",
-                                style: GoogleFonts.roboto(
-                                  color: COLOR_DARK_PURPLE.withOpacity(.87),
-                                  fontWeight: FontWeight.w500,
-                                ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(0.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 40.0,
+                        padding: EdgeInsets.only(left: 10.0),
+                        color: COLOR_DARK_PURPLE.withOpacity(.05),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              PAYMENT_VERIFICATION_SCREEN_PAY_WALLET_TEXT,
+                              style: GoogleFonts.roboto(
+                                color: COLOR_DARK_PURPLE.withOpacity(.87),
+                                fontWeight: FontWeight.w500,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Container(
-                          height: 60,
-                          padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("SWIPE"),
-                              Spacer(),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                      ),
+                      Container(
+                        height: 60,
+                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(APP_NAME),
+                            Spacer(),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  PAYMENT_VERIFICATION_SCREEN_BALANCE_TEXT,
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(.60),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  formatter.format(store.balance),
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 14,
+                                    color: COLOR_DARK_PURPLE.withOpacity(.87),
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      buildOfferingSpecificSection(store.transaction.offering),
+                      Container(
+                        height: 40,
+                        padding: EdgeInsets.only(left: 10),
+                        color: COLOR_DARK_PURPLE.withOpacity(.05),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              PAYMENT_VERIFICATION_SCREEN_ABOUT_TO_PAY_TEXT,
+                              style: GoogleFonts.roboto(
+                                color: COLOR_DARK_PURPLE.withOpacity(.87),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 60,
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(PAYMENT_VERIFICATION_SCREEN_DUE_TEXT),
+                            Spacer(),
+                            Text(formatter.format(amount)),
+                          ],
+                        ),
+                      ),
+                      hasDiscount
+                          ? Container(
+                              height: 60,
+                              padding: EdgeInsets.only(left: 10, right: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Available Balance",
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 12,
-                                      color: Colors.black.withOpacity(.60),
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
+                                      PAYMENT_VERIFICATION_SCREEN_DISCOUNT_TEXT),
+                                  Spacer(),
                                   Text(
-                                    formatter.format(store.balance),
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 14,
-                                      color: COLOR_DARK_PURPLE.withOpacity(.87),
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
+                                      PAYMENT_VERIFICATION_SCREEN_VOUCHER_TEXT),
                                 ],
                               ),
-                            ],
-                          ),
+                            )
+                          : Container(),
+                      Container(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Divider(
+                          color: COLOR_GRAY,
+                          height: 2,
                         ),
-                        buildOfferingSpecificSection(
-                            store.transaction.offering),
-                        Container(
-                          height: 40,
-                          padding: EdgeInsets.only(left: 10),
-                          color: COLOR_DARK_PURPLE.withOpacity(.05),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "You are about to pay",
-                                style: GoogleFonts.roboto(
-                                  color: COLOR_DARK_PURPLE.withOpacity(.87),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
+                      ),
+                      Container(
+                        height: 60,
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(PAYMENT_VERIFICATION_SCREEN_TOTAL_AMOUNT_TEXT),
+                            Spacer(),
+                            Text(
+                              formatter.format(totalAmount),
+                            ),
+                          ],
                         ),
-                        Container(
-                          height: 60,
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("Amount Due"),
-                              Spacer(),
-                              Text(formatter.format(amount)),
-                            ],
-                          ),
-                        ),
-                        hasDiscount
-                            ? Container(
-                                height: 60,
-                                padding: EdgeInsets.only(left: 10, right: 10),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text("Discount"),
-                                    Spacer(),
-                                    Text("No available voucher"),
-                                  ],
-                                ),
-                              )
-                            : Container(),
-                        Container(
-                            padding: EdgeInsets.only(left: 10, right: 10),
-                            child: Divider(
-                              color: COLOR_GRAY,
-                              height: 2,
-                            )),
-                        Container(
-                          height: 60,
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("Total Amount"),
-                              Spacer(),
-                              Text(formatter.format(totalAmount)),
-                            ],
-                          ),
-                        ),
-                      ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: RaisedButton(
+                    // shape: ,
+                    onPressed: () {
+                      _handlePay();
+                    },
+                    child: Text(
+                      PAYMENT_VERIFICATION_SCREEN_PAY_TEXT,
                     ),
                   ),
                 ),
-                Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: RaisedButton(
-                        // shape: ,
-                        onPressed: () {
-                          _handlePay();
-                        },
-                        child: Text(
-                          "PAY",
-                        ),
-                      ),
-                    ))
-              ],
-            ),
-          )),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 

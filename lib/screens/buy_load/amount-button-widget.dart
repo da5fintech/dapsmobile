@@ -62,26 +62,27 @@ class _AmountButtonWidgetState extends State<AmountButtonWidget> {
       child: Column(
         children: [
           FlatButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-              padding: EdgeInsets.only(left: 5, top: 15, bottom: 15, right: 5),
-              color: color,
-              onPressed: () {
-                widget.onPressed(widget.promo);
-              },
-              child: Column(
-                children: [
-                  Text(
-                    formatterInt.format(widget.promo.amount),
-                    style: font1,
-                  ),
-                  Text(
-                    "PHP",
-                    style: font2,
-                  ),
-                ],
-              ))
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            padding: EdgeInsets.only(left: 5, top: 15, bottom: 15, right: 5),
+            color: color,
+            onPressed: () {
+              widget.onPressed(widget.promo);
+            },
+            child: Column(
+              children: [
+                Text(
+                  formatterInt.format(widget.promo.amount),
+                  style: font1,
+                ),
+                Text(
+                  BUY_LOAD_PHP_TEXT,
+                  style: font2,
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
