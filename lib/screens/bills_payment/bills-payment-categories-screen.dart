@@ -132,7 +132,7 @@ class _BillsPaymentCategoriesScreenState
                                       return showDialog(
                                         context: context,
                                         builder: (context) => CommonAlertDialog(
-                                          message: Text('Are you sure you want to Delete ${biller.name}?'),
+                                          message: Text('${BILLS_PAYMENT_CATEGORIES_SCREEN_DELETE_BILLER_TEXT} ${biller.name}?'),
                                           onOk: () {
                                             store.addBillerService.deleteBiller(biller);
                                             var updateBiller = store.addBillerService.billers;
