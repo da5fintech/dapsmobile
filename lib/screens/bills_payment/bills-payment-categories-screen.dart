@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
+import 'package:swipe/common/common-alert.dialog.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -127,6 +128,20 @@ class _BillsPaymentCategoriesScreenState
                                           ),
                                         );
                                   return GestureDetector(
+                                    onLongPress: () {
+                                      return showDialog(
+                                        context: context,
+                                        builder: (context) => CommonAlertDialog(
+                                          message: Text('Are you sure you want to Delete ${biller.name}?'),
+                                          onOk: () {
+                                            store.addBillerService.deleteBiller(biller);
+                                            var updateBiller = store.addBillerService.billers;
+                                            store.setNewBiller(updateBiller);
+                                            Navigator.pop(context);
+                                          }
+                                        )
+                                      );
+                                    },
                                     onTap: () {
                                       store.selectedBiller = biller;
                                       Get.toNamed('/services/bills-payment/bills-payment-biller-form-screen');
