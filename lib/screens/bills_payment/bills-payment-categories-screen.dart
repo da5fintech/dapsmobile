@@ -1,3 +1,4 @@
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -84,9 +85,8 @@ class _BillsPaymentCategoriesScreenState
                                 maxRadius: 30,
                                 backgroundColor: COLOR_DARK_PURPLE,
                                 child: InkWell(
-                                  onTap: () =>
-                                      Get.toNamed(
-                                          '/services/bills-payment/bills-payment-biller-list-screen'),
+                                  onTap: () => Get.toNamed(
+                                      '/services/bills-payment/bills-payment-biller-list-screen'),
                                   child: CircleAvatar(
                                     maxRadius: 29,
                                     backgroundColor: Colors.white,
@@ -108,37 +108,52 @@ class _BillsPaymentCategoriesScreenState
                           ),
                         ),
                         SizedBox(width: 10),
-                        ...store.addBillerService.billers?.map((biller) {
-                          return Container(
-                            margin: EdgeInsets.only(right: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  maxRadius: 30,
-                                  backgroundColor: COLOR_DARK_PURPLE,
-                                  child: InkWell(
-                                    child: CircleAvatar(
-                                      maxRadius: 29,
-                                      backgroundColor: Colors.white,
-                                      child: Image.asset(biller.imagePath, height: 30, width: 30),
+                        Observer(
+                          builder: (_) => Container(
+                            child: Row(
+                              children: store.savedBillers?.map((biller) {
+                                  var avatar = biller.logo != null
+                                      ? Image.network(biller.logo,
+                                          height: 50, width: 75)
+                                      : CircleAvatar(
+                                          maxRadius: 28,
+                                          backgroundColor: COLOR_DARK_PURPLE,
+                                          child: CircleAvatar(
+                                            backgroundColor:
+                                                Colors.transparent,
+                                            maxRadius: 26,
+                                            child: Text(
+                                                "${biller.name.characters.characterAt(0)}"),
+                                          ),
+                                        );
+                                  return Container(
+                                    margin: EdgeInsets.only(right: 10),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        avatar,
+                                        Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          width: 75,
+                                          child: Center(
+                                            child: Text(
+                                              biller.name,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: GoogleFonts.roboto(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: COLOR_DARK_GRAY),
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text(
-                                    biller.title,
-                                    style: GoogleFonts.roboto(
-                                        color: COLOR_DARK_GRAY,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                )
-                              ],
+                                  );
+                                })?.toList() ?? [],
                             ),
-                          );
-                        })?.toList() ?? [],
+                          ),
+                        ),
                       ],
                     ),
                   )
@@ -164,7 +179,7 @@ class _BillsPaymentCategoriesScreenState
                     ),
                     CategoryButtonWidget(
                       category:
-                      BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
                       onPressed: _handleButtonClick,
                       icon: Image.asset(
                           "assets/icons/services/bills-payment/cable-internet.png"),
@@ -172,7 +187,7 @@ class _BillsPaymentCategoriesScreenState
                     ),
                     CategoryButtonWidget(
                       category:
-                      BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
                       onPressed: _handleButtonClick,
                       icon: Image.asset(
                           "assets/icons/services/bills-payment/electricity.png"),
@@ -187,22 +202,21 @@ class _BillsPaymentCategoriesScreenState
                     ),
                     CategoryButtonWidget(
                       category:
-                      BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
-                      onPressed: (category) =>
-                          Get.toNamed(
-                              '/services/bills-payment/transportation/transportation-categories-screen'),
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
+                      onPressed: (category) => Get.toNamed(
+                          '/services/bills-payment/transportation/transportation-categories-screen'),
                       icon: Image.asset(
                           "assets/icons/services/bills-payment/transportation.png"),
                       text: BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
                     ),
                     CategoryButtonWidget(
                       category:
-                      BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
                       onPressed: _handleButtonClick,
                       icon: Image.asset(
                           "assets/icons/services/bills-payment/credit-card.png"),
                       text:
-                      BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
+                          BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
                     ),
                     CategoryButtonWidget(
                       category: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
@@ -230,8 +244,8 @@ class _BillsPaymentCategoriesScreenState
               ),
             ),
           ],
-        ),)
-      ,
+        ),
+      ),
     );
   }
 
@@ -246,7 +260,7 @@ class _BillsPaymentCategoriesScreenState
       store.selectedBillerCategory = category;
       print(category);
       var billers =
-      await store.billsPaymentService.getBillersByCategory(category);
+          await store.billsPaymentService.getBillersByCategory(category);
       store.billers = billers;
 
       OverlayScreen().pop();

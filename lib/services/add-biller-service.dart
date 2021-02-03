@@ -5,13 +5,14 @@ class AddBillerService {
   ///API add biller service
   ///Save biller for each unique user
 
-  List<SavedBiller> _billers = new List();
+  List<BillerProduct> _billers = new List();
 
-  void AddBiller (SavedBiller biller) {
+  void addBiller (BillerProduct biller) {
     _billers.add(biller);
+    print(_billers.length);
   }
 
-  void DeleteBiller () {
+  void deleteBiller () {
 
   }
 
@@ -19,5 +20,5 @@ class AddBillerService {
     print('test call function');
   }
 
-  List<SavedBiller> get billers => _billers;
+  List<BillerProduct> get billers => _billers;
 }

@@ -196,14 +196,6 @@ class BillerProduct extends ProductModel {
   }
 }
 
-class SavedBiller {
-  String title;
-  String imagePath;
-
-  SavedBiller({ this.title, this.imagePath });
-
-}
-
 class InstapayBankProduct extends ProductModel {
   String accountNumber;
   String recipientName;

@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-biller-form-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-billers-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-categories-screen.dart';
+import 'package:swipe/screens/bills_payment/bills-payment-select-biller-screen.dart';
 import 'package:swipe/screens/bills_payment/bills_payment-biller-list-screen.dart';
 import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
@@ -132,7 +133,10 @@ class _MyAppState extends State<MyApp> {
                     builder: (_) => BillsPaymentBillerFormScreen());
               case '/services/bills-payment/bills-payment-biller-list-screen':
                 return MaterialPageRoute(
-                    builder: (_) => BillsPaymentBillerListScreen());
+                    builder: (_) => BillPaymentBillerListScreen());
+              case '/services/bills-payment/bills-payment-select-biller-screen':
+                return MaterialPageRoute(
+                    builder: (_) => BillsPaymentSelectBillerScreen());
               case '/services/remittance/remittance-categories-screen':
                 return MaterialPageRoute(
                     builder: (_) => RemittanceCategoriesScreen());

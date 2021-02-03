@@ -24,6 +24,8 @@ abstract class _ApplicationStore with Store {
   UserModel user;
   @observable
   double balance = 0;
+  @observable
+  List<BillerProduct> savedBillers;
 
   //used to track user registration
   UserModel registrant;
@@ -101,5 +103,11 @@ abstract class _ApplicationStore with Store {
     this.user = user;
     print('setting user balance ${user.balance}');
     setNewBalance(user.balance);
+  }
+
+  @action
+  setNewBiller(List<BillerProduct> billerProduct) {
+    this.savedBillers = billerProduct;
+    print('new biller is added');
   }
 }

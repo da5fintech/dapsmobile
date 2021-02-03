@@ -3,12 +3,20 @@ import 'package:swipe/common/constants.dart';
 
 List<Map<String, dynamic>> billerList = [
   {
+    'title': BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
+    'imagePath': "assets/icons/services/cash-in.png",
+  },
+  {
     'title': BILLS_PAYMENT_BILLER_ELECTRIC_UTILITIES_TEXT,
     'imagePath': 'assets/icons/services/bills-payment/electricity.png',
   },
   {
     'title': BILLS_PAYMENT_BILLER_WATER_UTILITIES_TEXT,
     'imagePath': 'assets/icons/services/bills-payment/water-utility.png',
+  },
+  {
+    'title': BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
+    'imagePath': 'assets/icons/services/bills-payment/real-estate.png',
   },
   {
     'title': BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
