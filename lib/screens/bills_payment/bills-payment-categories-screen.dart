@@ -126,28 +126,34 @@ class _BillsPaymentCategoriesScreenState
                                                 "${biller.name.characters.characterAt(0)}"),
                                           ),
                                         );
-                                  return Container(
-                                    margin: EdgeInsets.only(right: 10),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        avatar,
-                                        Container(
-                                          padding: EdgeInsets.only(top: 10),
-                                          width: 75,
-                                          child: Center(
-                                            child: Text(
-                                              biller.name,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: GoogleFonts.roboto(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: COLOR_DARK_GRAY),
+                                  return GestureDetector(
+                                    onTap: () {
+                                      store.selectedBiller = biller;
+                                      Get.toNamed('/services/bills-payment/bills-payment-biller-form-screen');
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(right: 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          avatar,
+                                          Container(
+                                            padding: EdgeInsets.only(top: 10),
+                                            width: 75,
+                                            child: Center(
+                                              child: Text(
+                                                biller.name,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: GoogleFonts.roboto(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: COLOR_DARK_GRAY),
+                                              ),
                                             ),
-                                          ),
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   );
                                 })?.toList() ?? [],
