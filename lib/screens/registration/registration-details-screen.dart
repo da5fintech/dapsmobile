@@ -2,12 +2,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../main.dart';
 
@@ -22,8 +24,10 @@ class RegistrationDetailsScreen extends StatefulWidget {
 class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> values = Map<String, dynamic>();
+  var maskFormatter = MaskTextInputFormatter(mask: "##/##/####");
   bool obscureTextPass = true;
   bool obscureTextConPass = true;
+  AppUtil _appUtil = AppUtil();
 
   @override
   void initState() {
@@ -33,7 +37,10 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    double scrollHeight = MediaQuery.of(context).size.height * 0.75;
+    double scrollHeight = MediaQuery
+        .of(context)
+        .size
+        .height * 0.75;
 
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
@@ -127,19 +134,27 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             onSaved: (v) {
                               values["birthdate"] = v;
                             },
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return '${REGISTER_SCREEN_BIRTHDAY_TEXT} is required';
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Birth Date is Required';
                               }
-                              return null;
+                              final components = value.split("/");
+                              if (components.length == 3) {
+                                int month = int.parse(components[0]);
+                                int day = int.parse(components[1]);
+                                int year = int.parse(components[2]);
+                                int dayInMonth = _appUtil.daysInMonth(month, year);
+                                if (day != null && month != null && year != null) {
+                                  if(day > dayInMonth) {
+                                    return 'Invalid Date Input';
+                                  }
+                                  return null;
+                                }
+                              }
+                              return "Wrong Format";
                             },
-                            decoration: InputDecoration(
-                              labelText: REGISTER_SCREEN_BIRTHDAY_TEXT,
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              hintText: REGISTER_SCREEN_BIRTHDAY_FORMAT,
-                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
-                            ),
+                            decoration: InputDecoration(hintText: "MM/DD/YYYY"),
+                            inputFormatters: [maskFormatter],
                           ),
                           TextFormField(
                             keyboardType: TextInputType.phone,
@@ -156,7 +171,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                               errorStyle: TextStyle(fontSize: 12, height: 0.3),
                               labelText: REGISTER_SCREEN_MOBIILE_TEXT,
                               floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              FloatingLabelBehavior.always,
                               prefix: Container(
                                 padding: EdgeInsets.only(right: 10),
                                 decoration: BoxDecoration(
@@ -170,7 +185,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                                 child: Text(
                                   '+63',
                                   style:
-                                      GoogleFonts.roboto(color: Colors.white),
+                                  GoogleFonts.roboto(color: Colors.white),
                                 ),
                               ),
                             ),
@@ -187,7 +202,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             validator: AppUtil().validateEmail,
                             decoration: InputDecoration(
                                 errorStyle:
-                                    TextStyle(fontSize: 12, height: 0.3),
+                                TextStyle(fontSize: 12, height: 0.3),
                                 hintText: "Email"),
                           ),
                           TextFormField(
@@ -204,15 +219,17 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             decoration: InputDecoration(
                               errorStyle: TextStyle(fontSize: 12, height: 0.3),
                               hintText:
-                                  "Create ${REGISTER_SCREEN_PASSWORD_TEXT}",
+                              "Create ${REGISTER_SCREEN_PASSWORD_TEXT}",
                               suffixIcon: IconButton(
-                                onPressed: () => setState(
-                                    () => obscureTextPass = !obscureTextPass),
+                                onPressed: () =>
+                                    setState(
+                                            () =>
+                                        obscureTextPass = !obscureTextPass),
                                 icon: obscureTextPass
                                     ? Icon(Icons.visibility_off,
-                                        color: Colors.white.withOpacity(.6))
+                                    color: Colors.white.withOpacity(.6))
                                     : Icon(Icons.visibility,
-                                        color: Colors.white.withOpacity(.6)),
+                                    color: Colors.white.withOpacity(.6)),
                               ),
                             ),
                           ),
@@ -224,8 +241,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             validator: (text) {
                               if (text == null || text.isEmpty) {
                                 return 'Confirm ${REGISTER_SCREEN_PASSWORD_TEXT} is required';
-                              }
-                              else if(text != values['password']) {
+                              } else if (text != values['password']) {
                                 return 'Confirmation ${REGISTER_SCREEN_PASSWORD_TEXT} not match with ${REGISTER_SCREEN_PASSWORD_TEXT}';
                               }
                               return null;
@@ -233,19 +249,20 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             decoration: InputDecoration(
                               errorStyle: TextStyle(fontSize: 12, height: 0.3),
                               hintText:
-                                  "Confirm ${REGISTER_SCREEN_PASSWORD_TEXT}",
+                              "Confirm ${REGISTER_SCREEN_PASSWORD_TEXT}",
                               suffixIcon: IconButton(
-                                onPressed: () => setState(() =>
+                                onPressed: () =>
+                                    setState(() =>
                                     obscureTextConPass = !obscureTextConPass),
                                 icon: obscureTextConPass
                                     ? Icon(
-                                        Icons.visibility_off,
-                                        color: Colors.white.withOpacity(0.6),
-                                      )
+                                  Icons.visibility_off,
+                                  color: Colors.white.withOpacity(0.6),
+                                )
                                     : Icon(
-                                        Icons.visibility,
-                                        color: Colors.white.withOpacity(0.6),
-                                      ),
+                                  Icons.visibility,
+                                  color: Colors.white.withOpacity(0.6),
+                                ),
                               ),
                             ),
                           )
@@ -297,7 +314,6 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
     bool status = _formKey.currentState.validate();
     _formKey.currentState.save();
     if (status) {
-
       if (store.registrant == null) {
         store.registrant = UserModel(
             isNew: true,
@@ -314,5 +330,3 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
     }
   }
 }
-
-
