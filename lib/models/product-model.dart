@@ -196,6 +196,14 @@ class BillerProduct extends ProductModel {
   }
 }
 
+class SavedBiller {
+  String title;
+  String imagePath;
+
+  SavedBiller({ this.title, this.imagePath });
+
+}
+
 class InstapayBankProduct extends ProductModel {
   String accountNumber;
   String recipientName;
@@ -210,3 +218,4 @@ class AutosweepProduct extends ProductModel {
   AutosweepProduct({@required this.plateNumber})
       : super(name: AUTOSWEEP_PRODUCT_NAME);
 }
+

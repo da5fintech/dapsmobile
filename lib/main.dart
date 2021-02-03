@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-biller-form-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-billers-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-categories-screen.dart';
+import 'package:swipe/screens/bills_payment/bills_payment-biller-list-screen.dart';
 import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
@@ -129,6 +130,9 @@ class _MyAppState extends State<MyApp> {
               case '/services/bills-payment/bills-payment-biller-form-screen':
                 return MaterialPageRoute(
                     builder: (_) => BillsPaymentBillerFormScreen());
+              case '/services/bills-payment/bills-payment-biller-list-screen':
+                return MaterialPageRoute(
+                    builder: (_) => BillsPaymentBillerListScreen());
               case '/services/remittance/remittance-categories-screen':
                 return MaterialPageRoute(
                     builder: (_) => RemittanceCategoriesScreen());
@@ -145,14 +149,11 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(
                     builder: (_) => AutosweepBillerFormScreen());
               case '/services/pay-qr/pay-qr-screen':
-                return MaterialPageRoute(
-                  builder: (_) => PayQRScreen());
+                return MaterialPageRoute(builder: (_) => PayQRScreen());
               case '/services/pay-qr/pay-qr-upload-screen':
-                return MaterialPageRoute(
-                  builder: (_) => PayQrUploadScreen());
+                return MaterialPageRoute(builder: (_) => PayQrUploadScreen());
               case '/services/pay-qr/pay-qr-generate-screen':
-                return MaterialPageRoute(
-                  builder: (_) => PayQrGenerateScreen());
+                return MaterialPageRoute(builder: (_) => PayQrGenerateScreen());
               default:
                 return null;
             }
