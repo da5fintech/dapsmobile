@@ -24,7 +24,6 @@ class LoginMpinScreen extends StatefulWidget {
 
 class _LoginMpinScreenState extends State<LoginMpinScreen> {
   AuthenticationService authenticationService = AuthenticationService();
-  final LocalAuthentication _localAuthentication = LocalAuthentication();
   TextEditingController mpin = TextEditingController();
   bool obscureText = true;
 
