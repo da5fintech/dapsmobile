@@ -45,6 +45,15 @@ const SETTINGS_SCREEN_TITLE = "Settings";
 const SETTINGS_SCREEN_CHANGE_MPIN_TEXT = "Change swipe MPIN";
 const SETTINGS_SCREEN_ACCOUNT_AUTH_TEXT = "Account Authentication";
 const SETTINGS_SCREEN_BIOMETRIC_LOGIN_TEXT = "Biometric Login";
+const SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT = "Biometrics Log in";
+const SETTINGS_SCREEN_BIOMETRIC_BANNER_NOTE_TEXT =
+    "Log in faster to swipe using biometrics";
+const SETTINGS_SCREEN_BIOMETRIC_ENABLE_TEXT = "Enable Biometrics";
+const SETTINGS_SCREEN_BIOMETRIC_DISCLAIMER_TEXT =
+    'By enabling biometrics login, you allow Swipe to access your saved\nbiometrics'
+    'data on your device to create and save data in Swipe that\n'
+    'shall be used for securing your login. The data will not be used for\n'
+    'any other purposes.';
 
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
@@ -198,7 +207,7 @@ const DRAWER_MENU_SCREEN_PROMOS = "Promos";
 const DRAWER_MENU_SCREEN_VOUCHER = "Voucher Pocket";
 const DRAWER_MENU_SCREEN_SETTINGS = "Settings";
 const DRAWER_MENU_SCREEN_HELP = "Help";
-const DRAWER_MENU_SCREEN_LOGOUT= "Log out";
+const DRAWER_MENU_SCREEN_LOGOUT = "Log out";
 
 const BUY_LOAD_TITLE_TEXT = "Buy Load";
 const BUY_LOAD_MOBILE_TEXT = "Mobile";

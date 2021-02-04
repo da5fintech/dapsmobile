@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -46,6 +47,7 @@ class SettingsScreen extends StatelessWidget {
               ),
               Divider(thickness: 0.5),
               ListTile(
+                onTap: () => Get.toNamed('/settings/biometric/biometric-fingerprint-screen'),
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 title: Text(
                   SETTINGS_SCREEN_BIOMETRIC_LOGIN_TEXT,

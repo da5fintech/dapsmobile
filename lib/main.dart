@@ -29,6 +29,7 @@ import 'package:swipe/screens/remittance/instapay/remittance-instapay-bank-form-
 import 'package:swipe/screens/remittance/remittance-categories-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-banks-screen.dart';
 import 'package:swipe/screens/services-screen.dart';
+import 'package:swipe/screens/settings/biometrics/biometric-fingerprint-screen.dart';
 import 'package:swipe/screens/settings/settings-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/screens/transactions/transaction-history-screen.dart';
@@ -108,6 +109,8 @@ class _MyAppState extends State<MyApp> {
                     builder: (_) => TransactionHistoryScreen());
               case '/settings':
                 return MaterialPageRoute(builder: (_) => SettingsScreen());
+              case '/settings/biometric/biometric-fingerprint-screen':
+                return MaterialPageRoute(builder: (_) => BiometricFingerprintScreen());
               case '/services':
                 return MaterialPageRoute(builder: (_) => ServicesScreen());
               case '/services/buy-load/buy-load-recipient-screen':
