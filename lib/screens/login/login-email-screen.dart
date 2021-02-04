@@ -94,6 +94,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                             onSaved: (v) {},
                             validator: _appUtil.validateEmail,
                             decoration: InputDecoration(
+                              errorStyle: TextStyle(color: Constants.COLOR_GRAY),
                               hintText: Constants.LOGIN_EMAIL_SCREEN_EMAIL_TEXT,
                             ),
                           ),
@@ -109,6 +110,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                               return null;
                             },
                             decoration: InputDecoration(
+                              errorStyle: TextStyle(color: Constants.COLOR_GRAY),
                               hintText:
                                   Constants.LOGIN_EMAIL_SCREEN_PASSWORD_TEXT,
                               suffixIcon: IconButton(
@@ -267,7 +269,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
       if (account == null) {
         throw AuthenticationError(message: "Account not found");
       }
-      store.setUser(account);
+      // store.setUser(account);
       Get.toNamed("/services");
     } catch (e) {
       loginError = true;

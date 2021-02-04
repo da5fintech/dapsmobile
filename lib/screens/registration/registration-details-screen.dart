@@ -37,10 +37,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    double scrollHeight = MediaQuery
-        .of(context)
-        .size
-        .height * 0.75;
+    double scrollHeight = MediaQuery.of(context).size.height * 0.75;
 
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
@@ -56,11 +53,13 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('SWIPE',
-                          style: GoogleFonts.roboto(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 15)),
+                      Text(
+                        APP_NAME,
+                        style: GoogleFonts.roboto(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 15),
+                      ),
                       SizedBox(
                         height: 5,
                       ),
@@ -96,7 +95,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             decoration: InputDecoration(
                               hintText: REGISTER_SCREEN_FIRSTNAME_TEXT,
-                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
                             ),
                           ),
                           TextFormField(
@@ -111,7 +111,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             decoration: InputDecoration(
                               hintText: REGISTER_SCREEN_LASTNAME_TEXT,
-                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
                             ),
                           ),
                           TextFormField(
@@ -126,7 +127,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             decoration: InputDecoration(
                               hintText: REGISTER_SCREEN_ADDRESS_TEXT,
-                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
                             ),
                           ),
                           TextFormField(
@@ -143,9 +145,12 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                                 int month = int.parse(components[0]);
                                 int day = int.parse(components[1]);
                                 int year = int.parse(components[2]);
-                                int dayInMonth = _appUtil.daysInMonth(month, year);
-                                if (day != null && month != null && year != null) {
-                                  if(day > dayInMonth) {
+                                int dayInMonth =
+                                    _appUtil.daysInMonth(month, year);
+                                if (day != null &&
+                                    month != null &&
+                                    year != null) {
+                                  if (day > dayInMonth) {
                                     return 'Invalid Date Input';
                                   }
                                   return null;
@@ -153,7 +158,11 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                               }
                               return "Wrong Format";
                             },
-                            decoration: InputDecoration(hintText: "MM/DD/YYYY"),
+                            decoration: InputDecoration(
+                              hintText: "MM/DD/YYYY",
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                            ),
                             inputFormatters: [maskFormatter],
                           ),
                           TextFormField(
@@ -168,10 +177,11 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                               return null;
                             },
                             decoration: InputDecoration(
-                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
                               labelText: REGISTER_SCREEN_MOBIILE_TEXT,
                               floatingLabelBehavior:
-                              FloatingLabelBehavior.always,
+                                  FloatingLabelBehavior.always,
                               prefix: Container(
                                 padding: EdgeInsets.only(right: 10),
                                 decoration: BoxDecoration(
@@ -185,7 +195,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                                 child: Text(
                                   '+63',
                                   style:
-                                  GoogleFonts.roboto(color: Colors.white),
+                                      GoogleFonts.roboto(color: Colors.white),
                                 ),
                               ),
                             ),
@@ -201,8 +211,10 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             },
                             validator: AppUtil().validateEmail,
                             decoration: InputDecoration(
-                                errorStyle:
-                                TextStyle(fontSize: 12, height: 0.3),
+                                errorStyle: TextStyle(
+                                    color: COLOR_GRAY,
+                                    fontSize: 12,
+                                    height: 0.3),
                                 hintText: "Email"),
                           ),
                           TextFormField(
@@ -217,19 +229,18 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                               return null;
                             },
                             decoration: InputDecoration(
-                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
                               hintText:
-                              "Create ${REGISTER_SCREEN_PASSWORD_TEXT}",
+                                  "Create ${REGISTER_SCREEN_PASSWORD_TEXT}",
                               suffixIcon: IconButton(
-                                onPressed: () =>
-                                    setState(
-                                            () =>
-                                        obscureTextPass = !obscureTextPass),
+                                onPressed: () => setState(
+                                    () => obscureTextPass = !obscureTextPass),
                                 icon: obscureTextPass
                                     ? Icon(Icons.visibility_off,
-                                    color: Colors.white.withOpacity(.6))
+                                        color: Colors.white.withOpacity(.6))
                                     : Icon(Icons.visibility,
-                                    color: Colors.white.withOpacity(.6)),
+                                        color: Colors.white.withOpacity(.6)),
                               ),
                             ),
                           ),
@@ -247,22 +258,22 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                               return null;
                             },
                             decoration: InputDecoration(
-                              errorStyle: TextStyle(fontSize: 12, height: 0.3),
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
                               hintText:
-                              "Confirm ${REGISTER_SCREEN_PASSWORD_TEXT}",
+                                  "Confirm ${REGISTER_SCREEN_PASSWORD_TEXT}",
                               suffixIcon: IconButton(
-                                onPressed: () =>
-                                    setState(() =>
+                                onPressed: () => setState(() =>
                                     obscureTextConPass = !obscureTextConPass),
                                 icon: obscureTextConPass
                                     ? Icon(
-                                  Icons.visibility_off,
-                                  color: Colors.white.withOpacity(0.6),
-                                )
+                                        Icons.visibility_off,
+                                        color: Colors.white.withOpacity(0.6),
+                                      )
                                     : Icon(
-                                  Icons.visibility,
-                                  color: Colors.white.withOpacity(0.6),
-                                ),
+                                        Icons.visibility,
+                                        color: Colors.white.withOpacity(0.6),
+                                      ),
                               ),
                             ),
                           )
@@ -291,8 +302,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Help Center"),
-                            Text("v1.1.1"),
+                            Text(APP_HELP_CENTER),
+                            Text(APP_VERSION),
                           ],
                         ),
                       ],
