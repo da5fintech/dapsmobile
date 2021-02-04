@@ -1,11 +1,14 @@
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
+import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
 import 'package:swipe/common/constants.dart' as Constants;
@@ -20,12 +23,26 @@ class LoginMpinScreen extends StatefulWidget {
 }
 
 class _LoginMpinScreenState extends State<LoginMpinScreen> {
+  AuthenticationService authenticationService = AuthenticationService();
   TextEditingController mpin = TextEditingController();
   bool obscureText = true;
 
   @override
   void initState() {
     super.initState();
+    fingerprintAuth();
+  }
+
+  Future<bool> fingerprintAuth () async {
+    bool success = await authenticationService.authFingerprint();
+    if(success) {
+      setState(() {
+        mpin.text = store.user.mpin;
+      });
+      _handleLogin();
+    } else {
+      print('Unauthorized Login');
+    }
   }
 
   @override
