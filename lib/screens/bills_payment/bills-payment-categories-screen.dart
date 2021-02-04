@@ -1,3 +1,4 @@
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -84,9 +85,8 @@ class _BillsPaymentCategoriesScreenState
                                 maxRadius: 30,
                                 backgroundColor: COLOR_DARK_PURPLE,
                                 child: InkWell(
-                                  onTap: () {
-                                    print('Add Biller');
-                                  },
+                                  onTap: () => Get.toNamed(
+                                      '/services/bills-payment/bills-payment-biller-list-screen'),
                                   child: CircleAvatar(
                                     maxRadius: 29,
                                     backgroundColor: Colors.white,
@@ -100,12 +100,60 @@ class _BillsPaymentCategoriesScreenState
                                   BILLS_PAYMENT_CATEGORIES_SCREEN_ADD_BILLER_TEXT,
                                   style: GoogleFonts.roboto(
                                       color: COLOR_DARK_GRAY,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.w500),
                                 ),
                               )
                             ],
                           ),
-                        )
+                        ),
+                        SizedBox(width: 10),
+                        Observer(
+                          builder: (_) => Container(
+                            child: Row(
+                              children: store.savedBillers?.map((biller) {
+                                  var avatar = biller.logo != null
+                                      ? Image.network(biller.logo,
+                                          height: 50, width: 75)
+                                      : CircleAvatar(
+                                          maxRadius: 28,
+                                          backgroundColor: COLOR_DARK_PURPLE,
+                                          child: CircleAvatar(
+                                            backgroundColor:
+                                                Colors.transparent,
+                                            maxRadius: 26,
+                                            child: Text(
+                                                "${biller.name.characters.characterAt(0)}"),
+                                          ),
+                                        );
+                                  return Container(
+                                    margin: EdgeInsets.only(right: 10),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        avatar,
+                                        Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          width: 75,
+                                          child: Center(
+                                            child: Text(
+                                              biller.name,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: GoogleFonts.roboto(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: COLOR_DARK_GRAY),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                })?.toList() ?? [],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   )

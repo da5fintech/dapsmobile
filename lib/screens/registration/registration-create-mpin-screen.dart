@@ -142,11 +142,17 @@ class _RegistrationCreateMpinScreenState
                             return null;
                           },
                           decoration: InputDecoration(
-                              hintText: "Create your ${REGISTER_MPIN_SCREEN_TEXT}",
-                              counterStyle:
-                                  GoogleFonts.roboto(color: Colors.white),
-                              suffixIcon: Icon(Icons.visibility_off,
-                                  color: Colors.white.withOpacity(.6))),
+                            errorStyle: TextStyle(
+                                color: COLOR_GRAY, fontSize: 12),
+                            hintText:
+                                "Create your ${REGISTER_MPIN_SCREEN_TEXT}",
+                            counterStyle:
+                                GoogleFonts.roboto(color: Colors.white),
+                            suffixIcon: Icon(
+                              Icons.visibility_off,
+                              color: Colors.white.withOpacity(.6),
+                            ),
+                          ),
                         ),
                         TextFormField(
                           maxLength: 6,
@@ -164,6 +170,8 @@ class _RegistrationCreateMpinScreenState
                             return null;
                           },
                           decoration: InputDecoration(
+                            errorStyle: TextStyle(
+                                color: COLOR_GRAY, fontSize: 12, height: 0.3),
                             hintText: "Verify ${REGISTER_MPIN_SCREEN_TEXT}",
                             counterStyle:
                                 GoogleFonts.roboto(color: Colors.white),

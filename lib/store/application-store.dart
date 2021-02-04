@@ -7,6 +7,7 @@ import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/account-service.dart';
+import 'package:swipe/services/add-biller-service.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/services/autosweep-service.dart';
 import 'package:swipe/services/bills-payment-service.dart';
@@ -23,6 +24,8 @@ abstract class _ApplicationStore with Store {
   UserModel user;
   @observable
   double balance = 0;
+  @observable
+  List<BillerProduct> savedBillers;
 
   //used to track user registration
   UserModel registrant;
@@ -34,6 +37,7 @@ abstract class _ApplicationStore with Store {
   InstapayService instapayService;
   TransactionService transactionService;
   AutosweepService autosweepService;
+  AddBillerService addBillerService;
 
   bool permissionsGranted;
   SharedPreferences prefs;
@@ -58,6 +62,7 @@ abstract class _ApplicationStore with Store {
     transactionService = TransactionService(accountService: accountService);
     instapayService = InstapayService();
     autosweepService = AutosweepService();
+    addBillerService = AddBillerService();
 
     getIt.registerSingleton(accountService);
     getIt.registerSingleton(eloadingService);
@@ -65,6 +70,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(transactionService);
     getIt.registerSingleton(instapayService);
     getIt.registerSingleton(autosweepService);
+    getIt.registerSingleton(addBillerService);
 
     // user = UserModel(id: "", mpin: "888888");
   }
@@ -97,5 +103,11 @@ abstract class _ApplicationStore with Store {
     this.user = user;
     print('setting user balance ${user.balance}');
     setNewBalance(user.balance);
+  }
+
+  @action
+  setNewBiller(List<BillerProduct> billerProduct) {
+    this.savedBillers = billerProduct;
+    print('new biller is added');
   }
 }
