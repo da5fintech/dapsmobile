@@ -39,6 +39,21 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     });
   }
 
+  final _$savedBillersAtom = Atom(name: '_ApplicationStore.savedBillers');
+
+  @override
+  List<BillerProduct> get savedBillers {
+    _$savedBillersAtom.reportRead();
+    return super.savedBillers;
+  }
+
+  @override
+  set savedBillers(List<BillerProduct> value) {
+    _$savedBillersAtom.reportWrite(value, super.savedBillers, () {
+      super.savedBillers = value;
+    });
+  }
+
   final _$_ApplicationStoreActionController =
       ActionController(name: '_ApplicationStore');
 
@@ -87,10 +102,22 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
   }
 
   @override
+  dynamic setNewBiller(List<BillerProduct> billerProduct) {
+    final _$actionInfo = _$_ApplicationStoreActionController.startAction(
+        name: '_ApplicationStore.setNewBiller');
+    try {
+      return super.setNewBiller(billerProduct);
+    } finally {
+      _$_ApplicationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 user: ${user},
-balance: ${balance}
+balance: ${balance},
+savedBillers: ${savedBillers}
     ''';
   }
 }

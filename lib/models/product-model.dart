@@ -210,3 +210,4 @@ class AutosweepProduct extends ProductModel {
   AutosweepProduct({@required this.plateNumber})
       : super(name: AUTOSWEEP_PRODUCT_NAME);
 }
+
