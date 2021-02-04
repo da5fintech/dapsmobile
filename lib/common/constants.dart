@@ -41,6 +41,11 @@ const REGISTRATION_SCREEN_USER_CREATION_TEXT =
     'We\'ve successfully created your account!';
 const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
 
+const SETTINGS_SCREEN_TITLE = "Settings";
+const SETTINGS_SCREEN_CHANGE_MPIN_TEXT = "Change swipe MPIN";
+const SETTINGS_SCREEN_ACCOUNT_AUTH_TEXT = "Account Authentication";
+const SETTINGS_SCREEN_BIOMETRIC_LOGIN_TEXT = "Biometric Login";
+
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
 const SERVICES_SCREEN_CASH_IN_TEXT = "Cash in";
@@ -194,9 +199,6 @@ const DRAWER_MENU_SCREEN_VOUCHER = "Voucher Pocket";
 const DRAWER_MENU_SCREEN_SETTINGS = "Settings";
 const DRAWER_MENU_SCREEN_HELP = "Help";
 const DRAWER_MENU_SCREEN_LOGOUT= "Log out";
-
-
-
 
 const BUY_LOAD_TITLE_TEXT = "Buy Load";
 const BUY_LOAD_MOBILE_TEXT = "Mobile";

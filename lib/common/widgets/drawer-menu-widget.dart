@@ -260,6 +260,7 @@ class DrawerMenuWidget extends StatelessWidget {
                 thickness: 0.5,
               ),
               ListTile(
+                onTap: () => Get.toNamed('/settings'),
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: Icon(Icons.circle, color: Colors.white),
                 title: Transform(
