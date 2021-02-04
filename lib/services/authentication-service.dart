@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:local_auth/local_auth.dart';
 
 enum LoginProvider {
   GOOGLE,
@@ -11,7 +13,7 @@ enum LoginProvider {
 
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  LocalAuthentication _localAuthentication = LocalAuthentication();
   GoogleSignIn _googleSignIn;
   FacebookLogin _facebookSignIn;
 
@@ -174,5 +176,46 @@ class AuthenticationService {
       print("failed creating email password");
       throw Exception('Error encountered. Please try again.');
     }
+  }
+
+  Future<bool> _isBiometricAvailable() async {
+    bool isAvailable = false;
+    try {
+      isAvailable = await _localAuthentication.canCheckBiometrics;
+    } on PlatformException catch (e) {
+      print(e);
+    }
+
+    isAvailable
+        ? print('Biometric is available!')
+        : print('Biometric is unavailable.');
+
+    return isAvailable;
+  }
+
+  Future<List> _getListOfBiometricTypes() async {
+    List<BiometricType> listOfBiometrics;
+    try {
+      listOfBiometrics = await _localAuthentication.getAvailableBiometrics();
+    } on PlatformException catch (e) {
+      print(e);
+    }
+
+    print(listOfBiometrics);
+    return listOfBiometrics;
+  }
+
+  Future<bool> authFingerprint() async {
+    bool available = await _isBiometricAvailable();
+    if (available) {
+      List biometrics = await _getListOfBiometricTypes();
+      if (biometrics.isNotEmpty) {
+        bool success = await _localAuthentication.authenticateWithBiometrics(
+            localizedReason: 'Use Fingerprint to log in');
+        return success;
+      }
+      return false;
+    }
+    return false;
   }
 }
