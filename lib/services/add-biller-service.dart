@@ -12,8 +12,9 @@ class AddBillerService {
     print(_billers.length);
   }
 
-  void deleteBiller () {
-
+  void deleteBiller (BillerProduct biller) {
+    int index = _billers.indexWhere((b) => b.name == biller.name);
+    _billers.removeAt(index);
   }
 
   void test() {

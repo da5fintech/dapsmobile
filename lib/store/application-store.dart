@@ -108,6 +108,5 @@ abstract class _ApplicationStore with Store {
   @action
   setNewBiller(List<BillerProduct> billerProduct) {
     this.savedBillers = billerProduct;
-    print('new biller is added');
   }
 }

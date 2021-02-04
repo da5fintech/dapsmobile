@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
+import 'package:swipe/common/common-alert.dialog.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -126,28 +127,48 @@ class _BillsPaymentCategoriesScreenState
                                                 "${biller.name.characters.characterAt(0)}"),
                                           ),
                                         );
-                                  return Container(
-                                    margin: EdgeInsets.only(right: 10),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        avatar,
-                                        Container(
-                                          padding: EdgeInsets.only(top: 10),
-                                          width: 75,
-                                          child: Center(
-                                            child: Text(
-                                              biller.name,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: GoogleFonts.roboto(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: COLOR_DARK_GRAY),
-                                            ),
-                                          ),
+                                  return GestureDetector(
+                                    onLongPress: () {
+                                      return showDialog(
+                                        context: context,
+                                        builder: (context) => CommonAlertDialog(
+                                          message: Text('${BILLS_PAYMENT_CATEGORIES_SCREEN_DELETE_BILLER_TEXT} ${biller.name}?'),
+                                          onOk: () {
+                                            store.addBillerService.deleteBiller(biller);
+                                            var updateBiller = store.addBillerService.billers;
+                                            store.setNewBiller(updateBiller);
+                                            Navigator.pop(context);
+                                          }
                                         )
-                                      ],
+                                      );
+                                    },
+                                    onTap: () {
+                                      store.selectedBiller = biller;
+                                      Get.toNamed('/services/bills-payment/bills-payment-biller-form-screen');
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(right: 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          avatar,
+                                          Container(
+                                            padding: EdgeInsets.only(top: 10),
+                                            width: 75,
+                                            child: Center(
+                                              child: Text(
+                                                biller.name,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: GoogleFonts.roboto(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: COLOR_DARK_GRAY),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   );
                                 })?.toList() ?? [],
