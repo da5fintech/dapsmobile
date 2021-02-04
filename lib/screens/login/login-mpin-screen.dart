@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:overlay_screen/overlay_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
@@ -30,7 +31,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
   @override
   void initState() {
     super.initState();
-    fingerprintAuth();
+    print(store.enabledBiometrics);
   }
 
   Future<bool> fingerprintAuth () async {

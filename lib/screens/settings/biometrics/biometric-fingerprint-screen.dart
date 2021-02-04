@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/main.dart';
+import 'package:swipe/services/authentication-service.dart';
+import 'package:swipe/store/application-store.dart';
+
+final store = getIt<ApplicationStore>();
 
 class BiometricFingerprintScreen extends StatefulWidget {
   @override
@@ -12,11 +18,17 @@ class BiometricFingerprintScreen extends StatefulWidget {
 
 class _BiometricFingerprintScreenState
     extends State<BiometricFingerprintScreen> {
-  bool isEnabled = false;
+  AuthenticationService authenticationService = AuthenticationService();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    bool bio = store.enabledBiometrics ?? false;
     ThemeData td = createThemePurpleOnWhite(context);
     return Theme(
       data: td,
@@ -62,12 +74,8 @@ class _BiometricFingerprintScreenState
                     color: Colors.black,
                     fontSize: 14),
               ),
-              value: isEnabled,
-              onChanged: (value) {
-                setState(() {
-                  isEnabled = value;
-                });
-              },
+              value: bio,
+              onChanged: setFingerprint,
             ),
             Divider(thickness: 1),
             Flexible(
@@ -92,5 +100,20 @@ class _BiometricFingerprintScreenState
         ),
       ),
     );
+  }
+
+  void setFingerprint(value) async {
+    try {
+      bool enableBiometrics = await authenticationService.authFingerprint();
+      if(value) {
+        store.setEnabledBiometrics(enableBiometrics);
+        Navigator.pop(context);
+      } else {
+        store.setEnabledBiometrics(false);
+      }
+      return null;
+    } catch(err) {
+      throw err;
+    }
   }
 }

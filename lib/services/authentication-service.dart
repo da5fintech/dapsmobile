@@ -178,7 +178,7 @@ class AuthenticationService {
     }
   }
 
-  Future<bool> _isBiometricAvailable() async {
+  Future<bool> isBiometricAvailable() async {
     bool isAvailable = false;
     try {
       isAvailable = await _localAuthentication.canCheckBiometrics;
@@ -193,7 +193,7 @@ class AuthenticationService {
     return isAvailable;
   }
 
-  Future<List> _getListOfBiometricTypes() async {
+  Future<List> getListOfBiometricTypes() async {
     List<BiometricType> listOfBiometrics;
     try {
       listOfBiometrics = await _localAuthentication.getAvailableBiometrics();
@@ -206,9 +206,9 @@ class AuthenticationService {
   }
 
   Future<bool> authFingerprint() async {
-    bool available = await _isBiometricAvailable();
+    bool available = await isBiometricAvailable();
     if (available) {
-      List biometrics = await _getListOfBiometricTypes();
+      List biometrics = await getListOfBiometricTypes();
       if (biometrics.isNotEmpty) {
         bool success = await _localAuthentication.authenticateWithBiometrics(
             localizedReason: 'Use Fingerprint to log in');

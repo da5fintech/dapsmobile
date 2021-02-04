@@ -54,6 +54,22 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     });
   }
 
+  final _$enabledBiometricsAtom =
+      Atom(name: '_ApplicationStore.enabledBiometrics');
+
+  @override
+  bool get enabledBiometrics {
+    _$enabledBiometricsAtom.reportRead();
+    return super.enabledBiometrics;
+  }
+
+  @override
+  set enabledBiometrics(bool value) {
+    _$enabledBiometricsAtom.reportWrite(value, super.enabledBiometrics, () {
+      super.enabledBiometrics = value;
+    });
+  }
+
   final _$_ApplicationStoreActionController =
       ActionController(name: '_ApplicationStore');
 
@@ -117,7 +133,8 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     return '''
 user: ${user},
 balance: ${balance},
-savedBillers: ${savedBillers}
+savedBillers: ${savedBillers},
+enabledBiometrics: ${enabledBiometrics}
     ''';
   }
 }
