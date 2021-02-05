@@ -51,7 +51,19 @@ class _BiometricFingerprintScreenState
             OverlayScreen().pop();
           },
         )
-      )
+      ),
+      'swipe-dialog-disable': CustomOverlayScreen(
+          backgroundColor: Colors.white.withOpacity(.2),
+          content: SwipeDialog(
+            title: 'Disable Biometrircs Log in',
+            contentMessage: 'Are you sure you want to disable biometrics log in?',
+            cancelBtn: true,
+            onOk: () async {
+              await setFingerprint();
+              OverlayScreen().pop();
+            },
+          )
+      ),
     });
 
     return Theme(
@@ -130,10 +142,19 @@ class _BiometricFingerprintScreenState
 
   void confirmationPopUp (val) {
     setState(() => enableBio = val);
-    OverlayScreen().show(
-      context,
-      identifier: 'swipe-dialog-confirmation',
-    );
+    if(val) {
+      OverlayScreen().show(
+        context,
+        identifier: 'swipe-dialog-confirmation',
+      );
+    } else {
+      OverlayScreen().show(
+        context,
+        identifier: 'swipe-dialog-disable',
+      );
+
+    }
+
   }
 
   void setFingerprint() async {
