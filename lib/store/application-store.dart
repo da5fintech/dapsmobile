@@ -56,6 +56,7 @@ abstract class _ApplicationStore with Store {
 
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
+    enabledBiometrics = prefs.getBool('biometrics') ?? false;
 
     authService = AuthenticationService();
     accountService = AccountService();

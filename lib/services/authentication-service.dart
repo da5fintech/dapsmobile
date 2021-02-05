@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum LoginProvider {
   GOOGLE,
@@ -217,5 +218,11 @@ class AuthenticationService {
       return false;
     }
     return false;
+  }
+
+  Future<bool> getBio () async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool a = prefs.getBool('biometrics');
+    return a;
   }
 }

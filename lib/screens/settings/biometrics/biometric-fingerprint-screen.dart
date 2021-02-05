@@ -23,13 +23,21 @@ class _BiometricFingerprintScreenState
   @override
   void initState() {
     super.initState();
+    getBio();
   }
+
+  void getBio () async {
+    bool isEnabled = await authenticationService.getBio() ?? false;
+    store.setEnabledBiometrics(isEnabled);
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    bool bio = store.enabledBiometrics ?? false;
     ThemeData td = createThemePurpleOnWhite(context);
+
     return Theme(
       data: td,
       child: Scaffold(
@@ -66,16 +74,18 @@ class _BiometricFingerprintScreenState
                 ),
               ),
             ),
-            SwitchListTile(
-              title: Text(
-                SETTINGS_SCREEN_BIOMETRIC_ENABLE_TEXT,
-                style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontSize: 14),
+            Observer(
+              builder: (_) => SwitchListTile(
+                title: Text(
+                  SETTINGS_SCREEN_BIOMETRIC_ENABLE_TEXT,
+                  style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      fontSize: 14),
+                ),
+                value: store.enabledBiometrics,
+                onChanged: setFingerprint,
               ),
-              value: bio,
-              onChanged: setFingerprint,
             ),
             Divider(thickness: 1),
             Flexible(
@@ -105,9 +115,9 @@ class _BiometricFingerprintScreenState
   void setFingerprint(value) async {
     try {
       bool enableBiometrics = await authenticationService.authFingerprint();
+      print('fingerprint $enableBiometrics');
       if(value) {
         store.setEnabledBiometrics(enableBiometrics);
-        Navigator.pop(context);
       } else {
         store.setEnabledBiometrics(false);
       }
