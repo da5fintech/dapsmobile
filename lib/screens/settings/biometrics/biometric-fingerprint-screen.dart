@@ -30,7 +30,7 @@ class _BiometricFingerprintScreenState
     getBio();
   }
 
-  void getBio () async {
+  void getBio() async {
     bool isEnabled = await authenticationService.getBio() ?? false;
     store.setEnabledBiometrics(isEnabled);
   }
@@ -45,28 +45,35 @@ class _BiometricFingerprintScreenState
         backgroundColor: Colors.white.withOpacity(.2),
         content: SwipeDialog(
           title: 'Confirmation',
-          contentMessage: 'Swipe would like to use your Biometrics for the additional Security.',
+          contentMessage:
+              'Swipe would like to use your Biometrics for the additional Security.',
           cancelBtn: true,
           onOk: () async {
             OverlayScreen().pop();
-            Navigator.push(context, MaterialPageRoute(builder: (_) => BiometricOtpScreen(
-
-
-            )));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => BiometricOtpScreen(
+                  onOk: () async {
+                    await setFingerprint();
+                  },
+                ),
+              ),
+            );
           },
-        )
+        ),
       ),
       'swipe-dialog-disable': CustomOverlayScreen(
-          backgroundColor: Colors.white.withOpacity(.2),
-          content: SwipeDialog(
-            title: 'Disable Biometrircs Log in',
-            contentMessage: 'Are you sure you want to disable biometrics log in?',
-            cancelBtn: true,
-            onOk: () async {
-              await setFingerprint();
-              OverlayScreen().pop();
-            },
-          )
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: SwipeDialog(
+          title: 'Disable Biometrircs Log in',
+          contentMessage: 'Are you sure you want to disable biometrics log in?',
+          cancelBtn: true,
+          onOk: () async {
+            await setFingerprint();
+            OverlayScreen().pop();
+          },
+        ),
       ),
     });
 
@@ -144,9 +151,9 @@ class _BiometricFingerprintScreenState
     );
   }
 
-  void confirmationPopUp (val) {
+  void confirmationPopUp(val) {
     setState(() => enableBio = val);
-    if(val) {
+    if (val) {
       OverlayScreen().show(
         context,
         identifier: 'swipe-dialog-confirmation',
@@ -156,22 +163,20 @@ class _BiometricFingerprintScreenState
         context,
         identifier: 'swipe-dialog-disable',
       );
-
     }
-
   }
 
   void setFingerprint() async {
     try {
       bool enableBiometrics = await authenticationService.authFingerprint();
       print('fingerprint $enableBiometrics');
-      if(enableBio) {
+      if (enableBio) {
         store.setEnabledBiometrics(enableBiometrics);
       } else {
         store.setEnabledBiometrics(false);
       }
       return null;
-    } catch(err) {
+    } catch (err) {
       throw err;
     }
   }
