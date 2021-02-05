@@ -61,6 +61,11 @@ const SETTINGS_SCREEN_BIOMETRIC_OTP_SEND = "We've sent a 6-digit Authentication 
 const SETTINGS_SCREEN_BIOMETRIC_OTP_NEW_CODE = "Need new Code?";
 const SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE = "Resend Code";
 const SETTINGS_SCREEN_BIOMETRIC_OTP_ENROLL_NOW = "ENROLL NOW";
+const SETTINGS_SCREEN_SWIPE_DIALOG_CONFIRMATION = "Confirmation";
+const SETTINGS_SCREEN_SWIPE_BIOMETRIC_NOTE_TEXT = "Swipe would like to use your Biometrics for the additional Security.";
+const SETTINGS_SCREEN_SWIPE_FACEID_NOTE_TEXT = "Swipe would like to use your face ID for the additional Security.";
+const SETTINGS_SCREEN_SWIPE_DISABLE_TEXT = "Disable Biometrics Log in";
+const SETTINGS_SCREEN_SWIPE_DISABLE_CONFIRMATION_TEXT = "Are you sure you want to disable biometrics log in?";
 
 
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";

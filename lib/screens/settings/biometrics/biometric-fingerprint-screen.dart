@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,9 +45,10 @@ class _BiometricFingerprintScreenState
       'swipe-dialog-confirmation': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
         content: SwipeDialog(
-          title: 'Confirmation',
-          contentMessage:
-              'Swipe would like to use your Biometrics for the additional Security.',
+          title: SETTINGS_SCREEN_SWIPE_DIALOG_CONFIRMATION,
+          contentMessage: Platform.isAndroid
+              ? SETTINGS_SCREEN_SWIPE_BIOMETRIC_NOTE_TEXT
+              : SETTINGS_SCREEN_SWIPE_FACEID_NOTE_TEXT,
           cancelBtn: true,
           onOk: () async {
             OverlayScreen().pop();
@@ -66,8 +68,8 @@ class _BiometricFingerprintScreenState
       'swipe-dialog-disable': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
         content: SwipeDialog(
-          title: 'Disable Biometrircs Log in',
-          contentMessage: 'Are you sure you want to disable biometrics log in?',
+          title: SETTINGS_SCREEN_SWIPE_DISABLE_TEXT,
+          contentMessage: SETTINGS_SCREEN_SWIPE_DISABLE_CONFIRMATION_TEXT,
           cancelBtn: true,
           onOk: () async {
             await setFingerprint();
@@ -91,16 +93,17 @@ class _BiometricFingerprintScreenState
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/icons/biometrics/fingerprint.png',
-                    ),
-                    Text(SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT,
-                        style: GoogleFonts.roboto(
+                    Platform.isAndroid
+                        ? Image.asset('assets/icons/biometrics/fingerprint.png')
+                        : Image.asset('assets/icons/biometrics/faceid.png'),
+                    Text(
+                      SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT,
+                      style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
                           height: 4,
-                          color: Colors.black,
-                        )),
+                          color: Colors.black),
+                    ),
                     Text(
                       SETTINGS_SCREEN_BIOMETRIC_BANNER_NOTE_TEXT,
                       style: GoogleFonts.roboto(
