@@ -236,6 +236,10 @@ const BUY_LOAD_AMOUNT_SCREEN_AMOUNT_TEXT = "Amount";
 const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION = "Enter amount between 10-1000";
 const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION_OR = "or choose denomination below:";
 
+const SOON_RELEASED_SCREEN_FEATURED_TEXT = "Feature not yet released";
+const SOON_RELEASED_SCREEN_NOTE_TEXT = "Soon to be released!\nPlease Wait for the updates.";
+const SOON_RELEASED_SCREEN_OK_TEXT = "OK";
+
 const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);

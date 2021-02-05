@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 
 import 'package:swipe/common/widgets/amount-widget.dart';
 import 'package:swipe/common/widgets/drawer-menu-widget.dart';
+import 'package:swipe/common/widgets/soon-release-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/main-app-bar.widget.dart';
 import 'package:swipe/common/widgets/service-button.dart';
@@ -31,6 +33,17 @@ class _ServicesScreenState extends State<ServicesScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
+    OverlayScreen().saveScreens({
+      'oncoming-update': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: SoonReleaseDialog(
+          onOk: () {
+            OverlayScreen().pop();
+          },
+        ),
+      )
+    });
 
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
@@ -134,7 +147,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   ServiceButtonWidget(
                     offering: SwipeServiceOffering.CASH_IN,
                     onPressed: _handleButtonClick,
-                    icon: Image.asset('assets/icons/services/cash-in.png'),
+                    // icon: Image.asset('assets/icons/services/cash-in.png'),
+                    icon: ImageIcon(
+                      AssetImage('assets/icons/services/cash-in.png'),
+                      size: 26,
+                      color: COLOR_DARK_GRAY,
+                    ),
                     text: SERVICES_SCREEN_CASH_IN_TEXT,
                   ),
                   ServiceButtonWidget(
@@ -146,8 +164,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   ServiceButtonWidget(
                     offering: SwipeServiceOffering.BANK_TRANSFER,
                     onPressed: _handleButtonClick,
-                    icon:
-                        Image.asset('assets/icons/services/bank-transfer.png'),
+                    // icon:
+                    //     Image.asset('assets/icons/services/bank-transfer.png'),
+                    icon: ImageIcon(
+                      AssetImage('assets/icons/services/bank-transfer.png'),
+                      size: 26,
+                      color: COLOR_DARK_GRAY,
+                    ),
                     text: SERVICES_SCREEN_BANK_TRANSFER_TEXT,
                   ),
                   ServiceButtonWidget(
@@ -165,26 +188,46 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   ServiceButtonWidget(
                     offering: SwipeServiceOffering.REQUEST_MONEY,
                     onPressed: _handleButtonClick,
-                    icon:
-                        Image.asset('assets/icons/services/request-money.png'),
+                    // icon:
+                    //     Image.asset('assets/icons/services/request-money.png'),
+                    icon: ImageIcon(
+                      AssetImage('assets/icons/services/request-money.png'),
+                      size: 26,
+                      color: COLOR_DARK_GRAY,
+                    ),
                     text: SERVICES_SCREEN_REQUEST_MONEY_TEXT,
                   ),
                   ServiceButtonWidget(
                     offering: SwipeServiceOffering.PAY_QR,
                     onPressed: _handleButtonClick,
-                    icon: Image.asset('assets/icons/services/pay-qr.png'),
+                    // icon: Image.asset('assets/icons/services/pay-qr.png'),
+                    icon: ImageIcon(
+                      AssetImage('assets/icons/services/pay-qr.png'),
+                      size: 26,
+                      color: COLOR_DARK_GRAY,
+                    ),
                     text: SERVICES_SCREEN_PAY_QR_TEXT,
                   ),
                   ServiceButtonWidget(
                     offering: SwipeServiceOffering.INSURANCE,
                     onPressed: _handleButtonClick,
-                    icon: Image.asset('assets/icons/services/insurance.png'),
+                    // icon: Image.asset('assets/icons/services/insurance.png'),
+                    icon: ImageIcon(
+                      AssetImage('assets/icons/services/insurance.png'),
+                      size: 26,
+                      color: COLOR_DARK_GRAY,
+                    ),
                     text: SERVICES_SCREEN_INSURANCE_TEXT,
                   ),
                   ServiceButtonWidget(
                     offering: SwipeServiceOffering.MORE,
                     onPressed: _handleButtonClick,
-                    icon: Image.asset('assets/icons/services/more.png'),
+                    // icon: Image.asset('assets/icons/services/more.png'),
+                    icon: ImageIcon(
+                      AssetImage('assets/icons/services/more.png'),
+                      size: 26,
+                      color: COLOR_DARK_GRAY,
+                    ),
                     text: SERVICES_SCREEN_MORE_TEXT,
                   ),
                 ],
@@ -275,8 +318,14 @@ class _ServicesScreenState extends State<ServicesScreen> {
       Get.toNamed("/services/bills-payment/bills-payment-categories-screen");
     } else if (offering == SwipeServiceOffering.REMITTANCE) {
       Get.toNamed("/services/remittance/remittance-categories-screen");
-    } else if(offering == SwipeServiceOffering.PAY_QR) {
-      Get.toNamed("/services/pay-qr/pay-qr-screen");
+    } else {
+      OverlayScreen().show(
+        context,
+        identifier: 'oncoming-update',
+      );
     }
+    // } else if(offering == SwipeServiceOffering.PAY_QR) {
+    //   Get.toNamed("/services/pay-qr/pay-qr-screen");
+    // }
   }
 }
