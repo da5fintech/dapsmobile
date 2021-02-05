@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
@@ -19,6 +21,7 @@ class BiometricFingerprintScreen extends StatefulWidget {
 class _BiometricFingerprintScreenState
     extends State<BiometricFingerprintScreen> {
   AuthenticationService authenticationService = AuthenticationService();
+  bool enableBio;
 
   @override
   void initState() {
@@ -31,12 +34,25 @@ class _BiometricFingerprintScreenState
     store.setEnabledBiometrics(isEnabled);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
+
+    OverlayScreen().saveScreens({
+      'swipe-dialog-confirmation': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: SwipeDialog(
+          title: 'Confirmation',
+          contentMessage: 'Swipe would like to use your Biometrics for the additional Security.',
+          cancelBtn: true,
+          onOk: () async {
+            await setFingerprint();
+            OverlayScreen().pop();
+          },
+        )
+      )
+    });
 
     return Theme(
       data: td,
@@ -84,7 +100,7 @@ class _BiometricFingerprintScreenState
                       fontSize: 14),
                 ),
                 value: store.enabledBiometrics,
-                onChanged: setFingerprint,
+                onChanged: confirmationPopUp,
               ),
             ),
             Divider(thickness: 1),
@@ -112,11 +128,19 @@ class _BiometricFingerprintScreenState
     );
   }
 
-  void setFingerprint(value) async {
+  void confirmationPopUp (val) {
+    setState(() => enableBio = val);
+    OverlayScreen().show(
+      context,
+      identifier: 'swipe-dialog-confirmation',
+    );
+  }
+
+  void setFingerprint() async {
     try {
       bool enableBiometrics = await authenticationService.authFingerprint();
       print('fingerprint $enableBiometrics');
-      if(value) {
+      if(enableBio) {
         store.setEnabledBiometrics(enableBiometrics);
       } else {
         store.setEnabledBiometrics(false);

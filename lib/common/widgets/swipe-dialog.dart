@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 
 class SwipeDialog extends StatelessWidget {
   final Function onOk;
   final String title;
   final String contentMessage;
+  bool cancelBtn = false;
 
-  SwipeDialog(
-      {@required this.onOk,
-      @required this.title,
-      @required this.contentMessage});
+  SwipeDialog({
+    @required this.onOk,
+    @required this.title,
+    @required this.contentMessage,
+    this.cancelBtn,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class SwipeDialog extends StatelessWidget {
       actionsPadding: EdgeInsets.symmetric(vertical: 15),
       backgroundColor: Colors.white,
       titlePadding: EdgeInsets.only(top: 20, left: 20, right: 20),
-      contentPadding: EdgeInsets.only(top: 30, left: 20, right: 30),
+      contentPadding: EdgeInsets.only(top: 15, left: 20, right: 30, bottom: 20),
       title: Row(
         children: [
           Text(
@@ -50,6 +54,7 @@ class SwipeDialog extends StatelessWidget {
               child: ButtonTheme(
                 buttonColor: COLOR_DARK_PURPLE,
                 child: RaisedButton(
+                  elevation: 0,
                   onPressed: () {
                     onOk();
                   },
@@ -64,6 +69,34 @@ class SwipeDialog extends StatelessWidget {
                 ),
               ),
             ),
+            if(cancelBtn) ...[
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                width: MediaQuery.of(context).size.width,
+                child: ButtonTheme(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                    side: BorderSide(
+                      color: COLOR_DARK_PURPLE,
+                    ),
+                  ),
+                  child: RaisedButton(
+                    elevation: 0,
+                    onPressed: () {
+                      OverlayScreen().pop();
+                    },
+                    child: Text(
+                      'CANCEL',
+                      style: GoogleFonts.roboto(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: COLOR_DARK_PURPLE,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ]
           ],
         )
       ],
