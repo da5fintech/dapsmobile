@@ -55,6 +55,13 @@ const SETTINGS_SCREEN_BIOMETRIC_DISCLAIMER_TEXT =
     'data on your device to create and save data in Swipe that\n'
     'shall be used for securing your login. The data will not be used for\n'
     'any other purposes.';
+const SETTINGS_SCREEN_BIOMETRIC_OTP_GREET = "Fantastic!";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_LIMIT = "Please enter your 6-digit OTP!";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_SEND = "We've sent a 6-digit Authentication code on your registered mobile number.";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_NEW_CODE = "Need new Code?";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE = "Resend Code";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_ENROLL_NOW = "ENROLL NOW";
+
 
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";

@@ -7,6 +7,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/main.dart';
+import 'package:swipe/screens/settings/biometrics/biometric-otp-screen.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
 
@@ -47,8 +48,11 @@ class _BiometricFingerprintScreenState
           contentMessage: 'Swipe would like to use your Biometrics for the additional Security.',
           cancelBtn: true,
           onOk: () async {
-            await setFingerprint();
             OverlayScreen().pop();
+            Navigator.push(context, MaterialPageRoute(builder: (_) => BiometricOtpScreen(
+
+
+            )));
           },
         )
       ),
