@@ -26,6 +26,8 @@ abstract class _ApplicationStore with Store {
   double balance = 0;
   @observable
   List<BillerProduct> savedBillers;
+  @observable
+  bool enabledBiometrics;
 
   //used to track user registration
   UserModel registrant;
@@ -54,6 +56,7 @@ abstract class _ApplicationStore with Store {
 
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
+    enabledBiometrics = prefs.getBool('biometrics') ?? false;
 
     authService = AuthenticationService();
     accountService = AccountService();
@@ -78,6 +81,11 @@ abstract class _ApplicationStore with Store {
   setPermissionsGranted() {
     permissionsGranted = true;
     prefs.setBool('permissionGranted', true);
+  }
+
+  setEnabledBiometrics (bool isEnabled) {
+    this.enabledBiometrics = isEnabled;
+    prefs.setBool('biometrics', isEnabled);
   }
 
   @action
@@ -108,6 +116,5 @@ abstract class _ApplicationStore with Store {
   @action
   setNewBiller(List<BillerProduct> billerProduct) {
     this.savedBillers = billerProduct;
-    print('new biller is added');
   }
 }

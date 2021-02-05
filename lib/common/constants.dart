@@ -41,12 +41,26 @@ const REGISTRATION_SCREEN_USER_CREATION_TEXT =
     'We\'ve successfully created your account!';
 const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
 
+const SETTINGS_SCREEN_TITLE = "Settings";
+const SETTINGS_SCREEN_CHANGE_MPIN_TEXT = "Change swipe MPIN";
+const SETTINGS_SCREEN_ACCOUNT_AUTH_TEXT = "Account Authentication";
+const SETTINGS_SCREEN_BIOMETRIC_LOGIN_TEXT = "Biometric Login";
+const SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT = "Biometrics Log in";
+const SETTINGS_SCREEN_BIOMETRIC_BANNER_NOTE_TEXT =
+    "Log in faster to swipe using biometrics";
+const SETTINGS_SCREEN_BIOMETRIC_ENABLE_TEXT = "Enable Biometrics";
+const SETTINGS_SCREEN_BIOMETRIC_DISCLAIMER_TEXT =
+    'By enabling biometrics login, you allow Swipe to access your saved\nbiometrics'
+    'data on your device to create and save data in Swipe that\n'
+    'shall be used for securing your login. The data will not be used for\n'
+    'any other purposes.';
+
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
 const SERVICES_SCREEN_CASH_IN_TEXT = "Cash in";
 const SERVICES_SCREEN_REMITTANCE_TEXT = "Remittance";
 const SERVICES_SCREEN_BANK_TRANSFER_TEXT = "Back Transfer";
-const SERVICES_SCREEN_BUY_LOAD_TEXT = "BuY Load";
+const SERVICES_SCREEN_BUY_LOAD_TEXT = "Buy Load";
 const SERVICES_SCREEN_PAY_BILLS_TEXT = "Pay Bills";
 const SERVICES_SCREEN_REQUEST_MONEY_TEXT = "Request Money";
 const SERVICES_SCREEN_PAY_QR_TEXT = "Pay QR";
@@ -65,6 +79,7 @@ const BILLS_PAYMENT_SCREEN_IMMEDIATE_POST_TEXT =
 const BILLS_PAYMENT_BILLER_SCREEN_ALL_BILLERS_TEXT = "All Billers";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_SAVED_BILLERS_TEXT = "Saved Biller(s)";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_ADD_BILLER_TEXT = "Add Biller";
+const BILLS_PAYMENT_CATEGORIES_SCREEN_DELETE_BILLER_TEXT = "Are you sure you want to Delete";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT = "Airlines";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT = "Cable / Internet";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT = "Electricity";
@@ -90,7 +105,7 @@ const BILLS_PAYMENT_BILLER_ELECTRIC_UTILITIES_TEXT = "Electric";
 const BILLS_PAYMENT_BILLER_WATER_UTILITIES_TEXT = "Water";
 const BILLS_PAYMENT_BILLER_LOANS_TEXT = "Loans";
 const BILLS_PAYMENT_BILLER_CREDIT_CARD_TEXT = "Credit Card";
-const BILLS_PAYMENT_BILLER_TELECOM_TEXT = "TELECOM";
+const BILLS_PAYMENT_BILLER_TELECOM_TEXT = "Telecom";
 const BILLS_PAYMENT_BILLER_GOVERMENT_TEXT = "Government";
 const BILLS_PAYMENT_BILLER_INSURANCE_TEXT = "Insurance";
 const BILLS_PAYMENT_BILLER_SCHOOLS_TEXT = "SCHOOLS";
@@ -207,10 +222,7 @@ const DRAWER_MENU_SCREEN_PROMOS = "Promos";
 const DRAWER_MENU_SCREEN_VOUCHER = "Voucher Pocket";
 const DRAWER_MENU_SCREEN_SETTINGS = "Settings";
 const DRAWER_MENU_SCREEN_HELP = "Help";
-const DRAWER_MENU_SCREEN_LOGOUT= "Log out";
-
-
-
+const DRAWER_MENU_SCREEN_LOGOUT = "Log out";
 
 const BUY_LOAD_TITLE_TEXT = "Buy Load";
 const BUY_LOAD_MOBILE_TEXT = "Mobile";
