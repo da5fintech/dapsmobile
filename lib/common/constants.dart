@@ -49,6 +49,7 @@ const SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT = "Biometrics Log in";
 const SETTINGS_SCREEN_BIOMETRIC_BANNER_NOTE_TEXT =
     "Log in faster to swipe using biometrics";
 const SETTINGS_SCREEN_BIOMETRIC_ENABLE_TEXT = "Enable Biometrics";
+const SETTINGS_SCREEN_BIOMETRIC_NOT_AVAILABLE = "Biometrics is not available on your device.";
 const SETTINGS_SCREEN_BIOMETRIC_DISCLAIMER_TEXT =
     'By enabling biometrics login, you allow Swipe to access your saved\nbiometrics'
     'data on your device to create and save data in Swipe that\n'
