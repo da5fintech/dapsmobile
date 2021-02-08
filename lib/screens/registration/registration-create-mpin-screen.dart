@@ -126,6 +126,8 @@ class _RegistrationCreateMpinScreenState
                         TextFormField(
                           maxLength: 6,
                           keyboardType: TextInputType.number,
+                          autofocus: true,
+                          textInputAction: TextInputAction.next,
                           obscureText: obscurePin,
                           controller: mpin,
                           onSaved: (v) {
@@ -159,6 +161,10 @@ class _RegistrationCreateMpinScreenState
                           keyboardType: TextInputType.number,
                           obscureText: obscureVerifyPin,
                           controller: confirmMpin,
+                          onFieldSubmitted: (val) {
+                            FocusScope.of(context).unfocus();
+                            _handleRegister();
+                          },
                           validator: (text) {
                             if (text == null || text.isEmpty) {
                               return 'Confirm ${REGISTER_MPIN_SCREEN_TEXT} is required';
