@@ -51,6 +51,7 @@ class _SubAppbarWidgetState extends State<SubAppbarWidget> {
         onPressed: () {
           isSearching = false;
           controller.text = "";
+          widget.onSearch("");
           setState(() {});
         });
     actions = widget.actions;

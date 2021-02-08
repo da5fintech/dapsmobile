@@ -20,6 +20,7 @@ class TransactionHistoryScreen extends StatefulWidget {
 class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
   List<TransactionRecordModel> transactions = [];
   List<TransactionRecordModel> filteredTransactions = [];
+  List<TransactionRecordModel> searchResults = [];
   TextEditingController searchController = TextEditingController();
   bool isSearch = false;
   String activeButton = TRANSACTION_HISTORY_SCREEN_BUTTON_ALL_TEXT;
@@ -71,16 +72,16 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
         appBar: SubAppbarWidget(
           title: TRANSACTION_HISTORY_SCREEN_TITLE_TEXT,
           enableSearch: true,
-          onSearch: (text) {
-            print("searching ${text}");
-            // filteredBillers = transactions.where((element) {
-            //   return element.name
-            //       .toLowerCase()
-            //       .contains(text.toString().toLowerCase());
-            // }).toList();
-
-            setState(() {});
-          },
+            onSearch: (text) {
+              print("searching ${text}");
+              setState(() {
+                filteredTransactions = text == "" ?
+                transactions :
+                transactions.where((el) =>
+                    el.product.toLowerCase().contains(
+                        text.toString().toLowerCase())).toList();
+              });
+            },
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -95,11 +96,9 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                physics: AlwaysScrollableScrollPhysics(),
-                itemCount: filteredTransactions.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
+              child: ListView(
+                children: filteredTransactions?.map((transaction) {
+                  return  GestureDetector(
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
@@ -123,8 +122,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                                     height: 5,
                                   ),
                                   Text(
-                                    filteredTransactions[index]
-                                        .transactionTypePretty,
+                                    '${transaction.transactionTypePretty} (${transaction.product})',
                                     style: GoogleFonts.roboto(
                                         color: Colors.black.withOpacity(.87),
                                         fontSize: 12,
@@ -135,7 +133,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                                   ),
                                   Text(
                                     dateformatter.format(
-                                        filteredTransactions[index]
+                                       transaction
                                             .creationDate),
                                     style: GoogleFonts.roboto(
                                         color: Colors.black.withOpacity(.87),
@@ -159,7 +157,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                                 ),
                                 Text(
                                   formatter.format(
-                                      filteredTransactions[index].totalAmount *
+                                      transaction.totalAmount *
                                           -1),
                                   style: GoogleFonts.roboto(
                                       color: Colors.black.withOpacity(.87),
@@ -186,11 +184,11 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                       ),
                     ),
                     onTap: () {
-                      _handleTap(filteredTransactions[index]);
+                      _handleTap(transaction);
                     },
                   );
-                },
-              ),
+                })?.toList() ?? [],
+              )
             ),
           ],
         ),
