@@ -10,6 +10,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/amount-widget.dart';
 import 'package:swipe/common/widgets/drawer-menu-widget.dart';
 import 'package:swipe/common/widgets/soon-release-dialog.dart';
+import 'package:swipe/services/account-service.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/main-app-bar.widget.dart';
 import 'package:swipe/common/widgets/service-button.dart';
@@ -24,6 +25,7 @@ class ServicesScreen extends StatefulWidget {
 }
 
 class _ServicesScreenState extends State<ServicesScreen> {
+  GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
   @override
   void initState() {
     super.initState();
@@ -32,7 +34,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
     OverlayScreen().saveScreens({
       'oncoming-update': CustomOverlayScreen(
@@ -44,10 +45,10 @@ class _ServicesScreenState extends State<ServicesScreen> {
         ),
       )
     });
-
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
       key: _drawerKey,
+
       drawer: DrawerMenuWidget(),
       appBar: MainAppBarWidget(
         elevation: 0,

@@ -4,12 +4,68 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/models/transaction-model.dart';
+import 'package:swipe/services/account-service.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
 
 final store = getIt<ApplicationStore>();
 
-class DrawerMenuWidget extends StatelessWidget {
+class DrawerMenuWidget extends StatefulWidget {
+  @override
+  _DrawerMenuWidgetState createState() => _DrawerMenuWidgetState();
+}
+
+class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
+  List<TransactionRecordModel> transactions = [];
+  int verificationLevel = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => isUserVerified());
+  }
+
+  void isUserVerified() async {
+    //Get transaction history.
+    List<TransactionRecordModel> records =
+        await store.accountService.getTransactionRecords(store.user.id);
+    List a = records?.map((record) => record.transactionType)?.toList() ?? [];
+    //Transaction type check
+    if (a.contains('SwipeServiceOffering.BILLS_PAYMENT') &&
+        a.contains('SwipeServiceOffering.BANK_TRANSFER')) {
+      setState(() => verificationLevel++);
+      if (a.contains('SwipeServiceOffering.REMITTANCE') ||
+          a.contains('SwipeServiceOffering.REMITTANCE_INSTAPAY')) {
+        setState(() => verificationLevel++);
+      }
+    }
+
+    setState(() {});
+  }
+
+  Widget isVerifiedIcon({bool isVerified, String title}) {
+    return Column(
+      children: [
+        CircleAvatar(
+          maxRadius: 10,
+          backgroundColor: isVerified ? COLOR_GREEN : COLOR_DANGER,
+          child: isVerified
+              ? Icon(Icons.check, color: Colors.white, size: 12)
+              : Icon(Icons.close, color: Colors.white, size: 12),
+        ),
+        Text(
+          title,
+          style: GoogleFonts.roboto(
+              height: 2,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: Colors.white),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -98,60 +154,15 @@ class DrawerMenuWidget extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Column(
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 10,
-                                    backgroundColor: COLOR_GREEN,
-                                    child: Icon(Icons.check,
-                                        color: Colors.white, size: 12),
-                                  ),
-                                  Text(
-                                    DRAWER_MENU_SCREEN_BASIC_LEVEL,
-                                    style: GoogleFonts.roboto(
-                                        height: 2,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 10,
-                                    backgroundColor: COLOR_GREEN,
-                                    child: Icon(Icons.check,
-                                        color: Colors.white, size: 12),
-                                  ),
-                                  Text(
-                                    DRAWER_MENU_SCREEN_SEMI_VERIFIED,
-                                    style: GoogleFonts.roboto(
-                                        height: 2,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 10,
-                                    backgroundColor: COLOR_GREEN,
-                                    child: Icon(Icons.check,
-                                        color: Colors.white, size: 12),
-                                  ),
-                                  Text(
-                                    DRAWER_MENU_SCREEN_FULLY_VERIFIED,
-                                    style: GoogleFonts.roboto(
-                                        height: 2,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
+                              isVerifiedIcon(
+                                  isVerified: verificationLevel >= 1,
+                                  title: DRAWER_MENU_SCREEN_BASIC_LEVEL),
+                              isVerifiedIcon(
+                                  isVerified: verificationLevel >= 2,
+                                  title: DRAWER_MENU_SCREEN_SEMI_VERIFIED),
+                              isVerifiedIcon(
+                                  isVerified: verificationLevel >= 3,
+                                  title: DRAWER_MENU_SCREEN_FULLY_VERIFIED),
                             ],
                           ),
                         ],

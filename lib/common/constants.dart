@@ -263,6 +263,7 @@ const COLOR_BLUE = Color(0xff46C4F2);
 const COLOR_DARK_GRAY = Color(0xff545454);
 const COLOR_GLOBE_BLUE = Color(0xff46C4F2);
 const COLOR_SMART_GREEN = Color(0xff25BA96);
+const COLOR_DANGER = Color(0xffeb4034);
 
 const INSTAPAY_SENDER_NAME = 'SWIPE INSTAPAY';
 const INSTAPAY_ADDRESS1 = 'Torino';
