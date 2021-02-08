@@ -49,11 +49,24 @@ const SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT = "Biometrics Log in";
 const SETTINGS_SCREEN_BIOMETRIC_BANNER_NOTE_TEXT =
     "Log in faster to swipe using biometrics";
 const SETTINGS_SCREEN_BIOMETRIC_ENABLE_TEXT = "Enable Biometrics";
+const SETTINGS_SCREEN_BIOMETRIC_NOT_AVAILABLE = "Biometrics is not available on your device.";
 const SETTINGS_SCREEN_BIOMETRIC_DISCLAIMER_TEXT =
     'By enabling biometrics login, you allow Swipe to access your saved\nbiometrics'
     'data on your device to create and save data in Swipe that\n'
     'shall be used for securing your login. The data will not be used for\n'
     'any other purposes.';
+const SETTINGS_SCREEN_BIOMETRIC_OTP_GREET = "Fantastic!";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_LIMIT = "Please enter your 6-digit OTP!";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_SEND = "We've sent a 6-digit Authentication code on your registered mobile number.";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_NEW_CODE = "Need new Code?";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE = "Resend Code";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_ENROLL_NOW = "ENROLL NOW";
+const SETTINGS_SCREEN_SWIPE_DIALOG_CONFIRMATION = "Confirmation";
+const SETTINGS_SCREEN_SWIPE_BIOMETRIC_NOTE_TEXT = "Swipe would like to use your Biometrics for the additional Security.";
+const SETTINGS_SCREEN_SWIPE_FACEID_NOTE_TEXT = "Swipe would like to use your face ID for the additional Security.";
+const SETTINGS_SCREEN_SWIPE_DISABLE_TEXT = "Disable Biometrics Log in";
+const SETTINGS_SCREEN_SWIPE_DISABLE_CONFIRMATION_TEXT = "Are you sure you want to disable biometrics log in?";
+
 
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
@@ -235,6 +248,10 @@ const BUY_LOAD_AMOUNT_SCREEN_TAB_OPTION_2 = "Load Promos";
 const BUY_LOAD_AMOUNT_SCREEN_AMOUNT_TEXT = "Amount";
 const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION = "Enter amount between 10-1000";
 const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION_OR = "or choose denomination below:";
+
+const SOON_RELEASED_SCREEN_FEATURED_TEXT = "Feature not yet released";
+const SOON_RELEASED_SCREEN_NOTE_TEXT = "Soon to be released!\nPlease Wait for the updates.";
+const SOON_RELEASED_SCREEN_OK_TEXT = "OK";
 
 const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);

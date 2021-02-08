@@ -1,15 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/common/widgets/swipe-dialog.dart';
+import 'package:swipe/services/authentication-service.dart';
 
 class SettingsScreen extends StatelessWidget {
+  AuthenticationService auth = AuthenticationService();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
+
+    OverlayScreen().saveScreens({
+      'swipe-dialog': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: SwipeDialog(
+          title: 'Ooops!',
+          contentMessage: SETTINGS_SCREEN_BIOMETRIC_NOT_AVAILABLE,
+          onOk: () {
+            OverlayScreen().pop();
+          },
+        ),
+      )
+    });
+
     return Theme(
       data: td,
       child: Scaffold(
@@ -47,7 +66,14 @@ class SettingsScreen extends StatelessWidget {
               ),
               Divider(thickness: 0.5),
               ListTile(
-                onTap: () => Get.toNamed('/settings/biometric/biometric-fingerprint-screen'),
+                onTap: () async {
+                  bool isAvailable = await auth.isBiometricAvailable();
+                  if (isAvailable)
+                    Get.toNamed(
+                        '/settings/biometric/biometric-fingerprint-screen');
+                  else
+                    OverlayScreen().show(context, identifier: 'swipe-dialog');
+                },
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 title: Text(
                   SETTINGS_SCREEN_BIOMETRIC_LOGIN_TEXT,

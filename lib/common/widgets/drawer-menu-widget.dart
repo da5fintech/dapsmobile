@@ -1,3 +1,4 @@
+import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -161,7 +162,7 @@ class DrawerMenuWidget extends StatelessWidget {
               ),
               ListTile(
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.circle, color: Colors.white),
+                leading: Icon(Icons.smartphone, color: Colors.white),
                 title: Transform(
                   transform: Matrix4.translationValues(-20, 0.0, 0),
                   child: Text(
@@ -186,7 +187,7 @@ class DrawerMenuWidget extends StatelessWidget {
               ),
               ListTile(
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.circle, color: Colors.white),
+                leading: Icon(Icons.people, color: Colors.white),
                 title: Transform(
                   transform: Matrix4.translationValues(-20, 0.0, 0),
                   child: Text(
@@ -211,7 +212,7 @@ class DrawerMenuWidget extends StatelessWidget {
               ),
               ListTile(
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.circle, color: Colors.white),
+                leading: Icon(Icons.wallet_giftcard, color: Colors.white),
                 title: Transform(
                   transform: Matrix4.translationValues(-20, 0.0, 0),
                   child: Text(
@@ -236,7 +237,7 @@ class DrawerMenuWidget extends StatelessWidget {
               ),
               ListTile(
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.circle, color: Colors.white),
+                leading: Icon(Icons.receipt, color: Colors.white),
                 title: Transform(
                   transform: Matrix4.translationValues(-20, 0.0, 0),
                   child: Text(
@@ -262,7 +263,7 @@ class DrawerMenuWidget extends StatelessWidget {
               ListTile(
                 onTap: () => Get.toNamed('/settings'),
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.circle, color: Colors.white),
+                leading: Icon(Icons.settings, color: Colors.white),
                 title: Transform(
                   transform: Matrix4.translationValues(-20, 0.0, 0),
                   child: Text(
@@ -287,7 +288,7 @@ class DrawerMenuWidget extends StatelessWidget {
               ),
               ListTile(
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.circle, color: Colors.white),
+                leading: Icon(Icons.help, color: Colors.white),
                 title: Transform(
                   transform: Matrix4.translationValues(-20, 0.0, 0),
                   child: Text(
@@ -316,7 +317,7 @@ class DrawerMenuWidget extends StatelessWidget {
                   Get.toNamed("/login");
                 },
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.circle, color: Colors.white),
+                leading: Icon(Icons.logout, color: Colors.white),
                 title: Transform(
                   transform: Matrix4.translationValues(-20, 0.0, 0),
                   child: Text(
