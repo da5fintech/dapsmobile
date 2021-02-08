@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -6,11 +7,23 @@ import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:local_auth/auth_strings.dart';
 
 enum LoginProvider {
   GOOGLE,
   FACEBOOK,
 }
+
+const iosStrings = const IOSAuthMessages(
+    cancelButton: 'cancel',
+    goToSettingsButton: 'settings',
+    goToSettingsDescription: 'Please set up your Biometrics.',
+    lockOut: 'Please Enable biometrics');
+
+const androidStrings = const AndroidAuthMessages(
+    cancelButton: 'cancel',
+    goToSettingsButton: 'settings',
+    goToSettingsDescription: 'Please set up your Biometrics on your device');
 
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -59,7 +72,7 @@ class AuthenticationService {
 
       final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
       final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      await googleUser.authentication;
 
       // print(googleUser.email);
       // print(googleUser.displayName);
@@ -104,9 +117,9 @@ class AuthenticationService {
       // Check result status
       switch (res.status) {
         case FacebookLoginStatus.success:
-          // Logged in
+        // Logged in
 
-          // Send access token to server for validation and auth
+        // Send access token to server for validation and auth
           final FacebookAccessToken accessToken = res.accessToken;
           print('Access token: ${accessToken.token}');
 
@@ -125,7 +138,7 @@ class AuthenticationService {
           if (email != null) print('And your email is $email');
 
           final AuthCredential credential =
-              FacebookAuthProvider.credential(accessToken.token);
+          FacebookAuthProvider.credential(accessToken.token);
 
           var result = await _auth.signInWithCredential(credential);
 
@@ -136,10 +149,10 @@ class AuthenticationService {
           return result.user;
           break;
         case FacebookLoginStatus.cancel:
-          // User cancel log in
+        // User cancel log in
           break;
         case FacebookLoginStatus.error:
-          // Log in failed
+        // Log in failed
           print('Error while log in: ${res.error}');
           break;
       }
@@ -198,6 +211,7 @@ class AuthenticationService {
     List<BiometricType> listOfBiometrics;
     try {
       listOfBiometrics = await _localAuthentication.getAvailableBiometrics();
+      print(listOfBiometrics);
     } on PlatformException catch (e) {
       print(e);
     }
@@ -212,7 +226,13 @@ class AuthenticationService {
       List biometrics = await getListOfBiometricTypes();
       if (biometrics.isNotEmpty) {
         bool success = await _localAuthentication.authenticateWithBiometrics(
-            localizedReason: 'Use Fingerprint to log in');
+            useErrorDialogs: true,
+            stickyAuth: true,
+            localizedReason:
+            'Use ${!Platform.isAndroid ? 'Biometrics' : 'Face ID'} to log in',
+            iOSAuthStrings: iosStrings,
+            androidAuthStrings: androidStrings,
+        );
         return success;
       }
       return false;
@@ -220,7 +240,7 @@ class AuthenticationService {
     return false;
   }
 
-  Future<bool> getBio () async {
+  Future<bool> getBio() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool a = prefs.getBool('biometrics');
     return a;
