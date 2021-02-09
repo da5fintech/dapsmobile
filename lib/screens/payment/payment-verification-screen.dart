@@ -21,6 +21,8 @@ class PaymentVerificationScreen extends StatefulWidget {
 
 class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
   bool hasDiscount = true;
+  bool termsAndConditions = false;
+  bool proceed = true;
 
   @override
   void initState() {
@@ -91,26 +93,26 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
 
       return element.field != 'amount'
           ? Container(
-        height: 60,
-        padding: EdgeInsets.only(left: 10, right: 10),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Text(
-                "${element.label}",
+              height: 60,
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Text(
+                      "${element.label}",
+                    ),
+                  ),
+                  Spacer(),
+                  Expanded(
+                    child: Text(
+                      "$value",
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Spacer(),
-            Expanded(
-              child: Text(
-                "$value",
-                textAlign: TextAlign.right,
-              ),
-            ),
-          ],
-        ),
-      )
+            )
           : Container();
     }).toList();
     var fee = Container(
@@ -127,9 +129,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           Spacer(),
           Expanded(
               child: Text(
-                formatter.format(product.fee),
-                textAlign: TextAlign.right,
-              )),
+            formatter.format(product.fee),
+            textAlign: TextAlign.right,
+          )),
         ],
       ),
     );
@@ -311,7 +313,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
 
     double amount = store.transactionService.getAmount(store.transaction);
     double totalAmount =
-    store.transactionService.getTotalAmount(store.transaction);
+        store.transactionService.getTotalAmount(store.transaction);
 
     return Theme(
       data: td,
@@ -435,19 +437,19 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                       ),
                       hasDiscount
                           ? Container(
-                        height: 60,
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                                PAYMENT_VERIFICATION_SCREEN_DISCOUNT_TEXT),
-                            Spacer(),
-                            Text(
-                                PAYMENT_VERIFICATION_SCREEN_VOUCHER_TEXT),
-                          ],
-                        ),
-                      )
+                              height: 60,
+                              padding: EdgeInsets.only(left: 10, right: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                      PAYMENT_VERIFICATION_SCREEN_DISCOUNT_TEXT),
+                                  Spacer(),
+                                  Text(
+                                      PAYMENT_VERIFICATION_SCREEN_VOUCHER_TEXT),
+                                ],
+                              ),
+                            )
                           : Container(),
                       Container(
                         padding: EdgeInsets.only(left: 10, right: 10),
@@ -479,10 +481,12 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                 child: Row(
                   children: [
                     Checkbox(
-                        value: false,
-                        onChanged: (val) {
-                          print(val);
-                        }
+                      value: termsAndConditions,
+                      onChanged: (val) =>
+                          setState(() {
+                            termsAndConditions = val;
+                            proceed = true;
+                          }),
                     ),
                     Text(
                       PAYMENT_VERIFICATION_AGREE_TERMS_TEXT,
@@ -494,17 +498,37 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                     ),
                     Text(
                       PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT,
-                      style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500, color: COLOR_GREEN),
+                      style: GoogleFonts.roboto(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: COLOR_GREEN),
                     )
                   ],
                 ),
               ),
+              if (!proceed) ...[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: Text(
+                    PAYMENT_VERIFICATION_WARNING_TEXT,
+                    style: GoogleFonts.roboto(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: COLOR_DANGER,
+                    ),
+                  ),
+                ),
+              ],
               Padding(
-                padding: const EdgeInsets.only(right: 20.0, left: 20, bottom: 10),
+                padding:
+                    const EdgeInsets.only(right: 20.0, left: 20, bottom: 10),
                 child: Text(
                   PAYMENT_VERIFICATION_NOTE_TEXT,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.roboto(fontWeight: FontWeight.w400, fontSize: 14, color: COLOR_DARK_GRAY),
+                  style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: COLOR_DARK_GRAY),
                 ),
               ),
               Padding(
@@ -535,6 +559,8 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
   }
 
   void _handlePay() {
-    Get.toNamed('/services/payment/payment-mpin-screen');
+    termsAndConditions
+        ? Get.toNamed('/services/payment/payment-mpin-screen')
+        : setState(() => proceed = false);
   }
 }
