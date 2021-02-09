@@ -47,7 +47,16 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
         ),
         child: RaisedButton(
           elevation: 0,
-          onPressed: () => setState(() => activeButton = text),
+          onPressed: () {
+            setState(() => activeButton = text);
+            if(activeButton == TRANSACTION_HISTORY_SCREEN_BUTTON_ALL_TEXT) {
+              filteredTransactions = transactions;
+            } else if(activeButton == TRANSACTION_HISTORY_SCREEN_BUTTON_SENT_TEXT) {
+              filteredTransactions = transactions;
+            } else {
+              filteredTransactions = [];
+            }
+          },
           textColor: activeButton == text ? Colors.white : COLOR_DARK_PURPLE,
           color: activeButton == text ? COLOR_DARK_PURPLE : Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 10),
@@ -100,104 +109,107 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
               ),
             ),
             Expanded(
-                child: ListView(
-              children: filteredTransactions?.map((transaction) {
-                    return GestureDetector(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Colors.grey.withOpacity(.36),
-                            ),
+              child: ListView(
+                children: filteredTransactions?.map((transaction) {
+                  return GestureDetector(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.grey.withOpacity(.36),
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                      '${transaction.transactionTypePretty} (${transaction.product})',
-                                      style: GoogleFonts.roboto(
-                                          color: Colors.black.withOpacity(.87),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                      dateformatter
-                                          .format(transaction.creationDate),
-                                      style: GoogleFonts.roboto(
-                                          color: Colors.black.withOpacity(.87),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 10.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   SizedBox(
                                     height: 5,
                                   ),
                                   Text(
-                                    formatter
-                                        .format(transaction.totalAmount * -1),
+                                    '${transaction.transactionTypePretty} (${transaction.product})',
                                     style: GoogleFonts.roboto(
-                                        color: Colors.black.withOpacity(.87),
+                                        color:
+                                            Colors.black.withOpacity(.87),
                                         fontSize: 12,
-                                        fontWeight: FontWeight.w300),
+                                        fontWeight: FontWeight.w400),
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      showDetails(transaction);
-                                    },
-                                    child: Text(
-                                      TRANSACTION_HISTORY_SCREEN_DETAILS_TEXT,
-                                      style: GoogleFonts.roboto(
-                                          color: COLOR_DARK_PURPLE
-                                              .withOpacity(.87),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500),
-                                    ),
+                                  Text(
+                                    dateformatter
+                                        .format(transaction.creationDate),
+                                    style: GoogleFonts.roboto(
+                                        color:
+                                            Colors.black.withOpacity(.87),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
                                 ],
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  formatter
+                                      .format(transaction.totalAmount * -1),
+                                  style: GoogleFonts.roboto(
+                                      color: Colors.black.withOpacity(.87),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    showDetails(transaction);
+                                  },
+                                  child: Text(
+                                    TRANSACTION_HISTORY_SCREEN_DETAILS_TEXT,
+                                    style: GoogleFonts.roboto(
+                                        color: COLOR_DARK_PURPLE
+                                            .withOpacity(.87),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                      onTap: () {
-                        _handleTap(transaction);
-                      },
-                    );
-                  })?.toList() ??
-                  [],
-            )),
+                    ),
+                    onTap: () {
+                      _handleTap(transaction);
+                    },
+                  );
+                })?.toList() ?? [],
+              ),
+            ),
           ],
         ),
       ),
