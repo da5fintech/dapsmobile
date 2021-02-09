@@ -485,7 +485,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                         }
                     ),
                     Text(
-                      'I agree to the ',
+                      PAYMENT_VERIFICATION_AGREE_TERMS_TEXT,
                       style: GoogleFonts.roboto(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
@@ -493,7 +493,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                       ),
                     ),
                     Text(
-                      'term & conditions',
+                      PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT,
                       style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500, color: COLOR_GREEN),
                     )
                   ],
@@ -502,7 +502,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
               Padding(
                 padding: const EdgeInsets.only(right: 20.0, left: 20, bottom: 10),
                 child: Text(
-                  'Please review to ensure all the details above is correct before proceeding to payment.',
+                  PAYMENT_VERIFICATION_NOTE_TEXT,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(fontWeight: FontWeight.w400, fontSize: 14, color: COLOR_DARK_GRAY),
                 ),

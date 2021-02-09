@@ -218,7 +218,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
           backgroundColor: Colors.white,
           titlePadding: EdgeInsets.only(top: 20, left: 20, right: 20),
           title: Text(
-            'Details',
+            TRANSACTION_HISTORY_SCREEN_DETAILS_TEXT,
             style: GoogleFonts.roboto(
                 fontWeight: FontWeight.w500, fontSize: 20, color: Colors.black),
           ),
@@ -231,7 +231,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Sent to:',
+                      TRANSACTION_HISTORY_SENT_TEXT,
                       style: GoogleFonts.roboto(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -250,7 +250,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Amount to:',
+                      TRANSACTION_HISTORY_AMOUNT_TEXT,
                       style: GoogleFonts.roboto(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -269,7 +269,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Ending Balance:',
+                      TRANSACTION_HISTORY_END_BALANCE_TEXT,
                       style: GoogleFonts.roboto(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -288,7 +288,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Date & Time',
+                      TRANSACTION_HISTORY_DATE_TIME_TEXT,
                       style: GoogleFonts.roboto(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -307,7 +307,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Reference No.:',
+                      TRANSACTION_HISTORY_REFERENCE_TEXT,
                       style: GoogleFonts.roboto(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
