@@ -28,10 +28,16 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   bool obscureTextPass = true;
   bool obscureTextConPass = true;
   AppUtil _appUtil = AppUtil();
+  FocusNode email;
+  FocusNode password;
+  FocusNode conPassword;
 
   @override
   void initState() {
     super.initState();
+    email = FocusNode();
+    password = FocusNode();
+    conPassword = FocusNode();
   }
 
   @override
@@ -84,6 +90,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           TextFormField(
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
                             onSaved: (v) {
                               values["firstName"] = v;
                             },
@@ -100,6 +108,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             ),
                           ),
                           TextFormField(
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
                             onSaved: (v) {
                               values["lastName"] = v;
                             },
@@ -116,6 +126,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             ),
                           ),
                           TextFormField(
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
                             onSaved: (v) {
                               values["address"] = v;
                             },
@@ -132,7 +144,9 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             ),
                           ),
                           TextFormField(
+                            autofocus: true,
                             keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.next,
                             onSaved: (v) {
                               values["birthdate"] = v;
                             },
@@ -166,7 +180,12 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             inputFormatters: [maskFormatter],
                           ),
                           TextFormField(
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.phone,
+                            onFieldSubmitted: (val) {
+                              FocusScope.of(context).requestFocus(email);
+                            },
                             onSaved: (v) {
                               values["mobileNumber"] = v;
                             },
@@ -201,6 +220,13 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             ),
                           ),
                           TextFormField(
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
+                            focusNode: email,
+                            onFieldSubmitted: (val) {
+                              email.unfocus();
+                              FocusScope.of(context).requestFocus(password);
+                            },
                             keyboardType: TextInputType.emailAddress,
                             readOnly: store.registrant != null ? true : false,
                             initialValue: store.registrant != null
@@ -218,6 +244,13 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                                 hintText: "Email"),
                           ),
                           TextFormField(
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
+                            focusNode: password,
+                            onFieldSubmitted: (val) {
+                              email.unfocus();
+                              FocusScope.of(context).requestFocus(conPassword);
+                            },
                             obscureText: obscureTextPass,
                             onSaved: (v) {
                               values["password"] = v;
@@ -245,7 +278,12 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             ),
                           ),
                           TextFormField(
+                            focusNode: conPassword,
                             obscureText: obscureTextConPass,
+                            onFieldSubmitted: (val) {
+                              conPassword.unfocus();
+                              _handleNext();
+                            },
                             onSaved: (v) {
                               values["confirmPassword"] = v;
                             },
@@ -293,12 +331,13 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         SizedBox(
-                            width: double.infinity,
-                            child: PrimaryButtonWidget(
-                                onPressed: () {
-                                  _handleNext();
-                                },
-                                text: "Next")),
+                          width: double.infinity,
+                          child: PrimaryButtonWidget(
+                              onPressed: () {
+                                _handleNext();
+                              },
+                              text: "Next"),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -319,6 +358,9 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   @override
   void dispose() {
     super.dispose();
+    email.dispose();
+    password.dispose();
+    conPassword.dispose();
   }
 
   void _handleNext() async {

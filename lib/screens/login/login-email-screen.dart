@@ -90,6 +90,8 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                         children: [
                           TextFormField(
                             controller: email,
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.emailAddress,
                             onSaved: (v) {},
                             validator: _appUtil.validateEmail,
@@ -99,7 +101,12 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                             ),
                           ),
                           TextFormField(
+                            autofocus: true,
                             controller: password,
+                            onFieldSubmitted: (val) {
+                              FocusScope.of(context).unfocus();
+                              _handleLogin();
+                            },
                             keyboardType: TextInputType.visiblePassword,
                             obscureText: obscureText,
                             onSaved: (v) {},

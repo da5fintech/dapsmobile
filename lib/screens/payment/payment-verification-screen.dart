@@ -21,6 +21,8 @@ class PaymentVerificationScreen extends StatefulWidget {
 
 class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
   bool hasDiscount = true;
+  bool termsAndConditions = false;
+  bool proceed = true;
 
   @override
   void initState() {
@@ -475,6 +477,61 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 4),
+                child: Row(
+                  children: [
+                    Checkbox(
+                      value: termsAndConditions,
+                      onChanged: (val) =>
+                          setState(() {
+                            termsAndConditions = val;
+                            proceed = true;
+                          }),
+                    ),
+                    Text(
+                      PAYMENT_VERIFICATION_AGREE_TERMS_TEXT,
+                      style: GoogleFonts.roboto(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: COLOR_DARK_GRAY,
+                      ),
+                    ),
+                    Text(
+                      PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT,
+                      style: GoogleFonts.roboto(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: COLOR_GREEN),
+                    )
+                  ],
+                ),
+              ),
+              if (!proceed) ...[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: Text(
+                    PAYMENT_VERIFICATION_WARNING_TEXT,
+                    style: GoogleFonts.roboto(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: COLOR_DANGER,
+                    ),
+                  ),
+                ),
+              ],
+              Padding(
+                padding:
+                    const EdgeInsets.only(right: 20.0, left: 20, bottom: 10),
+                child: Text(
+                  PAYMENT_VERIFICATION_NOTE_TEXT,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: COLOR_DARK_GRAY),
+                ),
+              ),
+              Padding(
                 padding: EdgeInsets.only(left: 10, right: 10),
                 child: SizedBox(
                   width: double.infinity,
@@ -502,6 +559,8 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
   }
 
   void _handlePay() {
-    Get.toNamed('/services/payment/payment-mpin-screen');
+    termsAndConditions
+        ? Get.toNamed('/services/payment/payment-mpin-screen')
+        : setState(() => proceed = false);
   }
 }
