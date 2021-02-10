@@ -28,7 +28,7 @@ class _SwipeMpinScreenState extends State<SwipeMpinScreen> {
       data: td,
       child: Scaffold(
         appBar: SubAppbarWidget(
-          title: SETTING_SCREEN_CHANGE_PIN_TITLE,
+          title: SETTINGS_SCREEN_CHANGE_PIN_TITLE,
         ),
         body: Padding(
           padding: const EdgeInsets.all(0.0),
@@ -78,7 +78,7 @@ class _SwipeMpinScreenState extends State<SwipeMpinScreen> {
                       ),
                       if (incorrectPin) ...[
                         Text(
-                          SETTING_SCREEN_INCORRECT_PIN_TITLE,
+                          SETTINGS_SCREEN_INCORRECT_PIN_TITLE,
                           style: GoogleFonts.roboto(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,

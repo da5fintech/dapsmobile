@@ -42,7 +42,7 @@ const REGISTRATION_SCREEN_USER_CREATION_TEXT =
 const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
 
 const SETTINGS_SCREEN_TITLE = "Settings";
-const SETTINGS_SCREEN_CHANGE_MPIN_TEXT = "Change swipe MPIN";
+const SETTINGS_SCREEN_CHANGE_MPIN_TEXT = "Change MPIN";
 const SETTINGS_SCREEN_ACCOUNT_AUTH_TEXT = "Account Authentication";
 const SETTINGS_SCREEN_BIOMETRIC_LOGIN_TEXT = "Biometric Login";
 const SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT = "Biometrics Log in";
@@ -66,8 +66,16 @@ const SETTINGS_SCREEN_SWIPE_BIOMETRIC_NOTE_TEXT = "Swipe would like to use your 
 const SETTINGS_SCREEN_SWIPE_FACEID_NOTE_TEXT = "Swipe would like to use your face ID for the additional Security.";
 const SETTINGS_SCREEN_SWIPE_DISABLE_TEXT = "Disable Biometrics Log in";
 const SETTINGS_SCREEN_SWIPE_DISABLE_CONFIRMATION_TEXT = "Are you sure you want to disable biometrics log in?";
-const SETTING_SCREEN_CHANGE_PIN_TITLE = "MPIN";
-const SETTING_SCREEN_INCORRECT_PIN_TITLE = "Incorrect PIN";
+const SETTINGS_SCREEN_CHANGE_PIN_TITLE = "MPIN";
+const SETTINGS_SCREEN_INCORRECT_PIN_TITLE = "Incorrect PIN";
+const SETTINGS_SCREEN_CHANGE_YOUR_PIN = "Change your MPIN";
+const SETTINGS_SCREEN_ENTER_NEW_PIN = "Please enter your new 6-digit MPIN";
+const SETTINGS_SCREEN_CONFIRM_PIN_TITLE = "Confirm MPIN";
+const SETTINGS_SCREEN_CONFIRM_PIN_BANNER_TITLE = "Confirm you MPIN";
+const SETTINGS_SCREEN_RE_CONFIRM_PIN_BANNER_TITLE = "Please re-enter your nre 6-digit MPIN";
+const SETTINGS_SCREEN_MPIN_UPDATED_PIN = "MPIN updated";
+const SETTINGS_SCREEN_MPIN_UPDATED_SUCCESS_PIN = "You have successfully updated your MPIN";
+
 
 
 
