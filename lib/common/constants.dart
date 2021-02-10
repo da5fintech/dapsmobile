@@ -66,6 +66,9 @@ const SETTINGS_SCREEN_SWIPE_BIOMETRIC_NOTE_TEXT = "Swipe would like to use your 
 const SETTINGS_SCREEN_SWIPE_FACEID_NOTE_TEXT = "Swipe would like to use your face ID for the additional Security.";
 const SETTINGS_SCREEN_SWIPE_DISABLE_TEXT = "Disable Biometrics Log in";
 const SETTINGS_SCREEN_SWIPE_DISABLE_CONFIRMATION_TEXT = "Are you sure you want to disable biometrics log in?";
+const SETTING_SCREEN_CHANGE_PIN_TITLE = "MPIN";
+const SETTING_SCREEN_INCORRECT_PIN_TITLE = "Incorrect PIN";
+
 
 
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";

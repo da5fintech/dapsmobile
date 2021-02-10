@@ -40,6 +40,9 @@ class SettingsScreen extends StatelessWidget {
           child: ListView(
             children: [
               ListTile(
+                onTap: () {
+                  Get.toNamed('/settings/change-swipe-mpin/swipe-mpin-screen');
+                },
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 title: Text(
                   SETTINGS_SCREEN_CHANGE_MPIN_TEXT,
