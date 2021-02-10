@@ -119,7 +119,7 @@ const BILLS_PAYMENT_TRANSPORTATION_AUTOSWEEP_TEXT = "Autosweep";
 const BILLS_PAYMENT_TRANSPORTATION_POSTED_IMMEDIATELY =
     "Payment will be posted immediately";
 const BILLS_PAYMENT_TRANSPORTATION_PLATE_NUMBER_TEXT = "Plate Number";
-const BILLS_PAYMENT_TRANSPORTATION_AMOUNT_TEXT = "Plate Number";
+const BILLS_PAYMENT_TRANSPORTATION_AMOUNT_TEXT = "Amount";
 const BILLS_PAYMENT_TRANSPORTATION_CATEGORIES_OPTION_1 = "Autosweep";
 const BILLS_PAYMENT_TRANSPORTATION_CATEGORIES_OPTION_2 = "Easytrip";
 const BILLS_PAYMENT_TRANSPORTATION_CATEGORIES_OPTION_3 = "Beep";
@@ -151,7 +151,9 @@ const AUTH_MERCHANT_ID = "0910";
 const AUTH_NETWORK_ID = "0625";
 const AUTH_USERNAME = "kabootekph";
 const AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
-const API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
+const API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+// const API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
+
 const ELOADING_SCOPE = 'eloading';
 const BILLS_PAYMENT_SCOPE = 'billspayment';
 const BILLS_PAYMENT_CHANNEL = 'X2B2';
