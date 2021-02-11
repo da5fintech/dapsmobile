@@ -31,6 +31,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   FocusNode email;
   FocusNode password;
   FocusNode conPassword;
+  TextEditingController passwordText = TextEditingController();
+  TextEditingController confirmPasswordText = TextEditingController();
 
   @override
   void initState() {
@@ -247,6 +249,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             autofocus: true,
                             textInputAction: TextInputAction.next,
                             focusNode: password,
+                            controller: passwordText,
                             onFieldSubmitted: (val) {
                               email.unfocus();
                               FocusScope.of(context).requestFocus(conPassword);
@@ -278,6 +281,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             ),
                           ),
                           TextFormField(
+                            controller: confirmPasswordText,
                             focusNode: conPassword,
                             obscureText: obscureTextConPass,
                             onFieldSubmitted: (val) {
@@ -290,7 +294,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             validator: (text) {
                               if (text == null || text.isEmpty) {
                                 return 'Confirm ${REGISTER_SCREEN_PASSWORD_TEXT} is required';
-                              } else if (text != values['password']) {
+                              } else if (text != passwordText.text) {
                                 return 'Confirmation ${REGISTER_SCREEN_PASSWORD_TEXT} not match with ${REGISTER_SCREEN_PASSWORD_TEXT}';
                               }
                               return null;
@@ -365,8 +369,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
 
   void _handleNext() async {
     bool status = _formKey.currentState.validate();
-    _formKey.currentState.save();
     if (status) {
+      _formKey.currentState.save();
       if (store.registrant == null) {
         store.registrant = UserModel(
             isNew: true,
