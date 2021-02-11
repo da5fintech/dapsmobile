@@ -341,7 +341,32 @@ class _RemittanceCategoriesScreenState
                     ),
                   ],
                 ),
-                Text("Hello tab2")
+                Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Icon(Icons.update, color: COLOR_DARK_PURPLE, size: 102),
+                    ),
+                    Text(
+                      'Incoming Future Releases!',
+                      style: GoogleFonts.roboto(
+                        fontSize: 17,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Text(
+                      'Soon to be released\nPlease wait for our future Updates.',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.roboto(
+                        fontSize: 14,
+                        color: COLOR_DARK_GRAY,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
