@@ -200,6 +200,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 thickness: 0.5,
               ),
               ListTile(
+                onTap: () => Get.toNamed('/partner-merchants'),
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: Icon(Icons.people, color: Colors.white),
                 title: Transform(

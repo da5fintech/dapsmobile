@@ -110,6 +110,16 @@ flutter:
     - assets/icons/biometrics/faceid.png
     - assets/icons/links-accounts/bpi.png
     - assets/icons/links-accounts/unionbank.png
+    - assets/icons/merchant-partners/food.png
+    - assets/icons/merchant-partners/retail.png
+    - assets/icons/merchant-partners/entertainment.png
+    - assets/icons/merchant-partners/pharmacies.png
+    - assets/icons/merchant-partners/transportation.png
+    - assets/icons/merchant-partners/supermarket.png
+    - assets/icons/merchant-partners/store.png
+    - assets/icons/merchant-partners/gadgets.png
+    - assets/icons/merchant-partners/services.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

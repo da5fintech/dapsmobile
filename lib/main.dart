@@ -20,6 +20,7 @@ import 'package:swipe/screens/links-account/links-account-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/login/login-email-screen.dart';
 import 'package:swipe/screens/login/login-mpin-screen.dart';
+import 'package:swipe/screens/partner-merchants/partner-merchants-screen.dart';
 import 'package:swipe/screens/pay_qr/pay-qr-generate-screen.dart';
 import 'package:swipe/screens/pay_qr/pay-qr-screen.dart';
 import 'package:swipe/screens/pay_qr/pay-qr-upload-screen.dart';
@@ -113,6 +114,8 @@ class _MyAppState extends State<MyApp> {
                     builder: (_) => TransactionHistoryScreen());
               case '/links-account':
                 return MaterialPageRoute(builder: (_) => LinksAccountScreen());
+              case '/partner-merchants':
+                return MaterialPageRoute(builder: (_) => PartnerMerchantsScreen());
               case '/settings':
                 return MaterialPageRoute(builder: (_) => SettingsScreen());
               case '/settings/change-swipe-mpin/swipe-mpin-screen':
