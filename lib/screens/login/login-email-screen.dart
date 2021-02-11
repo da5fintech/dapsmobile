@@ -276,7 +276,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
       if (account == null) {
         throw AuthenticationError(message: "Account not found");
       }
-      // store.setUser(account);
+      store.setUser(account);
       Get.toNamed("/services");
     } catch (e) {
       loginError = true;
