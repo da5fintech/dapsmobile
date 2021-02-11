@@ -172,6 +172,9 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 ),
               ),
               ListTile(
+                onTap: () {
+                  Get.toNamed('/links-account');
+                },
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: Icon(Icons.smartphone, color: Colors.white),
                 title: Transform(

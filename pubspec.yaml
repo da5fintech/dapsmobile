@@ -108,6 +108,8 @@ flutter:
     - assets/icons/autosweep.jpg
     - assets/icons/biometrics/fingerprint.png
     - assets/icons/biometrics/faceid.png
+    - assets/icons/links-accounts/bpi.png
+    - assets/icons/links-accounts/unionbank.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
