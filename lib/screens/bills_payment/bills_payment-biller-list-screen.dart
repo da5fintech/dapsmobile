@@ -40,9 +40,10 @@ class _BillsPaymentBillerListScreenState
                 padding: EdgeInsets.only(top: 20),
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 0,
-                    crossAxisSpacing: 20),
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 20,
+                ),
                 itemCount: billerList.length,
                 itemBuilder: (BuildContext context, int i) {
                   return CategoryButtonWidget(

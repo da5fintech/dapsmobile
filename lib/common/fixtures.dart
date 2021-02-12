@@ -71,3 +71,17 @@ List<Map<String, dynamic>> billerList = [
     'imagePath': 'assets/icons/services/bills-payment/favorites.png',
   }
 ];
+
+List<Map<String, dynamic>> partners = [
+  { 'title': PARTNER_MERCHANT_FOOD_TEXT, 'imagePath': 'assets/icons/merchant-partners/food.png'},
+  { 'title': PARTNER_MERCHANT_RETAIL_TEXT, 'imagePath': 'assets/icons/merchant-partners/retail.png'},
+  { 'title': PARTNER_MERCHANT_ENTERTAINMENT_TEXT, 'imagePath': 'assets/icons/merchant-partners/entertainment.png'},
+  { 'title': PARTNER_MERCHANT_PHARMACIES_TEXT, 'imagePath': 'assets/icons/merchant-partners/pharmacies.png'},
+  { 'title': PARTNER_MERCHANT_TRANSPORTATION_TEXT, 'imagePath': 'assets/icons/merchant-partners/transportation.png'},
+  { 'title': PARTNER_MERCHANT_SUPERMARKET_TEXT, 'imagePath': 'assets/icons/merchant-partners/supermarket.png'},
+  { 'title': PARTNER_MERCHANT_STORE_TEXT, 'imagePath': 'assets/icons/merchant-partners/store.png'},
+  { 'title': PARTNER_MERCHANT_GADGETS_TEXT, 'imagePath': 'assets/icons/merchant-partners/gadgets.png'},
+  { 'title': PARTNER_MERCHANT_SERVICES_TEXT, 'imagePath': 'assets/icons/merchant-partners/services.png'},
+];
+
+
