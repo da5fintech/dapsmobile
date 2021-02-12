@@ -13,7 +13,7 @@ class LinksAccountScreen extends StatelessWidget {
       data: td,
       child: Scaffold(
         appBar: SubAppbarWidget(
-          title: 'Links Account',
+          title: LINKS_ACCOUNT_SCREEN_TITLE,
         ),
         body: ListView(
           children: [
