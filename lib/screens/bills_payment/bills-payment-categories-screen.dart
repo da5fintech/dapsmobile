@@ -8,7 +8,6 @@ import 'package:swipe/common/common-alert.dialog.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/screens/bills_payment/transportation/transportation-categories-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
 import '../../main.dart';
