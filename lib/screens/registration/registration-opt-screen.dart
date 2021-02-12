@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,13 +16,18 @@ final store = getIt<ApplicationStore>();
 
 class RegistrationOptScreen extends StatefulWidget {
   @override
-  _RegistrationOptScreenState createState() =>
-      _RegistrationOptScreenState();
-
+  _RegistrationOptScreenState createState() => _RegistrationOptScreenState();
 }
 
 class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
+  int expectedOtp;
+  bool incorrectOtp = false;
   TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +65,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
       data: td,
       child: Scaffold(
         appBar: SubAppbarWidget(
-          title: 'Verify Registration',
+          title: REGISTRATION_SCREEN_OTP_TITLE_TEXT,
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -131,6 +137,16 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                               ),
                             ),
                           ),
+                          if (incorrectOtp) ...[
+                            Text(
+                              REGISTRATION_SCREEN_INCORRECT_OTP_TEXT,
+                              style: GoogleFonts.roboto(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: COLOR_DANGER,
+                              ),
+                            ),
+                          ],
                           Spacer(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -146,7 +162,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                               SizedBox(width: 5),
                               FlatButton(
                                 padding: EdgeInsets.zero,
-                                onPressed: () {},
+                                onPressed: _handleOtpSms,
                                 child: Text(
                                   SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE,
                                   style: GoogleFonts.roboto(
@@ -205,30 +221,64 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
     );
   }
 
+  _handleOtpSms() async {
+    OverlayScreen().show(
+      context,
+      identifier: 'progress',
+    );
+
+    //Generate OTP
+    await Future.delayed(Duration(seconds: 2));
+    OverlayScreen().pop();
+    var rndnumber = "";
+    var rnd = new Random();
+    for (var i = 0; i < 6; i++) {
+      rndnumber = rndnumber + rnd.nextInt(9).toString();
+    }
+
+    expectedOtp = int.parse(rndnumber); //save otp
+    setState(() {});
+    await store.otpService.sendOtp(
+        mobileNumber: "63${store.registrant.mobileNumber}", otp: expectedOtp);
+  }
+
   _handleRegister() async {
-    if(controller.text.length == 6) {
-      try {
+    if (controller.text.length == 6) {
+      if (int.parse(controller.text) == expectedOtp) {
+        incorrectOtp = false;
+        setState(() {});
+        try {
+          OverlayScreen().show(
+            context,
+            identifier: 'progress',
+          );
+          await Future.delayed(Duration(seconds: 5));
+          OverlayScreen().pop();
+
+          if (store.registrant.isNew) {
+            User creds = await store.authService.createAuth(
+                email: store.registrant.email,
+                password: store.registrant.password);
+            store.registrant.id = creds.uid;
+          }
+
+          await store.accountService.create(store.registrant);
+          store.setUser(store.registrant);
+          OverlayScreen().show(
+            context,
+            identifier: 'registration-success',
+          );
+        } catch (e) {}
+      } else {
         OverlayScreen().show(
           context,
           identifier: 'progress',
         );
-        await Future.delayed(Duration(seconds: 5));
+        await Future.delayed(Duration(seconds: 3));
         OverlayScreen().pop();
-
-        if (store.registrant.isNew) {
-          User creds = await store.authService.createAuth(
-              email: store.registrant.email,
-              password: store.registrant.password);
-          store.registrant.id = creds.uid;
-        }
-
-        await store.accountService.create(store.registrant);
-        store.setUser(store.registrant);
-        OverlayScreen().show(
-          context,
-          identifier: 'registration-success',
-        );
-      } catch (e) {}
+        incorrectOtp = true;
+        setState(() {});
+      }
     }
     return null;
   }
@@ -237,5 +287,4 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
     OverlayScreen().pop();
     Get.toNamed("/login/login-mpin-screen");
   }
-
 }

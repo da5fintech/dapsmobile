@@ -13,6 +13,7 @@ import 'package:swipe/services/autosweep-service.dart';
 import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/instapay-service.dart';
+import 'package:swipe/services/opt-service.dart';
 import 'package:swipe/services/transaction-service.dart';
 
 part 'application-store.g.dart';
@@ -40,6 +41,7 @@ abstract class _ApplicationStore with Store {
   TransactionService transactionService;
   AutosweepService autosweepService;
   AddBillerService addBillerService;
+  OtpService otpService;
 
   bool permissionsGranted;
   SharedPreferences prefs;
@@ -66,6 +68,7 @@ abstract class _ApplicationStore with Store {
     instapayService = InstapayService();
     autosweepService = AutosweepService();
     addBillerService = AddBillerService();
+    otpService = OtpService();
 
     getIt.registerSingleton(accountService);
     getIt.registerSingleton(eloadingService);
@@ -74,6 +77,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(instapayService);
     getIt.registerSingleton(autosweepService);
     getIt.registerSingleton(addBillerService);
+    getIt.registerSingleton(otpService);
 
     // user = UserModel(id: "", mpin: "888888");
   }
