@@ -38,6 +38,7 @@ import 'package:swipe/screens/settings/change-swipe-mpin/swipe-mpin-screen.dart'
 import 'package:swipe/screens/settings/settings-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/screens/transactions/transaction-history-screen.dart';
+import 'package:swipe/screens/voucher-pockets/voucher-pockets-screen.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/screens/bills_payment/transportation/transportation-categories-screen.dart';
 
@@ -116,6 +117,8 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => LinksAccountScreen());
               case '/partner-merchants':
                 return MaterialPageRoute(builder: (_) => PartnerMerchantsScreen());
+              case '/voucher-pockets':
+                return MaterialPageRoute(builder: (_) => VoucherPocketsScreen());
               case '/settings':
                 return MaterialPageRoute(builder: (_) => SettingsScreen());
               case '/settings/change-swipe-mpin/swipe-mpin-screen':

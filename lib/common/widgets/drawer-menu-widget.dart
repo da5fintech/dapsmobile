@@ -251,6 +251,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 thickness: 0.5,
               ),
               ListTile(
+                onTap: () => Get.toNamed('/voucher-pockets'),
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: Icon(Icons.receipt, color: Colors.white),
                 title: Transform(

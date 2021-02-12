@@ -119,6 +119,7 @@ flutter:
     - assets/icons/merchant-partners/store.png
     - assets/icons/merchant-partners/gadgets.png
     - assets/icons/merchant-partners/services.png
+    - assets/icons/voucher-pockets/voucher-pockets.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
