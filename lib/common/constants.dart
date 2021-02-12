@@ -99,7 +99,6 @@ const VOUCHER_POCKETS_TAB_3_TITLE = "Expired";
 const VOUCHER_POCKETS_NOTE_TEXT = "Get voucher by scanning promo QR, paying with SWIPE QR, or buying a load with Swipe";
 const VOUCHER_POCKETS_INFORMATION_TEXT = "Learn more about voucher";
 
-
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
 const SERVICES_SCREEN_CASH_IN_TEXT = "Cash in";
