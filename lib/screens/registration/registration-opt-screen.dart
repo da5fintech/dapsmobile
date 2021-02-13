@@ -288,3 +288,5 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
     Get.toNamed("/login/login-mpin-screen");
   }
 }
+
+
