@@ -6,6 +6,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/soon-release-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
@@ -258,6 +259,14 @@ class _RemittanceCategoriesScreenState
             ],
           ),
         ),
+        'oncoming-update': CustomOverlayScreen(
+          backgroundColor: Colors.white.withOpacity(.2),
+          content: SoonReleaseDialog(
+            onOk: () {
+              OverlayScreen().pop();
+            },
+          ),
+        )
       },
     );
 
@@ -341,7 +350,33 @@ class _RemittanceCategoriesScreenState
                     ),
                   ],
                 ),
-                Text("Hello tab2")
+                Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Icon(Icons.update, color: COLOR_DARK_PURPLE, size: 102),
+                    ),
+                    Text(
+                      'Incoming Future Releases!',
+                      style: GoogleFonts.roboto(
+                        fontSize: 17,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Text(
+                      'Soon to be released\nPlease wait for our future Updates.',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.roboto(
+                        height: 1.5,
+                        fontSize: 14,
+                        color: COLOR_DARK_GRAY,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
@@ -358,7 +393,13 @@ class _RemittanceCategoriesScreenState
   void _handleTap(String category) {
     if (category == "Banks") {
       _panelController.open();
+    } else {
+      OverlayScreen().show(
+        context,
+        identifier: 'oncoming-update',
+      );
     }
+
   }
 
   void _openInstapay() async {

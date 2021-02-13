@@ -40,6 +40,8 @@ const REGISTRATION_SCREEN_SUCCESS_TEXT = "Congratulations";
 const REGISTRATION_SCREEN_USER_CREATION_TEXT =
     'We\'ve successfully created your account!';
 const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
+const REGISTRATION_SCREEN_OTP_TITLE_TEXT = "Verify Registration";
+const REGISTRATION_SCREEN_INCORRECT_OTP_TEXT = "Invalid OTP! Please Try again.";
 
 const SETTINGS_SCREEN_TITLE = "Settings";
 const SETTINGS_SCREEN_CHANGE_MPIN_TEXT = "Change MPIN";
@@ -96,7 +98,6 @@ const VOUCHER_POCKETS_TAB_2_TITLE = "Used";
 const VOUCHER_POCKETS_TAB_3_TITLE = "Expired";
 const VOUCHER_POCKETS_NOTE_TEXT = "Get voucher by scanning promo QR, paying with SWIPE QR, or buying a load with Swipe";
 const VOUCHER_POCKETS_INFORMATION_TEXT = "Learn more about voucher";
-
 
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
@@ -172,6 +173,10 @@ const AUTH_USERNAME = "kabootekph";
 const AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
 const API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
 // const API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
+
+const SMS_USERNAME = "itda5";
+const SMS_PASSWORD = "@da5_isms-2019";
+const SMS_API = "https://www.isms.com.my/isms_send.php?";
 
 const ELOADING_SCOPE = 'eloading';
 const BILLS_PAYMENT_SCOPE = 'billspayment';

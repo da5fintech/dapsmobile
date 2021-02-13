@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -307,7 +308,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                           color: COLOR_DARK_GRAY),
                     ),
                     Text(
-                      transaction.creationDate.toString(),
+                      DateFormat.yMd().format(transaction.creationDate),
                       style: GoogleFonts.roboto(
                           color: Colors.black,
                           fontSize: 12,

@@ -150,10 +150,23 @@ class _RegistrationCreateMpinScreenState
                                 "Create your ${REGISTER_MPIN_SCREEN_TEXT}",
                             counterStyle:
                                 GoogleFonts.roboto(color: Colors.white),
-                            suffixIcon: Icon(
-                              Icons.visibility_off,
-                              color: Colors.white.withOpacity(.6),
+                            suffixIcon: IconButton(
+                              onPressed: () => setState(
+                                      () => obscurePin = !obscurePin),
+                              icon:obscurePin
+                                  ? Icon(
+                                Icons.visibility_off,
+                                color: Colors.white.withOpacity(0.6),
+                              )
+                                  : Icon(
+                                Icons.visibility,
+                                color: Colors.white.withOpacity(0.6),
+                              ),
                             ),
+                            // suffixIcon: Icon(
+                            //   Icons.visibility_off,
+                            //   color: Colors.white.withOpacity(.6),
+                            // ),
                           ),
                         ),
                         TextFormField(
@@ -169,7 +182,6 @@ class _RegistrationCreateMpinScreenState
                             if (text == null || text.isEmpty) {
                               return 'Confirm ${REGISTER_MPIN_SCREEN_TEXT} is required';
                             }
-
                             if (mpin.text != confirmMpin.text) {
                               return "${REGISTER_MPIN_SCREEN_TEXT}s must match";
                             }
