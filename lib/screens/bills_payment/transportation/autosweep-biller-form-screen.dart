@@ -104,6 +104,7 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                           onChanged: (value) {
                             amount = double.parse(value);
                           },
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             labelText: BILLS_PAYMENT_TRANSPORTATION_AMOUNT_TEXT,
                           ),

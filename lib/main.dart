@@ -29,6 +29,7 @@ import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
 import 'package:swipe/screens/registration/registration-create-mpin-screen.dart';
 import 'package:swipe/screens/registration/registration-details-screen.dart';
+import 'package:swipe/screens/registration/registration-opt-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-bank-form-screen.dart';
 import 'package:swipe/screens/remittance/remittance-categories-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-banks-screen.dart';
@@ -107,6 +108,8 @@ class _MyAppState extends State<MyApp> {
               case '/registration/registration-details-screen':
                 return MaterialPageRoute(
                     builder: (_) => RegistrationDetailsScreen());
+              case '/registration/registration-otp-screen':
+                return MaterialPageRoute(builder: (_) => RegistrationOptScreen());
               case '/registration/registration-create-mpin-screen':
                 return MaterialPageRoute(
                     builder: (_) => RegistrationCreateMpinScreen());

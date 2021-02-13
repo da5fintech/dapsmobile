@@ -229,7 +229,7 @@ class AuthenticationService {
             useErrorDialogs: true,
             stickyAuth: true,
             localizedReason:
-            'Use ${!Platform.isAndroid ? 'Biometrics' : 'Face ID'} to log in',
+            'Use ${Platform.isAndroid ? 'Biometrics' : 'Face ID'} to log in',
             iOSAuthStrings: iosStrings,
             androidAuthStrings: androidStrings,
         );
