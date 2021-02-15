@@ -43,6 +43,11 @@ const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
 const REGISTRATION_SCREEN_OTP_TITLE_TEXT = "Verify Registration";
 const REGISTRATION_SCREEN_INCORRECT_OTP_TEXT = "Invalid OTP! Please Try again.";
 
+const USER_PROFILE_SCREEN_TITLE_TEXT = "User Profile";
+const USER_PROFILE_SCREEN_NOTE_TEXT = "For enhanced account security, keep your account information up to date.";
+
+
+
 const SETTINGS_SCREEN_TITLE = "Settings";
 const SETTINGS_SCREEN_CHANGE_MPIN_TEXT = "Change MPIN";
 const SETTINGS_SCREEN_ACCOUNT_AUTH_TEXT = "Account Authentication";

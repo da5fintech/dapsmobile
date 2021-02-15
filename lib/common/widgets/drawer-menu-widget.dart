@@ -89,6 +89,9 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 ),
               ),
               ListTile(
+                onTap: () {
+                  Get.toNamed('/user-profile');
+                },
                 leading: CircleAvatar(
                   maxRadius: 30,
                   backgroundColor: COLOR_ORANGE,
