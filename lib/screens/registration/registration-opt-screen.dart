@@ -281,6 +281,8 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
             context,
             identifier: 'progress',
           );
+          await Future.delayed(Duration(seconds: 5));
+          OverlayScreen().pop();
 
           if (store.registrant.isNew) {
             User creds = await store.authService.createAuth(
@@ -290,7 +292,6 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
           }
 
           await store.accountService.create(store.registrant);
-          OverlayScreen().pop();
           store.setUser(store.registrant);
           OverlayScreen().show(
             context,
