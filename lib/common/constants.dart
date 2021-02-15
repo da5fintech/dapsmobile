@@ -46,8 +46,6 @@ const REGISTRATION_SCREEN_INCORRECT_OTP_TEXT = "Invalid OTP! Please Try again.";
 const USER_PROFILE_SCREEN_TITLE_TEXT = "User Profile";
 const USER_PROFILE_SCREEN_NOTE_TEXT = "For enhanced account security, keep your account information up to date.";
 
-
-
 const SETTINGS_SCREEN_TITLE = "Settings";
 const SETTINGS_SCREEN_CHANGE_MPIN_TEXT = "Change MPIN";
 const SETTINGS_SCREEN_ACCOUNT_AUTH_TEXT = "Account Authentication";
@@ -96,6 +94,13 @@ const PARTNER_MERCHANT_SUPERMARKET_TEXT = "Supermarket";
 const PARTNER_MERCHANT_STORE_TEXT = "Convinient Store";
 const PARTNER_MERCHANT_GADGETS_TEXT = "Gadgets";
 const PARTNER_MERCHANT_SERVICES_TEXT = "Services";
+
+const PROMOS_SCREEN_TITLE_TEXT = "Promos";
+const PROMOS_SCREEN_TITLE_DO_MORE_TEXT = "Do more with Swipe!";
+const PROMOS_SCREEN_TITLE_EXTENDS_TEXT = "Extends your wallet limit up to\nPHP 500K!";
+const PROMOS_SCREEN_TITLE_SAVE = "Save for the future!";
+const PROMOS_SCREEN_TITLE_ANNUM = "Up to 25% interests per annum.";
+const PROMOS_SCEREN_LINK_NOW = "LINK NOW";
 
 const VOUCHER_POCKETS_SCREEN_TITLE = "Voucher Pockets";
 const VOUCHER_POCKETS_TAB_1_TITLE = "Active";

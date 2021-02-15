@@ -27,6 +27,7 @@ import 'package:swipe/screens/pay_qr/pay-qr-upload-screen.dart';
 import 'package:swipe/screens/payment/payment-confirmation-screen.dart';
 import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
+import 'package:swipe/screens/promos/promos-screen.dart';
 import 'package:swipe/screens/registration/registration-create-mpin-screen.dart';
 import 'package:swipe/screens/registration/registration-details-screen.dart';
 import 'package:swipe/screens/registration/registration-opt-screen.dart';
@@ -124,6 +125,8 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => LinksAccountScreen());
               case '/partner-merchants':
                 return MaterialPageRoute(builder: (_) => PartnerMerchantsScreen());
+              case '/promos':
+                return MaterialPageRoute(builder: (_) => PromosScreen());
               case '/voucher-pockets':
                 return MaterialPageRoute(builder: (_) => VoucherPocketsScreen());
               case '/settings':

@@ -120,6 +120,8 @@ flutter:
     - assets/icons/merchant-partners/gadgets.png
     - assets/icons/merchant-partners/services.png
     - assets/icons/voucher-pockets/voucher-pockets.png
+    - assets/icons/promos/undrawer-wallet.png
+    - assets/icons/promos/undrawer-savings.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
