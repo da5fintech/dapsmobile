@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/store/application-store.dart';
+import 'package:swipe/main.dart';
+
+final store = getIt<ApplicationStore>();
 
 class BiometricOtpScreen extends StatefulWidget {
   final Function onOk;
@@ -17,6 +23,16 @@ class BiometricOtpScreen extends StatefulWidget {
 class _BiometricOtpScreen extends State<BiometricOtpScreen> {
   Function onOk;
   TextEditingController controller = TextEditingController();
+  int expectedOtp;
+  bool incorrectOtp = false;
+  AppUtil _appUtil = AppUtil();
+
+  @override
+  void initState() {
+    super.initState();
+    expectedOtp = _appUtil.generateOtp();
+    _handleOtpSms();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +40,23 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
     ThemeData td = createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text("Processing...",
+                style: GoogleFonts.roboto(color: Colors.white)),
+          ],
+        ),
+      ),
+    });
 
     return Theme(
       data: td,
@@ -55,11 +88,14 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 25.0),
-                            child: Text(SETTINGS_SCREEN_BIOMETRIC_OTP_GREET,
-                                style: GoogleFonts.roboto(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black)),
+                            child: Text(
+                              SETTINGS_SCREEN_BIOMETRIC_OTP_GREET,
+                              style: GoogleFonts.roboto(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -78,9 +114,10 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
                             child: Text(
                               SETTINGS_SCREEN_BIOMETRIC_OTP_LIMIT,
                               style: GoogleFonts.roboto(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                           Container(
@@ -101,6 +138,16 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
                               ),
                             ),
                           ),
+                          if(incorrectOtp) ...[
+                            Text(
+                              REGISTRATION_SCREEN_INCORRECT_OTP_TEXT,
+                              style: GoogleFonts.roboto(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: COLOR_DANGER,
+                              ),
+                            ),
+                          ],
                           Spacer(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -116,13 +163,24 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
                               SizedBox(width: 5),
                               FlatButton(
                                 padding: EdgeInsets.zero,
-                                onPressed: () {},
+                                onPressed: () async {
+                                  var generatedOtp = _appUtil.generateOtp();
+                                  expectedOtp = generatedOtp;
+                                  setState(() {});
+                                  OverlayScreen().show(
+                                    context,
+                                    identifier: 'progress',
+                                  );
+                                  await _handleOtpSms();
+                                  OverlayScreen().pop();
+                                },
                                 child: Text(
                                   SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE,
                                   style: GoogleFonts.roboto(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: COLOR_GREEN),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: COLOR_GREEN,
+                                  ),
                                 ),
                               ),
                             ],
@@ -138,11 +196,9 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
                 width: double.infinity,
                 child: RaisedButton(
                   elevation: 0,
+                  color: controller.text.length != 6 ? Colors.grey[500] : null,
                   // shape: ,
-                  onPressed: () {
-                    Navigator.pop(context);
-                    widget.onOk();
-                  },
+                  onPressed: _handleSubmit,
                   child: Text(SETTINGS_SCREEN_BIOMETRIC_OTP_ENROLL_NOW),
                 ),
               ),
@@ -153,17 +209,19 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
                     Text(
                       APP_HELP_CENTER,
                       style: GoogleFonts.roboto(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
                     ),
                     Spacer(),
                     Text(
                       APP_VERSION,
                       style: GoogleFonts.roboto(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
                     )
                   ],
                 ),
@@ -173,5 +231,25 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
         ),
       ),
     );
+  }
+
+  Future _handleOtpSms() async {
+    await store.otpService
+        .sendOtp(mobileNumber: store.user.mobileNumber, otp: expectedOtp);
+  }
+
+  void _handleSubmit() {
+    if(controller.text.length == 6) {
+      if(expectedOtp == int.parse(controller.text)) {
+        incorrectOtp = false;
+        setState(() { });
+        Navigator.pop(context);
+        widget.onOk();
+      } else {
+        incorrectOtp = true;
+        setState(() {});
+      }
+    }
+    return null;
   }
 }

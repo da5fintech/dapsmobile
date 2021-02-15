@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/common-alert.dialog.dart';
@@ -76,6 +78,16 @@ class AppUtil extends DateUtil {
     else
       return null;
   }
+
+  int generateOtp () {
+    var rndnumber = "";
+    var rnd = new Random();
+    for (var i = 0; i < 6; i++) {
+      rndnumber = rndnumber + rnd.nextInt(9).toString();
+    }
+    return int.parse(rndnumber);
+  }
+
 }
 
 class DateUtil {
