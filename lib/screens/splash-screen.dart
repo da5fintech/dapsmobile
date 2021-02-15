@@ -30,14 +30,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    ThemeData td = Constants.createThemePurpleOnWhite(context);
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      // backgroundColor: Constants.backgroundColor2,
-      body: Container(
-        decoration: BoxDecoration(
-          color: Constants.COLOR_DARK_PURPLE,
-        ),
-        child: Column(
+    return Theme(
+      data: td,
+      child: Scaffold(
+        // backgroundColor: Constants.backgroundColor2,
+        body: Column(
           children: <Widget>[
             Expanded(
               child: Align(
@@ -51,9 +52,14 @@ class _SplashScreenState extends State<SplashScreen> {
                         Constants.APP_NAME,
                         style: GoogleFonts.roboto(
                             fontSize: 20,
-                            color: Colors.white,
+                            color: Constants.COLOR_DARK_PURPLE,
                             fontWeight: FontWeight.w800,
                             letterSpacing: 15),
+                      ),
+                      Image.asset(
+                        'assets/icons/swipe-logo.png',
+                        height: height * 0.35,
+                        width: width,
                       ),
                       SizedBox(
                         height: 5,

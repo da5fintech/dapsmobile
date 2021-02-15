@@ -76,6 +76,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
 
   assets:
+    - assets/icons/swipe-logo.png
     - assets/icons/services/bank-transfer.png
     - assets/icons/services/buy-load.png
     - assets/icons/services/cash-in.png

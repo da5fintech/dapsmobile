@@ -12,7 +12,8 @@ class OtpService {
           'un=${SMS_USERNAME}&'
           'pwd=${SMS_PASSWORD}&'
           'dstno=${mobileNumber}&'
-          'msg=${message}&agreedterm=YES&type=1'
+          'msg=${message}&agreedterm=YES&type=1&'
+          'sendid=Swipe'
       );
       print(a.statusCode);
     } on ApiResponseError catch(e) {

@@ -29,19 +29,22 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    ThemeData td = Constants.createThemePurpleOnWhite(context);
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      // backgroundColor: Constants.backgroundColor2,
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Align(
-                alignment: Alignment.topCenter,
+    return Theme(
+      data: td,
+      child: Scaffold(
+        // backgroundColor: Constants.backgroundColor2,
+        body: Container(
+          child: Column(
+            children: <Widget>[
+              Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(top: 80),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         Constants.LOGIN_SCREEN_APP_NAME,
@@ -50,7 +53,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.w800,
                           letterSpacing:
                               Constants.LOGIN_SCREEN_APP_NAME_LETTER_SPACING,
+                          color: Constants.COLOR_DARK_PURPLE,
                         ),
+                      ),
+                      Image.asset(
+                        'assets/icons/swipe-logo.png',
+                        height: height * 0.35,
+                        width: width,
                       ),
                       SizedBox(
                         height: 5,
@@ -59,9 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Align(
+              Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 20, left: 40, right: 40),
@@ -93,16 +100,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: <Widget>[
                           Expanded(
                             child: Divider(
-                              color: Colors.white.withOpacity(.87),
+                              thickness: 1.5,
+                              color: Constants.COLOR_DARK_PURPLE,
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 5, right: 5),
-                            child: Text(Constants.LOGIN_SCREEN_SIGN_UP_TEXT),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              Constants.LOGIN_SCREEN_SIGN_UP_TEXT,
+                              style: GoogleFonts.roboto(
+                                color: Constants.COLOR_DARK_PURPLE,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              )
+                            ),
                           ),
                           Expanded(
                             child: Divider(
-                              color: Colors.white.withOpacity(.87),
+                              thickness: 1.5,
+                              color: Constants.COLOR_DARK_PURPLE,
                             ),
                           ),
                         ],
@@ -190,8 +206,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
