@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/common/constants.dart';
 
 class SecondaryButtonWidget extends StatelessWidget {
   final String text;
@@ -15,11 +18,11 @@ class SecondaryButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlineButton(
-      borderSide: BorderSide(color: Colors.white, width: 1),
+      borderSide: BorderSide(color: COLOR_DARK_PURPLE, width: 1.5),
       onPressed: onPressed,
       child: Text(
         text,
-        style: GoogleFonts.roboto(color: Colors.white),
+        style: GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontWeight: FontWeight.w500),
       ),
     );
   }

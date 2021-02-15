@@ -54,6 +54,9 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    ThemeData td = createThemePurpleOnWhite(context);
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     OverlayScreen().saveScreens({
       'wrong-mpin': CustomOverlayScreen(
@@ -66,71 +69,78 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
       ),
     });
 
-    return Scaffold(
-      // backgroundColor: Constants.backgroundColor2,
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 80),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        Constants.APP_NAME,
-                        style: GoogleFonts.roboto(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: 15),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                    ],
+    return Theme(
+      data: td,
+      child: Scaffold(
+        // backgroundColor: Constants.backgroundColor2,
+        body: Container(
+          child: Column(
+            children: <Widget>[
+              Container(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 80),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          Constants.APP_NAME,
+                          style: GoogleFonts.roboto(
+                              fontSize: 20,
+                              color: COLOR_DARK_PURPLE,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 15),
+                        ),
+                        Image.asset(
+                          'assets/icons/swipe-logo.png',
+                          height: height * 0.25,
+                          width: width,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 40, right: 40, top: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(Constants.LOGIN_MPIN_SCREEN_LOGIN_TEXT),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: COLOR_ORANGE,
-                        child: store.user.photoURL == null
-                            ? Text(
-                                store.user.getInitials(),
-                                style: GoogleFonts.roboto(color: Colors.white),
-                              )
-                            : ClipOval(
-                                child: Image.network(store.user.photoURL),
-                              ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        child: Text(
-                          store.user.displayName,
-                          style: GoogleFonts.roboto(fontSize: 14),
+              Padding(
+                padding: EdgeInsets.only(left: 40, right: 40, top: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(Constants.LOGIN_MPIN_SCREEN_LOGIN_TEXT),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: COLOR_ORANGE,
+                          child: store.user.photoURL == null
+                              ? Text(
+                                  store.user.getInitials(),
+                                  style: GoogleFonts.roboto(color: Colors.white),
+                                )
+                              : ClipOval(
+                                  child: Image.network(store.user.photoURL),
+                                ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: Text(
+                            store.user.displayName,
+                            style: GoogleFonts.roboto(fontSize: 14),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(left: 40, right: 40),
+              Padding(
+                padding: EdgeInsets.only(left: 40, right: 40, top: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -157,10 +167,10 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                                   setState(() => obscureText = !obscureText),
                               icon: obscureText
                                   ? Icon(Icons.visibility_off,
-                                      color: Colors.white.withOpacity(.6))
+                                      color: COLOR_DARK_GRAY.withOpacity(.6))
                                   : Icon(
                                       Icons.visibility,
-                                      color: Colors.white.withOpacity(.6),
+                                      color: COLOR_DARK_GRAY.withOpacity(.6),
                                     ),
                             ),
                           ),
@@ -184,18 +194,19 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 10, left: 40, right: 40),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(Constants.APP_NAME),
-                  Text(Constants.APP_VERSION),
-                ],
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10, left: 40, right: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(Constants.APP_NAME),
+                    Text(Constants.APP_VERSION),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
