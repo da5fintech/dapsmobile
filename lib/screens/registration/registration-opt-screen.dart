@@ -7,6 +7,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/screens/registration/registration-success-dialog.dart';
@@ -23,16 +24,18 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
   int expectedOtp;
   bool incorrectOtp = false;
   TextEditingController controller = TextEditingController();
+  AppUtil _appUtil = AppUtil();
 
   @override
   void initState() {
     super.initState();
+    expectedOtp = _appUtil.generateOtp();
+    _handleOtpSms();
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    ThemeData td = createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -61,120 +64,158 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
       ),
     });
 
-    return Theme(
-      data: td,
-      child: Scaffold(
-        appBar: SubAppbarWidget(
-          title: REGISTRATION_SCREEN_OTP_TITLE_TEXT,
-        ),
-        body: Padding(
+    return Scaffold(
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
+              Padding(
+                padding: EdgeInsets.only(top: 80),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      APP_NAME,
+                      style: GoogleFonts.roboto(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 15),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                  ],
+                ),
+              ),
               Flexible(
                 flex: 1,
                 child: Container(
                   height: height,
-                  child: SingleChildScrollView(
-                    child: Container(
-                      height: height * 0.75,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 80.0),
-                            child: Icon(
-                              Icons.mobile_friendly,
-                              size: 60,
-                              color: COLOR_DARK_PURPLE,
+                  child: NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (OverscrollIndicatorNotification overscroll) {
+                      overscroll.disallowGlow();
+                      return;
+                    },
+                    child: SingleChildScrollView(
+                      child: Container(
+                        height: height * 0.70,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30.0),
+                              child: Icon(
+                                Icons.mobile_friendly,
+                                size: 60,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 25.0),
-                            child: Text(SETTINGS_SCREEN_BIOMETRIC_OTP_GREET,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 25.0),
+                              child: Text(
+                                SETTINGS_SCREEN_BIOMETRIC_OTP_GREET,
                                 style: GoogleFonts.roboto(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 50),
-                            child: Text(
-                              SETTINGS_SCREEN_BIOMETRIC_OTP_SEND,
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.roboto(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 50),
-                            child: Text(
-                              SETTINGS_SCREEN_BIOMETRIC_OTP_LIMIT,
-                              style: GoogleFonts.roboto(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black),
-                            ),
-                          ),
-                          Container(
-                            width: width * 0.60,
-                            child: PinCodeTextField(
-                              controller: controller,
-                              obscureText: true,
-                              keyboardType: TextInputType.number,
-                              onChanged: (str) {
-                                print("change ${str}");
-                              },
-                              appContext: context,
-                              length: 6,
-                              pinTheme: PinTheme(
-                                activeColor: COLOR_DARK_PURPLE,
-                                inactiveColor: Colors.black.withOpacity(.30),
-                                fieldWidth: 20,
-                              ),
-                            ),
-                          ),
-                          if (incorrectOtp) ...[
-                            Text(
-                              REGISTRATION_SCREEN_INCORRECT_OTP_TEXT,
-                              style: GoogleFonts.roboto(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: COLOR_DANGER,
-                              ),
-                            ),
-                          ],
-                          Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                SETTINGS_SCREEN_BIOMETRIC_OTP_NEW_CODE,
-                                style: GoogleFonts.roboto(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
                                 ),
                               ),
-                              SizedBox(width: 5),
-                              FlatButton(
-                                padding: EdgeInsets.zero,
-                                onPressed: _handleOtpSms,
-                                child: Text(
-                                  SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE,
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: COLOR_GREEN),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 50),
+                              child: Text(
+                                SETTINGS_SCREEN_BIOMETRIC_OTP_SEND,
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                  height: 1.5,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 50),
+                              child: Text(
+                                SETTINGS_SCREEN_BIOMETRIC_OTP_LIMIT,
+                                style: GoogleFonts.roboto(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.5,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: width * 0.60,
+                              child: PinCodeTextField(
+                                textStyle: TextStyle(color: Colors.white, fontSize: 18),
+                                backgroundColor: COLOR_DARK_PURPLE,
+                                controller: controller,
+                                obscureText: true,
+                                keyboardType: TextInputType.number,
+                                onChanged: (str) {
+                                  print("change ${str}");
+                                },
+                                appContext: context,
+                                length: 6,
+                                pinTheme: PinTheme(
+                                  activeColor: Colors.white,
+                                  inactiveColor: Colors.white,
+                                  fieldWidth: 20,
+                                ),
+                              ),
+                            ),
+                            if (incorrectOtp) ...[
+                              Text(
+                                REGISTRATION_SCREEN_INCORRECT_OTP_TEXT,
+                                style: GoogleFonts.roboto(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: COLOR_DANGER,
                                 ),
                               ),
                             ],
-                          ),
-                          SizedBox(height: 20),
-                        ],
+                            Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  SETTINGS_SCREEN_BIOMETRIC_OTP_NEW_CODE,
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                FlatButton(
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () async {
+                                    var a = _appUtil.generateOtp();
+                                    expectedOtp = a;
+                                    setState(() {});
+                                    OverlayScreen().show(context, identifier: 'progress');
+                                    await _handleOtpSms();
+                                    OverlayScreen().pop();
+                                  },
+                                  child: Text(
+                                    SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE,
+                                    style: GoogleFonts.roboto(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: COLOR_GREEN),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 20),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -184,7 +225,9 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                 width: double.infinity,
                 child: RaisedButton(
                   elevation: 0,
-                  color: controller.text.length != 6 ? Colors.grey[500] : null,
+                  color: controller.text.length != 6
+                      ? Colors.white.withOpacity(0.32)
+                      : Colors.white,
                   // shape: ,
                   onPressed: () {
                     _handleRegister();
@@ -201,7 +244,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                       style: GoogleFonts.roboto(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black),
+                          color: Colors.white),
                     ),
                     Spacer(),
                     Text(
@@ -209,7 +252,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                       style: GoogleFonts.roboto(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black),
+                          color: Colors.white),
                     )
                   ],
                 ),
@@ -221,23 +264,8 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
     );
   }
 
-  _handleOtpSms() async {
-    OverlayScreen().show(
-      context,
-      identifier: 'progress',
-    );
-
+  Future _handleOtpSms() async {
     //Generate OTP
-    await Future.delayed(Duration(seconds: 2));
-    OverlayScreen().pop();
-    var rndnumber = "";
-    var rnd = new Random();
-    for (var i = 0; i < 6; i++) {
-      rndnumber = rndnumber + rnd.nextInt(9).toString();
-    }
-
-    expectedOtp = int.parse(rndnumber); //save otp
-    setState(() {});
     await store.otpService.sendOtp(
         mobileNumber: "63${store.registrant.mobileNumber}", otp: expectedOtp);
   }
@@ -288,5 +316,3 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
     Get.toNamed("/login/login-mpin-screen");
   }
 }
-
-

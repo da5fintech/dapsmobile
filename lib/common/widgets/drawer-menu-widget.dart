@@ -89,6 +89,9 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 ),
               ),
               ListTile(
+                onTap: () {
+                  Get.toNamed('/user-profile');
+                },
                 leading: CircleAvatar(
                   maxRadius: 30,
                   backgroundColor: COLOR_ORANGE,
@@ -226,6 +229,9 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 thickness: 0.5,
               ),
               ListTile(
+                onTap: () {
+                  Get.toNamed('/promos');
+                },
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: Icon(Icons.wallet_giftcard, color: Colors.white),
                 title: Transform(
@@ -303,6 +309,9 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 thickness: 0.5,
               ),
               ListTile(
+                onTap: () {
+                  Get.toNamed('/help');
+                },
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: Icon(Icons.help, color: Colors.white),
                 title: Transform(

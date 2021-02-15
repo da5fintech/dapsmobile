@@ -16,6 +16,7 @@ import 'package:swipe/screens/bills_payment/bills_payment-biller-list-screen.dar
 import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
+import 'package:swipe/screens/help/help-screen.dart';
 import 'package:swipe/screens/links-account/links-account-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/login/login-email-screen.dart';
@@ -27,6 +28,7 @@ import 'package:swipe/screens/pay_qr/pay-qr-upload-screen.dart';
 import 'package:swipe/screens/payment/payment-confirmation-screen.dart';
 import 'package:swipe/screens/payment/payment-mpin-screen.dart';
 import 'package:swipe/screens/payment/payment-verification-screen.dart';
+import 'package:swipe/screens/promos/promos-screen.dart';
 import 'package:swipe/screens/registration/registration-create-mpin-screen.dart';
 import 'package:swipe/screens/registration/registration-details-screen.dart';
 import 'package:swipe/screens/registration/registration-opt-screen.dart';
@@ -39,6 +41,7 @@ import 'package:swipe/screens/settings/change-swipe-mpin/swipe-mpin-screen.dart'
 import 'package:swipe/screens/settings/settings-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/screens/transactions/transaction-history-screen.dart';
+import 'package:swipe/screens/user-profile/user-profile-screen.dart';
 import 'package:swipe/screens/voucher-pockets/voucher-pockets-screen.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/screens/bills_payment/transportation/transportation-categories-screen.dart';
@@ -116,10 +119,15 @@ class _MyAppState extends State<MyApp> {
               case '/transactions/transaction-history-screen':
                 return MaterialPageRoute(
                     builder: (_) => TransactionHistoryScreen());
+              case '/user-profile':
+                return MaterialPageRoute(
+                  builder: (_) => UserProfileScreen());
               case '/links-account':
                 return MaterialPageRoute(builder: (_) => LinksAccountScreen());
               case '/partner-merchants':
                 return MaterialPageRoute(builder: (_) => PartnerMerchantsScreen());
+              case '/promos':
+                return MaterialPageRoute(builder: (_) => PromosScreen());
               case '/voucher-pockets':
                 return MaterialPageRoute(builder: (_) => VoucherPocketsScreen());
               case '/settings':
@@ -128,6 +136,8 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => SwipeMpinScreen());
               case '/settings/biometric/biometric-fingerprint-screen':
                 return MaterialPageRoute(builder: (_) => BiometricFingerprintScreen());
+              case '/help':
+                return MaterialPageRoute(builder: (_) => HelpScreen());
               case '/services':
                 return MaterialPageRoute(builder: (_) => ServicesScreen());
               case '/services/buy-load/buy-load-recipient-screen':
