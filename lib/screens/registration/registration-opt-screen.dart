@@ -36,7 +36,6 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    ThemeData td = createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
