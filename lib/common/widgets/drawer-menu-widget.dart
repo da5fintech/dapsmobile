@@ -309,6 +309,9 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 thickness: 0.5,
               ),
               ListTile(
+                onTap: () {
+                  Get.toNamed('/help');
+                },
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: Icon(Icons.help, color: Colors.white),
                 title: Transform(
