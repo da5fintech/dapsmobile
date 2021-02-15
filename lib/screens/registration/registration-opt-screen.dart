@@ -30,7 +30,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
   void initState() {
     super.initState();
     expectedOtp = _appUtil.generateOtp();
-    // _handleOtpSms();
+    _handleOtpSms();
   }
 
   @override
