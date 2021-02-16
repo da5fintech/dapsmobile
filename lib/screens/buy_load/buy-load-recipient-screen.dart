@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/store/application-store.dart';
@@ -50,6 +51,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                       Expanded(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextFormField(
                               keyboardType: TextInputType.phone,
@@ -61,10 +63,22 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                               },
                               controller: controller,
                               decoration: InputDecoration(
-                                  prefixIconConstraints:
-                                      BoxConstraints(minWidth: 0, minHeight: 0),
-                                  labelText: BUY_LOAD_RECIPIENT_SCREEN_LOAD_FOR_TEXT,
-                                  hintText: ""),
+                                prefixIconConstraints:
+                                    BoxConstraints(minWidth: 0, minHeight: 0),
+                                labelText:
+                                    BUY_LOAD_RECIPIENT_SCREEN_LOAD_FOR_TEXT,
+                                hintText: "",
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'Add +63 to the recipient e.g 631234567890',
+                              textAlign: TextAlign.start,
+                              style: GoogleFonts.roboto(
+                                color: COLOR_DARK_GRAY.withOpacity(0.52),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ],
                         ),
