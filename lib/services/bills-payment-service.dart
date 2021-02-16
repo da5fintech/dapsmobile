@@ -32,11 +32,11 @@ class BillsPaymentProcessResponse extends TransactionProcessingResponse {
 class BillsPaymentService extends Da5Service {
   BillsPaymentService()
       : super(
-            endpoint: API_ENDPOINT,
-            merchantId: AUTH_MERCHANT_ID,
-            networkId: AUTH_NETWORK_ID,
-            signature: AUTH_SIGNATURE,
-            username: AUTH_USERNAME);
+            endpoint: BILLS_PAYMENT_API_ENDPOINT,
+            merchantId: BILLS_PAYMENT_AUTH_MERCHANT_ID,
+            networkId: BILLS_PAYMENT_AUTH_NETWORK_ID,
+            signature: BILLS_PAYMENT_AUTH_SIGNATURE,
+            username: BILLS_PAYMENT_AUTH_USERNAME);
 
   Future<List<BillerProduct>> getBillersByCategory(String category) async {
     List<BillerProduct> billers = new List<BillerProduct>();
