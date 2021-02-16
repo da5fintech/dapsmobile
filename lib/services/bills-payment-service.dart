@@ -76,11 +76,10 @@ class BillsPaymentService extends Da5Service {
       Map<String, String> params = {
         "Scope": BILLS_PAYMENT_SCOPE,
         "Biller": product.code,
-        "Channel": BILLS_PAYMENT_CHANNEL,
-        "Fee": formatterWithoutPHP.format(product.fee).replaceFirst(" ", ""),
-        "Category": product.category,
-        "Name": product.name,
-        "Type": product.type,
+        "fee": formatterWithoutPHP.format(product.fee).replaceFirst(" ", ""),
+        "category": product.category,
+        "name": product.name,
+        "type": product.type,
       };
       product.fields.forEach((field) {
         if (field.field != 'amount') {
