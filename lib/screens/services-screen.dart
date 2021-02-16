@@ -321,8 +321,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
     } else if (offering == SwipeServiceOffering.REMITTANCE) {
       Get.toNamed("/services/remittance/remittance-categories-screen");
     } else if(offering == SwipeServiceOffering.DIRECT_SEND) {
-
-
+      Get.toNamed("/services/direct-send");
     } else {
       OverlayScreen().show(
         context,

@@ -128,6 +128,15 @@ const SERVICES_SCREEN_REASON_SWIPE_TEXT =
 
 const HELP_SCREEN_TITLE_TEXT = "Help";
 
+const DIRECT_SEND_SCREEN_TITLE_TEXT = "Send / Request Money";
+const DIRECT_SEND_SCREEN_SWIPE_SEND_TEXT = "Send money to another SWIPE account";
+const DIRECT_SEND_SCREEN_DIRECT_SEND_TEXT = "Direct Send";
+const DIRECT_SEND_SCREEN_SEND_QR_TEXT = "Send Via QR";
+const DIRECT_SEND_SCREEN_SEND_TO_BANK_TEXT = "Send money to bank account";
+const DIRECT_SEND_SCREEN_BANKS_TEXT = "Banks";
+const DIRECT_SEND_SCREEN_REMITTANCE_TEXT = "Send money to Remittance Center";
+const DIRECT_SEND_SCREEN_REMITTANCE_CENTERS_TEXT = "Remittance Centers";
+
 const BILLS_PAYMENT_TITLE_TEXT = "Pay Bills";
 const BILLS_PAYMENT_NEXT_TEXT = "Next";
 const BILLS_PAYMENT_SCREEN_IMMEDIATE_POST_TEXT =
