@@ -41,7 +41,7 @@ class TransactionService extends FireStoreService {
             await service.process(transaction.product, transaction.amount);
       }
 
-      ///Deduct user balance is any services
+      ///Deduct user balance if any services
       ///return true;
       if(response.status) {
         await tryChargeAccount(user, transaction);
