@@ -57,7 +57,8 @@ class AutosweepService extends Da5Service {
       Map<String, String> params = {
         "Scope": AUTOSWEEP_SCOPE,
         "Amount": formatterWithoutPHP.format(total).replaceFirst(" ", ""),
-        "PlateNumber": product.plateNumber
+        "PlateNumber": product.plateNumber,
+        "Fees": formatterWithoutPHP.format(AUTOSWEEP_FEE).replaceFirst(" ", ""),
       };
 
       var response = await post("/API_autosweep/process", params);
