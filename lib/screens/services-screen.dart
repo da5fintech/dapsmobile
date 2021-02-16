@@ -157,21 +157,22 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     text: SERVICES_SCREEN_CASH_IN_TEXT,
                   ),
                   ServiceButtonWidget(
-                    offering: SwipeServiceOffering.REMITTANCE,
+                    // offering: SwipeServiceOffering.REMITTANCE,
+                    offering: SwipeServiceOffering.DIRECT_SEND,
                     onPressed: _handleButtonClick,
                     icon: Image.asset('assets/icons/services/remittance.png'),
                     text: SERVICES_SCREEN_REMITTANCE_TEXT,
                   ),
                   ServiceButtonWidget(
-                    offering: SwipeServiceOffering.BANK_TRANSFER,
+                    offering: SwipeServiceOffering.REMITTANCE,
                     onPressed: _handleButtonClick,
-                    // icon:
-                    //     Image.asset('assets/icons/services/bank-transfer.png'),
-                    icon: ImageIcon(
-                      AssetImage('assets/icons/services/bank-transfer.png'),
-                      size: 26,
-                      color: COLOR_DARK_GRAY,
-                    ),
+                    icon:
+                        Image.asset('assets/icons/services/bank-transfer.png'),
+                    // icon: ImageIcon(
+                    //   AssetImage('assets/icons/services/bank-transfer.png'),
+                    //   size: 26,
+                    //   color: COLOR_DARK_GRAY,
+                    // ),
                     text: SERVICES_SCREEN_BANK_TRANSFER_TEXT,
                   ),
                   ServiceButtonWidget(
@@ -319,6 +320,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
       Get.toNamed("/services/bills-payment/bills-payment-categories-screen");
     } else if (offering == SwipeServiceOffering.REMITTANCE) {
       Get.toNamed("/services/remittance/remittance-categories-screen");
+    } else if(offering == SwipeServiceOffering.DIRECT_SEND) {
+
+
     } else {
       OverlayScreen().show(
         context,

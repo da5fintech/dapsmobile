@@ -112,8 +112,8 @@ const VOUCHER_POCKETS_INFORMATION_TEXT = "Learn more about voucher";
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
 const SERVICES_SCREEN_CASH_IN_TEXT = "Cash in";
-const SERVICES_SCREEN_REMITTANCE_TEXT = "Remittance";
-const SERVICES_SCREEN_BANK_TRANSFER_TEXT = "Back Transfer";
+const SERVICES_SCREEN_REMITTANCE_TEXT = "Direct Send";
+const SERVICES_SCREEN_BANK_TRANSFER_TEXT = "Remittance";
 const SERVICES_SCREEN_BUY_LOAD_TEXT = "Buy Load";
 const SERVICES_SCREEN_PAY_BILLS_TEXT = "Pay Bills";
 const SERVICES_SCREEN_REQUEST_MONEY_TEXT = "Request Money";
@@ -516,6 +516,7 @@ enum SwipeServiceOffering {
   BUY_LOAD,
   CASH_IN,
   PAY_QR,
+  DIRECT_SEND,
   REMITTANCE,
   REMITTANCE_INSTAPAY,
   BILLS_PAYMENT,
@@ -523,7 +524,7 @@ enum SwipeServiceOffering {
   BANK_TRANSFER,
   REQUEST_MONEY,
   AUTOSWEEP,
-  MORE
+  MORE,
 }
 
 Map<SwipeServiceOffering, String> SwipeServiceRoutes = {
