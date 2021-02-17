@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -98,8 +99,12 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       borderRadius: BorderRadius.circular(0),
                     ),
                     child: ListTile(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => DirectSendViaQrScreen()));
+                      onTap: () async {
+                        final camera = await availableCameras();
+                        final backCamera = camera.first;
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => DirectSendViaQrScreen(
+                          camera: backCamera,
+                        )));
                       },
                       title: Text(
                         DIRECT_SEND_SCREEN_SEND_QR_TEXT,
