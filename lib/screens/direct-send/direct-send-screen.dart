@@ -8,25 +8,24 @@ import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/screens/direct-send/direct-request-form-screen.dart';
+import 'package:swipe/screens/direct-send/direct-send-via-qr-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
 
-
 class DirectSendScreen extends StatefulWidget {
   @override
-  _DirectSendScreenState createState () =>
-      _DirectSendScreenState();
+  _DirectSendScreenState createState() => _DirectSendScreenState();
 }
 
-class _DirectSendScreenState extends State<DirectSendScreen>{
+class _DirectSendScreenState extends State<DirectSendScreen> {
   AppUtil _appUtil = AppUtil();
   String qrData = "";
   String userNickname = "";
   double php;
 
   @override
-  void initState(){
+  void initState() {
     qrData = "${store.user.mobileNumber}/${store.user.displayName}";
     super.initState();
   }
@@ -99,6 +98,9 @@ class _DirectSendScreenState extends State<DirectSendScreen>{
                       borderRadius: BorderRadius.circular(0),
                     ),
                     child: ListTile(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => DirectSendViaQrScreen()));
+                      },
                       title: Text(
                         DIRECT_SEND_SCREEN_SEND_QR_TEXT,
                         style: GoogleFonts.roboto(
@@ -208,7 +210,7 @@ class _DirectSendScreenState extends State<DirectSendScreen>{
                               size: height * 0.25,
                             ),
                           ),
-                          if(userNickname.isNotEmpty) ...[
+                          if (userNickname.isNotEmpty) ...[
                             Text(
                               userNickname,
                               style: GoogleFonts.roboto(
@@ -229,18 +231,23 @@ class _DirectSendScreenState extends State<DirectSendScreen>{
                                     store.user.displayName,
                                     style: GoogleFonts.roboto(
                                       fontWeight: FontWeight.w500,
-                                      fontSize: userNickname.isEmpty && php == null ? 16 : 14,
-                                      color: userNickname.isEmpty && php == null ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY,
+                                      fontSize:
+                                          userNickname.isEmpty && php == null
+                                              ? 16
+                                              : 14,
+                                      color: userNickname.isEmpty && php == null
+                                          ? COLOR_DARK_PURPLE
+                                          : COLOR_DARK_GRAY,
                                     ),
                                   ),
-                                  if(userNickname.isEmpty && php == null) ...[
+                                  if (userNickname.isEmpty && php == null) ...[
                                     Icon(Icons.edit, color: COLOR_DARK_PURPLE),
                                   ]
                                 ],
                               ),
                             ),
                           ),
-                          if(php != null) ...[
+                          if (php != null) ...[
                             Text(
                               "PHP ${formatterWithoutPHP.format(php).replaceFirst(" ", "")}",
                               style: GoogleFonts.roboto(
@@ -330,21 +337,20 @@ class _DirectSendScreenState extends State<DirectSendScreen>{
     );
   }
 
-  void _customQr () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => DirectRequestFormScreen(
-            onSave: _handleUpdateQr,
-          ))
-      );
+  void _customQr() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => DirectRequestFormScreen(
+                  onSave: _handleUpdateQr,
+                )));
   }
 
-  _handleUpdateQr (String nickname, String amount) {
+  _handleUpdateQr(String nickname, String amount) {
     String convertQrData = _appUtil.splitQrData(qrData, amount);
     userNickname = nickname;
     qrData = convertQrData;
     php = double.parse(amount);
     setState(() {});
-
   }
 }
