@@ -49,6 +49,9 @@ class DirectSendScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(0),
                     ),
                     child: ListTile(
+                      onTap: () {
+                        Get.toNamed('/services/direct-send/direct-send-form-screen');
+                      },
                       title: Text(
                         DIRECT_SEND_SCREEN_DIRECT_SEND_TEXT,
                         style: GoogleFonts.roboto(

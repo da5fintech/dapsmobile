@@ -16,6 +16,7 @@ import 'package:swipe/screens/bills_payment/bills_payment-biller-list-screen.dar
 import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
+import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-screen.dart';
 import 'package:swipe/screens/help/help-screen.dart';
 import 'package:swipe/screens/links-account/links-account-screen.dart';
@@ -143,6 +144,8 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => ServicesScreen());
               case '/services/direct-send':
                 return MaterialPageRoute(builder: (_) => DirectSendScreen());
+              case '/services/direct-send/direct-send-form-screen':
+                return MaterialPageRoute(builder: (_) => DirectSendFormScreen());
               case '/services/buy-load/buy-load-recipient-screen':
                 return MaterialPageRoute(
                     builder: (_) => BuyLoadRecipientScreen());
