@@ -4,10 +4,33 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/main.dart';
 import 'package:swipe/screens/direct-send/direct-request-form-screen.dart';
+import 'package:swipe/store/application-store.dart';
 
-class DirectSendScreen extends StatelessWidget {
+final store = getIt<ApplicationStore>();
+
+
+class DirectSendScreen extends StatefulWidget {
+  @override
+  _DirectSendScreenState createState () =>
+      _DirectSendScreenState();
+}
+
+class _DirectSendScreenState extends State<DirectSendScreen>{
+  AppUtil _appUtil = AppUtil();
+  String qrData = "";
+  String userNickname = "";
+  double php;
+
+  @override
+  void initState(){
+    qrData = "${store.user.mobileNumber}/${store.user.displayName}";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -181,44 +204,65 @@ class DirectSendScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: QrImage(
-                              data: "1232456",
+                              data: qrData,
                               size: height * 0.25,
                             ),
                           ),
-                          InkWell(
-                            onTap: (){
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (_) => DirectRequestFormScreen())
-                              );
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Jose Paulo',
-                                  style: GoogleFonts.roboto(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: COLOR_DARK_PURPLE,
+                          if(userNickname.isNotEmpty) ...[
+                            Text(
+                              userNickname,
+                              style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: COLOR_DARK_PURPLE,
+                              ),
+                            ),
+                          ],
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: InkWell(
+                              onTap: _customQr,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    store.user.displayName,
+                                    style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: userNickname.isEmpty && php == null ? 16 : 14,
+                                      color: userNickname.isEmpty && php == null ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY,
+                                    ),
                                   ),
-                                ),
-                                Icon(Icons.edit, color: COLOR_DARK_PURPLE),
-                              ],
+                                  if(userNickname.isEmpty && php == null) ...[
+                                    Icon(Icons.edit, color: COLOR_DARK_PURPLE),
+                                  ]
+                                ],
+                              ),
                             ),
                           ),
+                          if(php != null) ...[
+                            Text(
+                              "PHP ${formatterWithoutPHP.format(php).replaceFirst(" ", "")}",
+                              style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: COLOR_DARK_PURPLE,
+                              ),
+                            ),
+                          ],
                           Spacer(),
                           Container(
                             height: 40,
                             color: COLOR_ORANGE,
                             child: Center(
                               child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (_) => DirectRequestFormScreen())
-                                  );
-                                },
+                                onTap: _customQr,
+                                // onTap: () {
+                                //   Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(builder: (_) => DirectRequestFormScreen())
+                                //   );
+                                // },
                                 child: Text(
                                   '+ ADD AMOUNT',
                                   textAlign: TextAlign.center,
@@ -284,5 +328,23 @@ class DirectSendScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _customQr () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => DirectRequestFormScreen(
+            onSave: _handleUpdateQr,
+          ))
+      );
+  }
+
+  _handleUpdateQr (String nickname, String amount) {
+    String convertQrData = _appUtil.splitQrData(qrData, amount);
+    userNickname = nickname;
+    qrData = convertQrData;
+    php = double.parse(amount);
+    setState(() {});
+
   }
 }
