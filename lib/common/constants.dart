@@ -154,7 +154,7 @@ const DIRECT_SEND_VIA_QR_SCREEN_NOTE =
     'Align QR code to the frame to\n'
     'start scanning.';
 const DIRECT_SEND_VIA_QR_SCREEN_DETECTED = "QR code Detected!";
-const DIRECT_SEND_VIA_QR_SCREEN_RESCAN = "Re-scan QR cod";
+const DIRECT_SEND_VIA_QR_SCREEN_RESCAN = "Re-scan QR code";
 const DIRECT_SEND_VIA_QR_SCREEN_PROCEED = "PROCEED";
 
 
