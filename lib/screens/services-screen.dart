@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
@@ -150,92 +151,96 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   mainAxisSpacing: 0,
                   crossAxisSpacing: 20,
                   children: [
-                    ServiceButtonWidget(
-                      offering: SwipeServiceOffering.CASH_IN,
-                      onPressed: _handleButtonClick,
-                      // icon: Image.asset('assets/icons/services/cash-in.png'),
-                      icon: ImageIcon(
-                        AssetImage('assets/icons/services/cash-in.png'),
-                        size: 26,
-                        color: COLOR_DARK_GRAY,
+                    Opacity(
+                      opacity: 0.5,
+                      child: ServiceButtonWidget(
+                        offering: SwipeServiceOffering.CASH_IN,
+                        onPressed: _handleButtonClick,
+                        icon: SvgPicture.asset(
+                          'assets/svg/services/cash-in.svg',
+                        ),
+                        text: SERVICES_SCREEN_CASH_IN_TEXT,
                       ),
-                      text: SERVICES_SCREEN_CASH_IN_TEXT,
                     ),
                     ServiceButtonWidget(
                       // offering: SwipeServiceOffering.REMITTANCE,
                       offering: SwipeServiceOffering.DIRECT_SEND,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset('assets/icons/services/remittance.png'),
+                      // icon: Image.asset('assets/icons/services/remittance.png'),
+                      icon: SvgPicture.asset(
+                        'assets/svg/services/remittance.svg'
+                      ),
                       text: SERVICES_SCREEN_REMITTANCE_TEXT,
                     ),
                     ServiceButtonWidget(
                       offering: SwipeServiceOffering.REMITTANCE,
                       onPressed: _handleButtonClick,
-                      icon:
-                          Image.asset('assets/icons/services/bank-transfer.png'),
-                      // icon: ImageIcon(
-                      //   AssetImage('assets/icons/services/bank-transfer.png'),
-                      //   size: 26,
-                      //   color: COLOR_DARK_GRAY,
-                      // ),
+                      icon: SvgPicture.asset(
+                        'assets/svg/services/bank-transfer.svg',
+                      ),
                       text: SERVICES_SCREEN_BANK_TRANSFER_TEXT,
                     ),
                     ServiceButtonWidget(
                       offering: SwipeServiceOffering.BUY_LOAD,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset('assets/icons/services/buy-load.png'),
+                      // icon: Image.asset('assets/icons/services/buy-load.png'),
+                      icon: SvgPicture.asset(
+                        'assets/svg/services/buy-load.svg',
+                      ),
                       text: SERVICES_SCREEN_BUY_LOAD_TEXT,
                     ),
                     ServiceButtonWidget(
                       offering: SwipeServiceOffering.BILLS_PAYMENT,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset('assets/icons/services/pay-bills.png'),
+                      // icon: Image.asset('assets/icons/services/pay-bills.png'),
+                      icon: SvgPicture.asset(
+                        'assets/svg/services/pay-bills.svg',
+                      ),
                       text: SERVICES_SCREEN_PAY_BILLS_TEXT,
                     ),
-                    ServiceButtonWidget(
-                      offering: SwipeServiceOffering.REQUEST_MONEY,
-                      onPressed: _handleButtonClick,
-                      // icon:
-                      //     Image.asset('assets/icons/services/request-money.png'),
-                      icon: ImageIcon(
-                        AssetImage('assets/icons/services/request-money.png'),
-                        size: 26,
-                        color: COLOR_DARK_GRAY,
+                    Opacity(
+                      opacity: .5,
+                      child: ServiceButtonWidget(
+                        offering: SwipeServiceOffering.REQUEST_MONEY,
+                        onPressed: _handleButtonClick,
+                        icon: SvgPicture.asset(
+                          'assets/svg/services/request-money.svg',
+                        ),
+                        text: SERVICES_SCREEN_REQUEST_MONEY_TEXT,
                       ),
-                      text: SERVICES_SCREEN_REQUEST_MONEY_TEXT,
                     ),
-                    ServiceButtonWidget(
-                      offering: SwipeServiceOffering.PAY_QR,
-                      onPressed: _handleButtonClick,
-                      // icon: Image.asset('assets/icons/services/pay-qr.png'),
-                      icon: ImageIcon(
-                        AssetImage('assets/icons/services/pay-qr.png'),
-                        size: 26,
-                        color: COLOR_DARK_GRAY,
+                    Opacity(
+                      opacity: .5,
+                      child: ServiceButtonWidget(
+                        offering: SwipeServiceOffering.PAY_QR,
+                        onPressed: _handleButtonClick,
+                        icon: SvgPicture.asset(
+                          'assets/svg/services/pay-qr.svg'
+                        ),
+                        text: SERVICES_SCREEN_PAY_QR_TEXT,
                       ),
-                      text: SERVICES_SCREEN_PAY_QR_TEXT,
                     ),
-                    ServiceButtonWidget(
-                      offering: SwipeServiceOffering.INSURANCE,
-                      onPressed: _handleButtonClick,
-                      // icon: Image.asset('assets/icons/services/insurance.png'),
-                      icon: ImageIcon(
-                        AssetImage('assets/icons/services/insurance.png'),
-                        size: 26,
-                        color: COLOR_DARK_GRAY,
+                    Opacity(
+                      opacity: .5,
+                      child: ServiceButtonWidget(
+                        offering: SwipeServiceOffering.INSURANCE,
+                        onPressed: _handleButtonClick,
+                        icon: SvgPicture.asset(
+                          'assets/svg/services/insurance.svg',
+                        ),
+                        text: SERVICES_SCREEN_INSURANCE_TEXT,
                       ),
-                      text: SERVICES_SCREEN_INSURANCE_TEXT,
                     ),
-                    ServiceButtonWidget(
-                      offering: SwipeServiceOffering.MORE,
-                      onPressed: _handleButtonClick,
-                      // icon: Image.asset('assets/icons/services/more.png'),
-                      icon: ImageIcon(
-                        AssetImage('assets/icons/services/more.png'),
-                        size: 26,
-                        color: COLOR_DARK_GRAY,
+                    Opacity(
+                      opacity: .5,
+                      child: ServiceButtonWidget(
+                        offering: SwipeServiceOffering.MORE,
+                        onPressed: _handleButtonClick,
+                        icon: SvgPicture.asset(
+                          'assets/svg/services/more.svg',
+                        ),
+                        text: SERVICES_SCREEN_MORE_TEXT,
                       ),
-                      text: SERVICES_SCREEN_MORE_TEXT,
                     ),
                   ],
                 ),

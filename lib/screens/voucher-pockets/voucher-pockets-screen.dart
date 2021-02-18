@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -33,8 +34,8 @@ class VoucherPocketsScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 50, bottom: 30),
-                    child: Image.asset(
-                      'assets/icons/voucher-pockets/voucher-pockets.png',
+                    child: SvgPicture.asset(
+                      'assets/svg/voucher-pockets/voucher-pockets.svg',
                     ),
                   ),
                   Padding(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -89,9 +90,7 @@ class HelpScreen extends StatelessWidget {
                                 children: [
                                   Flexible(
                                       flex: 1,
-                                      child: Image.asset(
-                                        'assets/icons/help/help-ticket.png',
-                                      )
+                                      child: SvgPicture.asset('assets/svg/help/help.svg'),
                                   ),
                                   SizedBox(width: 10),
                                   Flexible(
