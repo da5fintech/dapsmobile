@@ -3,36 +3,44 @@ import 'dart:ui';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
 class DirectSendViaQrScreen extends StatefulWidget {
-  var camera;
-
-  DirectSendViaQrScreen({this.camera});
 
   @override
   _DirectSendViaQrScreen createState() => _DirectSendViaQrScreen();
 }
 
 class _DirectSendViaQrScreen extends State<DirectSendViaQrScreen> {
-  CameraController _controller;
-  Future<void> _initializeControllerFuture;
+  QRViewController controller;
+  String scanQr = "";
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  AppUtil _appUtil = AppUtil();
+
 
   @override
   void initState() {
     super.initState();
-    _controller = CameraController(
-      widget.camera,
-      ResolutionPreset.ultraHigh,
-    );
-    _initializeControllerFuture = _controller.initialize();
+  }
+
+  @override
+  void _onQRViewCreated(QRViewController controller) {
+    this.controller = controller;
+    if(scanQr.isEmpty) {
+      controller.scannedDataStream.listen((scanData) {
+        scanQr = scanData.code;
+        setState(() {});
+      });
+    }
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -43,63 +51,94 @@ class _DirectSendViaQrScreen extends State<DirectSendViaQrScreen> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: SubAppbarWidget(
-        title: 'Send Via QR',
+        title: DIRECT_SEND_VIA_QR_SCREEN_TITLE,
       ),
-        body: FutureBuilder<void>(
-      future: _initializeControllerFuture,
-      builder: (_, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Container(
-            height: height,
-            width: width,
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: new AspectRatio(
-                      aspectRatio: _controller.value.aspectRatio,
-                      child: new CameraPreview(_controller)),
-                ),
-                Container(
-                  decoration: ShapeDecoration(
-                    shape: _ScannerOverlayShape(
-                      borderColor: COLOR_ORANGE,
-                      borderWidth: 3.0,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(
-                      'Align QR code to the frame and press\n'
-                      'proceed to start scanning.',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        height: 2,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      )
-                    )
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.refresh, color: Colors.white),
-                    label: Text('Re-scan QR code', style: TextStyle(color: Colors.white))
-                  )
-                )
-              ],
+      body: Container(
+        height: height,
+        width: width,
+        child: Stack(
+          children: [
+            QRView(
+              key: qrKey,
+              onQRViewCreated: _onQRViewCreated,
+              overlay: QrScannerOverlayShape(
+                borderColor: COLOR_ORANGE,
+                borderRadius: 10,
+                borderLength: 30,
+                borderWidth: 10,
+                cutOutSize: 300,
+                overlayColor: COLOR_DARK_PURPLE.withOpacity(0.50),
+              ),
             ),
-          );
-        } else {
-          return Center(child: CircularProgressIndicator());
-        }
-      },
-    ));
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  DIRECT_SEND_VIA_QR_SCREEN_NOTE,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.roboto(
+                    fontSize: 14,
+                    height: 2,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+            if(scanQr.isNotEmpty) ...[
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      DIRECT_SEND_VIA_QR_SCREEN_DETECTED,
+                      style: GoogleFonts.roboto(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      )
+                    ),
+                    SizedBox(height: 20),
+                    FlatButton.icon(
+                      onPressed: () {
+                        scanQr = "";
+                        setState(() {});
+                      },
+                      icon: Icon(Icons.refresh, color: Colors.white),
+                      label: Text(
+                        DIRECT_SEND_VIA_QR_SCREEN_RESCAN,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: EdgeInsets.only(left: 25, right: 25),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Opacity(
+                          opacity: 0.5,
+                          child: RaisedButton(
+                            // shape: ,
+                            onPressed: () {
+                            },
+                            child: Text(
+                              DIRECT_SEND_VIA_QR_SCREEN_PROCEED,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              ),
+            ]
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -164,19 +203,26 @@ class _ScannerOverlayShape extends ShapeBorder {
 
     canvas
       ..drawRect(
-        Rect.fromLTRB(rect.left, rect.top, rect.right, borderSize.height + rect.top),
+        Rect.fromLTRB(
+            rect.left, rect.top, rect.right, borderSize.height + rect.top),
         paint,
       )
       ..drawRect(
-        Rect.fromLTRB(rect.left, rect.bottom - borderSize.height, rect.right, rect.bottom),
+        Rect.fromLTRB(rect.left, rect.bottom - borderSize.height, rect.right,
+            rect.bottom),
         paint,
       )
       ..drawRect(
-        Rect.fromLTRB(rect.left, rect.top + borderSize.height, rect.left + borderSize.width, rect.bottom - borderSize.height),
+        Rect.fromLTRB(rect.left, rect.top + borderSize.height,
+            rect.left + borderSize.width, rect.bottom - borderSize.height),
         paint,
       )
       ..drawRect(
-        Rect.fromLTRB(rect.right - borderSize.width, rect.top + borderSize.height, rect.right, rect.bottom - borderSize.height),
+        Rect.fromLTRB(
+            rect.right - borderSize.width,
+            rect.top + borderSize.height,
+            rect.right,
+            rect.bottom - borderSize.height),
         paint,
       );
 
@@ -186,7 +232,10 @@ class _ScannerOverlayShape extends ShapeBorder {
       ..strokeWidth = borderWidth;
 
     final borderOffset = borderWidth / 2;
-    final realReact = Rect.fromLTRB(borderSize.width + borderOffset, borderSize.height + borderOffset + rect.top, width - borderSize.width - borderOffset,
+    final realReact = Rect.fromLTRB(
+        borderSize.width + borderOffset,
+        borderSize.height + borderOffset + rect.top,
+        width - borderSize.width - borderOffset,
         height - borderSize.height - borderOffset + rect.top);
 
     //Draw top right corner
@@ -207,7 +256,7 @@ class _ScannerOverlayShape extends ShapeBorder {
         paint,
       )
 
-    //Draw top left corner
+      //Draw top left corner
       ..drawPath(
           Path()
             ..moveTo(realReact.left, realReact.top)
@@ -224,7 +273,7 @@ class _ScannerOverlayShape extends ShapeBorder {
         paint,
       )
 
-    //Draw bottom right corner
+      //Draw bottom right corner
       ..drawPath(
           Path()
             ..moveTo(realReact.right, realReact.bottom)
@@ -241,7 +290,7 @@ class _ScannerOverlayShape extends ShapeBorder {
         paint,
       )
 
-    //Draw bottom left corner
+      //Draw bottom left corner
       ..drawPath(
           Path()
             ..moveTo(realReact.left, realReact.bottom)

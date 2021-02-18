@@ -33,7 +33,7 @@ class _DirectRequestFormScreenState extends State<DirectRequestFormScreen> {
       data: td,
       child: Scaffold(
         appBar: SubAppbarWidget(
-          title: "My Custom QR",
+          title: DIRECT_REQUEST_FORM_SCREEN_TITLE,
         ),
         body: Column(
           children: [
@@ -52,7 +52,7 @@ class _DirectRequestFormScreenState extends State<DirectRequestFormScreen> {
                         decoration: InputDecoration(
                           errorStyle: TextStyle(
                               color: COLOR_GRAY, fontSize: 12, height: 0.3),
-                          labelText: 'Nickname (Optional)',
+                          labelText: DIRECT_REQUEST_FORM_SCREEN_NICKNAME,
                           floatingLabelBehavior:
                           FloatingLabelBehavior.always,
                         ),
@@ -94,7 +94,7 @@ class _DirectRequestFormScreenState extends State<DirectRequestFormScreen> {
                   // shape: ,
                   onPressed: _handleSave,
                   child: Text(
-                    'Save',
+                    DIRECT_REQUEST_FORM_SCREEN_SAVE,
                   ),
                 ),
               ),

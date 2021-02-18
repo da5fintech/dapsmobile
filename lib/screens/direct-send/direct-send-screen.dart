@@ -100,11 +100,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                     ),
                     child: ListTile(
                       onTap: () async {
-                        final camera = await availableCameras();
-                        final backCamera = camera.first;
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => DirectSendViaQrScreen(
-                          camera: backCamera,
-                        )));
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => DirectSendViaQrScreen()));
                       },
                       title: Text(
                         DIRECT_SEND_SCREEN_SEND_QR_TEXT,

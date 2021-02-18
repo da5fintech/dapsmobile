@@ -91,7 +91,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                         },
                         validator: (text) {
                           if(text.isEmpty) {
-                            return "Amount is Required!";
+                            return "${DIRECT_SEND_FORM_SCREEN_AMOUNT} is Required!";
                           }
                           return null;
                         },
@@ -120,7 +120,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        '*Message optional',
+                        DIRECT_SEND_FORM_SCREEN_MESSAGE_OPTIONAL,
                         textAlign: TextAlign.start,
                         style: GoogleFonts.roboto(
                           color: COLOR_DARK_GRAY.withOpacity(0.52),
@@ -143,7 +143,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                     _handleNext();
                   },
                   child: Text(
-                    'Next',
+                    DIRECT_SEND_FORM_SCREEN_NEXT,
                   ),
                 ),
               ),

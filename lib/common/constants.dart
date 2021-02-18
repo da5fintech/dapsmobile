@@ -142,6 +142,21 @@ const DIRECT_SEND_FORM_NOTE_MOBILE = "*Add +63 to the recipient e.g 631234567890
 const DIRECT_SEND_FORM_SCREEN_AMOUNT = "Amount";
 const DIRECT_SEND_FORM_SCREEN_MESSAGE = "Message";
 const DIRECT_SEND_FORM_SCREEN_MESSAGE_OPTIONAL = "*Message optional";
+const DIRECT_SEND_FORM_SCREEN_NEXT = "NEXT";
+
+const DIRECT_REQUEST_FORM_SCREEN_TITLE = "My Custom QR";
+const DIRECT_REQUEST_FORM_SCREEN_NICKNAME = "Nickname (Optional)";
+const DIRECT_REQUEST_FORM_SCREEN_SAVE = "Save";
+
+
+const DIRECT_SEND_VIA_QR_SCREEN_TITLE = "Send Via QR";
+const DIRECT_SEND_VIA_QR_SCREEN_NOTE =
+    'Align QR code to the frame to\n'
+    'start scanning.';
+const DIRECT_SEND_VIA_QR_SCREEN_DETECTED = "QR code Detected!";
+const DIRECT_SEND_VIA_QR_SCREEN_RESCAN = "Re-scan QR cod";
+const DIRECT_SEND_VIA_QR_SCREEN_PROCEED = "PROCEED";
+
 
 const BILLS_PAYMENT_TITLE_TEXT = "Pay Bills";
 const BILLS_PAYMENT_NEXT_TEXT = "Next";
