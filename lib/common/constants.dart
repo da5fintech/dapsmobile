@@ -3,6 +3,9 @@ library constants;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:hive/hive.dart';
+
+part 'constants.g.dart';
 
 const APP_NAME = "SWIPE";
 const APP_NAME_FONT_SIZE = 20.0;
@@ -542,18 +545,31 @@ ThemeData createThemePurpleOnWhite(BuildContext context) {
               secondary: Colors.white)));
 }
 
+@HiveType(typeId: 10)
 enum SwipeServiceOffering {
+  @HiveField(0)
   BUY_LOAD,
+  @HiveField(1)
   CASH_IN,
+  @HiveField(2)
   PAY_QR,
+  @HiveField(3)
   DIRECT_SEND,
+  @HiveField(4)
   REMITTANCE,
+  @HiveField(5)
   REMITTANCE_INSTAPAY,
+  @HiveField(6)
   BILLS_PAYMENT,
+  @HiveField(7)
   INSURANCE,
+  @HiveField(8)
   BANK_TRANSFER,
+  @HiveField(9)
   REQUEST_MONEY,
+  @HiveField(10)
   AUTOSWEEP,
+  @HiveField(11)
   MORE,
 }
 

@@ -37,7 +37,7 @@ class AddBillerService {
 
   void deleteAll() async {
     final box = await storage.openStorageBox('billers');
-    box.deleteFromDis();
+    box.deleteFromDisk();
     print('DELETE LOCAL MEMMORY');
   }
 
