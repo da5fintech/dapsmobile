@@ -41,8 +41,12 @@ dependencies:
   cupertino_icons: ^1.0.0
   google_fonts: ^0.3.5
   shared_preferences: ^0.5.6
+  hive: ^1.4.4+1
+  hive_generator: ^0.8.2
   intl: ^0.16.1
   http: ^0.12.2
+  path_provider: ^1.6.8
+  path: ^1.6.4
   sensitive_http:
     git:
       url: "https://github.com/slowlearner/http.git"

@@ -9,6 +9,7 @@ import 'package:swipe/common/common-alert.dialog.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/models/product-model.dart';
 import 'package:swipe/store/application-store.dart';
 
 import '../../main.dart';
@@ -27,7 +28,14 @@ class _BillsPaymentCategoriesScreenState
   @override
   void initState() {
     // WidgetsBinding.instance.addPostFrameCallback((_) => initBillers());
+    getSavedBiller();
     super.initState();
+  }
+
+  Future getSavedBiller () async {
+    // await store.addBillerService.deleteAll();
+    List<BillerProduct> a = await store.addBillerService.onLoading();
+    store.setNewBiller(a);
   }
 
   @override

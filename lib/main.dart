@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:swipe/models/product-model.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-biller-form-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-billers-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-categories-screen.dart';
@@ -60,6 +63,13 @@ void setupApp() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
   await Firebase.initializeApp();
   var cache = await SharedPreferences.getInstance();
+  var dir = await getApplicationDocumentsDirectory();
+  await Hive.init(dir.path);
+  Hive.registerAdapter(BillerProductAdapter());
+  Hive.registerAdapter(BillerFieldAdapter());
+  Hive.registerAdapter(BillerFieldTypeAdapter());
+  Hive.registerAdapter(KeyValuePairAdapter());
+  Hive.registerAdapter(ProductModelAdapter());
   getIt.registerSingleton(cache);
 
   runZoned(() {

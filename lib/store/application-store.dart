@@ -26,7 +26,7 @@ abstract class _ApplicationStore with Store {
   @observable
   double balance = 0;
   @observable
-  List<BillerProduct> savedBillers;
+  List<BillerProduct> savedBillers = [];
   @observable
   bool enabledBiometrics;
 

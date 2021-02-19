@@ -1,11 +1,19 @@
 import 'package:flavor/flavor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:hive/hive.dart';
 
-abstract class ProductModel {
+part 'product-model.g.dart';
+
+@HiveType(typeId: 5)
+class ProductModel extends HiveObject {
+  @HiveField(6)
   String name;
+  @HiveField(7)
   String code;
+  @HiveField(8)
   double amount;
+  @HiveField(9)
   String description;
 
   ProductModel({this.code, this.name, this.amount, this.description = ""});
@@ -48,22 +56,43 @@ class AirtimeProduct extends ProductModel {
     print(name);
   }
 }
+@HiveType(typeId: 4)
+enum BillerFieldType {
+  @HiveField(0)
+  TEXT,
+  @HiveField(1)
+  NUMBER,
+  @HiveField(2)
+  CALENDAR,
+  @HiveField(3)
+  DROPDOWN
+}
 
-enum BillerFieldType { TEXT, NUMBER, CALENDAR, DROPDOWN }
-
+@HiveType(typeId: 3)
 class KeyValuePair {
+  @HiveField(0)
   String key;
+  @HiveField(1)
   String value;
   KeyValuePair({this.key, this.value});
 }
 
+
+@HiveType(typeId: 2)
 class BillerField {
+  @HiveField(0)
   String label;
+  @HiveField(1)
   String field;
+  @HiveField(2)
   BillerFieldType fieldType;
+  @HiveField(3)
   bool isRequired;
+  @HiveField(4)
   dynamic value;
+  @HiveField(5)
   dynamic defaultValue;
+  @HiveField(6)
   List<KeyValuePair> options;
 
   BillerField({
@@ -103,12 +132,19 @@ class BillerField {
   }
 }
 
+@HiveType(typeId: 1)
 class BillerProduct extends ProductModel {
+  @HiveField(0)
   bool enabled;
+  @HiveField(1)
   String type;
+  @HiveField(2)
   double fee;
+  @HiveField(3)
   String logo;
+  @HiveField(4)
   String category;
+  @HiveField(5)
   List<BillerField> fields;
 
   BillerProduct({

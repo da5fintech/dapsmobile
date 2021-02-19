@@ -324,7 +324,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
     super.dispose();
   }
 
-  _handleButtonClick(SwipeServiceOffering offering) {
+  _handleButtonClick(SwipeServiceOffering offering) async {
     if (offering == SwipeServiceOffering.BUY_LOAD) {
       Get.toNamed("/services/buy-load/buy-load-recipient-screen");
     } else if (offering == SwipeServiceOffering.BILLS_PAYMENT) {
