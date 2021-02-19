@@ -115,6 +115,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                                         BuyLoadSuggest suggestion =
                                             numbers[index];
                                         return ListTile(
+                                          visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                                           onTap: () {
                                             controller.text = suggestion.mobileNumber;
                                             showSuggestion = false;
