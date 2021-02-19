@@ -36,3 +36,15 @@ class AccountRecipient extends AutoSuggest {
     SwipeServiceOffering type
   }) : super(type: type);
 }
+
+@HiveType(typeId: 11)
+class AutoSweepSuggest extends AutoSuggest {
+  @HiveField(4)
+  String plateNumber;
+
+  AutoSweepSuggest({
+    this.plateNumber,
+    SwipeServiceOffering type,
+  }) : super(type: type);
+
+}

@@ -44,9 +44,11 @@ class TransactionService extends FireStoreService {
         await saveSuggestion.saveAccountNumbers(
             transaction.product, transaction.offering);
       } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
+        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
         var service = getIt.get<AutosweepService>();
         response =
             await service.process(transaction.product, transaction.amount);
+        await saveSuggestion.savePlateNumbers(transaction.product);
       }
       await recordTransaction(user, transaction, response);
       return response;

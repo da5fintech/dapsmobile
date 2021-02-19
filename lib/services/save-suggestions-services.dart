@@ -8,6 +8,7 @@ class SaveSuggestionsServices {
   LocalStorage _localStorage = LocalStorage();
   List<BuyLoadSuggest> _saveNumbers = new List<BuyLoadSuggest>();
   List<AccountRecipient> _listAccountNumbers = new List<AccountRecipient>();
+  List<AutoSweepSuggest> _listPlateNumbers = new List<AutoSweepSuggest>();
 
   ///save recipient numbers
   Future<void> saveNumber(
@@ -69,6 +70,36 @@ class SaveSuggestionsServices {
       });
     });
     return _listAccountNumbers;
+  }
+
+  ///save plate numbers
+  Future<void> savePlateNumbers (AutosweepProduct plate) async {
+    var alreadyExist = _listPlateNumbers.firstWhere(
+            (el) => el.plateNumber == plate.plateNumber,
+        orElse: () => null);
+    if (alreadyExist == null) {
+      _listPlateNumbers
+          .add(AutoSweepSuggest(plateNumber: plate.plateNumber, type: SwipeServiceOffering.AUTOSWEEP));
+
+      await _localStorage.openStorageBox('plate-numbers').then((box) {
+        box.put('car-plates', _listPlateNumbers);
+      });
+    }
+  }
+
+  ///on load plate numbers
+  Future<List<AutoSweepSuggest>> onloadPlateNumbers () async {
+    _listPlateNumbers = [];
+    await _localStorage.openStorageBox('plate-numbers').then((box) {
+      List<dynamic> a = box.get('car-plates', defaultValue: []);
+      print(a);
+      a.forEach((plate) {
+        _listPlateNumbers.add(plate);
+      });
+    });
+
+    return _listPlateNumbers;
+
   }
 
   void deleteAll() async {
