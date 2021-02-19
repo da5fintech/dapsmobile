@@ -25,6 +25,7 @@ class AddBillerService {
   }
 
   Future<List<BillerProduct>> onLoading () async {
+    _billers = [];
     await storage.openStorageBox('billers').then((box) {
       List<dynamic> listBillers = box.get('list-billers', defaultValue: []);
       listBillers.forEach((biller) {
