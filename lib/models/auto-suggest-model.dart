@@ -22,3 +22,17 @@ class BuyLoadSuggest extends AutoSuggest {
     SwipeServiceOffering type
   }) : super(type: type);
 }
+
+@HiveType(typeId: 9)
+class AccountRecipient extends AutoSuggest {
+  @HiveField(2)
+  String fullname;
+  @HiveField(3)
+  String accountNumber;
+
+  AccountRecipient({
+    this.fullname,
+    this.accountNumber,
+    SwipeServiceOffering type
+  }) : super(type: type);
+}

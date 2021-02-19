@@ -37,9 +37,12 @@ class TransactionService extends FireStoreService {
         response = await service.process(transaction.product);
       } else if (transaction.offering ==
           SwipeServiceOffering.REMITTANCE_INSTAPAY) {
+        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
         var service = getIt.get<InstapayService>();
         response =
             await service.process(transaction.product, transaction.amount);
+        await saveSuggestion.saveAccountNumbers(
+            transaction.product, transaction.offering);
       } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
         var service = getIt.get<AutosweepService>();
         response =

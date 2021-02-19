@@ -66,6 +66,7 @@ void setupApp() async {
   var cache = await SharedPreferences.getInstance();
   var dir = await getApplicationDocumentsDirectory();
   await Hive.init(dir.path);
+  Hive.registerAdapter(AccountRecipientAdapter());
   Hive.registerAdapter(BuyLoadSuggestAdapter());
   Hive.registerAdapter(AutoSuggestAdapter());
   Hive.registerAdapter(SwipeServiceOfferingAdapter());
