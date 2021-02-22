@@ -34,21 +34,25 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
     fingerprintAuth();
   }
 
-  Future<bool> fingerprintAuth () async {
+  Future<void> fingerprintAuth () async {
     //check if biometrics is enable in the settings
-    authenticationService.getBio().then((isEnabled) async {
-      if(isEnabled) {
-        bool success = await authenticationService.authFingerprint();
-        if(success) {
-          setState(() {
-            mpin.text = store.user.mpin;
-          });
-          _handleLogin();
-        } else {
-          print('Unauthorized Login');
+    try {
+      await authenticationService.getBio().then((isEnabled) async {
+        if(isEnabled) {
+          bool success = await authenticationService.authFingerprint();
+          if(success) {
+            setState(() {
+              mpin.text = store.user.mpin;
+            });
+            _handleLogin();
+          } else {
+            print('Unauthorized Login');
+          }
         }
-      }
-    });
+      });
+
+    } catch (err) {}
+
   }
 
   @override
