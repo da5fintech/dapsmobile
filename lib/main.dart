@@ -68,6 +68,7 @@ void setupApp() async {
   await Hive.init(dir.path);
   Hive.registerAdapter(AutoSweepSuggestAdapter());
   Hive.registerAdapter(AccountRecipientAdapter());
+
   Hive.registerAdapter(BuyLoadSuggestAdapter());
   Hive.registerAdapter(AutoSuggestAdapter());
   Hive.registerAdapter(SwipeServiceOfferingAdapter());

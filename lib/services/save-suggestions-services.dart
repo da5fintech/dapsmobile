@@ -92,7 +92,6 @@ class SaveSuggestionsServices {
     _listPlateNumbers = [];
     await _localStorage.openStorageBox('plate-numbers').then((box) {
       List<dynamic> a = box.get('car-plates', defaultValue: []);
-      print(a);
       a.forEach((plate) {
         _listPlateNumbers.add(plate);
       });
@@ -115,3 +114,4 @@ class SaveSuggestionsServices {
 
   List<AutoSweepSuggest> get listPlateNumbers => _listPlateNumbers;
 }
+
