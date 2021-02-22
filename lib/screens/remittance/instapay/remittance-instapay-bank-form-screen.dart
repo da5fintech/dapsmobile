@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/models/auto-suggest-model.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -21,16 +22,27 @@ class RemittanceInstapayBankFormScreen extends StatefulWidget {
 class _RemittanceInstapayBankFormScreenState
     extends State<RemittanceInstapayBankFormScreen> {
   final _formKey = GlobalKey<FormState>();
+  bool showResult = false;
 
   String selectedRadio = "";
-  TextEditingController controller = new TextEditingController();
   ProductModel selectedPromo;
   List<ProductModel> promoProducts = new List<ProductModel>();
+  List<AccountRecipient> savedRecipients = new List<AccountRecipient>();
   Map<String, dynamic> values = Map<String, dynamic>();
+  TextEditingController amountController = TextEditingController();
+  TextEditingController accountNumController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    getSavedAccountDetails();
+  }
+
+  Future getSavedAccountDetails() async {
+    savedRecipients =
+        await store.saveSuggestionsServices.onloadAccountDetails();
+    setState(() {});
   }
 
   setSelectedRadio(String code) {
@@ -85,142 +97,210 @@ class _RemittanceInstapayBankFormScreenState
           Text("${store.selectedInstapayBank.name.characters.characterAt(0)}"),
     );
 
-    return Theme(
-      data: td,
-      child: Scaffold(
-        // backgroundColor: Constants.backgroundColor2,
-        appBar: SubAppbarWidget(
-          elevation: 0,
-          title: REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_SEND_TEXT,
-        ),
-        body: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.only(
-                  bottom: 15,
-                  top: 5,
-                  left: 5,
-                  right: 5,
-                ),
-                color: COLOR_DARK_PURPLE,
-                child: Row(
-                  children: [
-                    avatar,
-                    Container(
-                      width: width,
-                      margin: EdgeInsets.only(left: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${store.selectedInstapayBank.name}",
-                            style: GoogleFonts.roboto(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          Text(
-                            REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_PAYMENT_POSTED_TEXT,
-                            style: GoogleFonts.roboto(
-                              fontSize: 12,
-                              color: Colors.white.withOpacity(.6),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Theme(
+        data: td,
+        child: Scaffold(
+          // backgroundColor: Constants.backgroundColor2,
+          appBar: SubAppbarWidget(
+            elevation: 0,
+            title: REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_SEND_TEXT,
+          ),
+          body: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(
+                    bottom: 15,
+                    top: 5,
+                    left: 5,
+                    right: 5,
+                  ),
+                  color: COLOR_DARK_PURPLE,
+                  child: Row(
+                    children: [
+                      avatar,
+                      Container(
+                        width: width,
+                        margin: EdgeInsets.only(left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${store.selectedInstapayBank.name}",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
                             ),
+                            Text(
+                              REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_PAYMENT_POSTED_TEXT,
+                              style: GoogleFonts.roboto(
+                                fontSize: 12,
+                                color: Colors.white.withOpacity(.6),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 25, right: 25),
+                      child: Stack(
+                        children: [
+                          Column(
+                            children: [
+                              TextFormField(
+                                // initialValue: "${field.defaultValue}",
+                                keyboardType: TextInputType.number,
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return '${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_AMOUNT_TEXT} is required';
+                                  }
+                                  return null;
+                                },
+                                controller: amountController,
+                                decoration: InputDecoration(
+                                    prefixIconConstraints: BoxConstraints(
+                                        minWidth: 0, minHeight: 0),
+                                    labelText:
+                                        REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_AMOUNT_TEXT,
+                                    hintText: ""),
+                              ),
+                              FocusScope(
+                                child: Focus(
+                                  onFocusChange: (focus) {
+                                    setState(() {
+                                      showResult = focus;
+                                    });
+                                  },
+                                  child: TextFormField(
+                                    // initialValue: "${field.defaultValue}",
+                                    keyboardType: TextInputType.text,
+                                    validator: (text) {
+                                      if (text == null || text.isEmpty) {
+                                        return '${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_ACCOUNT_TEXT} number is required';
+                                      }
+                                      return null;
+                                    },
+                                    controller: accountNumController,
+                                    onChanged: (text) {
+                                      setState(() {
+                                        savedRecipients = accountNumController
+                                                .text.isEmpty
+                                            ? store.saveSuggestionsServices
+                                                .listAccountNumbers
+                                            : store.saveSuggestionsServices
+                                                .listAccountNumbers
+                                                .where((el) => el.accountNumber
+                                                    .contains(text)).toList();
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                        prefixIconConstraints: BoxConstraints(
+                                            minWidth: 0, minHeight: 0),
+                                        labelText:
+                                            "${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_ACCOUNT_TEXT} number",
+                                        hintText: ""),
+                                  ),
+                                ),
+                              ),
+                              TextFormField(
+                                // initialValue: "${field.defaultValue}",
+                                keyboardType: TextInputType.text,
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return '${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_RECIPIENT_TEXT} is required';
+                                  }
+                                  return null;
+                                },
+                                controller: fullnameController,
+                                decoration: InputDecoration(
+                                    prefixIconConstraints: BoxConstraints(
+                                        minWidth: 0, minHeight: 0),
+                                    labelText:
+                                        "${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_RECIPIENT_TEXT}'s name",
+                                    hintText: ""),
+                              ),
+                            ],
                           ),
+                          if (showResult && savedRecipients.isNotEmpty) ...[
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height *
+                                        0.17),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.25,
+                                width: MediaQuery.of(context).size.width,
+                                child: Card(
+                                  elevation: 2,
+                                  child: ListView.separated(
+                                    itemCount: savedRecipients.length,
+                                    itemBuilder: (_, int index) {
+                                      AccountRecipient user =
+                                          savedRecipients[index];
+                                      return ListTile(
+                                        onTap: () {
+                                          accountNumController.text =
+                                              user.accountNumber;
+                                          fullnameController.text =
+                                              user.fullname;
+                                          showResult = false;
+                                          setState(() {});
+                                        },
+                                        visualDensity: VisualDensity(
+                                            vertical: -4, horizontal: 0),
+                                        title: Text(
+                                          user.accountNumber,
+                                          style: GoogleFonts.roboto(
+                                            color: COLOR_DARK_GRAY,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    separatorBuilder: (_, int index) {
+                                      return Divider(
+                                        color: Colors.black,
+                                        thickness: 0.5,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
                         ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 25, right: 25),
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          // initialValue: "${field.defaultValue}",
-                          onSaved: (v) {
-                            values['amount'] = v;
-                          },
-                          keyboardType: TextInputType.number,
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return '${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_AMOUNT_TEXT} is required';
-                            }
-                            return null;
-                          },
-                          // controller: controller,
-                          decoration: InputDecoration(
-                              prefixIconConstraints:
-                                  BoxConstraints(minWidth: 0, minHeight: 0),
-                              labelText:
-                                  REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_AMOUNT_TEXT,
-                              hintText: ""),
-                        ),
-                        TextFormField(
-                          // initialValue: "${field.defaultValue}",
-                          onSaved: (v) {
-                            values['accountNumber'] = v;
-                          },
-                          keyboardType: TextInputType.text,
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return '${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_ACCOUNT_TEXT} number is required';
-                            }
-                            return null;
-                          },
-                          // controller: controller,
-                          decoration: InputDecoration(
-                              prefixIconConstraints:
-                                  BoxConstraints(minWidth: 0, minHeight: 0),
-                              labelText:
-                                  "${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_ACCOUNT_TEXT} number",
-                              hintText: ""),
-                        ),
-                        TextFormField(
-                          // initialValue: "${field.defaultValue}",
-                          onSaved: (v) {
-                            values["recipientName"] = v;
-                          },
-                          keyboardType: TextInputType.text,
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return '${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_RECIPIENT_TEXT} is required';
-                            }
-                            return null;
-                          },
-                          // controller: controller,
-                          decoration: InputDecoration(
-                              prefixIconConstraints:
-                                  BoxConstraints(minWidth: 0, minHeight: 0),
-                              labelText:
-                                  "${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_RECIPIENT_TEXT}'s name",
-                              hintText: ""),
-                        ),
-                      ],
+                Padding(
+                  padding: EdgeInsets.only(left: 25, right: 25),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: RaisedButton(
+                      // shape: ,
+                      onPressed: () {
+                        _handleNext();
+                      },
+                      child: Text(
+                        REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_NEXT_TEXT,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 25, right: 25),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: RaisedButton(
-                    // shape: ,
-                    onPressed: () {
-                      _handleNext();
-                    },
-                    child: Text(
-                      REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_NEXT_TEXT,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -236,14 +316,13 @@ class _RemittanceInstapayBankFormScreenState
     bool status = _formKey.currentState.validate();
     if (status == true) {
       store.createTransaction(SwipeServiceOffering.REMITTANCE_INSTAPAY, "");
-      _formKey.currentState.save();
 
       // store.selectedInstapayBank.accountNumber = values["accountNumber"];
       // store.selectedIns
-      store.selectedInstapayBank.accountNumber = values["accountNumber"];
-      store.selectedInstapayBank.recipientName = values["recipientName"];
+      store.selectedInstapayBank.accountNumber = accountNumController.text;
+      store.selectedInstapayBank.recipientName = fullnameController.text;
       store.setTransactionProduct(
-          store.selectedInstapayBank, double.parse(values["amount"]));
+          store.selectedInstapayBank, double.parse(amountController.text));
       Get.toNamed("/services/payment/payment-verification-screen");
     } else {
       print("failed validation");

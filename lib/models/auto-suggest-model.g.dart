@@ -76,3 +76,81 @@ class BuyLoadSuggestAdapter extends TypeAdapter<BuyLoadSuggest> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+class AccountRecipientAdapter extends TypeAdapter<AccountRecipient> {
+  @override
+  final int typeId = 9;
+
+  @override
+  AccountRecipient read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return AccountRecipient(
+      fullname: fields[2] as String,
+      accountNumber: fields[3] as String,
+      type: fields[0] as SwipeServiceOffering,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, AccountRecipient obj) {
+    writer
+      ..writeByte(3)
+      ..writeByte(2)
+      ..write(obj.fullname)
+      ..writeByte(3)
+      ..write(obj.accountNumber)
+      ..writeByte(0)
+      ..write(obj.type);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AccountRecipientAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class AutoSweepSuggestAdapter extends TypeAdapter<AutoSweepSuggest> {
+  @override
+  final int typeId = 11;
+
+  @override
+  AutoSweepSuggest read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return AutoSweepSuggest(
+      plateNumber: fields[4] as String,
+      type: fields[0] as SwipeServiceOffering,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, AutoSweepSuggest obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(4)
+      ..write(obj.plateNumber)
+      ..writeByte(0)
+      ..write(obj.type);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AutoSweepSuggestAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+

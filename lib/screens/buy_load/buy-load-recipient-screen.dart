@@ -39,7 +39,6 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -115,6 +114,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                                         BuyLoadSuggest suggestion =
                                             numbers[index];
                                         return ListTile(
+                                          visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                                           onTap: () {
                                             controller.text = suggestion.mobileNumber;
                                             showSuggestion = false;
