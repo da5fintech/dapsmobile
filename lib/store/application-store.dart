@@ -27,6 +27,8 @@ abstract class _ApplicationStore with Store {
   @observable
   double balance = 0;
   @observable
+  double swipePoints = 0;
+  @observable
   List<BillerProduct> savedBillers = [];
   @observable
   bool enabledBiometrics;
@@ -114,11 +116,17 @@ abstract class _ApplicationStore with Store {
     balance = amount;
   }
 
+  @action setNewSwipeBalance(double currentSwipePoints) {
+    this.swipePoints = currentSwipePoints;
+  }
+
   @action
   setUser(UserModel user) {
     this.user = user;
     print('setting user balance ${user.balance}');
+    print('setting swipe balance ${user.swipePoints}');
     setNewBalance(user.balance);
+    setNewSwipeBalance(user.swipePoints);
   }
 
   @action

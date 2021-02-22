@@ -153,4 +153,3 @@ class AutoSweepSuggestAdapter extends TypeAdapter<AutoSweepSuggest> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
-

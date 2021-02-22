@@ -52,7 +52,7 @@ class TransactionService extends FireStoreService {
 
       ///Deduct user balance if any services
       ///return true;
-      if(response.status) {
+      if (response.status) {
         await tryChargeAccount(user, transaction);
         await recordTransaction(user, transaction, response);
         return response;
@@ -73,15 +73,19 @@ class TransactionService extends FireStoreService {
       UserModel user, TransactionModel transaction) async {
     double balance = await accountService.getWalletAmount(user);
     double totalAmount = getTotalAmount(transaction);
+    double swipeBalance = await accountService.getSwipePoints(user);
+    double totalSwipePoints =
+        (totalAmount * 0.01) + swipeBalance; //calculation of swipe points 1%
 
     if (balance < totalAmount) {
       await Future.delayed(Duration(seconds: 1));
       throw NotEnoughFundsError(message: "Not enough funds");
     }
 
-    await collection
-        .doc(user.id)
-        .update({"balance": FieldValue.increment(totalAmount * -1)});
+    await collection.doc(user.id).update({
+      "balance": FieldValue.increment(totalAmount * -1),
+      "swipePoints": totalSwipePoints,
+    });
 
     return true;
   }

@@ -16,6 +16,15 @@ class AccountService extends FireStoreService {
     }
   }
 
+  Future<double> getSwipePoints(UserModel user) async {
+    try {
+      var updatedUser = await getAccount(user.id);
+      return updatedUser.swipePoints;
+    } on ApiResponseError catch(e) {
+      return 0;
+    }
+  }
+
   Future<UserModel> create(UserModel user) async {
     await update(user.id, user.toMap());
     return user;

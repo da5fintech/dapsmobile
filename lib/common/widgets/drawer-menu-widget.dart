@@ -1,5 +1,6 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
@@ -69,6 +70,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    print(store.user.swipePoints);
 
     return Container(
       height: SizeConfig.screenHeight,
@@ -127,21 +129,53 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: 22,
-                      child: Chip(
-                        shape: StadiumBorder(
-                          side: BorderSide(color: Colors.white),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 22,
+                          child: Chip(
+                            shape: StadiumBorder(
+                              side: BorderSide(color: Colors.white),
+                            ),
+                            padding: EdgeInsets.only(
+                                bottom: 10, left: 10, right: 10),
+                            backgroundColor: COLOR_DARK_PURPLE,
+                            label: Text(
+                              DRAWER_MENU_SCREEN_VIEW_BENEFITS_TEXT,
+                              style: GoogleFonts.roboto(
+                                  fontSize: 12, color: Colors.white),
+                            ),
+                          ),
                         ),
-                        padding:
-                            EdgeInsets.only(bottom: 10, left: 10, right: 10),
-                        backgroundColor: COLOR_DARK_PURPLE,
-                        label: Text(
-                          DRAWER_MENU_SCREEN_VIEW_BENEFITS_TEXT,
-                          style: GoogleFonts.roboto(
-                              fontSize: 12, color: Colors.white),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              Text('Swipe Points',
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  )),
+                              Observer(
+                                builder: (_) => Text(
+                                  store.swipePoints.toStringAsFixed(2),
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 20.0),
