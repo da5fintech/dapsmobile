@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -29,11 +30,11 @@ class PromosScreen extends StatelessWidget {
                     children: [
                       Flexible(
                         flex: 1,
-                        child: Image.asset(
-                          'assets/icons/promos/undrawer-wallet.png',
+                        child: SvgPicture.asset(
+                          'assets/svg/promos/undraw_wallet.svg',
                           height: 150,
                           width: 150,
-                        ),
+                        )
                       ),
                       Flexible(
                         flex: 2,
@@ -106,8 +107,8 @@ class PromosScreen extends StatelessWidget {
                     children: [
                       Flexible(
                         flex: 1,
-                        child: Image.asset(
-                          'assets/icons/promos/undrawer-savings.png',
+                        child: SvgPicture.asset(
+                          'assets/svg/promos/undraw_savings.svg',
                           height: 150,
                           width: 150,
                         ),

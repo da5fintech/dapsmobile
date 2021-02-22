@@ -32,7 +32,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
         await store.accountService.getTransactionRecords(store.user.id);
     List a = records?.map((record) => record.transactionType)?.toList() ?? [];
     //Transaction type check
-    if (a.contains('SwipeServiceOffering.BILLS_PAYMENT') &&
+    if (a.contains('SwipeServiceOffering.BILLS_PAYMENT') ||
         a.contains('SwipeServiceOffering.BANK_TRANSFER')) {
       setState(() => verificationLevel++);
       if (a.contains('SwipeServiceOffering.REMITTANCE') ||

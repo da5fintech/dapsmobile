@@ -41,8 +41,12 @@ dependencies:
   cupertino_icons: ^1.0.0
   google_fonts: ^0.3.5
   shared_preferences: ^0.5.6
+  hive: ^1.4.4+1
+  hive_generator: ^0.8.2
   intl: ^0.16.1
   http: ^0.12.2
+  path_provider: ^1.6.8
+  path: ^1.6.4
   sensitive_http:
     git:
       url: "https://github.com/slowlearner/http.git"
@@ -55,6 +59,9 @@ dependencies:
   google_sign_in: ^4.5.6
   cloud_firestore: ^0.14.4
   qr_flutter: ^3.2.0
+  qr_code_scanner: ^0.3.4
+  flutter_svg: ^0.18.0
+  camera: ^0.7.0+2
   mask_text_input_formatter: ^1.2.1
 
 dev_dependencies:
@@ -76,6 +83,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
 
   assets:
+    - assets/svg/services/
+    - assets/svg/promos/
+    - assets/svg/help/
+    - assets/svg/voucher-pockets/
+    - assets/svg/services/bills-payment/
     - assets/icons/swipe-logo.png
     - assets/icons/services/bank-transfer.png
     - assets/icons/services/buy-load.png

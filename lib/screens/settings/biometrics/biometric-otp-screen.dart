@@ -235,7 +235,7 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
 
   Future _handleOtpSms() async {
     await store.otpService
-        .sendOtp(mobileNumber: store.user.mobileNumber, otp: expectedOtp);
+        .sendOtp(mobileNumber: '63${store.user.mobileNumber}', otp: expectedOtp);
   }
 
   void _handleSubmit() {

@@ -10,6 +10,7 @@ import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/firestore-service.dart';
 import 'package:swipe/services/instapay-service.dart';
+import 'package:swipe/services/save-suggestions-services.dart';
 
 import '../main.dart';
 
@@ -25,8 +26,11 @@ class TransactionService extends FireStoreService {
     try {
       if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
         var service = getIt.get<EloadingService>();
+        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
         response =
             await service.process(transaction.recipient, transaction.product);
+        await saveSuggestion.saveNumber(
+            transaction.recipient, transaction.offering);
       } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
         var service = getIt.get<BillsPaymentService>();
         response = await service.process(transaction.product);

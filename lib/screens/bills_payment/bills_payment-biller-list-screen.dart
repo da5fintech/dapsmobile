@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
@@ -50,7 +51,7 @@ class _BillsPaymentBillerListScreenState
                     onPressed: _handleButtonClick,
                     category: billerList[i]['title'],
                     text: billerList[i]['title'],
-                    icon: Image.asset(billerList[i]['imagePath']),
+                    icon: SvgPicture.asset(billerList[i]['imagePath']),
                   );
                 },
               ),

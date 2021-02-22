@@ -7,7 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:swipe/models/auto-suggest-model.dart';
+import 'package:swipe/models/product-model.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-biller-form-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-billers-screen.dart';
 import 'package:swipe/screens/bills_payment/bills-payment-categories-screen.dart';
@@ -16,6 +20,8 @@ import 'package:swipe/screens/bills_payment/bills_payment-biller-list-screen.dar
 import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
+import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
+import 'package:swipe/screens/direct-send/direct-send-screen.dart';
 import 'package:swipe/screens/help/help-screen.dart';
 import 'package:swipe/screens/links-account/links-account-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
@@ -58,6 +64,16 @@ void setupApp() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
   await Firebase.initializeApp();
   var cache = await SharedPreferences.getInstance();
+  var dir = await getApplicationDocumentsDirectory();
+  await Hive.init(dir.path);
+  Hive.registerAdapter(BuyLoadSuggestAdapter());
+  Hive.registerAdapter(AutoSuggestAdapter());
+  Hive.registerAdapter(SwipeServiceOfferingAdapter());
+  Hive.registerAdapter(BillerProductAdapter());
+  Hive.registerAdapter(BillerFieldAdapter());
+  Hive.registerAdapter(BillerFieldTypeAdapter());
+  Hive.registerAdapter(KeyValuePairAdapter());
+  Hive.registerAdapter(ProductModelAdapter());
   getIt.registerSingleton(cache);
 
   runZoned(() {
@@ -140,6 +156,10 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => HelpScreen());
               case '/services':
                 return MaterialPageRoute(builder: (_) => ServicesScreen());
+              case '/services/direct-send':
+                return MaterialPageRoute(builder: (_) => DirectSendScreen());
+              case '/services/direct-send/direct-send-form-screen':
+                return MaterialPageRoute(builder: (_) => DirectSendFormScreen());
               case '/services/buy-load/buy-load-recipient-screen':
                 return MaterialPageRoute(
                     builder: (_) => BuyLoadRecipientScreen());

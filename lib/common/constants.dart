@@ -3,6 +3,9 @@ library constants;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:hive/hive.dart';
+
+part 'constants.g.dart';
 
 const APP_NAME = "SWIPE";
 const APP_NAME_FONT_SIZE = 20.0;
@@ -86,12 +89,12 @@ const LINKS_ACCOUNT_SCREEN_TITLE = "Links Account";
 const PARTNER_MERCHANT_TITLE_TEXT = "Partner Merchants";
 const PARTNER_MERCHANT_SHOP_TEXT = "Find where you can stop";
 const PARTNER_MERCHANT_FOOD_TEXT = "Food";
-const PARTNER_MERCHANT_RETAIL_TEXT = "RETAIL";
-const PARTNER_MERCHANT_ENTERTAINMENT_TEXT = "ENTERTAINMENT";
+const PARTNER_MERCHANT_RETAIL_TEXT = "Retail";
+const PARTNER_MERCHANT_ENTERTAINMENT_TEXT = "Entertainment";
 const PARTNER_MERCHANT_PHARMACIES_TEXT = "Pharmacies";
 const PARTNER_MERCHANT_TRANSPORTATION_TEXT = "Transportation";
 const PARTNER_MERCHANT_SUPERMARKET_TEXT = "Supermarket";
-const PARTNER_MERCHANT_STORE_TEXT = "Convinient Store";
+const PARTNER_MERCHANT_STORE_TEXT = "Convenient Store";
 const PARTNER_MERCHANT_GADGETS_TEXT = "Gadgets";
 const PARTNER_MERCHANT_SERVICES_TEXT = "Services";
 
@@ -112,8 +115,8 @@ const VOUCHER_POCKETS_INFORMATION_TEXT = "Learn more about voucher";
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
 const SERVICES_SCREEN_CASH_IN_TEXT = "Cash in";
-const SERVICES_SCREEN_REMITTANCE_TEXT = "Remittance";
-const SERVICES_SCREEN_BANK_TRANSFER_TEXT = "Back Transfer";
+const SERVICES_SCREEN_REMITTANCE_TEXT = "Direct Send";
+const SERVICES_SCREEN_BANK_TRANSFER_TEXT = "Remittance";
 const SERVICES_SCREEN_BUY_LOAD_TEXT = "Buy Load";
 const SERVICES_SCREEN_PAY_BILLS_TEXT = "Pay Bills";
 const SERVICES_SCREEN_REQUEST_MONEY_TEXT = "Request Money";
@@ -127,6 +130,36 @@ const SERVICES_SCREEN_REASON_SWIPE_TEXT =
     "Because you deserve bettwer from us.";
 
 const HELP_SCREEN_TITLE_TEXT = "Help";
+
+const DIRECT_SEND_SCREEN_TITLE_TEXT = "Send / Request Money";
+const DIRECT_SEND_SCREEN_SWIPE_SEND_TEXT = "Send money to another SWIPE account";
+const DIRECT_SEND_SCREEN_DIRECT_SEND_TEXT = "Direct Send";
+const DIRECT_SEND_SCREEN_SEND_QR_TEXT = "Send Via QR";
+const DIRECT_SEND_SCREEN_SEND_TO_BANK_TEXT = "Send money to bank account";
+const DIRECT_SEND_SCREEN_BANKS_TEXT = "Banks";
+const DIRECT_SEND_SCREEN_REMITTANCE_TEXT = "Send money to Remittance Center";
+const DIRECT_SEND_SCREEN_REMITTANCE_CENTERS_TEXT = "Remittance Centers";
+
+const DIRECT_SEND_FORM_SCREEN_MOBILE = "Mobile Number";
+const DIRECT_SEND_FORM_NOTE_MOBILE = "*Add +63 to the recipient e.g 631234567890";
+const DIRECT_SEND_FORM_SCREEN_AMOUNT = "Amount";
+const DIRECT_SEND_FORM_SCREEN_MESSAGE = "Message";
+const DIRECT_SEND_FORM_SCREEN_MESSAGE_OPTIONAL = "*Message optional";
+const DIRECT_SEND_FORM_SCREEN_NEXT = "NEXT";
+
+const DIRECT_REQUEST_FORM_SCREEN_TITLE = "My Custom QR";
+const DIRECT_REQUEST_FORM_SCREEN_NICKNAME = "Nickname (Optional)";
+const DIRECT_REQUEST_FORM_SCREEN_SAVE = "Save";
+
+
+const DIRECT_SEND_VIA_QR_SCREEN_TITLE = "Send Via QR";
+const DIRECT_SEND_VIA_QR_SCREEN_NOTE =
+    'Align QR code to the frame to\n'
+    'start scanning.';
+const DIRECT_SEND_VIA_QR_SCREEN_DETECTED = "QR code Detected!";
+const DIRECT_SEND_VIA_QR_SCREEN_RESCAN = "Re-scan QR code";
+const DIRECT_SEND_VIA_QR_SCREEN_PROCEED = "PROCEED";
+
 
 const BILLS_PAYMENT_TITLE_TEXT = "Pay Bills";
 const BILLS_PAYMENT_NEXT_TEXT = "Next";
@@ -144,7 +177,7 @@ const BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT = "Transportation";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT = "Online Shopping";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT = "Utilities";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT = "Water";
-const BILLS_PAYMENT_CATEGORIES_SCREEN_OTHERS_TEXT = "OTHERS";
+const BILLS_PAYMENT_CATEGORIES_SCREEN_OTHERS_TEXT = "Others";
 const BILLS_PAYMENT_TRANSPORTATION_AUTOSWEEP_TITLE =
     "All Billers (Transportation)";
 const BILLS_PAYMENT_TRANSPORTATION_AUTOSWEEP_TEXT = "Autosweep";
@@ -164,7 +197,7 @@ const BILLS_PAYMENT_BILLER_CREDIT_CARD_TEXT = "Credit Card";
 const BILLS_PAYMENT_BILLER_TELECOM_TEXT = "Telecom";
 const BILLS_PAYMENT_BILLER_GOVERMENT_TEXT = "Government";
 const BILLS_PAYMENT_BILLER_INSURANCE_TEXT = "Insurance";
-const BILLS_PAYMENT_BILLER_SCHOOLS_TEXT = "SCHOOLS";
+const BILLS_PAYMENT_BILLER_SCHOOLS_TEXT = "Schools";
 const BILLS_PAYMENT_BILLER_HEALTH_CARE_TEXT = "Health Care";
 const BILLS_PAYMENT_BILLER_REAL_ESTATE_TEXT = "Real Estate";
 const BILLS_PAYMENT_BILLER_FOOD_TEXT = "Food";
@@ -536,18 +569,32 @@ ThemeData createThemePurpleOnWhite(BuildContext context) {
               secondary: Colors.white)));
 }
 
+@HiveType(typeId: 10)
 enum SwipeServiceOffering {
+  @HiveField(0)
   BUY_LOAD,
+  @HiveField(1)
   CASH_IN,
+  @HiveField(2)
   PAY_QR,
+  @HiveField(3)
+  DIRECT_SEND,
+  @HiveField(4)
   REMITTANCE,
+  @HiveField(5)
   REMITTANCE_INSTAPAY,
+  @HiveField(6)
   BILLS_PAYMENT,
+  @HiveField(7)
   INSURANCE,
+  @HiveField(8)
   BANK_TRANSFER,
+  @HiveField(9)
   REQUEST_MONEY,
+  @HiveField(10)
   AUTOSWEEP,
-  MORE
+  @HiveField(11)
+  MORE,
 }
 
 Map<SwipeServiceOffering, String> SwipeServiceRoutes = {

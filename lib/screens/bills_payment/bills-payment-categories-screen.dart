@@ -1,4 +1,5 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:swipe/common/common-alert.dialog.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/models/product-model.dart';
 import 'package:swipe/store/application-store.dart';
 
 import '../../main.dart';
@@ -26,7 +28,14 @@ class _BillsPaymentCategoriesScreenState
   @override
   void initState() {
     // WidgetsBinding.instance.addPostFrameCallback((_) => initBillers());
+    getSavedBiller();
     super.initState();
+  }
+
+  Future getSavedBiller () async {
+    // await store.addBillerService.deleteAll();
+    List<BillerProduct> a = await store.addBillerService.onLoading();
+    store.setNewBiller(a);
   }
 
   @override
@@ -194,30 +203,27 @@ class _BillsPaymentCategoriesScreenState
                     CategoryButtonWidget(
                       category: BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset("assets/icons/services/cash-in.png"),
+                      icon: SvgPicture.asset('assets/svg/services/cash-in.svg'),
                       text: BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
                     ),
                     CategoryButtonWidget(
                       category:
                           BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset(
-                          "assets/icons/services/bills-payment/cable-internet.png"),
+                      icon: SvgPicture.asset('assets/svg/services/bills-payment/cable-internet.svg'),
                       text: BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
                     ),
                     CategoryButtonWidget(
                       category:
                           BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset(
-                          "assets/icons/services/bills-payment/electricity.png"),
+                      icon: SvgPicture.asset('assets/svg/services/bills-payment/electricity.svg'),
                       text: BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
                     ),
                     CategoryButtonWidget(
                       category: BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset(
-                          "assets/icons/services/bills-payment/loans.png"),
+                      icon: SvgPicture.asset('assets/svg/services/bills-payment/loans.svg'),
                       text: BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
                     ),
                     CategoryButtonWidget(
@@ -225,38 +231,33 @@ class _BillsPaymentCategoriesScreenState
                           BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
                       onPressed: (category) => Get.toNamed(
                           '/services/bills-payment/transportation/transportation-categories-screen'),
-                      icon: Image.asset(
-                          "assets/icons/services/bills-payment/transportation.png"),
+                      icon: SvgPicture.asset('assets/svg/services/bills-payment/transportation.svg'),
                       text: BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
                     ),
                     CategoryButtonWidget(
                       category:
                           BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset(
-                          "assets/icons/services/bills-payment/credit-card.png"),
+                      icon: SvgPicture.asset('assets/svg/services/bills-payment/credit-card.svg'),
                       text:
                           BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
                     ),
                     CategoryButtonWidget(
                       category: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset(
-                          "assets/icons/services/bills-payment/real-estate.png"),
+                      icon: SvgPicture.asset('assets/svg/services/bills-payment/realestate.svg'),
                       text: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
                     ),
                     CategoryButtonWidget(
                       category: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
                       onPressed: _handleButtonClick,
-                      icon: Image.asset(
-                          "assets/icons/services/bills-payment/water-utility.png"),
+                      icon: SvgPicture.asset('assets/svg/services/bills-payment/water-utility.svg'),
                       text: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
                     ),
                     CategoryButtonWidget(
                       category: "Others",
                       onPressed: _handleButtonClick,
-                      icon: Image.asset(
-                          "assets/icons/services/bills-payment/others.png"),
+                      icon: SvgPicture.asset('assets/svg/services/bills-payment/others.svg'),
                       text: BILLS_PAYMENT_CATEGORIES_SCREEN_OTHERS_TEXT,
                     ),
                   ],
