@@ -32,11 +32,11 @@ class EloadProcessResponse extends TransactionProcessingResponse {
 class EloadingService extends Da5Service {
   EloadingService()
       : super(
-            endpoint: API_ENDPOINT,
-            merchantId: AUTH_MERCHANT_ID,
-            networkId: AUTH_NETWORK_ID,
-            signature: AUTH_SIGNATURE,
-            username: AUTH_USERNAME);
+            endpoint: E_LOADING_API_ENDPOINT,
+            merchantId: E_LOADING_AUTH_MERCHANT_ID,
+            networkId: E_LOADING_AUTH_NETWORK_ID,
+            signature: E_LOADING_AUTH_SIGNATURE,
+            username: E_LOADING_AUTH_USERNAME);
 
   Future<List<ProductModel>> getProducts(String mobile) async {
     List<ProductModel> list = new List<ProductModel>();
