@@ -219,6 +219,30 @@ const AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
 const API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
 // const API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
 
+const AUTOSWEEP_AUTH_MERCHANT_ID = "0910";
+const AUTOSWEEP_AUTH_NETWORK_ID = "0625";
+const AUTOSWEEP_AUTH_USERNAME = "kabootekph";
+const AUTOSWEEP_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
+const AUTOSWEEP_API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+
+const BILLS_PAYMENT_AUTH_MERCHANT_ID = "0910";
+const BILLS_PAYMENT_AUTH_NETWORK_ID = "0625";
+const BILLS_PAYMENT_AUTH_USERNAME = "kabootekph";
+const BILLS_PAYMENT_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
+const BILLS_PAYMENT_API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+
+const E_LOADING_AUTH_MERCHANT_ID = "0910";
+const E_LOADING_AUTH_NETWORK_ID = "0625";
+const E_LOADING_AUTH_USERNAME = "kabootekph";
+const E_LOADING_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
+const E_LOADING_API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+
+const INSTAPAY_AUTH_MERCHANT_ID = "0910";
+const INSTAPAY_AUTH_NETWORK_ID = "0625";
+const INSTAPAY_AUTH_USERNAME = "kabootekph";
+const INSTAPAY_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
+const INSTAPAY_API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+
 const SMS_USERNAME = "itda5";
 const SMS_PASSWORD = "@da5_isms-2019";
 const SMS_API = "https://www.isms.com.my/isms_send.php?";

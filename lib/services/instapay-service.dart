@@ -35,11 +35,11 @@ class InstapayProcessingResponse extends TransactionProcessingResponse {
 class InstapayService extends Da5Service {
   InstapayService()
       : super(
-            endpoint: API_ENDPOINT,
-            merchantId: AUTH_MERCHANT_ID,
-            networkId: AUTH_NETWORK_ID,
-            signature: AUTH_SIGNATURE,
-            username: AUTH_USERNAME);
+            endpoint: INSTAPAY_API_ENDPOINT,
+            merchantId: INSTAPAY_AUTH_MERCHANT_ID,
+            networkId: INSTAPAY_AUTH_NETWORK_ID,
+            signature: INSTAPAY_AUTH_SIGNATURE,
+            username: INSTAPAY_AUTH_USERNAME);
 
   Future<List<InstapayBankProduct>> getBanks() async {
     List<InstapayBankProduct> instapayBanks = new List<InstapayBankProduct>();

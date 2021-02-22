@@ -41,11 +41,11 @@ class AutosweepProcessingResponse extends TransactionProcessingResponse {
 class AutosweepService extends Da5Service {
   AutosweepService()
       : super(
-          endpoint: API_ENDPOINT,
-          merchantId: AUTH_MERCHANT_ID,
-          networkId: AUTH_NETWORK_ID,
-          signature: AUTH_SIGNATURE,
-          username: AUTH_USERNAME,
+          endpoint: AUTOSWEEP_API_ENDPOINT,
+          merchantId: AUTOSWEEP_AUTH_MERCHANT_ID,
+          networkId: AUTOSWEEP_AUTH_NETWORK_ID,
+          signature: AUTOSWEEP_AUTH_SIGNATURE,
+          username: AUTOSWEEP_AUTH_USERNAME,
         );
 
   Future<AutosweepProcessingResponse> process(
@@ -57,7 +57,8 @@ class AutosweepService extends Da5Service {
       Map<String, String> params = {
         "Scope": AUTOSWEEP_SCOPE,
         "Amount": formatterWithoutPHP.format(total).replaceFirst(" ", ""),
-        "PlateNumber": product.plateNumber
+        "PlateNumber": product.plateNumber,
+        "Fees": formatterWithoutPHP.format(AUTOSWEEP_FEE).replaceFirst(" ", ""),
       };
 
       var response = await post("/API_autosweep/process", params);
