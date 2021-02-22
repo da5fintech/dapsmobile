@@ -64,6 +64,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                         Expanded(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               FocusScope(
                                 child: Focus(
@@ -98,9 +99,18 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                                             BoxConstraints(minWidth: 0, minHeight: 0),
                                         labelText:
                                             BUY_LOAD_RECIPIENT_SCREEN_LOAD_FOR_TEXT,
-                                        hintText: ""),
+                                        hintText: "639012345678"),
                                   ),
                                 ),
+                              ),
+                              Text(
+                                'Add 63 to the recipient e.g 639123456789',
+                                style: GoogleFonts.roboto(
+                                  color: COLOR_DARK_GRAY.withOpacity(0.5),
+                                  fontSize: 12,
+                                  height: 2,
+                                  fontWeight: FontWeight.w500,
+                                )
                               ),
                               if (showSuggestion && numbers.isNotEmpty) ...[
                                 Container(
