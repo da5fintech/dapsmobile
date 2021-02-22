@@ -34,8 +34,9 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
     getPlateNumbers();
   }
 
-  Future getPlateNumbers () async {
-    List<AutoSweepSuggest> a = await store.saveSuggestionsServices.onloadPlateNumbers();
+  Future getPlateNumbers() async {
+    List<AutoSweepSuggest> a =
+        await store.saveSuggestionsServices.onloadPlateNumbers();
     plateNumbers = a;
     setState(() {});
   }
@@ -122,10 +123,19 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                                   child: TextField(
                                     controller: plateNumber,
                                     onChanged: (value) {
-                                      // plateNumber = value;
+                                      setState(() {
+                                        plateNumbers = plateNumber.text.isEmpty
+                                            ? store.saveSuggestionsServices
+                                                .listPlateNumbers
+                                            : store.saveSuggestionsServices
+                                                .listPlateNumbers
+                                                .where((el) => el.plateNumber
+                                                    .contains(value)).toList();
+                                      });
                                     },
                                     decoration: InputDecoration(
-                                      labelText: BILLS_PAYMENT_TRANSPORTATION_PLATE_NUMBER_TEXT,
+                                      labelText:
+                                          BILLS_PAYMENT_TRANSPORTATION_PLATE_NUMBER_TEXT,
                                     ),
                                   ),
                                 ),
@@ -134,12 +144,13 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                                 controller: amount,
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
-                                  labelText: BILLS_PAYMENT_TRANSPORTATION_AMOUNT_TEXT,
+                                  labelText:
+                                      BILLS_PAYMENT_TRANSPORTATION_AMOUNT_TEXT,
                                 ),
                               ),
                             ],
                           ),
-                          if (showResult) ...[
+                          if (showResult && plateNumbers.isNotEmpty) ...[
                             Align(
                               alignment: Alignment.topCenter,
                               child: Container(
@@ -147,14 +158,15 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                                     top: MediaQuery.of(context).size.height *
                                         0.09),
                                 height:
-                                MediaQuery.of(context).size.height * 0.25,
+                                    MediaQuery.of(context).size.height * 0.25,
                                 width: MediaQuery.of(context).size.width,
                                 child: Card(
                                   elevation: 2,
                                   child: ListView.separated(
                                     itemCount: plateNumbers.length,
                                     itemBuilder: (_, int index) {
-                                      AutoSweepSuggest plate = plateNumbers[index];
+                                      AutoSweepSuggest plate =
+                                          plateNumbers[index];
                                       return ListTile(
                                         onTap: () {
                                           plateNumber.text = plate.plateNumber;

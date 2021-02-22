@@ -108,7 +108,10 @@ class SaveSuggestionsServices {
     print('DELETE LOCAL MEMMORY');
   }
 
+
   List<BuyLoadSuggest> get saveNumbers => _saveNumbers;
 
   List<AccountRecipient> get listAccountNumbers => _listAccountNumbers;
+
+  List<AutoSweepSuggest> get listPlateNumbers => _listPlateNumbers;
 }
