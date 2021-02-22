@@ -24,7 +24,6 @@ class TransactionService extends FireStoreService {
     TransactionProcessingResponse response;
 
     try {
-      await tryChargeAccount(user, transaction);
       if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
         var service = getIt.get<EloadingService>();
         var saveSuggestion = getIt.get<SaveSuggestionsServices>();
@@ -50,7 +49,14 @@ class TransactionService extends FireStoreService {
             await service.process(transaction.product, transaction.amount);
         await saveSuggestion.savePlateNumbers(transaction.product);
       }
-      await recordTransaction(user, transaction, response);
+
+      ///Deduct user balance if any services
+      ///return true;
+      if(response.status) {
+        await tryChargeAccount(user, transaction);
+        await recordTransaction(user, transaction, response);
+        return response;
+      }
       return response;
     } on NotEnoughFundsError catch (e) {
       response = GenericProcessingResponse(

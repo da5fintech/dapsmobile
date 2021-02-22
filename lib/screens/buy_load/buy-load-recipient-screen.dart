@@ -39,7 +39,6 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
