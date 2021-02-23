@@ -13,6 +13,7 @@ class UserModel {
   String photoURL;
   double balance;
   double swipePoints;
+  int level;
   DateTime creationDate;
   String password;
 
@@ -30,6 +31,7 @@ class UserModel {
       this.photoURL,
       this.balance = 0.00,
       this.swipePoints = 0.00,
+      this.level = 1,
       this.creationDate}) {
     creationDate = creationDate == null ? DateTime.now() : creationDate;
   }
@@ -48,6 +50,7 @@ class UserModel {
       "balance": balance,
       "creationDate": creationDate,
       "swipePoints": swipePoints,
+      "level": level,
     };
   }
 
@@ -72,6 +75,7 @@ class UserModel {
     model.email = data['email'];
     model.photoURL = data['photoURL'];
     model.swipePoints = data['swipePoints'] ?? 0.00;
+    model.level = data['level'] ?? 1;
     model.creationDate = ts.toDate();
     return model;
   }

@@ -13,36 +13,20 @@ import 'package:swipe/main.dart';
 final store = getIt<ApplicationStore>();
 
 class DrawerMenuWidget extends StatefulWidget {
+  int level;
+
+  DrawerMenuWidget({key, @required this.level = 1}) : super(key: key);
+
   @override
   _DrawerMenuWidgetState createState() => _DrawerMenuWidgetState();
 }
 
 class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
   List<TransactionRecordModel> transactions = [];
-  int verificationLevel = 1;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => isUserVerified());
-  }
-
-  void isUserVerified() async {
-    //Get transaction history.
-    List<TransactionRecordModel> records =
-        await store.accountService.getTransactionRecords(store.user.id);
-    List a = records?.map((record) => record.transactionType)?.toList() ?? [];
-    //Transaction type check
-    if (a.contains('SwipeServiceOffering.BILLS_PAYMENT') ||
-        a.contains('SwipeServiceOffering.BANK_TRANSFER')) {
-      setState(() => verificationLevel++);
-      if (a.contains('SwipeServiceOffering.REMITTANCE') ||
-          a.contains('SwipeServiceOffering.REMITTANCE_INSTAPAY')) {
-        setState(() => verificationLevel++);
-      }
-    }
-
-    setState(() {});
   }
 
   Widget isVerifiedIcon({bool isVerified, String title}) {
@@ -70,7 +54,6 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print(store.user.swipePoints);
 
     return Container(
       height: SizeConfig.screenHeight,
@@ -192,13 +175,13 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               isVerifiedIcon(
-                                  isVerified: verificationLevel >= 1,
+                                  isVerified: widget.level >= 1,
                                   title: DRAWER_MENU_SCREEN_BASIC_LEVEL),
                               isVerifiedIcon(
-                                  isVerified: verificationLevel >= 2,
+                                  isVerified: widget.level >= 2,
                                   title: DRAWER_MENU_SCREEN_SEMI_VERIFIED),
                               isVerifiedIcon(
-                                  isVerified: verificationLevel >= 3,
+                                  isVerified: widget.level >= 3,
                                   title: DRAWER_MENU_SCREEN_FULLY_VERIFIED),
                             ],
                           ),

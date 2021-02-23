@@ -82,9 +82,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   height: 22,
                   child: Chip(
                     padding: EdgeInsets.only(bottom: 10),
-                    backgroundColor: COLOR_GREEN,
+                    backgroundColor: store.user.level >= 3 ? COLOR_GREEN : COLOR_DANGER,
                     label: Text(
-                      SERVICES_SCREEN_VERIFIED_TEXT,
+                      store.user.level >= 3 ? SERVICES_SCREEN_VERIFIED_TEXT : "UNVERIFIED",
                       style: GoogleFonts.roboto(
                         fontSize: 12,
                         color: Colors.white,

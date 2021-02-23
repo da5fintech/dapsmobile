@@ -368,6 +368,11 @@ const SOON_RELEASED_SCREEN_FEATURED_TEXT = "Feature not yet released";
 const SOON_RELEASED_SCREEN_NOTE_TEXT = "Soon to be released!\nPlease Wait for the updates.";
 const SOON_RELEASED_SCREEN_OK_TEXT = "OK";
 
+const VERIFIED_DIALOG_SCREEN = "You are not verified!";
+const VERIFIED_DIALOG_SCREEN_UPDATE_TEXT = "Please update your user information.";
+const VERIFIED_DIALOG_SCREEN_CANCEL = "CANCEL";
+const VERIFIED_DIALOG_SCREEN_GO_TO_VERIFY = "GO TO VERIFICATION";
+
 const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
