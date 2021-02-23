@@ -602,6 +602,8 @@ enum SwipeServiceOffering {
   MORE,
 }
 
+enum OtpServiceAction {UPDATE_USER, ENABLE_FINGERPRINT, REGISTRATION}
+
 Map<SwipeServiceOffering, String> SwipeServiceRoutes = {
   SwipeServiceOffering.BUY_LOAD: '..'
 };

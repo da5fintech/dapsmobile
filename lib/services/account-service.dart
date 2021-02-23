@@ -65,6 +65,15 @@ class AccountService extends FireStoreService {
     }
   }
 
+  Future<UserModel> updateUser(firstname, lastname, mobileNumber, UserModel user) async {
+    user.firstName = firstname;
+    user.lastName = lastname;
+    user.mobileNumber = mobileNumber;
+    user.displayName = firstname + " " + lastname;
+    UserModel updatedUser = await create(user);
+    return updatedUser;
+  }
+
   Future<List<TransactionRecordModel>> getTransactionRecords(String uid) async {
     var result = await collection
         .doc(uid)

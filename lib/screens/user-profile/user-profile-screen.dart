@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/models/user-model.dart';
+import 'package:swipe/screens/otp/otp-screen.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
 
@@ -13,8 +17,14 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
+  TextEditingController firstname = TextEditingController();
+  TextEditingController lastname = TextEditingController();
+  TextEditingController mobileNumber = TextEditingController();
   @override
   void initState() {
+    firstname.text = store.user.firstName;
+    lastname.text = store.user.lastName;
+    mobileNumber.text = store.user.mobileNumber;
     super.initState();
   }
 
@@ -24,6 +34,24 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     ThemeData td = createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text("Processing...",
+                style: GoogleFonts.roboto(color: Colors.white)),
+          ],
+        ),
+      ),
+    });
+
     return Theme(
       data: td,
       child: Scaffold(
@@ -60,6 +88,30 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               ),
                             ),
                           ),
+                          trailing: FlatButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => OtpScreen(
+                                    mobileNumber: mobileNumber.text,
+                                    type: OtpServiceAction.UPDATE_USER,
+                                    btnText: "UPDATE USER",
+                                    onOk: _handleUpdateUser,
+                                  ),
+                                )
+                              );
+                            },
+                            padding: EdgeInsets.zero,
+                            child: Text(
+                              'Update',
+                              style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                       Positioned(
@@ -82,9 +134,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   height: 22,
                   child: Chip(
                     padding: EdgeInsets.only(bottom: 10),
-                    backgroundColor: store.user.level >= 3 ? COLOR_GREEN : COLOR_DANGER,
+                    backgroundColor:
+                        store.user.level >= 3 ? COLOR_GREEN : COLOR_DANGER,
                     label: Text(
-                      store.user.level >= 3 ? SERVICES_SCREEN_VERIFIED_TEXT : "UNVERIFIED",
+                      store.user.level >= 3
+                          ? SERVICES_SCREEN_VERIFIED_TEXT
+                          : "UNVERIFIED",
                       style: GoogleFonts.roboto(
                         fontSize: 12,
                         color: Colors.white,
@@ -101,10 +156,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       children: [
                         TextFormField(
                           autofocus: true,
-                          readOnly: true,
-                          showCursor: true,
                           textInputAction: TextInputAction.next,
-                          initialValue: store.user.firstName,
+                          controller: firstname,
                           decoration: InputDecoration(
                             labelText: REGISTER_SCREEN_FIRSTNAME_TEXT,
                             floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -115,9 +168,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         TextFormField(
                           autofocus: true,
                           textInputAction: TextInputAction.next,
-                          readOnly: true,
-                          showCursor: true,
-                          initialValue: store.user.lastName,
+                          controller: lastname,
                           decoration: InputDecoration(
                             labelText: REGISTER_SCREEN_LASTNAME_TEXT,
                             floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -166,9 +217,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         ),
                         TextFormField(
                           autofocus: true,
-                          readOnly: true,
-                          showCursor: true,
-                          initialValue: store.user.mobileNumber,
+                          controller: mobileNumber,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
@@ -219,5 +268,27 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         ),
       ),
     );
+  }
+
+  _handleUpdateUser () async {
+    try {
+      OverlayScreen().show(
+        context,
+        identifier: 'progress',
+      );
+      UserModel updatedUser = await store.accountService.updateUser(
+          firstname.text,
+          lastname.text,
+          mobileNumber.text,
+          store.user,
+      );
+      store.setUser(updatedUser);
+      OverlayScreen().pop();
+      Navigator.pop(context);
+      Navigator.pop(context);
+    } catch(err) {
+
+    }
+
   }
 }

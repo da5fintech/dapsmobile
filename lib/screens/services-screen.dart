@@ -91,9 +91,11 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       ),
                       Container(
                         margin: EdgeInsets.only(left: 10),
-                        child: Text(
-                          store.user.displayName,
-                          style: GoogleFonts.roboto(fontSize: 14),
+                        child: Observer(
+                          builder: (_) => Text(
+                            store.user.displayName,
+                            style: GoogleFonts.roboto(fontSize: 14),
+                          ),
                         ),
                       ),
                       Spacer(),
