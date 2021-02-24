@@ -7,9 +7,11 @@ import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/account-service.dart';
 import 'package:swipe/services/autosweep-service.dart';
 import 'package:swipe/services/bills-payment-service.dart';
+import 'package:swipe/services/direct-pay-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/firestore-service.dart';
 import 'package:swipe/services/instapay-service.dart';
+import 'package:swipe/services/opt-service.dart';
 import 'package:swipe/services/save-suggestions-services.dart';
 
 import '../main.dart';
@@ -48,13 +50,29 @@ class TransactionService extends FireStoreService {
         response =
             await service.process(transaction.product, transaction.amount);
         await saveSuggestion.savePlateNumbers(transaction.product);
+      } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+        var service = getIt.get<DirectPayService>();
+        response = await service.process(
+            transaction.product, transaction.amount, user);
       }
 
       ///Deduct user balance if any services
       ///return true;
       if (response.status) {
+        var otpService = getIt.get<OtpService>();
         await tryChargeAccount(user, transaction);
         await recordTransaction(user, transaction, response);
+        if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+          DirectPayProduct product = transaction.product;
+          await otpService.sendReferenceNumber(
+            senderName: user.displayName,
+            senderMobileNumber: user.mobileNumber,
+            senderMessage: product.message,
+            amount: product.amount.toString(),
+            receiverMobileNumber: product.mobileNumber,
+            referenceNumber: response.reference,
+          );
+        }
         return response;
       }
       return response;
@@ -124,6 +142,9 @@ class TransactionService extends FireStoreService {
     } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
       BillerProduct product = transaction.product;
       amount = double.parse(product.getFieldValue('amount'));
+    } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+      DirectPayProduct product = transaction.product;
+      amount = product.amount;
     } else {
       return transaction.amount;
     }
@@ -142,6 +163,9 @@ class TransactionService extends FireStoreService {
       amount = transaction.amount + INSTAPAY_FEE;
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       amount = transaction.amount + AUTOSWEEP_FEE;
+    } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+      DirectPayProduct product = transaction.product;
+      amount = transaction.amount + product.fee;
     }
     return amount;
   }
@@ -159,6 +183,9 @@ class TransactionService extends FireStoreService {
       fee = INSTAPAY_FEE;
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       fee = AUTOSWEEP_FEE;
+    } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+      DirectPayProduct product = transaction.product;
+      fee = 15;
     }
     return fee;
   }
@@ -174,6 +201,9 @@ class TransactionService extends FireStoreService {
       return "${product.name}\n${product.accountNumber}";
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       return transaction.recipient;
+    } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+      DirectPayProduct product = transaction.product;
+      return product.name;
     }
   }
 
@@ -187,6 +217,8 @@ class TransactionService extends FireStoreService {
       return "Instapay";
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       return AUTOSWEEP_TRANSACTION_TYPE;
+    } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+      return 'Direct Send';
     }
   }
 }

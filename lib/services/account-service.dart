@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/transaction-model.dart';
@@ -72,6 +73,21 @@ class AccountService extends FireStoreService {
     user.displayName = firstname + " " + lastname;
     UserModel updatedUser = await create(user);
     return updatedUser;
+  }
+
+  Future<UserModel> findUserByMobile(String mobileNumber) async {
+    try {
+      var query = await db.collection(collectionName).get();
+      DocumentSnapshot result = query.docs.firstWhere((el) {
+        return el['mobileNumber'] == mobileNumber ? el['mobileNumber'] : null;
+      });
+      if(result == null) return null;
+      print("User find!");
+      UserModel userResult = UserModel.fromDocumentSnapshot(result);
+      return userResult;
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<List<TransactionRecordModel>> getTransactionRecords(String uid) async {

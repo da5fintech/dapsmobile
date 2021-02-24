@@ -97,7 +97,6 @@ class _MyAppState extends State<MyApp> {
     ApplicationStore store =
         ApplicationStore(prefs: getIt.get<SharedPreferences>());
     getIt.registerSingleton<ApplicationStore>(store);
-
     super.initState();
     super.initState();
   }

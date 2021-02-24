@@ -141,11 +141,12 @@ const DIRECT_SEND_SCREEN_REMITTANCE_TEXT = "Send money to Remittance Center";
 const DIRECT_SEND_SCREEN_REMITTANCE_CENTERS_TEXT = "Remittance Centers";
 
 const DIRECT_SEND_FORM_SCREEN_MOBILE = "Mobile Number";
-const DIRECT_SEND_FORM_NOTE_MOBILE = "*Add +63 to the recipient e.g 631234567890";
+const DIRECT_SEND_FORM_NOTE_MOBILE = "*Phone format recipient e.g 9012345678";
 const DIRECT_SEND_FORM_SCREEN_AMOUNT = "Amount";
 const DIRECT_SEND_FORM_SCREEN_MESSAGE = "Message";
 const DIRECT_SEND_FORM_SCREEN_MESSAGE_OPTIONAL = "*Message optional";
 const DIRECT_SEND_FORM_SCREEN_NEXT = "NEXT";
+const DIRECT_SEND_TEXT = "Direct Send";
 
 const DIRECT_REQUEST_FORM_SCREEN_TITLE = "My Custom QR";
 const DIRECT_REQUEST_FORM_SCREEN_NICKNAME = "Nickname (Optional)";
@@ -242,6 +243,14 @@ const INSTAPAY_AUTH_NETWORK_ID = "0625";
 const INSTAPAY_AUTH_USERNAME = "kabootekph";
 const INSTAPAY_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
 const INSTAPAY_API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+
+const DIRECT_PAY_AUTH_MERCHANT_ID = "0910";
+const DIRECT_PAY_AUTH_NETWORK_ID = "0625";
+const DIRECT_PAY_AUTH_USERNAME = "kabootekph";
+const DIRECT_PAY_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
+const DIRECT_PAY_API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
+const DIRECT_PAY_API_STAGING_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+const DIRECT_PAY_SCOPE = "remittance";
 
 const SMS_USERNAME = "itda5";
 const SMS_PASSWORD = "@da5_isms-2019";

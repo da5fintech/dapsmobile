@@ -247,3 +247,12 @@ class AutosweepProduct extends ProductModel {
       : super(name: AUTOSWEEP_PRODUCT_NAME);
 }
 
+class DirectPayProduct extends ProductModel {
+  int fee;
+  String message;
+  String mobileNumber;
+
+  DirectPayProduct({String name, double amount, this.mobileNumber, this.message, this.fee}) : super(name: name, amount: amount);
+
+}
+

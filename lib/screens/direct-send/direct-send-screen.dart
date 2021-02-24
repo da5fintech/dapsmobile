@@ -348,6 +348,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
   }
 
   _handleUpdateQr(String nickname, String amount) {
+    qrData = "${store.user.mobileNumber}/${store.user.displayName}";
     String convertQrData = _appUtil.splitQrData(qrData, amount);
     userNickname = nickname;
     qrData = convertQrData;

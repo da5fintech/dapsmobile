@@ -161,7 +161,6 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
           context,
           identifier: 'progress',
         );
-
         store.lastTransactionResponse = await store.transactionService
             .process(store.user, store.transaction);
 

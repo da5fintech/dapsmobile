@@ -96,7 +96,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                       fontSize: 16),
                 ),
                 subtitle: Text(
-                  '${store.user.mobileNumber}',
+                  '+63${store.user.mobileNumber}',
                   style: GoogleFonts.roboto(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,

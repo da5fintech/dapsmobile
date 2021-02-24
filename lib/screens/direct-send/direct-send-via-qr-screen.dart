@@ -2,12 +2,20 @@ import 'dart:ui';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/main.dart';
+import 'package:swipe/models/product-model.dart';
+import 'package:swipe/screens/payment/processing-failed-dialog.dart';
+import 'package:swipe/store/application-store.dart';
+
+final store = getIt<ApplicationStore>();
 
 class DirectSendViaQrScreen extends StatefulWidget {
 
@@ -28,14 +36,47 @@ class _DirectSendViaQrScreen extends State<DirectSendViaQrScreen> {
   }
 
   @override
-  void _onQRViewCreated(QRViewController controller) {
+  void _onQRViewCreated(QRViewController controller) async {
     this.controller = controller;
-    if(scanQr.isEmpty) {
-      controller.scannedDataStream.listen((scanData) {
+    controller.scannedDataStream.listen((scanData) async {
+      if(scanQr.isEmpty) {
         scanQr = scanData.code;
+        await _handleNext();
         setState(() {});
-      });
-    }
+      }
+    });
+  }
+
+
+  void _handleNext() async {
+    try {
+      var data = scanQr.split('/');
+      if(data.length != 3) {
+        print('No amount was entered');
+        return null;
+      }
+      OverlayScreen().show(
+        context,
+        identifier: 'progress',
+      );
+      final a = await store.directPayService.getFees(
+          data[2], data[0]);
+      if(!a.status) {
+        OverlayScreen().pop();
+        OverlayScreen().show(
+          context,
+          identifier: 'processing-failed',
+        );
+        return null;
+      }
+
+      store.createTransaction(SwipeServiceOffering.DIRECT_SEND, "");
+      store.setTransactionProduct(DirectPayProduct(
+          name: '', mobileNumber: '63${data[0]}', message: "", fee: a.fee, amount: double.tryParse(a.amount)),
+          double.parse(a.amount));
+      OverlayScreen().pop();
+      Get.toNamed("/services/payment/payment-verification-screen");
+    } catch(err) {}
   }
 
   @override
@@ -49,6 +90,32 @@ class _DirectSendViaQrScreen extends State<DirectSendViaQrScreen> {
     SizeConfig().init(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text("Processing...",
+                style: GoogleFonts.roboto(color: Colors.white)),
+          ],
+        ),
+      ),
+      'processing-failed': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: ProcessingFailedDialog(
+          onOk: () {
+            OverlayScreen().pop();
+          },
+        ),
+      ),
+    });
+
     return Scaffold(
       appBar: SubAppbarWidget(
         title: DIRECT_SEND_VIA_QR_SCREEN_TITLE,
@@ -113,23 +180,23 @@ class _DirectSendViaQrScreen extends State<DirectSendViaQrScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Padding(
-                      padding: EdgeInsets.only(left: 25, right: 25),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Opacity(
-                          opacity: 0.5,
-                          child: RaisedButton(
-                            // shape: ,
-                            onPressed: () {
-                            },
-                            child: Text(
-                              DIRECT_SEND_VIA_QR_SCREEN_PROCEED,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(left: 25, right: 25),
+                    //   child: SizedBox(
+                    //     width: double.infinity,
+                    //     child: Opacity(
+                    //       opacity: 0.5,
+                    //       child: RaisedButton(
+                    //         // shape: ,
+                    //         onPressed: () {
+                    //         },
+                    //         child: Text(
+                    //           DIRECT_SEND_VIA_QR_SCREEN_PROCEED,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(height: 10),
                   ],
                 ),
