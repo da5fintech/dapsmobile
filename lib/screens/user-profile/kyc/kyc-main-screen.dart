@@ -5,6 +5,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-acr-screen.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-cis-screen.dart';
+import 'package:swipe/screens/user-profile/kyc/kyc-eccd-lmpt-screen.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-form-screen.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-proof-id-screen.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-selfie-screen.dart';
@@ -17,6 +18,22 @@ class KycMainScreen extends StatefulWidget {
 }
 
 class _KycMainScreenState extends State<KycMainScreen> {
+  int currentPage = 0;
+  List<Widget> _items = new List<Widget>();
+  @override
+  void initState(){
+    super.initState();
+    _items = [
+      KycFormScreen(),
+      KycSelfieScreen(),
+      KycProofIdScreen(),
+      KycAcrScreen(),
+      KycCisScreen(),
+      KycEcddLpmtScreen(),
+    ];
+  }
+
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -37,20 +54,17 @@ class _KycMainScreenState extends State<KycMainScreen> {
               Expanded(
                 flex: 1,
                 child: CarouselSlider(
-                  items: [
-                    KycFormScreen(),
-                    KycSelfieScreen(),
-                    KycProofIdScreen(),
-                    KycAcrScreen(),
-                    KycCisScreen(),
-                  ],
+                  items: _items,
                   options: CarouselOptions(
+                    enableInfiniteScroll: false,
                     autoPlay: false,
                     height: height,
                     viewportFraction: 1.0,
                     enlargeCenterPage: false,
                     onPageChanged: (index, reason) {
-                      print(index);
+                      setState(() {
+                        currentPage = index;
+                      });
                       FocusScope.of(context).unfocus();
                     }
                   ),
@@ -69,15 +83,16 @@ class _KycMainScreenState extends State<KycMainScreen> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [1,2,3,4,5].map((url) {
-                        int index = [1,2,3,4,5].indexOf(url);
+                      children: _items.map((url) {
+                        int index = _items.indexOf(url);
                         return Container(
                           width: 6,
                           height: 6,
                           margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 3.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.white,
+                            color: currentPage == index ?
+                              COLOR_ORANGE : Colors.white,
                           ),
                         );
                       }).toList(),
