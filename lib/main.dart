@@ -39,6 +39,8 @@ import 'package:swipe/screens/registration/registration-create-mpin-screen.dart'
 import 'package:swipe/screens/registration/registration-details-screen.dart';
 import 'package:swipe/screens/registration/registration-opt-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-bank-form-screen.dart';
+import 'package:swipe/screens/remittance/pesonet/remittance-pesonet-bank-form-screen.dart';
+import 'package:swipe/screens/remittance/pesonet/remittance-pesonet-bank-screen.dart';
 import 'package:swipe/screens/remittance/remittance-categories-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-banks-screen.dart';
 import 'package:swipe/screens/services-screen.dart';
@@ -130,7 +132,8 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(
                     builder: (_) => RegistrationDetailsScreen());
               case '/registration/registration-otp-screen':
-                return MaterialPageRoute(builder: (_) => RegistrationOptScreen());
+                return MaterialPageRoute(
+                    builder: (_) => RegistrationOptScreen());
               case '/registration/registration-create-mpin-screen':
                 return MaterialPageRoute(
                     builder: (_) => RegistrationCreateMpinScreen());
@@ -138,22 +141,24 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(
                     builder: (_) => TransactionHistoryScreen());
               case '/user-profile':
-                return MaterialPageRoute(
-                  builder: (_) => UserProfileScreen());
+                return MaterialPageRoute(builder: (_) => UserProfileScreen());
               case '/links-account':
                 return MaterialPageRoute(builder: (_) => LinksAccountScreen());
               case '/partner-merchants':
-                return MaterialPageRoute(builder: (_) => PartnerMerchantsScreen());
+                return MaterialPageRoute(
+                    builder: (_) => PartnerMerchantsScreen());
               case '/promos':
                 return MaterialPageRoute(builder: (_) => PromosScreen());
               case '/voucher-pockets':
-                return MaterialPageRoute(builder: (_) => VoucherPocketsScreen());
+                return MaterialPageRoute(
+                    builder: (_) => VoucherPocketsScreen());
               case '/settings':
                 return MaterialPageRoute(builder: (_) => SettingsScreen());
               case '/settings/change-swipe-mpin/swipe-mpin-screen':
                 return MaterialPageRoute(builder: (_) => SwipeMpinScreen());
               case '/settings/biometric/biometric-fingerprint-screen':
-                return MaterialPageRoute(builder: (_) => BiometricFingerprintScreen());
+                return MaterialPageRoute(
+                    builder: (_) => BiometricFingerprintScreen());
               case '/help':
                 return MaterialPageRoute(builder: (_) => HelpScreen());
               case '/services':
@@ -161,7 +166,8 @@ class _MyAppState extends State<MyApp> {
               case '/services/direct-send':
                 return MaterialPageRoute(builder: (_) => DirectSendScreen());
               case '/services/direct-send/direct-send-form-screen':
-                return MaterialPageRoute(builder: (_) => DirectSendFormScreen());
+                return MaterialPageRoute(
+                    builder: (_) => DirectSendFormScreen());
               case '/services/buy-load/buy-load-recipient-screen':
                 return MaterialPageRoute(
                     builder: (_) => BuyLoadRecipientScreen());
@@ -199,6 +205,12 @@ class _MyAppState extends State<MyApp> {
               case '/services/remittance/instapay/remittance-instapay-bank-form-screen':
                 return MaterialPageRoute(
                     builder: (_) => RemittanceInstapayBankFormScreen());
+              case '/services/remittance/pesonet/remittance-pesonet-banks-screen':
+                return MaterialPageRoute(
+                    builder: (_) => RemittancePesonetBankScreen());
+              case '/services/remittance/pesonet/remittance-pesonet-bank-form-screen':
+                return MaterialPageRoute(
+                    builder: (_) => RemittancePesonetBankFormScreen());
               case '/services/bills-payment/transportation/transportation-categories-screen':
                 return MaterialPageRoute(
                     builder: (_) => TransportationCategoriesScreen());

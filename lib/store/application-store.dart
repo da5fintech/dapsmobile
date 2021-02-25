@@ -15,6 +15,7 @@ import 'package:swipe/services/direct-pay-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/instapay-service.dart';
 import 'package:swipe/services/opt-service.dart';
+import 'package:swipe/services/pesonet-service.dart';
 import 'package:swipe/services/save-suggestions-services.dart';
 import 'package:swipe/services/transaction-service.dart';
 
@@ -42,6 +43,7 @@ abstract class _ApplicationStore with Store {
   EloadingService eloadingService;
   BillsPaymentService billsPaymentService;
   InstapayService instapayService;
+  PesonetService pesonetService;
   TransactionService transactionService;
   AutosweepService autosweepService;
   AddBillerService addBillerService;
@@ -61,6 +63,8 @@ abstract class _ApplicationStore with Store {
 
   List<InstapayBankProduct> instapayBanks;
   InstapayBankProduct selectedInstapayBank;
+  List<PesonetBankProduct> pesonetBanks;
+  PesonetBankProduct selectedPesonetBank;
 
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
@@ -72,6 +76,7 @@ abstract class _ApplicationStore with Store {
     billsPaymentService = BillsPaymentService();
     transactionService = TransactionService(accountService: accountService);
     instapayService = InstapayService();
+    pesonetService = PesonetService();
     autosweepService = AutosweepService();
     directPayService = DirectPayService();
     addBillerService = AddBillerService();
@@ -83,6 +88,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(billsPaymentService);
     getIt.registerSingleton(transactionService);
     getIt.registerSingleton(instapayService);
+    getIt.registerSingleton(pesonetService);
     getIt.registerSingleton(autosweepService);
     getIt.registerSingleton(directPayService);
     getIt.registerSingleton(addBillerService);

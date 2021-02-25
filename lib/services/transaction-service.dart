@@ -12,6 +12,7 @@ import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/firestore-service.dart';
 import 'package:swipe/services/instapay-service.dart';
 import 'package:swipe/services/opt-service.dart';
+import 'package:swipe/services/pesonet-service.dart';
 import 'package:swipe/services/save-suggestions-services.dart';
 
 import '../main.dart';
@@ -40,6 +41,14 @@ class TransactionService extends FireStoreService {
           SwipeServiceOffering.REMITTANCE_INSTAPAY) {
         var saveSuggestion = getIt.get<SaveSuggestionsServices>();
         var service = getIt.get<InstapayService>();
+        response =
+            await service.process(transaction.product, transaction.amount);
+        await saveSuggestion.saveAccountNumbers(
+            transaction.product, transaction.offering);
+      } else if (transaction.offering ==
+          SwipeServiceOffering.REMITTANCE_PESONET) {
+        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
+        var service = getIt.get<PesonetService>();
         response =
             await service.process(transaction.product, transaction.amount);
         await saveSuggestion.saveAccountNumbers(
@@ -161,6 +170,9 @@ class TransactionService extends FireStoreService {
     } else if (transaction.offering ==
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       amount = transaction.amount + INSTAPAY_FEE;
+    } else if (transaction.offering ==
+        SwipeServiceOffering.REMITTANCE_PESONET) {
+      amount = transaction.amount + PESONET_PAY_FEE;
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       amount = transaction.amount + AUTOSWEEP_FEE;
     } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
@@ -181,6 +193,8 @@ class TransactionService extends FireStoreService {
     } else if (transaction.offering ==
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       fee = INSTAPAY_FEE;
+    } else if (transaction.offering == SwipeServiceOffering.REMITTANCE_PESONET) {
+      fee = PESONET_PAY_FEE;
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       fee = AUTOSWEEP_FEE;
     } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
@@ -199,6 +213,9 @@ class TransactionService extends FireStoreService {
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       InstapayBankProduct product = transaction.product;
       return "${product.name}\n${product.accountNumber}";
+    } else if (transaction.offering == SwipeServiceOffering.REMITTANCE_PESONET) {
+      PesonetBankProduct product = transaction.product;
+      return "${product.name}\n${product.accountNumber}";
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       return transaction.recipient;
     } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
@@ -215,6 +232,8 @@ class TransactionService extends FireStoreService {
     } else if (transaction.offering ==
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       return "Instapay";
+    } else if(transaction.offering == SwipeServiceOffering.REMITTANCE_PESONET) {
+      return "Pesonet";
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       return AUTOSWEEP_TRANSACTION_TYPE;
     } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {

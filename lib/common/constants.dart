@@ -252,6 +252,15 @@ const DIRECT_PAY_API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
 const DIRECT_PAY_API_STAGING_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
 const DIRECT_PAY_SCOPE = "remittance";
 
+const PESONET_PAY_AUTH_MERCHANT_ID = "0910";
+const PESONET_PAY_AUTH_NETWORK_ID = "0625";
+const PESONET_PAY_AUTH_USERNAME = "kabootekph";
+const PESONET_PAY_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
+const PESONET_PAY_API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
+const PESONET_PAY_API_STAGING_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+const PESONET_PAY_SCOPE = "pesonet";
+const PESONET_PAY_FEE = 25.00;
+
 const SMS_USERNAME = "itda5";
 const SMS_PASSWORD = "@da5_isms-2019";
 const SMS_API = "https://www.isms.com.my/isms_send.php?";
@@ -609,6 +618,8 @@ enum SwipeServiceOffering {
   AUTOSWEEP,
   @HiveField(11)
   MORE,
+  @HiveField(12)
+  REMITTANCE_PESONET
 }
 
 enum OtpServiceAction {UPDATE_USER, ENABLE_FINGERPRINT, REGISTRATION}

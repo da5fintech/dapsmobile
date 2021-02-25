@@ -240,6 +240,15 @@ class InstapayBankProduct extends ProductModel {
       : super(code: code, name: name, amount: 0.0, description: "");
 }
 
+class PesonetBankProduct extends ProductModel {
+  String accountNumber;
+  String recipientName;
+
+  PesonetBankProduct({String code, String name})
+      : super(code: code, name: name, amount: 0.0, description: "");
+
+}
+
 class AutosweepProduct extends ProductModel {
   String plateNumber;
 
