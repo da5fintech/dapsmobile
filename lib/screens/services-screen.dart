@@ -53,7 +53,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
         content: VerifiedDialog(
           onOk: () {
             OverlayScreen().pop();
-            Get.toNamed('/user-profile');
+            Get.toNamed('/user-profile/kyc');
           },
         ),
       ),
