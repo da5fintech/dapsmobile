@@ -4,6 +4,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-form-screen.dart';
+import 'package:swipe/screens/user-profile/kyc/kyc-selfie-screen.dart';
 
 class KycMainScreen extends StatefulWidget {
   @override
@@ -35,7 +36,7 @@ class _KycMainScreenState extends State<KycMainScreen> {
                 child: CarouselSlider(
                   items: [
                     KycFormScreen(),
-                    Text('2'),
+                    KycSelfieScreen(),
                     Text('3'),
                     Text('4'),
                     Text('5'),
