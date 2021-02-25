@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/user-profile/kyc/kyc-acr-screen.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-form-screen.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-proof-id-screen.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-selfie-screen.dart';
@@ -39,7 +40,7 @@ class _KycMainScreenState extends State<KycMainScreen> {
                     KycFormScreen(),
                     KycSelfieScreen(),
                     KycProofIdScreen(),
-                    Text('4'),
+                    KycAcrScreen(),
                     Text('5'),
                   ],
                   options: CarouselOptions(
