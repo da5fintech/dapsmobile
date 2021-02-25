@@ -49,7 +49,7 @@ import 'package:swipe/screens/settings/change-swipe-mpin/swipe-mpin-screen.dart'
 import 'package:swipe/screens/settings/settings-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/screens/transactions/transaction-history-screen.dart';
-import 'package:swipe/screens/user-profile/kyc/kyc-main-scree.dart';
+import 'package:swipe/screens/user-profile/kyc/kyc-main-screen.dart';
 import 'package:swipe/screens/user-profile/user-profile-screen.dart';
 import 'package:swipe/screens/voucher-pockets/voucher-pockets-screen.dart';
 import 'package:swipe/store/application-store.dart';

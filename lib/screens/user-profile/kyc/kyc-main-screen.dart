@@ -4,6 +4,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-form-screen.dart';
+import 'package:swipe/screens/user-profile/kyc/kyc-proof-id-screen.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-selfie-screen.dart';
 
 class KycMainScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _KycMainScreenState extends State<KycMainScreen> {
                   items: [
                     KycFormScreen(),
                     KycSelfieScreen(),
-                    Text('3'),
+                    KycProofIdScreen(),
                     Text('4'),
                     Text('5'),
                   ],
@@ -48,6 +49,7 @@ class _KycMainScreenState extends State<KycMainScreen> {
                     enlargeCenterPage: false,
                     onPageChanged: (index, reason) {
                       print(index);
+                      FocusScope.of(context).unfocus();
                     }
                   ),
                 )

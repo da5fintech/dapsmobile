@@ -91,6 +91,7 @@ flutter:
     - assets/svg/voucher-pockets/
     - assets/svg/services/bills-payment/
     - assets/icons/swipe-logo.png
+    - assets/icons/image-placeholder.png
     - assets/icons/services/bank-transfer.png
     - assets/icons/services/buy-load.png
     - assets/icons/services/cash-in.png
