@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:intl/intl.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/product-model.dart';
@@ -82,6 +83,8 @@ class DirectPayService extends Da5Service {
   Future<DirectPayFeeResponse> process(DirectPayProduct product, amount, UserModel user) async {
     var random = new Random();
     var reference = random.nextInt(10000000).toString();
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat.yMd().format(now);
     try {
       double total = amount + product.fee;
       Map<String, String> params = {
@@ -89,7 +92,7 @@ class DirectPayService extends Da5Service {
         "SenderFirstName": user.firstName,
         "SenderMiddleName": "Maniquez",
         "SenderLastName": user.lastName,
-        "SenderDOB": "10/21/1995",
+        "SenderDOB": formattedDate,
         "SenderAddress": INSTAPAY_ADDRESS1,
         "SenderMunicipality": INSTAPAY_CITY,
         "SenderProvince": INSTAPAY_PROVINCE,
@@ -102,7 +105,7 @@ class DirectPayService extends Da5Service {
         "ReceiverMiddleName": "Maniquez",
         "ReceiverLastName": "Dela Cruz",
         "ReceiverMobileNumber": product.mobileNumber,
-        // "ReceiverDOB": "02/24/2021",
+        // "ReceiverDOB": "formattedDate",
         // "ReceiverAddress": INSTAPAY_ADDRESS1,
         // "ReceiverMunicipality": INSTAPAY_CITY,
         // "ReceiverProvince": INSTAPAY_PROVINCE,
