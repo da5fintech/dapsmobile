@@ -8,7 +8,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/main.dart';
-import 'package:swipe/screens/settings/biometrics/biometric-otp-screen.dart';
+import 'package:swipe/screens/otp/otp-screen.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
 
@@ -55,7 +55,10 @@ class _BiometricFingerprintScreenState
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => BiometricOtpScreen(
+                builder: (_) => OtpScreen(
+                  mobileNumber: store.user.mobileNumber,
+                  type: OtpServiceAction.ENABLE_FINGERPRINT,
+                  btnText: SETTINGS_SCREEN_BIOMETRIC_OTP_ENROLL_NOW,
                   onOk: () async {
                     await setFingerprint();
                   },

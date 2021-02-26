@@ -11,9 +11,11 @@ import 'package:swipe/services/add-biller-service.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/services/autosweep-service.dart';
 import 'package:swipe/services/bills-payment-service.dart';
+import 'package:swipe/services/direct-pay-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/instapay-service.dart';
 import 'package:swipe/services/opt-service.dart';
+import 'package:swipe/services/pesonet-service.dart';
 import 'package:swipe/services/save-suggestions-services.dart';
 import 'package:swipe/services/transaction-service.dart';
 
@@ -27,6 +29,8 @@ abstract class _ApplicationStore with Store {
   @observable
   double balance = 0;
   @observable
+  double swipePoints = 0;
+  @observable
   List<BillerProduct> savedBillers = [];
   @observable
   bool enabledBiometrics;
@@ -39,9 +43,11 @@ abstract class _ApplicationStore with Store {
   EloadingService eloadingService;
   BillsPaymentService billsPaymentService;
   InstapayService instapayService;
+  PesonetService pesonetService;
   TransactionService transactionService;
   AutosweepService autosweepService;
   AddBillerService addBillerService;
+  DirectPayService directPayService;
   OtpService otpService;
   SaveSuggestionsServices saveSuggestionsServices;
 
@@ -57,6 +63,8 @@ abstract class _ApplicationStore with Store {
 
   List<InstapayBankProduct> instapayBanks;
   InstapayBankProduct selectedInstapayBank;
+  List<PesonetBankProduct> pesonetBanks;
+  PesonetBankProduct selectedPesonetBank;
 
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
@@ -68,7 +76,9 @@ abstract class _ApplicationStore with Store {
     billsPaymentService = BillsPaymentService();
     transactionService = TransactionService(accountService: accountService);
     instapayService = InstapayService();
+    pesonetService = PesonetService();
     autosweepService = AutosweepService();
+    directPayService = DirectPayService();
     addBillerService = AddBillerService();
     otpService = OtpService();
     saveSuggestionsServices = SaveSuggestionsServices();
@@ -78,7 +88,9 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(billsPaymentService);
     getIt.registerSingleton(transactionService);
     getIt.registerSingleton(instapayService);
+    getIt.registerSingleton(pesonetService);
     getIt.registerSingleton(autosweepService);
+    getIt.registerSingleton(directPayService);
     getIt.registerSingleton(addBillerService);
     getIt.registerSingleton(otpService);
     getIt.registerSingleton(saveSuggestionsServices);
@@ -114,11 +126,17 @@ abstract class _ApplicationStore with Store {
     balance = amount;
   }
 
+  @action setNewSwipeBalance(double currentSwipePoints) {
+    this.swipePoints = currentSwipePoints;
+  }
+
   @action
   setUser(UserModel user) {
     this.user = user;
     print('setting user balance ${user.balance}');
+    print('setting swipe balance ${user.swipePoints}');
     setNewBalance(user.balance);
+    setNewSwipeBalance(user.swipePoints);
   }
 
   @action

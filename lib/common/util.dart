@@ -89,6 +89,7 @@ class AppUtil extends DateUtil {
   }
 
   String splitQrData (String customQr, amount) {
+
     List qrData = customQr.split('/');
     qrData.add(amount);
     String a = qrData.join('/');

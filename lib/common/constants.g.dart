@@ -37,6 +37,8 @@ class SwipeServiceOfferingAdapter extends TypeAdapter<SwipeServiceOffering> {
         return SwipeServiceOffering.AUTOSWEEP;
       case 11:
         return SwipeServiceOffering.MORE;
+      case 12:
+        return SwipeServiceOffering.REMITTANCE_PESONET;
       default:
         return null;
     }
@@ -80,6 +82,9 @@ class SwipeServiceOfferingAdapter extends TypeAdapter<SwipeServiceOffering> {
         break;
       case SwipeServiceOffering.MORE:
         writer.writeByte(11);
+        break;
+      case SwipeServiceOffering.REMITTANCE_PESONET:
+        writer.writeByte(12);
         break;
     }
   }

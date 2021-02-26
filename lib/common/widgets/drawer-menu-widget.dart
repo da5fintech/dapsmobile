@@ -1,5 +1,6 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
@@ -12,36 +13,20 @@ import 'package:swipe/main.dart';
 final store = getIt<ApplicationStore>();
 
 class DrawerMenuWidget extends StatefulWidget {
+  int level;
+
+  DrawerMenuWidget({key, @required this.level = 1}) : super(key: key);
+
   @override
   _DrawerMenuWidgetState createState() => _DrawerMenuWidgetState();
 }
 
 class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
   List<TransactionRecordModel> transactions = [];
-  int verificationLevel = 1;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => isUserVerified());
-  }
-
-  void isUserVerified() async {
-    //Get transaction history.
-    List<TransactionRecordModel> records =
-        await store.accountService.getTransactionRecords(store.user.id);
-    List a = records?.map((record) => record.transactionType)?.toList() ?? [];
-    //Transaction type check
-    if (a.contains('SwipeServiceOffering.BILLS_PAYMENT') ||
-        a.contains('SwipeServiceOffering.BANK_TRANSFER')) {
-      setState(() => verificationLevel++);
-      if (a.contains('SwipeServiceOffering.REMITTANCE') ||
-          a.contains('SwipeServiceOffering.REMITTANCE_INSTAPAY')) {
-        setState(() => verificationLevel++);
-      }
-    }
-
-    setState(() {});
   }
 
   Widget isVerifiedIcon({bool isVerified, String title}) {
@@ -111,7 +96,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                       fontSize: 16),
                 ),
                 subtitle: Text(
-                  '${store.user.mobileNumber}',
+                  '+63${store.user.mobileNumber}',
                   style: GoogleFonts.roboto(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
@@ -127,21 +112,53 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: 22,
-                      child: Chip(
-                        shape: StadiumBorder(
-                          side: BorderSide(color: Colors.white),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 22,
+                          child: Chip(
+                            shape: StadiumBorder(
+                              side: BorderSide(color: Colors.white),
+                            ),
+                            padding: EdgeInsets.only(
+                                bottom: 10, left: 10, right: 10),
+                            backgroundColor: COLOR_DARK_PURPLE,
+                            label: Text(
+                              DRAWER_MENU_SCREEN_VIEW_BENEFITS_TEXT,
+                              style: GoogleFonts.roboto(
+                                  fontSize: 12, color: Colors.white),
+                            ),
+                          ),
                         ),
-                        padding:
-                            EdgeInsets.only(bottom: 10, left: 10, right: 10),
-                        backgroundColor: COLOR_DARK_PURPLE,
-                        label: Text(
-                          DRAWER_MENU_SCREEN_VIEW_BENEFITS_TEXT,
-                          style: GoogleFonts.roboto(
-                              fontSize: 12, color: Colors.white),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              Text('Swipe Points',
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  )),
+                              Observer(
+                                builder: (_) => Text(
+                                  store.swipePoints.toStringAsFixed(2),
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 20.0),
@@ -158,13 +175,13 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               isVerifiedIcon(
-                                  isVerified: verificationLevel >= 1,
+                                  isVerified: widget.level >= 1,
                                   title: DRAWER_MENU_SCREEN_BASIC_LEVEL),
                               isVerifiedIcon(
-                                  isVerified: verificationLevel >= 2,
+                                  isVerified: widget.level >= 2,
                                   title: DRAWER_MENU_SCREEN_SEMI_VERIFIED),
                               isVerifiedIcon(
-                                  isVerified: verificationLevel >= 3,
+                                  isVerified: widget.level >= 3,
                                   title: DRAWER_MENU_SCREEN_FULLY_VERIFIED),
                             ],
                           ),

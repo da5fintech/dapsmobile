@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/transaction-model.dart';
@@ -12,6 +13,15 @@ class AccountService extends FireStoreService {
       var updatedUser = await getAccount(user.id);
       return updatedUser.balance;
     } on ApiResponseError catch (e) {
+      return 0;
+    }
+  }
+
+  Future<double> getSwipePoints(UserModel user) async {
+    try {
+      var updatedUser = await getAccount(user.id);
+      return updatedUser.swipePoints;
+    } on ApiResponseError catch(e) {
       return 0;
     }
   }
@@ -53,6 +63,30 @@ class AccountService extends FireStoreService {
       return isUpdated;
     } else {
       return false;
+    }
+  }
+
+  Future<UserModel> updateUser(firstname, lastname, mobileNumber, UserModel user) async {
+    user.firstName = firstname;
+    user.lastName = lastname;
+    user.mobileNumber = mobileNumber;
+    user.displayName = firstname + " " + lastname;
+    UserModel updatedUser = await create(user);
+    return updatedUser;
+  }
+
+  Future<UserModel> findUserByMobile(String mobileNumber) async {
+    try {
+      var query = await db.collection(collectionName).get();
+      DocumentSnapshot result = query.docs.firstWhere((el) {
+        return el['mobileNumber'] == mobileNumber ? el['mobileNumber'] : null;
+      });
+      if(result == null) return null;
+      print("User find!");
+      UserModel userResult = UserModel.fromDocumentSnapshot(result);
+      return userResult;
+    } catch (e) {
+      return null;
     }
   }
 

@@ -39,6 +39,21 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     });
   }
 
+  final _$swipePointsAtom = Atom(name: '_ApplicationStore.swipePoints');
+
+  @override
+  double get swipePoints {
+    _$swipePointsAtom.reportRead();
+    return super.swipePoints;
+  }
+
+  @override
+  set swipePoints(double value) {
+    _$swipePointsAtom.reportWrite(value, super.swipePoints, () {
+      super.swipePoints = value;
+    });
+  }
+
   final _$savedBillersAtom = Atom(name: '_ApplicationStore.savedBillers');
 
   @override
@@ -107,6 +122,17 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
   }
 
   @override
+  dynamic setNewSwipeBalance(double currentSwipePoints) {
+    final _$actionInfo = _$_ApplicationStoreActionController.startAction(
+        name: '_ApplicationStore.setNewSwipeBalance');
+    try {
+      return super.setNewSwipeBalance(currentSwipePoints);
+    } finally {
+      _$_ApplicationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setUser(UserModel user) {
     final _$actionInfo = _$_ApplicationStoreActionController.startAction(
         name: '_ApplicationStore.setUser');
@@ -133,6 +159,7 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     return '''
 user: ${user},
 balance: ${balance},
+swipePoints: ${swipePoints},
 savedBillers: ${savedBillers},
 enabledBiometrics: ${enabledBiometrics}
     ''';

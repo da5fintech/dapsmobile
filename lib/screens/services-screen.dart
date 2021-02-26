@@ -12,6 +12,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/amount-widget.dart';
 import 'package:swipe/common/widgets/drawer-menu-widget.dart';
 import 'package:swipe/common/widgets/soon-release-dialog.dart';
+import 'package:swipe/common/widgets/verified-dialog.dart';
 import 'package:swipe/services/account-service.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/main-app-bar.widget.dart';
@@ -28,6 +29,7 @@ class ServicesScreen extends StatefulWidget {
 
 class _ServicesScreenState extends State<ServicesScreen> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
   @override
   void initState() {
     super.initState();
@@ -45,17 +47,23 @@ class _ServicesScreenState extends State<ServicesScreen> {
             OverlayScreen().pop();
           },
         ),
-      )
+      ),
+      'unverified': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: VerifiedDialog(
+          onOk: () {
+            OverlayScreen().pop();
+            Get.toNamed('/user-profile');
+          },
+        ),
+      ),
     });
     return WillPopScope(
-      onWillPop: () async {
-        exit(0);
-      },
+      onWillPop: () async {},
       child: Scaffold(
         // backgroundColor: Constants.backgroundColor2,
         key: _drawerKey,
-
-        drawer: DrawerMenuWidget(),
+        drawer: DrawerMenuWidget(level: store.user.level),
         appBar: MainAppBarWidget(
           elevation: 0,
           onPressed: () {
@@ -83,9 +91,11 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       ),
                       Container(
                         margin: EdgeInsets.only(left: 10),
-                        child: Text(
-                          store.user.displayName,
-                          style: GoogleFonts.roboto(fontSize: 14),
+                        child: Observer(
+                          builder: (_) => Text(
+                            store.user.displayName,
+                            style: GoogleFonts.roboto(fontSize: 14),
+                          ),
                         ),
                       ),
                       Spacer(),
@@ -93,10 +103,18 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         height: 22,
                         child: Chip(
                           padding: EdgeInsets.only(bottom: 10),
-                          backgroundColor: COLOR_GREEN,
-                          label: Text(SERVICES_SCREEN_VERIFIED_TEXT,
-                              style: GoogleFonts.roboto(
-                                  fontSize: 12, color: Colors.white)),
+                          backgroundColor: store.user.level >= 3
+                              ? COLOR_GREEN
+                              : COLOR_DANGER,
+                          label: Text(
+                            store.user.level >= 3
+                                ? SERVICES_SCREEN_VERIFIED_TEXT
+                                : "UNVERIFIED",
+                            style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -165,16 +183,33 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     ServiceButtonWidget(
                       // offering: SwipeServiceOffering.REMITTANCE,
                       offering: SwipeServiceOffering.DIRECT_SEND,
-                      onPressed: _handleButtonClick,
+                      onPressed: (offering) {
+                        if (store.user.level >= 2) {
+                          _handleButtonClick(offering);
+                          return null;
+                        }
+                        OverlayScreen().show(
+                          context,
+                          identifier: 'unverified',
+                        );
+                      },
                       // icon: Image.asset('assets/icons/services/remittance.png'),
                       icon: SvgPicture.asset(
-                        'assets/svg/services/remittance.svg'
-                      ),
+                          'assets/svg/services/remittance.svg'),
                       text: SERVICES_SCREEN_REMITTANCE_TEXT,
                     ),
                     ServiceButtonWidget(
                       offering: SwipeServiceOffering.REMITTANCE,
-                      onPressed: _handleButtonClick,
+                      onPressed: (offering) {
+                        if (store.user.level >= 2) {
+                          _handleButtonClick(offering);
+                          return null;
+                        }
+                        OverlayScreen().show(
+                          context,
+                          identifier: 'unverified',
+                        );
+                      },
                       icon: SvgPicture.asset(
                         'assets/svg/services/bank-transfer.svg',
                       ),
@@ -214,9 +249,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       child: ServiceButtonWidget(
                         offering: SwipeServiceOffering.PAY_QR,
                         onPressed: _handleButtonClick,
-                        icon: SvgPicture.asset(
-                          'assets/svg/services/pay-qr.svg'
-                        ),
+                        icon:
+                            SvgPicture.asset('assets/svg/services/pay-qr.svg'),
                         text: SERVICES_SCREEN_PAY_QR_TEXT,
                       ),
                     ),
@@ -251,7 +285,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                 Get.toNamed("/transactions/transaction-history-screen");
               },
               child: Container(
-                padding: EdgeInsets.only(left: 10, right: 10, bottom: 4, top: 10),
+                padding:
+                    EdgeInsets.only(left: 10, right: 10, bottom: 4, top: 10),
                 color: Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -265,7 +300,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         Text(
                           SERVICES_SCREEN_TRANSACTION_TEXT,
                           style: GoogleFonts.roboto(
-                              fontSize: 14, color: Colors.black.withOpacity(.87)),
+                              fontSize: 14,
+                              color: Colors.black.withOpacity(.87)),
                         ),
                       ],
                     ),
@@ -331,7 +367,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
       Get.toNamed("/services/bills-payment/bills-payment-categories-screen");
     } else if (offering == SwipeServiceOffering.REMITTANCE) {
       Get.toNamed("/services/remittance/remittance-categories-screen");
-    } else if(offering == SwipeServiceOffering.DIRECT_SEND) {
+    } else if (offering == SwipeServiceOffering.DIRECT_SEND) {
       Get.toNamed("/services/direct-send");
     } else {
       OverlayScreen().show(

@@ -157,7 +157,7 @@ class _RemittanceCategoriesScreenState
         ),
         GestureDetector(
           onTap: () {
-            print("pesonet");
+            _openPesonet();
           },
           child: Card(
             elevation: 2,
@@ -412,5 +412,18 @@ class _RemittanceCategoriesScreenState
     store.instapayBanks = banks;
     Get.toNamed(
         "/services/remittance/instapay/remittance-instapay-banks-screen");
+  }
+
+  void _openPesonet() async {
+    OverlayScreen().show(
+      context,
+      identifier: 'progress',
+    );
+    var banks = await store.pesonetService.getBanks();
+    OverlayScreen().pop();
+    store.pesonetBanks = banks;
+    Get.toNamed('/services/remittance/pesonet/remittance-pesonet-banks-screen');
+
+
   }
 }

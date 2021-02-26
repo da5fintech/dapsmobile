@@ -161,7 +161,6 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
           context,
           identifier: 'progress',
         );
-
         store.lastTransactionResponse = await store.transactionService
             .process(store.user, store.transaction);
 
@@ -176,9 +175,12 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
             identifier: 'processing-failed',
           );
         } else {
+          double swipePoints =
+              await store.accountService.getSwipePoints(store.user);
           double amount =
               await store.accountService.getWalletAmount(store.user);
           store.setNewBalance(amount);
+          store.setNewSwipeBalance(swipePoints);
           print("transaction ok");
           print("switching to next screen");
           Get.toNamed('/services/payment/payment-confirmation-screen');

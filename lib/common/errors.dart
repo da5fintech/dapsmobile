@@ -31,3 +31,7 @@ class NotEnoughFundsError extends GenericError {
 class AuthenticationError extends GenericError {
   AuthenticationError({code, message}) : super(code: code, message: message);
 }
+
+class DirectPayError extends GenericError {
+  DirectPayError({code, message}) : super(code: code, message: message);
+}

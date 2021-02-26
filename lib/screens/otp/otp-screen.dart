@@ -11,16 +11,19 @@ import 'package:swipe/main.dart';
 
 final store = getIt<ApplicationStore>();
 
-class BiometricOtpScreen extends StatefulWidget {
+class OtpScreen extends StatefulWidget {
+  String mobileNumber;
+  OtpServiceAction type;
   final Function onOk;
+  String btnText;
 
-  BiometricOtpScreen({this.onOk});
+  OtpScreen({this.onOk, @required this.mobileNumber, @required this.type, @required this.btnText});
 
   @override
-  _BiometricOtpScreen createState() => _BiometricOtpScreen();
+  _OtpScreenState createState() => _OtpScreenState();
 }
 
-class _BiometricOtpScreen extends State<BiometricOtpScreen> {
+class _OtpScreenState extends State<OtpScreen> {
   Function onOk;
   TextEditingController controller = TextEditingController();
   int expectedOtp;
@@ -62,7 +65,7 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
       data: td,
       child: Scaffold(
         appBar: SubAppbarWidget(
-          title: SETTINGS_SCREEN_BIOMETRIC_LOGIN_TEXT,
+          title: "OTP Verification",
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -199,7 +202,7 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
                   color: controller.text.length != 6 ? Colors.grey[500] : null,
                   // shape: ,
                   onPressed: _handleSubmit,
-                  child: Text(SETTINGS_SCREEN_BIOMETRIC_OTP_ENROLL_NOW),
+                  child: Text(widget.btnText),
                 ),
               ),
               Padding(
@@ -235,7 +238,7 @@ class _BiometricOtpScreen extends State<BiometricOtpScreen> {
 
   Future _handleOtpSms() async {
     await store.otpService
-        .sendOtp(mobileNumber: '63${store.user.mobileNumber}', otp: expectedOtp);
+        .sendOtp(mobileNumber: '63${widget.mobileNumber}', otp: expectedOtp);
   }
 
   void _handleSubmit() {

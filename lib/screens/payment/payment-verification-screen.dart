@@ -221,6 +221,85 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
     );
   }
 
+  Widget buildRemittancePesonetSection() {
+    PesonetBankProduct product = store.transaction.product;
+    return Column(
+      children: [
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10),
+          color: COLOR_DARK_PURPLE.withOpacity(.05),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                PAYMENT_VERIFICATION_SCREEN_SEND_MONEY_TEXT,
+                style: GoogleFonts.roboto(
+                    color: COLOR_DARK_PURPLE.withOpacity(.87),
+                    fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(PAYMENT_VERIFICATION_SCREEN_SEND_VIA_TEXT),
+              Spacer(),
+              Image(
+                width: 90,
+                image: AssetImage("assets/icons/pesonet.png"),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(PAYMENT_VERIFICATION_SCREEN_ACCOUNT_NUMBER_TEXT),
+              Spacer(),
+              Text("${product.accountNumber}"),
+            ],
+          ),
+        ),
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(PAYMENT_VERIFICATION_SCREEN_RECIPIENT_TEXT),
+              Spacer(),
+              Text("${product.recipientName}"),
+            ],
+          ),
+        ),
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                PAYMENT_VERIFICATION_SCREEN_FEE_TEXT,
+              ),
+              Spacer(),
+              Text(
+                formatter.format(INSTAPAY_FEE),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget buildAutosweepSection() {
     AutosweepProduct product = store.transaction.product;
 
@@ -284,6 +363,78 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
     );
   }
 
+  Widget buildDirectSendSection() {
+    DirectPayProduct product = store.transaction.product;
+    return Column(
+      children: [
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10),
+          color: COLOR_DARK_PURPLE.withOpacity(.05),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                PAYMENT_VERIFICATION_SCREEN_SEND_MONEY_TEXT,
+                style: GoogleFonts.roboto(
+                    color: COLOR_DARK_PURPLE.withOpacity(.87),
+                    fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(PAYMENT_VERIFICATION_SCREEN_SEND_VIA_TEXT),
+              Spacer(),
+              Text(DIRECT_SEND_TEXT)
+            ],
+          ),
+        ),
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(PAYMENT_VERIFICATION_SCREEN_ACCOUNT_NUMBER_TEXT),
+              Spacer(),
+              Text("+${product.mobileNumber}"),
+            ],
+          ),
+        ),
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("Recipient's Name"),
+              Spacer(),
+              Text("${product.name}"),
+            ],
+          ),
+        ),
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("Message"),
+              Spacer(),
+              Text("${product.message}"),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget buildOfferingSpecificSection(SwipeServiceOffering offering) {
     if (offering == SwipeServiceOffering.BUY_LOAD) {
       return buildBuyLoadSection();
@@ -298,9 +449,20 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
       return buildRemittanceInstapaySection();
     }
 
+    if (offering == SwipeServiceOffering.REMITTANCE_PESONET) {
+      hasDiscount = false;
+      return buildRemittancePesonetSection();
+    }
+
+
     if (offering == SwipeServiceOffering.AUTOSWEEP) {
       hasDiscount = false;
       return buildAutosweepSection();
+    }
+
+    if(offering == SwipeServiceOffering.DIRECT_SEND) {
+      hasDiscount = false;
+      return buildDirectSendSection();
     }
 
     return Container();
