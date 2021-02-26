@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
@@ -136,13 +137,20 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     padding: EdgeInsets.only(bottom: 10),
                     backgroundColor:
                         store.user.level >= 3 ? COLOR_GREEN : COLOR_DANGER,
-                    label: Text(
-                      store.user.level >= 3
-                          ? SERVICES_SCREEN_VERIFIED_TEXT
-                          : "UNVERIFIED",
-                      style: GoogleFonts.roboto(
-                        fontSize: 12,
-                        color: Colors.white,
+                    label: GestureDetector(
+                      onTap: () {
+                        if(store.user.level <= 3) {
+                          Get.toNamed('/user-profile/kyc');
+                        }
+                      },
+                      child: Text(
+                        store.user.level >= 3
+                            ? SERVICES_SCREEN_VERIFIED_TEXT
+                            : "UNVERIFIED",
+                        style: GoogleFonts.roboto(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
