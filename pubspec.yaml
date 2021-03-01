@@ -34,6 +34,7 @@ dependencies:
   feature_discovery: ^0.8.0
   permission_handler: ^5.0.1+1
   firebase_core: "0.5.3"
+  firebase_ml_vision: ^0.10.0
   local_auth: ^0.6.3+4
 
   # The following adds the Cupertino Icons font to your application.
@@ -61,7 +62,7 @@ dependencies:
   qr_flutter: ^3.2.0
   qr_code_scanner: ^0.3.4
   flutter_svg: ^0.18.0
-#  camera: ^0.7.0+2
+  camera: ^0.7.0+2
   mask_text_input_formatter: ^1.2.1
   carousel_slider: ^3.0.0
   image_picker: ^0.6.7+22
