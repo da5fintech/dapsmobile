@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -101,9 +102,14 @@ class VerificationScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            _iconLabel(
-                              icon: 'assets/svg/services/user-id.svg',
-                              label: 'Take ID Photo',
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed('/user-profile/user-verification/verification-id-list');
+                              },
+                              child: _iconLabel(
+                                icon: 'assets/svg/services/user-id.svg',
+                                label: 'Take ID Photo',
+                              ),
                             ),
                             Icon(Icons.arrow_forward_ios, color: COLOR_ORANGE),
                             _iconLabel(

@@ -84,4 +84,20 @@ List<Map<String, dynamic>> partners = [
   { 'title': PARTNER_MERCHANT_SERVICES_TEXT, 'imagePath': 'assets/icons/merchant-partners/services.png'},
 ];
 
+List recommendedId = [
+  "UMiD",
+  "Driver's License",
+  "Philhealth Card",
+  "SSS ID",
+  "Passport",
+  "Voter's ID",
+];
+
+List otherId = [
+  "Alien Immigrant COR",
+  "Government Office/GOCC ID",
+  "HDMF ID (Pag-ibig)",
+  "Postal ID",
+];
+
 
