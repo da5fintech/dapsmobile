@@ -1,9 +1,11 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-photo-id-screen.dart';
 
 class VerificationScreen extends StatelessWidget {
 
@@ -174,7 +176,15 @@ class VerificationScreen extends StatelessWidget {
                         buttonColor: COLOR_DARK_PURPLE,
                         child: RaisedButton(
                           // shape: ,
-                          onPressed: () {
+                          onPressed: () async {
+                            final cameras = await availableCameras();
+                            final firstCamera = cameras.first;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => VerificationPhotoIdScreen(
+                                cameras: firstCamera,
+                              ))
+                            );
                           },
                           child: Text(
                             'GET FULLY VERIFIED',

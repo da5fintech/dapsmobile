@@ -30,23 +30,24 @@ class VerificationIdListScreen extends StatelessWidget {
               ),
             ),
             ...recommendedId?.map((id) {
-              return Column(
-                children: [
-                  ListTile(
-                    visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                    title: Text(
-                      id,
-                      style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                      )
-                    )
-                  ),
-                  Divider(thickness: 0.5, color: COLOR_DARK_GRAY.withOpacity(0.4))
-                ],
-              );
-            })?.toList() ?? [],
+                  return Column(
+                    children: [
+                      ListTile(
+                          visualDensity:
+                              VisualDensity(vertical: -4, horizontal: 0),
+                          title: Text(id,
+                              style: GoogleFonts.roboto(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ))),
+                      Divider(
+                          thickness: 0.5,
+                          color: COLOR_DARK_GRAY.withOpacity(0.4))
+                    ],
+                  );
+                })?.toList() ??
+                [],
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: Text(
@@ -59,23 +60,24 @@ class VerificationIdListScreen extends StatelessWidget {
               ),
             ),
             ...otherId?.map((id) {
-              return Column(
-                children: [
-                  ListTile(
-                      visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                      title: Text(
-                          id,
-                          style: GoogleFonts.roboto(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          )
-                      )
-                  ),
-                  Divider(thickness: 0.5, color: COLOR_DARK_GRAY.withOpacity(0.4))
-                ],
-              );
-            })?.toList() ?? [],
+                  return Column(
+                    children: [
+                      ListTile(
+                          visualDensity:
+                              VisualDensity(vertical: -4, horizontal: 0),
+                          title: Text(id,
+                              style: GoogleFonts.roboto(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ))),
+                      Divider(
+                          thickness: 0.5,
+                          color: COLOR_DARK_GRAY.withOpacity(0.4))
+                    ],
+                  );
+                })?.toList() ??
+                [],
           ],
         ),
       ),
