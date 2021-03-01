@@ -358,7 +358,7 @@ const PAYMENT_PROCESSING_INVALID_INPUT_TEXT =
     "You have entered an incorrect\nMPIN. Please try again,";
 const PAYMENT_PROCESSING_CONFIRM_TEXT = "OK";
 
-const DRAWER_MENU_SCREEN_VIEW_BENEFITS_TEXT = "View Benefits";
+const DRAWER_MENU_SCREEN_VIEW_NOW = "Verify Now";
 const DRAWER_MENU_SCREEN_BASIC_LEVEL = "Basic Level";
 const DRAWER_MENU_SCREEN_SEMI_VERIFIED = "Semi Verified";
 const DRAWER_MENU_SCREEN_FULLY_VERIFIED = "Fully Verified";

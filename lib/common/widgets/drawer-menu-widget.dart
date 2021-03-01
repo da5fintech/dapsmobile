@@ -115,19 +115,26 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 22,
-                          child: Chip(
-                            shape: StadiumBorder(
-                              side: BorderSide(color: Colors.white),
-                            ),
-                            padding: EdgeInsets.only(
-                                bottom: 10, left: 10, right: 10),
-                            backgroundColor: COLOR_DARK_PURPLE,
-                            label: Text(
-                              DRAWER_MENU_SCREEN_VIEW_BENEFITS_TEXT,
-                              style: GoogleFonts.roboto(
-                                  fontSize: 12, color: Colors.white),
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed('/user-profile/user-verification/verification');
+                          },
+                          child: Container(
+                            height: 22,
+                            child: Chip(
+                              shape: StadiumBorder(
+                                side: BorderSide(color: Colors.white),
+                              ),
+                              padding: EdgeInsets.only(
+                                  bottom: 10, left: 10, right: 10),
+                              backgroundColor: COLOR_DARK_PURPLE,
+                              label: Text(
+                                DRAWER_MENU_SCREEN_VIEW_NOW,
+                                style: GoogleFonts.roboto(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ),
                         ),
