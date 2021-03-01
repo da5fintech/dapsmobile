@@ -1,9 +1,11 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-scan-face-screen.dart';
 
 class VerificationScanFaceBoardingScreen extends StatelessWidget {
   @override
@@ -120,7 +122,16 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                   buttonColor: COLOR_DARK_PURPLE,
                   child: RaisedButton(
                     // shape: ,
-                    onPressed: () async {},
+                    onPressed: () async {
+                      final cameras = await availableCameras();
+                      final firstCamera = cameras.first;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => VerificationScanFace(
+                          cameras: firstCamera,
+                        )),
+                      );
+                    },
                     child: Text(
                       'NEXT',
                       style: GoogleFonts.roboto(
