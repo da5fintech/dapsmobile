@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-review-information-screen.dart';
 
 class VerificationUserInformationScreen extends StatefulWidget {
   @override
@@ -557,6 +558,10 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                     child: RaisedButton(
                       // shape: ,
                       onPressed: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => VerificationReviewInfromationScreen()),
+                        );
                       },
                       child: Text(
                         'NEXT',
