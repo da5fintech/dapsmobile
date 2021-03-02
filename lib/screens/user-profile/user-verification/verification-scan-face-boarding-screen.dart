@@ -11,6 +11,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    double width = MediaQuery.of(context).size.width;
     ThemeData td = createThemePurpleOnWhite(context);
     return Theme(
       data: td,
@@ -19,6 +20,44 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Align(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 2),
+                      height: 5,
+                      width: width * 0.15,
+                      decoration: BoxDecoration(
+                        color: COLOR_DARK_PURPLE,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 2),
+                      height: 5,
+                      width: width * 0.15,
+                      decoration: BoxDecoration(
+                        color: COLOR_DARK_PURPLE,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 2),
+                      height: 5,
+                      width: width * 0.15,
+                      decoration: BoxDecoration(
+                        color: COLOR_DARK_PURPLE.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(
                   top: 20.0, left: 20, right: 20, bottom: 10),

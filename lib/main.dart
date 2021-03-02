@@ -54,6 +54,7 @@ import 'package:swipe/screens/user-profile/user-profile-screen.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-id-list-screen.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-scan-face-boarding-screen.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-screen.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-user-information-screen.dart';
 import 'package:swipe/screens/voucher-pockets/voucher-pockets-screen.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/screens/bills_payment/transportation/transportation-categories-screen.dart';
@@ -152,6 +153,8 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => VerificationIdListScreen());
               case '/user-profile/user-verification/verification-scan-face-boarding':
                 return MaterialPageRoute(builder: (_) => VerificationScanFaceBoardingScreen());
+              case '/user-profile/user-verification/verification-user-information-screen':
+                return MaterialPageRoute(builder: (_) => VerificationUserInformationScreen());
               case '/user-profile/kyc':
                 return MaterialPageRoute(builder: (_) => KycMainScreen());
               case '/links-account':

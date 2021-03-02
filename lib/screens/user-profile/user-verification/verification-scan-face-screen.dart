@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -32,6 +33,10 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
     //   print('Image stream');
     //   await _controller.startImageStream((image) => print(image));
     // });
+
+    Future.delayed(Duration(seconds: 2), () {
+      Get.toNamed('/user-profile/user-verification/verification-user-information-screen');
+    });
   }
 
   @override
