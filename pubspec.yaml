@@ -86,12 +86,14 @@ flutter:
 
   assets:
     - assets/svg/services/
+    - assets/svg/services/cash-in/
     - assets/svg/promos/
     - assets/svg/help/
     - assets/svg/voucher-pockets/
     - assets/svg/services/bills-payment/
     - assets/icons/swipe-logo.png
     - assets/icons/image-placeholder.png
+    - assets/icons/services/cash-in/
     - assets/icons/services/bank-transfer.png
     - assets/icons/services/buy-load.png
     - assets/icons/services/cash-in.png
@@ -101,6 +103,7 @@ flutter:
     - assets/icons/services/pay-qr.png
     - assets/icons/services/remittance.png
     - assets/icons/services/request-money.png
+    - assets/icons/services/map.png
     - assets/icons/services/bills-payment/cable-internet.png
     - assets/icons/services/bills-payment/credit-card.png
     - assets/icons/services/bills-payment/electricity.png
