@@ -60,6 +60,7 @@ dependencies:
   google_sign_in: ^4.5.6
   cloud_firestore: ^0.14.4
   qr_flutter: ^3.2.0
+  syncfusion_flutter_barcodes: ^18.4.46
   qr_code_scanner: ^0.3.4
   flutter_svg: ^0.18.0
 #  camera: ^0.7.0+2

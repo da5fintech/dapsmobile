@@ -4,6 +4,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/main-app-bar.widget.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/cash-in/cash-in-generate-code-screen.dart';
 
 class CashInViaCodeScreen extends StatefulWidget {
   String partner;
@@ -85,6 +86,9 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
                         child: RaisedButton(
                           // shape: ,
                           onPressed: () async {
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => CashInGenerateCodeScreen(
+                              partner: widget.partner,
+                            )));
                           },
                           child: Text(
                             'NEXT',
