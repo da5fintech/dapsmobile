@@ -7,6 +7,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:swipe/screens/cash-in/cash-in-via-code-screen.dart';
 
 class CashInPartnerDetailsScreen extends StatelessWidget {
   Completer<GoogleMapController> _controller = Completer();
@@ -82,6 +83,14 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => CashInViaCodeScreen(
+                      partner: title,
+                    )),
+                  );
+                },
                 leading: SvgPicture.asset(
                   'assets/svg/services/cash-in/barcode.svg',
                 ),
