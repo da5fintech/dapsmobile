@@ -6,6 +6,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/fixtures.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/cash-in/cash-in-partner-details-screen.dart';
 
 class CashInMainScreen extends StatefulWidget {
   @override
@@ -18,35 +19,43 @@ class _CashInMainScreen extends State<CashInMainScreen>{
   Widget partnerWidget ({String title, String imagePath}) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          width: width * 0.16,
-          height: height * 0.08,
-          margin: EdgeInsets.only(right: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: COLOR_DARK_PURPLE),
-          ),
-          child: Center(
-            child: Image.asset(
-              imagePath,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CashInPartnerDetailsScreen(
+          title: title,
+          imagePath: imagePath,
+        )));
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: width * 0.16,
+            height: height * 0.08,
+            margin: EdgeInsets.only(right: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: COLOR_DARK_PURPLE),
+            ),
+            child: Center(
+              child: Image.asset(
+                imagePath,
+              ),
             ),
           ),
-        ),
-        SizedBox(height:10),
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.roboto(
-            fontSize: 10,
-            color: Colors.black,
-            fontWeight: FontWeight.w500,
-          ),
-        )
-      ],
+          SizedBox(height:10),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.roboto(
+              fontSize: 10,
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+            ),
+          )
+        ],
+      ),
     );
   }
 
