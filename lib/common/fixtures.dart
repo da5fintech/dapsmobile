@@ -86,7 +86,7 @@ List<Map<String, dynamic>> partners = [
 
 
 List<Map<String, String>> otcOptions = [
-  { "title": "Villarica Pawnshop", "imagePath": "assets/icons/services/cash-in/villarica.png"},
+  { "title": "Villarica\nPawnshop", "imagePath": "assets/icons/services/cash-in/villarica.png"},
   { "title": "G-Cash", "imagePath": "assets/icons/services/cash-in/gcash.png"},
   { "title": "RD\nPawnshop", "imagePath": "assets/icons/services/cash-in/rdpawnshop.png"},
   { "title": "7-Eleven", "imagePath": "assets/icons/services/cash-in/7-eleven.png"},

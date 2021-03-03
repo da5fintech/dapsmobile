@@ -19,6 +19,8 @@ class _CashInMainScreen extends State<CashInMainScreen>{
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           width: width * 0.16,
@@ -133,10 +135,10 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             ),
             Container(
               height: height * 0.13,
+              margin: EdgeInsets.only(left: 15),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  SizedBox(width: 10),
                   ...otcOptions.map((otc) {
                     return partnerWidget(title: otc['title'], imagePath: otc['imagePath']);
                   }).toList(),
@@ -200,9 +202,10 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             ),
             Container(
               height: height * 0.13,
+              margin: EdgeInsets.only(left: 15),
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: <Widget>[ SizedBox(width: 10),
+                children: <Widget>[
                   ...bankOptions.map((bank) {
                     return partnerWidget(title: bank['title'], imagePath: bank['imagePath']);
                   }).toList(),
@@ -232,9 +235,10 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             ),
             Container(
               height: height * 0.13,
+              margin: EdgeInsets.only(left: 15),
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: <Widget>[ SizedBox(width: 10),
+                children: <Widget>[
                   ...remittanceOptions.map((remittance) {
                     return partnerWidget(title: remittance['title'], imagePath: remittance['imagePath']);
                   }).toList(),
