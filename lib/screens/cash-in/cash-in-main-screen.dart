@@ -3,25 +3,65 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/fixtures.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
-class CashInMainScreen extends StatelessWidget {
+class CashInMainScreen extends StatefulWidget {
+  @override
+  _CashInMainScreen createState () =>
+      _CashInMainScreen();
+}
+
+class _CashInMainScreen extends State<CashInMainScreen>{
+
+  Widget partnerWidget ({String title, String imagePath}) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return Column(
+      children: [
+        Container(
+          width: width * 0.16,
+          height: height * 0.08,
+          margin: EdgeInsets.only(right: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: COLOR_DARK_PURPLE),
+          ),
+          child: Center(
+            child: Image.asset(
+              imagePath,
+            ),
+          ),
+        ),
+        SizedBox(height:10),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.roboto(
+            fontSize: 10,
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    ThemeData td = createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: SubAppbarWidget(
-        title: 'Cash in',
-      ),
-      body: Container(
-        height: height,
-        width: width,
-        color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+
+    return Theme(
+      data: td,
+      child: Scaffold(
+        appBar: SubAppbarWidget(
+          title: 'Cash in',
+        ),
+        body: ListView(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,12 +94,14 @@ class CashInMainScreen extends StatelessWidget {
             ListTile(
               leading: SvgPicture.asset(
                   'assets/svg/services/cash-in/link-account.svg'),
-              title: Text('Linked your accounts for more easy access',
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontSize: 14,
-                  )),
+              title: Text(
+                'Linked your accounts for more easy access',
+                style: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+              ),
               subtitle: Text(
                 'Connect your accounts with swipe wallet for\neasy cash in process.',
                 style: GoogleFonts.roboto(
@@ -77,89 +119,32 @@ class CashInMainScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, top: 10, bottom: 20),
-              child: Text('Over the Counter',
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Over the Counter',
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                     fontSize: 14,
-                  )),
+                  ),
+                ),
+              ),
             ),
             Container(
-              height: height * 0.10,
+              height: height * 0.13,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
                   SizedBox(width: 10),
-                  Container(
-                    margin: EdgeInsets.only(right: 10),
-                    width: width * 0.17,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: COLOR_DARK_PURPLE),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/icons/services/cash-in/villarica.png',
-                      ),
-                    ),
-                  ),
-                  Container(
-                      width: width * 0.17,
-                      margin: EdgeInsets.only(right: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: COLOR_DARK_PURPLE),
-                      ),
-                      child: Center(
-                          child: Image.asset(
-                        'assets/icons/services/cash-in/gcash.png',
-                      ))),
-                  Container(
-                    width: width * 0.17,
-                    margin: EdgeInsets.only(right: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: COLOR_DARK_PURPLE),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/icons/services/cash-in/rdpawnshop.png',
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: width * 0.17,
-                    margin: EdgeInsets.only(right: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: COLOR_DARK_PURPLE),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/icons/services/cash-in/7-eleven.png',
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: width * 0.17,
-                    margin: EdgeInsets.only(right: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: COLOR_DARK_PURPLE),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/icons/services/cash-in/raquel.png',
-                      ),
-                    ),
-                  ),
+                  ...otcOptions.map((otc) {
+                    return partnerWidget(title: otc['title'], imagePath: otc['imagePath']);
+                  }).toList(),
                 ],
               ),
             ),
-            SizedBox(height: 10),
             Container(
-              height: height * 0.10,
-              margin: EdgeInsets.symmetric(vertical: 10),
+              height: height * 0.15,
               child: Stack(
                 children: [
                   Align(
@@ -198,174 +183,66 @@ class CashInMainScreen extends StatelessWidget {
                 color: COLOR_LIGHT_PURPLE,
               ),
             ),
-            Flexible(
-              flex: 1,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, top: 12, bottom: 12),
-                    child: Text(
-                      'Online Bank',
-                      style: GoogleFonts.roboto(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
-                    ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding:
+                const EdgeInsets.only(left: 15, top: 12, bottom: 12),
+                child: Text(
+                  'Online Bank',
+                  style: GoogleFonts.roboto(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
                   ),
-                  Container(
-                    height: height * 0.10,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        SizedBox(width: 10),
-                        Container(
-                            margin: EdgeInsets.only(right: 10),
-                            width: width * 0.17,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: COLOR_DARK_PURPLE),
-                            ),
-                            child: Center(
-                                child: Image.asset(
-                              'assets/icons/services/cash-in/union-bank.png',
-                            ))),
-                        Container(
-                            width: width * 0.17,
-                            margin: EdgeInsets.only(right: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: COLOR_DARK_PURPLE),
-                            ),
-                            child: Center(
-                                child: Image.asset(
-                              'assets/icons/services/cash-in/bpi.png',
-                            ))),
-                        Container(
-                          width: width * 0.17,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: COLOR_DARK_PURPLE),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/icons/services/cash-in/instapay.png',
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: width * 0.17,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: COLOR_DARK_PURPLE),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/icons/services/cash-in/pesonet.png',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  SizedBox(
-                    height: 10,
-                    child: Container(
-                      color: COLOR_LIGHT_PURPLE,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 8.0, top: 10, bottom: 30),
-                    child: Text(
-                      'Remittance',
-                      style: GoogleFonts.roboto(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: height * 0.10,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        SizedBox(width: 10),
-                        Container(
-                            margin: EdgeInsets.only(right: 10),
-                            width: width * 0.17,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: COLOR_DARK_PURPLE),
-                            ),
-                            child: Center(
-                                child: Image.asset(
-                              'assets/icons/services/cash-in/wu.png',
-                            ))),
-                        Container(
-                            width: width * 0.17,
-                            margin: EdgeInsets.only(right: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: COLOR_DARK_PURPLE),
-                            ),
-                            child: Center(
-                                child: Image.asset(
-                              'assets/icons/services/cash-in/cebuana.png',
-                            ))),
-                        Container(
-                          width: width * 0.17,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: COLOR_DARK_PURPLE),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/icons/services/cash-in/rd-padala.png',
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: width * 0.17,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: COLOR_DARK_PURPLE),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/icons/services/cash-in/ria.png',
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: width * 0.17,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: COLOR_DARK_PURPLE),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/icons/services/cash-in/iremit.png',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: height * 0.13,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[ SizedBox(width: 10),
+                  ...bankOptions.map((bank) {
+                    return partnerWidget(title: bank['title'], imagePath: bank['imagePath']);
+                  }).toList(),
                 ],
               ),
-            )
+            ),
+            SizedBox(
+              height: 10,
+              child: Container(
+                color: COLOR_LIGHT_PURPLE,
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding:
+                const EdgeInsets.only(left: 15, top: 12, bottom: 12),
+                child: Text(
+                  'Online Bank',
+                  style: GoogleFonts.roboto(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: height * 0.13,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[ SizedBox(width: 10),
+                  ...remittanceOptions.map((remittance) {
+                    return partnerWidget(title: remittance['title'], imagePath: remittance['imagePath']);
+                  }).toList(),
+                ],
+              ),
+            ),
           ],
-        ),
+        )
       ),
     );
   }

@@ -85,3 +85,32 @@ List<Map<String, dynamic>> partners = [
 ];
 
 
+List<Map<String, String>> otcOptions = [
+  { "title": "Villarica Pawnshop", "imagePath": "assets/icons/services/cash-in/villarica.png"},
+  { "title": "G-Cash", "imagePath": "assets/icons/services/cash-in/gcash.png"},
+  { "title": "RD\nPawnshop", "imagePath": "assets/icons/services/cash-in/rdpawnshop.png"},
+  { "title": "7-Eleven", "imagePath": "assets/icons/services/cash-in/7-eleven.png"},
+  { "title": "Raquel\nPawnshop", "imagePath": "assets/icons/services/cash-in/raquel.png"},
+];
+
+List<Map<String, String>> bankOptions = [
+  { "title": "UnionBank", "imagePath": "assets/icons/services/cash-in/union-bank.png"},
+  { "title": "BPI", "imagePath": "assets/icons/services/cash-in/bpi.png"},
+  { "title": "Instapay", "imagePath": "assets/icons/services/cash-in/instapay.png"},
+  { "title": "Pesonet", "imagePath": "assets/icons/services/cash-in/pesonet.png"},
+];
+
+
+List<Map<String, String>> remittanceOptions = [
+  { "title": "Western Union", "imagePath": "assets/icons/services/cash-in/wu.png"},
+  { "title": "Cebuana\nLhullier", "imagePath": "assets/icons/services/cash-in/cebuana.png"},
+  { "title": "RD Cash\nPadala", "imagePath": "assets/icons/services/cash-in/rd-padala.png"},
+  { "title": "RIA Money Transfer", "imagePath": "assets/icons/services/cash-in/ria.png"},
+  { "title": "iRemit", "imagePath": "assets/icons/services/cash-in/iremit.png"},
+];
+
+
+
+
+
+
