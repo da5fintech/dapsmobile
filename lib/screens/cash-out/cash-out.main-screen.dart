@@ -4,6 +4,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/fixtures.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/cash-out/cash-out-partner-details-screen.dart';
 
 
 class CashOutMainScreen extends StatefulWidget {
@@ -17,10 +18,10 @@ class _CashOutMainScreenState extends State<CashOutMainScreen>{
   Widget partnerWidget ({String title, String imagePath}) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(context, MaterialPageRoute(builder: (_) => CashInPartnerDetailsScreen(
-        //   title: title,
-        //   imagePath: imagePath,
-        // )));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CashOutPartnerDetailsScreen(
+          title: title,
+          imagePath: imagePath,
+        )));
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
