@@ -21,6 +21,7 @@ import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/cash-in/cash-in-main-screen.dart';
+import 'package:swipe/screens/cash-out/cash-out.main-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-screen.dart';
 import 'package:swipe/screens/help/help-screen.dart';
@@ -120,7 +121,7 @@ class _MyAppState extends State<MyApp> {
           //     builder: (context) => UpdateApp(child: widget),
           //   ),
           // ),
-          home: SplashScreen(),
+          home: CashOutMainScreen(),
           onGenerateRoute: (settings) {
             // final Map<String, Object> arguments = settings.arguments;
             switch (settings.name) {
