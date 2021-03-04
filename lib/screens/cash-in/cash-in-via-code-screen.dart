@@ -19,6 +19,7 @@ class CashInViaCodeScreen extends StatefulWidget {
 
 class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController amountText = TextEditingController(text: "100");
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +57,19 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
                   textInputAction: TextInputAction.next,
                   textAlign: TextAlign.end,
                   keyboardType: TextInputType.numberWithOptions(),
+                  controller: amountText,
                   onFieldSubmitted: (text) {
+                  },
+                  validator: (text) {
+                    if(text.isEmpty) {
+                      return "Please input amount";
+                    }
+                    return null;
                   },
                   decoration: InputDecoration(
                     labelText: "Amount",
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     focusColor: COLOR_DARK_PURPLE,
-                    errorStyle: TextStyle(
-                        color: COLOR_GRAY, fontSize: 12, height: 0.3),
                   ),
                 ),
               ),
@@ -85,11 +91,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
                         buttonColor: COLOR_DARK_PURPLE,
                         child: RaisedButton(
                           // shape: ,
-                          onPressed: () async {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) => CashInGenerateCodeScreen(
-                              partner: widget.partner,
-                            )));
-                          },
+                          onPressed: _handleNext,
                           child: Text(
                             'NEXT',
                             style: GoogleFonts.roboto(
@@ -109,6 +111,21 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
         )
       ),
     );
+  }
+
+  void _handleNext () async {
+    bool status = _formKey.currentState.validate();
+    if(status) {
+      await store.cashInService.addMoney(
+        user: store.user,
+        amount: amountText.text,
+      );
+      // Navigator.push(context, MaterialPageRoute(builder: (_) => CashInGenerateCodeScreen(
+      //   partner: widget.partner,
+      //   amount: amountText.text,
+      // )));
+    }
+
   }
 
 }

@@ -233,7 +233,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 padding:
                 const EdgeInsets.only(left: 15, top: 12, bottom: 12),
                 child: Text(
-                  'Online Bank',
+                  'Remittance',
                   style: GoogleFonts.roboto(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,

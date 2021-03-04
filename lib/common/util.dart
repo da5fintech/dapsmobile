@@ -97,6 +97,16 @@ class AppUtil extends DateUtil {
 
   }
 
+  String generateBarcodeNumber() {
+    var ref = "";
+    var rnd = new Random();
+    for (var i = 0; i < 19; i++) {
+      ref = ref + rnd.nextInt(9).toString();
+    }
+
+    return ref;
+  }
+
 }
 
 class DateUtil {

@@ -261,6 +261,15 @@ const PESONET_PAY_API_STAGING_ENDPOINT = "https://accounts.daps.ph/staging/index
 const PESONET_PAY_SCOPE = "pesonet";
 const PESONET_PAY_FEE = 25.00;
 
+const CASHIN_MERCHANT_ID = "";
+const CASHIN_NETWORK_ID = "";
+const CASHIN_USERNAME = "";
+const CASHIN_SIGNATURE = "";
+const CASHIN_ENDPOINT = "http://18.140.92.115";
+
+
+
+
 const SMS_USERNAME = "itda5";
 const SMS_PASSWORD = "@da5_isms-2019";
 const SMS_API = "https://www.isms.com.my/isms_send.php?";

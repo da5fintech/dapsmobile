@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/main.dart';
+import 'package:swipe/store/application-store.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
+
+final store = getIt<ApplicationStore>();
 
 class CashInGenerateCodeScreen extends StatefulWidget {
   String partner;
+  String amount;
 
-  CashInGenerateCodeScreen({this.partner});
+  CashInGenerateCodeScreen({this.partner, this.amount});
 
   @override
   _CashInGenerateCodeScreenState createState() =>
@@ -17,6 +24,17 @@ class CashInGenerateCodeScreen extends StatefulWidget {
 }
 
 class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
+  String barcodeData;
+  String barcodeNumber;
+  AppUtil _appUtil = AppUtil();
+
+  @override
+  void initState() {
+    barcodeNumber = _appUtil.generateBarcodeNumber();
+    setState(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -55,25 +73,27 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                          text: 'PHP 1500.00',
-                          style: GoogleFonts.roboto(
-                            color: COLOR_DARK_PURPLE,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
+                        text: 'PHP ${widget.amount}',
+                        style: GoogleFonts.roboto(
+                          color: COLOR_DARK_PURPLE,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
               Container(
                 height: height * 0.10,
+                width: width,
                 child: SfBarcodeGenerator(
-                  value: '1234567892023123',
+                  value: barcodeNumber,
                 ),
               ),
               SizedBox(height: height * 0.02),
               Text(
-                '12981243162371429123550030',
+                barcodeNumber,
                 style: GoogleFonts.roboto(
                   fontSize: 12,
                   color: COLOR_DARK_GRAY,
@@ -100,7 +120,8 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: height * 0.05, bottom: height * 0.01),
+                padding:
+                    EdgeInsets.only(top: height * 0.05, bottom: height * 0.01),
                 child: Text(
                   'valid until 01\nMarch 2021 3:05:15 PM',
                   textAlign: TextAlign.center,
@@ -114,8 +135,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
               RaisedButton(
                 elevation: 0,
                 // shape: ,
-                onPressed: () {
-                },
+                onPressed: () {},
                 child: Text(
                   'DOWNLOAD',
                   style: GoogleFonts.roboto(
@@ -124,7 +144,6 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                   ),
                 ),
               ),
-
               Spacer(),
               ButtonTheme(
                 buttonColor: Colors.white,
@@ -136,8 +155,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                   child: RaisedButton(
                     elevation: 0,
                     // shape: ,
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     child: Text(
                       'DONE',
                       style: GoogleFonts.roboto(
