@@ -6,6 +6,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/fixtures.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/cash-in/cash-in-map-screen.dart';
 import 'package:swipe/screens/cash-in/cash-in-partner-details-screen.dart';
 
 class CashInMainScreen extends StatefulWidget {
@@ -154,38 +155,46 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 ],
               ),
             ),
-            Container(
-              height: height * 0.15,
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      'assets/icons/services/map.png',
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => CashInMapScreen()),
+                );
+              },
+              child: Container(
+                height: height * 0.15,
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        'assets/icons/services/map.png',
+                      ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.location_pin,
-                          color: COLOR_DANGER,
-                        ),
-                        Text(
-                          'View nearby partners',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.roboto(
-                            color: COLOR_DARK_PURPLE,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                    Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.location_pin,
+                            color: COLOR_DANGER,
                           ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                          Text(
+                            'View nearby partners',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.roboto(
+                              color: COLOR_DARK_PURPLE,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(

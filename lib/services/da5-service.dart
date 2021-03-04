@@ -92,18 +92,11 @@ class Da5Service {
     try {
       String uri = "$endpoint$resource";
 
-      var authBody = {
-        "Username": username,
-        "MerchantID": merchantId,
-        "NetworkID": networkId,
-        "Authentication": signature
-      };
+      Map<String, String> headers = {"Authorization": 'Bearer ${token}'};
 
-      Map<String, String> headers = {"Authorization": token};
-
-      var requestBody = {...authBody};
+      var requestBody;
       if (body != null) {
-        requestBody = {...requestBody, ...body};
+        requestBody = {...body};
       }
       print("sending body $requestBody");
 
@@ -135,7 +128,7 @@ class Da5Service {
 
   Future<String> getPostToken() async {
     try {
-      var response = await rawPostCashIn("/api/accessToken", {
+      var response = await rawPostCashIn("/api/user/accessToken", {
         "email": 'admin@gmail.com',
         "password": "Athlon-X2",
       });

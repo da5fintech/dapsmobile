@@ -121,7 +121,7 @@ class _MyAppState extends State<MyApp> {
           //     builder: (context) => UpdateApp(child: widget),
           //   ),
           // ),
-          home: CashOutMainScreen(),
+          home: SplashScreen(),
           onGenerateRoute: (settings) {
             // final Map<String, Object> arguments = settings.arguments;
             switch (settings.name) {
