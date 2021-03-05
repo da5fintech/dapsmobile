@@ -32,9 +32,9 @@ class _CashInMainScreen extends State<CashInMainScreen>{
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: width * 0.16,
-            height: height * 0.08,
-            margin: EdgeInsets.only(right: 10),
+            width: MediaQuery.of(context).size.width* 0.16,
+            height: MediaQuery.of(context).size.height * 0.08,
+            margin: EdgeInsets.symmetric(horizontal: 5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: COLOR_DARK_PURPLE),
@@ -145,10 +145,10 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             ),
             Container(
               height: height * 0.13,
-              margin: EdgeInsets.only(left: 15),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
+                  SizedBox(width: 10),
                   ...otcOptions.map((otc) {
                     return partnerWidget(title: otc['title'], imagePath: otc['imagePath']);
                   }).toList(),
@@ -220,10 +220,10 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             ),
             Container(
               height: height * 0.13,
-              margin: EdgeInsets.only(left: 15),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
+                  SizedBox(width: 10),
                   ...bankOptions.map((bank) {
                     return partnerWidget(title: bank['title'], imagePath: bank['imagePath']);
                   }).toList(),
@@ -253,10 +253,10 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             ),
             Container(
               height: height * 0.13,
-              margin: EdgeInsets.only(left: 15),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
+                  SizedBox(width: 10),
                   ...remittanceOptions.map((remittance) {
                     return partnerWidget(title: remittance['title'], imagePath: remittance['imagePath']);
                   }).toList(),

@@ -1,7 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:native_screenshot/native_screenshot.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -24,6 +29,7 @@ class CashInGenerateCodeScreen extends StatefulWidget {
 
 class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
   String barcodeNumber;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -42,9 +48,30 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
     DateTime validUntil = timestamps.add(Duration(hours: 3));
     String formatDate = DateFormat("dd MMMM yyyy").add_jm().format(validUntil);
 
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              "Processing...",
+              style: GoogleFonts.roboto(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    });
+
     return Theme(
       data: td,
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: SubAppbarWidget(title: 'Cash in via Code'),
         body: Container(
           width: width,
@@ -97,6 +124,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                 barcodeNumber,
                 style: GoogleFonts.roboto(
                   fontSize: 12,
+                  letterSpacing: 2,
                   color: COLOR_DARK_GRAY,
                   fontWeight: FontWeight.w500,
                 ),
@@ -136,7 +164,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
               RaisedButton(
                 elevation: 0,
                 // shape: ,
-                onPressed: () {},
+                onPressed: _downloadBarcode,
                 child: Text(
                   'DOWNLOAD',
                   style: GoogleFonts.roboto(
@@ -174,5 +202,26 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
         ),
       ),
     );
+  }
+
+  void _downloadBarcode () async {
+    OverlayScreen().show(
+      context,
+      identifier: 'progress',
+    );
+    await NativeScreenshot.takeScreenshot();
+    await Future.delayed(Duration(seconds: 3));
+
+    OverlayScreen().pop();
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(content: Text("Photo has been Saved to the Gallery"), backgroundColor: COLOR_GREEN),
+    );
+    // print('downloading');
+    // RenderRepaintBoundary boundary = _key.currentContext.findRenderObject();
+    // var image = await boundary.toImage();
+    // var byteData = await image.toByteData(format: ImageByteFormat.png);
+    // var pngBytes = byteData.buffer.asUint8List();
+    // print(pngBytes);
+    // print('save');
   }
 }

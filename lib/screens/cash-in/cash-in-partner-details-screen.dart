@@ -72,12 +72,41 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
             ),
             Container(
               height: height * 0.30,
-              child: GoogleMap(
-                mapType: MapType.normal,
-                initialCameraPosition: _kGooglePlex,
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
+              child: Stack(
+                children: [
+                  GoogleMap(
+                    zoomControlsEnabled: false,
+                    mapType: MapType.normal,
+                    initialCameraPosition: _kGooglePlex,
+                    onMapCreated: (GoogleMapController controller) {
+                      _controller.complete(controller);
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ButtonTheme(
+                          buttonColor: Colors.blue[600],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          minWidth: width * 0.60,
+                          child: RaisedButton(
+                              onPressed: () {},
+                              child: Text(
+                                  'View nearby branches',
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                  )
+                              )
+                          )
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(
