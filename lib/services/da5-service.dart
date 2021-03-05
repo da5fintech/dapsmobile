@@ -129,7 +129,7 @@ class Da5Service {
   Future<String> getPostToken() async {
     try {
       var response = await rawPostCashIn("/api/user/accessToken", {
-        "email": 'admin@gmail.com',
+        "email": 'info@swipe.ph',
         "password": "Athlon-X2",
       });
       return response['token'];

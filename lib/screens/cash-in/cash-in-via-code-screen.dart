@@ -5,6 +5,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
+import 'package:swipe/models/product-model.dart';
 import 'package:swipe/screens/cash-in/cash-in-generate-code-screen.dart';
 import 'package:swipe/screens/payment/processing-failed-dialog.dart';
 import 'package:swipe/store/application-store.dart';
@@ -23,14 +24,14 @@ class CashInViaCodeScreen extends StatefulWidget {
 }
 
 class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-  TextEditingController amountText = TextEditingController(text: "100");
+  TextEditingController amountText = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
 
@@ -55,6 +56,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
         backgroundColor: Colors.white.withOpacity(.2),
         content: ProcessingFailedDialog(
           onOk: () {
+            OverlayScreen().pop();
           },
         ),
       ),
@@ -63,6 +65,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
     return Theme(
       data: td,
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: SubAppbarWidget(
           title: 'Cash in Via Code'
         ),
@@ -148,6 +151,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
   void _handleNext () async {
     bool status = _formKey.currentState.validate();
     if(status) {
+      FocusScope.of(context).unfocus();
       OverlayScreen().show(
         context,
         identifier: 'progress',
@@ -159,19 +163,19 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
 
       if(!a.status) {
         OverlayScreen().pop();
-        print('failed');
-
-        // OverlayScreen().show(
-        //   context,
-        //   identifier: 'processing-failed',
-        // );
+        _scaffoldKey.currentState.showSnackBar(
+          SnackBar(content: Text("Unable to process transactions, Please Try again later"), backgroundColor: COLOR_DANGER),
+        );
         return null;
       }
 
       OverlayScreen().pop();
       Navigator.push(context, MaterialPageRoute(builder: (_) => CashInGenerateCodeScreen(
-        referenceNumber: a.referenceNumber,
-        amount: amountText.text,
+        product: CashInProduct(
+          amount: double.parse(amountText.text),
+          referenceNumber: a.referenceNumber,
+          timestamp: a.timestamp,
+        ),
       )));
     }
   }

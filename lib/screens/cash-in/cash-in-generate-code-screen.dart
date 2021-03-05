@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
+import 'package:swipe/models/product-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 final store = getIt<ApplicationStore>();
 
 class CashInGenerateCodeScreen extends StatefulWidget {
-  String amount;
-  String referenceNumber;
+  CashInProduct product;
 
-  CashInGenerateCodeScreen({this.referenceNumber, this.amount});
+  CashInGenerateCodeScreen({this.product});
 
   @override
   _CashInGenerateCodeScreenState createState() =>
@@ -21,12 +23,11 @@ class CashInGenerateCodeScreen extends StatefulWidget {
 }
 
 class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
-  String barcodeData;
   String barcodeNumber;
 
   @override
   void initState() {
-    barcodeNumber = widget.referenceNumber;
+    barcodeNumber = widget.product.referenceNumber;
     setState(() {});
     super.initState();
   }
@@ -37,6 +38,10 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     ThemeData td = createThemePurpleOnWhite(context);
+    DateTime timestamps = widget.product.timestamp;
+    DateTime validUntil = timestamps.add(Duration(hours: 3));
+    String formatDate = DateFormat("dd MMMM yyyy").add_jm().format(validUntil);
+
     return Theme(
       data: td,
       child: Scaffold(
@@ -69,7 +74,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'PHP ${widget.amount}',
+                        text: 'PHP ${widget.product.amount}',
                         style: GoogleFonts.roboto(
                           color: COLOR_DARK_PURPLE,
                           fontWeight: FontWeight.w500,
@@ -82,7 +87,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
               ),
               Container(
                 height: height * 0.10,
-                width: width,
+                width: width * 0.60,
                 child: SfBarcodeGenerator(
                   value: barcodeNumber,
                 ),
@@ -106,7 +111,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                 ),
                 child: Center(
                   child: Text(
-                    '13209293',
+                    barcodeNumber,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
@@ -119,10 +124,10 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                 padding:
                     EdgeInsets.only(top: height * 0.05, bottom: height * 0.01),
                 child: Text(
-                  'valid until 01\nMarch 2021 3:05:15 PM',
+                  'valid until\n${formatDate}',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
-                    color: Colors.black,
+                    color: COLOR_DARK_GRAY,
                     fontSize: 12,
                     height: 1.5,
                   ),
@@ -151,7 +156,9 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                   child: RaisedButton(
                     elevation: 0,
                     // shape: ,
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offAllNamed('/services');
+                    },
                     child: Text(
                       'DONE',
                       style: GoogleFonts.roboto(

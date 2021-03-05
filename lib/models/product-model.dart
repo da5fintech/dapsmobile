@@ -264,8 +264,9 @@ class DirectPayProduct extends ProductModel {
 }
 
 class CashInProduct extends ProductModel {
-  int referenceNumber;
+  String referenceNumber;
+  DateTime timestamp;
 
-  CashInProduct({this.referenceNumber, double amount, String name}) : super(name: name, amount: amount);
+  CashInProduct({this.referenceNumber, this.timestamp, double amount, String name}) : super(name: name, amount: amount);
 }
 
