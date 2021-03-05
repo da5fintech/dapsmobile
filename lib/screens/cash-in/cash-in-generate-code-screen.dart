@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/store/application-store.dart';
@@ -13,10 +10,10 @@ import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 final store = getIt<ApplicationStore>();
 
 class CashInGenerateCodeScreen extends StatefulWidget {
-  String partner;
   String amount;
+  String referenceNumber;
 
-  CashInGenerateCodeScreen({this.partner, this.amount});
+  CashInGenerateCodeScreen({this.referenceNumber, this.amount});
 
   @override
   _CashInGenerateCodeScreenState createState() =>
@@ -26,11 +23,10 @@ class CashInGenerateCodeScreen extends StatefulWidget {
 class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
   String barcodeData;
   String barcodeNumber;
-  AppUtil _appUtil = AppUtil();
 
   @override
   void initState() {
-    barcodeNumber = _appUtil.generateBarcodeNumber();
+    barcodeNumber = widget.referenceNumber;
     setState(() {});
     super.initState();
   }

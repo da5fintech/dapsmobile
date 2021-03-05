@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/main-app-bar.widget.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/main.dart';
 import 'package:swipe/screens/cash-in/cash-in-generate-code-screen.dart';
+import 'package:swipe/screens/payment/processing-failed-dialog.dart';
+import 'package:swipe/store/application-store.dart';
+
+final store = getIt<ApplicationStore>();
 
 class CashInViaCodeScreen extends StatefulWidget {
   String partner;
@@ -27,6 +32,33 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
     ThemeData td = createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              "Processing...",
+              style: GoogleFonts.roboto(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+      'processing-failed': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: ProcessingFailedDialog(
+          onOk: () {
+          },
+        ),
+      ),
+    });
 
     return Theme(
       data: td,
@@ -116,16 +148,32 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
   void _handleNext () async {
     bool status = _formKey.currentState.validate();
     if(status) {
-      await store.cashInService.addMoney(
+      OverlayScreen().show(
+        context,
+        identifier: 'progress',
+      );
+      final a = await store.cashInService.addMoney(
         user: store.user,
         amount: amountText.text,
       );
-      // Navigator.push(context, MaterialPageRoute(builder: (_) => CashInGenerateCodeScreen(
-      //   partner: widget.partner,
-      //   amount: amountText.text,
-      // )));
-    }
 
+      if(!a.status) {
+        OverlayScreen().pop();
+        print('failed');
+
+        // OverlayScreen().show(
+        //   context,
+        //   identifier: 'processing-failed',
+        // );
+        return null;
+      }
+
+      OverlayScreen().pop();
+      Navigator.push(context, MaterialPageRoute(builder: (_) => CashInGenerateCodeScreen(
+        referenceNumber: a.referenceNumber,
+        amount: amountText.text,
+      )));
+    }
   }
 
 }
