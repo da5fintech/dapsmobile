@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/links-account/union-bank/union-bank-otp-screen.dart';
 
 class UnionBankLoginScreen extends StatefulWidget {
   @override
@@ -199,7 +200,9 @@ class _UnionBankLoginScreenState extends State<UnionBankLoginScreen> {
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: RaisedButton(
-                        onPressed: (){},
+                        onPressed: () async {
+                          _handleNext();
+                        },
                         child: Text(
                           'LOG IN',
                           style: GoogleFonts.roboto(
@@ -255,7 +258,9 @@ class _UnionBankLoginScreenState extends State<UnionBankLoginScreen> {
                         ),
                         child: RaisedButton(
                             elevation: 0,
-                            onPressed: (){},
+                            onPressed: () async {
+                              _handleNext();
+                            },
                             child: Text(
                               'GUEST CHECKOUT',
                               style: GoogleFonts.roboto(
@@ -273,6 +278,12 @@ class _UnionBankLoginScreenState extends State<UnionBankLoginScreen> {
           ),
         )
       )
+    );
+  }
+
+  void _handleNext () {
+    Navigator.push(context,
+      MaterialPageRoute(builder: (_) => UnionBankOtpScreen()),
     );
   }
 
