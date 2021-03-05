@@ -404,6 +404,7 @@ const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
 const COLOR_ORANGE = Color(0xffF2A819);
+const COLOR_DARK_ORANGE = Color(0xffFF8000);
 const COLOR_GREEN = Color(0xff25BA96);
 const COLOR_GRAY = Color(0xffC4C4C4);
 const COLOR_BLUE = Color(0xff46C4F2);

@@ -26,6 +26,7 @@ import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-screen.dart';
 import 'package:swipe/screens/help/help-screen.dart';
 import 'package:swipe/screens/links-account/links-account-screen.dart';
+import 'package:swipe/screens/links-account/union-bank/union-bank-login-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/login/login-email-screen.dart';
 import 'package:swipe/screens/login/login-mpin-screen.dart';
@@ -149,6 +150,8 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => KycMainScreen());
               case '/links-account':
                 return MaterialPageRoute(builder: (_) => LinksAccountScreen());
+              case '/links-account/union-bank':
+                return MaterialPageRoute(builder: (_) => UnionBankLoginScreen());
               case '/partner-merchants':
                 return MaterialPageRoute(
                     builder: (_) => PartnerMerchantsScreen());

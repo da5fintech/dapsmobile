@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -33,15 +34,18 @@ class LinksAccountScreen extends StatelessWidget {
               thickness: 0.5,
             ),
             ListTile(
-                visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0),
-                ),
-                trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black.withOpacity(.54)),
-                leading: ImageIcon(
-                  AssetImage('assets/icons/links-accounts/unionbank.png'),
-                  size: 50,
-                )
+              onTap: () {
+                Get.toNamed('/links-account/union-bank');
+              },
+              visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+              title: Transform(
+                transform: Matrix4.translationValues(-20, 0.0, 0),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black.withOpacity(.54)),
+              leading: ImageIcon(
+                AssetImage('assets/icons/links-accounts/unionbank.png'),
+                size: 50,
+              )
             ),
             Divider(
               color: Colors.grey.withOpacity(0.5),
