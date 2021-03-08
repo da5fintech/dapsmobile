@@ -261,6 +261,15 @@ const PESONET_PAY_API_STAGING_ENDPOINT = "https://accounts.daps.ph/staging/index
 const PESONET_PAY_SCOPE = "pesonet";
 const PESONET_PAY_FEE = 25.00;
 
+const CASHIN_MERCHANT_ID = "";
+const CASHIN_NETWORK_ID = "";
+const CASHIN_USERNAME = "";
+const CASHIN_SIGNATURE = "";
+const CASHIN_ENDPOINT = "http://18.140.92.115";
+
+
+
+
 const SMS_USERNAME = "itda5";
 const SMS_PASSWORD = "@da5_isms-2019";
 const SMS_API = "https://www.isms.com.my/isms_send.php?";
@@ -395,6 +404,7 @@ const BLUR_RADIUS = 10;
 const COLOR_LIGHT_PURPLE = Color(0xffF9F8FC);
 const COLOR_DARK_PURPLE = Color(0xff7A3CDF);
 const COLOR_ORANGE = Color(0xffF2A819);
+const COLOR_DARK_ORANGE = Color(0xffFF8000);
 const COLOR_GREEN = Color(0xff25BA96);
 const COLOR_GRAY = Color(0xffC4C4C4);
 const COLOR_BLUE = Color(0xff46C4F2);
