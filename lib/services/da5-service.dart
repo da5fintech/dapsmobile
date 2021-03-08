@@ -79,4 +79,62 @@ class Da5Service {
       return null;
     }
   }
+
+  Future<Map<String, dynamic>> postCashIn(String resource,
+      [Map<String, String> body]) async {
+    String token = await getPostToken();
+    print("token is $token");
+    return await rawPostCashIn(resource, body, token);
+  }
+
+  Future<Map<String, dynamic>> rawPostCashIn(String resource,
+      [Map<String, String> body, String token]) async {
+    try {
+      String uri = "$endpoint$resource";
+
+      Map<String, String> headers = {"Authorization": 'Bearer ${token}'};
+
+      var requestBody;
+      if (body != null) {
+        requestBody = {...body};
+      }
+      print("sending body $requestBody");
+
+      var result = await http.post(
+        uri,
+        headers: headers,
+        body: requestBody,
+      );
+
+      print("result ${result.body}");
+
+      var response = jsonDecode(result.body);
+
+      if (result.statusCode >= 200 && result.statusCode < 400) {
+        return response;
+      } else {
+        String message;
+        if (response["message"].runtimeType == String) {
+          message = response["message"];
+        } else {
+          message = response['message']["reason"];
+        }
+        throw ApiResponseError(code: response["code"], message: message);
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<String> getPostToken() async {
+    try {
+      var response = await rawPostCashIn("/api/user/accessToken", {
+        "email": 'info@swipe.ph',
+        "password": "Athlon-X2",
+      });
+      return response['token'];
+    } catch (e) {
+      return null;
+    }
+  }
 }

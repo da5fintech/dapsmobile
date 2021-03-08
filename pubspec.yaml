@@ -36,6 +36,7 @@ dependencies:
   firebase_core: "0.5.3"
   firebase_ml_vision: ^0.10.0
   local_auth: ^0.6.3+4
+  google_maps_flutter: ^1.2.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -60,12 +61,14 @@ dependencies:
   google_sign_in: ^4.5.6
   cloud_firestore: ^0.14.4
   qr_flutter: ^3.2.0
+  syncfusion_flutter_barcodes: ^18.4.46
   qr_code_scanner: ^0.3.4
   flutter_svg: ^0.18.0
   camera: ^0.7.0+2
   mask_text_input_formatter: ^1.2.1
   carousel_slider: ^3.0.0
   image_picker: ^0.6.7+22
+  native_screenshot: ^0.0.5
 
 dev_dependencies:
   build_runner: ^1.8.1
@@ -86,13 +89,16 @@ flutter:
   # To add assets to your application, add an assets section, like this:
 
   assets:
+    - assets/images/
     - assets/svg/services/
+    - assets/svg/services/cash-in/
     - assets/svg/promos/
     - assets/svg/help/
     - assets/svg/voucher-pockets/
     - assets/svg/services/bills-payment/
     - assets/icons/swipe-logo.png
     - assets/icons/image-placeholder.png
+    - assets/icons/services/cash-in/
     - assets/icons/services/bank-transfer.png
     - assets/icons/services/buy-load.png
     - assets/icons/services/cash-in.png
@@ -102,6 +108,7 @@ flutter:
     - assets/icons/services/pay-qr.png
     - assets/icons/services/remittance.png
     - assets/icons/services/request-money.png
+    - assets/icons/services/map.png
     - assets/icons/services/bills-payment/cable-internet.png
     - assets/icons/services/bills-payment/credit-card.png
     - assets/icons/services/bills-payment/electricity.png

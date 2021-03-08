@@ -260,8 +260,13 @@ class DirectPayProduct extends ProductModel {
   int fee;
   String message;
   String mobileNumber;
-
   DirectPayProduct({String name, double amount, this.mobileNumber, this.message, this.fee}) : super(name: name, amount: amount);
+}
 
+class CashInProduct extends ProductModel {
+  String referenceNumber;
+  DateTime timestamp;
+
+  CashInProduct({this.referenceNumber, this.timestamp, double amount, String name}) : super(name: name, amount: amount);
 }
 

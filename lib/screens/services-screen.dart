@@ -169,16 +169,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   mainAxisSpacing: 0,
                   crossAxisSpacing: 20,
                   children: [
-                    Opacity(
-                      opacity: 0.5,
-                      child: ServiceButtonWidget(
-                        offering: SwipeServiceOffering.CASH_IN,
-                        onPressed: _handleButtonClick,
-                        icon: SvgPicture.asset(
-                          'assets/svg/services/cash-in.svg',
-                        ),
-                        text: SERVICES_SCREEN_CASH_IN_TEXT,
+                    ServiceButtonWidget(
+                      offering: SwipeServiceOffering.CASH_IN,
+                      onPressed: _handleButtonClick,
+                      icon: SvgPicture.asset(
+                        'assets/svg/services/cash-in.svg',
                       ),
+                      text: SERVICES_SCREEN_CASH_IN_TEXT,
                     ),
                     ServiceButtonWidget(
                       // offering: SwipeServiceOffering.REMITTANCE,
@@ -361,7 +358,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
   }
 
   _handleButtonClick(SwipeServiceOffering offering) async {
-    if (offering == SwipeServiceOffering.BUY_LOAD) {
+    if(offering == SwipeServiceOffering.CASH_IN) {
+      Get.toNamed("/services/cash-in");
+    } else if (offering == SwipeServiceOffering.BUY_LOAD) {
       Get.toNamed("/services/buy-load/buy-load-recipient-screen");
     } else if (offering == SwipeServiceOffering.BILLS_PAYMENT) {
       Get.toNamed("/services/bills-payment/bills-payment-categories-screen");

@@ -20,10 +20,13 @@ import 'package:swipe/screens/bills_payment/bills_payment-biller-list-screen.dar
 import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
+import 'package:swipe/screens/cash-in/cash-in-main-screen.dart';
+import 'package:swipe/screens/cash-out/cash-out.main-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-screen.dart';
 import 'package:swipe/screens/help/help-screen.dart';
 import 'package:swipe/screens/links-account/links-account-screen.dart';
+import 'package:swipe/screens/links-account/union-bank/union-bank-login-screen.dart';
 import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/login/login-email-screen.dart';
 import 'package:swipe/screens/login/login-mpin-screen.dart';
@@ -52,6 +55,10 @@ import 'package:swipe/screens/transactions/transaction-history-screen.dart';
 import 'package:swipe/screens/user-profile/kyc/kyc-main-screen.dart';
 import 'package:swipe/screens/user-profile/user-profile-screen.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-main-screen.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-id-list-screen.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-scan-face-boarding-screen.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-screen.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-user-information-screen.dart';
 import 'package:swipe/screens/voucher-pockets/voucher-pockets-screen.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/screens/bills_payment/transportation/transportation-categories-screen.dart';
@@ -143,12 +150,22 @@ class _MyAppState extends State<MyApp> {
                     builder: (_) => TransactionHistoryScreen());
               case '/user-profile':
                 return MaterialPageRoute(builder: (_) => UserProfileScreen());
+              case '/user-profile/user-verification/verification':
+                return MaterialPageRoute(builder: (_) => VerificationScreen());
+              case '/user-profile/user-verification/verification-id-list':
+                return MaterialPageRoute(builder: (_) => VerificationIdListScreen());
+              case '/user-profile/user-verification/verification-scan-face-boarding':
+                return MaterialPageRoute(builder: (_) => VerificationScanFaceBoardingScreen());
+              case '/user-profile/user-verification/verification-user-information-screen':
+                return MaterialPageRoute(builder: (_) => VerificationUserInformationScreen());
               case '/user-profile/kyc':
                 return MaterialPageRoute(builder: (_) => KycMainScreen());
               case '/user-profile/user-verification':
                 return MaterialPageRoute(builder: (_) => VerificationMainScreen());
               case '/links-account':
                 return MaterialPageRoute(builder: (_) => LinksAccountScreen());
+              case '/links-account/union-bank':
+                return MaterialPageRoute(builder: (_) => UnionBankLoginScreen());
               case '/partner-merchants':
                 return MaterialPageRoute(
                     builder: (_) => PartnerMerchantsScreen());
@@ -168,6 +185,8 @@ class _MyAppState extends State<MyApp> {
                 return MaterialPageRoute(builder: (_) => HelpScreen());
               case '/services':
                 return MaterialPageRoute(builder: (_) => ServicesScreen());
+              case '/services/cash-in':
+                return MaterialPageRoute(builder: (_) => CashInMainScreen());
               case '/services/direct-send':
                 return MaterialPageRoute(builder: (_) => DirectSendScreen());
               case '/services/direct-send/direct-send-form-screen':
