@@ -6,15 +6,16 @@ class UserModel {
   String displayName;
   String firstName;
   String lastName;
-  String birthdate;
+  String dateOfBirth;
   String mobileNumber;
   String mpin;
-  String email;
+  String emailAddress;
   String photoURL;
   double balance;
   double swipePoints;
   int level;
-  DateTime creationDate;
+  DateTime createdAt;
+  DateTime updatedAt;
   String password;
 
   UserModel(
@@ -23,17 +24,18 @@ class UserModel {
       this.displayName,
       this.firstName,
       this.lastName,
-      this.birthdate,
+      this.dateOfBirth,
       this.mobileNumber,
       this.password,
       this.mpin,
-      this.email,
+      this.emailAddress,
       this.photoURL,
       this.balance = 0.00,
       this.swipePoints = 0.00,
       this.level = 1,
-      this.creationDate}) {
-    creationDate = creationDate == null ? DateTime.now() : creationDate;
+      this.createdAt}) {
+    createdAt = createdAt == null ? DateTime.now() : createdAt;
+    updatedAt = updatedAt == null ? DateTime.now() : updatedAt;
   }
 
   Map<String, dynamic> toMap() {
@@ -42,13 +44,14 @@ class UserModel {
       "displayName": displayName,
       "firstName": firstName,
       "lastName": lastName,
-      "birthdate": birthdate,
+      "dateOfBirth": dateOfBirth,
       "mobileNumber": mobileNumber,
       "mpin": mpin,
-      "email": email,
+      "emailAddress": emailAddress,
       "photoURL": photoURL,
       "balance": balance,
-      "creationDate": creationDate,
+      "createdAt": createdAt,
+      "updatedAt": updatedAt,
       "swipePoints": swipePoints,
       "level": level,
     };
@@ -61,22 +64,24 @@ class UserModel {
   factory UserModel.fromDocumentSnapshot(DocumentSnapshot document) {
     var data = document.data();
     var model = new UserModel();
-    var ts = data["creationDate"] as Timestamp;
+    var ts = data["createdAt"] as Timestamp;
+    var uts = data['updatedAt'] as Timestamp;
 
     model.id = document.id;
     model.balance = data["balance"] + .0;
     model.displayName = data["displayName"];
     model.firstName = data["firstName"];
     model.lastName = data["lastName"];
-    model.birthdate = data["birthdate"];
+    model.dateOfBirth = data["dateOfBirth"];
     model.mobileNumber = data["mobileNumber"];
     model.password = data["password"];
     model.mpin = data['mpin'];
-    model.email = data['email'];
+    model.emailAddress = data['emailAddress'];
     model.photoURL = data['photoURL'];
     model.swipePoints = data['swipePoints'] ?? 0.00;
     model.level = data['level'] ?? 1;
-    model.creationDate = ts.toDate();
+    model.createdAt = ts.toDate();
+    model.updatedAt = uts.toDate();
     return model;
   }
 }

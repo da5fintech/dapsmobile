@@ -150,7 +150,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.next,
                             onSaved: (v) {
-                              values["birthdate"] = v;
+                              values["dateOfBirth"] = v;
                             },
                             validator: (value) {
                               if (value.isEmpty) {
@@ -232,10 +232,10 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             keyboardType: TextInputType.emailAddress,
                             readOnly: store.registrant != null ? true : false,
                             initialValue: store.registrant != null
-                                ? store.registrant.email
+                                ? store.registrant.emailAddress
                                 : "",
                             onSaved: (v) {
-                              values["email"] = v;
+                              values["emailAddress"] = v;
                             },
                             validator: AppUtil().validateEmail,
                             decoration: InputDecoration(
@@ -374,13 +374,13 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
       if (store.registrant == null) {
         store.registrant = UserModel(
             isNew: true,
-            email: values["email"],
+            emailAddress: values["emailAddress"],
             displayName: "${values["firstName"]} ${values["lastName"]}");
       }
 
       store.registrant.firstName = values["firstName"];
       store.registrant.lastName = values["lastName"];
-      store.registrant.birthdate = values["birthdate"];
+      store.registrant.dateOfBirth = values["dateOfBirth"];
       store.registrant.mobileNumber = values["mobileNumber"];
       store.registrant.password = values["password"];
       Get.toNamed("/registration/registration-create-mpin-screen");

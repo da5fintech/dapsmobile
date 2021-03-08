@@ -234,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
           id: res.uid,
           displayName: res.displayName,
           photoURL: res.photoURL,
-          email: res.email);
+          emailAddress: res.email);
       store.registrant = registrant;
       print("setting registrant to ${store.registrant.id}");
       // var user = await store.accountService.findOrCreate(res.uid, res.email,
