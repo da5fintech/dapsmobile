@@ -285,7 +285,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
 
           if (store.registrant.isNew) {
             User creds = await store.authService.createAuth(
-                email: store.registrant.email,
+                email: store.registrant.emailAddress,
                 password: store.registrant.password);
             store.registrant.id = creds.uid;
           }

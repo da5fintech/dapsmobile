@@ -6,10 +6,10 @@ class UserModel {
   String displayName;
   String firstName;
   String lastName;
-  String birthdate;
+  String dateOfBirth;
   String mobileNumber;
   String mpin;
-  String email;
+  String emailAddress;
   String photoURL;
   double balance;
   double swipePoints;
@@ -23,11 +23,11 @@ class UserModel {
       this.displayName,
       this.firstName,
       this.lastName,
-      this.birthdate,
+      this.dateOfBirth,
       this.mobileNumber,
       this.password,
       this.mpin,
-      this.email,
+      this.emailAddress,
       this.photoURL,
       this.balance = 0.00,
       this.swipePoints = 0.00,
@@ -42,10 +42,10 @@ class UserModel {
       "displayName": displayName,
       "firstName": firstName,
       "lastName": lastName,
-      "birthdate": birthdate,
+      "dateOfBirth": dateOfBirth,
       "mobileNumber": mobileNumber,
       "mpin": mpin,
-      "email": email,
+      "emailAddress": emailAddress,
       "photoURL": photoURL,
       "balance": balance,
       "creationDate": creationDate,
@@ -68,11 +68,11 @@ class UserModel {
     model.displayName = data["displayName"];
     model.firstName = data["firstName"];
     model.lastName = data["lastName"];
-    model.birthdate = data["birthdate"];
+    model.dateOfBirth = data["dateOfBirth"];
     model.mobileNumber = data["mobileNumber"];
     model.password = data["password"];
     model.mpin = data['mpin'];
-    model.email = data['email'];
+    model.emailAddress = data['emailAddress'];
     model.photoURL = data['photoURL'];
     model.swipePoints = data['swipePoints'] ?? 0.00;
     model.level = data['level'] ?? 1;

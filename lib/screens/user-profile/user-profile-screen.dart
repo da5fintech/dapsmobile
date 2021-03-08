@@ -202,7 +202,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           textInputAction: TextInputAction.next,
                           readOnly: true,
                           showCursor: true,
-                          initialValue: store.user.birthdate,
+                          initialValue: store.user.dateOfBirth,
                           decoration: InputDecoration(
                             labelText: REGISTER_SCREEN_BIRTHDAY_TEXT,
                             floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -214,7 +214,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           autofocus: true,
                           readOnly: true,
                           showCursor: true,
-                          initialValue: store.user.email,
+                          initialValue: store.user.emailAddress,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             labelText: REGISTER_SCREEN_EMAIL_TEXT,
