@@ -71,6 +71,7 @@ class AccountService extends FireStoreService {
     user.lastName = lastname;
     user.mobileNumber = mobileNumber;
     user.displayName = firstname + " " + lastname;
+    user.updatedAt = DateTime.now();
     UserModel updatedUser = await create(user);
     return updatedUser;
   }

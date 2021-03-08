@@ -33,6 +33,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
   @override
   void initState() {
     super.initState();
+    print(store.user.createdAt);
+    print(store.user.updatedAt);
   }
 
   @override

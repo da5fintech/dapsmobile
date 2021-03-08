@@ -14,7 +14,8 @@ class UserModel {
   double balance;
   double swipePoints;
   int level;
-  DateTime creationDate;
+  DateTime createdAt;
+  DateTime updatedAt;
   String password;
 
   UserModel(
@@ -32,8 +33,9 @@ class UserModel {
       this.balance = 0.00,
       this.swipePoints = 0.00,
       this.level = 1,
-      this.creationDate}) {
-    creationDate = creationDate == null ? DateTime.now() : creationDate;
+      this.createdAt}) {
+    createdAt = createdAt == null ? DateTime.now() : createdAt;
+    updatedAt = updatedAt == null ? DateTime.now() : updatedAt;
   }
 
   Map<String, dynamic> toMap() {
@@ -48,7 +50,8 @@ class UserModel {
       "emailAddress": emailAddress,
       "photoURL": photoURL,
       "balance": balance,
-      "creationDate": creationDate,
+      "createdAt": createdAt,
+      "updatedAt": updatedAt,
       "swipePoints": swipePoints,
       "level": level,
     };
@@ -61,7 +64,8 @@ class UserModel {
   factory UserModel.fromDocumentSnapshot(DocumentSnapshot document) {
     var data = document.data();
     var model = new UserModel();
-    var ts = data["creationDate"] as Timestamp;
+    var ts = data["createdAt"] as Timestamp;
+    var uts = data['updatedAt'] as Timestamp;
 
     model.id = document.id;
     model.balance = data["balance"] + .0;
@@ -76,7 +80,8 @@ class UserModel {
     model.photoURL = data['photoURL'];
     model.swipePoints = data['swipePoints'] ?? 0.00;
     model.level = data['level'] ?? 1;
-    model.creationDate = ts.toDate();
+    model.createdAt = ts.toDate();
+    model.updatedAt = uts.toDate();
     return model;
   }
 }
