@@ -2,6 +2,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
+import 'package:path/path.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -19,6 +21,9 @@ class VerificationPhotoIdScreen extends StatefulWidget {
 class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
+  bool shutter = false;
+  String front;
+  String back;
 
   @override
   void initState() {
@@ -40,11 +45,42 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     ThemeData td = createThemePurpleOnWhite(context);
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text("Processing...",
+                style: GoogleFonts.roboto(color: Colors.white)),
+          ],
+        ),
+      ),
+    });
+
     return Theme(
       data: td,
       child: Scaffold(
         appBar: SubAppbarWidget(
           title: 'Take ID Photo',
+          actions: [
+            FlatButton.icon(
+              onPressed: () {
+                Get.toNamed(
+                    '/user-profile/user-verification/verification-id-list');
+              },
+              icon: Icon(Icons.list, color: Colors.white),
+              label: Text(
+                'Valid IDs',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
         ),
         body: FutureBuilder<void>(
           future: _initializeControllerFuture,
@@ -65,14 +101,23 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                'Front of ID',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
-                                ),
-                              ),
+                              front == null
+                                  ? Text(
+                                      'Front of ID',
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  : Text(
+                                      'Back of ID',
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                               SizedBox(height: 20),
                               Container(
                                 height: height * 0.30,
@@ -85,7 +130,13 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                               )
                             ],
                           ),
-                        )
+                        ),
+                        AnimatedOpacity(
+                            duration: Duration(milliseconds: 50),
+                            opacity: shutter ? 0.5 : 0,
+                            child: Container(
+                              color: Colors.white,
+                            ))
                       ],
                     ),
                   ),
@@ -109,7 +160,9 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed('/user-profile/user-verification/verification-scan-face-boarding');
+                              _takePhoto(context);
+                              // Get.toNamed(
+                              //     '/user-profile/user-verification/verification-scan-face-boarding');
                             },
                             child: CircleAvatar(
                               radius: 36,
@@ -141,5 +194,39 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
         ),
       ),
     );
+  }
+
+  void _takePhoto(context) async {
+    _cameraShutter();
+    try {
+      await _initializeControllerFuture;
+      await Future.delayed(Duration(milliseconds: 500));
+      OverlayScreen().show(context, identifier: 'progress');
+      await Future.delayed(Duration(seconds: 2));
+      var a = await _controller.takePicture();
+      OverlayScreen().pop();
+      if(front == null) {
+        front = a.path;
+      } else {
+        back = a.path;
+        Get.toNamed('/user-profile/user-verification/verification-scan-face-boarding');
+      }
+      setState(() {});
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  void _cameraShutter() {
+    Future.delayed(Duration(milliseconds: 100), () {
+      setState(() {
+        shutter = true;
+      });
+    });
+    Future.delayed(Duration(milliseconds: 200), () {
+      setState(() {
+        shutter = false;
+      });
+    });
   }
 }

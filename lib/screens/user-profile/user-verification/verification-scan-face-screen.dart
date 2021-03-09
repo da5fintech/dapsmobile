@@ -23,8 +23,6 @@ class VerificationScanFace extends StatefulWidget {
 }
 
 class _VerificationScanFaceState extends State<VerificationScanFace> {
-  // Future<void> _initializeControllerFuture;
-  // CameraController _controller;
   double loader = 0.00;
   CameraController _camera;
   List<Face> faces;
@@ -43,30 +41,10 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
   void initState() {
     super.initState();
     _initializeCamera();
-    // CameraDescription description = getCamera(_direction);
-    // ImageRotation rotation = rotationIntToImageRotation(
-    //   widget.cameras.se
-    // );
-    // _controller = CameraController(
-    //     widget.cameras,
-    //     ResolutionPreset.high
-    // );
-    // _initializeControllerFuture = _controller.initialize().then((_) async {
-    //   await _controller.startImageStream((CameraImage image) async {
-    //     if(_isDetecting) return;
-    //
-    //     _isDetecting = true;
-    //     detect(image, faceDetector.processImage).then((dynamic result) {
-    //
-    //     });
-    //
-    //
-    //   });
-    // });
 
-    // Future.delayed(Duration(seconds: 2), () {
-    //   Get.toNamed('/user-profile/user-verification/verification-user-information-screen');
-    // });
+    Future.delayed(Duration(seconds: 2), () {
+      Get.toNamed('/user-profile/user-verification/verification-user-information-screen');
+    });
   }
 
   void _initializeCamera() async {
@@ -83,10 +61,6 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
     );
     await _camera.initialize();
 
-    print("initialize Camera");
-    print(description.lensDirection);
-    print(_camera.description.lensDirection);
-
     _camera.startImageStream((CameraImage image) {
       if (_isDetecting) return;
 
@@ -98,13 +72,13 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
             faces = result;
           });
 
-          if(faces[0].rightEyeOpenProbability < 0.90 && faces[0].leftEyeOpenProbability < 0.90) {
+          if (faces[0].rightEyeOpenProbability < 0.90 &&
+              faces[0].leftEyeOpenProbability < 0.90) {
             double incrementLoader = 0.15;
             setState(() {
               loader = loader + incrementLoader;
             });
           }
-
 
           _isDetecting = false;
         },
@@ -242,36 +216,6 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
                         ),
                       ],
                     ),
-              // FutureBuilder<void>(
-              //   future: _initializeControllerFuture,
-              //   builder: (context, snapshot) {
-              //     if (snapshot.connectionState == ConnectionState.done) {
-              //       return Stack(
-              //         children: [
-              //           Container(
-              //             height: MediaQuery.of(context).size.height * 0.30,
-              //             width: MediaQuery.of(context).size.width * 0.60,
-              //             decoration: BoxDecoration(
-              //               borderRadius: BorderRadius.circular(200),
-              //               border: Border.all(color: COLOR_BLUE, width: 5),
-              //             ),
-              //             child: ClipRRect(
-              //               borderRadius: BorderRadius.circular(200),
-              //               child: AspectRatio(
-              //                 aspectRatio: 1,
-              //                 child: CameraPreview(_controller),
-              //               ),
-              //             ),
-              //           )
-              //         ],
-              //       );
-              //     } else {
-              //       return Center(
-              //           child: CircularProgressIndicator(
-              //               backgroundColor: COLOR_ORANGE));
-              //     }
-              //   },
-              // )
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-photo-id-screen.dart';
@@ -11,6 +12,7 @@ class VerificationScreen extends StatelessWidget {
 
   Widget _iconLabel ({String icon, String label}) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SvgPicture.asset(
           icon,
@@ -19,6 +21,7 @@ class VerificationScreen extends StatelessWidget {
         ),
         Text(
           label,
+          textAlign: TextAlign.center,
           style: GoogleFonts.roboto(
             fontSize: 12,
             fontWeight: FontWeight.w500,
@@ -34,6 +37,7 @@ class VerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
 
 
     return Scaffold(
@@ -66,8 +70,8 @@ class VerificationScreen extends StatelessWidget {
                       fontSize: 12,
                       height: 1.5,
                       color: Colors.white.withOpacity(0.6),
-                    )
-                  )
+                    ),
+                  ),
                 ],
               ),
             )
