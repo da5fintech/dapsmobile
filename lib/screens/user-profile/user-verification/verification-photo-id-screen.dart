@@ -1,12 +1,18 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:path/path.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/main.dart';
+import 'package:swipe/models/UserVerificationModel.dart';
+import 'package:swipe/store/application-store.dart';
+
+final store = getIt<ApplicationStore>();
 
 class VerificationPhotoIdScreen extends StatefulWidget {
   final cameras;
@@ -20,7 +26,6 @@ class VerificationPhotoIdScreen extends StatefulWidget {
 
 class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   CameraController _controller;
-  Future<void> _initializeControllerFuture;
   bool shutter = false;
   String front;
   String back;
@@ -28,10 +33,16 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = CameraController(widget.cameras, ResolutionPreset.high);
+    _controller = CameraController(widget.cameras, ResolutionPreset.medium);
 
-    _initializeControllerFuture = _controller.initialize();
+    _controller.initialize().then((_) {
+      if(!mounted) {
+        return;
+      }
+      setState(() {});
+    });
   }
+
 
   @override
   void dispose() {
@@ -82,148 +93,142 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
             ),
           ],
         ),
-        body: FutureBuilder<void>(
-          future: _initializeControllerFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return Column(
+        body: Column(
+          children: [
+            Flexible(
+              flex: 2,
+              child: Stack(
                 children: [
-                  Flexible(
-                    flex: 2,
-                    child: Stack(
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: CameraPreview(_controller),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: CameraPreview(_controller),
-                        ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              front == null
-                                  ? Text(
-                                      'Front of ID',
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  : Text(
-                                      'Back of ID',
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                              SizedBox(height: 20),
-                              Container(
-                                height: height * 0.30,
-                                width: width * 0.90,
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: COLOR_BLUE, width: 2),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                              )
-                            ],
+                        front == null
+                            ? Text(
+                          'Front of ID',
+                          style: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                        )
+                            : Text(
+                          'Back of ID',
+                          style: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
                           ),
                         ),
-                        AnimatedOpacity(
-                            duration: Duration(milliseconds: 50),
-                            opacity: shutter ? 0.5 : 0,
-                            child: Container(
-                              color: Colors.white,
-                            ))
+                        SizedBox(height: 20),
+                        Container(
+                          height: height * 0.30,
+                          width: width * 0.90,
+                          decoration: BoxDecoration(
+                            border:
+                            Border.all(color: COLOR_BLUE, width: 2),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        )
                       ],
                     ),
                   ),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.black,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Text(
-                              'Place you ID within the frame and take a photo.',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              _takePhoto(context);
-                              // Get.toNamed(
-                              //     '/user-profile/user-verification/verification-scan-face-boarding');
-                            },
-                            child: CircleAvatar(
-                              radius: 36,
-                              backgroundColor: Colors.white,
-                              child: CircleAvatar(
-                                radius: 32,
-                                backgroundColor: Colors.black,
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  radius: 28,
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
+                  AnimatedOpacity(
+                      duration: Duration(milliseconds: 50),
+                      opacity: shutter ? 0.5 : 0,
+                      child: Container(
+                        color: Colors.white,
+                      ))
+                ],
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                color: Colors.black,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        'Place you ID within the frame and take a photo.',
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  )
-                ],
-              );
-            } else {
-              return Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: COLOR_ORANGE,
+                    InkWell(
+                      onTap: () {
+                        _takePhoto(context);
+                        // Get.toNamed(
+                        //     '/user-profile/user-verification/verification-scan-face-boarding');
+                      },
+                      child: CircleAvatar(
+                        radius: 36,
+                        backgroundColor: Colors.white,
+                        child: CircleAvatar(
+                          radius: 32,
+                          backgroundColor: Colors.black,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 28,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              );
-            }
-          },
+              ),
+            )
+          ],
         ),
       ),
     );
   }
 
   void _takePhoto(context) async {
-    _cameraShutter();
+    store.verification = UserVerificationModel();
     try {
-      await _initializeControllerFuture;
-      await Future.delayed(Duration(milliseconds: 500));
+      if(_controller.value.isTakingPicture) return null;
+
+      _cameraShutter();
+
       OverlayScreen().show(context, identifier: 'progress');
-      await Future.delayed(Duration(seconds: 2));
-      var a = await _controller.takePicture();
+      await _controller.setFlashMode(FlashMode.off);
+      final a = await _controller.takePicture();
+      store.verification.id = File(a.path);
       OverlayScreen().pop();
-      if(front == null) {
-        front = a.path;
-      } else {
-        back = a.path;
-        Get.toNamed('/user-profile/user-verification/verification-scan-face-boarding');
-      }
       setState(() {});
+      Get.toNamed('/user-profile/user-verification/verification-scan-face-boarding');
+      // if(front == null) {
+      //   front = a.path;
+      //   print('photo taken');
+      //   print(store.verification.face);
+      //   setState(() {});
+      // } else {
+      //   Get.toNamed('/user-profile/user-verification/verification-scan-face-boarding');
+      // }
+      // setState(() {});
     } catch (err) {
       print(err);
     }
   }
 
-  void _cameraShutter() {
-    Future.delayed(Duration(milliseconds: 100), () {
+  void _cameraShutter() async {
+    await Future.delayed(Duration(milliseconds: 100), () {
       setState(() {
         shutter = true;
       });
     });
-    Future.delayed(Duration(milliseconds: 200), () {
+    await Future.delayed(Duration(milliseconds: 200), () {
       setState(() {
         shutter = false;
       });

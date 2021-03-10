@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -53,10 +54,7 @@ class VerificationSubmittedScreen extends StatelessWidget {
                     child: RaisedButton(
                       // shape: ,
                       onPressed: () async {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => VerificationSubmittedScreen())
-                        );
+                        Get.offAndToNamed('/services');
                       },
                       child: Text(
                         'OK',

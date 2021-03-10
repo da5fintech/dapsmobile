@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/main.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-submitted-screen.dart';
+import 'package:swipe/store/application-store.dart';
+
+final store = getIt<ApplicationStore>();
 
 class VerificationReviewInfromationScreen extends StatefulWidget {
   @override
@@ -13,17 +18,46 @@ class VerificationReviewInfromationScreen extends StatefulWidget {
 
 class _VerificationReviewInfromationScreenState
     extends State<VerificationReviewInfromationScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool checkTerms = false;
+
+  @override
+  void initState () {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
+
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text("Processing...",
+                style: GoogleFonts.roboto(color: Colors.white)),
+          ],
+        ),
+      ),
+    });
+
+
     return Theme(
       data: td,
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: SubAppbarWidget(
           title: 'Review Information',
         ),
-        body: Column(
+        body: ListView(
           children: [
             ListTile(
               visualDensity: VisualDensity(vertical: -3, horizontal: -4),
@@ -35,7 +69,7 @@ class _VerificationReviewInfromationScreenState
                 ),
               ),
               subtitle: Text(
-                'Jose Paulo Dela Cruz',
+                "${store.verification.firstName} ${store.verification.lastName}",
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   color: Colors.black,
@@ -52,7 +86,7 @@ class _VerificationReviewInfromationScreenState
                 ),
               ),
               subtitle: Text(
-                'Full Name',
+                store.verification.nationality,
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   color: Colors.black,
@@ -69,7 +103,7 @@ class _VerificationReviewInfromationScreenState
                 ),
               ),
               subtitle: Text(
-                'November 20, 2022',
+                store.verification.dateOfBirth,
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   color: Colors.black,
@@ -86,7 +120,7 @@ class _VerificationReviewInfromationScreenState
                 ),
               ),
               subtitle: Text(
-                'Malolos Bulacan',
+                store.verification.placeOfBirth,
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   color: Colors.black,
@@ -103,7 +137,7 @@ class _VerificationReviewInfromationScreenState
                 ),
               ),
               subtitle: Text(
-                '09056535707',
+                store.verification.contactNumber,
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   color: Colors.black,
@@ -120,7 +154,7 @@ class _VerificationReviewInfromationScreenState
                 ),
               ),
               subtitle: Text(
-                '1234 Maimpok St., San Pablo, Malolos, Bulacan, 3000, Philippines',
+                '${store.verification.address} ${store.verification.barangay}. ${store.verification.city} ${store.verification.state}',
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   color: Colors.black,
@@ -137,7 +171,7 @@ class _VerificationReviewInfromationScreenState
                 ),
               ),
               subtitle: Text(
-                'Information Technology',
+                store.verification.natureOfWork,
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   color: Colors.black,
@@ -154,20 +188,53 @@ class _VerificationReviewInfromationScreenState
                 ),
               ),
               subtitle: Text(
-                'Cash on Hand',
+                store.verification.sourceOfIncome,
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   color: Colors.black,
                 ),
               ),
             ),
+            ListTile(
+              visualDensity: VisualDensity(vertical: -3, horizontal: -4),
+              title: Text(
+                'IDs',
+                style: GoogleFonts.roboto(
+                  fontSize: 12,
+                  color: COLOR_DARK_GRAY,
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Image.asset(store.verification.id.path, height: 100, width: 100),
+              ],
+            ),
+            ListTile(
+              visualDensity: VisualDensity(vertical: -3, horizontal: -4),
+              title: Text(
+                'Photo',
+                style: GoogleFonts.roboto(
+                  fontSize: 12,
+                  color: COLOR_DARK_GRAY,
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                RotatedBox(quarterTurns: 3, child: Image.asset(store.verification.face.path, height: 100, width: 100)),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Row(
                 children: [
                   Checkbox(
-                    value: true,
-                    onChanged: (val) {},
+                    value: checkTerms,
+                    onChanged: (val) {
+                      checkTerms = val;
+                      setState(() {});
+                    },
                   ),
                   RichText(
                     text: TextSpan(
@@ -194,27 +261,28 @@ class _VerificationReviewInfromationScreenState
                 ],
               ),
             ),
-            Spacer(),
             Text(
-              'To change details, go back and edit the form.',
-              style: GoogleFonts.roboto(
-                fontSize: 12,
-                color: COLOR_DARK_GRAY
-              )
+                'To change details, go back and edit the form.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.roboto(
+                    fontSize: 12,
+                    color: COLOR_DARK_GRAY
+                )
             ),
             Padding(
               padding: EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 30),
               child: SizedBox(
                 width: double.infinity,
                 child: ButtonTheme(
-                  buttonColor: COLOR_DARK_PURPLE,
+                  buttonColor: checkTerms ? COLOR_DARK_PURPLE : Colors.grey[500],
                   child: RaisedButton(
                     // shape: ,
                     onPressed: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => VerificationSubmittedScreen())
-                      );
+                      if(checkTerms) {
+                        _handleSubmit();
+                      } else {
+                        return null;
+                      }
                     },
                     child: Text(
                       'NEXT',
@@ -232,5 +300,22 @@ class _VerificationReviewInfromationScreenState
         ),
       ),
     );
+  }
+
+  void _handleSubmit() async {
+    if(checkTerms) {
+      OverlayScreen().show(context, identifier: 'progress');
+      final response = await store.verifyService.verify(store.verification, store.user);
+      OverlayScreen().pop();
+      if(response.result) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (_) => VerificationSubmittedScreen())
+        );
+      } else {
+        _scaffoldKey.currentState.showSnackBar(
+          SnackBar(content: Text("Something went wrong, Please try again later."), backgroundColor: COLOR_DANGER),
+        );
+      }
+    }
   }
 }
