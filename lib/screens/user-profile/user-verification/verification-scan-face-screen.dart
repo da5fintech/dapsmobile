@@ -80,23 +80,25 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
       _isDetecting = true;
 
       detect(image, faceDetector.processImage, rotation).then(
-            (dynamic result) async {
+        (dynamic result) async {
           setState(() {
             faces = result;
           });
           print(faces);
 
           // loader reach 100% capture face
-          if(loader >= 1.00 && stopScan) {
+          if (loader >= 1.00 && stopScan) {
             stopScan = false;
             _isDetecting = false;
             final a = await convertImagetoPng(image);
             Uint8List bytes = Uint8List.fromList(a);
-            store.verification.face = await File('${path}/${store.user.id}.png').writeAsBytes(bytes);
+            store.verification.face =
+                await File('${path}/${store.user.id}.png').writeAsBytes(bytes);
             print(store.verification.face.path);
             setState(() {});
             _camera.stopImageStream();
-            Get.toNamed('/user-profile/user-verification/verification-user-information-screen');
+            Get.toNamed(
+                '/user-profile/user-verification/verification-user-information-screen');
           }
 
           //check eyes blink
@@ -114,7 +116,7 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
           setState(() {});
         },
       ).catchError(
-            (_) {
+        (_) {
           _isDetecting = false;
         },
       );
@@ -159,13 +161,14 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
     // Fill image buffer with plane[0] from YUV420_888
     for (int x = 0; x < image.width; x++) {
       for (int planeOffset = 0;
-      planeOffset < image.height * image.width;
-      planeOffset += image.width) {
+          planeOffset < image.height * image.width;
+          planeOffset += image.width) {
         final pixelColor = plane.bytes[planeOffset + x];
         // color: 0x FF  FF  FF  FF
         //           A   B   G   R
         // Calculate pixel color
-        var newVal = shift | (pixelColor << 16) | (pixelColor << 8) | pixelColor;
+        var newVal =
+            shift | (pixelColor << 16) | (pixelColor << 8) | pixelColor;
 
         img.data[planeOffset + x] = newVal;
       }
@@ -174,11 +177,10 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
     return img;
   }
 
-
   Future<CameraDescription> getCamera(CameraLensDirection dir) async {
     return await availableCameras().then(
-          (List<CameraDescription> cameras) => cameras.firstWhere(
-            (CameraDescription camera) => camera.lensDirection == dir,
+      (List<CameraDescription> cameras) => cameras.firstWhere(
+        (CameraDescription camera) => camera.lensDirection == dir,
       ),
     );
   }
@@ -214,15 +216,15 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
   }
 
   FirebaseVisionImageMetadata buildMetaData(
-      CameraImage image,
-      ImageRotation rotation,
-      ) {
+    CameraImage image,
+    ImageRotation rotation,
+  ) {
     return FirebaseVisionImageMetadata(
       rawFormat: image.format.raw,
       size: Size(image.width.toDouble(), image.height.toDouble()),
       rotation: rotation,
       planeData: image.planes.map(
-            (Plane plane) {
+        (Plane plane) {
           return FirebaseVisionImagePlaneMetadata(
             bytesPerRow: plane.bytesPerRow,
             height: plane.height,
@@ -250,6 +252,24 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
       child: Scaffold(
         appBar: SubAppbarWidget(
           title: 'Scan Face',
+          actions: [
+            if (loader >= 1.00) ...[
+              FlatButton(
+                onPressed: () {
+                  setState(() {
+                    loader = 0.00;
+                  });
+                },
+                child: Text(
+                  'Reset',
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
+                ),
+              )
+            ],
+          ],
         ),
         body: Container(
           width: MediaQuery.of(context).size.width,
@@ -280,27 +300,27 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
               SizedBox(height: 30),
               _camera == null
                   ? Center(
-                  child: CircularProgressIndicator(
-                      backgroundColor: COLOR_ORANGE))
+                      child: CircularProgressIndicator(
+                          backgroundColor: COLOR_ORANGE))
                   : Stack(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.30,
-                    width: MediaQuery.of(context).size.width * 0.60,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(200),
-                      border: Border.all(color: COLOR_BLUE, width: 5),
+                      children: [
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          width: MediaQuery.of(context).size.width * 0.60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(200),
+                            border: Border.all(color: COLOR_BLUE, width: 5),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(200),
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: CameraPreview(_camera),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(200),
-                      child: AspectRatio(
-                        aspectRatio: 1,
-                        child: CameraPreview(_camera),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ],
           ),
         ),
