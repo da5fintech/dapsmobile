@@ -83,6 +83,15 @@ class AppUtil extends DateUtil {
       return null;
   }
 
+  int generateUid() {
+    var rndnumber = "";
+    var rnd = new Random();
+    for (var i = 0; i < 8; i++) {
+      rndnumber = rndnumber + rnd.nextInt(9).toString();
+    }
+    return int.parse(rndnumber);
+  }
+
   int generateOtp () {
     var rndnumber = "";
     var rnd = new Random();

@@ -64,7 +64,7 @@ dependencies:
   syncfusion_flutter_barcodes: ^18.4.46
   qr_code_scanner: ^0.3.4
   flutter_svg: ^0.18.0
-  camera: ^0.7.0+2
+  camera: ^0.5.8+1
   image: ^2.0.1
   mask_text_input_formatter: ^1.2.1
   carousel_slider: ^3.0.0

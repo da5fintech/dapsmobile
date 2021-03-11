@@ -105,14 +105,7 @@ packages:
       name: camera
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0+2"
-  camera_platform_interface:
-    dependency: transitive
-    description:
-      name: camera_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.5.0"
+    version: "0.5.8+17"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -204,13 +197,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-  cross_file:
-    dependency: transitive
-    description:
-      name: cross_file
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0"
   crypto:
     dependency: transitive
     description:

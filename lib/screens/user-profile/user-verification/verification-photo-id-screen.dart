@@ -1,12 +1,14 @@
 import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/models/UserVerificationModel.dart';
@@ -25,6 +27,7 @@ class VerificationPhotoIdScreen extends StatefulWidget {
 }
 
 class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
+  AppUtil _appUtil = AppUtil();
   CameraController _controller;
   bool shutter = false;
   File front;
@@ -34,12 +37,10 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   void initState() {
     super.initState();
     _controller = CameraController(widget.cameras, ResolutionPreset.medium);
-
-    _controller.initialize().then((_) {
+    _controller.initialize().then((_) async {
       if (!mounted) {
         return;
       }
-      setState(() {});
     });
   }
 
@@ -131,11 +132,12 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                     ),
                   ),
                   AnimatedOpacity(
-                      duration: Duration(milliseconds: 50),
-                      opacity: shutter ? 0.5 : 0,
-                      child: Container(
-                        color: Colors.white,
-                      ))
+                    duration: Duration(milliseconds: 50),
+                    opacity: shutter ? 0.5 : 0,
+                    child: Container(
+                      color: Colors.white,
+                    ),
+                  )
                 ],
               ),
             ),
@@ -271,12 +273,17 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
       _cameraShutter();
 
       OverlayScreen().show(context, identifier: 'progress');
-      await _controller.setFlashMode(FlashMode.off);
-      final a = await _controller.takePicture();
-      store.verification.id = File(a.path);
+
+      final path = join(
+        (await getTemporaryDirectory()).path,
+        '${_appUtil.generateUid()}.png',
+      );
+
+      await _controller.takePicture(path);
+      store.verification.id = File(path);
       OverlayScreen().pop();
       setState(() {
-        front = File(a.path);
+        front = File(path);
       });
     } catch (err) {
       print(err);
