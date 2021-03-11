@@ -47,11 +47,14 @@ class PhotoViewerScreen extends StatelessWidget {
         body: Container(
           color: Colors.black.withOpacity(0.94),
           child: Center(
-            child: Image.asset(
-              photo.path,
-              height: height * 0.60,
-              width: width * 0.90,
-              fit: BoxFit.fill,
+            child: RotatedBox(
+              quarterTurns: 3,
+              child: Image.asset(
+                photo.path,
+                height: height * 0.60,
+                width: width * 0.90,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         )

@@ -174,7 +174,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
-                        'Place you ID within the frame and take a photo.',
+                        'Place your ID within the frame and take a photo.',
                         style: GoogleFonts.roboto(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
