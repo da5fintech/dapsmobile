@@ -85,6 +85,36 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     });
   }
 
+  final _$idImageAtom = Atom(name: '_ApplicationStore.idImage');
+
+  @override
+  File get idImage {
+    _$idImageAtom.reportRead();
+    return super.idImage;
+  }
+
+  @override
+  set idImage(File value) {
+    _$idImageAtom.reportWrite(value, super.idImage, () {
+      super.idImage = value;
+    });
+  }
+
+  final _$faceImageAtom = Atom(name: '_ApplicationStore.faceImage');
+
+  @override
+  File get faceImage {
+    _$faceImageAtom.reportRead();
+    return super.faceImage;
+  }
+
+  @override
+  set faceImage(File value) {
+    _$faceImageAtom.reportWrite(value, super.faceImage, () {
+      super.faceImage = value;
+    });
+  }
+
   final _$_ApplicationStoreActionController =
       ActionController(name: '_ApplicationStore');
 
@@ -155,13 +185,37 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
   }
 
   @override
+  dynamic setId(File image) {
+    final _$actionInfo = _$_ApplicationStoreActionController.startAction(
+        name: '_ApplicationStore.setId');
+    try {
+      return super.setId(image);
+    } finally {
+      _$_ApplicationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setFace(File image) {
+    final _$actionInfo = _$_ApplicationStoreActionController.startAction(
+        name: '_ApplicationStore.setFace');
+    try {
+      return super.setFace(image);
+    } finally {
+      _$_ApplicationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 user: ${user},
 balance: ${balance},
 swipePoints: ${swipePoints},
 savedBillers: ${savedBillers},
-enabledBiometrics: ${enabledBiometrics}
+enabledBiometrics: ${enabledBiometrics},
+idImage: ${idImage},
+faceImage: ${faceImage}
     ''';
   }
 }

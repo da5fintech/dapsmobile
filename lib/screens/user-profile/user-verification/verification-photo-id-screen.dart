@@ -13,14 +13,16 @@ import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/models/UserVerificationModel.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-review-information-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
 
 class VerificationPhotoIdScreen extends StatefulWidget {
   final cameras;
+  bool retake;
 
-  VerificationPhotoIdScreen({this.cameras});
+  VerificationPhotoIdScreen({this.cameras, this.retake = false});
 
   @override
   _VerificationPhotoIdScreenState createState() =>
@@ -51,8 +53,14 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     ThemeData td = createThemePurpleOnWhite(context);
 
     OverlayScreen().saveScreens({
@@ -98,20 +106,24 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
               child: Stack(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
                     child: front == null
                         ? FutureBuilder<void>(
-                          future: _initializeControllerFuture,
-                          builder: (context, snapshot) {
-                            if(snapshot.connectionState == ConnectionState.done) {
-                              return CameraPreview(_controller);
-                            } else {
-                              return Center(child: CircularProgressIndicator());
-                            }
+                        future: _initializeControllerFuture,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            return CameraPreview(_controller);
+                          } else {
+                            return Center(child: CircularProgressIndicator());
                           }
-                        )
+                        }
+                    )
                         : Image.asset(front.path,
-                            fit: BoxFit.fill, width: width),
+                        fit: BoxFit.fill, width: width),
                   ),
                   Align(
                     alignment: Alignment.center,
@@ -151,119 +163,128 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
             Flexible(
               flex: 1,
               child: Container(
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
                 color: Colors.black,
                 child: front == null
                     ? Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Text(
-                              'Place you ID within the frame and take a photo.',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              _takePhoto(context);
-                              // Get.toNamed(
-                              //     '/user-profile/user-verification/verification-scan-face-boarding');
-                            },
-                            child: CircleAvatar(
-                              radius: 36,
-                              backgroundColor: Colors.white,
-                              child: CircleAvatar(
-                                radius: 32,
-                                backgroundColor: Colors.black,
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  radius: 28,
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      )
-                    : Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Text(
-                              'Would you like to Proceed using this ID?',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsets.only(top: 10, left: 15, right: 15),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: ButtonTheme(
-                                buttonColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  side:
-                                      BorderSide(color: Colors.white, width: 2),
-                                ),
-                                child: RaisedButton(
-                                  // shape: ,
-                                  onPressed: () async {
-                                    Get.toNamed(
-                                        '/user-profile/user-verification/verification-scan-face-boarding');
-                                  },
-                                  child: Text(
-                                    'NEXT',
-                                    style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsets.only(top: 10, left: 15, right: 15),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: ButtonTheme(
-                                buttonColor: Colors.transparent,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  side:
-                                      BorderSide(color: Colors.white, width: 2),
-                                ),
-                                child: RaisedButton(
-                                  // shape: ,
-                                  onPressed: () async {
-                                    setState(() {
-                                      front = null;
-                                    });
-                                  },
-                                  child: Text(
-                                    'Retake Photo',
-                                    style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        'Place you ID within the frame and take a photo.',
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
                       ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        _takePhoto(context);
+                        // Get.toNamed(
+                        //     '/user-profile/user-verification/verification-scan-face-boarding');
+                      },
+                      child: CircleAvatar(
+                        radius: 36,
+                        backgroundColor: Colors.white,
+                        child: CircleAvatar(
+                          radius: 32,
+                          backgroundColor: Colors.black,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 28,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+                    : Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        'Would you like to Proceed using this ID?',
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                      EdgeInsets.only(top: 10, left: 15, right: 15),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ButtonTheme(
+                          buttonColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side:
+                            BorderSide(color: Colors.white, width: 2),
+                          ),
+                          child: RaisedButton(
+                            // shape: ,
+                            onPressed: () async {
+                              if (!widget.retake) {
+                                Get.toNamed(
+                                    '/user-profile/user-verification/verification-scan-face-boarding');
+                              } else {
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: Text(
+                              'NEXT',
+                              style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                      EdgeInsets.only(top: 10, left: 15, right: 15),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ButtonTheme(
+                          buttonColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side:
+                            BorderSide(color: Colors.white, width: 2),
+                          ),
+                          child: RaisedButton(
+                            // shape: ,
+                            onPressed: () async {
+                              await _appUtil.deleteImage(front.path);
+                              setState(() {
+                                front = null;
+                              });
+                            },
+                            child: Text(
+                              'Retake Photo',
+                              style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             )
           ],
@@ -273,7 +294,6 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   }
 
   void _takePhoto(context) async {
-    store.verification = UserVerificationModel();
     try {
       _cameraShutter();
       final path = join(
@@ -283,6 +303,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
 
       await _controller.takePicture(path);
       store.verification.id = File(path);
+      store.setId(store.verification.id);
       setState(() {
         front = File(path);
       });

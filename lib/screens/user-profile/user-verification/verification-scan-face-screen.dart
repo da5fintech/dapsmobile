@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/store/application-store.dart';
@@ -21,15 +22,17 @@ typedef HandleDetection = Future<List<Face>> Function(
 
 class VerificationScanFace extends StatefulWidget {
   final cameras;
+  bool retake;
 
-  VerificationScanFace({this.cameras});
+  VerificationScanFace({this.cameras, this.retake = false});
 
   @override
   _VerificationScanFaceState createState() => _VerificationScanFaceState();
 }
 
 class _VerificationScanFaceState extends State<VerificationScanFace> {
-  double loader = 1.00;
+  AppUtil _appUtil = AppUtil();
+  double loader = 0.00;
   CameraController _camera;
   List<Face> faces;
   bool _isDetecting = false;
@@ -50,13 +53,14 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
   void initState() {
     super.initState();
     getPath();
+    if(widget.retake) _appUtil.deleteImage(store.verification.face.path);
     if(mounted) {
       _initializeCamera();
     }
   }
 
   Future<void> getPath() async {
-    final directory = await getApplicationDocumentsDirectory();
+    final directory = await getTemporaryDirectory();
     setState(() {
       path = directory.path;
     });
@@ -95,12 +99,18 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
             final a = await convertImagetoPng(image);
             Uint8List bytes = Uint8List.fromList(a);
             store.verification.face =
-                await File('${path}/${store.user.id}.png').writeAsBytes(bytes);
-            print(store.verification.face.path);
+                await File('${path}/${_appUtil.generateUid()}.png').writeAsBytes(bytes);
+            store.setFace(store.verification.face);
+            print(store.faceImage.path);
             setState(() {});
             _camera.stopImageStream();
-            Get.toNamed(
-                '/user-profile/user-verification/verification-user-information-screen');
+            if(!widget.retake) {
+              Get.toNamed(
+                  '/user-profile/user-verification/verification-user-information-screen');
+            } else {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            }
           }
 
           //check eyes blink
@@ -254,24 +264,6 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
       child: Scaffold(
         appBar: SubAppbarWidget(
           title: 'Scan Face',
-          actions: [
-            if (loader >= 1.00) ...[
-              FlatButton(
-                onPressed: () {
-                  setState(() {
-                    loader = 0.00;
-                  });
-                },
-                child: Text(
-                  'Reset',
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500),
-                ),
-              )
-            ],
-          ],
         ),
         body: Container(
           width: MediaQuery.of(context).size.width,

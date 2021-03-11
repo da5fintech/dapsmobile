@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/common/constants.dart';
@@ -37,6 +38,10 @@ abstract class _ApplicationStore with Store {
   List<BillerProduct> savedBillers = [];
   @observable
   bool enabledBiometrics;
+  @observable
+  File idImage;
+  @observable
+  File faceImage;
 
   //used to track user registration
   UserModel registrant;
@@ -153,5 +158,15 @@ abstract class _ApplicationStore with Store {
   @action
   setNewBiller(List<BillerProduct> billerProduct) {
     this.savedBillers = billerProduct;
+  }
+
+  @action
+  setId(File image) {
+    this.idImage = image;
+  }
+
+  @action
+  setFace(File image) {
+    this.faceImage = image;
   }
 }
