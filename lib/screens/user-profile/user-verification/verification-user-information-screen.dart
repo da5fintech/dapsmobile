@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -157,6 +158,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                         autofocus: true,
                         focusNode: idTypeNode,
                         onTap: () => _requestFocus(idTypeNode),
+                        textCapitalization: TextCapitalization.words,
                         textInputAction: TextInputAction.next,
                         validator: (text) => inputValidator(text, "ID Type"),
                         onSaved: (v) {
@@ -172,11 +174,13 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                           labelStyle: TextStyle(color: idTypeNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           focusColor: COLOR_DARK_PURPLE,
+                          hintText: "Drivers License"
                         ),
                       ),
                       TextFormField(
                         autofocus: true,
                         focusNode: idTypeNumberNode,
+                        keyboardType: TextInputType.visiblePassword,
                         onTap: () => _requestFocus(idTypeNumberNode),
                         textInputAction: TextInputAction.next,
                         validator: (text) => inputValidator(text, "ID NUMBER"),
@@ -200,6 +204,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                         focusNode: firstNameNode,
                         onTap: () => _requestFocus(firstNameNode),
                         validator: (text) => inputValidator(text, "FIRST NAME"),
+                        textCapitalization: TextCapitalization.words,
                         onSaved: (v) {
                           values['firstName'] = v;
                         },
@@ -221,6 +226,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                           autofocus: true,
                           focusNode: middleNameNode,
                           onTap: () => _requestFocus(middleNameNode),
+                          textCapitalization: TextCapitalization.words,
                           validator: (text) => inputValidator(text, "MIDDLE NAME"),
                           onSaved: (v) {
                             values['middleName'] = v;
@@ -264,6 +270,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                         focusNode: lastNameNode,
                         onTap: () => _requestFocus(lastNameNode),
                         validator: (text) => inputValidator(text, "LAST NAME"),
+                        textCapitalization: TextCapitalization.words,
                         onSaved: (v) {
                           values['lastName'] = v;
                         },
@@ -284,6 +291,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                         autofocus: true,
                         focusNode: nationalityNode,
                         onTap: () => _requestFocus(nationalityNode),
+                        textCapitalization: TextCapitalization.words,
                         validator: (text) => inputValidator(text, "NATIONALITY"),
                         onSaved: (v) {
                           values['nationality'] = v;
@@ -304,6 +312,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                       TextFormField(
                         autofocus: true,
                         focusNode: placeOfBirthNode,
+                        textCapitalization: TextCapitalization.words,
                         onTap: () => _requestFocus(placeOfBirthNode),
                         validator: (text) => inputValidator(text, "PLACE OF BIRTH"),
                         onSaved: (v) {
@@ -329,6 +338,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                             child: TextFormField(
                               autofocus: true,
                               focusNode: contactNode,
+                              keyboardType: TextInputType.number,
                               onTap: () => _requestFocus(contactNode),
                               validator: (text) => inputValidator(text, "CONTACT NUMBER"),
                               onSaved: (v) {
@@ -354,6 +364,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                             child: TextFormField(
                               autofocus: true,
                               focusNode: dateOfBirthNode,
+                              keyboardType: TextInputType.number,
                               onTap: () => _requestFocus(dateOfBirthNode),
                               validator: (value) {
                                 if (value.isEmpty) {
@@ -412,6 +423,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                       TextFormField(
                         autofocus: true,
                         focusNode: addressNode,
+                        textCapitalization: TextCapitalization.words,
                         onTap: () => _requestFocus(addressNode),
                         validator: (text) => inputValidator(text, "House No. and Street Name"),
                         onSaved: (v) {
@@ -437,6 +449,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                             child: TextFormField(
                               autofocus: true,
                               focusNode: barangayNode,
+                              textCapitalization: TextCapitalization.words,
                               onTap: () => _requestFocus(barangayNode),
                               validator: (text) => inputValidator(text, "BARANGAY"),
                               onSaved: (v) {
@@ -463,6 +476,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                               autofocus: true,
                               focusNode: cityNode,
                               onTap: () => _requestFocus(cityNode),
+                              textCapitalization: TextCapitalization.words,
                               validator: (text) => inputValidator(text, "CITY"),
                               onSaved: (v) {
                                 values['city'] = v;
@@ -490,6 +504,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                             child: TextFormField(
                               autofocus: true,
                               focusNode: zipNode,
+                              keyboardType: TextInputType.number,
                               onTap: () => _requestFocus(zipNode),
                               validator: (text) => inputValidator(text, "ZIP CODE"),
                               onSaved: (v) {
@@ -515,6 +530,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                             child: TextFormField(
                               autofocus: true,
                               focusNode: provinceNode,
+                              textCapitalization: TextCapitalization.words,
                               onTap: () => _requestFocus(provinceNode),
                               validator: (text) => inputValidator(text, "state"),
                               onSaved: (v) {
@@ -539,6 +555,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                       TextFormField(
                         autofocus: true,
                         focusNode: countryNode,
+                        textCapitalization: TextCapitalization.words,
                         onTap: () => _requestFocus(countryNode),
                         validator: (text) => inputValidator(text, "COUNTRY"),
                         onSaved: (v) {
@@ -561,6 +578,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                         autofocus: true,
                         focusNode: workNode,
                         onTap: () => _requestFocus(workNode),
+                        textCapitalization: TextCapitalization.words,
                         validator: (text) => inputValidator(text, "NATURE OF WORK"),
                         onSaved: (v) {
                           values['natureOfWork'] = v;
