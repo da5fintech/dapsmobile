@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,6 +30,7 @@ class VerificationPhotoIdScreen extends StatefulWidget {
 class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   AppUtil _appUtil = AppUtil();
   CameraController _controller;
+  Future<void> _initializeControllerFuture;
   bool shutter = false;
   File front;
   String back;
@@ -37,11 +39,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   void initState() {
     super.initState();
     _controller = CameraController(widget.cameras, ResolutionPreset.medium);
-    _controller.initialize().then((_) async {
-      if (!mounted) {
-        return;
-      }
-    });
+    _initializeControllerFuture = _controller.initialize();
   }
 
   @override
@@ -102,7 +100,16 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: front == null
-                        ? CameraPreview(_controller)
+                        ? FutureBuilder<void>(
+                          future: _initializeControllerFuture,
+                          builder: (context, snapshot) {
+                            if(snapshot.connectionState == ConnectionState.done) {
+                              return CameraPreview(_controller);
+                            } else {
+                              return Center(child: CircularProgressIndicator());
+                            }
+                          }
+                        )
                         : Image.asset(front.path,
                             fit: BoxFit.fill, width: width),
                   ),
@@ -268,12 +275,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   void _takePhoto(context) async {
     store.verification = UserVerificationModel();
     try {
-      if (_controller.value.isTakingPicture) return null;
-
       _cameraShutter();
-
-      OverlayScreen().show(context, identifier: 'progress');
-
       final path = join(
         (await getTemporaryDirectory()).path,
         '${_appUtil.generateUid()}.png',
@@ -281,7 +283,6 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
 
       await _controller.takePicture(path);
       store.verification.id = File(path);
-      OverlayScreen().pop();
       setState(() {
         front = File(path);
       });

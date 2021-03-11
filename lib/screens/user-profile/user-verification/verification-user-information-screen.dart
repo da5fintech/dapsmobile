@@ -46,24 +46,24 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
   @override
   void initState () {
     super.initState();
-    store.verification.idType = "UMID";
-    store.verification.idNumber = "29223020";
-    store.verification.firstName = "Jose Paulo";
-    store.verification.middleName = "Maniquez";
-    store.verification.lastName = "Dela Cruz";
-    store.verification.nationality = "Filipino";
-    store.verification.placeOfBirth= "Pasig City";
-    store.verification.contactNumber = "639056535707";
-    store.verification.dateOfBirth = "10/21/1995";
-    store.verification.address = "Blk 24 Lot 18 Saint Joseph 6";
-    store.verification.barangay = "Butong";
-    store.verification.city = "Cabuyao";
-    store.verification.zipCode = "4025";
-    store.verification.state = "Laguna";
-    store.verification.country = "Philippines";
-    store.verification.natureOfWork= "Developer";
-    selectedSourceOfFunds = "Salary";
-    store.verification.sourceOfIncome = "Salary";
+    // store.verification.idType = "UMID";
+    // store.verification.idNumber = "29223020";
+    // store.verification.firstName = "Jose Paulo";
+    // store.verification.middleName = "Maniquez";
+    // store.verification.lastName = "Dela Cruz";
+    // store.verification.nationality = "Filipino";
+    // store.verification.placeOfBirth= "Pasig City";
+    // store.verification.contactNumber = "639056535707";
+    // store.verification.dateOfBirth = "10/21/1995";
+    // store.verification.address = "Blk 24 Lot 18 Saint Joseph 6";
+    // store.verification.barangay = "Butong";
+    // store.verification.city = "Cabuyao";
+    // store.verification.zipCode = "4025";
+    // store.verification.state = "Laguna";
+    // store.verification.country = "Philippines";
+    // store.verification.natureOfWork= "Developer";
+    // selectedSourceOfFunds = "Salary";
+    // store.verification.sourceOfIncome = "Salary";
   }
 
   String inputValidator(String text, String field) {
@@ -763,31 +763,31 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
   }
 
   void _handleNext () async {
-    // bool status = _formKey.currentState.validate();
-    //
-    // if(status) {
-    //   _formKey.currentState.save();
-    //   store.verification.idType = values['idType'];
-    //   store.verification.idNumber = values['idNumber'];
-    //   store.verification.firstName = values['firstName'];
-    //   store.verification.middleName = values['middleName'];
-    //   store.verification.lastName = values['lastName'];
-    //   store.verification.nationality = values['nationality'];
-    //   store.verification.placeOfBirth = values['placeOfBirth'];
-    //   store.verification.contactNumber = values['contactNumber'];
-    //   store.verification.dateOfBirth = values['dateOfBirth'];
-    //   store.verification.address = values['address'];
-    //   store.verification.barangay = values['barangay'];
-    //   store.verification.city = values['city'];
-    //   store.verification.zipCode = values['zipCode'];
-    //   store.verification.state = values['state'];
-    //   store.verification.country = values['country'];
-    //   store.verification.natureOfWork = values['natureOfWork'];
-    //   store.verification.sourceOfIncome = selectedSourceOfFunds;
+    bool status = _formKey.currentState.validate();
+
+    if(status) {
+      _formKey.currentState.save();
+      store.verification.idType = values['idType'];
+      store.verification.idNumber = values['idNumber'];
+      store.verification.firstName = values['firstName'];
+      store.verification.middleName = values['middleName'];
+      store.verification.lastName = values['lastName'];
+      store.verification.nationality = values['nationality'];
+      store.verification.placeOfBirth = values['placeOfBirth'];
+      store.verification.contactNumber = values['contactNumber'];
+      store.verification.dateOfBirth = values['dateOfBirth'];
+      store.verification.address = values['address'];
+      store.verification.barangay = values['barangay'];
+      store.verification.city = values['city'];
+      store.verification.zipCode = values['zipCode'];
+      store.verification.state = values['state'];
+      store.verification.country = values['country'];
+      store.verification.natureOfWork = values['natureOfWork'];
+      store.verification.sourceOfIncome = selectedSourceOfFunds;
       Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => VerificationReviewInfromationScreen()),
       );
-    // }
+    }
   }
 }

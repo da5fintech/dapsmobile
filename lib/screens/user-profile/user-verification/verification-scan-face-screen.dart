@@ -50,7 +50,9 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
   void initState() {
     super.initState();
     getPath();
-    _initializeCamera();
+    if(mounted) {
+      _initializeCamera();
+    }
   }
 
   Future<void> getPath() async {
@@ -239,8 +241,8 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
   void dispose() {
     super.dispose();
     // _controller.dispose();
-    _camera.stopImageStream();
     _camera.dispose();
+    _camera.stopImageStream();
   }
 
   @override
