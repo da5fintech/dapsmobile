@@ -1,8 +1,9 @@
 import 'dart:io';
-
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/screens/markdowns-views/terms-condition-screen.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -265,7 +266,7 @@ class _VerificationReviewInfromationScreenState
                   ),
                   RichText(
                     text: TextSpan(
-                      text: "I agree to Swipe app's",
+                      text: "I agree to Swipe app's ",
                       style: GoogleFonts.roboto(
                         color: Colors.black,
                         fontSize: 12,
@@ -273,13 +274,26 @@ class _VerificationReviewInfromationScreenState
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'Terms of Service',
-                            style: GoogleFonts.roboto(
-                              color: COLOR_DARK_PURPLE,
-                              fontWeight: FontWeight.w500,
-                            )),
+                          recognizer: new TapGestureRecognizer()..onTap = () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'terms')),
+                            );
+                          },
+                          text: 'Terms of Service',
+                          style: GoogleFonts.roboto(
+                            color: COLOR_DARK_PURPLE,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                         TextSpan(text: ' and\n'),
                         TextSpan(
+                            recognizer: new TapGestureRecognizer()..onTap = () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'privacy')),
+                              );
+                            },
                             text: 'Privacy Policy',
                             style: GoogleFonts.roboto(
                               color: COLOR_DARK_PURPLE,
@@ -330,14 +344,14 @@ class _VerificationReviewInfromationScreenState
     );
   }
 
-  void photoView (File image, String type) {
+  void photoView(File image, String type) {
     Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => PhotoViewerScreen(
-        photo: image,
-        type: type,
-      ))
-    );
+        context,
+        MaterialPageRoute(
+            builder: (_) => PhotoViewerScreen(
+                  photo: image,
+                  type: type,
+                )));
   }
 
   void _handleSubmit() async {
