@@ -168,9 +168,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                       SizedBox(height: 15),
                       Text(BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION),
                       Text(BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION_OR),
-                      SizedBox(
-                        height: 25,
-                      ),
+                      SizedBox(height: 25),
                       Expanded(
                         child: SingleChildScrollView(
                           child: createAmountsTable(),
