@@ -142,23 +142,23 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                                       // Text("j"),
                                     ],
                                   ),
-                                  TextFormField(
-                                    validator: (text) {
-                                      if (text == null || text.isEmpty) {
-                                        return '${BUY_LOAD_AMOUNT_SCREEN_AMOUNT_TEXT} is required';
-                                      }
-                                      return null;
-                                    },
-                                    controller: controller,
-                                    keyboardType:
-                                        TextInputType.numberWithOptions(
-                                            decimal: true),
-                                    textAlign: TextAlign.right,
-                                    decoration: InputDecoration(
-                                        labelText:
-                                            BUY_LOAD_AMOUNT_SCREEN_AMOUNT_TEXT,
-                                        hintText: "0.00"),
-                                  ),
+                                  // TextFormField(
+                                  //   validator: (text) {
+                                  //     if (text == null || text.isEmpty) {
+                                  //       return '${BUY_LOAD_AMOUNT_SCREEN_AMOUNT_TEXT} is required';
+                                  //     }
+                                  //     return null;
+                                  //   },
+                                  //   controller: controller,
+                                  //   keyboardType:
+                                  //       TextInputType.numberWithOptions(
+                                  //           decimal: true),
+                                  //   textAlign: TextAlign.right,
+                                  //   decoration: InputDecoration(
+                                  //       labelText:
+                                  //           BUY_LOAD_AMOUNT_SCREEN_AMOUNT_TEXT,
+                                  //       hintText: "0.00"),
+                                  // ),
                                 ],
                               ),
                             ),
