@@ -52,4 +52,24 @@ class OtpService {
     }
   }
 
+  Future<void> smsGreeting(String mobileNumber) async {
+    var message =
+        "We welcome you are valued user. "
+        "You can now send money, buy load or pay bills, "
+        "Thank you for using our SWIPE APP!";
+    print('send sms greeting');
+    try {
+      var greetings = await http.get(
+        '${SMS_API}'
+        'un=${SMS_USERNAME}&'
+            'pwd=${SMS_PASSWORD}&'
+            'dstno=${mobileNumber}&'
+            'msg=${message}&agreedterm=YES&type=1&'
+            'sendid=Swipe'
+      );
+    } catch(err) {
+      rethrow;
+    }
+  }
+
 }
