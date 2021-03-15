@@ -197,7 +197,10 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                               }
                               return null;
                             },
+                            maxLength: 10,
                             decoration: InputDecoration(
+                              counterStyle: TextStyle(color: Colors.white),
+                              hintText: "904033902",
                               errorStyle: TextStyle(
                                   color: COLOR_GRAY, fontSize: 12, height: 0.3),
                               labelText: REGISTER_SCREEN_MOBIILE_TEXT,
