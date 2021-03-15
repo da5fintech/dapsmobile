@@ -45,6 +45,10 @@ const REGISTRATION_SCREEN_USER_CREATION_TEXT =
 const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
 const REGISTRATION_SCREEN_OTP_TITLE_TEXT = "Verify Registration";
 const REGISTRATION_SCREEN_INCORRECT_OTP_TEXT = "Invalid OTP! Please Try again.";
+const REGISTRATION_SCREEN_OTP_GREET =
+    "We welcome you are valued user. "
+    "You can now send money, buy load or pay bills, "
+    "Thank you for using our SWIPE APP!";
 
 const USER_PROFILE_SCREEN_TITLE_TEXT = "User Profile";
 const USER_PROFILE_SCREEN_NOTE_TEXT = "For enhanced account security, keep your account information up to date.";
@@ -361,7 +365,7 @@ const PAYMENT_VERIFICATION_SCREEN_DISCOUNT_TEXT = "Discount";
 const PAYMENT_VERIFICATION_SCREEN_VOUCHER_TEXT = "No available voucher";
 const PAYMENT_VERIFICATION_SCREEN_TOTAL_AMOUNT_TEXT = "Total Amount";
 const PAYMENT_VERIFICATION_AGREE_TERMS_TEXT = "I agree to the ";
-const PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT = "terms & conditions";
+const PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT = "Terms & Conditions";
 const PAYMENT_VERIFICATION_NOTE_TEXT = "Please review to ensure all the details above is correct before proceeding to payment.";
 const PAYMENT_VERIFICATION_WARNING_TEXT = "If you agree please check the terms & condition";
 const PAYMENT_VERIFICATION_SCREEN_PAY_TEXT = "Pay";

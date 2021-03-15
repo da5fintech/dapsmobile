@@ -53,10 +53,7 @@ class OtpService {
   }
 
   Future<void> smsGreeting(String mobileNumber) async {
-    var message =
-        "We welcome you are valued user. "
-        "You can now send money, buy load or pay bills, "
-        "Thank you for using our SWIPE APP!";
+    var message = REGISTRATION_SCREEN_OTP_GREET;
     print('send sms greeting');
     try {
       var greetings = await http.get(
