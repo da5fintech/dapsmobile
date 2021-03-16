@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:sensitive_http/http.dart' as http;
@@ -49,6 +50,11 @@ class Da5Service {
         uri,
         headers: headers,
         body: requestBody,
+      ).timeout(
+          Duration(seconds: 15),
+          onTimeout: () {
+            throw TimeoutException("The connection has timed out, Please try again!");
+          }
       );
 
       print("result ${result.body}");
@@ -105,6 +111,11 @@ class Da5Service {
         uri,
         headers: headers,
         body: requestBody,
+      ).timeout(
+        Duration(seconds: 10),
+        onTimeout: () {
+          throw TimeoutException("The connection has timed out, Please try again!");
+        }
       );
 
       print("result ${result.body}");

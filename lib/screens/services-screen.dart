@@ -73,7 +73,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
         body: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: Column(
                 children: [
                   Row(
@@ -138,12 +138,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     height: 10,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text("**** *** 9870",
-                          style: GoogleFonts.roboto(
-                              fontSize: 12,
-                              color: Colors.white.withOpacity(0.7))),
+                      // Text("**** *** 9870",
+                      //     style: GoogleFonts.roboto(
+                      //         fontSize: 12,
+                      //         color: Colors.white.withOpacity(0.7))),
                       Observer(
                         builder: (_) {
                           return AmountWidget(amount: store.balance);
