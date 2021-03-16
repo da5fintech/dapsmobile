@@ -1,10 +1,15 @@
+import 'dart:io';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/screens/markdowns-views/terms-condition-screen.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
+import 'package:swipe/screens/photo-viewer/photo-viewer-screen.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-submitted-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
@@ -22,7 +27,7 @@ class _VerificationReviewInfromationScreenState
   bool checkTerms = false;
 
   @override
-  void initState () {
+  void initState() {
     super.initState();
   }
 
@@ -30,7 +35,6 @@ class _VerificationReviewInfromationScreenState
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);
-
 
     OverlayScreen().saveScreens({
       'progress': CustomOverlayScreen(
@@ -48,7 +52,6 @@ class _VerificationReviewInfromationScreenState
         ),
       ),
     });
-
 
     return Theme(
       data: td,
@@ -207,7 +210,18 @@ class _VerificationReviewInfromationScreenState
             ),
             Row(
               children: [
-                Image.asset(store.verification.id.path, height: 100, width: 100),
+                GestureDetector(
+                  onTap: () {
+                    photoView(store.verification.id, 'id');
+                  },
+                  child: Observer(
+                    builder: (_) => Image.asset(
+                      store.idImage.path,
+                      height: 100,
+                      width: 100,
+                    ),
+                  ),
+                ),
               ],
             ),
             ListTile(
@@ -222,7 +236,21 @@ class _VerificationReviewInfromationScreenState
             ),
             Row(
               children: [
-                RotatedBox(quarterTurns: 3, child: Image.asset(store.verification.face.path, height: 100, width: 100)),
+                RotatedBox(
+                  quarterTurns: 3,
+                  child: GestureDetector(
+                    onTap: () {
+                      photoView(store.verification.face, 'face');
+                    },
+                    child: Observer(
+                      builder: (_) => Image.asset(
+                        store.faceImage.path,
+                        height: 100,
+                        width: 100,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             Padding(
@@ -238,47 +266,61 @@ class _VerificationReviewInfromationScreenState
                   ),
                   RichText(
                     text: TextSpan(
-                      text: "I agree to Swipe app's",
+                      text: "I agree to Swipe app's ",
                       style: GoogleFonts.roboto(
                         color: Colors.black,
                         fontSize: 12,
                         height: 1.5,
                       ),
                       children: <TextSpan>[
-                        TextSpan(text: 'Terms of Service', style: GoogleFonts.roboto(
-                          color: COLOR_DARK_PURPLE,
-                          fontWeight: FontWeight.w500,
-                        )),
+                        TextSpan(
+                          recognizer: new TapGestureRecognizer()..onTap = () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'terms')),
+                            );
+                          },
+                          text: 'Terms of Service',
+                          style: GoogleFonts.roboto(
+                            color: COLOR_DARK_PURPLE,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                         TextSpan(text: ' and\n'),
-                        TextSpan(text: 'Privacy Policy', style: GoogleFonts.roboto(
-                          color: COLOR_DARK_PURPLE,
-                          fontWeight: FontWeight.w500,
-                        )),
+                        TextSpan(
+                            recognizer: new TapGestureRecognizer()..onTap = () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'privacy')),
+                              );
+                            },
+                            text: 'Privacy Policy',
+                            style: GoogleFonts.roboto(
+                              color: COLOR_DARK_PURPLE,
+                              fontWeight: FontWeight.w500,
+                            )),
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),
-            Text(
-                'To change details, go back and edit the form.',
+            Text('To change details, go back and edit the form.',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.roboto(
-                    fontSize: 12,
-                    color: COLOR_DARK_GRAY
-                )
-            ),
+                style:
+                    GoogleFonts.roboto(fontSize: 12, color: COLOR_DARK_GRAY)),
             Padding(
-              padding: EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 30),
+              padding:
+                  EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 30),
               child: SizedBox(
                 width: double.infinity,
                 child: ButtonTheme(
-                  buttonColor: checkTerms ? COLOR_DARK_PURPLE : Colors.grey[500],
+                  buttonColor:
+                      checkTerms ? COLOR_DARK_PURPLE : Colors.grey[500],
                   child: RaisedButton(
                     // shape: ,
                     onPressed: () async {
-                      if(checkTerms) {
+                      if (checkTerms) {
                         _handleSubmit();
                       } else {
                         return null;
@@ -302,18 +344,30 @@ class _VerificationReviewInfromationScreenState
     );
   }
 
+  void photoView(File image, String type) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => PhotoViewerScreen(
+                  photo: image,
+                  type: type,
+                )));
+  }
+
   void _handleSubmit() async {
-    if(checkTerms) {
+    if (checkTerms) {
       OverlayScreen().show(context, identifier: 'progress');
-      final response = await store.verifyService.verify(store.verification, store.user);
+      final response =
+          await store.verifyService.verify(store.verification, store.user);
       OverlayScreen().pop();
-      if(response.result) {
+      if (response.result) {
         Navigator.push(context,
-            MaterialPageRoute(builder: (_) => VerificationSubmittedScreen())
-        );
+            MaterialPageRoute(builder: (_) => VerificationSubmittedScreen()));
       } else {
         _scaffoldKey.currentState.showSnackBar(
-          SnackBar(content: Text("Something went wrong, Please try again later."), backgroundColor: COLOR_DANGER),
+          SnackBar(
+              content: Text("Something went wrong, Please try again later."),
+              backgroundColor: COLOR_DANGER),
         );
       }
     }

@@ -140,6 +140,19 @@ class AppUtil extends DateUtil {
     return BitmapDescriptor.fromBytes(imageData);
   }
 
+  Future<void> deleteImage (path) async {
+    try {
+      final file = await File(path);
+      print('deleting file image');
+      print(path);
+      await file.delete();
+      print('FILE DELETED');
+    } catch(err) {
+      rethrow;
+    }
+  }
+
+
 }
 
 class DateUtil {

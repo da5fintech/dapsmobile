@@ -140,17 +140,17 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     backgroundColor:
                         store.user.level >= 3 ? COLOR_GREEN : COLOR_DANGER,
                     label: GestureDetector(
-                      onTap: () async {
-                        if(store.user.level <= 3) {
-                          final cameras = await availableCameras();
-                          final firstCamera = cameras.first;
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (_) => VerificationMainScreen(
-                              cameras: firstCamera,
-                            )
-                          ));
-                        }
-                      },
+                      // onTap: () async {
+                      //   if(store.user.level <= 3) {
+                      //     final cameras = await availableCameras();
+                      //     final firstCamera = cameras.first;
+                      //     Navigator.push(context, MaterialPageRoute(
+                      //       builder: (_) => VerificationMainScreen(
+                      //         cameras: firstCamera,
+                      //       )
+                      //     ));
+                      //   }
+                      // },
                       child: Text(
                         store.user.level >= 3
                             ? SERVICES_SCREEN_VERIFIED_TEXT

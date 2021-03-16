@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/models/UserVerificationModel.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-photo-id-screen.dart';
 
 class VerificationScreen extends StatelessWidget {
@@ -181,6 +182,7 @@ class VerificationScreen extends StatelessWidget {
                         child: RaisedButton(
                           // shape: ,
                           onPressed: () async {
+                            store.verification = UserVerificationModel();
                             final cameras = await availableCameras();
                             final firstCamera = cameras.first;
                             Navigator.push(

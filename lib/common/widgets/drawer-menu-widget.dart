@@ -129,7 +129,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                                   bottom: 10, left: 10, right: 10),
                               backgroundColor: COLOR_DARK_PURPLE,
                               label: Text(
-                                DRAWER_MENU_SCREEN_VIEW_NOW,
+                                store.user.level <= 2 ? DRAWER_MENU_SCREEN_VIEW_NOW : "Verified",
                                 style: GoogleFonts.roboto(
                                   fontSize: 12,
                                   color: Colors.white,
