@@ -296,19 +296,20 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
   void _takePhoto(context) async {
     try {
       _cameraShutter();
+      await _initializeControllerFuture;
       final path = join(
-        (await getTemporaryDirectory()).path,
+        (await getApplicationDocumentsDirectory()).path,
         '${_appUtil.generateUid()}.png',
       );
-
       await _controller.takePicture(path);
+      await Future.delayed(Duration(seconds: 1));
       store.verification.id = File(path);
       store.setId(store.verification.id);
       setState(() {
         front = File(path);
       });
     } catch (err) {
-      print(err);
+      rethrow;
     }
   }
 
