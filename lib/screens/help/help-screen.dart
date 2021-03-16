@@ -4,7 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'dart:core';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:swipe/screens/markdowns-views/terms-condition-screen.dart';
 
 class HelpScreen extends StatelessWidget {
@@ -79,53 +80,56 @@ class HelpScreen extends StatelessWidget {
                       ),
                       Positioned(
                         top: height * 0.20,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                          width: width,
-                          height: height * 0.20,
-                          child: Card(
-                            elevation: 3,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                children: [
-                                  Flexible(
-                                      flex: 1,
-                                      child: SvgPicture.asset('assets/svg/help/help.svg'),
-                                  ),
-                                  SizedBox(width: 10),
-                                  Flexible(
-                                    flex: 3,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                       Text(
-                                         'Submit a ticket',
-                                         style: GoogleFonts.roboto(
-                                           fontWeight: FontWeight.w500,
-                                           fontSize: 14,
-                                           height: 2,
-                                           color: COLOR_DARK_PURPLE,
-                                         )
-                                       ),
-                                        Text(
-                                            'Leave a concern by messaging us and we’ll respond as soon as we can',
-                                            style: GoogleFonts.roboto(
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5,
-                                              fontSize: 12,
-                                              color: COLOR_DARK_GRAY,
-                                            )
-                                        ),
-                                      ],
-                                    )
-                                  ),
-                                  Icon(Icons.arrow_forward_ios, size: 14, color: COLOR_DARK_GRAY),
-                                ],
-                              ),
+                        child: GestureDetector(
+                          onTap: _submitTicket,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            width: width,
+                            height: height * 0.20,
+                            child: Card(
+                              elevation: 3,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Row(
+                                  children: [
+                                    Flexible(
+                                        flex: 1,
+                                        child: SvgPicture.asset('assets/svg/help/help.svg'),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Flexible(
+                                      flex: 3,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                         Text(
+                                           'Submit a ticket',
+                                           style: GoogleFonts.roboto(
+                                             fontWeight: FontWeight.w500,
+                                             fontSize: 14,
+                                             height: 2,
+                                             color: COLOR_DARK_PURPLE,
+                                           )
+                                         ),
+                                          Text(
+                                              'Leave a concern by messaging us and we’ll respond as soon as we can',
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w400,
+                                                height: 1.5,
+                                                fontSize: 12,
+                                                color: COLOR_DARK_GRAY,
+                                              )
+                                          ),
+                                        ],
+                                      )
+                                    ),
+                                    Icon(Icons.arrow_forward_ios, size: 14, color: COLOR_DARK_GRAY),
+                                  ],
+                                ),
+                              )
                             )
-                          )
+                          ),
                         ),
                       ),
                     ],
@@ -326,5 +330,14 @@ class HelpScreen extends StatelessWidget {
       context,
       MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'terms'))
     );
+  }
+
+  _submitTicket () async {
+    final Uri _emailLaunchUri = Uri(
+      scheme: 'mailTo',
+      path: 'info@swipe.ph',
+    );
+
+     await launch(_emailLaunchUri.toString());
   }
 }
