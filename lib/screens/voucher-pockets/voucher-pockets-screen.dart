@@ -58,7 +58,7 @@ class VoucherPocketsScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.roboto(
                         height: 1.5,
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DARK_PURPLE.withOpacity(0.5),
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),

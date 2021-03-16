@@ -291,6 +291,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
           }
 
           await store.accountService.create(store.registrant);
+          await store.otpService.smsGreeting('63${store.registrant.mobileNumber}');
           store.setUser(store.registrant);
           OverlayScreen().show(
             context,

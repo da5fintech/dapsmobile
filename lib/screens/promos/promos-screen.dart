@@ -75,7 +75,7 @@ class PromosScreen extends StatelessWidget {
                                     onPressed: () {},
                                     elevation: 0,
                                     textColor: Colors.white,
-                                    color: COLOR_GREEN,
+                                    color: COLOR_DARK_GRAY.withOpacity(0.5),
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 10),
                                     child: Text(
@@ -153,7 +153,7 @@ class PromosScreen extends StatelessWidget {
                                     onPressed: () {},
                                     elevation: 0,
                                     textColor: Colors.white,
-                                    color: COLOR_GREEN,
+                                    color: COLOR_DARK_GRAY.withOpacity(0.5),
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 10),
                                     child: Text(

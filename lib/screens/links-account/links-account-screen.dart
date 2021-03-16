@@ -34,9 +34,9 @@ class LinksAccountScreen extends StatelessWidget {
               thickness: 0.5,
             ),
             ListTile(
-              onTap: () {
-                Get.toNamed('/links-account/union-bank');
-              },
+              // onTap: () {
+              //   Get.toNamed('/links-account/union-bank');
+              // },
               visualDensity: VisualDensity(vertical: -4, horizontal: 0),
               title: Transform(
                 transform: Matrix4.translationValues(-20, 0.0, 0),

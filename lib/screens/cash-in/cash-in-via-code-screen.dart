@@ -67,7 +67,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
       child: Scaffold(
         key: _scaffoldKey,
         appBar: SubAppbarWidget(
-          title: 'Cash in Via Code'
+          title: CASH_IN_VIA_CODE,
         ),
         body: Container(
           width: width,
@@ -77,7 +77,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Cash in made easier via Barcode\nor a unique Reference Code',
+                CASH_IN_VIA_CODE_SUBNOTE,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
                   fontSize: 14,
@@ -111,7 +111,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
               Column(
                 children: [
                   Text(
-                    'Please check the amount before you proceed',
+                    CASH_IN_VIA_CODE_AMOUNT_VALIDATION,
                     style: GoogleFonts.roboto(
                       fontSize: 12,
                       color: COLOR_DARK_GRAY,
@@ -128,7 +128,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
                           // shape: ,
                           onPressed: _handleNext,
                           child: Text(
-                            'NEXT',
+                            CASH_IN_VIA_CODE_NEXT,
                             style: GoogleFonts.roboto(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,

@@ -70,7 +70,7 @@ class PartnerMerchantsScreen extends StatelessWidget {
                               style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 14,
-                                color: Colors.white,
+                                color: Colors.white.withOpacity(0.7),
                               ),
                             ),
                           ),

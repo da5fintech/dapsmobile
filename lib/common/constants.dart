@@ -45,6 +45,10 @@ const REGISTRATION_SCREEN_USER_CREATION_TEXT =
 const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
 const REGISTRATION_SCREEN_OTP_TITLE_TEXT = "Verify Registration";
 const REGISTRATION_SCREEN_INCORRECT_OTP_TEXT = "Invalid OTP! Please Try again.";
+const REGISTRATION_SCREEN_OTP_GREET =
+    "We welcome you are valued user. "
+    "You can now send money, buy load or pay bills, "
+    "Thank you for using our SWIPE APP!";
 
 const USER_PROFILE_SCREEN_TITLE_TEXT = "User Profile";
 const USER_PROFILE_SCREEN_NOTE_TEXT = "For enhanced account security, keep your account information up to date.";
@@ -130,6 +134,34 @@ const SERVICES_SCREEN_REASON_SWIPE_TEXT =
     "Because you deserve bettwer from us.";
 
 const HELP_SCREEN_TITLE_TEXT = "Help";
+
+const CASH_IN_TITLE_TEXT = "Cash In";
+const CASH_IN_LINKED_ACCOUNTS_TEXT = "My Linked Accounts";
+const CASH_IN_MANAGED_TEXT = "Manage";
+const CASH_IN_LINKED_NOTE_TEXT = "Linked your accounts for more easy access";
+const CASH_IN_LINKED_SUBNOTE_TEXT = "Connect your accounts with swipe wallet for\neasy cash in process.";
+const CASH_IN_OTC_TEXT = "Over the Counter";
+const CASH_IN_ONLINE_BANK = "Online Bank";
+const CASH_IN_REMITTANCE = "Remittance";
+
+const CASH_IN_PARTNER_DETAILS_TITLE = "Partner Details";
+const CASH_IN_VIEW_NEARBY_STORES = "View nearby branches";
+const CASH_IN_GENERATE_BARCODE = "Generate Barcode";
+const CASH_IN_SUBNOTE_BARCODE = "Have the cashier scan this barcode linked to your SWIPE account.";
+const CASH_IN_HOW_TO_CASH = "How to Cash In";
+const CASH_IN_HOW_TO_CASH_SUBNOTE = "At any branch of this official partners.";
+const CASH_IN_STEP_1 = "Inform the Cashier that you would like to Cash In to your SWIPE wallet.";
+const CASH_IN_STEP_2 = 'Tap on “Generate Barcode” button above. Enter the amount then Tap ‘Generate Barcode’. Show the generated barcode in the app.';
+const CASH_IN_STEP_3 = "Cashier to confirm, collect payment and print receipt. Wait for a text confirmation upon successful Cash In before leaving the store.";
+
+const CASH_IN_VIA_CODE = "Cash in Via Code";
+const CASH_IN_VIA_CODE_SUBNOTE = "Cash in made easier via Barcode\nor a unique Reference Code";
+const CASH_IN_VIA_CODE_DONE = "Done";
+const CASH_IN_VIA_CODE_NEXT = "Next";
+const CASH_IN_VIA_CODE_DOWLOAD = "Download";
+const CASH_IN_VIA_CODE_AMOUNT_VALIDATION = "Please check the amount before you proceed";
+const CASH_IN_DOWNLOAD_CODE = "Photo has been Saved to the Gallery";
+
 
 const DIRECT_SEND_SCREEN_TITLE_TEXT = "Send / Request Money";
 const DIRECT_SEND_SCREEN_SWIPE_SEND_TEXT = "Send money to another SWIPE account";
@@ -361,7 +393,7 @@ const PAYMENT_VERIFICATION_SCREEN_DISCOUNT_TEXT = "Discount";
 const PAYMENT_VERIFICATION_SCREEN_VOUCHER_TEXT = "No available voucher";
 const PAYMENT_VERIFICATION_SCREEN_TOTAL_AMOUNT_TEXT = "Total Amount";
 const PAYMENT_VERIFICATION_AGREE_TERMS_TEXT = "I agree to the ";
-const PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT = "terms & conditions";
+const PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT = "Terms & Conditions";
 const PAYMENT_VERIFICATION_NOTE_TEXT = "Please review to ensure all the details above is correct before proceeding to payment.";
 const PAYMENT_VERIFICATION_WARNING_TEXT = "If you agree please check the terms & condition";
 const PAYMENT_VERIFICATION_SCREEN_PAY_TEXT = "Pay";

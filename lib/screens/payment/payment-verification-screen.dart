@@ -8,6 +8,7 @@ import 'package:swipe/common/widgets/amount-widget.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/markdowns-views/terms-condition-screen.dart';
 
 import '../../main.dart';
 
@@ -658,13 +659,21 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                         color: COLOR_DARK_GRAY,
                       ),
                     ),
-                    Text(
-                      PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT,
-                      style: GoogleFonts.roboto(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: COLOR_GREEN),
-                    )
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'terms')),
+                        );
+                      },
+                      child: Text(
+                        PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT,
+                        style: GoogleFonts.roboto(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: COLOR_GREEN),
+                      )
+                    ),
                   ],
                 ),
               ),

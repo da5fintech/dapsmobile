@@ -32,7 +32,7 @@ class VerificationScanFace extends StatefulWidget {
 
 class _VerificationScanFaceState extends State<VerificationScanFace> {
   AppUtil _appUtil = AppUtil();
-  double loader = 1.00;
+  double loader = 0.00;
   CameraController _camera;
   List<Face> faces;
   bool _isDetecting = false;

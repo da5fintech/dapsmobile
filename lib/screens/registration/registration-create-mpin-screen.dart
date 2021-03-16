@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +8,8 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/screens/registration/registration-success-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
-
+import 'package:flutter/gestures.dart';
+import 'package:swipe/screens/markdowns-views/terms-condition-screen.dart';
 import '../../main.dart';
 
 final store = getIt<ApplicationStore>();
@@ -28,6 +28,7 @@ class _RegistrationCreateMpinScreenState
   TextEditingController confirmMpin = TextEditingController();
   bool obscurePin = true;
   bool obscureVerifyPin = true;
+  bool checkTerms = false;
 
   @override
   void initState() {
@@ -207,7 +208,57 @@ class _RegistrationCreateMpinScreenState
                                     ),
                             ),
                           ),
-                        )
+                        ),
+                        Row(
+                          children: [
+                            Checkbox(
+                              checkColor: COLOR_DARK_PURPLE,
+                              value: checkTerms,
+                              onChanged: (val) {
+                                checkTerms = val;
+                                setState(() {});
+                              },
+                            ),
+                            RichText(
+                              text: TextSpan(
+                                text: "I agree to Swipe app's ",
+                                style: GoogleFonts.roboto(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  height: 1.5,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    recognizer: new TapGestureRecognizer()..onTap = () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'terms')),
+                                      );
+                                    },
+                                    text: 'Terms of Service',
+                                    style: GoogleFonts.roboto(
+                                      color: COLOR_GLOBE_BLUE,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  TextSpan(text: ' and\n'),
+                                  TextSpan(
+                                      recognizer: new TapGestureRecognizer()..onTap = () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'privacy')),
+                                        );
+                                      },
+                                      text: 'Privacy Policy',
+                                      style: GoogleFonts.roboto(
+                                        color: COLOR_GLOBE_BLUE,
+                                        fontWeight: FontWeight.w500,
+                                      )),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -224,11 +275,13 @@ class _RegistrationCreateMpinScreenState
                     children: [
                       SizedBox(
                           width: double.infinity,
-                          child: PrimaryButtonWidget(
+                          child: RaisedButton(
+                              color: checkTerms ? Colors.white : Colors.white.withOpacity(0.5),
                               onPressed: () {
+                                if(!checkTerms) return;
                                 _handleRegister();
                               },
-                              text: "Next")),
+                              child: Text('Next'))),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -249,7 +302,7 @@ class _RegistrationCreateMpinScreenState
 
   _handleRegister() async {
     bool status = _formKey.currentState.validate();
-    if (status) {
+    if (status && checkTerms) {
       try {
         _formKey.currentState.save();
         store.registrant.mpin = values["mpin"];
