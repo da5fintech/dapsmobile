@@ -159,7 +159,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                         style: GoogleFonts.roboto(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                          color: Colors.black.withOpacity(0.5),
                         ),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, size: 14),
@@ -338,11 +338,11 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                         Container(
                           child: Column(
                             children: [
-                              Icon(Icons.share, color: Colors.white),
+                              Icon(Icons.share, color: Colors.white.withOpacity(0.5)),
                               Text(
                                 'Share',
                                 style: GoogleFonts.roboto(
-                                  color: Colors.white,
+                                  color: Colors.white.withOpacity(0.5),
                                   height: 1.5,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,

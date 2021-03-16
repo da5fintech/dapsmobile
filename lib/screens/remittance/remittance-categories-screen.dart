@@ -325,8 +325,8 @@ class _RemittanceCategoriesScreenState
                                         Text(
                                           categories[index],
                                           style: GoogleFonts.roboto(
-                                              color:
-                                                  Colors.black.withOpacity(.87),
+                                              color: index < 1 ?
+                                                  Colors.black.withOpacity(.87) : Colors.black.withOpacity(0.5),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500),
                                         ),

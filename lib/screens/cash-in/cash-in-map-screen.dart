@@ -65,18 +65,18 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
                   _controller.complete(controller);
                 },
                 onTap: (pos) async {
-                  Uint8List markerIcon = await _appUtil.getBytesFromAsset(
-                      'assets/icons/services/cash-in/7-eleven.png', 80);
-                  print(pos);
-
-                  Marker f = Marker(
-                      markerId: MarkerId('1'),
-                      icon: BitmapDescriptor.fromBytes(markerIcon),
-                      position: LatLng(pos.latitude, pos.longitude),
-                      onTap: () {});
-                  setState(() {
-                    markers.add(f);
-                  });
+                  // Uint8List markerIcon = await _appUtil.getBytesFromAsset(
+                  //     'assets/icons/services/cash-in/7-eleven.png', 80);
+                  // print(pos);
+                  //
+                  // Marker f = Marker(
+                  //     markerId: MarkerId('1'),
+                  //     icon: BitmapDescriptor.fromBytes(markerIcon),
+                  //     position: LatLng(pos.latitude, pos.longitude),
+                  //     onTap: () {});
+                  // setState(() {
+                  //   markers.add(f);
+                  // });
                 },
               ),
               Align(

@@ -18,15 +18,18 @@ class CashInMainScreen extends StatefulWidget {
 
 class _CashInMainScreen extends State<CashInMainScreen>{
 
-  Widget partnerWidget ({String title, String imagePath}) {
+  Widget partnerWidget ({String title, String imagePath, bool isDisable = false}) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => CashInPartnerDetailsScreen(
-          title: title,
-          imagePath: imagePath,
-        )));
+        if(!isDisable) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => CashInPartnerDetailsScreen(
+            title: title,
+            imagePath: imagePath,
+          )));
+        }
+        return;
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -43,6 +46,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             child: Center(
               child: Image.asset(
                 imagePath,
+                color: isDisable ? COLOR_DARK_GRAY : null,
               ),
             ),
           ),
@@ -228,7 +232,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 children: <Widget>[
                   SizedBox(width: 10),
                   ...bankOptions.map((bank) {
-                    return partnerWidget(title: bank['title'], imagePath: bank['imagePath']);
+                    return partnerWidget(title: bank['title'], imagePath: bank['imagePath'], isDisable: true);
                   }).toList(),
                 ],
               ),
@@ -261,7 +265,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 children: <Widget>[
                   SizedBox(width: 10),
                   ...remittanceOptions.map((remittance) {
-                    return partnerWidget(title: remittance['title'], imagePath: remittance['imagePath']);
+                    return partnerWidget(title: remittance['title'], imagePath: remittance['imagePath'], isDisable: true);
                   }).toList(),
                 ],
               ),
