@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/links-account/union-bank/union-bank-confirmation-screen.dart';
 
 class UnionBankOtpScreen extends StatefulWidget {
   @override
@@ -145,7 +146,7 @@ class _UnionBankOtpScreenState extends State<UnionBankOtpScreen> {
 
   void _handleNext () {
     Navigator.push(context,
-      MaterialPageRoute(builder: (_) => UnionBankOtpScreen()),
+      MaterialPageRoute(builder: (_) => UnionBankConfirmationScreen()),
     );
   }
 
