@@ -3,6 +3,7 @@ import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/main.dart';
+import 'package:swipe/models/UserVerificationModel.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
@@ -19,6 +20,7 @@ import 'package:swipe/services/opt-service.dart';
 import 'package:swipe/services/pesonet-service.dart';
 import 'package:swipe/services/save-suggestions-services.dart';
 import 'package:swipe/services/transaction-service.dart';
+import 'package:swipe/services/verify-service.dart';
 
 part 'application-store.g.dart';
 
@@ -39,8 +41,11 @@ abstract class _ApplicationStore with Store {
   //used to track user registration
   UserModel registrant;
 
+  UserVerificationModel verification;
+
   AuthenticationService authService;
   AccountService accountService;
+  VerifyService verifyService;
   EloadingService eloadingService;
   BillsPaymentService billsPaymentService;
   InstapayService instapayService;
@@ -73,6 +78,7 @@ abstract class _ApplicationStore with Store {
     enabledBiometrics = prefs.getBool('biometrics') ?? false;
 
     authService = AuthenticationService();
+    verifyService = VerifyService();
     accountService = AccountService();
     eloadingService = EloadingService();
     billsPaymentService = BillsPaymentService();
@@ -87,6 +93,7 @@ abstract class _ApplicationStore with Store {
     saveSuggestionsServices = SaveSuggestionsServices();
 
     getIt.registerSingleton(accountService);
+    getIt.registerSingleton(VerifyService());
     getIt.registerSingleton(eloadingService);
     getIt.registerSingleton(billsPaymentService);
     getIt.registerSingleton(transactionService);

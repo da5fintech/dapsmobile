@@ -163,7 +163,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                     // shape: ,
                     onPressed: () async {
                       final cameras = await availableCameras();
-                      final firstCamera = cameras.first;
+                      final firstCamera = cameras[1];
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (_) => VerificationScanFace(

@@ -47,7 +47,7 @@ class CashInService extends Da5Service {
     try {
       var cashInRaw = await postCashIn('/api/user/addMoney/create', {
         "user_id": user.id,
-        "user_email_address": user.email,
+        "user_email_address": user.emailAddress,
         "user_name": user.displayName,
         "user_mobile_number": user.mobileNumber,
         "amount": amount,

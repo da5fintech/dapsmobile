@@ -265,10 +265,13 @@ const CASHIN_MERCHANT_ID = "";
 const CASHIN_NETWORK_ID = "";
 const CASHIN_USERNAME = "";
 const CASHIN_SIGNATURE = "";
-const CASHIN_ENDPOINT = "http://18.140.92.115";
+const CASHIN_ENDPOINT = "http://52.76.155.168";
 
-
-
+const VERIFY_MERCHANT_ID = "";
+const VERIFY_NETWORK_ID = "";
+const VERIFY_USERNAME = "";
+const VERIFY_SIGNATURE = "";
+const VERIFY_ENDPOINT = "http://52.76.155.168";
 
 const SMS_USERNAME = "itda5";
 const SMS_PASSWORD = "@da5_isms-2019";

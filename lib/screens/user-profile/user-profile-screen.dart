@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/screens/otp/otp-screen.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-main-screen.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
 
@@ -138,9 +140,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     backgroundColor:
                         store.user.level >= 3 ? COLOR_GREEN : COLOR_DANGER,
                     label: GestureDetector(
-                      onTap: () {
+                      onTap: () async {
                         if(store.user.level <= 3) {
-                          Get.toNamed('/user-profile/kyc');
+                          final cameras = await availableCameras();
+                          final firstCamera = cameras.first;
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (_) => VerificationMainScreen(
+                              cameras: firstCamera,
+                            )
+                          ));
                         }
                       },
                       child: Text(
@@ -202,7 +210,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           textInputAction: TextInputAction.next,
                           readOnly: true,
                           showCursor: true,
-                          initialValue: store.user.birthdate,
+                          initialValue: store.user.dateOfBirth,
                           decoration: InputDecoration(
                             labelText: REGISTER_SCREEN_BIRTHDAY_TEXT,
                             floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -214,7 +222,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           autofocus: true,
                           readOnly: true,
                           showCursor: true,
-                          initialValue: store.user.email,
+                          initialValue: store.user.emailAddress,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             labelText: REGISTER_SCREEN_EMAIL_TEXT,

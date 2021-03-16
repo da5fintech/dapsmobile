@@ -47,7 +47,7 @@ class AccountService extends FireStoreService {
       return UserModel.fromDocumentSnapshot(result);
     } else {
       var user = UserModel(
-          id: uid, email: email, displayName: name, photoURL: photoURL);
+          id: uid, emailAddress: email, displayName: name, photoURL: photoURL);
       await update(uid, user.toMap());
       return user;
     }
@@ -71,6 +71,7 @@ class AccountService extends FireStoreService {
     user.lastName = lastname;
     user.mobileNumber = mobileNumber;
     user.displayName = firstname + " " + lastname;
+    user.updatedAt = DateTime.now();
     UserModel updatedUser = await create(user);
     return updatedUser;
   }

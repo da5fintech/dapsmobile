@@ -80,6 +80,7 @@ class Da5Service {
     }
   }
 
+  //cash in
   Future<Map<String, dynamic>> postCashIn(String resource,
       [Map<String, String> body]) async {
     String token = await getPostToken();
@@ -132,6 +133,24 @@ class Da5Service {
         "email": 'info@swipe.ph',
         "password": "Athlon-X2",
       });
+      return response['token'];
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<String> getVerifyToken() async {
+    print('geting token');
+    try {
+      var request = await http.post(
+        endpoint + '/api/user/accessToken',
+        headers: null,
+        body: {
+          "email": "info@swipe.ph",
+          "password": "Athlon-X2",
+        }
+      );
+      var response = jsonDecode(request.body);
       return response['token'];
     } catch (e) {
       return null;
