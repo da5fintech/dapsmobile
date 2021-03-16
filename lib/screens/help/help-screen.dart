@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/markdowns-views/terms-condition-screen.dart';
 
 class HelpScreen extends StatelessWidget {
   @override
@@ -279,20 +280,30 @@ class HelpScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Terms & Condition',
-                                style: GoogleFonts.roboto(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: COLOR_DARK_PURPLE
+                              InkWell(
+                                onTap: () {
+                                  _navigateTo('terms', context);
+                                },
+                                child: Text(
+                                  'Terms & Condition',
+                                  style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      color: COLOR_DARK_PURPLE
+                                  ),
                                 ),
                               ),
-                              Text(
-                                'Privacy Policy',
-                                style: GoogleFonts.roboto(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: COLOR_DARK_PURPLE
+                              InkWell(
+                                onTap: () {
+                                  _navigateTo('privacy', context);
+                                },
+                                child: Text(
+                                  'Privacy Policy',
+                                  style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      color: COLOR_DARK_PURPLE
+                                  ),
                                 ),
                               ),
                             ],
@@ -307,6 +318,13 @@ class HelpScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  _navigateTo(type, context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'terms'))
     );
   }
 }

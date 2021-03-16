@@ -72,7 +72,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
       data: td,
       child: Scaffold(
         key: _scaffoldKey,
-        appBar: SubAppbarWidget(title: 'Cash in via Code'),
+        appBar: SubAppbarWidget(title: CASH_IN_VIA_CODE),
         body: Container(
           width: width,
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
@@ -80,7 +80,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Please show one of these codes to the\ncashier of any participating merchant to cash in.',
+                CASH_IN_VIA_CODE_SUBNOTE,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
                   fontSize: 14,
@@ -166,7 +166,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                 // shape: ,
                 onPressed: _downloadBarcode,
                 child: Text(
-                  'DOWNLOAD',
+                  CASH_IN_VIA_CODE_DOWLOAD,
                   style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
@@ -188,7 +188,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                       Get.offAllNamed('/services');
                     },
                     child: Text(
-                      'DONE',
+                      CASH_IN_VIA_CODE_DONE,
                       style: GoogleFonts.roboto(
                         color: COLOR_DARK_PURPLE,
                         fontWeight: FontWeight.w500,
@@ -214,7 +214,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
 
     OverlayScreen().pop();
     _scaffoldKey.currentState.showSnackBar(
-      SnackBar(content: Text("Photo has been Saved to the Gallery"), backgroundColor: COLOR_GREEN),
+      SnackBar(content: Text(CASH_IN_DOWNLOAD_CODE), backgroundColor: COLOR_GREEN),
     );
     // print('downloading');
     // RenderRepaintBoundary boundary = _key.currentContext.findRenderObject();

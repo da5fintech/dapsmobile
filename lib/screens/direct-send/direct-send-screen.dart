@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:native_screenshot/native_screenshot.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -19,6 +21,7 @@ class DirectSendScreen extends StatefulWidget {
 }
 
 class _DirectSendScreenState extends State<DirectSendScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   AppUtil _appUtil = AppUtil();
   String qrData = "";
   String userNickname = "";
@@ -36,9 +39,29 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              "Processing...",
+              style: GoogleFonts.roboto(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    });
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: SubAppbarWidget(
           height: 90.0,
           title: DIRECT_SEND_SCREEN_TITLE_TEXT,
@@ -294,19 +317,22 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
-                          child: Column(
-                            children: [
-                              Icon(Icons.download_sharp, color: Colors.white),
-                              Text(
-                                'Download',
-                                style: GoogleFonts.roboto(
-                                  color: Colors.white,
-                                  height: 1.5,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )
-                            ],
+                          child: InkWell(
+                            onTap: _downloadQr,
+                            child: Column(
+                              children: [
+                                Icon(Icons.download_sharp, color: Colors.white),
+                                Text(
+                                  'Download',
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.white,
+                                    height: 1.5,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         Container(
@@ -353,5 +379,27 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
     qrData = convertQrData;
     php = double.parse(amount);
     setState(() {});
+  }
+
+  _downloadQr () async {
+    if(php == null) {
+      _scaffoldKey.currentState.showSnackBar(
+        SnackBar(content: Text('Please Input an amount.'), backgroundColor: COLOR_DANGER),
+      );
+      return;
+    }
+
+    OverlayScreen().show(
+      context,
+      identifier: 'progress',
+    );
+    await NativeScreenshot.takeScreenshot();
+    await Future.delayed(Duration(seconds: 3));
+
+    OverlayScreen().pop();
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(content: Text(CASH_IN_DOWNLOAD_CODE), backgroundColor: COLOR_GREEN),
+    );
+
   }
 }

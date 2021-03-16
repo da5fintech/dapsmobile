@@ -72,7 +72,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
       data: td,
       child: Scaffold(
         appBar: SubAppbarWidget(
-          title: 'Cash in',
+          title: CASH_IN_TITLE_TEXT,
         ),
         body: ListView(
           children: [
@@ -82,7 +82,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
                   child: Text(
-                    'My Linked Accounts',
+                    CASH_IN_LINKED_ACCOUNTS_TEXT,
                     style: GoogleFonts.roboto(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -96,7 +96,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                     Get.toNamed('/links-account');
                   },
                   child: Text(
-                    'Manage',
+                    CASH_IN_MANAGED_TEXT,
                     style: GoogleFonts.roboto(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -110,7 +110,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
               leading: SvgPicture.asset(
                   'assets/svg/services/cash-in/link-account.svg'),
               title: Text(
-                'Linked your accounts for more easy access',
+                CASH_IN_LINKED_NOTE_TEXT,
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
@@ -118,7 +118,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 ),
               ),
               subtitle: Text(
-                'Connect your accounts with swipe wallet for\neasy cash in process.',
+                CASH_IN_LINKED_SUBNOTE_TEXT,
                 style: GoogleFonts.roboto(
                   fontSize: 12,
                   color: COLOR_DARK_GRAY,
@@ -137,7 +137,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Over the Counter',
+                  CASH_IN_OTC_TEXT,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
@@ -212,7 +212,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 padding:
                 const EdgeInsets.only(left: 15, top: 12, bottom: 12),
                 child: Text(
-                  'Online Bank',
+                  CASH_IN_ONLINE_BANK,
                   style: GoogleFonts.roboto(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -245,7 +245,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 padding:
                 const EdgeInsets.only(left: 15, top: 12, bottom: 12),
                 child: Text(
-                  'Remittance',
+                  CASH_IN_REMITTANCE,
                   style: GoogleFonts.roboto(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,

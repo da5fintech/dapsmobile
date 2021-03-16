@@ -38,7 +38,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
       data: td,
       child: Scaffold(
         appBar: SubAppbarWidget(
-          title: 'Partner Details',
+          title: CASH_IN_PARTNER_DETAILS_TITLE,
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +95,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                           child: RaisedButton(
                               onPressed: () {},
                               child: Text(
-                                  'View nearby branches',
+                                  CASH_IN_VIEW_NEARBY_STORES,
                                   style: GoogleFonts.roboto(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
@@ -124,7 +124,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                   'assets/svg/services/cash-in/barcode.svg',
                 ),
                 title: Text(
-                  'Generate Barcode',
+                  CASH_IN_GENERATE_BARCODE,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
                     color: COLOR_DARK_PURPLE,
@@ -132,7 +132,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                   ),
                 ),
                 subtitle: Text(
-                  'Have the cashier scan this barcode linked to your SWIPE account.',
+                  CASH_IN_SUBNOTE_BARCODE,
                   style: GoogleFonts.roboto(
                     fontSize: 12,
                     color: COLOR_DARK_GRAY,
@@ -149,7 +149,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                'How to Cash In',
+                CASH_IN_HOW_TO_CASH,
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
@@ -160,7 +160,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                  'At any branch of this official partners.',
+                  CASH_IN_HOW_TO_CASH_SUBNOTE,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w700,
                     fontSize: 12,
@@ -177,7 +177,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                   child: Text('1')
                 ),
                 subtitle: Text(
-                  'Inform the Cashier that you would like to Cash In to your SWIPE wallet.',
+                  CASH_IN_STEP_1,
                   style: GoogleFonts.roboto(
                     fontSize: 12,
                     color: COLOR_DARK_GRAY,
@@ -194,7 +194,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                     child: Text('2')
                 ),
                 subtitle: Text(
-                  'Tap on “Generate Barcode” button above. Enter the amount then Tap ‘Generate Barcode’. Show the generated barcode in the app.',
+                  CASH_IN_STEP_2,
                   style: GoogleFonts.roboto(
                     fontSize: 12,
                     color: COLOR_DARK_GRAY,
@@ -211,7 +211,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                     child: Text('3')
                 ),
                 subtitle: Text(
-                  'Cashier to confirm, collect payment and print receipt. Wait for a text confirmation upon successful Cash In before leaving the store.',
+                  CASH_IN_STEP_3,
                   style: GoogleFonts.roboto(
                     fontSize: 12,
                     color: COLOR_DARK_GRAY,

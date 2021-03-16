@@ -135,6 +135,34 @@ const SERVICES_SCREEN_REASON_SWIPE_TEXT =
 
 const HELP_SCREEN_TITLE_TEXT = "Help";
 
+const CASH_IN_TITLE_TEXT = "Cash In";
+const CASH_IN_LINKED_ACCOUNTS_TEXT = "My Linked Accounts";
+const CASH_IN_MANAGED_TEXT = "Manage";
+const CASH_IN_LINKED_NOTE_TEXT = "Linked your accounts for more easy access";
+const CASH_IN_LINKED_SUBNOTE_TEXT = "Connect your accounts with swipe wallet for\neasy cash in process.";
+const CASH_IN_OTC_TEXT = "Over the Counter";
+const CASH_IN_ONLINE_BANK = "Online Bank";
+const CASH_IN_REMITTANCE = "Remittance";
+
+const CASH_IN_PARTNER_DETAILS_TITLE = "Partner Details";
+const CASH_IN_VIEW_NEARBY_STORES = "View nearby branches";
+const CASH_IN_GENERATE_BARCODE = "Generate Barcode";
+const CASH_IN_SUBNOTE_BARCODE = "Have the cashier scan this barcode linked to your SWIPE account.";
+const CASH_IN_HOW_TO_CASH = "How to Cash In";
+const CASH_IN_HOW_TO_CASH_SUBNOTE = "At any branch of this official partners.";
+const CASH_IN_STEP_1 = "Inform the Cashier that you would like to Cash In to your SWIPE wallet.";
+const CASH_IN_STEP_2 = 'Tap on “Generate Barcode” button above. Enter the amount then Tap ‘Generate Barcode’. Show the generated barcode in the app.';
+const CASH_IN_STEP_3 = "Cashier to confirm, collect payment and print receipt. Wait for a text confirmation upon successful Cash In before leaving the store.";
+
+const CASH_IN_VIA_CODE = "Cash in Via Code";
+const CASH_IN_VIA_CODE_SUBNOTE = "Cash in made easier via Barcode\nor a unique Reference Code";
+const CASH_IN_VIA_CODE_DONE = "Done";
+const CASH_IN_VIA_CODE_NEXT = "Next";
+const CASH_IN_VIA_CODE_DOWLOAD = "Download";
+const CASH_IN_VIA_CODE_AMOUNT_VALIDATION = "Please check the amount before you proceed";
+const CASH_IN_DOWNLOAD_CODE = "Photo has been Saved to the Gallery";
+
+
 const DIRECT_SEND_SCREEN_TITLE_TEXT = "Send / Request Money";
 const DIRECT_SEND_SCREEN_SWIPE_SEND_TEXT = "Send money to another SWIPE account";
 const DIRECT_SEND_SCREEN_DIRECT_SEND_TEXT = "Direct Send";

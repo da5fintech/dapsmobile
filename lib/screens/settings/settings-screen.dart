@@ -56,19 +56,6 @@ class SettingsScreen extends StatelessWidget {
               ),
               Divider(thickness: 0.5),
               ListTile(
-                visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                title: Text(
-                  SETTINGS_SCREEN_ACCOUNT_AUTH_TEXT,
-                  style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
-                trailing: Icon(Icons.arrow_forward_ios, size: 16),
-              ),
-              Divider(thickness: 0.5),
-              ListTile(
                 onTap: () async {
                   bool isAvailable = await auth.isBiometricAvailable();
                   if (isAvailable)
