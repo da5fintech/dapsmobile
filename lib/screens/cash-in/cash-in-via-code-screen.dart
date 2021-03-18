@@ -63,99 +63,88 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
       ),
     });
 
-    return WillPopScope(
-      onWillPop: () async {
-        if(OverlayScreen().state == Screen.none) {
-          Navigator.pop(context);
-          return true;
-        } else {
-          OverlayScreen().pop();
-          return false;
-        }
-      },
-      child: Theme(
-        data: td,
-        child: Scaffold(
-          key: _scaffoldKey,
-          appBar: SubAppbarWidget(
-            title: CASH_IN_VIA_CODE,
-          ),
-          body: Container(
-            width: width,
-            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  CASH_IN_VIA_CODE_SUBNOTE,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    height: 1.5,
-                    color: COLOR_DARK_GRAY,
+    return Theme(
+      data: td,
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: SubAppbarWidget(
+          title: CASH_IN_VIA_CODE,
+        ),
+        body: Container(
+          width: width,
+          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                CASH_IN_VIA_CODE_SUBNOTE,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.roboto(
+                  fontSize: 14,
+                  height: 1.5,
+                  color: COLOR_DARK_GRAY,
+                ),
+              ),
+              Form(
+                key: _formKey,
+                child:  TextFormField(
+                  autofocus: true,
+                  textInputAction: TextInputAction.next,
+                  textAlign: TextAlign.end,
+                  keyboardType: TextInputType.numberWithOptions(),
+                  controller: amountText,
+                  onFieldSubmitted: (text) {
+                  },
+                  validator: (text) {
+                    if(text.isEmpty) {
+                      return "Please input amount";
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: "Amount",
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    focusColor: COLOR_DARK_PURPLE,
                   ),
                 ),
-                Form(
-                  key: _formKey,
-                  child:  TextFormField(
-                    autofocus: true,
-                    textInputAction: TextInputAction.next,
-                    textAlign: TextAlign.end,
-                    keyboardType: TextInputType.numberWithOptions(),
-                    controller: amountText,
-                    onFieldSubmitted: (text) {
-                    },
-                    validator: (text) {
-                      if(text.isEmpty) {
-                        return "Please input amount";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      labelText: "Amount",
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      focusColor: COLOR_DARK_PURPLE,
-                    ),
+              ),
+              Column(
+                children: [
+                  Text(
+                    CASH_IN_VIA_CODE_AMOUNT_VALIDATION,
+                    style: GoogleFonts.roboto(
+                      fontSize: 12,
+                      color: COLOR_DARK_GRAY,
+                      height: 5,
+                    )
                   ),
-                ),
-                Column(
-                  children: [
-                    Text(
-                      CASH_IN_VIA_CODE_AMOUNT_VALIDATION,
-                      style: GoogleFonts.roboto(
-                        fontSize: 12,
-                        color: COLOR_DARK_GRAY,
-                        height: 5,
-                      )
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 10),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: ButtonTheme(
-                          buttonColor: COLOR_DARK_PURPLE,
-                          child: RaisedButton(
-                            // shape: ,
-                            onPressed: _handleNext,
-                            child: Text(
-                              CASH_IN_VIA_CODE_NEXT,
-                              style: GoogleFonts.roboto(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ButtonTheme(
+                        buttonColor: COLOR_DARK_PURPLE,
+                        child: RaisedButton(
+                          // shape: ,
+                          onPressed: _handleNext,
+                          child: Text(
+                            CASH_IN_VIA_CODE_NEXT,
+                            style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Colors.white,
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ],
-                )
-              ],
-            ),
-          )
-        ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        )
       ),
     );
   }
