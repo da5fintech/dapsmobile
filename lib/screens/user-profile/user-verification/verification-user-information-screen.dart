@@ -782,7 +782,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
 
   void _handleNext () async {
     bool status = _formKey.currentState.validate();
-
+    //
     if(status) {
       _formKey.currentState.save();
       store.verification.idType = values['idType'];
