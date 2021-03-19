@@ -330,7 +330,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
 
   void _handleSSOLogin(provider) async {
     try {
-      loginError = false;
+      print(provider);
       setState(() {});
       var user = await store.authService.login(provider);
       var account = await store.accountService.getAccount(user.uid);

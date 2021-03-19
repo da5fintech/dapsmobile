@@ -668,7 +668,7 @@ enum SwipeServiceOffering {
   REMITTANCE_PESONET
 }
 
-enum OtpServiceAction {UPDATE_USER, ENABLE_FINGERPRINT, REGISTRATION}
+enum OtpServiceAction {UPDATE_USER, ENABLE_FINGERPRINT, REGISTRATION, FORGOT_MPIN}
 
 Map<SwipeServiceOffering, String> SwipeServiceRoutes = {
   SwipeServiceOffering.BUY_LOAD: '..'

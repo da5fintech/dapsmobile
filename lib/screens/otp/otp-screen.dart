@@ -241,13 +241,24 @@ class _OtpScreenState extends State<OtpScreen> {
         .sendOtp(mobileNumber: '63${widget.mobileNumber}', otp: expectedOtp);
   }
 
-  void _handleSubmit() {
+  Future _forgotMPIN () async {
+    await store.otpService.forgotMpin('63${widget.mobileNumber}', store.user);
+  }
+
+  void _handleSubmit() async {
     if(controller.text.length == 6) {
       if(expectedOtp == int.parse(controller.text)) {
         incorrectOtp = false;
         setState(() { });
+        switch(widget.type){
+          case OtpServiceAction.FORGOT_MPIN:
+            await _forgotMPIN();
+            widget.onOk();
+            return;
+          default:
+            widget.onOk();
+        }
         Navigator.pop(context);
-        widget.onOk();
       } else {
         incorrectOtp = true;
         setState(() {});

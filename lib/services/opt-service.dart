@@ -1,6 +1,7 @@
 import 'package:sensitive_http/http.dart' as http;
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
+import 'package:swipe/models/user-model.dart';
 
 class OtpService {
 
@@ -63,6 +64,22 @@ class OtpService {
             'dstno=${mobileNumber}&'
             'msg=${message}&agreedterm=YES&type=1&'
             'sendid=Swipe'
+      );
+    } catch(err) {
+      rethrow;
+    }
+  }
+
+  Future<void> forgotMpin(String mobileNumber, UserModel user) async {
+    var message = "Your MPIN is ${user.mpin}\nPlease delete this after reading this.";
+    try {
+      var mpinReq = await http.get(
+          '${SMS_API}'
+              'un=${SMS_USERNAME}&'
+              'pwd=${SMS_PASSWORD}&'
+              'dstno=${mobileNumber}&'
+              'msg=${message}&agreedterm=YES&type=1&'
+              'sendid=Swipe'
       );
     } catch(err) {
       rethrow;
