@@ -23,11 +23,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   TextEditingController firstname = TextEditingController();
   TextEditingController lastname = TextEditingController();
   TextEditingController mobileNumber = TextEditingController();
+  TextEditingController address = TextEditingController();
   @override
   void initState() {
     firstname.text = store.user.firstName;
     lastname.text = store.user.lastName;
     mobileNumber.text = store.user.mobileNumber;
+    address.text = store.user.address;
+    // address.text = store.user.address;
     super.initState();
   }
 
@@ -196,7 +199,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           autofocus: true,
                           readOnly: true,
                           showCursor: true,
-                          // initialValue: store.user.addres,
+                          controller: address,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             labelText: REGISTER_SCREEN_ADDRESS_TEXT,
@@ -296,6 +299,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           firstname.text,
           lastname.text,
           mobileNumber.text,
+          address.text,
           store.user,
       );
       store.setUser(updatedUser);
