@@ -171,7 +171,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       physics: NeverScrollableScrollPhysics(),
                       crossAxisCount: 3,
                       mainAxisSpacing: 0,
-                      crossAxisSpacing: 0,
+                      crossAxisSpacing: 20,
                       children: [
                         ServiceButtonWidget(
                           offering: SwipeServiceOffering.CASH_IN,
