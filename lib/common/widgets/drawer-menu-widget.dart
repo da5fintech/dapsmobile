@@ -117,7 +117,10 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.toNamed('/user-profile/user-verification/verification');
+                            if(store.user.level <= 2) {
+                              Get.toNamed('/user-profile/user-verification/verification');
+                            }
+                            return;
                           },
                           child: Container(
                             height: 22,

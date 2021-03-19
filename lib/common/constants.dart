@@ -11,6 +11,7 @@ const APP_NAME = "SWIPE";
 const APP_NAME_FONT_SIZE = 20.0;
 const APP_HELP_CENTER = "Help Center";
 const APP_VERSION = "v1.1.1";
+const APP_EMAIL = "info@swipe.ph";
 
 const LOGIN_SCREEN_LOGIN_TEXT = "LOG IN";
 const LOGIN_SCREEN_REGISTER_TEXT = "REGISTER";

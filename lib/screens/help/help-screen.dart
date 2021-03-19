@@ -4,7 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'dart:core';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:swipe/screens/markdowns-views/terms-condition-screen.dart';
 
 class HelpScreen extends StatelessWidget {
@@ -44,7 +45,8 @@ class HelpScreen extends StatelessWidget {
                                     color: Colors.white, size: 24),
                               ),
                               title: Transform(
-                                transform: Matrix4.translationValues(-20, 0.0, 0),
+                                transform:
+                                    Matrix4.translationValues(-20, 0.0, 0),
                                 child: Text(
                                   HELP_SCREEN_TITLE_TEXT,
                                   style: GoogleFonts.roboto(
@@ -79,53 +81,58 @@ class HelpScreen extends StatelessWidget {
                       ),
                       Positioned(
                         top: height * 0.20,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                          width: width,
-                          height: height * 0.20,
-                          child: Card(
-                            elevation: 3,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                children: [
-                                  Flexible(
-                                      flex: 1,
-                                      child: SvgPicture.asset('assets/svg/help/help.svg'),
-                                  ),
-                                  SizedBox(width: 10),
-                                  Flexible(
-                                    flex: 3,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                        child: GestureDetector(
+                          onTap: _submitTicket,
+                          child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              width: width,
+                              height: height * 0.20,
+                              child: Card(
+                                  elevation: 3,
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    child: Row(
                                       children: [
-                                       Text(
-                                         'Submit a ticket',
-                                         style: GoogleFonts.roboto(
-                                           fontWeight: FontWeight.w500,
-                                           fontSize: 14,
-                                           height: 2,
-                                           color: COLOR_DARK_PURPLE,
-                                         )
-                                       ),
-                                        Text(
-                                            'Leave a concern by messaging us and we’ll respond as soon as we can',
-                                            style: GoogleFonts.roboto(
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5,
-                                              fontSize: 12,
-                                              color: COLOR_DARK_GRAY,
-                                            )
+                                        Flexible(
+                                          flex: 1,
+                                          child: SvgPicture.asset(
+                                              'assets/svg/help/help.svg'),
                                         ),
+                                        SizedBox(width: 10),
+                                        Flexible(
+                                            flex: 3,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text('Submit a ticket',
+                                                    style: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 14,
+                                                      height: 2,
+                                                      color: COLOR_DARK_PURPLE,
+                                                    )),
+                                                Text(
+                                                    'Leave a concern by messaging us and we’ll respond as soon as we can',
+                                                    style: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      height: 1.5,
+                                                      fontSize: 12,
+                                                      color: COLOR_DARK_GRAY,
+                                                    )),
+                                              ],
+                                            )),
+                                        Icon(Icons.arrow_forward_ios,
+                                            size: 14, color: COLOR_DARK_GRAY),
                                       ],
-                                    )
-                                  ),
-                                  Icon(Icons.arrow_forward_ios, size: 14, color: COLOR_DARK_GRAY),
-                                ],
-                              ),
-                            )
-                          )
+                                    ),
+                                  ))),
                         ),
                       ),
                     ],
@@ -134,182 +141,285 @@ class HelpScreen extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Container(
-                    child: Column(
-                      children: [
-                        SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: ListTile(
-                                  visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+                    height: height,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ExpansionTile(
+                                  tilePadding:
+                                      EdgeInsets.symmetric(horizontal: 20),
                                   title: Text(
                                     'How do I change my MPIN?',
                                     style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: Colors.black
-                                    ),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: Colors.black),
                                   ),
-                                  trailing: Icon(Icons.arrow_forward_ios, size: 12),
+                                  trailing:
+                                      Icon(Icons.arrow_forward_ios, size: 12),
+                                  childrenPadding:
+                                      EdgeInsets.symmetric(horizontal: 20),
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          text:
+                                              "Press the hamburger icon and\nGo to >",
+                                          style: GoogleFonts.roboto(
+                                            color: COLOR_DARK_GRAY,
+                                            fontSize: 12,
+                                            height: 1.5,
+                                          ),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                              text: 'Settings',
+                                              style: GoogleFonts.roboto(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            TextSpan(text: '>'),
+                                            TextSpan(
+                                                text: 'Change MPIN',
+                                                style: GoogleFonts.roboto(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w500,
+                                                )),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Divider(
-                                color: Colors.black.withOpacity(0.5),
-                                thickness: 0.5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: ListTile(
-                                  visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+                                ExpansionTile(
                                   title: Text(
                                     'How will I recover my account?',
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
-                                        color: Colors.black
-                                    ),
+                                        color: Colors.black),
                                   ),
-                                  trailing: Icon(Icons.arrow_forward_ios, size: 12),
+                                  trailing:
+                                      Icon(Icons.arrow_forward_ios, size: 12),
+                                  childrenPadding:
+                                      EdgeInsets.symmetric(horizontal: 20),
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          text: "If you're a ",
+                                          style: GoogleFonts.roboto(
+                                            color: COLOR_DARK_GRAY,
+                                            fontSize: 12,
+                                            height: 1.5,
+                                          ),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                              text: 'Verified User ',
+                                              style: GoogleFonts.roboto(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: 'you can submit a ticket at info@swipe.ph\nSomeone on our team would be happy to assist you.',
+                                              style: GoogleFonts.roboto(
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Divider(
-                                color: Colors.black.withOpacity(0.5),
-                                thickness: 0.5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: ListTile(
-                                  visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+                                ExpansionTile(
+                                  maintainState: true,
                                   title: Text(
                                     'What should I do if I forgot my MPIN?',
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
-                                        color: Colors.black
-                                    ),
+                                        color: Colors.black),
                                   ),
-                                  trailing: Icon(Icons.arrow_forward_ios, size: 12),
+                                  trailing:
+                                      Icon(Icons.arrow_forward_ios, size: 12),
+                                  childrenPadding:
+                                      EdgeInsets.symmetric(horizontal: 20),
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          text: "Send an ticket to one of our Agents to assist you",
+                                          style: GoogleFonts.roboto(
+                                            color: COLOR_DARK_GRAY,
+                                            fontSize: 12,
+                                            height: 1.5,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Divider(
-                                color: Colors.black.withOpacity(0.5),
-                                thickness: 0.5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: ListTile(
-                                  visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+                                ExpansionTile(
                                   title: Text(
                                     'I cash in, but entered the wrong number. What do I do?',
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
-                                        color: Colors.black
-                                    ),
+                                        color: Colors.black),
                                   ),
-                                  trailing: Icon(Icons.arrow_forward_ios, size: 12),
+                                  trailing:
+                                      Icon(Icons.arrow_forward_ios, size: 12),
+                                  childrenPadding: EdgeInsets.symmetric(horizontal: 20),
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          text: "As long the entered number is not match to your name, It will be refunded within 5 business days",
+                                          style: GoogleFonts.roboto(
+                                            color: COLOR_DARK_GRAY,
+                                            fontSize: 12,
+                                            height: 1.5,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Divider(
-                                color: Colors.black.withOpacity(0.5),
-                                thickness: 0.5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: ListTile(
-                                  visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+                                ExpansionTile(
                                   title: Text(
                                     'How to setup my biometric security',
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
-                                        color: Colors.black
-                                    ),
+                                        color: Colors.black),
                                   ),
-                                  trailing: Icon(Icons.arrow_forward_ios, size: 12),
+                                  trailing:
+                                      Icon(Icons.arrow_forward_ios, size: 12),
+                                  childrenPadding:
+                                  EdgeInsets.symmetric(horizontal: 20),
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          text: "If you're a ",
+                                          style: GoogleFonts.roboto(
+                                            color: COLOR_DARK_GRAY,
+                                            fontSize: 12,
+                                            height: 1.5,
+                                          ),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                              text: 'Verified User ',
+                                              style: GoogleFonts.roboto(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: 'you can submit a ticket at info@swipe.ph\nSomeone on our team would be happy to assist you.',
+                                              style: GoogleFonts.roboto(
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Divider(
-                                color: Colors.black.withOpacity(0.5),
-                                thickness: 0.5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 5),
-                                child: Text(
-                                  'View More Articles',
-                                  style: GoogleFonts.roboto(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: COLOR_DARK_PURPLE,
-                                  )
-                                ),
-                              ),
-                              Divider(
-                                color: Colors.black.withOpacity(0.5),
-                                thickness: 0.5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: ListTile(
-                                  leading: Icon(Icons.local_library, color: COLOR_DARK_PURPLE),
-                                  visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                                  title: Text(
-                                    'What can I do with SWIPE?',
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.w400,
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Text('View More Articles',
+                                      style: GoogleFonts.roboto(
                                         fontSize: 14,
-                                        color: Colors.black
+                                        fontWeight: FontWeight.w500,
+                                        color:
+                                            COLOR_DARK_PURPLE.withOpacity(.50),
+                                      )),
+                                ),
+                                Divider(
+                                  color: Colors.black.withOpacity(0.5),
+                                  thickness: 0.5,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Opacity(
+                                    opacity: .40,
+                                    child: ListTile(
+                                      leading: Icon(Icons.local_library,
+                                          color: COLOR_DARK_PURPLE),
+                                      visualDensity: VisualDensity(
+                                          vertical: -4, horizontal: 0),
+                                      title: Text(
+                                        'What can I do with SWIPE?',
+                                        style: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            color: Colors.black),
+                                      ),
+                                      trailing: Icon(Icons.arrow_forward_ios,
+                                          size: 12),
                                     ),
                                   ),
-                                  trailing: Icon(Icons.arrow_forward_ios, size: 12),
                                 ),
-                              ),
-                              Divider(
-                                color: Colors.black.withOpacity(0.5),
-                                thickness: 0.5,
-                              ),
-
-                            ]
-                          ),
-                        ),
-                        Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  _navigateTo('terms', context);
-                                },
-                                child: Text(
-                                  'Terms & Condition',
-                                  style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      color: COLOR_DARK_PURPLE
+                                Divider(
+                                  color: Colors.black.withOpacity(0.5),
+                                  thickness: 0.5,
+                                ),
+                              ]),
+                          // Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    _navigateTo('terms', context);
+                                  },
+                                  child: Text(
+                                    'Terms & Condition',
+                                    style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: COLOR_DARK_PURPLE),
                                   ),
                                 ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  _navigateTo('privacy', context);
-                                },
-                                child: Text(
-                                  'Privacy Policy',
-                                  style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      color: COLOR_DARK_PURPLE
+                                InkWell(
+                                  onTap: () {
+                                    _navigateTo('privacy', context);
+                                  },
+                                  child: Text(
+                                    'Privacy Policy',
+                                    style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: COLOR_DARK_PURPLE),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 )
@@ -323,8 +433,17 @@ class HelpScreen extends StatelessWidget {
 
   _navigateTo(type, context) {
     Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'terms'))
+        context,
+        MaterialPageRoute(
+            builder: (_) => TermsAndCondtionScreen(type: 'terms')));
+  }
+
+  _submitTicket() async {
+    final Uri _emailLaunchUri = Uri(
+      scheme: 'mailTo',
+      path: APP_EMAIL,
     );
+
+    await launch(_emailLaunchUri.toString());
   }
 }

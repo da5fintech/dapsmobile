@@ -19,7 +19,7 @@ class TermsAndCondtionScreen extends StatelessWidget {
         appBar: SubAppbarWidget(
           title: type == 'terms' ? "Terms Condition" : "Privacy Policy",
         ),
-        body: Markdown(data: type == 'terms' ? terms : privacy),
+        body: Markdown(data: type == 'terms' ? terms : ""),
       )
     );
   }
