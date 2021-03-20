@@ -230,17 +230,19 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       var res = await store.authService.login(provider);
 
-      UserModel registrant = UserModel(
-          id: res.uid,
-          displayName: res.displayName,
-          photoURL: res.photoURL,
-          emailAddress: res.email);
+      UserModel registrant = res;
+
+      // UserModel registrant = UserModel(
+      //     id: res.uid,
+      //     displayName: res.displayName,
+      //     photoURL: res.photoURL,
+      //     emailAddress: res.email);
       store.registrant = registrant;
       print("setting registrant to ${store.registrant.id}");
-      // var user = await store.accountService.findOrCreate(res.uid, res.email,
-      //     name: res.displayName, photoURL: res.photoURL);
-      // print("user url ${user.toMap()}");
-      // store.setUser(user);
+      var user = await store.accountService.findOrCreate(res.id, res.emailAddress,
+          name: res.displayName, photoURL: res.photoURL);
+      print("user url ${user.toMap()}");
+      store.setUser(user);
       Get.toNamed("/registration/registration-details-screen");
     } catch (e) {}
   }

@@ -333,7 +333,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
       print(provider);
       setState(() {});
       var user = await store.authService.login(provider);
-      var account = await store.accountService.getAccount(user.uid);
+      var account = await store.accountService.getAccount(user.id);
       if (account == null) {
         throw AuthenticationError(message: "Account not found");
       }

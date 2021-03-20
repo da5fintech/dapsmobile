@@ -37,6 +37,9 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   @override
   void initState() {
     super.initState();
+    //if mode of login is google or facebook email
+    values["emailAddress"] = store.registrant?.emailAddress ?? "";
+    _formKey.currentState?.save();
     email = FocusNode();
     password = FocusNode();
     conPassword = FocusNode();
@@ -381,6 +384,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
             displayName: "${values["firstName"]} ${values["lastName"]}");
       }
 
+      store.registrant.isNew = true;
       store.registrant.firstName = values["firstName"];
       store.registrant.lastName = values["lastName"];
       store.registrant.dateOfBirth = values["dateOfBirth"];
