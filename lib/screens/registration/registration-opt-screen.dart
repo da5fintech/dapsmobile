@@ -197,6 +197,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                                   padding: EdgeInsets.zero,
                                   onPressed: () async {
                                     var a = _appUtil.generateOtp();
+                                    print(a);
                                     expectedOtp = a;
                                     setState(() {});
                                     OverlayScreen().show(context, identifier: 'progress');

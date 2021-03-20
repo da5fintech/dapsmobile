@@ -8,6 +8,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:local_auth/auth_strings.dart';
+import 'package:swipe/models/user-model.dart';
 
 enum LoginProvider {
   GOOGLE,
@@ -48,7 +49,7 @@ class AuthenticationService {
     return _auth.currentUser;
   }
 
-  Future<User> login(LoginProvider provider) {
+  Future<UserModel> login(LoginProvider provider) {
     switch (provider) {
       case LoginProvider.GOOGLE:
         return _googleLogin();
@@ -59,7 +60,7 @@ class AuthenticationService {
     }
   }
 
-  Future<User> _googleLogin() async {
+  Future<UserModel> _googleLogin() async {
     try {
       if (null == _googleSignIn) {
         _googleSignIn = GoogleSignIn(
@@ -94,7 +95,7 @@ class AuthenticationService {
         // }
       }
 
-      return res.user;
+      return UserModel();
     } on NoSuchMethodError catch (e) {
       print('User cancelled');
       return null;
@@ -104,7 +105,7 @@ class AuthenticationService {
     }
   }
 
-  Future<User> _facebookLogin() async {
+  Future<UserModel> _facebookLogin() async {
     try {
       final _facebookSignIn = FacebookLogin();
       final res = await _facebookSignIn.logIn(
@@ -140,13 +141,20 @@ class AuthenticationService {
           final AuthCredential credential =
           FacebookAuthProvider.credential(accessToken.token);
 
-          var result = await _auth.signInWithCredential(credential);
+          // var result = await _auth.signInWithCredential(credential);
 
-          if (null != result.user) {
-            print('Logged in: ${result.user.email}');
-          }
+          // if (null != result.user) {
+          //   print('Logged in: ${result.user.email}');
+          // }
 
-          return result.user;
+          UserModel result = UserModel(
+            id: profile.userId,
+            displayName: profile.name,
+            photoURL: imageUrl,
+            emailAddress: email
+          );
+
+          return result;
           break;
         case FacebookLoginStatus.cancel:
         // User cancel log in
@@ -169,6 +177,10 @@ class AuthenticationService {
     try {
       var result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      //
+      // print(result);
+      // return result.user;
+      //
       return result.user;
     } on FirebaseAuthException catch (e) {
       print("email login failed ${email} ${password}");

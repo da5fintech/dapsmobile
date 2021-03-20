@@ -95,9 +95,7 @@ class AppUtil extends DateUtil {
   int generateOtp () {
     var rndnumber = "";
     var rnd = new Random();
-    for (var i = 0; i < 6; i++) {
-      rndnumber = rndnumber + rnd.nextInt(9).toString();
-    }
+    rndnumber = (rnd.nextInt(900000) + 100000).toString();
     return int.parse(rndnumber);
   }
 
@@ -112,9 +110,9 @@ class AppUtil extends DateUtil {
   String generateTransactionNumber () {
     var transactionNumber = "";
     var rnd = new Random();
-    for (var i = 0; i < 11; i++) {
-      transactionNumber = transactionNumber + rnd.nextInt(9).toString();
-    }
+    // for (var i = 0; i < 11; i++) {
+      transactionNumber = transactionNumber + rnd.nextInt(999999).toString();
+    // }
     return transactionNumber;
 
   }
