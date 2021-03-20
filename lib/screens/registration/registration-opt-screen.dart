@@ -198,11 +198,11 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                                   onPressed: () async {
                                     var a = _appUtil.generateOtp();
                                     print(a);
-                                    // expectedOtp = a;
-                                    // setState(() {});
-                                    // OverlayScreen().show(context, identifier: 'progress');
-                                    // await _handleOtpSms();
-                                    // OverlayScreen().pop();
+                                    expectedOtp = a;
+                                    setState(() {});
+                                    OverlayScreen().show(context, identifier: 'progress');
+                                    await _handleOtpSms();
+                                    OverlayScreen().pop();
                                   },
                                   child: Text(
                                     SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE,
