@@ -215,8 +215,8 @@ class _VerificationReviewInfromationScreenState
                     photoView(store.verification.id, 'id');
                   },
                   child: Observer(
-                    builder: (_) => Image.asset(
-                      store.idImage.path,
+                    builder: (_) => Image.file(
+                      File(store.idImage.path),
                       height: 100,
                       width: 100,
                     ),
@@ -243,11 +243,11 @@ class _VerificationReviewInfromationScreenState
                       photoView(store.verification.face, 'face');
                     },
                     child: Observer(
-                      builder: (_) => Image.asset(
-                        store.faceImage.path,
+                      builder: (_) => Image.file(
+                        File(store.faceImage.path),
                         height: 100,
                         width: 100,
-                      ),
+                      )
                     ),
                   ),
                 ),

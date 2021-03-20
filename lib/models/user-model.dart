@@ -8,6 +8,7 @@ class UserModel {
   String lastName;
   String dateOfBirth;
   String mobileNumber;
+  String address;
   String mpin;
   String emailAddress;
   String photoURL;
@@ -25,6 +26,7 @@ class UserModel {
       this.firstName,
       this.lastName,
       this.dateOfBirth,
+      this.address,
       this.mobileNumber,
       this.password,
       this.mpin,
@@ -45,6 +47,7 @@ class UserModel {
       "firstName": firstName,
       "lastName": lastName,
       "dateOfBirth": dateOfBirth,
+      "address": address,
       "mobileNumber": mobileNumber,
       "mpin": mpin,
       "emailAddress": emailAddress,
@@ -73,6 +76,7 @@ class UserModel {
     model.firstName = data["firstName"];
     model.lastName = data["lastName"];
     model.dateOfBirth = data["dateOfBirth"];
+    model.address = data['address'] ?? "";
     model.mobileNumber = data["mobileNumber"];
     model.password = data["password"];
     model.mpin = data['mpin'];

@@ -8,6 +8,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/screens/otp/otp-screen.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
@@ -197,6 +198,50 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                     // ),
                   ],
                 ),
+              ),
+              Padding(
+                  padding: EdgeInsets.only(bottom: 10, left: 20, right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      FlatButton(
+                        onPressed: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => OtpScreen(
+                                  mobileNumber: store.user.mobileNumber,
+                                  type: OtpServiceAction.FORGOT_MPIN,
+                                  btnText: "Resend your MPIN",
+                                  onOk: () => Navigator.pop(context),
+                                ),
+                              )
+                          );
+                        },
+                        child: Text(
+                            'Forgot MPIN?',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            )
+                        ),
+                      ),
+                      FlatButton(
+                        onPressed: (){
+                          Get.toNamed('/login/login-email-screen');
+                        },
+                        child: Text(
+                            'Login using Password',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            )
+                        ),
+                      ),
+                    ],
+                  )
               ),
               Spacer(),
               Padding(

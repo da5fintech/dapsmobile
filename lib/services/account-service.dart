@@ -66,10 +66,11 @@ class AccountService extends FireStoreService {
     }
   }
 
-  Future<UserModel> updateUser(firstname, lastname, mobileNumber, UserModel user) async {
+  Future<UserModel> updateUser(firstname, lastname, mobileNumber, address, UserModel user) async {
     user.firstName = firstname;
     user.lastName = lastname;
     user.mobileNumber = mobileNumber;
+    user.address = address;
     user.displayName = firstname + " " + lastname;
     user.updatedAt = DateTime.now();
     UserModel updatedUser = await create(user);

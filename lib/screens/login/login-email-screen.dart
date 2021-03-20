@@ -43,6 +43,22 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
     double width = MediaQuery.of(context).size.width;
 
     OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(Constants.COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              "Processing...",
+              style: GoogleFonts.roboto(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
       'wrong-mpin': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
         content: WrongMpinDialog(
@@ -287,6 +303,10 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
     try {
       loginError = false;
       setState(() {});
+      OverlayScreen().show(
+        context,
+        identifier: 'progress',
+      );
       var user = await store.authService
           .emailLogin(email: email.text, password: password.text);
       print("user logged in");
@@ -294,10 +314,12 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
       if (account == null) {
         throw AuthenticationError(message: "Account not found");
       }
+      OverlayScreen().pop();
       store.setUser(account);
       Get.toNamed("/services");
     } catch (e) {
       loginError = true;
+      OverlayScreen().pop();
       setState(() {});
     }
   }
@@ -308,7 +330,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
 
   void _handleSSOLogin(provider) async {
     try {
-      loginError = false;
+      print(provider);
       setState(() {});
       var user = await store.authService.login(provider);
       var account = await store.accountService.getAccount(user.uid);

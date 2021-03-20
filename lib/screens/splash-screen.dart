@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:swipe/common/constants.dart' as Constants;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +77,14 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _initialize(BuildContext context) async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.contacts,
+      Permission.storage,
+      Permission.location,
+      Permission.camera,
+      Permission.microphone,
+    ].request();
+
     User creds = store.authService.getCurrentUser();
     if (creds != null) {
       print("creds ${creds.uid}");
