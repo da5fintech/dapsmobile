@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +8,6 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/screens/registration/registration-success-dialog.dart';
 import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/widgets/primary-button.widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:swipe/screens/markdowns-views/terms-condition-screen.dart';
 import '../../main.dart';
@@ -135,39 +135,41 @@ class _RegistrationCreateMpinScreenState
                             values["mpin"] = v;
                           },
                           validator: (text) {
+                            Pattern pattern = r"\b(\d)\1+\b";
+                            RegExp regex = new RegExp(pattern);
                             if (text == null || text.isEmpty) {
                               return '${REGISTER_MPIN_SCREEN_TEXT} is required';
-                            }
-
-                            if (text.length != 6) {
+                            } else if (text.length != 6) {
                               return '${REGISTER_MPIN_SCREEN_TEXT} must be 6 digits';
+                            } else if (regex.hasMatch(text) ||
+                                text == "123456" ||
+                                text == "654321" ||
+                                text == "123123" ||
+                                text == "4564567") {
+                              return "Weak MPIN!";
                             }
                             return null;
                           },
                           decoration: InputDecoration(
-                            errorStyle: TextStyle(
-                                color: COLOR_GRAY, fontSize: 12),
+                            errorStyle:
+                                TextStyle(color: COLOR_GRAY, fontSize: 12),
                             hintText:
                                 "Create your ${REGISTER_MPIN_SCREEN_TEXT}",
                             counterStyle:
                                 GoogleFonts.roboto(color: Colors.white),
                             suffixIcon: IconButton(
-                              onPressed: () => setState(
-                                      () => obscurePin = !obscurePin),
-                              icon:obscurePin
+                              onPressed: () =>
+                                  setState(() => obscurePin = !obscurePin),
+                              icon: obscurePin
                                   ? Icon(
-                                Icons.visibility_off,
-                                color: Colors.white.withOpacity(0.6),
-                              )
+                                      Icons.visibility_off,
+                                      color: Colors.white.withOpacity(0.6),
+                                    )
                                   : Icon(
-                                Icons.visibility,
-                                color: Colors.white.withOpacity(0.6),
-                              ),
+                                      Icons.visibility,
+                                      color: Colors.white.withOpacity(0.6),
+                                    ),
                             ),
-                            // suffixIcon: Icon(
-                            //   Icons.visibility_off,
-                            //   color: Colors.white.withOpacity(.6),
-                            // ),
                           ),
                         ),
                         TextFormField(
@@ -229,12 +231,16 @@ class _RegistrationCreateMpinScreenState
                                 ),
                                 children: <TextSpan>[
                                   TextSpan(
-                                    recognizer: new TapGestureRecognizer()..onTap = () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'terms')),
-                                      );
-                                    },
+                                    recognizer: new TapGestureRecognizer()
+                                      ..onTap = () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  TermsAndCondtionScreen(
+                                                      type: 'terms')),
+                                        );
+                                      },
                                     text: 'Terms of Service',
                                     style: GoogleFonts.roboto(
                                       color: COLOR_GLOBE_BLUE,
@@ -243,12 +249,16 @@ class _RegistrationCreateMpinScreenState
                                   ),
                                   TextSpan(text: ' and\n'),
                                   TextSpan(
-                                      recognizer: new TapGestureRecognizer()..onTap = () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(builder: (_) => TermsAndCondtionScreen(type: 'privacy')),
-                                        );
-                                      },
+                                      recognizer: new TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) =>
+                                                    TermsAndCondtionScreen(
+                                                        type: 'privacy')),
+                                          );
+                                        },
                                       text: 'Privacy Policy',
                                       style: GoogleFonts.roboto(
                                         color: COLOR_GLOBE_BLUE,
@@ -276,9 +286,11 @@ class _RegistrationCreateMpinScreenState
                       SizedBox(
                           width: double.infinity,
                           child: RaisedButton(
-                              color: checkTerms ? Colors.white : Colors.white.withOpacity(0.5),
+                              color: checkTerms
+                                  ? Colors.white
+                                  : Colors.white.withOpacity(0.5),
                               onPressed: () {
-                                if(!checkTerms) return;
+                                if (!checkTerms) return;
                                 _handleRegister();
                               },
                               child: Text('Next'))),
