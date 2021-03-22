@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "723551623949-56jue2nmmk3oi6tlb75cvo6jgco0rrnb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ph.kabootek.swipeapp",
+            "certificate_hash": "b9922d3a083d516a51e8d29d96c998a4d58d28a1"
+          }
+        },
+        {
           "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "723551623949-mtgk968q0v15bj8bdri2dg3tdr4la45n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ph.kabootek.swipeapp.dev"
+              }
             }
           ]
         }
@@ -43,6 +58,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "723551623949-frmsimltf3ecgub71ml0uj9p33cvh3r2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ph.kabootek.swipeapp.dev",
+            "certificate_hash": "b9922d3a083d516a51e8d29d96c998a4d58d28a1"
+          }
+        },
+        {
+          "client_id": "723551623949-rrtp7sju33hlb6tbohk25ekskrffdg8t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ph.kabootek.swipeapp.dev",
+            "certificate_hash": "b24f9e9d85f243129ceab013df85a2d5ede29769"
+          }
+        },
+        {
           "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -58,6 +89,13 @@
             {
               "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "723551623949-mtgk968q0v15bj8bdri2dg3tdr4la45n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ph.kabootek.swipeapp.dev"
+              }
             }
           ]
         }

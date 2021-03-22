@@ -75,27 +75,32 @@ class AuthenticationService {
       final GoogleSignInAuthentication googleAuth =
       await googleUser.authentication;
 
-      // print(googleUser.email);
-      // print(googleUser.displayName);
+      print(googleUser.email);
+      print(googleUser.displayName);
 
-      final AuthCredential credential = GoogleAuthProvider.getCredential(
+      final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      var res = await _auth.signInWithCredential(credential);
+      // var res = await _auth.signInWithCredential(credential);
 
-      if (null != res.user) {
-        print('Logged in: ${res.user.email}');
+      // if (null != res.user) {
+      //   print('Logged in: ${res.user.email}');
         // additional step for sync
         // if (res.user.photoUrl == null && googleUser.photoUrl != null) {
         //   UserUpdateInfo updateUser = UserUpdateInfo();
         //   updateUser.photoUrl = googleUser.photoUrl;
         //   await res.user.updateProfile(updateUser);
         // }
-      }
+      // }
 
-      return UserModel();
+      return UserModel(
+          id: googleUser.id,
+          displayName: googleUser.displayName,
+          photoURL: googleUser.photoUrl,
+          emailAddress:googleUser.email,
+      );
     } on NoSuchMethodError catch (e) {
       print('User cancelled');
       return null;
