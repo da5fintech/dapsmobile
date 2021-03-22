@@ -238,11 +238,11 @@ class _OtpScreenState extends State<OtpScreen> {
 
   Future _handleOtpSms() async {
     await store.otpService
-        .sendOtp(mobileNumber: '63${widget.mobileNumber}', otp: expectedOtp);
+        .sendOtp(mobileNumber: widget.mobileNumber, otp: expectedOtp);
   }
 
   Future _forgotMPIN () async {
-    await store.otpService.forgotMpin('63${widget.mobileNumber}', store.user);
+    await store.otpService.forgotMpin(widget.mobileNumber, store.user);
   }
 
   void _handleSubmit() async {

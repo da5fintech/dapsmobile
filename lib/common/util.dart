@@ -83,6 +83,10 @@ class AppUtil extends DateUtil {
       return null;
   }
 
+  String removeCountryExtension (String mobileNumber) {
+    return mobileNumber.substring(2);
+  }
+
   int generateUid() {
     var rndnumber = "";
     var rnd = new Random();

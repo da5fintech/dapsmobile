@@ -1,14 +1,12 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/screens/otp/otp-screen.dart';
-import 'package:swipe/screens/user-profile/user-verification/verification-main-screen.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
 
@@ -20,17 +18,19 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
+  AppUtil _appUtil = AppUtil();
   TextEditingController firstname = TextEditingController();
   TextEditingController lastname = TextEditingController();
   TextEditingController mobileNumber = TextEditingController();
   TextEditingController address = TextEditingController();
+
+
   @override
   void initState() {
     firstname.text = store.user.firstName;
     lastname.text = store.user.lastName;
-    mobileNumber.text = store.user.mobileNumber;
+    mobileNumber.text = _appUtil.removeCountryExtension(store.user.mobileNumber);
     address.text = store.user.address;
-    // address.text = store.user.address;
     super.initState();
   }
 

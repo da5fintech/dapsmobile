@@ -268,7 +268,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
   Future _handleOtpSms() async {
     //Generate OTP
     await store.otpService.sendOtp(
-        mobileNumber: "63${store.registrant.mobileNumber}", otp: expectedOtp);
+        mobileNumber: store.registrant.mobileNumber, otp: expectedOtp);
   }
 
   _handleRegister() async {
@@ -292,7 +292,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
           }
 
           await store.accountService.create(store.registrant);
-          await store.otpService.smsGreeting('63${store.registrant.mobileNumber}');
+          await store.otpService.smsGreeting('${store.registrant.mobileNumber}');
           store.setUser(store.registrant);
           OverlayScreen().show(
             context,
