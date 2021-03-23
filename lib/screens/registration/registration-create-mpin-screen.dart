@@ -136,6 +136,7 @@ class _RegistrationCreateMpinScreenState
                           },
                           validator: (text) {
                             Pattern pattern = r"\b(\d)\1+\b";
+                            Pattern specialPatt = "/^[0-9]*/";
                             RegExp regex = new RegExp(pattern);
                             if (text == null || text.isEmpty) {
                               return '${REGISTER_MPIN_SCREEN_TEXT} is required';
@@ -150,6 +151,9 @@ class _RegistrationCreateMpinScreenState
                             }
                             return null;
                           },
+                          inputFormatters: [
+                            new FilteringTextInputFormatter.deny(new RegExp('[ -.,]'))
+                          ],
                           decoration: InputDecoration(
                             errorStyle:
                                 TextStyle(color: COLOR_GRAY, fontSize: 12),
