@@ -126,10 +126,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         child: CircleAvatar(
                           maxRadius: 50,
                           backgroundColor: COLOR_ORANGE,
-                          child: Icon(
-                            Icons.person,
-                            size: 100,
-                            color: Colors.white,
+                          child: store.user.photoURL == null
+                              ? Text(
+                            store.user.getInitials(),
+                            style: GoogleFonts.roboto(color: Colors.white, fontSize: 80),
+                          )
+                              : ClipOval(
+                            child: Image.network(store.user.photoURL),
                           ),
                         ),
                       ),

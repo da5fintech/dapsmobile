@@ -80,14 +80,14 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                   Get.toNamed('/user-profile');
                 },
                 leading: CircleAvatar(
-                  maxRadius: 30,
                   backgroundColor: COLOR_ORANGE,
-                  child: Text(
-                    '${store.user.getInitials()}',
-                    style: GoogleFonts.roboto(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
+                  child: store.user.photoURL == null
+                      ? Text(
+                    store.user.getInitials(),
+                    style: GoogleFonts.roboto(color: Colors.white),
+                  )
+                      : ClipOval(
+                    child: Image.network(store.user.photoURL),
                   ),
                 ),
                 title: Text(
