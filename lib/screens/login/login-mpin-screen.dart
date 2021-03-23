@@ -8,8 +8,10 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/screens/otp/otp-screen.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
+import 'package:swipe/screens/settings/change-swipe-mpin/change-swipe-mpin-screen.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
@@ -69,6 +71,33 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
         content: WrongMpinDialog(
           onOk: () {
             _handleOk();
+          },
+        ),
+      ),
+      'mpin-recovery': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: SwipeDialog(
+          title: "MPIN Recovery",
+          contentMessage: "We need to do 2-step authentication before resetting your MPIN. 6-digit code will be sent to your registered mobile number.",
+          cancelBtn: true,
+          onOk: () async {
+            OverlayScreen().pop();
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => OtpScreen(
+                    mobileNumber: store.user.mobileNumber,
+                    type: OtpServiceAction.FORGOT_MPIN,
+                    btnText: "Proceed",
+                    onOk: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => ChangeSwipeMpinScreen()),
+                      );
+                    }
+                  ),
+                )
+            );
           },
         ),
       ),
@@ -206,16 +235,9 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                     children: [
                       FlatButton(
                         onPressed: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => OtpScreen(
-                                  mobileNumber: store.user.mobileNumber,
-                                  type: OtpServiceAction.FORGOT_MPIN,
-                                  btnText: "Resend your MPIN",
-                                  onOk: () => Navigator.pop(context),
-                                ),
-                              )
+                          OverlayScreen().show(
+                            context,
+                            identifier: 'mpin-recovery',
                           );
                         },
                         child: Text(

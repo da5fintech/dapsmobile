@@ -3,18 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 
-class SwipeDialog extends StatelessWidget {
-  final Function onOk;
-  final String title;
-  final String contentMessage;
-  bool cancelBtn = false;
+class GreetDialog extends StatelessWidget {
+  String title;
+  String contentMessage;
+  String btnText;
+  Function onOk;
+  bool cancelBtn;
 
-  SwipeDialog({
-    @required this.onOk,
-    @required this.title,
-    @required this.contentMessage,
-    this.cancelBtn,
-  });
+  GreetDialog({this.title, this.contentMessage, this.onOk, this.btnText, this.cancelBtn});
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +22,8 @@ class SwipeDialog extends StatelessWidget {
       contentPadding: EdgeInsets.only(top: 15, left: 20, right: 30),
       title: Row(
         children: [
+          Icon(Icons.check_circle, size: 32, color: COLOR_GREEN),
+          SizedBox(width: 10),
           Text(
             title,
             style: GoogleFonts.roboto(
@@ -47,23 +46,22 @@ class SwipeDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
-              width: MediaQuery.of(context).size.width,
               child: ButtonTheme(
                 buttonColor: COLOR_DARK_PURPLE,
-                child: RaisedButton(
-                  elevation: 0,
+                child: FlatButton(
                   onPressed: () {
                     onOk();
                   },
                   child: Text(
-                    'OK',
+                    btnText,
                     style: GoogleFonts.roboto(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                      color: COLOR_DARK_PURPLE,
                     ),
                   ),
                 ),
