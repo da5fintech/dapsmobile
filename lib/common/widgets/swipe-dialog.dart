@@ -29,7 +29,7 @@ class SwipeDialog extends StatelessWidget {
             title,
             style: GoogleFonts.roboto(
               color: Colors.black,
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
           ),
