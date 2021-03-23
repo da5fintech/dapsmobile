@@ -231,6 +231,8 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                             child: QrImage(
                               data: qrData,
                               size: height * 0.25,
+                              embeddedImage: AssetImage('assets/images/ic_launcher.png'),
+                              embeddedImageEmitsError: true,
                             ),
                           ),
                           if (userNickname.isNotEmpty) ...[

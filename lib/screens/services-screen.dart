@@ -194,7 +194,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       },
                       // icon: Image.asset('assets/icons/services/remittance.png'),
                       icon: SvgPicture.asset(
-                          'assets/svg/services/remittance.svg'),
+                          'assets/svg/services/direct-send.svg'),
                       text: SERVICES_SCREEN_REMITTANCE_TEXT,
                     ),
                     ServiceButtonWidget(
