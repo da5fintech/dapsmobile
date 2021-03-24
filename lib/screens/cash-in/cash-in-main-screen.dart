@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/fixtures.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/screens/cash-in/cash-in-map-screen.dart';
 import 'package:swipe/screens/cash-in/cash-in-partner-details-screen.dart';
 
@@ -71,6 +75,29 @@ class _CashInMainScreen extends State<CashInMainScreen>{
     ThemeData td = createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    OverlayScreen().saveScreens({
+      'location-dialog': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: SwipeDialog(
+          title: 'Allowed Location Permission',
+          contentMessage: "In order for us to locate you to our nearby partners we need you allow us access your location.",
+          cancelBtn: true,
+          onOk: () async {
+            OverlayScreen().pop();
+            Position a = await _determinePosition();
+            if(!await Permission.locationWhenInUse.serviceStatus.isEnabled) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => CashInMapScreen(position: a)),
+              );
+            }
+          }
+        )
+      ),
+    });
+
+
 
     return Theme(
       data: td,
@@ -163,11 +190,19 @@ class _CashInMainScreen extends State<CashInMainScreen>{
               ),
             ),
             GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => CashInMapScreen()),
-                );
+              onTap: () async {
+                if(!await Permission.locationWhenInUse.serviceStatus.isEnabled) {
+                  OverlayScreen().show(
+                    context,
+                    identifier: 'location-dialog',
+                  );
+                } else {
+                  Position a = await _determinePosition();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => CashInMapScreen(position: a)),
+                  );
+                }
               },
               child: Container(
                 height: height * 0.15,
@@ -274,5 +309,36 @@ class _CashInMainScreen extends State<CashInMainScreen>{
         )
       ),
     );
+  }
+
+
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.deniedForever) {
+        return Future.error(
+            'Location permissions are permanently denied, we cannot request permissions.');
+      }
+
+      if (permission == LocationPermission.denied) {
+        return Future.error(
+            'Location permissions are denied');
+      }
+    }
+
+    Position a = await Geolocator.getCurrentPosition();
+    print(a.longitude);
+    print(a.latitude);
+
+    return await Geolocator.getCurrentPosition();
   }
 }
