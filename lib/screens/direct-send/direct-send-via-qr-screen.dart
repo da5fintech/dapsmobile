@@ -12,6 +12,7 @@ import 'package:swipe/main.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/screens/payment/processing-failed-dialog.dart';
 import 'package:swipe/store/application-store.dart';
+import 'package:vibration/vibration.dart';
 
 final store = getIt<ApplicationStore>();
 
@@ -181,6 +182,7 @@ class _DirectSendViaQrScreen extends State<DirectSendViaQrScreen> {
       var data = scanQr.split('/');
       if(data.length != 3) {
         print('No amount was entered');
+        Vibration.vibrate(duration: 200);
         return null;
       }
       OverlayScreen().show(

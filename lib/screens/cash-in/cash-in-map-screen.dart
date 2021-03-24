@@ -9,8 +9,13 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:geolocator/geolocator.dart';
 
 class CashInMapScreen extends StatefulWidget {
+  Position position;
+
+  CashInMapScreen({this.position});
+
   @override
   _CashInMapScreenState createState() => _CashInMapScreenState();
 }
@@ -20,22 +25,47 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
   BitmapDescriptor customIcon1;
   AppUtil _appUtil = AppUtil();
   Set<Marker> markers;
-
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(14.7954784, 120.8824452),
-    zoom: 14.4746,
-  );
-
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(14.7954784, 120.8824452),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  Position position;
+  CameraPosition _kGooglePlex;
 
   @override
   void initState() {
     super.initState();
+    _kGooglePlex = CameraPosition(
+          target:  LatLng(widget.position.latitude, widget.position.longitude),
+          zoom: 14.4746,
+    );
+    setState(() { });
     markers = Set.from([]);
+  }
+
+
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.deniedForever) {
+        return Future.error(
+            'Location permissions are permanently denied, we cannot request permissions.');
+      }
+
+      if (permission == LocationPermission.denied) {
+        return Future.error(
+            'Location permissions are denied');
+      }
+    }
+
+    Position a = await Geolocator.getCurrentPosition();
+
+    return await Geolocator.getCurrentPosition();
   }
 
   @override
@@ -50,6 +80,17 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
       child: Scaffold(
         appBar: SubAppbarWidget(
           title: 'Partners Location',
+          actions: [
+            IconButton(
+              onPressed: () async {
+                Position a = await _determinePosition();
+                setState(() {
+                  position = a;
+                });
+              },
+              icon: Icon(Icons.gps_fixed),
+            )
+          ],
         ),
         body: Container(
           height: height,
@@ -63,6 +104,13 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
                 markers: markers,
                 onMapCreated: (GoogleMapController controller) {
                   _controller.complete(controller);
+                  controller.animateCamera(CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                      bearing: 0,
+                      target: LatLng(position.latitude, position.longitude),
+                      zoom: 14.4746,
+                    ),
+                  ));
                 },
                 onTap: (pos) async {
                   // Uint8List markerIcon = await _appUtil.getBytesFromAsset(
@@ -104,37 +152,36 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                  child: Card(
-                    elevation: 20,
-                    child: ListTile(
-                      onTap: () {},
-                      leading: Image.asset(
-                        'assets/icons/services/cash-in/7-eleven.png',
-                      ),
-                      title: Text(
-                        '7 Eleven',
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.w500,
-                          color: COLOR_DARK_PURPLE,
-                          fontSize: 14,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Santa Ana, Bulacan',
-                        style: GoogleFonts.roboto(
-                          fontSize: 12,
-                          color: COLOR_DARK_GRAY,
-                          height: 1.5,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.bottomCenter,
+              //   child: Padding(
+              //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              //     child: Card(
+              //       elevation: 20,
+              //       child: ListTile(
+              //         leading: Image.asset(
+              //           'assets/icons/services/cash-in/7-eleven.png',
+              //         ),
+              //         title: Text(
+              //           '7 Eleven',
+              //           style: GoogleFonts.roboto(
+              //             fontWeight: FontWeight.w500,
+              //             color: COLOR_DARK_PURPLE,
+              //             fontSize: 14,
+              //           ),
+              //         ),
+              //         subtitle: Text(
+              //           'Santa Ana, Bulacan',
+              //           style: GoogleFonts.roboto(
+              //             fontSize: 12,
+              //             color: COLOR_DARK_GRAY,
+              //             height: 1.5,
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
