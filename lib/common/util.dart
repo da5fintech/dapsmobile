@@ -1,7 +1,10 @@
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-
+import 'package:image/image.dart' as imglib;
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +13,9 @@ import 'package:swipe/common/common-alert.dialog.dart';
 import 'package:swipe/common/size.config.dart';
 import 'dart:io';
 import 'dart:core';
+
+typedef HandleDetection = Future<List<Face>> Function(
+    FirebaseVisionImage image);
 
 class AppUtil extends DateUtil {
   static AppUtil _instance = AppUtil._internal();
@@ -83,6 +89,10 @@ class AppUtil extends DateUtil {
       return null;
   }
 
+  String removeCountryExtension (String mobileNumber) {
+    return mobileNumber.substring(2);
+  }
+
   int generateUid() {
     var rndnumber = "";
     var rnd = new Random();
@@ -148,6 +158,120 @@ class AppUtil extends DateUtil {
     } catch(err) {
       rethrow;
     }
+  }
+
+
+  ///image convertion
+  Future<List<int>> convertImagetoPng(CameraImage image) async {
+    try {
+      imglib.Image img;
+      if (image.format.group == ImageFormatGroup.yuv420) {
+        img = _convertYUV420(image);
+      } else if (image.format.group == ImageFormatGroup.bgra8888) {
+        img = _convertBGRA8888(image);
+      }
+
+      imglib.PngEncoder pngEncoder = new imglib.PngEncoder();
+
+      // Convert to png
+      List<int> png = pngEncoder.encodeImage(img);
+      return png;
+    } catch (e) {
+      print(">>>>>>>>>>>> ERROR:" + e.toString());
+    }
+    return null;
+  }
+
+  imglib.Image _convertBGRA8888(CameraImage image) {
+    return imglib.Image.fromBytes(
+      image.width,
+      image.height,
+      image.planes[0].bytes,
+      format: imglib.Format.bgra,
+    );
+  }
+
+  imglib.Image _convertYUV420(CameraImage image) {
+    var img = imglib.Image(image.width, image.height); // Create Image buffer
+
+    Plane plane = image.planes[0];
+    const int shift = (0xFF << 24);
+
+    // Fill image buffer with plane[0] from YUV420_888
+    for (int x = 0; x < image.width; x++) {
+      for (int planeOffset = 0;
+      planeOffset < image.height * image.width;
+      planeOffset += image.width) {
+        final pixelColor = plane.bytes[planeOffset + x];
+        // color: 0x FF  FF  FF  FF
+        //           A   B   G   R
+        // Calculate pixel color
+        var newVal =
+        shift | (pixelColor << 16) | (pixelColor << 8) | pixelColor;
+
+        img.data[planeOffset + x] = newVal;
+      }
+    }
+
+    return img;
+  }
+
+  Future<CameraDescription> getCamera(CameraLensDirection dir) async {
+    return await availableCameras().then(
+          (List<CameraDescription> cameras) => cameras.firstWhere(
+            (CameraDescription camera) => camera.lensDirection == dir,
+      ),
+    );
+  }
+
+  ImageRotation rotationIntToImageRotation(int rotation) {
+    switch (rotation) {
+      case 0:
+        return ImageRotation.rotation0;
+      case 90:
+        return ImageRotation.rotation90;
+      case 180:
+        return ImageRotation.rotation180;
+      default:
+        assert(rotation == 270);
+        return ImageRotation.rotation270;
+    }
+  }
+
+  Future<List<Face>> detect(CameraImage image, HandleDetection handleDetection,
+      ImageRotation rotation) async {
+    return handleDetection(
+      FirebaseVisionImage.fromBytes(
+        concatenatePlanes(image.planes),
+        buildMetaData(image, rotation),
+      ),
+    );
+  }
+
+  Uint8List concatenatePlanes(List<Plane> planes) {
+    final WriteBuffer allBytes = WriteBuffer();
+    planes.forEach((Plane plane) => allBytes.putUint8List(plane.bytes));
+    return allBytes.done().buffer.asUint8List();
+  }
+
+  FirebaseVisionImageMetadata buildMetaData(
+      CameraImage image,
+      ImageRotation rotation,
+      ) {
+    return FirebaseVisionImageMetadata(
+      rawFormat: image.format.raw,
+      size: Size(image.width.toDouble(), image.height.toDouble()),
+      rotation: rotation,
+      planeData: image.planes.map(
+            (Plane plane) {
+          return FirebaseVisionImagePlaneMetadata(
+            bytesPerRow: plane.bytesPerRow,
+            height: plane.height,
+            width: plane.width,
+          );
+        },
+      ).toList(),
+    );
   }
 
 

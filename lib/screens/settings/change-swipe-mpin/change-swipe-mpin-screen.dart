@@ -5,6 +5,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/greet-dialog.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
@@ -144,6 +145,21 @@ class _ConfirmSwipeMpinScreenState extends State<ConfirmSwipeMpinScreen> {
           ],
         ),
       ),
+      'success-pin-update': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: GreetDialog(
+          title: "Congratulations",
+          contentMessage: "We’ve successfully changed your MPIN for your account!",
+          cancelBtn: false,
+          btnText: "PROCEED TO LOGIN",
+          onOk: () {
+            OverlayScreen().pop();
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
+        ),
+      ),
       'updated-pin': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
         content: AlertDialog(
@@ -277,7 +293,7 @@ class _ConfirmSwipeMpinScreenState extends State<ConfirmSwipeMpinScreen> {
                             store.user.mpin = controller.text;
                             OverlayScreen().show(
                               context,
-                              identifier: 'updated-pin',
+                              identifier: 'success-pin-update',
                             );
                           } catch (onErr) {
                             OverlayScreen().pop();

@@ -46,36 +46,6 @@ class _DirectSendViaQrScreen extends State<DirectSendViaQrScreen> {
   }
 
 
-  void _handleNext() async {
-    try {
-      var data = scanQr.split('/');
-      if(data.length != 3) {
-        print('No amount was entered');
-        return null;
-      }
-      OverlayScreen().show(
-        context,
-        identifier: 'progress',
-      );
-      final a = await store.directPayService.getFees(
-          data[2], data[0]);
-      if(!a.status) {
-        OverlayScreen().pop();
-        OverlayScreen().show(
-          context,
-          identifier: 'processing-failed',
-        );
-        return null;
-      }
-
-      store.createTransaction(SwipeServiceOffering.DIRECT_SEND, "");
-      store.setTransactionProduct(DirectPayProduct(
-          name: '', mobileNumber: '63${data[0]}', message: "", fee: a.fee, amount: double.tryParse(a.amount)),
-          double.parse(a.amount));
-      OverlayScreen().pop();
-      Get.toNamed("/services/payment/payment-verification-screen");
-    } catch(err) {}
-  }
 
   @override
   void dispose() {
@@ -204,6 +174,37 @@ class _DirectSendViaQrScreen extends State<DirectSendViaQrScreen> {
         ),
       ),
     );
+  }
+
+  void _handleNext() async {
+    try {
+      var data = scanQr.split('/');
+      if(data.length != 3) {
+        print('No amount was entered');
+        return null;
+      }
+      OverlayScreen().show(
+        context,
+        identifier: 'progress',
+      );
+      final a = await store.directPayService.getFees(
+          data[2], data[0]);
+      if(!a.status) {
+        OverlayScreen().pop();
+        OverlayScreen().show(
+          context,
+          identifier: 'processing-failed',
+        );
+        return null;
+      }
+
+      store.createTransaction(SwipeServiceOffering.DIRECT_SEND, "");
+      store.setTransactionProduct(DirectPayProduct(
+          name: '', mobileNumber: '${data[0]}', message: "", fee: a.fee, amount: double.tryParse(a.amount)),
+          double.parse(a.amount));
+      OverlayScreen().pop();
+      Get.toNamed("/services/payment/payment-verification-screen");
+    } catch(err) {}
   }
 }
 

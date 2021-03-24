@@ -8,6 +8,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/services/account-service.dart';
 import 'package:swipe/store/application-store.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/main.dart';
 
 final store = getIt<ApplicationStore>();
@@ -23,6 +24,7 @@ class DrawerMenuWidget extends StatefulWidget {
 
 class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
   List<TransactionRecordModel> transactions = [];
+  AppUtil _appUtil = AppUtil();
 
   @override
   void initState() {
@@ -78,14 +80,14 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                   Get.toNamed('/user-profile');
                 },
                 leading: CircleAvatar(
-                  maxRadius: 30,
                   backgroundColor: COLOR_ORANGE,
-                  child: Text(
-                    '${store.user.getInitials()}',
-                    style: GoogleFonts.roboto(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
+                  child: store.user.photoURL == null
+                      ? Text(
+                    store.user.getInitials(),
+                    style: GoogleFonts.roboto(color: Colors.white),
+                  )
+                      : ClipOval(
+                    child: Image.network(store.user.photoURL),
                   ),
                 ),
                 title: Text(
@@ -96,7 +98,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                       fontSize: 16),
                 ),
                 subtitle: Text(
-                  '+63${store.user.mobileNumber}',
+                  '+${store.user.mobileNumber}',
                   style: GoogleFonts.roboto(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,

@@ -389,7 +389,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
       store.registrant.lastName = values["lastName"];
       store.registrant.dateOfBirth = values["dateOfBirth"];
       store.registrant.address = values['address'];
-      store.registrant.mobileNumber = values["mobileNumber"];
+      store.registrant.mobileNumber = '63${values['mobileNumber']}';
       store.registrant.password = values["password"];
       Get.toNamed("/registration/registration-create-mpin-screen");
     }

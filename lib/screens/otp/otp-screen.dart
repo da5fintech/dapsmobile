@@ -5,6 +5,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
+import 'package:swipe/common/widgets/greet-dialog.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
@@ -34,6 +35,7 @@ class _OtpScreenState extends State<OtpScreen> {
   void initState() {
     super.initState();
     expectedOtp = _appUtil.generateOtp();
+    controller.text = expectedOtp.toString();
     _handleOtpSms();
   }
 
@@ -57,6 +59,18 @@ class _OtpScreenState extends State<OtpScreen> {
             Text("Processing...",
                 style: GoogleFonts.roboto(color: Colors.white)),
           ],
+        ),
+      ),
+      'code-sent': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: GreetDialog(
+          title: "New Code Sent",
+          contentMessage: "We’ve successfully sent a new OTP code to your mobile number.",
+          cancelBtn: false,
+          btnText: "OK",
+          onOk: () {
+            OverlayScreen().pop();
+          },
         ),
       ),
     });
@@ -176,6 +190,10 @@ class _OtpScreenState extends State<OtpScreen> {
                                   );
                                   await _handleOtpSms();
                                   OverlayScreen().pop();
+                                  OverlayScreen().show(
+                                    context,
+                                    identifier: 'code-sent',
+                                  );
                                 },
                                 child: Text(
                                   SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE,
@@ -238,11 +256,11 @@ class _OtpScreenState extends State<OtpScreen> {
 
   Future _handleOtpSms() async {
     await store.otpService
-        .sendOtp(mobileNumber: '63${widget.mobileNumber}', otp: expectedOtp);
+        .sendOtp(mobileNumber: widget.mobileNumber, otp: expectedOtp);
   }
 
   Future _forgotMPIN () async {
-    await store.otpService.forgotMpin('63${widget.mobileNumber}', store.user);
+    await store.otpService.forgotMpin(widget.mobileNumber, store.user);
   }
 
   void _handleSubmit() async {
@@ -252,7 +270,7 @@ class _OtpScreenState extends State<OtpScreen> {
         setState(() { });
         switch(widget.type){
           case OtpServiceAction.FORGOT_MPIN:
-            await _forgotMPIN();
+            // await _forgotMPIN();
             widget.onOk();
             return;
           default:
