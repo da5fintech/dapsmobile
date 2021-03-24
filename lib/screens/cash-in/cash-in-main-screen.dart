@@ -5,7 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:permission_handler/permission_handler.dart' as handler;
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/fixtures.dart';
 import 'package:swipe/common/size.config.dart';
@@ -85,12 +85,14 @@ class _CashInMainScreen extends State<CashInMainScreen>{
           cancelBtn: true,
           onOk: () async {
             OverlayScreen().pop();
-            Position a = await _determinePosition();
-            if(!await Permission.locationWhenInUse.serviceStatus.isEnabled) {
+            if(await handler.Permission.location.request().isGranted) {
+              Position a = await _determinePosition();
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => CashInMapScreen(position: a)),
               );
+            } else {
+              await handler.openAppSettings();
             }
           }
         )
@@ -191,18 +193,10 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             ),
             GestureDetector(
               onTap: () async {
-                if(!await Permission.locationWhenInUse.serviceStatus.isEnabled) {
-                  OverlayScreen().show(
-                    context,
-                    identifier: 'location-dialog',
-                  );
-                } else {
-                  Position a = await _determinePosition();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => CashInMapScreen(position: a)),
-                  );
-                }
+                OverlayScreen().show(
+                  context,
+                  identifier: 'location-dialog',
+                );
               },
               child: Container(
                 height: height * 0.15,

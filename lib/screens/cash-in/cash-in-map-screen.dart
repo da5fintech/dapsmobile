@@ -25,11 +25,8 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
   BitmapDescriptor customIcon1;
   AppUtil _appUtil = AppUtil();
   Set<Marker> markers;
+  Position position;
   CameraPosition _kGooglePlex;
-  // CameraPosition _kGooglePlex = CameraPosition(
-  //   target:  LatLng(14.598075,120.9810567),
-  //   zoom: 14.4746,
-  // );
 
   @override
   void initState() {
@@ -67,8 +64,6 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
     }
 
     Position a = await Geolocator.getCurrentPosition();
-    print(a.longitude);
-    print(a.latitude);
 
     return await Geolocator.getCurrentPosition();
   }
@@ -87,7 +82,12 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
           title: 'Partners Location',
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                Position a = await _determinePosition();
+                setState(() {
+                  position = a;
+                });
+              },
               icon: Icon(Icons.gps_fixed),
             )
           ],
@@ -104,6 +104,13 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
                 markers: markers,
                 onMapCreated: (GoogleMapController controller) {
                   _controller.complete(controller);
+                  controller.animateCamera(CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                      bearing: 0,
+                      target: LatLng(position.latitude, position.longitude),
+                      zoom: 14.4746,
+                    ),
+                  ));
                 },
                 onTap: (pos) async {
                   // Uint8List markerIcon = await _appUtil.getBytesFromAsset(
@@ -120,64 +127,61 @@ class _CashInMapScreenState extends State<CashInMapScreen> {
                   // });
                 },
               ),
-              // Align(
-              //   alignment: Alignment.topCenter,
-              //   child: Container(
-              //     padding: EdgeInsets.all(15),
-              //     decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.circular(50),
-              //     ),
-              //     child: Card(
-              //       elevation: 10,
-              //       child: TextField(
-              //         autofocus: true,
-              //         textInputAction: TextInputAction.next,
-              //         decoration: InputDecoration(
-              //             floatingLabelBehavior: FloatingLabelBehavior.always,
-              //             prefixIcon: Icon(Icons.search),
-              //             border: InputBorder.none,
-              //             focusedBorder: InputBorder.none,
-              //             enabledBorder: InputBorder.none,
-              //             errorBorder: InputBorder.none,
-              //             disabledBorder: InputBorder.none,
-              //             hintText: 'Search Partners'),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                alignment: Alignment.topCenter,
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
                   child: Card(
-                    elevation: 20,
-                    child: ListTile(
-                      onTap: () async {
-                        await _determinePosition();
-                      },
-                      leading: Image.asset(
-                        'assets/icons/services/cash-in/7-eleven.png',
-                      ),
-                      title: Text(
-                        '7 Eleven',
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.w500,
-                          color: COLOR_DARK_PURPLE,
-                          fontSize: 14,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Santa Ana, Bulacan',
-                        style: GoogleFonts.roboto(
-                          fontSize: 12,
-                          color: COLOR_DARK_GRAY,
-                          height: 1.5,
-                        ),
-                      ),
+                    elevation: 10,
+                    child: TextField(
+                      autofocus: true,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          prefixIcon: Icon(Icons.search),
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                          hintText: 'Search Partners'),
                     ),
                   ),
                 ),
               ),
+              // Align(
+              //   alignment: Alignment.bottomCenter,
+              //   child: Padding(
+              //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              //     child: Card(
+              //       elevation: 20,
+              //       child: ListTile(
+              //         leading: Image.asset(
+              //           'assets/icons/services/cash-in/7-eleven.png',
+              //         ),
+              //         title: Text(
+              //           '7 Eleven',
+              //           style: GoogleFonts.roboto(
+              //             fontWeight: FontWeight.w500,
+              //             color: COLOR_DARK_PURPLE,
+              //             fontSize: 14,
+              //           ),
+              //         ),
+              //         subtitle: Text(
+              //           'Santa Ana, Bulacan',
+              //           style: GoogleFonts.roboto(
+              //             fontSize: 12,
+              //             color: COLOR_DARK_GRAY,
+              //             height: 1.5,
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
