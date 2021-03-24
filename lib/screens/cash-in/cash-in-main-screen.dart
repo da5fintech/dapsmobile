@@ -99,8 +99,6 @@ class _CashInMainScreen extends State<CashInMainScreen>{
       ),
     });
 
-
-
     return Theme(
       data: td,
       child: Scaffold(
