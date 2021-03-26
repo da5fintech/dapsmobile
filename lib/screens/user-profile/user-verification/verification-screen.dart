@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/models/UserVerificationModel.dart';
@@ -180,17 +181,21 @@ class VerificationScreen extends StatelessWidget {
                       child: ButtonTheme(
                         buttonColor: COLOR_DARK_PURPLE,
                         child: RaisedButton(
-                          // shape: ,
                           onPressed: () async {
-                            store.verification = UserVerificationModel();
-                            final cameras = await availableCameras();
-                            final firstCamera = cameras.first;
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => VerificationPhotoIdScreen(
-                                cameras: firstCamera,
-                              ))
-                            );
+                            if(await Permission.camera.request().isGranted) {
+                              store.verification = UserVerificationModel();
+                              final cameras = await availableCameras();
+                              final firstCamera = cameras.first;
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (_) => VerificationPhotoIdScreen(
+                                    cameras: firstCamera,
+                                  ))
+                              );
+                            } else {
+                              openAppSettings();
+                            }
+
                           },
                           child: Text(
                             'GET FULLY VERIFIED',
