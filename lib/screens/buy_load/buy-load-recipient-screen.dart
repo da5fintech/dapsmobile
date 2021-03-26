@@ -73,6 +73,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                                     setState(() {});
                                   },
                                   child: TextFormField(
+                                    maxLength: 10,
                                     keyboardType: TextInputType.phone,
                                     validator: (text) {
                                       if (text == null || text.isEmpty) {
@@ -84,33 +85,40 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                                       setState(() {
                                         showSuggestion = true;
                                         numbers = controller.text.isEmpty
-                                            ? store
-                                                .saveSuggestionsServices.saveNumbers
-                                            : store
-                                                .saveSuggestionsServices.saveNumbers
-                                                .where((el) =>
-                                                    el.mobileNumber.contains(text))
+                                            ? store.saveSuggestionsServices
+                                                .saveNumbers
+                                            : store.saveSuggestionsServices
+                                                .saveNumbers
+                                                .where((el) => el.mobileNumber
+                                                    .contains(text))
                                                 .toList();
                                       });
                                     },
                                     controller: controller,
                                     decoration: InputDecoration(
-                                        prefixIconConstraints:
-                                            BoxConstraints(minWidth: 0, minHeight: 0),
+                                        prefixIconConstraints: BoxConstraints(
+                                            minWidth: 0, minHeight: 0),
+                                        prefix: Container(
+                                          padding: EdgeInsets.only(right: 10),
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              right: BorderSide(
+                                                color: COLOR_DARK_GRAY,
+                                                width: 0.5,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            '+63',
+                                            style: GoogleFonts.roboto(
+                                                color: Colors.black),
+                                          ),
+                                        ),
                                         labelText:
                                             BUY_LOAD_RECIPIENT_SCREEN_LOAD_FOR_TEXT,
-                                        hintText: "639012345678"),
+                                        hintText: "9012345678"),
                                   ),
                                 ),
-                              ),
-                              Text(
-                                'Add 63 to the recipient e.g 639123456789',
-                                style: GoogleFonts.roboto(
-                                  color: COLOR_DARK_GRAY.withOpacity(0.5),
-                                  fontSize: 12,
-                                  height: 2,
-                                  fontWeight: FontWeight.w500,
-                                )
                               ),
                               if (showSuggestion && numbers.isNotEmpty) ...[
                                 Container(
@@ -124,9 +132,11 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                                         BuyLoadSuggest suggestion =
                                             numbers[index];
                                         return ListTile(
-                                          visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+                                          visualDensity: VisualDensity(
+                                              vertical: -4, horizontal: 0),
                                           onTap: () {
-                                            controller.text = suggestion.mobileNumber;
+                                            controller.text =
+                                                suggestion.mobileNumber;
                                             showSuggestion = false;
                                             setState(() {});
                                           },
@@ -187,7 +197,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
   void _handleNext() async {
     bool status = _formKey.currentState.validate();
     if (status == true) {
-      store.createTransaction(SwipeServiceOffering.BUY_LOAD, controller.text);
+      store.createTransaction(SwipeServiceOffering.BUY_LOAD, '63${controller.text}');
       Get.toNamed('/services/buy-load/buy-load-amount-screen');
     }
   }
