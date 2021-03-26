@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/places.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
-import 'package:swipe/models/UserVerificationModel.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-review-information-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
@@ -43,10 +43,21 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
   FocusNode provinceNode = new FocusNode();
   FocusNode countryNode = new FocusNode();
   FocusNode workNode = new FocusNode();
+  Map<String, dynamic> selectedRegion = regions[0];
+  Map<String, dynamic> selectedState;
+  Map<String, dynamic> selectedCity;
+  Map<String, dynamic> selectedBarangay;
+  String isSelectedState = "";
+  String isSelectedCity = "";
+  String isSelectedBarangay = "";
+  List<Map<String, dynamic>> states = [];
+  List<Map<String, dynamic>> cities = [];
+  List<Map<String, dynamic>> barangay = [];
 
   @override
   void initState () {
     super.initState();
+    onSelectPlace();
     // store.verification.idType = "UMID";
     // store.verification.idNumber = "29223020";
     // store.verification.firstName = "Jose Paulo";
@@ -74,6 +85,36 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
     return null;
   }
 
+  void onSelectPlace ({isSelectedRegion = "REGION I (ILOCOS REGION)"}) {
+    var a = regions.firstWhere((region) => region['regDesc'] == isSelectedRegion);
+    selectedRegion = a;
+    states = provinces.where((province) => province['regCode'] == a['regCode']).toList();
+    onSelectedState();
+    setState(() {});
+  }
+
+  void onSelectedState ({isSelectState = ""}) {
+    if(isSelectState == "") {
+      print( 'region is change' );
+      selectedState = states[0];
+      selectedCity = citiesCollection.firstWhere((city) => city['provCode'] == selectedState['provCode']);
+      cities = citiesCollection.where((city) => city['provCode'] == selectedState['provCode']).toList();
+      setState(() {});
+    } else {
+      var a = provinces.firstWhere((province) => province['provDesc'] == isSelectState);
+      selectedState = a;
+      selectedCity = citiesCollection.firstWhere((city) => city['provCode'] == selectedState['provCode']);
+      cities = citiesCollection.where((city) => city['provCode'] == selectedState['provCode']).toList();
+      setState(() {});
+    }
+  }
+
+  void onSelectCity ({isSelectCity = ""}) {
+    var a = cities.firstWhere((city) => city['citymunDesc'] == isSelectCity);
+    selectedCity = a;
+    setState(() {});
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,324 +131,324 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
             key: _formKey,
             child: ListView(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 2),
+                            height: 5,
+                            width: width * 0.15,
+                            decoration: BoxDecoration(
+                              color: COLOR_DARK_PURPLE,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 2),
+                            height: 5,
+                            width: width * 0.15,
+                            decoration: BoxDecoration(
+                              color: COLOR_DARK_PURPLE,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 2),
+                            height: 5,
+                            width: width * 0.15,
+                            decoration: BoxDecoration(
+                              color: COLOR_DARK_PURPLE,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      'Tell us more about yourself',
+                      style: GoogleFonts.roboto(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: COLOR_DARK_PURPLE,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      'ID Information',
+                      style: GoogleFonts.roboto(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
                       children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 2),
-                          height: 5,
-                          width: width * 0.15,
-                          decoration: BoxDecoration(
-                            color: COLOR_DARK_PURPLE,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 2),
-                          height: 5,
-                          width: width * 0.15,
-                          decoration: BoxDecoration(
-                            color: COLOR_DARK_PURPLE,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 2),
-                          height: 5,
-                          width: width * 0.15,
-                          decoration: BoxDecoration(
-                            color: COLOR_DARK_PURPLE,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    'Tell us more about yourself',
-                    style: GoogleFonts.roboto(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: COLOR_DARK_PURPLE,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    'ID Information',
-                    style: GoogleFonts.roboto(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        autofocus: true,
-                        focusNode: idTypeNode,
-                        onTap: () => _requestFocus(idTypeNode),
-                        textCapitalization: TextCapitalization.words,
-                        textInputAction: TextInputAction.next,
-                        validator: (text) => inputValidator(text, "ID Type"),
-                        onSaved: (v) {
-                          values['idType'] = v;
-                        },
-                        onFieldSubmitted: (text) {
-                          idTypeNode.unfocus();
-                          FocusScope.of(context).requestFocus(idTypeNumberNode);
-                          setState(() {});
-                        },
-                        decoration: InputDecoration(
-                          labelText: "ID TYPE",
-                          labelStyle: TextStyle(color: idTypeNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          focusColor: COLOR_DARK_PURPLE,
-                          hintText: "Drivers License"
-                        ),
-                      ),
-                      TextFormField(
-                        autofocus: true,
-                        focusNode: idTypeNumberNode,
-                        keyboardType: TextInputType.visiblePassword,
-                        onTap: () => _requestFocus(idTypeNumberNode),
-                        textInputAction: TextInputAction.next,
-                        validator: (text) => inputValidator(text, "ID NUMBER"),
-                        onSaved: (v) {
-                          values['idNumber'] = v;
-                        },
-                        onFieldSubmitted: (text) {
-                          idTypeNumberNode.unfocus();
-                          FocusScope.of(context).requestFocus(firstNameNode);
-                          setState(() {});
-                        },
-                        decoration: InputDecoration(
-                          labelText: "ID NUMBER",
-                          labelStyle: TextStyle(color: idTypeNumberNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          focusColor: COLOR_DARK_PURPLE,
-                        ),
-                      ),
-                      TextFormField(
-                        autofocus: true,
-                        focusNode: firstNameNode,
-                        onTap: () => _requestFocus(firstNameNode),
-                        validator: (text) => inputValidator(text, "FIRST NAME"),
-                        textCapitalization: TextCapitalization.words,
-                        onSaved: (v) {
-                          values['firstName'] = v;
-                        },
-                        onFieldSubmitted: (text) {
-                          firstNameNode.unfocus();
-                          FocusScope.of(context).requestFocus(middleNameNode);
-                          setState(() {});
-                        },
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "First Name",
-                          labelStyle: TextStyle(color: firstNameNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          focusColor: COLOR_DARK_PURPLE,
-                        ),
-                      ),
-                      if(!hasMiddleName) ...[
                         TextFormField(
                           autofocus: true,
-                          focusNode: middleNameNode,
-                          onTap: () => _requestFocus(middleNameNode),
+                          focusNode: idTypeNode,
+                          onTap: () => _requestFocus(idTypeNode),
                           textCapitalization: TextCapitalization.words,
-                          validator: (text) => inputValidator(text, "MIDDLE NAME"),
+                          textInputAction: TextInputAction.next,
+                          validator: (text) => inputValidator(text, "ID Type"),
                           onSaved: (v) {
-                            values['middleName'] = v;
+                            values['idType'] = v;
                           },
                           onFieldSubmitted: (text) {
-                            middleNameNode.unfocus();
-                            FocusScope.of(context).requestFocus(lastNameNode);
+                            idTypeNode.unfocus();
+                            FocusScope.of(context).requestFocus(idTypeNumberNode);
                             setState(() {});
                           },
-                          textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                            labelText: "Middle Name",
-                            labelStyle: TextStyle(color: middleNameNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                            labelText: "ID TYPE",
+                            labelStyle: TextStyle(color: idTypeNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            focusColor: COLOR_DARK_PURPLE,
+                            hintText: "Drivers License"
+                          ),
+                        ),
+                        TextFormField(
+                          autofocus: true,
+                          focusNode: idTypeNumberNode,
+                          keyboardType: TextInputType.visiblePassword,
+                          onTap: () => _requestFocus(idTypeNumberNode),
+                          textInputAction: TextInputAction.next,
+                          validator: (text) => inputValidator(text, "ID NUMBER"),
+                          onSaved: (v) {
+                            values['idNumber'] = v;
+                          },
+                          onFieldSubmitted: (text) {
+                            idTypeNumberNode.unfocus();
+                            FocusScope.of(context).requestFocus(firstNameNode);
+                            setState(() {});
+                          },
+                          decoration: InputDecoration(
+                            labelText: "ID NUMBER",
+                            labelStyle: TextStyle(color: idTypeNumberNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             focusColor: COLOR_DARK_PURPLE,
                           ),
                         ),
-                      ],
-                      Row(
-                        children: [
-                          Checkbox(
-                            visualDensity: VisualDensity(vertical: 0, horizontal: -4),
-                            value: hasMiddleName,
-                            onChanged: (val) {
-                              hasMiddleName = val;
+                        TextFormField(
+                          autofocus: true,
+                          focusNode: firstNameNode,
+                          onTap: () => _requestFocus(firstNameNode),
+                          validator: (text) => inputValidator(text, "FIRST NAME"),
+                          textCapitalization: TextCapitalization.words,
+                          onSaved: (v) {
+                            values['firstName'] = v;
+                          },
+                          onFieldSubmitted: (text) {
+                            firstNameNode.unfocus();
+                            FocusScope.of(context).requestFocus(middleNameNode);
+                            setState(() {});
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            labelText: "First Name",
+                            labelStyle: TextStyle(color: firstNameNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            focusColor: COLOR_DARK_PURPLE,
+                          ),
+                        ),
+                        if(!hasMiddleName) ...[
+                          TextFormField(
+                            autofocus: true,
+                            focusNode: middleNameNode,
+                            onTap: () => _requestFocus(middleNameNode),
+                            textCapitalization: TextCapitalization.words,
+                            validator: (text) => inputValidator(text, "MIDDLE NAME"),
+                            onSaved: (v) {
+                              values['middleName'] = v;
+                            },
+                            onFieldSubmitted: (text) {
+                              middleNameNode.unfocus();
+                              FocusScope.of(context).requestFocus(lastNameNode);
                               setState(() {});
                             },
-                          ),
-                          Text(
-                            'I do not have a middle name',
-                            style: GoogleFonts.roboto(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: COLOR_DARK_GRAY,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              labelText: "Middle Name",
+                              labelStyle: TextStyle(color: middleNameNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              focusColor: COLOR_DARK_PURPLE,
                             ),
                           ),
                         ],
-                      ),
-                      TextFormField(
-                        autofocus: true,
-                        focusNode: lastNameNode,
-                        onTap: () => _requestFocus(lastNameNode),
-                        validator: (text) => inputValidator(text, "LAST NAME"),
-                        textCapitalization: TextCapitalization.words,
-                        onSaved: (v) {
-                          values['lastName'] = v;
-                        },
-                        onFieldSubmitted: (text) {
-                          lastNameNode.unfocus();
-                          FocusScope.of(context).requestFocus(nationalityNode);
-                          setState(() {});
-                        },
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Last Name",
-                          labelStyle: TextStyle(color: lastNameNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          focusColor: COLOR_DARK_PURPLE,
-                        ),
-                      ),
-                      TextFormField(
-                        autofocus: true,
-                        focusNode: nationalityNode,
-                        onTap: () => _requestFocus(nationalityNode),
-                        textCapitalization: TextCapitalization.words,
-                        validator: (text) => inputValidator(text, "NATIONALITY"),
-                        onSaved: (v) {
-                          values['nationality'] = v;
-                        },
-                        onFieldSubmitted: (text) {
-                          nationalityNode.unfocus();
-                          FocusScope.of(context).requestFocus(placeOfBirthNode);
-                          setState(() {});
-                        },
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Nationality",
-                          labelStyle: TextStyle(color: nationalityNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          focusColor: COLOR_DARK_PURPLE,
-                        ),
-                      ),
-                      TextFormField(
-                        autofocus: true,
-                        focusNode: placeOfBirthNode,
-                        textCapitalization: TextCapitalization.words,
-                        onTap: () => _requestFocus(placeOfBirthNode),
-                        validator: (text) => inputValidator(text, "PLACE OF BIRTH"),
-                        onSaved: (v) {
-                          values['placeOfBirth'] = v;
-                        },
-                        onFieldSubmitted: (text) {
-                          placeOfBirthNode.unfocus();
-                          FocusScope.of(context).requestFocus(contactNode);
-                          setState(() {});
-                        },
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Place of Birth",
-                          labelStyle: TextStyle(color: placeOfBirthNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          focusColor: COLOR_DARK_PURPLE,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Flexible(
-                            flex: 1,
-                            child: TextFormField(
-                              autofocus: true,
-                              focusNode: contactNode,
-                              keyboardType: TextInputType.number,
-                              onTap: () => _requestFocus(contactNode),
-                              validator: (text) => inputValidator(text, "CONTACT NUMBER"),
-                              onSaved: (v) {
-                                values['contactNumber'] = v;
-                              },
-                              onFieldSubmitted: (text) {
-                                contactNode.unfocus();
-                                FocusScope.of(context).requestFocus(dateOfBirthNode);
+                        Row(
+                          children: [
+                            Checkbox(
+                              visualDensity: VisualDensity(vertical: 0, horizontal: -4),
+                              value: hasMiddleName,
+                              onChanged: (val) {
+                                hasMiddleName = val;
                                 setState(() {});
                               },
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                labelText: "Contact Number",
-                                labelStyle: TextStyle(color: contactNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                focusColor: COLOR_DARK_PURPLE,
+                            ),
+                            Text(
+                              'I do not have a middle name',
+                              style: GoogleFonts.roboto(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: COLOR_DARK_GRAY,
                               ),
                             ),
+                          ],
+                        ),
+                        TextFormField(
+                          autofocus: true,
+                          focusNode: lastNameNode,
+                          onTap: () => _requestFocus(lastNameNode),
+                          validator: (text) => inputValidator(text, "LAST NAME"),
+                          textCapitalization: TextCapitalization.words,
+                          onSaved: (v) {
+                            values['lastName'] = v;
+                          },
+                          onFieldSubmitted: (text) {
+                            lastNameNode.unfocus();
+                            FocusScope.of(context).requestFocus(nationalityNode);
+                            setState(() {});
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            labelText: "Last Name",
+                            labelStyle: TextStyle(color: lastNameNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            focusColor: COLOR_DARK_PURPLE,
                           ),
-                          SizedBox(width: 10),
-                          Flexible(
-                            flex: 1,
-                            child: TextFormField(
-                              autofocus: true,
-                              focusNode: dateOfBirthNode,
-                              keyboardType: TextInputType.number,
-                              onTap: () => _requestFocus(dateOfBirthNode),
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return 'Birth Date is Required';
-                                }
-                                final components = value.split("/");
-                                if (components.length == 3) {
-                                  int month = int.parse(components[0]);
-                                  int day = int.parse(components[1]);
-                                  int year = int.parse(components[2]);
-                                  int dayInMonth =
-                                  _appUtil.daysInMonth(month, year);
-                                  if (day != null &&
-                                      month != null &&
-                                      year != null) {
-                                    if (day > dayInMonth) {
-                                      return 'Invalid Date Input';
-                                    }
-                                    return null;
+                        ),
+                        TextFormField(
+                          autofocus: true,
+                          focusNode: nationalityNode,
+                          onTap: () => _requestFocus(nationalityNode),
+                          textCapitalization: TextCapitalization.words,
+                          validator: (text) => inputValidator(text, "NATIONALITY"),
+                          onSaved: (v) {
+                            values['nationality'] = v;
+                          },
+                          onFieldSubmitted: (text) {
+                            nationalityNode.unfocus();
+                            FocusScope.of(context).requestFocus(placeOfBirthNode);
+                            setState(() {});
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            labelText: "Nationality",
+                            labelStyle: TextStyle(color: nationalityNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            focusColor: COLOR_DARK_PURPLE,
+                          ),
+                        ),
+                        TextFormField(
+                          autofocus: true,
+                          focusNode: placeOfBirthNode,
+                          textCapitalization: TextCapitalization.words,
+                          onTap: () => _requestFocus(placeOfBirthNode),
+                          validator: (text) => inputValidator(text, "PLACE OF BIRTH"),
+                          onSaved: (v) {
+                            values['placeOfBirth'] = v;
+                          },
+                          onFieldSubmitted: (text) {
+                            placeOfBirthNode.unfocus();
+                            FocusScope.of(context).requestFocus(contactNode);
+                            setState(() {});
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            labelText: "Place of Birth",
+                            labelStyle: TextStyle(color: placeOfBirthNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            focusColor: COLOR_DARK_PURPLE,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              child: TextFormField(
+                                autofocus: true,
+                                focusNode: contactNode,
+                                keyboardType: TextInputType.number,
+                                onTap: () => _requestFocus(contactNode),
+                                validator: (text) => inputValidator(text, "CONTACT NUMBER"),
+                                onSaved: (v) {
+                                  values['contactNumber'] = v;
+                                },
+                                onFieldSubmitted: (text) {
+                                  contactNode.unfocus();
+                                  FocusScope.of(context).requestFocus(dateOfBirthNode);
+                                  setState(() {});
+                                },
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                  labelText: "Contact Number",
+                                  labelStyle: TextStyle(color: contactNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                                  focusColor: COLOR_DARK_PURPLE,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Flexible(
+                              flex: 1,
+                              child: TextFormField(
+                                autofocus: true,
+                                focusNode: dateOfBirthNode,
+                                keyboardType: TextInputType.number,
+                                onTap: () => _requestFocus(dateOfBirthNode),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Birth Date is Required';
                                   }
-                                }
-                                return "Wrong Format";
-                              },
-                              onSaved: (v) {
-                                values['dateOfBirth'] = v;
-                              },
-                              onFieldSubmitted: (text) {
-                                dateOfBirthNode.unfocus();
-                                FocusScope.of(context).requestFocus(addressNode);
-                                setState(() {});
-                              },
-                              inputFormatters: [maskFormatter],
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                labelText: "Date of Birth",
-                                labelStyle: TextStyle(color: dateOfBirthNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                focusColor: COLOR_DARK_PURPLE,
+                                  final components = value.split("/");
+                                  if (components.length == 3) {
+                                    int month = int.parse(components[0]);
+                                    int day = int.parse(components[1]);
+                                    int year = int.parse(components[2]);
+                                    int dayInMonth =
+                                    _appUtil.daysInMonth(month, year);
+                                    if (day != null &&
+                                        month != null &&
+                                        year != null) {
+                                      if (day > dayInMonth) {
+                                        return 'Invalid Date Input';
+                                      }
+                                      return null;
+                                    }
+                                  }
+                                  return "Wrong Format";
+                                },
+                                onSaved: (v) {
+                                  values['dateOfBirth'] = v;
+                                },
+                                onFieldSubmitted: (text) {
+                                  dateOfBirthNode.unfocus();
+                                  FocusScope.of(context).requestFocus(addressNode);
+                                  setState(() {});
+                                },
+                                inputFormatters: [maskFormatter],
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                  labelText: "Date of Birth",
+                                  labelStyle: TextStyle(color: dateOfBirthNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                                  focusColor: COLOR_DARK_PURPLE,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
                       SizedBox(height: 10),
                       Align(
                         alignment: Alignment.topLeft,
@@ -420,28 +461,112 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                             )
                         ),
                       ),
-                      TextFormField(
-                        autofocus: true,
-                        focusNode: addressNode,
-                        textCapitalization: TextCapitalization.words,
-                        onTap: () => _requestFocus(addressNode),
-                        validator: (text) => inputValidator(text, "House No. and Street Name"),
-                        onSaved: (v) {
-                          values['address'] = v;
-                        },
-                        onFieldSubmitted: (text) {
-                          addressNode.unfocus();
-                          FocusScope.of(context).requestFocus(barangayNode);
-                          setState(() {});
-                        },
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "House No. and Street Name",
-                          labelStyle: TextStyle(color: addressNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          focusColor: COLOR_DARK_PURPLE,
+                      SizedBox(height: 10),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                            'Region',
+                            style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: COLOR_DARK_GRAY,
+                            )
                         ),
                       ),
+                      Container(
+                        width: width,
+                        child: DropdownButton<String>(
+                          value: selectedRegion['regDesc'],
+                          isExpanded: true,
+                          items: regions.map((value) {
+                            return new DropdownMenuItem<String>(
+                              value: value['regDesc'],
+                              child: new Text(value['regDesc'], style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
+                            );
+                          }).toList(),
+                          onChanged: (val) {
+                            onSelectPlace(
+                              isSelectedRegion: val,
+                            );
+                          },
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Flexible(
+                            flex: 1,
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                      'State',
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: COLOR_DARK_GRAY,
+                                      )
+                                  ),
+                                ),
+                                Container(
+                                  width: width,
+                                  child: DropdownButton<String>(
+                                    isExpanded: true,
+                                    value: selectedState['provDesc'],
+                                    items: states?.map((value) {
+                                      return new DropdownMenuItem<String>(
+                                        value: value['provDesc'],
+                                        child: new Text(value['provDesc'], style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
+                                      );
+                                    })?.toList() ?? [],
+                                    onChanged: (val) {
+                                      onSelectedState(
+                                        isSelectState: val,
+                                      );
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Flexible(
+                            flex: 1,
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                      'City',
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: COLOR_DARK_GRAY,
+                                      )
+                                  ),
+                                ),
+                                Container(
+                                  width: width,
+                                  child: DropdownButton<String>(
+                                    value: selectedCity['citymunDesc'],
+                                    isExpanded: true,
+                                    items: cities.map((value) {
+                                      return new DropdownMenuItem<String>(
+                                        value: value['citymunDesc'],
+                                        child: new Text(value['citymunDesc'], style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
+                                      );
+                                    }).toList(),
+                                    onChanged: (val) {
+                                      onSelectCity(isSelectCity: val);
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+
                       Row(
                         children: [
                           Flexible(
@@ -457,7 +582,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                               },
                               onFieldSubmitted: (text) {
                                 barangayNode.unfocus();
-                                FocusScope.of(context).requestFocus(cityNode);
+                                FocusScope.of(context).requestFocus(zipNode);
                                 setState(() {});
                               },
                               textInputAction: TextInputAction.next,
@@ -474,35 +599,6 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                             flex: 1,
                             child: TextFormField(
                               autofocus: true,
-                              focusNode: cityNode,
-                              onTap: () => _requestFocus(cityNode),
-                              textCapitalization: TextCapitalization.words,
-                              validator: (text) => inputValidator(text, "CITY"),
-                              onSaved: (v) {
-                                values['city'] = v;
-                              },
-                              onFieldSubmitted: (text) {
-                                cityNode.unfocus();
-                                FocusScope.of(context).requestFocus(zipNode);
-                                setState(() {});
-                              },
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                labelText: "City",
-                                labelStyle: TextStyle(color: cityNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                focusColor: COLOR_DARK_PURPLE,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Flexible(
-                            flex: 1,
-                            child: TextFormField(
-                              autofocus: true,
                               focusNode: zipNode,
                               keyboardType: TextInputType.number,
                               onTap: () => _requestFocus(zipNode),
@@ -512,7 +608,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                               },
                               onFieldSubmitted: (text) {
                                 zipNode.unfocus();
-                                FocusScope.of(context).requestFocus(provinceNode);
+                                FocusScope.of(context).requestFocus(addressNode);
                                 setState(() {});
                               },
                               textInputAction: TextInputAction.next,
@@ -524,33 +620,29 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                               ),
                             ),
                           ),
-                          SizedBox(width: 10),
-                          Flexible(
-                            flex: 1,
-                            child: TextFormField(
-                              autofocus: true,
-                              focusNode: provinceNode,
-                              textCapitalization: TextCapitalization.words,
-                              onTap: () => _requestFocus(provinceNode),
-                              validator: (text) => inputValidator(text, "state"),
-                              onSaved: (v) {
-                                values['state'] = v;
-                              },
-                              onFieldSubmitted: (text) {
-                                provinceNode.unfocus();
-                                FocusScope.of(context).requestFocus(countryNode);
-                                setState(() {});
-                              },
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                labelText: "State",
-                                labelStyle: TextStyle(color: provinceNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                focusColor: COLOR_DARK_PURPLE,
-                              ),
-                            ),
-                          )
                         ],
+                      ),
+                      TextFormField(
+                        autofocus: true,
+                        focusNode: addressNode,
+                        textCapitalization: TextCapitalization.words,
+                        onTap: () => _requestFocus(addressNode),
+                        validator: (text) => inputValidator(text, "House No. and Street Name"),
+                        onSaved: (v) {
+                          values['address'] = v;
+                        },
+                        onFieldSubmitted: (text) {
+                          addressNode.unfocus();
+                          FocusScope.of(context).requestFocus(countryNode);
+                          setState(() {});
+                        },
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          labelText: "House No. and Street Name",
+                          labelStyle: TextStyle(color: addressNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          focusColor: COLOR_DARK_PURPLE,
+                        ),
                       ),
                       TextFormField(
                         autofocus: true,
@@ -782,7 +874,6 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
 
   void _handleNext () async {
     bool status = _formKey.currentState.validate();
-    //
     if(status) {
       _formKey.currentState.save();
       store.verification.idType = values['idType'];
@@ -796,9 +887,9 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
       store.verification.dateOfBirth = values['dateOfBirth'];
       store.verification.address = values['address'];
       store.verification.barangay = values['barangay'];
-      store.verification.city = values['city'];
+      store.verification.city = selectedCity['citymunDesc'];
       store.verification.zipCode = values['zipCode'];
-      store.verification.state = values['state'];
+      store.verification.state = selectedState['provDesc'];
       store.verification.country = values['country'];
       store.verification.natureOfWork = values['natureOfWork'];
       store.verification.sourceOfIncome = selectedSourceOfFunds;
