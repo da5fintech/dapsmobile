@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/promo-card.dart';
 
 import 'package:swipe/common/widgets/amount-widget.dart';
@@ -30,6 +31,7 @@ class ServicesScreen extends StatefulWidget {
 
 class _ServicesScreenState extends State<ServicesScreen> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  AppUtil _appUtil = AppUtil();
 
   @override
   void initState() {
@@ -139,17 +141,31 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     height: 10,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Text("**** *** 9870",
-                      //     style: GoogleFonts.roboto(
-                      //         fontSize: 12,
-                      //         color: Colors.white.withOpacity(0.7))),
+                      Text(
+                        "**** *** ${_appUtil.formatUserPhoneNumber(store.user.mobileNumber)}",
+                        style: GoogleFonts.roboto(
+                          fontSize: 14,
+                          color: Colors.white.withOpacity(0.7),
+                        ),
+                      ),
                       Observer(
                         builder: (_) {
-                          return AmountWidget(amount: store.balance);
+                          return Row(
+                            children: [
+                              AmountWidget(amount: store.balance),
+                              SizedBox(width: 5),
+                              InkWell(
+                                onTap: () {
+                                  Get.toNamed("/services/cash-in");
+                                },
+                                child: Icon(Icons.add_circle, color: Colors.white),
+                              )
+                            ],
+                          );
                         },
-                      )
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -376,7 +392,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
   }
 
   _handleButtonClick(SwipeServiceOffering offering) async {
-    if(offering == SwipeServiceOffering.CASH_IN) {
+    if (offering == SwipeServiceOffering.CASH_IN) {
       Get.toNamed("/services/cash-in");
     } else if (offering == SwipeServiceOffering.BUY_LOAD) {
       Get.toNamed("/services/buy-load/buy-load-recipient-screen");
