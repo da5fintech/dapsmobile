@@ -240,12 +240,17 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                 padding: const EdgeInsets.only(top: 10, bottom: 30),
                 child: Row(
                   children: [
-                    Text(
-                      APP_HELP_CENTER,
-                      style: GoogleFonts.roboto(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white),
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed('/help');
+                      },
+                      child: Text(
+                        APP_HELP_CENTER,
+                        style: GoogleFonts.roboto(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
+                      ),
                     ),
                     Spacer(),
                     Text(

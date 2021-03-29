@@ -106,14 +106,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(
-                              Constants.LOGIN_SCREEN_SIGN_UP_TEXT,
-                              style: GoogleFonts.roboto(
-                                color: Constants.COLOR_DARK_PURPLE,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                              )
-                            ),
+                            child: Text(Constants.LOGIN_SCREEN_SIGN_UP_TEXT,
+                                style: GoogleFonts.roboto(
+                                  color: Constants.COLOR_DARK_PURPLE,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12,
+                                )),
                           ),
                           Expanded(
                             child: Divider(
@@ -195,7 +193,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(Constants.APP_HELP_CENTER),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed('/help');
+                            },
+                            child: Text(Constants.APP_HELP_CENTER),
+                          ),
                           Text(store.versionNumber),
                         ],
                       ),
@@ -239,7 +242,8 @@ class _LoginScreenState extends State<LoginScreen> {
       //     emailAddress: res.email);
       store.registrant = registrant;
       print("setting registrant to ${store.registrant.id}");
-      var user = await store.accountService.findOrCreate(res.id, res.emailAddress,
+      var user = await store.accountService.findOrCreate(
+          res.id, res.emailAddress,
           name: res.displayName, photoURL: res.photoURL);
       print("user url ${user.toMap()}");
       store.setUser(user);

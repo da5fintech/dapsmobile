@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -227,17 +228,21 @@ class _OtpScreenState extends State<OtpScreen> {
                 padding: const EdgeInsets.only(top: 10, bottom: 30),
                 child: Row(
                   children: [
-                    Text(
-                      APP_HELP_CENTER,
-                      style: GoogleFonts.roboto(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed('/help');
+                      },
+                      child: Text(
+                        APP_HELP_CENTER,
+                        style: GoogleFonts.roboto(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black),
                       ),
                     ),
                     Spacer(),
                     Text(
-                      APP_VERSION,
+                      store.versionNumber,
                       style: GoogleFonts.roboto(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
