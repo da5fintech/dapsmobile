@@ -19,76 +19,58 @@ class TermsAndCondtionScreen extends StatelessWidget {
         appBar: SubAppbarWidget(
           title: type == 'terms' ? "Terms Condition" : "Privacy Policy",
         ),
-        body: Markdown(data: type == 'terms' ? terms : ""),
+        body: Markdown(data: type == 'terms' ? terms : privacy),
       )
     );
   }
 }
 
 const privacy = """
-**Privacy Policy**
 
-Jose Paulo M. Dela Cruz built the Sari Sales app as a Commercial app. This SERVICE is provided by Jose Paulo M. Dela Cruz and is intended for use as is.
+**Background**
 
-This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
+This privacy policy sets out the commitment of DA5 and KabootekPH to collect and process personal information, how we may use this information, and other important topics relating to your privacy and data protection in accordance with applicable laws and regulations relating to data privacy such as the Philippine Data Privacy Act of 2012 and its IRR. This company respects and values your data privacy rights, and makes sure that all personal data collected from you are processed in adherence to the general principles of transparency and legitimate purpose. It also applies to personal informationDA5 and KabootekPH may otherwise collect though our  **SWIPE APP**, through our products   and   services,   and   business   Partners.Information   that   we   receive   from customers, whether constituting personal data, are generally protected as privileged communications, and covered by our responsibility to our customers to keep that information confidential.
 
-If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
+**Definitions**
 
-The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Sari Sales unless otherwise defined in this Privacy Policy.
+**“DPA”** means the Data Privacy Act of 2012 and its implementing rules and regulations,as well as the circulars issued by the National Privacy Commission from time to time;
 
-**Information Collection and Use**
+**“Personal Data”** means personal information and sensitive personal information;
 
-For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Mobile Point of sales. The information that I request will be retained on your device and is not collected by me in any way.
+**"Personal Information"** refers to any information, whether recorded in a material for more not, from which the identity of an individual is apparent or can be reasonably and directly ascertained by the entity holding the information, or when put together with other information, would directly and certainly identify an individual;
 
-The app does use third party services that may collect information used to identify you.
+**"Policy"** means this data privacy policy as may be amended, modified or supplemented from time to time;
 
-Link to privacy policy of third party service providers used by the app
+**"Processing"** refers to any operation or any set of operations performed upon personaldata   including,   but   not   limited   to,   the   collection,   recording,   organization,   storage,updating, or modification, retrieval, consultation, use, consolidation, blocking, erasure,or destruction of data. Processing may be performed through automated means, ormanual processing, if the personal data are contained or are intended to be contained ina filing system;
 
-*   [Google Analytics for Firebase](https://firebase.google.com/policies/analytics)
-*   [Firebase Crashlytics](https://firebase.google.com/support/privacy/)
-*   [Facebook](https://www.facebook.com/about/privacy/update/printable)
+**"Sensitive   Personal   Information"**  refers   to   personal   information:   (1)   about   an individual’s race, ethnic origin, marital status, age, color, and religious, philosophical or political affiliations; (2) about an individual’s health, education, genetic or sexual life of a person, or to any proceeding for any offense committed or alleged to have been committed by such individual, the disposal of such proceedings, or the sentence of any court in such proceedings; (3) issued by government agencies peculiar to an individual which includes, but is not limited to, social security numbers, previous or current health records, licenses or its denials, suspension or revocation, and tax returns; or (4)specifically  established  by  an   executive   order  or  an   act   of  Congress  to  be   kept classified; 
 
-**Log Data**
+**Processing of Personal Data** 
 
-I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
+This company collects the basic contact information of clients and customers, including their full name, address, email address, contact number, together with the products that they would like to avail in the SWIPE APP. 
 
-**Cookies**
+This company will ensure that personal data under its custody are protected against any accidental or unlawful destruction, alteration and disclosure as well as against any other unlawful processing. The company will implement appropriate security measures in storing collected personal information, depending on the nature of the information. 
 
-Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.
-This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
+Due to the sensitive and confidential nature of the personal data under the custody of the company, only the client and the authorized representative of the company shall be
+allowed to access such personal data, for any purpose, except for those contrary to law,public policy, public order or morals. Furthermore, all employees and personnel of the company shall maintain the confidentiality and secrecy of all personal data that come to their knowledge and possession, even after resignation, termination of contract, or other contractual relations. 
 
-**Service Providers**
+Personal data under the custody of the company shall be disclosed only pursuant to a lawful purpose, and to authorized recipients of such data.
 
-I may employ third-party companies and individuals due to the following reasons:
-*   To facilitate our Service;
-*   To provide the Service on our behalf;
-*   To perform Service-related services; or
-*   To assist us in analyzing how our Service is used.
+**Security Measure**
 
-I want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+This company will endeavor to ensure that personal data in our possession or under our control are protected against unauthorized access, collection, use, disclosure, copying, modification, disposal or similar risks.The designated Data Protection Officer is Mr. Alfred Tolentino, who is concurrently serving as the Monitoring Supervisor the Compliance and Training Department of DA5.The Data Protection Officer shall oversee the compliance of the SWIPE APP with the DPA, its IRR, and other related policies.
 
-**Security**
+**Inquiries and Complaints** 
 
-I value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.
+Data subjects/ Customers may inquire or request for information regarding any matter relating   to   the   processing   of   their   personal   data   under   the   custody   of   DA5   and KabootekPH, including the data privacy and security policies implemented to ensure the protection of their personal data. For your information about how to contact KabootekPHand   DA5.,   please   visit  https://da5.com.ph.   You   may   likewise   coordinate   with   our customer support at info@swipe.ph, or customer.support@da5.com.ph / 02 88958195.
 
-**Links to Other Sites**
+**Amendments and supplements** 
 
-This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+We reserve the right to amend or supplement this Privacy Policy consistent with Data Privacy Laws of the Philippines. You agree to be bound by the prevailing terms of this Policy as updated from time to time with or without notice and will indicate any updates in this App. 
 
-**Children’s Privacy**
+**Consent** 
 
-These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13\. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.
-
-**Changes to This Privacy Policy**
-
-I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.
-
-This policy is effective as of 2020-06-06
-
-**Contact Us**
-
-If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at jeypsdelacruz.com.
-
+Submitting your data signifies that you have read and understood this Privacy Notice and expressly consent to the processing of your personal and/or sensitive personal information in the manner and for the purpose provided in this Notice. You understand and accept that this will include access to personal data and records submitted, which may be regarded as personal and/or sensitive personal data as provided under the Data Privacy Act of 2012. Consenting to this Privacy Notice, however, does not waive any of your right sunder the Data Privacy Act of 2012.
 """;
 
 

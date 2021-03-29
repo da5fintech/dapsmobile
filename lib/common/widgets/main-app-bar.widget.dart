@@ -16,6 +16,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: elevation,
+      centerTitle: true,
       leading: IconButton(
           icon: Icon(Icons.list),
           onPressed: () {

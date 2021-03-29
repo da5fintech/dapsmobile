@@ -102,6 +102,18 @@ class AppUtil extends DateUtil {
     return int.parse(rndnumber);
   }
 
+  String formatUserPhoneNumber (String mobileNumber) {
+    var splitNumber = mobileNumber.split("");
+    var formattedNumber = "";
+    var mobileLength = 8;
+
+    for(int i = 8 ; i < mobileNumber.length; i++) {
+      formattedNumber = formattedNumber + splitNumber[i];
+    }
+
+    return formattedNumber;
+  }
+
   int generateOtp () {
     var rndnumber = "";
     var rnd = new Random();
