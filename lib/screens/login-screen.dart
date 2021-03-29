@@ -242,11 +242,11 @@ class _LoginScreenState extends State<LoginScreen> {
       //     emailAddress: res.email);
       store.registrant = registrant;
       print("setting registrant to ${store.registrant.id}");
-      var user = await store.accountService.findOrCreate(
-          res.id, res.emailAddress,
-          name: res.displayName, photoURL: res.photoURL);
-      print("user url ${user.toMap()}");
-      store.setUser(user);
+      // var user = await store.accountService.findOrCreate(
+      //     res.id, res.emailAddress,
+      //     name: res.displayName, photoURL: res.photoURL);
+      // print("user url ${user.toMap()}");
+      // store.setUser(user);
       Get.toNamed("/registration/registration-details-screen");
     } catch (e) {}
   }
