@@ -117,11 +117,16 @@ class _SplashScreenState extends State<SplashScreen> {
     ].request();
 
     store.setVersionNumber(packageInfo.version);
+    String latestVersion = await store.accountService.getLatestAppVersion();
+    if(packageInfo.version != latestVersion) {
+      OverlayScreen().show(
+        context,
+        identifier: 'update-dialog',
+      );
+    } else {
+      userLogin();
+    }
 
-    OverlayScreen().show(
-      context,
-      identifier: 'update-dialog',
-    );
   }
 
   void userLogin () async {

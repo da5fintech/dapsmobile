@@ -92,6 +92,15 @@ class AccountService extends FireStoreService {
     }
   }
 
+  Future<String> getLatestAppVersion() async {
+    try {
+      var query = await db.collection('app_version').get();
+      return query.docs.first['version'];
+    } catch (err) {
+      rethrow;
+    }
+  }
+
   Future<List<TransactionRecordModel>> getTransactionRecords(String uid) async {
     var result = await collection
         .doc(uid)
