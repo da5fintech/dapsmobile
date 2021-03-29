@@ -249,7 +249,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                     ),
                     Spacer(),
                     Text(
-                      APP_VERSION,
+                      store.versionNumber,
                       style: GoogleFonts.roboto(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,

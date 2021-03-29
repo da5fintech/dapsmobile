@@ -196,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(Constants.APP_HELP_CENTER),
-                          Text(Constants.APP_VERSION),
+                          Text(store.versionNumber),
                         ],
                       ),
                       SizedBox(

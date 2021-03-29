@@ -352,7 +352,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(APP_HELP_CENTER),
-                            Text(APP_VERSION),
+                            Text(store.versionNumber),
                           ],
                         ),
                       ],

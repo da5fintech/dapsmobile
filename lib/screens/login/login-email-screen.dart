@@ -286,7 +286,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(Constants.APP_HELP_CENTER),
-                    Text(Constants.APP_VERSION),
+                    Text(store.versionNumber),
                   ],
                 ),
               ),

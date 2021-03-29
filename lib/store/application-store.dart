@@ -29,6 +29,8 @@ class ApplicationStore = _ApplicationStore with _$ApplicationStore;
 
 abstract class _ApplicationStore with Store {
   @observable
+  String versionNumber;
+  @observable
   UserModel user;
   @observable
   double balance = 0;
@@ -122,6 +124,11 @@ abstract class _ApplicationStore with Store {
   setEnabledBiometrics (bool isEnabled) {
     this.enabledBiometrics = isEnabled;
     prefs.setBool('biometrics', isEnabled);
+  }
+
+  @action
+  setVersionNumber (String version) {
+    this.versionNumber = version;
   }
 
   @action
