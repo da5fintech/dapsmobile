@@ -5,6 +5,7 @@ import 'package:swipe/common/constants.dart';
 
 class SwipeDialog extends StatelessWidget {
   final Function onOk;
+  final Function cancel;
   final String title;
   final String contentMessage;
   bool cancelBtn = false;
@@ -14,6 +15,7 @@ class SwipeDialog extends StatelessWidget {
     @required this.title,
     @required this.contentMessage,
     this.cancelBtn,
+    this.cancel,
   });
 
   @override
@@ -84,6 +86,7 @@ class SwipeDialog extends StatelessWidget {
                     elevation: 0,
                     onPressed: () {
                       OverlayScreen().pop();
+                      cancel();
                     },
                     child: Text(
                       'CANCEL',
