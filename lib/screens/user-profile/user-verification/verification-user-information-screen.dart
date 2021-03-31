@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/places.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
+import 'package:swipe/models/phlippines-model.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-review-information-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
@@ -43,21 +43,19 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
   FocusNode provinceNode = new FocusNode();
   FocusNode countryNode = new FocusNode();
   FocusNode workNode = new FocusNode();
-  Map<String, dynamic> selectedRegion = regions[0];
-  Map<String, dynamic> selectedState;
-  Map<String, dynamic> selectedCity;
-  Map<String, dynamic> selectedBarangay;
-  String isSelectedState = "";
-  String isSelectedCity = "";
-  String isSelectedBarangay = "";
-  List<Map<String, dynamic>> states = [];
-  List<Map<String, dynamic>> cities = [];
-  List<Map<String, dynamic>> barangay = [];
+  RegionModel selectedRegion;
+  ProvinceModel selectedState;
+  CityModel selectedCity;
+  BarangayModel selectedBarangay;
+  List<RegionModel> regions = [];
+  List<ProvinceModel> states = [];
+  List<CityModel> cities = [];
+  List<BarangayModel> barangays = [];
 
   @override
   void initState () {
     super.initState();
-    onSelectPlace();
+    fetchRegions();
     // store.verification.idType = "UMID";
     // store.verification.idNumber = "29223020";
     // store.verification.firstName = "Jose Paulo";
@@ -66,8 +64,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
     // store.verification.nationality = "Filipino";
     // store.verification.placeOfBirth= "Pasig City";
     // store.verification.contactNumber = "639056535707";
-    // store.verification.dateOfBirth = "10/21/1995";
-    // store.verification.address = "Blk 24 Lot 18 Saint Joseph 6";
+    // store.verification.dateOfBirth = "10/21/1995"; // store.verification.address = "Blk 24 Lot 18 Saint Joseph 6";
     // store.verification.barangay = "Butong";
     // store.verification.city = "Cabuyao";
     // store.verification.zipCode = "4025";
@@ -78,41 +75,38 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
     // store.verification.sourceOfIncome = "Salary";
   }
 
+  Future<List<RegionModel>> fetchRegions() async {
+    regions = await store.phRegionsService.fetchRegions();
+    selectedRegion = regions[0];
+    await fetchProvince(regions[0].regCode);
+    setState(() {});
+  }
+
+  Future<List<ProvinceModel>> fetchProvince(String query) async {
+    states = await store.phRegionsService.fetchProvince(query);
+    selectedState = states[0];
+    await fetchCities(states[0].provCode);
+    setState(() {});
+  }
+
+  Future<List<CityModel>> fetchCities(String query) async {
+    cities = await store.phRegionsService.fetchCities(query);
+    selectedCity = cities[0];
+    await fetchBarangays(cities[0].citymunCode);
+    setState(() {});
+  }
+
+  Future<List<BarangayModel>> fetchBarangays (String query) async {
+    barangays = await store.phRegionsService.fetchBarangays(query);
+    selectedBarangay = barangays[0];
+    setState(() {});
+  }
+
   String inputValidator(String text, String field) {
     if(text.isEmpty) {
       return "$field is required";
     }
     return null;
-  }
-
-  void onSelectPlace ({isSelectedRegion = "REGION I (ILOCOS REGION)"}) {
-    var a = regions.firstWhere((region) => region['regDesc'] == isSelectedRegion);
-    selectedRegion = a;
-    states = provinces.where((province) => province['regCode'] == a['regCode']).toList();
-    onSelectedState();
-    setState(() {});
-  }
-
-  void onSelectedState ({isSelectState = ""}) {
-    if(isSelectState == "") {
-      print( 'region is change' );
-      selectedState = states[0];
-      selectedCity = citiesCollection.firstWhere((city) => city['provCode'] == selectedState['provCode']);
-      cities = citiesCollection.where((city) => city['provCode'] == selectedState['provCode']).toList();
-      setState(() {});
-    } else {
-      var a = provinces.firstWhere((province) => province['provDesc'] == isSelectState);
-      selectedState = a;
-      selectedCity = citiesCollection.firstWhere((city) => city['provCode'] == selectedState['provCode']);
-      cities = citiesCollection.where((city) => city['provCode'] == selectedState['provCode']).toList();
-      setState(() {});
-    }
-  }
-
-  void onSelectCity ({isSelectCity = ""}) {
-    var a = cities.firstWhere((city) => city['citymunDesc'] == isSelectCity);
-    selectedCity = a;
-    setState(() {});
   }
 
 
@@ -473,29 +467,33 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                             )
                         ),
                       ),
-                      Container(
-                        width: width,
-                        child: DropdownButton<String>(
-                          value: selectedRegion['regDesc'],
-                          isExpanded: true,
-                          items: regions.map((value) {
-                            return new DropdownMenuItem<String>(
-                              value: value['regDesc'],
-                              child: new Text(value['regDesc'], style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
-                            );
-                          }).toList(),
-                          onChanged: (val) {
-                            onSelectPlace(
-                              isSelectedRegion: val,
-                            );
-                          },
+                      if(selectedRegion != null) ...[
+                        Container(
+                          width: width,
+                          child: DropdownButton<String>(
+                            value: selectedRegion?.regDesc,
+                            isExpanded: true,
+                            items: regions.map<DropdownMenuItem<String>>((value) {
+                              return new DropdownMenuItem<String>(
+                                value: value.regDesc,
+                                child: new Text(value.regDesc, style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
+                              );
+                            }).toList(),
+                            onChanged: (val) async {
+                              var a = regions.firstWhere((region) => region.regDesc == val);
+                              selectedRegion = a;
+                              await fetchProvince(a.regCode);
+                              setState(() {});
+                            },
+                          ),
                         ),
-                      ),
+                      ],
                       Row(
                         children: [
                           Flexible(
                             flex: 1,
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Align(
                                   alignment: Alignment.topLeft,
@@ -508,24 +506,27 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                                       )
                                   ),
                                 ),
-                                Container(
-                                  width: width,
-                                  child: DropdownButton<String>(
-                                    isExpanded: true,
-                                    value: selectedState['provDesc'],
-                                    items: states?.map((value) {
-                                      return new DropdownMenuItem<String>(
-                                        value: value['provDesc'],
-                                        child: new Text(value['provDesc'], style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
-                                      );
-                                    })?.toList() ?? [],
-                                    onChanged: (val) {
-                                      onSelectedState(
-                                        isSelectState: val,
-                                      );
-                                    },
-                                  ),
-                                )
+                                if(selectedState != null) ...[
+                                  Container(
+                                    width: width,
+                                    child: DropdownButton<String>(
+                                      isExpanded: true,
+                                      value: selectedState.provDesc,
+                                      items: states?.map<DropdownMenuItem<String>>((value) {
+                                        return new DropdownMenuItem<String>(
+                                          value: value.provDesc,
+                                          child: new Text(value.provDesc, style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
+                                        );
+                                      })?.toList() ?? [],
+                                      onChanged: (val) async {
+                                        var a = states.firstWhere((state) => state.provDesc == val);
+                                        selectedState = a;
+                                        fetchCities(a.provCode);
+                                        setState(() {});
+                                      },
+                                    ),
+                                  )
+                                ]
                               ],
                             ),
                           ),
@@ -545,54 +546,71 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                                       )
                                   ),
                                 ),
-                                Container(
-                                  width: width,
-                                  child: DropdownButton<String>(
-                                    value: selectedCity['citymunDesc'],
-                                    isExpanded: true,
-                                    items: cities.map((value) {
-                                      return new DropdownMenuItem<String>(
-                                        value: value['citymunDesc'],
-                                        child: new Text(value['citymunDesc'], style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
-                                      );
-                                    }).toList(),
-                                    onChanged: (val) {
-                                      onSelectCity(isSelectCity: val);
-                                    },
-                                  ),
-                                )
+                                if(selectedCity != null) ...[
+                                  Container(
+                                    width: width,
+                                    child: DropdownButton<String>(
+                                      value: selectedCity?.citymunDesc,
+                                      isExpanded: true,
+                                      items: cities.map<DropdownMenuItem<String>>((value) {
+                                        return new DropdownMenuItem<String>(
+                                          value: value.citymunDesc,
+                                          child: new Text(value.citymunDesc, style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
+                                        );
+                                      }).toList(),
+                                      onChanged: (val) async {
+                                        var a = cities.firstWhere((res) => res.citymunDesc == val);
+                                        selectedCity = a;
+                                        await fetchBarangays(a.citymunCode);
+                                        setState(() {});
+                                      },
+                                    ),
+                                  )
+                                ],
                               ],
                             ),
                           )
                         ],
                       ),
-
                       Row(
                         children: [
                           Flexible(
                             flex: 1,
-                            child: TextFormField(
-                              autofocus: true,
-                              focusNode: barangayNode,
-                              textCapitalization: TextCapitalization.words,
-                              onTap: () => _requestFocus(barangayNode),
-                              validator: (text) => inputValidator(text, "BARANGAY"),
-                              onSaved: (v) {
-                                values['barangay'] = v;
-                              },
-                              onFieldSubmitted: (text) {
-                                barangayNode.unfocus();
-                                FocusScope.of(context).requestFocus(zipNode);
-                                setState(() {});
-                              },
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                labelText: "Barangay",
-                                labelStyle: TextStyle(color: barangayNode.hasFocus ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY),
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                focusColor: COLOR_DARK_PURPLE,
+                            child: Column(
+                              children: [
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                    'Barangays',
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: COLOR_DARK_GRAY,
+                                    )
+                                ),
                               ),
-                            ),
+                              SizedBox(height: 13),
+                              if(selectedBarangay != null) ...[
+                              Container(
+                                  width: width,
+                                  child: DropdownButton<String>(
+                                    value: selectedBarangay?.brgyDesc,
+                                    isExpanded: true,
+                                    items: barangays.map<DropdownMenuItem<String>>((value) {
+                                      return new DropdownMenuItem<String>(
+                                        value: value.brgyDesc,
+                                        child: new Text(value.brgyDesc, style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w500)),
+                                      );
+                                    }).toList(),
+                                    onChanged: (val) {
+                                      var a = barangays.firstWhere((res) => res.brgyDesc == val);
+                                      selectedBarangay = a;
+                                      setState(() {});
+                                    },
+                                  ),
+                                )],
+                              ]
+                            ) 
                           ),
                           SizedBox(width: 10),
                           Flexible(
@@ -886,10 +904,10 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
       store.verification.contactNumber = values['contactNumber'];
       store.verification.dateOfBirth = values['dateOfBirth'];
       store.verification.address = values['address'];
-      store.verification.barangay = values['barangay'];
-      store.verification.city = selectedCity['citymunDesc'];
+      store.verification.barangay = selectedBarangay.brgyDesc;
+      store.verification.city = selectedCity.citymunDesc;
       store.verification.zipCode = values['zipCode'];
-      store.verification.state = selectedState['provDesc'];
+      store.verification.state = selectedState.provDesc;
       store.verification.country = values['country'];
       store.verification.natureOfWork = values['natureOfWork'];
       store.verification.sourceOfIncome = selectedSourceOfFunds;

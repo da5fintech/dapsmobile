@@ -19,6 +19,7 @@ import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/instapay-service.dart';
 import 'package:swipe/services/opt-service.dart';
 import 'package:swipe/services/pesonet-service.dart';
+import 'package:swipe/services/ph-regions-service.dart';
 import 'package:swipe/services/save-suggestions-services.dart';
 import 'package:swipe/services/transaction-service.dart';
 import 'package:swipe/services/verify-service.dart';
@@ -64,6 +65,7 @@ abstract class _ApplicationStore with Store {
   CashInService cashInService;
   OtpService otpService;
   SaveSuggestionsServices saveSuggestionsServices;
+  PhRegionsService phRegionsService;
 
   bool permissionsGranted;
   SharedPreferences prefs;
@@ -98,6 +100,7 @@ abstract class _ApplicationStore with Store {
     addBillerService = AddBillerService();
     otpService = OtpService();
     saveSuggestionsServices = SaveSuggestionsServices();
+    phRegionsService = PhRegionsService();
 
     getIt.registerSingleton(accountService);
     getIt.registerSingleton(VerifyService());
@@ -112,6 +115,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(addBillerService);
     getIt.registerSingleton(otpService);
     getIt.registerSingleton(saveSuggestionsServices);
+    getIt.registerSingleton(PhRegionsService());
 
     // user = UserModel(id: "", mpin: "888888");
   }
