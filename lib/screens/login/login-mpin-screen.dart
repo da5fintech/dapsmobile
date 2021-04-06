@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:overlay_screen/overlay_screen.dart';
+import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -271,8 +272,13 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(Constants.APP_NAME),
-                    Text(Constants.APP_VERSION),
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed('/help');
+                      },
+                      child: Text(Constants.APP_HELP_CENTER),
+                    ),
+                    Text(store.versionNumber),
                   ],
                 ),
               ),

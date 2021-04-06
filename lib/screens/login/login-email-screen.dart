@@ -285,8 +285,13 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(Constants.APP_HELP_CENTER),
-                    Text(Constants.APP_VERSION),
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed('/help');
+                      },
+                      child: Text(Constants.APP_HELP_CENTER),
+                    ),
+                    Text(store.versionNumber),
                   ],
                 ),
               ),

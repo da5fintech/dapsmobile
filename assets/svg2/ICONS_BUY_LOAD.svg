@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 864 864">
+  <defs>
+    <linearGradient id="linear-gradient" x1="187.127" y1="154.7258" x2="507.873" y2="710.2742" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d5bafe"/>
+      <stop offset="0.2971" stop-color="#b98ef9"/>
+      <stop offset="0.3008" stop-color="#b88df9"/>
+      <stop offset="0.4638" stop-color="#9e6aed"/>
+      <stop offset="0.6169" stop-color="#8b50e4"/>
+      <stop offset="0.755" stop-color="#8040df"/>
+      <stop offset="0.8648" stop-color="#7c3bdd"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="384.7915" y1="339.039" x2="552.1015" y2="506.349" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fedb9a"/>
+      <stop offset="0.5535" stop-color="#fbc157"/>
+      <stop offset="1" stop-color="#f6a717"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="764.2326" y1="428" x2="606" y2="428" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-4" x1="702" y1="371" x2="587" y2="371" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-5" x1="685" y1="492" x2="587" y2="492" xlink:href="#linear-gradient-2"/>
+  </defs>
+  <title>ICONS</title>
+  <g id="BUY_LOAD" data-name="BUY LOAD">
+    <rect x="166" y="139" width="363" height="587" rx="65.9286" style="fill: url(#linear-gradient)"/>
+    <rect x="204" y="193" width="286.3186" height="448" rx="29.5" style="fill: #d5bafe"/>
+    <circle cx="347" cy="683" r="22" style="fill: #fff"/>
+    <rect x="296" y="165" width="104" height="9" rx="4.5" style="fill: #fff"/>
+    <circle cx="468.4465" cy="422.694" r="118.306" style="fill: url(#linear-gradient-2)"/>
+    <g>
+      <path d="M500.4047,370.8472c15.1328-.2534,27.97,19.51,27.7514,43.0877.2185,23.4957-12.6186,43.427-27.7514,43.0877H458.2865v27.82H429.6609V370.8472Zm-7.1558,52.7591c1.6929,0,3.1685-.9341,4.37-2.8a12.3965,12.3965,0,0,0,1.8574-6.8713,12.011,12.011,0,0,0-1.8574-6.8692c-1.2018-1.9519-2.6774-2.8838-4.37-2.8838H458.2865v19.4244Z" style="fill: #fff"/>
+      <rect x="403" y="404.6985" width="37.6822" height="18.8411" rx="7" style="fill: #fff"/>
+      <rect x="509.3178" y="404.6985" width="37.6822" height="18.8411" rx="7" style="fill: #fff"/>
+    </g>
+    <path d="M746.2326,446H624a18.0529,18.0529,0,0,1-18-18h0a18.0529,18.0529,0,0,1,18-18H746.2326a18.0529,18.0529,0,0,1,18,18h0A18.0529,18.0529,0,0,1,746.2326,446Z" style="fill: url(#linear-gradient-3)"/>
+    <path d="M685,388H604a17.05,17.05,0,0,1-17-17h0a17.05,17.05,0,0,1,17-17h81a17.05,17.05,0,0,1,17,17h0A17.05,17.05,0,0,1,685,388Z" style="fill: url(#linear-gradient-4)"/>
+    <path d="M669,508H603a16.047,16.047,0,0,1-16-16h0a16.047,16.047,0,0,1,16-16h66a16.047,16.047,0,0,1,16,16h0A16.047,16.047,0,0,1,669,508Z" style="fill: url(#linear-gradient-5)"/>
+  </g>
+</svg>

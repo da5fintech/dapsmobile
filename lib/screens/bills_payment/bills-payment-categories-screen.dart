@@ -190,27 +190,27 @@ class _BillsPaymentCategoriesScreenState
                           CategoryButtonWidget(
                             category: BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg/services/cash-in.svg'),
+                            icon: SvgPicture.asset('assets/svg2/ICONS_AIRLINES.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
                           ),
                           CategoryButtonWidget(
                             category:
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg/services/bills-payment/cable-internet.svg'),
+                            icon: SvgPicture.asset('assets/svg2/ICONS_CABLE_AND_INTERNET.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
                           ),
                           CategoryButtonWidget(
                             category:
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg/services/bills-payment/electricity.svg'),
+                            icon: SvgPicture.asset('assets/svg2/ICONS_ELECTRIC_UTILITIES.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
                           ),
                           CategoryButtonWidget(
                             category: BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg/services/bills-payment/loans.svg'),
+                            icon: SvgPicture.asset('assets/svg2/ICONS_INSURANCE.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
                           ),
                           CategoryButtonWidget(
@@ -218,27 +218,27 @@ class _BillsPaymentCategoriesScreenState
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
                             onPressed: (category) => Get.toNamed(
                                 '/services/bills-payment/transportation/transportation-categories-screen'),
-                            icon: SvgPicture.asset('assets/svg/services/bills-payment/transportation.svg'),
+                            icon: SvgPicture.asset('assets/svg2/ICONS_TRANSPORTATION.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
                           ),
                           CategoryButtonWidget(
                             category:
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg/services/bills-payment/credit-card.svg'),
+                            icon: SvgPicture.asset('assets/svg2/ICONS_CREDIT_CARD.svg'),
                             text:
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
                           ),
                           CategoryButtonWidget(
                             category: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg/services/bills-payment/realestate.svg'),
+                            icon: SvgPicture.asset('assets/svg2/ICONS_REAL_ESTATE.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
                           ),
                           CategoryButtonWidget(
                             category: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg/services/bills-payment/water-utility.svg'),
+                            icon: SvgPicture.asset('assets/svg2/ICONS_WATER_UTILITIES.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
                           ),
                           CategoryButtonWidget(

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:sensitive_http/http.dart' as http;
+import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 
 class Da5Service {
@@ -166,5 +167,23 @@ class Da5Service {
     } catch (e) {
       return null;
     }
+  }
+
+  Future<List<dynamic>> phApi ({@required String endpoint, String req = ""}) async {
+    print('fetch ph services');
+    try {
+      var uri = PH_SERVICE_ENDPOINT + "/api/" + endpoint + (req == "" ? "" : "/" + req);
+      var request = await http.get(uri).timeout(Duration(seconds: 15));
+      var response = jsonDecode(request.body);
+
+      if (request.statusCode >= 200 && request.statusCode < 400) {
+        return response;
+      } else {
+        throw ApiResponseError(message: "Not Found");
+      }
+    } catch (e) {
+      print(e);
+    }
+
   }
 }

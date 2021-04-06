@@ -301,8 +301,13 @@ class _RegistrationCreateMpinScreenState
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(APP_HELP_CENTER),
-                          Text(APP_VERSION),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed('/help');
+                            },
+                            child: Text(APP_HELP_CENTER),
+                          ),
+                          Text(store.versionNumber),
                         ],
                       ),
                     ],

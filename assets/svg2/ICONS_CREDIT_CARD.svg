@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 864 864">
+  <defs>
+    <linearGradient id="linear-gradient" x1="292.2347" y1="489.0196" x2="657.7653" y2="277.9804" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f6a717"/>
+      <stop offset="0.0021" stop-color="#f6a718"/>
+      <stop offset="0.0511" stop-color="#f8b12f"/>
+      <stop offset="0.1072" stop-color="#f9b841"/>
+      <stop offset="0.1748" stop-color="#fabd4e"/>
+      <stop offset="0.2648" stop-color="#fbc055"/>
+      <stop offset="0.4679" stop-color="#fbc157"/>
+      <stop offset="0.5113" stop-color="#fbc45f"/>
+      <stop offset="0.7142" stop-color="#fdd17f"/>
+      <stop offset="0.8843" stop-color="#fed893"/>
+      <stop offset="1" stop-color="#fedb9a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="572.7653" y1="415.9804" x2="207.2347" y2="627.0196" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7c3bdd"/>
+      <stop offset="0.184" stop-color="#8a4ee4"/>
+      <stop offset="0.5571" stop-color="#af81f4"/>
+      <stop offset="0.6497" stop-color="#b98ef9"/>
+      <stop offset="0.8128" stop-color="#ba90f9"/>
+      <stop offset="0.8878" stop-color="#bf98fa"/>
+      <stop offset="0.9447" stop-color="#c7a4fc"/>
+      <stop offset="0.9923" stop-color="#d3b6fe"/>
+      <stop offset="1" stop-color="#d5bafe"/>
+    </linearGradient>
+  </defs>
+  <title>ICONS</title>
+  <g id="CARD">
+    <rect x="284" y="264" width="382" height="239" rx="38.5" style="fill: url(#linear-gradient)"/>
+    <rect x="199" y="402" width="382" height="239" rx="38.5" style="fill: url(#linear-gradient-2)"/>
+    <rect x="234" y="597" width="192" height="13" rx="6.5" style="fill: #fff"/>
+    <rect x="433" y="597" width="36" height="13" rx="6.5" style="fill: #fff"/>
+    <rect x="284" y="313" width="382" height="34" style="fill: #fff"/>
+  </g>
+</svg>

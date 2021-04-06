@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: <Widget>[
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 80),
+                  padding: EdgeInsets.only(top: height * 0.1),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -106,14 +106,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(
-                              Constants.LOGIN_SCREEN_SIGN_UP_TEXT,
-                              style: GoogleFonts.roboto(
-                                color: Constants.COLOR_DARK_PURPLE,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                              )
-                            ),
+                            child: Text(Constants.LOGIN_SCREEN_SIGN_UP_TEXT,
+                                style: GoogleFonts.roboto(
+                                  color: Constants.COLOR_DARK_PURPLE,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12,
+                                )),
                           ),
                           Expanded(
                             child: Divider(
@@ -195,8 +193,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(Constants.APP_HELP_CENTER),
-                          Text(Constants.APP_VERSION),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed('/help');
+                            },
+                            child: Text(Constants.APP_HELP_CENTER),
+                          ),
+                          Text(store.versionNumber),
                         ],
                       ),
                       SizedBox(
@@ -239,10 +242,11 @@ class _LoginScreenState extends State<LoginScreen> {
       //     emailAddress: res.email);
       store.registrant = registrant;
       print("setting registrant to ${store.registrant.id}");
-      var user = await store.accountService.findOrCreate(res.id, res.emailAddress,
-          name: res.displayName, photoURL: res.photoURL);
-      print("user url ${user.toMap()}");
-      store.setUser(user);
+      // var user = await store.accountService.findOrCreate(
+      //     res.id, res.emailAddress,
+      //     name: res.displayName, photoURL: res.photoURL);
+      // print("user url ${user.toMap()}");
+      // store.setUser(user);
       Get.toNamed("/registration/registration-details-screen");
     } catch (e) {}
   }

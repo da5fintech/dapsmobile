@@ -9,6 +9,21 @@ part of 'application-store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ApplicationStore on _ApplicationStore, Store {
+  final _$versionNumberAtom = Atom(name: '_ApplicationStore.versionNumber');
+
+  @override
+  String get versionNumber {
+    _$versionNumberAtom.reportRead();
+    return super.versionNumber;
+  }
+
+  @override
+  set versionNumber(String value) {
+    _$versionNumberAtom.reportWrite(value, super.versionNumber, () {
+      super.versionNumber = value;
+    });
+  }
+
   final _$userAtom = Atom(name: '_ApplicationStore.user');
 
   @override
@@ -119,6 +134,17 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
       ActionController(name: '_ApplicationStore');
 
   @override
+  dynamic setVersionNumber(String version) {
+    final _$actionInfo = _$_ApplicationStoreActionController.startAction(
+        name: '_ApplicationStore.setVersionNumber');
+    try {
+      return super.setVersionNumber(version);
+    } finally {
+      _$_ApplicationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic createTransaction(SwipeServiceOffering offering, dynamic recipient) {
     final _$actionInfo = _$_ApplicationStoreActionController.startAction(
         name: '_ApplicationStore.createTransaction');
@@ -209,6 +235,7 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
   @override
   String toString() {
     return '''
+versionNumber: ${versionNumber},
 user: ${user},
 balance: ${balance},
 swipePoints: ${swipePoints},

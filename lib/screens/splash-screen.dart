@@ -1,15 +1,21 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_screen/overlay_screen.dart';
+import 'package:package_info/package_info.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:swipe/common/constants.dart' as Constants;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/screens/login-screen.dart';
 import 'package:swipe/screens/setup-screen.dart';
 import 'package:swipe/store/application-store.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../main.dart';
 
@@ -34,6 +40,30 @@ class _SplashScreenState extends State<SplashScreen> {
     ThemeData td = Constants.createThemePurpleOnWhite(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    OverlayScreen().saveScreens({
+      'update-dialog': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: SwipeDialog(
+          title: 'IMPORTANT UPDATE!',
+          contentMessage: "In order to enjoy and secured experience Please UPDATE to the latest version of our app now!",
+          cancelBtn: true,
+          onOk: () {
+            OverlayScreen().pop();
+            if(Platform.isAndroid) {
+              launch("market://details?id=" + 'ph.kabootek.swipeapp');
+              userLogin();
+            } else {
+              ///open ios app store here
+              userLogin();
+            }
+          },
+          cancel: () {
+            userLogin();
+          },
+        )
+      )
+    });
 
     return Theme(
       data: td,
@@ -77,6 +107,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _initialize(BuildContext context) async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
     Map<Permission, PermissionStatus> statuses = await [
       Permission.contacts,
       Permission.storage,
@@ -85,6 +116,20 @@ class _SplashScreenState extends State<SplashScreen> {
       Permission.microphone,
     ].request();
 
+    store.setVersionNumber(packageInfo.version);
+    String latestVersion = await store.accountService.getLatestAppVersion();
+    if(packageInfo.version != latestVersion) {
+      OverlayScreen().show(
+        context,
+        identifier: 'update-dialog',
+      );
+    } else {
+      userLogin();
+    }
+
+  }
+
+  void userLogin () async {
     User creds = store.authService.getCurrentUser();
     if (creds != null) {
       print("creds ${creds.uid}");
@@ -96,17 +141,17 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.offAllNamed("/login");
       }
 
-      // await store.authService.logout();
+      await store.authService.logout();
 
     } else {
-      // store.setPermissionsGranted();
-      // print("granted");
-      // print(store.permissionsGranted);
-      // if (store.permissionsGranted) {
-      //   Get.off(LoginScreen());
-      // } else {
-      //   Get.off(SetupScreen());
-      // }
+      store.setPermissionsGranted();
+      print("granted");
+      print(store.permissionsGranted);
+      if (store.permissionsGranted) {
+        Get.off(LoginScreen());
+      } else {
+        Get.off(SetupScreen());
+      }
       Get.offAllNamed("/login");
     }
   }

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 864 864">
+  <defs>
+    <linearGradient id="linear-gradient" x1="667.9038" y1="340.4728" x2="299.1576" y2="553.3685" gradientUnits="userSpaceOnUse">
+      <stop offset="0.0856" stop-color="#f6a717"/>
+      <stop offset="0.09" stop-color="#f6a819"/>
+      <stop offset="0.2021" stop-color="#f9b740"/>
+      <stop offset="0.318" stop-color="#fac461"/>
+      <stop offset="0.4369" stop-color="#fcce7a"/>
+      <stop offset="0.5602" stop-color="#fdd58c"/>
+      <stop offset="0.6905" stop-color="#feda97"/>
+      <stop offset="0.8396" stop-color="#fedb9a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="277.9997" y1="247.2146" x2="498.9118" y2="629.8456" gradientUnits="userSpaceOnUse">
+      <stop offset="0.008" stop-color="#7c3bdd"/>
+      <stop offset="0.0376" stop-color="#8040df"/>
+      <stop offset="0.3837" stop-color="#a978f2"/>
+      <stop offset="0.5508" stop-color="#b98ef9"/>
+      <stop offset="0.9465" stop-color="#d5bafe"/>
+    </linearGradient>
+  </defs>
+  <title>ICONS</title>
+  <g id="HEALTHCARE">
+    <path d="M630.86,466.86c-.5.5-1.01,1-1.52,1.48l.02.02L437.5,660.23,256.14,478.86l185.3-185.3q3.6153-4.3353,7.7-8.42A128.4954,128.4954,0,1,1,630.86,466.86Z" style="fill: url(#linear-gradient)"/>
+    <path d="M607.23,490.5,425.5,672.23,225.14,471.86l.61-.61c-1.56-1.41-3.1-2.88-4.61-4.39A128.4954,128.4954,0,1,1,411.92,295.2Z" style="fill: url(#linear-gradient-2)"/>
+  </g>
+</svg>

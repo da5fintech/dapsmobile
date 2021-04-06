@@ -21,6 +21,7 @@ class ServiceButtonWidget extends StatelessWidget {
     return Column(
       children: [
         IconButton(
+          iconSize: 50,
           color: COLOR_GRAY,
           icon: icon,
           onPressed: () {

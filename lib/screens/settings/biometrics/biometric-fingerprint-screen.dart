@@ -97,8 +97,8 @@ class _BiometricFingerprintScreenState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Platform.isAndroid
-                        ? Image.asset('assets/icons/biometrics/fingerprint.png')
-                        : Image.asset('assets/icons/biometrics/faceid.png'),
+                        ? Image.asset('assets/icons/biometrics/fingerprint.png', scale: MediaQuery.of(context).devicePixelRatio <= 2.75 ? 1.5 : 1)
+                        : Image.asset('assets/icons/biometrics/faceid.png', scale: MediaQuery.of(context).devicePixelRatio <= 2.75 ? 1.5 : 1),
                     Text(
                       SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT,
                       style: GoogleFonts.roboto(

@@ -4,63 +4,63 @@ import 'package:swipe/common/constants.dart';
 List<Map<String, dynamic>> billerList = [
   {
     'title': BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
-    'imagePath': "assets/svg/services/cash-in.svg",
+    'imagePath': "assets/svg2/ICONS_AIRLINES.svg",
   },
   {
     'title': BILLS_PAYMENT_BILLER_ELECTRIC_UTILITIES_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/electricity.svg',
+    'imagePath': 'assets/svg2/ICONS_ELECTRIC_UTILITIES.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_WATER_UTILITIES_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/water-utility.svg',
+    'imagePath': 'assets/svg2/ICONS_WATER_UTILITIES.svg',
   },
   {
     'title': BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/realestate.svg',
+    'imagePath': 'assets/svg2/ICONS_REAL_ESTATE.svg',
   },
   {
     'title': BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/cable-internet.svg',
+    'imagePath': 'assets/svg2/ICONS_CABLE_AND_INTERNET.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_LOANS_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/loans.svg',
+    'imagePath': 'assets/svg2/ICONS_LOANS.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_CREDIT_CARD_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/credit-card.svg',
+    'imagePath': 'assets/svg2/ICONS_CREDIT_CARD.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_TELECOM_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/telecom.svg',
+    'imagePath': 'assets/svg2/ICONS_TELECOMM.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_GOVERMENT_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/government.svg',
+    'imagePath': 'assets/svg2/ICONS_GOVERNMENT.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_INSURANCE_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/insurance.svg',
+    'imagePath': 'assets/svg2/ICONS_INSURANCE.svg',
   },
   {
     'title': BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/transportation.svg',
+    'imagePath': 'assets/svg2/ICONS_TRANSPORTATION.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_SCHOOLS_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/school.svg',
+    'imagePath': 'assets/svg2/ICONS_EDUCATION.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_HEALTH_CARE_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/healthcare.svg',
+    'imagePath': 'assets/svg2/ICONS_HEALTHCARE.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_REAL_ESTATE_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/realestate.svg',
+    'imagePath': 'assets/svg2/ICONS_REAL_ESTATE.svg',
   },
   {
     'title': BILLS_PAYMENT_BILLER_FOOD_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/food.svg',
+    'imagePath': 'assets/svg2/ICONS_FOOD_AND_DRINKS.svg',
   },
   {
     'title': BILLS_PAYMENT_CATEGORIES_SCREEN_OTHERS_TEXT,
@@ -68,7 +68,7 @@ List<Map<String, dynamic>> billerList = [
   },
   {
     'title': BILLS_PAYMENT_BILLER_FAVORITES_TEXT,
-    'imagePath': 'assets/svg/services/bills-payment/favorites.svg',
+    'imagePath': 'assets/svg2/ICONS_FAVORITES.svg',
   }
 ];
 

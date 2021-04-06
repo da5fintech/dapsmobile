@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/models/auto-suggest-model.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/screens/splash-screen.dart';
+import 'package:swipe/screens/user-profile/user-verification/verification-user-information-screen.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/router.dart' as onRouter;
 

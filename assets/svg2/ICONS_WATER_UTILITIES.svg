@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 864 864">
+  <defs>
+    <linearGradient id="linear-gradient" x1="481.1831" y1="462.0099" x2="481.1831" y2="135.0408" gradientUnits="userSpaceOnUse">
+      <stop offset="0.3128" stop-color="#d5bafe"/>
+      <stop offset="0.8194" stop-color="#945de6"/>
+      <stop offset="1" stop-color="#7c3bdd"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="311.2874" y1="706.9163" x2="311.2874" y2="590.2331" gradientUnits="userSpaceOnUse">
+      <stop offset="0.1578" stop-color="#d5bafe"/>
+      <stop offset="0.5108" stop-color="#a677ec"/>
+      <stop offset="0.7714" stop-color="#884ce1"/>
+      <stop offset="0.9037" stop-color="#7c3bdd"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" cx="308.7229" cy="543.4317" r="107.0664" gradientUnits="userSpaceOnUse">
+      <stop offset="0.1257" stop-color="#fedb9a"/>
+      <stop offset="0.2527" stop-color="#fed994"/>
+      <stop offset="0.4156" stop-color="#fdd284"/>
+      <stop offset="0.5982" stop-color="#fbc86a"/>
+      <stop offset="0.795" stop-color="#f9b945"/>
+      <stop offset="1" stop-color="#f6a717"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient-3" x1="668.1265" y1="420.9785" x2="668.1265" y2="570.9997" xlink:href="#radial-gradient"/>
+  </defs>
+  <title>ICONS</title>
+  <g id="WATER_UTILITIES" data-name="WATER UTILITIES">
+    <path d="M695.3158,353.02v42.3137H639.6286V361.5984a160.6572,160.6572,0,0,0-46.0705-112.7852c-28.44-28.94-67.6634-46.904-110.7979-46.904-86.2814,0-156.868,71.8563-156.868,159.6892V462.01H267.05V353.02c0-119.8887,96.36-217.9794,214.1327-217.9794,58.88,0,112.4132,24.5163,151.2264,64.0347A219.2054,219.2054,0,0,1,695.3158,353.02Z" style="fill: url(#linear-gradient)"/>
+    <path d="M439.5747,706.9163H183a128.8644,128.8644,0,0,1,256.5747,0Z" style="fill: url(#linear-gradient-2)"/>
+    <circle cx="308.7229" cy="543.4317" r="107.0664" style="fill: url(#radial-gradient)"/>
+    <circle cx="308.0818" cy="542.7906" r="46.1604" style="fill: #fff"/>
+    <path d="M723,516.1262a54.8735,54.8735,0,1,1-96.829-35.3708l41.4521-59.7769L711.24,482.165l.06.08A54.6344,54.6344,0,0,1,723,516.1262Z" style="fill: url(#linear-gradient-3)"/>
+  </g>
+</svg>

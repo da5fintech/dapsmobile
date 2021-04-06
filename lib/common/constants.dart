@@ -328,6 +328,8 @@ const SMS_USERNAME = "itda5";
 const SMS_PASSWORD = "@da5_isms-2019";
 const SMS_API = "https://www.isms.com.my/isms_send.php?";
 
+const PH_SERVICE_ENDPOINT = "http://10.0.2.2:8000";
+
 const ELOADING_SCOPE = 'eloading';
 const BILLS_PAYMENT_SCOPE = 'billspayment';
 const BILLS_PAYMENT_CHANNEL = 'X2B2';
