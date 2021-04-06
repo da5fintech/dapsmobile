@@ -41,6 +41,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
+    double height = queryData.size.height;
     SizeConfig().init(context);
 
     OverlayScreen().saveScreens({
@@ -178,12 +179,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
             Flexible(
               flex: 1,
               child: Container(
-                padding: EdgeInsets.only(top: 20),
+                padding: EdgeInsets.only(top: 10),
                 color: Colors.white,
                 width: MediaQuery.of(context).size.width,
                 child: GridView.count(
                   physics: queryData.devicePixelRatio >= 2.75 ? NeverScrollableScrollPhysics() : null,
-                  childAspectRatio: 1.3,
+                  childAspectRatio: 1.4,
                   crossAxisCount: 3,
                   mainAxisSpacing: 0,
                   crossAxisSpacing: 20,
@@ -192,7 +193,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       offering: SwipeServiceOffering.CASH_IN,
                       onPressed: _handleButtonClick,
                       icon: SvgPicture.asset(
-                        'assets/svg/services/cash-in.svg',
+                        'assets/svg2/ICONS_CASH_IN.svg',
                       ),
                       text: SERVICES_SCREEN_CASH_IN_TEXT,
                     ),
@@ -211,7 +212,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       },
                       // icon: Image.asset('assets/icons/services/remittance.png'),
                       icon: SvgPicture.asset(
-                          'assets/svg/services/direct-send.svg'),
+                          'assets/svg2/ICONS_DIRECT_SEND.svg'),
                       text: SERVICES_SCREEN_REMITTANCE_TEXT,
                     ),
                     ServiceButtonWidget(
@@ -227,7 +228,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         );
                       },
                       icon: SvgPicture.asset(
-                        'assets/svg/services/bank-transfer.svg',
+                        'assets/svg2/ICONS_BANK.svg',
                       ),
                       text: SERVICES_SCREEN_BANK_TRANSFER_TEXT,
                     ),
@@ -236,7 +237,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       onPressed: _handleButtonClick,
                       // icon: Image.asset('assets/icons/services/buy-load.png'),
                       icon: SvgPicture.asset(
-                        'assets/svg/services/buy-load.svg',
+                        'assets/svg2/ICONS_BUY_LOAD.svg',
                       ),
                       text: SERVICES_SCREEN_BUY_LOAD_TEXT,
                     ),
@@ -245,7 +246,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       onPressed: _handleButtonClick,
                       // icon: Image.asset('assets/icons/services/pay-bills.png'),
                       icon: SvgPicture.asset(
-                        'assets/svg/services/pay-bills.svg',
+                        'assets/svg2/ICONS_BILLS_PAYMENT.svg',
                       ),
                       text: SERVICES_SCREEN_PAY_BILLS_TEXT,
                     ),
@@ -255,7 +256,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         offering: SwipeServiceOffering.REQUEST_MONEY,
                         onPressed: _handleButtonClick,
                         icon: SvgPicture.asset(
-                          'assets/svg/services/request-money.svg',
+                          'assets/svg2/ICONS_SEND_AND_RECEIVE.svg',
                         ),
                         text: SERVICES_SCREEN_REQUEST_MONEY_TEXT,
                       ),
@@ -265,8 +266,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       child: ServiceButtonWidget(
                         offering: SwipeServiceOffering.PAY_QR,
                         onPressed: _handleButtonClick,
-                        icon:
-                            SvgPicture.asset('assets/svg/services/pay-qr.svg'),
+                        icon: SvgPicture.asset(
+                            'assets/svg2/ICONS_SCAN_QR.svg'),
                         text: SERVICES_SCREEN_PAY_QR_TEXT,
                       ),
                     ),
@@ -276,7 +277,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         offering: SwipeServiceOffering.INSURANCE,
                         onPressed: _handleButtonClick,
                         icon: SvgPicture.asset(
-                          'assets/svg/services/insurance.svg',
+                          'assets/svg2/ICONS_INSURANCE.svg',
                         ),
                         text: SERVICES_SCREEN_INSURANCE_TEXT,
                       ),
