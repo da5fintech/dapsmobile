@@ -40,187 +40,189 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
         appBar: SubAppbarWidget(
           title: CASH_IN_PARTNER_DETAILS_TITLE,
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  width: width * 0.15,
-                  height: height * 0.08,
-                  margin: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: COLOR_DARK_PURPLE),
-                  ),
-                  child: Center(
-                    child: Image.asset(
-                      imagePath,
-                    ),
-                  ),
-                ),
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
-              ],
-            ),
-            Container(
-              height: height * 0.30,
-              child: Stack(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 children: [
-                  GoogleMap(
-                    zoomControlsEnabled: false,
-                    mapType: MapType.normal,
-                    initialCameraPosition: _kGooglePlex,
-                    onMapCreated: (GoogleMapController controller) {
-                      _controller.complete(controller);
-                    },
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ButtonTheme(
-                          buttonColor: Colors.blue[600],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          minWidth: width * 0.60,
-                          child: RaisedButton(
-                              onPressed: () {},
-                              child: Text(
-                                  CASH_IN_VIEW_NEARBY_STORES,
-                                  style: GoogleFonts.roboto(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                  )
-                              )
-                          )
+                  Container(
+                    width: width * 0.15,
+                    height: height * 0.08,
+                    margin: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: COLOR_DARK_PURPLE),
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        imagePath,
                       ),
                     ),
                   ),
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.roboto(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => CashInViaCodeScreen(
-                      partner: title,
-                    )),
-                  );
-                },
-                leading: SvgPicture.asset(
-                  'assets/svg/services/cash-in/barcode.svg',
+              Container(
+                height: height * 0.30,
+                child: Stack(
+                  children: [
+                    GoogleMap(
+                      zoomControlsEnabled: false,
+                      mapType: MapType.normal,
+                      initialCameraPosition: _kGooglePlex,
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ButtonTheme(
+                            buttonColor: Colors.blue[600],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            minWidth: width * 0.60,
+                            child: RaisedButton(
+                                onPressed: () {},
+                                child: Text(
+                                    CASH_IN_VIEW_NEARBY_STORES,
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                    )
+                                )
+                            )
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                title: Text(
-                  CASH_IN_GENERATE_BARCODE,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => CashInViaCodeScreen(
+                        partner: title,
+                      )),
+                    );
+                  },
+                  leading: SvgPicture.asset(
+                    'assets/svg/services/cash-in/barcode.svg',
+                  ),
+                  title: Text(
+                    CASH_IN_GENERATE_BARCODE,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.w500,
+                      color: COLOR_DARK_PURPLE,
+                      fontSize: 14,
+                    ),
+                  ),
+                  subtitle: Text(
+                    CASH_IN_SUBNOTE_BARCODE,
+                    style: GoogleFonts.roboto(
+                      fontSize: 12,
+                      color: COLOR_DARK_GRAY,
+                      height: 1.5,
+                    ),
+                  ),
+                  trailing: Icon(Icons.arrow_forward_ios, size: 12, color: COLOR_DARK_PURPLE),
+                ),
+              ),
+              Divider(
+                thickness: 0.5,
+                color: COLOR_DARK_GRAY.withOpacity(.56),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: Text(
+                  CASH_IN_HOW_TO_CASH,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
+                    fontSize: 16,
                     color: COLOR_DARK_PURPLE,
-                    fontSize: 14,
-                  ),
-                ),
-                subtitle: Text(
-                  CASH_IN_SUBNOTE_BARCODE,
-                  style: GoogleFonts.roboto(
-                    fontSize: 12,
-                    color: COLOR_DARK_GRAY,
-                    height: 1.5,
-                  ),
-                ),
-                trailing: Icon(Icons.arrow_forward_ios, size: 12, color: COLOR_DARK_PURPLE),
-              ),
-            ),
-            Divider(
-              thickness: 0.5,
-              color: COLOR_DARK_GRAY.withOpacity(.56),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0),
-              child: Text(
-                CASH_IN_HOW_TO_CASH,
-                style: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  color: COLOR_DARK_PURPLE,
-                )
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0),
-              child: Text(
-                  CASH_IN_HOW_TO_CASH_SUBNOTE,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 12,
-                    color: Colors.black,
-                    height: 2,
                   )
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 20,
-                  child: Text('1')
-                ),
-                subtitle: Text(
-                  CASH_IN_STEP_1,
-                  style: GoogleFonts.roboto(
-                    fontSize: 12,
-                    color: COLOR_DARK_GRAY,
-                    height: 1.5,
-                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: ListTile(
-                leading: CircleAvatar(
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: Text(
+                    CASH_IN_HOW_TO_CASH_SUBNOTE,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12,
+                      color: Colors.black,
+                      height: 2,
+                    )
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: ListTile(
+                  leading: CircleAvatar(
                     radius: 20,
-                    child: Text('2')
-                ),
-                subtitle: Text(
-                  CASH_IN_STEP_2,
-                  style: GoogleFonts.roboto(
-                    fontSize: 12,
-                    color: COLOR_DARK_GRAY,
-                    height: 1.5,
+                    child: Text('1')
+                  ),
+                  subtitle: Text(
+                    CASH_IN_STEP_1,
+                    style: GoogleFonts.roboto(
+                      fontSize: 12,
+                      color: COLOR_DARK_GRAY,
+                      height: 1.5,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: ListTile(
-                leading: CircleAvatar(
-                    radius: 20,
-                    child: Text('3')
-                ),
-                subtitle: Text(
-                  CASH_IN_STEP_3,
-                  style: GoogleFonts.roboto(
-                    fontSize: 12,
-                    color: COLOR_DARK_GRAY,
-                    height: 1.5,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: ListTile(
+                  leading: CircleAvatar(
+                      radius: 20,
+                      child: Text('2')
+                  ),
+                  subtitle: Text(
+                    CASH_IN_STEP_2,
+                    style: GoogleFonts.roboto(
+                      fontSize: 12,
+                      color: COLOR_DARK_GRAY,
+                      height: 1.5,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: ListTile(
+                  leading: CircleAvatar(
+                      radius: 20,
+                      child: Text('3')
+                  ),
+                  subtitle: Text(
+                    CASH_IN_STEP_3,
+                    style: GoogleFonts.roboto(
+                      fontSize: 12,
+                      color: COLOR_DARK_GRAY,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         )
       )
     );

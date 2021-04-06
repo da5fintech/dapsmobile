@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 864 864">
+  <defs>
+    <linearGradient id="linear-gradient" x1="281.1433" y1="628.2624" x2="544.3183" y2="172.4299" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7c3bdd"/>
+      <stop offset="0.2368" stop-color="#935ae8"/>
+      <stop offset="0.5775" stop-color="#b98ef9"/>
+      <stop offset="0.6672" stop-color="#bd95fa"/>
+      <stop offset="0.7947" stop-color="#c9a7fc"/>
+      <stop offset="0.8904" stop-color="#d5bafe"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="510.1791" y1="674.5807" x2="680.0133" y2="380.4193" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f6a717"/>
+      <stop offset="0.1939" stop-color="#f8b436"/>
+      <stop offset="0.3743" stop-color="#fbc157"/>
+      <stop offset="0.4861" stop-color="#fbc45e"/>
+      <stop offset="0.6456" stop-color="#fccb70"/>
+      <stop offset="0.8328" stop-color="#fed78f"/>
+      <stop offset="0.8904" stop-color="#fedb9a"/>
+    </linearGradient>
+  </defs>
+  <title>ICONS</title>
+  <g id="CABLE_INTERNET" data-name="CABLE &amp; INTERNET">
+    <path d="M508.6538,635.0565v13.5409a10.5152,10.5152,0,0,1-10.518,10.518H326.21a10.5152,10.5152,0,0,1-10.5181-10.518V635.0565a10.5152,10.5152,0,0,1,10.5181-10.518H381.5V554.2692h60.2308v70.2693h56.405A10.5152,10.5152,0,0,1,508.6538,635.0565Z" style="fill: #3e0790"/>
+    <rect x="164" y="223" width="497.4615" height="354.6923" rx="40.2857" style="fill: url(#linear-gradient)"/>
+    <rect x="508.6538" y="368" width="172.8846" height="319" rx="31.4821" style="fill: url(#linear-gradient-2)"/>
+    <rect x="209.7308" y="276.5385" width="286.6538" height="26.7692" rx="8" style="fill: #fff"/>
+    <rect x="209.7308" y="320.0385" width="182.9231" height="26.7692" rx="8" style="fill: #fff"/>
+    <rect x="542.1154" y="650.1923" width="105.9615" height="17.8462" rx="8" style="fill: #fff"/>
+    <circle cx="595.0962" cy="399.7885" r="12.8269" style="fill: #fff"/>
+  </g>
+</svg>

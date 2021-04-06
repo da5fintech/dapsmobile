@@ -40,6 +40,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
     SizeConfig().init(context);
 
     OverlayScreen().saveScreens({
@@ -138,7 +139,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -181,8 +182,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                 color: Colors.white,
                 width: MediaQuery.of(context).size.width,
                 child: GridView.count(
-                  physics: NeverScrollableScrollPhysics(),
-                  childAspectRatio: 1.2,
+                  physics: queryData.devicePixelRatio >= 2.75 ? NeverScrollableScrollPhysics() : null,
+                  childAspectRatio: 1.3,
                   crossAxisCount: 3,
                   mainAxisSpacing: 0,
                   crossAxisSpacing: 20,

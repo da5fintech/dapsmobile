@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: <Widget>[
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 80),
+                  padding: EdgeInsets.only(top: height * 0.1),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
