@@ -23,7 +23,7 @@ class ProvinceModel{
   int id;
   String psgcCode;
   String provDesc;
-  int regCode;
+  String regCode;
   String provCode;
 
   ProvinceModel({this.id, this.psgcCode, this.provDesc, this.regCode, this.provCode});
@@ -44,7 +44,7 @@ class CityModel {
   String psgcCode;
   String citymunDesc;
   String regDesc;
-  int provCode;
+  String provCode;
   String citymunCode;
 
   CityModel({
@@ -73,9 +73,9 @@ class BarangayModel {
   int id;
   String brgyCode;
   String brgyDesc;
-  int regCode;
-  int provCode;
-  int citymunCode;
+  String regCode;
+  String provCode;
+  String citymunCode;
 
   BarangayModel({
     this.id,

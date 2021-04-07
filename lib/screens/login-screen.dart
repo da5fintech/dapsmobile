@@ -1,9 +1,12 @@
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/close-dialog.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
@@ -33,183 +36,203 @@ class _LoginScreenState extends State<LoginScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    return Theme(
-      data: td,
-      child: Scaffold(
-        // backgroundColor: Constants.backgroundColor2,
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(top: height * 0.1),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        Constants.LOGIN_SCREEN_APP_NAME,
-                        style: GoogleFonts.roboto(
-                          fontSize: Constants.LOGIN_SCREEN_APP_NAME_FONT_SIZE,
-                          fontWeight: FontWeight.w800,
-                          letterSpacing:
-                              Constants.LOGIN_SCREEN_APP_NAME_LETTER_SPACING,
-                          color: Constants.COLOR_DARK_PURPLE,
+    OverlayScreen().saveScreens({
+      'close-dialog': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: CloseDialog(
+          onOk: () {
+            OverlayScreen().pop();
+            SystemNavigator.pop();
+          },
+        ),
+      ),
+    });
+
+    return WillPopScope(
+      onWillPop: () async {
+        OverlayScreen().show(
+          context,
+          identifier: 'close-dialog',
+        );
+      },
+      child: Theme(
+        data: td,
+        child: Scaffold(
+          // backgroundColor: Constants.backgroundColor2,
+          body: Container(
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: height * 0.1),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          Constants.LOGIN_SCREEN_APP_NAME,
+                          style: GoogleFonts.roboto(
+                            fontSize: Constants.LOGIN_SCREEN_APP_NAME_FONT_SIZE,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing:
+                                Constants.LOGIN_SCREEN_APP_NAME_LETTER_SPACING,
+                            color: Constants.COLOR_DARK_PURPLE,
+                          ),
                         ),
-                      ),
-                      Image.asset(
-                        'assets/icons/swipe-logo.png',
-                        height: height * 0.35,
-                        width: width,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                    ],
+                        Image.asset(
+                          'assets/icons/swipe-logo.png',
+                          height: height * 0.35,
+                          width: width,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 20, left: 40, right: 40),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: SecondaryButtonWidget(
-                          onPressed: () {
-                            _handleLogin();
-                          },
-                          text: Constants.LOGIN_SCREEN_LOGIN_TEXT,
-                        ),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: PrimaryButtonWidget(
-                          onPressed: () {
-                            _handleRegister();
-                          },
-                          text: Constants.LOGIN_SCREEN_REGISTER_TEXT,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Divider(
-                              thickness: 1.5,
-                              color: Constants.COLOR_DARK_PURPLE,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(Constants.LOGIN_SCREEN_SIGN_UP_TEXT,
-                                style: GoogleFonts.roboto(
-                                  color: Constants.COLOR_DARK_PURPLE,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                )),
-                          ),
-                          Expanded(
-                            child: Divider(
-                              thickness: 1.5,
-                              color: Constants.COLOR_DARK_PURPLE,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(right: 8),
-                            child: CircleAvatar(
-                              radius: 26,
-                              backgroundColor: Colors.white,
-                              child: CircleAvatar(
-                                backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                radius: 25,
-                                child: IconButton(
-                                  iconSize: 30,
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.facebookF,
-                                    color: Colors.white.withOpacity(.87),
-                                  ),
-                                  onPressed: () {
-                                    _handleSignup(LoginProvider.FACEBOOK);
-                                  },
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(right: 8),
-                            child: CircleAvatar(
-                              radius: 26,
-                              backgroundColor: Colors.white,
-                              child: CircleAvatar(
-                                backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                radius: 25,
-                                child: IconButton(
-                                  iconSize: 30,
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.google,
-                                    color: Colors.white.withOpacity(.87),
-                                  ),
-                                  onPressed: () {
-                                    _handleSignup(LoginProvider.GOOGLE);
-                                  },
-                                ),
-                              ),
-                            ),
-                          ),
-                          CircleAvatar(
-                            radius: 26,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              backgroundColor: Constants.COLOR_DARK_PURPLE,
-                              radius: 25,
-                              child: IconButton(
-                                iconSize: 30,
-                                icon: FaIcon(
-                                  FontAwesomeIcons.linkedinIn,
-                                  color: Colors.white.withOpacity(.87),
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Get.toNamed('/help');
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 20, left: 40, right: 40),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: SecondaryButtonWidget(
+                            onPressed: () {
+                              _handleLogin();
                             },
-                            child: Text(Constants.APP_HELP_CENTER),
+                            text: Constants.LOGIN_SCREEN_LOGIN_TEXT,
                           ),
-                          Text(store.versionNumber),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                    ],
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: PrimaryButtonWidget(
+                            onPressed: () {
+                              _handleRegister();
+                            },
+                            text: Constants.LOGIN_SCREEN_REGISTER_TEXT,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Divider(
+                                thickness: 1.5,
+                                color: Constants.COLOR_DARK_PURPLE,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(Constants.LOGIN_SCREEN_SIGN_UP_TEXT,
+                                  style: GoogleFonts.roboto(
+                                    color: Constants.COLOR_DARK_PURPLE,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                  )),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                thickness: 1.5,
+                                color: Constants.COLOR_DARK_PURPLE,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 8),
+                              child: CircleAvatar(
+                                radius: 26,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
+                                  radius: 25,
+                                  child: IconButton(
+                                    iconSize: 30,
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.facebookF,
+                                      color: Colors.white.withOpacity(.87),
+                                    ),
+                                    onPressed: () {
+                                      _handleSignup(LoginProvider.FACEBOOK);
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(right: 8),
+                              child: CircleAvatar(
+                                radius: 26,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
+                                  radius: 25,
+                                  child: IconButton(
+                                    iconSize: 30,
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.google,
+                                      color: Colors.white.withOpacity(.87),
+                                    ),
+                                    onPressed: () {
+                                      _handleSignup(LoginProvider.GOOGLE);
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                            CircleAvatar(
+                              radius: 26,
+                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                backgroundColor: Constants.COLOR_DARK_PURPLE,
+                                radius: 25,
+                                child: IconButton(
+                                  iconSize: 30,
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.linkedinIn,
+                                    color: Colors.white.withOpacity(.87),
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.toNamed('/help');
+                              },
+                              child: Text(Constants.APP_HELP_CENTER),
+                            ),
+                            Text(store.versionNumber),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

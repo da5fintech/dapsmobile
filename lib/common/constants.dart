@@ -139,7 +139,7 @@ const SERVICES_SCREEN_REQUEST_MONEY_TEXT = "Request Money";
 const SERVICES_SCREEN_PAY_QR_TEXT = "Pay QR";
 const SERVICES_SCREEN_INSURANCE_TEXT = "Insurance";
 const SERVICES_SCREEN_MORE_TEXT = "More";
-const SERVICES_SCREEN_TRANSACTION_TEXT = "";
+const SERVICES_SCREEN_TRANSACTION_TEXT = "Transaction History";
 const SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT =
     "More Advantages to know about Swipe";
 const SERVICES_SCREEN_REASON_SWIPE_TEXT =
@@ -316,19 +316,19 @@ const CASHIN_MERCHANT_ID = "";
 const CASHIN_NETWORK_ID = "";
 const CASHIN_USERNAME = "";
 const CASHIN_SIGNATURE = "";
-const CASHIN_ENDPOINT = "http://52.76.155.168";
+const CASHIN_ENDPOINT = "https://staging.swipe.ph";
 
 const VERIFY_MERCHANT_ID = "";
 const VERIFY_NETWORK_ID = "";
 const VERIFY_USERNAME = "";
 const VERIFY_SIGNATURE = "";
-const VERIFY_ENDPOINT = "http://52.76.155.168";
+const VERIFY_ENDPOINT = "https://staging.swipe.ph";
 
 const SMS_USERNAME = "itda5";
 const SMS_PASSWORD = "@da5_isms-2019";
 const SMS_API = "https://www.isms.com.my/isms_send.php?";
 
-const PH_SERVICE_ENDPOINT = "http://10.0.2.2:8000";
+const PH_SERVICE_ENDPOINT = "https://staging.swipe.ph";
 
 const ELOADING_SCOPE = 'eloading';
 const BILLS_PAYMENT_SCOPE = 'billspayment';
