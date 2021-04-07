@@ -141,7 +141,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.offAllNamed("/login");
       }
 
-      await store.authService.logout();
+      // await store.authService.logout();
 
     } else {
       store.setPermissionsGranted();
