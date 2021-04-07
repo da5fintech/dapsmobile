@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
+import 'package:swipe/common/widgets/close-dialog.dart';
 import 'package:swipe/common/widgets/promo-card.dart';
 
 import 'package:swipe/common/widgets/amount-widget.dart';
@@ -62,9 +64,23 @@ class _ServicesScreenState extends State<ServicesScreen> {
           },
         ),
       ),
+      'close-dialog': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: CloseDialog(
+          onOk: () {
+            OverlayScreen().pop();
+            SystemNavigator.pop();
+          },
+        ),
+      ),
     });
     return WillPopScope(
-      onWillPop: () async {},
+      onWillPop: () async {
+        OverlayScreen().show(
+          context,
+          identifier: 'close-dialog',
+        );
+      },
       child: Scaffold(
         // backgroundColor: Constants.backgroundColor2,
         key: _drawerKey,

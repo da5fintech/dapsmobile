@@ -53,7 +53,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
             ),
             SizedBox(height: 10.0),
             Text(
-              "Processing...",
+              "Loading...",
               style: GoogleFonts.roboto(color: Colors.white),
             ),
           ],
