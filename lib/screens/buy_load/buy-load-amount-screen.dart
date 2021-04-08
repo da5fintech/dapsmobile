@@ -26,16 +26,23 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
   ProductModel selectedPromo;
   List<ProductModel> promoProducts = new List<ProductModel>();
   AirtimeProduct chosenRegularPromo;
+  bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
+    getProducts();
+  }
 
-    store.eloadingService
+  Future getProducts () async {
+    isLoading = true;
+    setState(() {});
+    await store.eloadingService
         .getProducts(store.transaction.recipient)
         .then((value) {
       setState(() {
         promoProducts = value;
+        isLoading = false;
       });
     });
   }
@@ -169,9 +176,13 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                       Text(BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION),
                       Text(BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION_OR),
                       SizedBox(height: 25),
-                      Expanded(
+                      !isLoading ? Expanded(
                         child: SingleChildScrollView(
                           child: createAmountsTable(),
+                        ),
+                      ) : Expanded(
+                        child: Center(
+                          child: CircularProgressIndicator(backgroundColor: COLOR_DARK_ORANGE),
                         ),
                       ),
                       Padding(
@@ -195,7 +206,7 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
               ),
               Column(
                 children: [
-                  Expanded(
+                  !isLoading ? Expanded(
                     child: ListView.builder(
                       physics: AlwaysScrollableScrollPhysics(),
                       padding: const EdgeInsets.all(8),
@@ -251,6 +262,10 @@ class _BuyLoadAmountScreenState extends State<BuyLoadAmountScreen> {
                         );
                       },
                     ),
+                  ) : Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(backgroundColor: COLOR_DARK_ORANGE),
+                    )
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 25, right: 25),
