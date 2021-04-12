@@ -1,9 +1,11 @@
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/user-model.dart';
@@ -22,13 +24,25 @@ class DirectSendFormScreen extends StatefulWidget {
 
 class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
   final _formKey = GlobalKey<FormState>();
+  AppUtil _appUtil = AppUtil();
   TextEditingController mobileNumber = TextEditingController();
   TextEditingController amount = TextEditingController();
   TextEditingController message = TextEditingController();
+  List<String> numbers = new List<String>();
+  GlobalKey<AutoCompleteTextFieldState<String>> key = new GlobalKey();
 
   @override
   void initState() {
     super.initState();
+    onLoadNumbers();
+  }
+
+  Future onLoadNumbers () async {
+    final nums = await store.saveSuggestionsServices.onloadNumbers();
+    nums.forEach((n) {
+      numbers.add(_appUtil.removeCountryExtension(n.mobileNumber));
+    });
+    setState(() {});
   }
 
   @override
@@ -85,17 +99,12 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        TextFormField(
-                          autofocus: true,
+                        SimpleAutoCompleteTextField(
+                          key: key,
+                          suggestions: numbers,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.phone,
-                          maxLength: 10,
-                          validator: (text) {
-                            if (text.isEmpty) {
-                              return '${DIRECT_SEND_FORM_SCREEN_MOBILE} is required';
-                            }
-                            return null;
-                          },
+                          // maxLength: 10,
                           controller: mobileNumber,
                           decoration: InputDecoration(
                             errorStyle: TextStyle(

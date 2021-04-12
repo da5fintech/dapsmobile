@@ -22,7 +22,7 @@ class RegistrationFailedDialog extends StatelessWidget {
             width: 5,
           ),
           Text(
-            'Failed user sign up!',
+            REGISTRATION_FAILED_TITLE,
             style: GoogleFonts.roboto(
               color: Colors.black,
               fontSize: 15,
@@ -32,7 +32,7 @@ class RegistrationFailedDialog extends StatelessWidget {
         ],
       ),
       content: Text(
-        "Something went wrong, Please Try Again later.",
+        REGISTRATION_FAILED_DIALOG,
         style: GoogleFonts.roboto(
           color: Colors.black,
           // fontSize: normalizeSize(15),

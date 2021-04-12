@@ -44,8 +44,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
     double height = queryData.size.height;
     SizeConfig().init(context);
 
-    print(queryData.devicePixelRatio * 10 + 10);
-
     OverlayScreen().saveScreens({
       'oncoming-update': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
@@ -101,7 +99,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         child: Observer(
                           builder: (_) => Text(
                             store.user.displayName,
-                            style: GoogleFonts.roboto(fontSize: 14),
+                            style: GoogleFonts.roboto(fontSize: 14, color: Colors.white),
                           ),
                         ),
                       ),

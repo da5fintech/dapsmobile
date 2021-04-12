@@ -156,6 +156,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                                   style: GoogleFonts.roboto(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
+                                    color: Colors.white,
                                   )),
                               Observer(
                                 builder: (_) => Text(
@@ -164,6 +165,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     height: 1.5,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),

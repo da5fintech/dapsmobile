@@ -52,6 +52,9 @@ const REGISTRATION_SCREEN_OTP_GREET = "Welcome to SWIPE! \n\n"
     "Directly send money to other Swipe users, Transfer money to Bank Accounts, Pay your Bills and many more! \n\n"
     "Do it all with SWIPE!";
 
+const REGISTRATION_FAILED_TITLE = "Failed Registration:";
+const REGISTRATION_FAILED_DIALOG = "Something went wrong! Please contact our support hotline to assist you.";
+
 const USER_PROFILE_SCREEN_TITLE_TEXT = "User Profile";
 const USER_PROFILE_SCREEN_NOTE_TEXT =
     "For enhanced account security, keep your account information up to date.";
@@ -215,7 +218,7 @@ const BILLS_PAYMENT_NEXT_TEXT = "Next";
 const BILLS_PAYMENT_SCREEN_IMMEDIATE_POST_TEXT =
     "Payment will be posted immediately";
 const BILLS_PAYMENT_BILLER_SCREEN_ALL_BILLERS_TEXT = "All Billers";
-const BILLS_PAYMENT_CATEGORIES_SCREEN_SAVED_BILLERS_TEXT = "Saved Biller(s)";
+const BILLS_PAYMENT_CATEGORIES_SCREEN_SAVED_BILLERS_TEXT = "Recent Biller(s)";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_ADD_BILLER_TEXT = "Add Biller";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_DELETE_BILLER_TEXT =
     "Are you sure you want to Delete";
@@ -573,7 +576,7 @@ ThemeData createTheme(BuildContext context) {
         headline5: GoogleFonts.roboto(),
         headline6: GoogleFonts.roboto(),
         bodyText2: GoogleFonts.roboto(
-          color: Colors.white,
+          color: Colors.black,
         ),
         bodyText1: GoogleFonts.roboto(fontSize: 16, color: Colors.red),
         headline4: GoogleFonts.roboto(
