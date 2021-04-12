@@ -184,7 +184,6 @@ class _BillsPaymentCategoriesScreenState
                         physics: BouncingScrollPhysics(),
                         crossAxisCount: 3,
                         mainAxisSpacing: 50,
-                        childAspectRatio: 1.3,
                         crossAxisSpacing: 20,
                         children: [
                           CategoryButtonWidget(

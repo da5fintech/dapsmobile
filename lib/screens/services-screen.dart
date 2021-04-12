@@ -44,6 +44,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
     double height = queryData.size.height;
     SizeConfig().init(context);
 
+    print(queryData.devicePixelRatio * 10 + 10);
+
     OverlayScreen().saveScreens({
       'oncoming-update': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
@@ -179,15 +181,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
             Flexible(
               flex: 1,
               child: Container(
-                padding: EdgeInsets.only(top: 10),
                 color: Colors.white,
                 width: MediaQuery.of(context).size.width,
                 child: GridView.count(
                   physics: queryData.devicePixelRatio >= 2.75 ? NeverScrollableScrollPhysics() : null,
-                  childAspectRatio: 1.4,
+                  shrinkWrap: true,
                   crossAxisCount: 3,
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 20,
+                  crossAxisSpacing: (queryData.devicePixelRatio * 10 + 20),
                   children: [
                     ServiceButtonWidget(
                       offering: SwipeServiceOffering.CASH_IN,

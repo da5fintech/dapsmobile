@@ -24,7 +24,7 @@ class CategoryButtonWidget extends StatelessWidget {
       child: Column(
         children: [
           IconButton(
-            iconSize: 42,
+            iconSize: MediaQuery.of(context).size.height * 0.08,
             color: COLOR_GRAY,
             icon: icon,
             onPressed: () {
