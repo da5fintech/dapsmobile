@@ -60,9 +60,12 @@ class TransactionService extends FireStoreService {
             await service.process(transaction.product, transaction.amount);
         await saveSuggestion.savePlateNumbers(transaction.product);
       } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
         var service = getIt.get<DirectPayService>();
+        DirectPayProduct product = transaction.product;
         response = await service.process(
             transaction.product, transaction.amount, user);
+        await saveSuggestion.saveNumber(product.mobileNumber, transaction.offering);
       }
 
       ///Deduct user balance if any services

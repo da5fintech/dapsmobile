@@ -115,7 +115,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         child: Observer(
                           builder: (_) => Text(
                             store.user.displayName,
-                            style: GoogleFonts.roboto(fontSize: 14),
+                            style: GoogleFonts.roboto(fontSize: 14, color: Colors.white),
                           ),
                         ),
                       ),
@@ -195,15 +195,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
             Flexible(
               flex: 1,
               child: Container(
-                padding: EdgeInsets.only(top: 10),
                 color: Colors.white,
                 width: MediaQuery.of(context).size.width,
                 child: GridView.count(
                   physics: queryData.devicePixelRatio >= 2.75 ? NeverScrollableScrollPhysics() : null,
-                  childAspectRatio: 1.4,
+                  shrinkWrap: true,
                   crossAxisCount: 3,
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 20,
+                  crossAxisSpacing: (queryData.devicePixelRatio * 10 + 20),
                   children: [
                     ServiceButtonWidget(
                       offering: SwipeServiceOffering.CASH_IN,

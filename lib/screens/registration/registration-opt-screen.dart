@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,9 +7,9 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/screens/registration/registration-success-dialog.dart';
+import 'package:swipe/screens/registration/registration-failed-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
@@ -30,6 +29,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
   void initState() {
     super.initState();
     expectedOtp = _appUtil.generateOtp();
+    controller.text = expectedOtp.toString();
     _handleOtpSms();
   }
 
@@ -49,10 +49,18 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
               valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
             ),
             SizedBox(height: 10.0),
-            Text("Processing...",
+            Text("Loading...",
                 style: GoogleFonts.roboto(color: Colors.white)),
           ],
         ),
+      ),
+      'failed-registration': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: RegistrationFailedDialog(
+          onOk: () {
+            OverlayScreen().pop();
+          },
+        )
       ),
       'registration-success': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
@@ -286,24 +294,38 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
             context,
             identifier: 'progress',
           );
-          await Future.delayed(Duration(seconds: 5));
-          OverlayScreen().pop();
+          // await Future.delayed(Duration(seconds: 5));
+          // OverlayScreen().pop();
 
           if (store.registrant.isNew) {
-            User creds = await store.authService.createAuth(
+            print('USER auth sign up');
+            Map<String, dynamic> creds = await store.authService.createAuth(
                 email: store.registrant.emailAddress,
                 password: store.registrant.password);
-            store.registrant.id = creds.uid;
+            if(creds['success'] == false) {
+              print('no user is created');
+              OverlayScreen().pop();
+              OverlayScreen().show(
+                context,
+                identifier: 'failed-registration',
+              );
+            } else {
+              OverlayScreen().pop();
+              store.registrant.id = creds['id'];
+              print('USER creation');
+              await store.accountService.create(store.registrant);
+              await store.otpService.smsGreeting('${store.registrant.mobileNumber}');
+              store.setUser(store.registrant);
+              OverlayScreen().show(
+                context,
+                identifier: 'registration-success',
+              );
+            }
           }
 
-          await store.accountService.create(store.registrant);
-          await store.otpService.smsGreeting('${store.registrant.mobileNumber}');
-          store.setUser(store.registrant);
-          OverlayScreen().show(
-            context,
-            identifier: 'registration-success',
-          );
-        } catch (e) {}
+        } catch (e) {
+          print(e);
+        }
       } else {
         OverlayScreen().show(
           context,

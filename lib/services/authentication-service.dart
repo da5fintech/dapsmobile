@@ -195,17 +195,24 @@ class AuthenticationService {
     }
   }
 
-  Future<User> createAuth({String email, String password}) async {
+  Future<Map<String, dynamic>> createAuth({String email, String password}) async {
     try {
       print("creating auth user ${email} ${password}");
       var result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       _auth.signInWithEmailAndPassword(email: email, password: password);
       await result.user.sendEmailVerification();
-      return result.user;
+      return {
+        "success": true,
+        "id": result.user.uid,
+      };
     } catch (e) {
       print("failed creating email password");
-      throw Exception('Error encountered. Please try again.');
+      // throw Exception('Error encountered. Please try again.');
+      return {
+        "success": false,
+        "id": null,
+      };
     }
   }
 

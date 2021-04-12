@@ -101,6 +101,20 @@ class SaveSuggestionsServices {
 
   }
 
+  ///on load save numbers
+  Future<List<BuyLoadSuggest>> onloadDirectSendNumbers() async {
+    _saveNumbers = []; //reset
+    await _localStorage.openStorageBox('mobile-numbers').then((box) {
+      List<dynamic> a = box.get('numbers', defaultValue: []);
+      print(a);
+      a.forEach((num) {
+        _saveNumbers.add(num);
+      });
+    });
+
+    return _saveNumbers;
+  }
+
   void deleteAll() async {
     final box = await _localStorage.openStorageBox('account-recipient-details');
     box.deleteFromDisk();
