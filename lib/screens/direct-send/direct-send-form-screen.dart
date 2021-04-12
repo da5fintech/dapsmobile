@@ -41,6 +41,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
   Future onLoadNumbers () async {
     final nums = await store.saveSuggestionsServices.onloadNumbers();
     nums.forEach((n) {
+      print(n.mobileNumber);
       numbers.add(_appUtil.removeCountryExtension(n.mobileNumber));
     });
   }
@@ -104,7 +105,6 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                           suggestions: numbers,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.phone,
-                          minLength: 10,
                           controller: mobileNumber,
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
