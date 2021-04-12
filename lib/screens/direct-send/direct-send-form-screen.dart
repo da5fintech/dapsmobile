@@ -7,6 +7,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/models/auto-suggest-model.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/screens/payment/processing-failed-dialog.dart';
@@ -23,13 +24,13 @@ class DirectSendFormScreen extends StatefulWidget {
 }
 
 class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
+  GlobalKey<AutoCompleteTextFieldState<String>> key = new GlobalKey();
   final _formKey = GlobalKey<FormState>();
   AppUtil _appUtil = AppUtil();
   TextEditingController mobileNumber = TextEditingController();
   TextEditingController amount = TextEditingController();
   TextEditingController message = TextEditingController();
   List<String> numbers = new List<String>();
-  GlobalKey<AutoCompleteTextFieldState<String>> key = new GlobalKey();
 
   @override
   void initState() {
@@ -42,7 +43,6 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
     nums.forEach((n) {
       numbers.add(_appUtil.removeCountryExtension(n.mobileNumber));
     });
-    setState(() {});
   }
 
   @override
@@ -104,7 +104,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                           suggestions: numbers,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.phone,
-                          // maxLength: 10,
+                          minLength: 10,
                           controller: mobileNumber,
                           decoration: InputDecoration(
                             errorStyle: TextStyle(

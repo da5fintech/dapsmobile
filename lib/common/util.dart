@@ -114,6 +114,14 @@ class AppUtil extends DateUtil {
     return formattedNumber;
   }
 
+  String removeCountryCodeNumber (String mobileNumber) {
+    var splitNumber = mobileNumber.split("");
+    splitNumber.removeAt(0);
+    splitNumber.removeAt(0);
+    var formmated = splitNumber.join("");
+    return formmated;
+  }
+
   int generateOtp () {
     var rndnumber = "";
     var rnd = new Random();

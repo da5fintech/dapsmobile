@@ -483,6 +483,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                               var a = regions.firstWhere((region) => region.regDesc == val);
                               selectedRegion = a;
                               await fetchProvince(a.regCode);
+                              FocusScope.of(context).unfocus();
                               setState(() {});
                             },
                           ),
@@ -522,6 +523,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                                         var a = states.firstWhere((state) => state.provDesc == val);
                                         selectedState = a;
                                         fetchCities(a.provCode);
+                                        FocusScope.of(context).unfocus();
                                         setState(() {});
                                       },
                                     ),
@@ -562,6 +564,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                                         var a = cities.firstWhere((res) => res.citymunDesc == val);
                                         selectedCity = a;
                                         await fetchBarangays(a.citymunCode);
+                                        FocusScope.of(context).unfocus();
                                         setState(() {});
                                       },
                                     ),
@@ -605,6 +608,7 @@ class _VerificationUserInformationScreenState extends State<VerificationUserInfo
                                     onChanged: (val) {
                                       var a = barangays.firstWhere((res) => res.brgyDesc == val);
                                       selectedBarangay = a;
+                                      FocusScope.of(context).unfocus();
                                       setState(() {});
                                     },
                                   ),
