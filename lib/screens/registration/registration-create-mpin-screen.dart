@@ -82,6 +82,7 @@ class _RegistrationCreateMpinScreenState
                           style: GoogleFonts.roboto(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
+                              color: Colors.white,
                               letterSpacing: 15)),
                       SizedBox(
                         height: 5,
@@ -107,7 +108,7 @@ class _RegistrationCreateMpinScreenState
                             REGISTER_MPIN_SCREEN_SET_PIN_TEXT,
                             textAlign: TextAlign.left,
                             style: GoogleFonts.roboto(
-                                fontSize: 20, fontWeight: FontWeight.w500),
+                                fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
                           ),
                         ),
                         Container(
@@ -305,9 +306,9 @@ class _RegistrationCreateMpinScreenState
                             onTap: () {
                               Get.toNamed('/help');
                             },
-                            child: Text(APP_HELP_CENTER),
+                            child: Text(APP_HELP_CENTER, style: TextStyle(color: Colors.white)),
                           ),
-                          Text(store.versionNumber),
+                          Text(store.versionNumber, style: TextStyle(color: Colors.white)),
                         ],
                       ),
                     ],
