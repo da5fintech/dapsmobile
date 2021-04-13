@@ -53,7 +53,8 @@ const REGISTRATION_SCREEN_OTP_GREET = "Welcome to SWIPE! \n\n"
     "Do it all with SWIPE!";
 
 const REGISTRATION_FAILED_TITLE = "Failed Registration:";
-const REGISTRATION_FAILED_DIALOG = "Something went wrong! Please contact our support hotline to assist you.";
+const REGISTRATION_FAILED_DIALOG =
+    "Something went wrong! Please contact our support hotline to assist you.";
 
 const USER_PROFILE_SCREEN_TITLE_TEXT = "User Profile";
 const USER_PROFILE_SCREEN_NOTE_TEXT =
@@ -325,13 +326,13 @@ const VERIFY_MERCHANT_ID = "";
 const VERIFY_NETWORK_ID = "";
 const VERIFY_USERNAME = "";
 const VERIFY_SIGNATURE = "";
-const VERIFY_ENDPOINT = "https://staging.swipe.ph";
+const VERIFY_ENDPOINT = "https://api.swipe.ph";
 
 const SMS_USERNAME = "itda5";
 const SMS_PASSWORD = "@da5_isms-2019";
 const SMS_API = "https://www.isms.com.my/isms_send.php?";
 
-const PH_SERVICE_ENDPOINT = "https://staging.swipe.ph";
+const PH_SERVICE_ENDPOINT = "https://api.swipe.ph";
 
 const ELOADING_SCOPE = 'eloading';
 const BILLS_PAYMENT_SCOPE = 'billspayment';
