@@ -138,7 +138,7 @@ const SERVICES_SCREEN_REMITTANCE_TEXT = "Direct Send";
 const SERVICES_SCREEN_BANK_TRANSFER_TEXT = "Bank Transfer";
 const SERVICES_SCREEN_BUY_LOAD_TEXT = "Buy Load";
 const SERVICES_SCREEN_PAY_BILLS_TEXT = "Pay Bills";
-const SERVICES_SCREEN_REQUEST_MONEY_TEXT = "Request";
+const SERVICES_SCREEN_REQUEST_MONEY_TEXT = "Send/Request";
 const SERVICES_SCREEN_PAY_QR_TEXT = "Pay QR";
 const SERVICES_SCREEN_INSURANCE_TEXT = "Insurance";
 const SERVICES_SCREEN_MORE_TEXT = "More";
@@ -269,32 +269,32 @@ const AUTH_MERCHANT_ID = "0910";
 const AUTH_NETWORK_ID = "0625";
 const AUTH_USERNAME = "kabootekph";
 const AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
-const API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+const API_ENDPOINT = "https://accounts.daps.ph/web/index.php";
 // const API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
 
 const AUTOSWEEP_AUTH_MERCHANT_ID = "0910";
 const AUTOSWEEP_AUTH_NETWORK_ID = "0625";
 const AUTOSWEEP_AUTH_USERNAME = "kabootekph";
 const AUTOSWEEP_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
-const AUTOSWEEP_API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+const AUTOSWEEP_API_ENDPOINT = "https://accounts.daps.ph/web/index.php";
 
 const BILLS_PAYMENT_AUTH_MERCHANT_ID = "0910";
 const BILLS_PAYMENT_AUTH_NETWORK_ID = "0625";
 const BILLS_PAYMENT_AUTH_USERNAME = "kabootekph";
 const BILLS_PAYMENT_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
-const BILLS_PAYMENT_API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+const BILLS_PAYMENT_API_ENDPOINT = "https://accounts.daps.ph/web/index.php";
 
 const E_LOADING_AUTH_MERCHANT_ID = "0910";
 const E_LOADING_AUTH_NETWORK_ID = "0625";
 const E_LOADING_AUTH_USERNAME = "kabootekph";
 const E_LOADING_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
-const E_LOADING_API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+const E_LOADING_API_ENDPOINT = "https://accounts.daps.ph/web/index.php";
 
 const INSTAPAY_AUTH_MERCHANT_ID = "0910";
 const INSTAPAY_AUTH_NETWORK_ID = "0625";
 const INSTAPAY_AUTH_USERNAME = "kabootekph";
 const INSTAPAY_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
-const INSTAPAY_API_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+const INSTAPAY_API_ENDPOINT = "https://accounts.daps.ph/web/index.php";
 
 const DIRECT_PAY_AUTH_MERCHANT_ID = "0910";
 const DIRECT_PAY_AUTH_NETWORK_ID = "0625";
@@ -302,7 +302,7 @@ const DIRECT_PAY_AUTH_USERNAME = "kabootekph";
 const DIRECT_PAY_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
 const DIRECT_PAY_API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
 const DIRECT_PAY_API_STAGING_ENDPOINT =
-    "https://accounts.daps.ph/staging/index.php";
+    "https://accounts.daps.ph/web/index.php";
 const DIRECT_PAY_SCOPE = "remittance";
 
 const PESONET_PAY_AUTH_MERCHANT_ID = "0910";
@@ -311,7 +311,7 @@ const PESONET_PAY_AUTH_USERNAME = "kabootekph";
 const PESONET_PAY_AUTH_SIGNATURE = "ce9e72f2e2b3f12c386b68f3acc0748d5a355dbf";
 const PESONET_PAY_API_ENDPOINT = "https://directagent5.com.ph/daps/index.php";
 const PESONET_PAY_API_STAGING_ENDPOINT =
-    "https://accounts.daps.ph/staging/index.php";
+    "https://accounts.daps.ph/web/index.php";
 const PESONET_PAY_SCOPE = "pesonet";
 const PESONET_PAY_FEE = 25.00;
 
@@ -319,7 +319,7 @@ const CASHIN_MERCHANT_ID = "";
 const CASHIN_NETWORK_ID = "";
 const CASHIN_USERNAME = "";
 const CASHIN_SIGNATURE = "";
-const CASHIN_ENDPOINT = "https://staging.swipe.ph";
+const CASHIN_ENDPOINT = "https://api.swipe.ph";
 
 const VERIFY_MERCHANT_ID = "";
 const VERIFY_NETWORK_ID = "";

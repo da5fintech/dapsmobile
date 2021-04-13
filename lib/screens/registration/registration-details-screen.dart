@@ -69,6 +69,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                         style: GoogleFonts.roboto(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
+                            color: Colors.white,
                             letterSpacing: 15),
                       ),
                       SizedBox(
@@ -355,9 +356,9 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                               onTap: () {
                                 Get.toNamed('/help');
                               },
-                              child: Text(APP_HELP_CENTER),
+                              child: Text(APP_HELP_CENTER, style: TextStyle(color: Colors.white)),
                             ),
-                            Text(store.versionNumber),
+                            Text(store.versionNumber, style: TextStyle(color: Colors.white)),
                           ],
                         ),
                       ],

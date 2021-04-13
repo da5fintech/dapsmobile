@@ -29,7 +29,6 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
   void initState() {
     super.initState();
     expectedOtp = _appUtil.generateOtp();
-    controller.text = expectedOtp.toString();
     _handleOtpSms();
   }
 
@@ -91,6 +90,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                       style: GoogleFonts.roboto(
                           fontSize: 20,
                           fontWeight: FontWeight.w800,
+                          color: Colors.white,
                           letterSpacing: 15),
                     ),
                     SizedBox(
