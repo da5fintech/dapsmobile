@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:native_screenshot/native_screenshot.dart';
 import 'package:intl/intl.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/amount-widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 
 import '../../main.dart';
 
@@ -20,6 +22,7 @@ class PaymentConfirmationScreen extends StatefulWidget {
 }
 
 class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -37,10 +40,31 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
     String recipient = store.transactionService.getRecipient(store.transaction);
     String transactionType =
         store.transactionService.getTransactionType(store.transaction);
+
+    OverlayScreen().saveScreens({
+      'progress': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(COLOR_ORANGE),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              "Processing...",
+              style: GoogleFonts.roboto(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    });
+
     return Theme(
       data: td,
       child: Scaffold(
         // backgroundColor: Constants.backgroundColor2,
+        key: _scaffoldKey,
         appBar: SubAppbarWidget(
           height: 170,
           title: PAYMENT_CONFIRMATION_SCREEN_TITLE_TEXT,
@@ -275,7 +299,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                       IconButton(
                         icon:
                             Icon(Icons.file_download, color: COLOR_DARK_PURPLE),
-                        onPressed: () {},
+                        onPressed: _saveTransaction,
                       ),
                       FlatButton(
                         onPressed: () {
@@ -297,6 +321,20 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _saveTransaction () async {
+    OverlayScreen().show(
+      context,
+      identifier: 'progress',
+    );
+    await NativeScreenshot.takeScreenshot();
+    await Future.delayed(Duration(seconds: 3));
+
+    OverlayScreen().pop();
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(content: Text('Transaction Save!'), backgroundColor: COLOR_GREEN),
+    );
   }
 
   void _handleDone() {
