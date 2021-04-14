@@ -23,13 +23,13 @@ class AmountWidget extends StatelessWidget {
             child: Text("PHP",
                 style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
-                    fontSize: 12,
+                    fontSize: MediaQuery.of(context).devicePixelRatio * 6,
                     color: Colors.white)),
           ),
           Text(formatterWithoutPHP.format(amount),
               style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w700,
-                  fontSize: 24,
+                  fontSize: MediaQuery.of(context).devicePixelRatio * 12,
                   color: Colors.white)),
         ],
       ),

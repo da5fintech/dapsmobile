@@ -21,9 +21,9 @@ class ServiceButtonWidget extends StatelessWidget {
     return Column(
       children: [
         IconButton(
-          iconSize: MediaQuery.of(context).size.height * 0.065,
           color: COLOR_GRAY,
           icon: icon,
+          iconSize: MediaQuery.of(context).devicePixelRatio * 24,
           onPressed: () {
             this.onPressed(offering);
           },
