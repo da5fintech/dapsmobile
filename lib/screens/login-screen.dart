@@ -113,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               _handleRegister();
                             },
                             text: Constants.LOGIN_SCREEN_REGISTER_TEXT,
+                            color: Colors.white,
                           ),
                         ),
                         SizedBox(

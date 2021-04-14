@@ -5,11 +5,13 @@ class PrimaryButtonWidget extends StatelessWidget {
   final String text;
   final Function onPressed;
   final EdgeInsets padding;
+  final Color color;
   const PrimaryButtonWidget({
     Key key,
     @required this.text,
     this.onPressed,
     this.padding,
+    this.color = Colors.black,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class PrimaryButtonWidget extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: TextStyle(fontSize: MediaQuery.of(context).devicePixelRatio * 7, color: Colors.white)
+          style: TextStyle(fontSize: MediaQuery.of(context).devicePixelRatio * 7, color: color)
         ),
       ),
     );

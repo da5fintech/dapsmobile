@@ -48,12 +48,12 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    double scrollHeight = MediaQuery.of(context).size.height * 0.75;
+    MediaQueryData queryData = MediaQuery.of(context);
+    double scrollHeight = MediaQuery.of(context).size.height * 0.85;
 
     return Scaffold(
       // backgroundColor: Constants.backgroundColor2,
-      body: Form(
-        key: _formKey,
+      body: Form( key: _formKey,
         child: Column(
           children: <Widget>[
             Container(
@@ -67,7 +67,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                       Text(
                         APP_NAME,
                         style: GoogleFonts.roboto(
-                            fontSize: 20,
+                            fontSize: queryData.devicePixelRatio * 10,
                             fontWeight: FontWeight.w800,
                             color: Colors.white,
                             letterSpacing: 15),
@@ -337,32 +337,47 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                    padding: EdgeInsets.only(left: 40, right: 40, bottom: 10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: PrimaryButtonWidget(
-                              onPressed: () {
-                                _handleNext();
-                              },
-                              text: "Next"),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Get.toNamed('/help');
-                              },
-                              child: Text(APP_HELP_CENTER, style: TextStyle(color: Colors.white)),
+                  padding: EdgeInsets.only(left: 40, right: 40, bottom: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: PrimaryButtonWidget(
+                            onPressed: () {
+                              _handleNext();
+                            },
+                            text: "Next"),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed('/help');
+                            },
+                            child: Text(
+                              APP_HELP_CENTER,
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).devicePixelRatio * 7,
+                                color: Colors.white,
+                              ),
                             ),
-                            Text(store.versionNumber, style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                      ],
-                    )),
+                          ),
+                          Text(
+                            store.versionNumber,
+                            style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).devicePixelRatio * 7,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],

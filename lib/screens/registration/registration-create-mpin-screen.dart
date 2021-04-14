@@ -37,6 +37,7 @@ class _RegistrationCreateMpinScreenState
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
     SizeConfig().init(context);
 
     OverlayScreen().saveScreens({
@@ -80,7 +81,7 @@ class _RegistrationCreateMpinScreenState
                     children: [
                       Text(APP_NAME,
                           style: GoogleFonts.roboto(
-                              fontSize: 20,
+                              fontSize: queryData.devicePixelRatio * 10,
                               fontWeight: FontWeight.w800,
                               color: Colors.white,
                               letterSpacing: 15)),
@@ -108,7 +109,9 @@ class _RegistrationCreateMpinScreenState
                             REGISTER_MPIN_SCREEN_SET_PIN_TEXT,
                             textAlign: TextAlign.left,
                             style: GoogleFonts.roboto(
-                                fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
+                                fontSize: queryData.devicePixelRatio * 10,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white),
                           ),
                         ),
                         Container(
@@ -116,7 +119,7 @@ class _RegistrationCreateMpinScreenState
                           child: Text(
                             REGISTER_MPIN_SCREEN_NOTE_TEXT,
                             style: GoogleFonts.roboto(
-                              fontSize: 14,
+                              fontSize: queryData.devicePixelRatio * 7,
                               height: 1.5,
                               color: Colors.white.withOpacity(.87),
                             ),
@@ -153,7 +156,8 @@ class _RegistrationCreateMpinScreenState
                             return null;
                           },
                           inputFormatters: [
-                            new FilteringTextInputFormatter.deny(new RegExp('[ -.,]'))
+                            new FilteringTextInputFormatter.deny(
+                                new RegExp('[ -.,]'))
                           ],
                           decoration: InputDecoration(
                             errorStyle:
@@ -231,7 +235,7 @@ class _RegistrationCreateMpinScreenState
                                 text: "I agree to Swipe app's ",
                                 style: GoogleFonts.roboto(
                                   color: Colors.white,
-                                  fontSize: 12,
+                                  fontSize: queryData.devicePixelRatio * 6,
                                   height: 1.5,
                                 ),
                                 children: <TextSpan>[
@@ -289,16 +293,19 @@ class _RegistrationCreateMpinScreenState
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
-                          width: double.infinity,
-                          child: RaisedButton(
-                              color: checkTerms
-                                  ? Colors.white
-                                  : Colors.white.withOpacity(0.5),
-                              onPressed: () {
-                                if (!checkTerms) return;
-                                _handleRegister();
-                              },
-                              child: Text('Next'))),
+                        width: double.infinity,
+                        height: queryData.devicePixelRatio * 18,
+                        child: RaisedButton(
+                          color: checkTerms
+                              ? Colors.white
+                              : Colors.white.withOpacity(0.5),
+                          onPressed: () {
+                            if (!checkTerms) return;
+                            _handleRegister();
+                          },
+                          child: Text('Next'),
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -306,9 +313,23 @@ class _RegistrationCreateMpinScreenState
                             onTap: () {
                               Get.toNamed('/help');
                             },
-                            child: Text(APP_HELP_CENTER, style: TextStyle(color: Colors.white)),
+                            child: Text(
+                              APP_HELP_CENTER,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize:
+                                    MediaQuery.of(context).devicePixelRatio * 7,
+                              ),
+                            ),
                           ),
-                          Text(store.versionNumber, style: TextStyle(color: Colors.white)),
+                          Text(
+                            store.versionNumber,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize:
+                                  MediaQuery.of(context).devicePixelRatio * 7,
+                            ),
+                          ),
                         ],
                       ),
                     ],
