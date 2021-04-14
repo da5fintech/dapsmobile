@@ -17,12 +17,15 @@ class SecondaryButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlineButton(
-      borderSide: BorderSide(color: COLOR_DARK_PURPLE, width: 1.5),
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontWeight: FontWeight.w500),
+    return ButtonTheme(
+      height: MediaQuery.of(context).devicePixelRatio * 18,
+      child: OutlineButton(
+        borderSide: BorderSide(color: COLOR_DARK_PURPLE, width: 1.5),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontWeight: FontWeight.w500),
+        ),
       ),
     );
   }

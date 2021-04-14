@@ -14,10 +14,14 @@ class PrimaryButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      onPressed: onPressed,
-      child: Text(
-        text,
+    return ButtonTheme(
+      height: MediaQuery.of(context).devicePixelRatio * 18,
+      child: RaisedButton(
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: TextStyle(fontSize: MediaQuery.of(context).devicePixelRatio * 7, color: Colors.white)
+        ),
       ),
     );
   }
