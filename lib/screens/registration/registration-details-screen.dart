@@ -347,7 +347,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             onPressed: () {
                               _handleNext();
                             },
-                            text: "Next"),
+                            text: "NEXT"),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

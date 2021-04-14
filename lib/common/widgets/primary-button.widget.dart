@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/common/constants.dart';
 
 class PrimaryButtonWidget extends StatelessWidget {
   final String text;
@@ -11,7 +12,7 @@ class PrimaryButtonWidget extends StatelessWidget {
     @required this.text,
     this.onPressed,
     this.padding,
-    this.color = Colors.black,
+    this.color = COLOR_DARK_PURPLE,
   }) : super(key: key);
 
   @override
