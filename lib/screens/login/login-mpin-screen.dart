@@ -109,181 +109,187 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
       child: Scaffold(
         // backgroundColor: Constants.backgroundColor2,
         body: Container(
-          child: Column(
-            children: <Widget>[
-              Container(
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 80),
+          child: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 80),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              Constants.APP_NAME,
+                              style: GoogleFonts.roboto(
+                                  fontSize: SizeConfig.blockSizeVertical * 3.5,
+                                  color: COLOR_DARK_PURPLE,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: 15),
+                            ),
+                            Image.asset(
+                              'assets/icons/swipe-logo.png',
+                              height: height * 0.25,
+                              width: width,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 40, right: 40, top: 10),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          Constants.APP_NAME,
-                          style: GoogleFonts.roboto(
-                              fontSize: 20,
-                              color: COLOR_DARK_PURPLE,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 15),
-                        ),
-                        Image.asset(
-                          'assets/icons/swipe-logo.png',
-                          height: height * 0.25,
-                          width: width,
-                        ),
+                        Text(Constants.LOGIN_MPIN_SCREEN_LOGIN_TEXT),
                         SizedBox(
-                          height: 5,
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: SizeConfig.blockSizeVertical * 3,
+                              backgroundColor: COLOR_ORANGE,
+                              child: store.user.photoURL == null
+                                  ? Text(
+                                      store.user.getInitials(),
+                                      style: GoogleFonts.roboto(color: Colors.white),
+                                    )
+                                  : ClipOval(
+                                      child: Image.network(store.user.photoURL),
+                                    ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 10),
+                              child: Text(
+                                store.user.displayName,
+                                style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 2),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 40, right: 40, top: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(Constants.LOGIN_MPIN_SCREEN_LOGIN_TEXT),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
+                  Padding(
+                    padding: EdgeInsets.only(left: 40, right: 40, top: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                          backgroundColor: COLOR_ORANGE,
-                          child: store.user.photoURL == null
-                              ? Text(
-                                  store.user.getInitials(),
-                                  style: GoogleFonts.roboto(color: Colors.white),
-                                )
-                              : ClipOval(
-                                  child: Image.network(store.user.photoURL),
+                        Column(
+                          children: [
+                            TextFormField(
+                              maxLength: 6,
+                              controller: mpin,
+                              keyboardType: TextInputType.number,
+                              obscureText: obscureText,
+                              onSaved: (v) {},
+                              validator: (text) {
+                                if (text == null || text.isEmpty) {
+                                  return 'mpin is required';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                hintText: "Enter your 6-digit MPIN",
+                                counterStyle:
+                                    GoogleFonts.roboto(color: Colors.white),
+                                suffixIcon: IconButton(
+                                  onPressed: () =>
+                                      setState(() => obscureText = !obscureText),
+                                  icon: obscureText
+                                      ? Icon(Icons.visibility_off,
+                                          color: COLOR_DARK_GRAY.withOpacity(.6))
+                                      : Icon(
+                                          Icons.visibility,
+                                          color: COLOR_DARK_GRAY.withOpacity(.6),
+                                        ),
                                 ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: PrimaryButtonWidget(
+                                color: Colors.white,
+                                onPressed: () {
+                                  _handleLogin();
+                                },
+                                text: Constants.LOGIN_SCREEN_LOGIN_TEXT,
+                              ),
+                            ),
+                          ],
                         ),
-                        Container(
-                          margin: EdgeInsets.only(left: 10),
-                          child: Text(
-                            store.user.displayName,
-                            style: GoogleFonts.roboto(fontSize: 14),
-                          ),
-                        ),
+
+                        // OutlineButton(
+                        //   child: Text("REGISTER",
+                        //       style: Constants.primaryButtonText),
+                        // ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 40, right: 40, top: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        TextFormField(
-                          maxLength: 6,
-                          controller: mpin,
-                          keyboardType: TextInputType.number,
-                          obscureText: obscureText,
-                          onSaved: (v) {},
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return 'mpin is required';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            hintText: "Enter your 6-digit MPIN",
-                            counterStyle:
-                                GoogleFonts.roboto(color: Colors.white),
-                            suffixIcon: IconButton(
-                              onPressed: () =>
-                                  setState(() => obscureText = !obscureText),
-                              icon: obscureText
-                                  ? Icon(Icons.visibility_off,
-                                      color: COLOR_DARK_GRAY.withOpacity(.6))
-                                  : Icon(
-                                      Icons.visibility,
-                                      color: COLOR_DARK_GRAY.withOpacity(.6),
-                                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(bottom: 10, left: 20, right: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          FlatButton(
+                            onPressed: (){
+                              OverlayScreen().show(
+                                context,
+                                identifier: 'mpin-recovery',
+                              );
+                            },
+                            child: Text(
+                                'Forgot MPIN?',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                  fontSize: SizeConfig.blockSizeVertical * 1.7,
+                                  fontWeight: FontWeight.w500,
+                                )
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: PrimaryButtonWidget(
-                            color: Colors.white,
-                            onPressed: () {
-                              _handleLogin();
+                          FlatButton(
+                            onPressed: (){
+                              Get.toNamed('/login/login-email-screen');
                             },
-                            text: Constants.LOGIN_SCREEN_LOGIN_TEXT,
+                            child: Text(
+                                'Login using Password',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                  fontSize: SizeConfig.blockSizeVertical * 1.7,
+                                  fontWeight: FontWeight.w500,
+                                )
+                            ),
                           ),
+                        ],
+                      )
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10, left: 40, right: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed('/help');
+                          },
+                          child: Text(Constants.APP_HELP_CENTER, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                         ),
+                        Text(store.versionNumber, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                       ],
                     ),
-
-                    // OutlineButton(
-                    //   child: Text("REGISTER",
-                    //       style: Constants.primaryButtonText),
-                    // ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Padding(
-                  padding: EdgeInsets.only(bottom: 10, left: 20, right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      FlatButton(
-                        onPressed: (){
-                          OverlayScreen().show(
-                            context,
-                            identifier: 'mpin-recovery',
-                          );
-                        },
-                        child: Text(
-                            'Forgot MPIN?',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.roboto(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            )
-                        ),
-                      ),
-                      FlatButton(
-                        onPressed: (){
-                          Get.toNamed('/login/login-email-screen');
-                        },
-                        child: Text(
-                            'Login using Password',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.roboto(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            )
-                        ),
-                      ),
-                    ],
-                  )
-              ),
-              Spacer(),
-              Padding(
-                padding: EdgeInsets.only(bottom: 10, left: 40, right: 40),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed('/help');
-                      },
-                      child: Text(Constants.APP_HELP_CENTER),
-                    ),
-                    Text(store.versionNumber),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
