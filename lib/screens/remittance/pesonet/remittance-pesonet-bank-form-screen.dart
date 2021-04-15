@@ -93,6 +93,7 @@ class _RemittancePesonetBankFormScreenState
     double width = MediaQuery.of(context).size.width * 0.70;
     double height = MediaQuery.of(context).size.height * 0.70;
     var avatar = CircleAvatar(
+      radius: SizeConfig.blockSizeVertical * 3,
       child:
       Text("${store.selectedPesonetBank.name.characters.characterAt(0)}"),
     );
@@ -133,14 +134,14 @@ class _RemittancePesonetBankFormScreenState
                             Text(
                               "${store.selectedPesonetBank.name}",
                               style: GoogleFonts.roboto(
-                                  fontSize: 16,
+                                  fontSize: SizeConfig.blockSizeVertical * 2.2,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),
                             ),
                             Text(
                               REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_PAYMENT_POSTED_TEXT,
                               style: GoogleFonts.roboto(
-                                fontSize: 12,
+                                fontSize: SizeConfig.blockSizeVertical * 1.7,
                                 color: Colors.white.withOpacity(.6),
                               ),
                             ),
