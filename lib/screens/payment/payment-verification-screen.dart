@@ -82,6 +82,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                 PAYMENT_VERIFICATION_SCREEN_PAY_BILLS_TEXT,
                 style: GoogleFonts.roboto(
                     color: COLOR_DARK_PURPLE.withOpacity(.87),
+                    fontSize: SizeConfig.blockSizeVertical * 2,
                     fontWeight: FontWeight.w500),
               ),
             ],
@@ -103,6 +104,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                   Expanded(
                     child: Text(
                       "${element.label}",
+                      style: TextStyle(
+                        fontSize: SizeConfig.blockSizeVertical * 2,
+                      )
                     ),
                   ),
                   Spacer(),
@@ -110,6 +114,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                     child: Text(
                       "$value",
                       textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontSize: SizeConfig.blockSizeVertical * 2,
+                      ),
                     ),
                   ),
                 ],
@@ -126,12 +133,18 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           Expanded(
             child: Text(
               PAYMENT_VERIFICATION_SCREEN_FEE_TEXT,
+              style: TextStyle(
+                fontSize: SizeConfig.blockSizeVertical * 2,
+              )
             ),
           ),
           Spacer(),
           Expanded(
               child: Text(
             formatter.format(product.fee),
+            style: TextStyle(
+              fontSize: SizeConfig.blockSizeVertical * 2,
+            ),
             textAlign: TextAlign.right,
           )),
         ],
@@ -158,8 +171,10 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
               Text(
                 PAYMENT_VERIFICATION_SCREEN_SEND_MONEY_TEXT,
                 style: GoogleFonts.roboto(
-                    color: COLOR_DARK_PURPLE.withOpacity(.87),
-                    fontWeight: FontWeight.w500),
+                  color: COLOR_DARK_PURPLE.withOpacity(.87),
+                  fontWeight: FontWeight.w500,
+                  fontSize: SizeConfig.blockSizeVertical * 2,
+                ),
               ),
             ],
           ),
@@ -185,9 +200,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(PAYMENT_VERIFICATION_SCREEN_ACCOUNT_NUMBER_TEXT),
+              Text(PAYMENT_VERIFICATION_SCREEN_ACCOUNT_NUMBER_TEXT, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
-              Text("${product.accountNumber}"),
+              Text("${product.accountNumber}", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
             ],
           ),
         ),
@@ -197,9 +212,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(PAYMENT_VERIFICATION_SCREEN_RECIPIENT_TEXT),
+              Text(PAYMENT_VERIFICATION_SCREEN_RECIPIENT_TEXT, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
-              Text("${product.recipientName}"),
+              Text("${product.recipientName}", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
             ],
           ),
         ),
@@ -211,10 +226,12 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
             children: [
               Text(
                 PAYMENT_VERIFICATION_SCREEN_FEE_TEXT,
+                style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)
               ),
               Spacer(),
               Text(
                 formatter.format(INSTAPAY_FEE),
+                style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)
               ),
             ],
           ),
@@ -238,6 +255,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                 PAYMENT_VERIFICATION_SCREEN_SEND_MONEY_TEXT,
                 style: GoogleFonts.roboto(
                     color: COLOR_DARK_PURPLE.withOpacity(.87),
+                    fontSize: SizeConfig.blockSizeVertical * 2,
                     fontWeight: FontWeight.w500),
               ),
             ],
@@ -249,7 +267,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(PAYMENT_VERIFICATION_SCREEN_SEND_VIA_TEXT),
+              Text(PAYMENT_VERIFICATION_SCREEN_SEND_VIA_TEXT, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
               Image(
                 width: 90,
@@ -264,9 +282,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(PAYMENT_VERIFICATION_SCREEN_ACCOUNT_NUMBER_TEXT),
+              Text(PAYMENT_VERIFICATION_SCREEN_ACCOUNT_NUMBER_TEXT, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
-              Text("${product.accountNumber}"),
+              Text("${product.accountNumber}", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
             ],
           ),
         ),
@@ -276,9 +294,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(PAYMENT_VERIFICATION_SCREEN_RECIPIENT_TEXT),
+              Text(PAYMENT_VERIFICATION_SCREEN_RECIPIENT_TEXT, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
-              Text("${product.recipientName}"),
+              Text("${product.recipientName}", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
             ],
           ),
         ),
@@ -290,10 +308,12 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
             children: [
               Text(
                 PAYMENT_VERIFICATION_SCREEN_FEE_TEXT,
+                style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)
               ),
               Spacer(),
               Text(
                 formatter.format(INSTAPAY_FEE),
+                style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)
               ),
             ],
           ),
@@ -323,6 +343,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                   color: AUTOSWEEP_VERIFICATION_TEXT_COLOR.withOpacity(
                     AUTOSWEEP_VERIFICATION_TEXT_COLOR_OPACITY,
                   ),
+                  fontSize: SizeConfig.blockSizeVertical * 2,
                   fontWeight: AUTOSWEEP_VERIFICATION_TEXT_FONT_WEIGHT,
                 ),
               ),
@@ -340,9 +361,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                 height: 40.0,
                 child: Row(
                   children: [
-                    Text(AUTOSWEEP_VERIFICATION_TEXT_PAY_FOR),
+                    Text(AUTOSWEEP_VERIFICATION_TEXT_PAY_FOR, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                     Spacer(),
-                    Text("${product.plateNumber}")
+                    Text("${product.plateNumber}", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                   ],
                 ),
               ),
@@ -350,10 +371,10 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                 height: 40.0,
                 child: Row(
                   children: [
-                    Text(AUTOSWEEP_VERIFICATION_TEXT_FEE),
+                    Text(AUTOSWEEP_VERIFICATION_TEXT_FEE, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                     Spacer(),
                     Text(
-                      formatter.format(AUTOSWEEP_FEE),
+                      formatter.format(AUTOSWEEP_FEE, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                     ),
                   ],
                 ),
@@ -380,6 +401,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                 PAYMENT_VERIFICATION_SCREEN_SEND_MONEY_TEXT,
                 style: GoogleFonts.roboto(
                     color: COLOR_DARK_PURPLE.withOpacity(.87),
+                    fontSize: SizeConfig.blockSizeVertical * 2,
                     fontWeight: FontWeight.w500),
               ),
             ],
@@ -391,9 +413,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(PAYMENT_VERIFICATION_SCREEN_SEND_VIA_TEXT),
+              Text(PAYMENT_VERIFICATION_SCREEN_SEND_VIA_TEXT, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
-              Text(DIRECT_SEND_TEXT)
+              Text(DIRECT_SEND_TEXT, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2))
             ],
           ),
         ),
@@ -403,9 +425,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(PAYMENT_VERIFICATION_SCREEN_ACCOUNT_NUMBER_TEXT),
+              Text(PAYMENT_VERIFICATION_SCREEN_ACCOUNT_NUMBER_TEXT, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
-              Text("+${product.mobileNumber}"),
+              Text("+${product.mobileNumber}", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
             ],
           ),
         ),
@@ -415,9 +437,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Recipient's Name"),
+              Text("Recipient's Name", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
-              Text("${product.name}"),
+              Text("${product.name}", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
             ],
           ),
         ),
@@ -427,9 +449,9 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Message"),
+              Text("Message", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
-              Text("${product.message}"),
+              Text("${product.message}", style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
             ],
           ),
         ),
