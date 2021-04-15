@@ -75,7 +75,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
         appBar: SubAppbarWidget(title: CASH_IN_VIA_CODE),
         body: Container(
           width: width,
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          padding: EdgeInsets.symmetric(vertical: height * 0.02, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -83,7 +83,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                 CASH_IN_VIA_CODE_SUBNOTE,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
-                  fontSize: 14,
+                  fontSize: SizeConfig.blockSizeVertical * 2,
                   color: COLOR_DARK_GRAY,
                   height: 1.5,
                 ),
@@ -96,7 +96,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                     text: "The amount of\n",
                     style: GoogleFonts.roboto(
                       color: Colors.black,
-                      fontSize: 14,
+                      fontSize: SizeConfig.blockSizeVertical * 2,
                       height: 1.5,
                     ),
                     children: <TextSpan>[
@@ -105,7 +105,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                         style: GoogleFonts.roboto(
                           color: COLOR_DARK_PURPLE,
                           fontWeight: FontWeight.w500,
-                          fontSize: 16,
+                          fontSize: SizeConfig.blockSizeVertical * 2.2,
                         ),
                       ),
                     ],
@@ -123,7 +123,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
               Text(
                 barcodeNumber,
                 style: GoogleFonts.roboto(
-                  fontSize: 12,
+                  fontSize: SizeConfig.blockSizeVertical * 1.7,
                   letterSpacing: 2,
                   color: COLOR_DARK_GRAY,
                   fontWeight: FontWeight.w500,
@@ -142,7 +142,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                     barcodeNumber,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w500,
-                      fontSize: 20,
+                      fontSize: SizeConfig.blockSizeVertical * 2.5,
                       color: Colors.black,
                     ),
                   ),
@@ -156,20 +156,23 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
                     color: COLOR_DARK_GRAY,
-                    fontSize: 12,
+                    fontSize: SizeConfig.blockSizeVertical * 1.7,
                     height: 1.5,
                   ),
                 ),
               ),
-              RaisedButton(
-                elevation: 0,
-                // shape: ,
-                onPressed: _downloadBarcode,
-                child: Text(
-                  CASH_IN_VIA_CODE_DOWLOAD,
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
+              ButtonTheme(
+                height: SizeConfig.blockSizeVertical * 5,
+                child: RaisedButton(
+                  elevation: 0,
+                  // shape: ,
+                  onPressed: _downloadBarcode,
+                  child: Text(
+                    CASH_IN_VIA_CODE_DOWLOAD,
+                    style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
@@ -181,6 +184,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                 ),
                 child: SizedBox(
                   width: double.infinity,
+                  height: SizeConfig.blockSizeVertical * 5,
                   child: RaisedButton(
                     elevation: 0,
                     // shape: ,
