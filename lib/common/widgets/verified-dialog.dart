@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/size.config.dart';
 
 class VerifiedDialog extends StatelessWidget {
   final Function onOk;
@@ -25,7 +26,7 @@ class VerifiedDialog extends StatelessWidget {
             VERIFIED_DIALOG_SCREEN,
             style: GoogleFonts.roboto(
               color: Colors.black,
-              fontSize: 15,
+              fontSize: SizeConfig.blockSizeVertical * 2.5,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -35,6 +36,8 @@ class VerifiedDialog extends StatelessWidget {
         VERIFIED_DIALOG_SCREEN_UPDATE_TEXT,
         style: GoogleFonts.roboto(
           color: Colors.black,
+          fontSize: SizeConfig.blockSizeVertical * 2
+
           // fontSize: normalizeSize(15),
         ),
         textAlign: TextAlign.left,
@@ -45,7 +48,7 @@ class VerifiedDialog extends StatelessWidget {
           child: FlatButton(
             child: Text(
               VERIFIED_DIALOG_SCREEN_CANCEL,
-              style: GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontSize: 14),
+              style: GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontSize: SizeConfig.blockSizeVertical * 2),
             ),
             onPressed: () {
               OverlayScreen().pop();
@@ -57,7 +60,7 @@ class VerifiedDialog extends StatelessWidget {
           child: FlatButton(
             child: Text(
               VERIFIED_DIALOG_SCREEN_GO_TO_VERIFY,
-              style: GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontSize: 14),
+              style: GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontSize: SizeConfig.blockSizeVertical * 2),
             ),
             onPressed: () {
               onOk();

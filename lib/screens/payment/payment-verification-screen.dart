@@ -374,7 +374,8 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                     Text(AUTOSWEEP_VERIFICATION_TEXT_FEE, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                     Spacer(),
                     Text(
-                      formatter.format(AUTOSWEEP_FEE, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
+                      formatter.format(AUTOSWEEP_FEE),
+                      style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)
                     ),
                   ],
                 ),

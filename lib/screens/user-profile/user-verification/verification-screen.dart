@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/models/UserVerificationModel.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-photo-id-screen.dart';
@@ -25,7 +26,7 @@ class VerificationScreen extends StatelessWidget {
           label,
           textAlign: TextAlign.center,
           style: GoogleFonts.roboto(
-            fontSize: 12,
+            fontSize: SizeConfig.blockSizeVertical * 1.7,
             fontWeight: FontWeight.w500,
             height: 2,
             color: Colors.black,
@@ -41,7 +42,6 @@ class VerificationScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
 
-
     return Scaffold(
       appBar: SubAppbarWidget(
         title: 'Verification',
@@ -52,7 +52,7 @@ class VerificationScreen extends StatelessWidget {
           Flexible(
             flex: 1,
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(SizeConfig.blockSizeVertical * 3),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -60,7 +60,7 @@ class VerificationScreen extends StatelessWidget {
                     'Your Account is in basic level',
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontSize: SizeConfig.blockSizeVertical * 2.2,
                       color: Colors.white,
                     )
                   ),
@@ -69,8 +69,8 @@ class VerificationScreen extends StatelessWidget {
                     'Upgrade your account to a fully verified level to ensure account security and unlock SWIPE services.',
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      height: 1.5,
+                      fontSize: SizeConfig.blockSizeVertical * 1.7,
+                      height: 1,
                       color: Colors.white.withOpacity(0.6),
                     ),
                   ),
@@ -92,7 +92,7 @@ class VerificationScreen extends StatelessWidget {
                       child: Text(
                         'Get fully verified in just 3 steps',
                         style: GoogleFonts.roboto(
-                          fontSize: 16,
+                          fontSize: SizeConfig.blockSizeVertical * 2.2,
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
@@ -135,18 +135,18 @@ class VerificationScreen extends StatelessWidget {
                     )
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(SizeConfig.blockSizeVertical * 2),
                     child: Text(
                       'After verification, unlock more features like:',
                       style: GoogleFonts.roboto(
-                        fontSize: 14,
+                        fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(SizeConfig.blockSizeVertical * 3),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -170,7 +170,7 @@ class VerificationScreen extends StatelessWidget {
                     style: GoogleFonts.roboto(
                       color: COLOR_DARK_PURPLE,
                       fontWeight: FontWeight.w500,
-                      fontSize: 14,
+                      fontSize: SizeConfig.blockSizeVertical * 2,
                     ),
                   ),
                   Spacer(),
@@ -179,6 +179,7 @@ class VerificationScreen extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: ButtonTheme(
+                        height: SizeConfig.blockSizeVertical * 5,
                         buttonColor: COLOR_DARK_PURPLE,
                         child: RaisedButton(
                           onPressed: () async {
@@ -201,7 +202,7 @@ class VerificationScreen extends StatelessWidget {
                             'GET FULLY VERIFIED',
                             style: GoogleFonts.roboto(
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: SizeConfig.blockSizeVertical * 2,
                               color: Colors.white,
                             ),
                           ),
