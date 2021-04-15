@@ -64,7 +64,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
               child: Text(
                 'Get ready to take a selfie',
                 style: GoogleFonts.roboto(
-                  fontSize: 16,
+                  fontSize: SizeConfig.blockSizeVertical * 2.2,
                   fontWeight: FontWeight.w500,
                   color: COLOR_DARK_PURPLE,
                 ),
@@ -76,7 +76,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                 'To fully verify your identity, we need to gather your bio information.',
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w400,
-                  fontSize: 12,
+                  fontSize: SizeConfig.blockSizeVertical * 1.7,
                   color: COLOR_DARK_GRAY,
                 ),
               ),
@@ -112,7 +112,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                         Text(
                             'Position your face within the frame',
                             style: GoogleFonts.roboto(
-                              fontSize: 12,
+                              fontSize: SizeConfig.blockSizeVertical * 1.7,
                               fontWeight: FontWeight.w400,
                               color: COLOR_DARK_GRAY,
                             )
@@ -120,7 +120,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                         Text(
                             'You will be automatically scanned',
                             style: GoogleFonts.roboto(
-                              fontSize: 12,
+                              fontSize: SizeConfig.blockSizeVertical * 1.7,
                               fontWeight: FontWeight.w400,
                               color: COLOR_DARK_GRAY,
                             )
@@ -128,7 +128,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                         Text(
                             'The process will take few seconds',
                             style: GoogleFonts.roboto(
-                              fontSize: 12,
+                              fontSize: SizeConfig.blockSizeVertical * 1.7,
                               fontWeight: FontWeight.w400,
                               color: COLOR_DARK_GRAY,
                             )
@@ -147,7 +147,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                 child: Text(
                   'Are you ready? Tap “NEXT” to start scanning.',
                   style: GoogleFonts.roboto(
-                    fontSize: 12,
+                    fontSize: SizeConfig.blockSizeVertical * 1.7,
                     color: COLOR_DARK_GRAY,
                   )
                 ),
@@ -158,6 +158,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 child: ButtonTheme(
+                  height: SizeConfig.blockSizeVertical * 5,
                   buttonColor: COLOR_DARK_PURPLE,
                   child: RaisedButton(
                     // shape: ,
@@ -175,7 +176,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                       'NEXT',
                       style: GoogleFonts.roboto(
                         fontWeight: FontWeight.w500,
-                        fontSize: 14,
+                        fontSize: SizeConfig.blockSizeVertical * 2,
                         color: Colors.white,
                       ),
                     ),
