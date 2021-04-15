@@ -51,6 +51,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
               child: Image.asset(
                 imagePath,
                 color: isDisable ? COLOR_DARK_GRAY : null,
+                height: height * 0.04
               ),
             ),
           ),
@@ -59,7 +60,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             title,
             textAlign: TextAlign.center,
             style: GoogleFonts.roboto(
-              fontSize: 10,
+              fontSize: SizeConfig.blockSizeVertical * 1.3,
               color: Colors.black,
               fontWeight: FontWeight.w500,
             ),
@@ -115,7 +116,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                   child: Text(
                     CASH_IN_LINKED_ACCOUNTS_TEXT,
                     style: GoogleFonts.roboto(
-                      fontSize: 14,
+                      fontSize: SizeConfig.blockSizeVertical * 2,
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
                     ),
@@ -129,7 +130,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                   child: Text(
                     CASH_IN_MANAGED_TEXT,
                     style: GoogleFonts.roboto(
-                      fontSize: 14,
+                      fontSize: SizeConfig.blockSizeVertical * 2,
                       fontWeight: FontWeight.w500,
                       color: COLOR_DARK_PURPLE,
                     ),
@@ -145,13 +146,13 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
-                  fontSize: 14,
+                  fontSize: SizeConfig.blockSizeVertical * 2,
                 ),
               ),
               subtitle: Text(
                 CASH_IN_LINKED_SUBNOTE_TEXT,
                 style: GoogleFonts.roboto(
-                  fontSize: 12,
+                  fontSize: SizeConfig.blockSizeVertical * 1.7,
                   color: COLOR_DARK_GRAY,
                   height: 1.5,
                 ),
@@ -164,7 +165,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15, top: 10, bottom: 20),
+              padding: EdgeInsets.only(left: 15, top: 10, bottom: SizeConfig.blockSizeVertical * 1.5),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
@@ -172,7 +173,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
-                    fontSize: 14,
+                    fontSize: SizeConfig.blockSizeVertical * 2,
                   ),
                 ),
               ),
