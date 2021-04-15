@@ -86,7 +86,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                     child: Text(
                       DIRECT_SEND_SCREEN_SWIPE_SEND_TEXT,
                       style: GoogleFonts.roboto(
-                        fontSize: 14,
+                        fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
                         color: COLOR_DARK_PURPLE,
                       ),
@@ -106,7 +106,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       title: Text(
                         DIRECT_SEND_SCREEN_DIRECT_SEND_TEXT,
                         style: GoogleFonts.roboto(
-                          fontSize: 14,
+                          fontSize: SizeConfig.blockSizeVertical * 2,
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
@@ -127,7 +127,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       title: Text(
                         DIRECT_SEND_SCREEN_SEND_QR_TEXT,
                         style: GoogleFonts.roboto(
-                          fontSize: 14,
+                          fontSize: SizeConfig.blockSizeVertical * 2,
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
@@ -141,7 +141,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                     child: Text(
                       DIRECT_SEND_SCREEN_SEND_TO_BANK_TEXT,
                       style: GoogleFonts.roboto(
-                        fontSize: 14,
+                        fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
                         color: COLOR_DARK_PURPLE,
                       ),
@@ -157,7 +157,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       title: Text(
                         DIRECT_SEND_SCREEN_BANKS_TEXT,
                         style: GoogleFonts.roboto(
-                          fontSize: 14,
+                          fontSize: SizeConfig.blockSizeVertical * 2,
                           fontWeight: FontWeight.w500,
                           color: Colors.black.withOpacity(0.5),
                         ),
@@ -171,7 +171,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                     child: Text(
                       DIRECT_SEND_SCREEN_REMITTANCE_TEXT,
                       style: GoogleFonts.roboto(
-                        fontSize: 14,
+                        fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
                         color: COLOR_DARK_PURPLE,
                       ),
@@ -191,7 +191,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       title: Text(
                         DIRECT_SEND_SCREEN_REMITTANCE_CENTERS_TEXT,
                         style: GoogleFonts.roboto(
-                          fontSize: 14,
+                          fontSize: SizeConfig.blockSizeVertical * 2,
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
@@ -212,7 +212,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                   Text(
                     APP_NAME,
                     style: GoogleFonts.roboto(
-                      fontSize: 20,
+                      fontSize: SizeConfig.blockSizeVertical * 2.5,
                       fontWeight: FontWeight.w800,
                       color: Colors.white,
                       letterSpacing: 15,
@@ -240,7 +240,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                               userNickname,
                               style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16,
+                                fontSize: SizeConfig.blockSizeVertical * 2.2,
                                 color: COLOR_DARK_PURPLE,
                               ),
                             ),
@@ -258,8 +258,8 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                                       fontWeight: FontWeight.w500,
                                       fontSize:
                                           userNickname.isEmpty && php == null
-                                              ? 16
-                                              : 14,
+                                              ? SizeConfig.blockSizeVertical * 2.2
+                                              : SizeConfig.blockSizeVertical * 2,
                                       color: userNickname.isEmpty && php == null
                                           ? COLOR_DARK_PURPLE
                                           : COLOR_DARK_GRAY,
@@ -277,7 +277,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                               "PHP ${formatterWithoutPHP.format(php).replaceFirst(" ", "")}",
                               style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16,
+                                fontSize: SizeConfig.blockSizeVertical * 2.2,
                                 color: COLOR_DARK_PURPLE,
                               ),
                             ),
@@ -301,7 +301,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                                   style: GoogleFonts.roboto(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 14,
+                                    fontSize: SizeConfig.blockSizeVertical * 2,
                                     height: 1.5,
                                   ),
                                 ),
@@ -329,7 +329,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                                   style: GoogleFonts.roboto(
                                     color: Colors.white,
                                     height: 1.5,
-                                    fontSize: 12,
+                                    fontSize: SizeConfig.blockSizeVertical * 1.7,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 )
@@ -346,7 +346,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                                 style: GoogleFonts.roboto(
                                   color: Colors.white.withOpacity(0.5),
                                   height: 1.5,
-                                  fontSize: 12,
+                                  fontSize: SizeConfig.blockSizeVertical * 1.7,
                                   fontWeight: FontWeight.w500,
                                 ),
                               )
