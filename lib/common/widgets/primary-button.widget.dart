@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/size.config.dart';
 
 class PrimaryButtonWidget extends StatelessWidget {
   final String text;
@@ -18,12 +19,12 @@ class PrimaryButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      height: MediaQuery.of(context).devicePixelRatio * 18,
+      height: SizeConfig.blockSizeVertical * 5,
       child: RaisedButton(
         onPressed: onPressed,
         child: Text(
           text,
-          style: TextStyle(fontSize: MediaQuery.of(context).devicePixelRatio * 7, color: color)
+          style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2, color: color)
         ),
       ),
     );

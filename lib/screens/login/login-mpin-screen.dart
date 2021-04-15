@@ -213,6 +213,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: PrimaryButtonWidget(
+                            color: Colors.white,
                             onPressed: () {
                               _handleLogin();
                             },

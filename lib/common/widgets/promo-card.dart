@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:swipe/common/size.config.dart';
 
 class PromoCard extends StatelessWidget {
   String iconPath;
@@ -13,6 +14,7 @@ class PromoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       width: MediaQuery.of(context).size.width * 0.80,
@@ -39,7 +41,7 @@ class PromoCard extends StatelessWidget {
                     Text(
                       title,
                       style: GoogleFonts.roboto(
-                        fontSize: MediaQuery.of(context).devicePixelRatio * 7,
+                        fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
                         color: COLOR_DARK_PURPLE,
                         height: 1.5,
@@ -48,7 +50,7 @@ class PromoCard extends StatelessWidget {
                     Text(
                       PROMOS_SCREEN_TITLE_EXTENDS_TEXT,
                       style: GoogleFonts.roboto(
-                        fontSize: MediaQuery.of(context).devicePixelRatio * 6,
+                        fontSize: SizeConfig.blockSizeVertical * 1.6,
                         letterSpacing: 1,
                         fontWeight: FontWeight.w400,
                         color: COLOR_DARK_GRAY,
@@ -68,13 +70,12 @@ class PromoCard extends StatelessWidget {
                           child: Text(
                             'Link Now',
                             style: GoogleFonts.roboto(
-                              fontSize: MediaQuery.of(context).devicePixelRatio * 6,
+                              fontSize: SizeConfig.blockSizeVertical * 1.5,
                               color: Colors.white,
                             ),
                           ),
                         )
                       )
-
                     )
                   ],
                 ),

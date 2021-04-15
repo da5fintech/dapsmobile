@@ -192,7 +192,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                         left: 5, right: 5),
                                     child: Text(Constants
                                         .LOGIN_EMAIL_SCREEN_ALTERNATE_LOGIN_TEXT,
-                                        style: GoogleFonts.roboto(fontSize: MediaQuery.of(context).devicePixelRatio * 6.5, fontWeight: FontWeight.w500, color: Constants.COLOR_DARK_PURPLE)),
+                                        style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 2, fontWeight: FontWeight.w500, color: Constants.COLOR_DARK_PURPLE)),
                                   ),
                                   Expanded(
                                     child: Divider(
@@ -211,13 +211,13 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                   Container(
                                     margin: EdgeInsets.only(right: 8),
                                     child: CircleAvatar(
-                                      radius: MediaQuery.of(context).devicePixelRatio * 13,
+                                      radius: SizeConfig.blockSizeVertical * 3.5,
                                       backgroundColor: Colors.white,
                                       child: CircleAvatar(
                                         backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                        radius: MediaQuery.of(context).devicePixelRatio * 12.5,
+                                        radius: SizeConfig.blockSizeVertical * 3.5,
                                         child: IconButton(
-                                          iconSize: MediaQuery.of(context).devicePixelRatio * 15,
+                                          iconSize: SizeConfig.blockSizeVertical * 3,
                                           icon: FaIcon(
                                             FontAwesomeIcons.facebookF,
                                             color: Colors.white.withOpacity(.87),
@@ -232,13 +232,13 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                   Container(
                                     margin: EdgeInsets.only(right: 8),
                                     child: CircleAvatar(
-                                      radius: MediaQuery.of(context).devicePixelRatio * 13,
+                                      radius: SizeConfig.blockSizeVertical * 3.5,
                                       backgroundColor: Colors.white,
                                       child: CircleAvatar(
                                         backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                        radius: MediaQuery.of(context).devicePixelRatio * 12.5,
+                                        radius: SizeConfig.blockSizeVertical * 3.5,
                                         child: IconButton(
-                                          iconSize: MediaQuery.of(context).devicePixelRatio * 15,
+                                          iconSize: SizeConfig.blockSizeVertical * 3,
                                           icon: FaIcon(
                                             FontAwesomeIcons.google,
                                             color: Colors.white.withOpacity(.87),
@@ -251,13 +251,13 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                     ),
                                   ),
                                   CircleAvatar(
-                                    radius: MediaQuery.of(context).devicePixelRatio * 13,
+                                    radius: SizeConfig.blockSizeVertical * 3.5,
                                     backgroundColor: Colors.white,
                                     child: CircleAvatar(
                                       backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                      radius: MediaQuery.of(context).devicePixelRatio * 12.5,
+                                      radius: SizeConfig.blockSizeVertical * 3.5,
                                       child: IconButton(
-                                        iconSize: MediaQuery.of(context).devicePixelRatio * 15,
+                                        iconSize: SizeConfig.blockSizeVertical * 3,
                                         icon: FaIcon(
                                           FontAwesomeIcons.linkedinIn,
                                           color: Colors.white.withOpacity(.87),
@@ -290,9 +290,9 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                       onTap: () {
                         Get.toNamed('/help');
                       },
-                      child: Text(Constants.APP_HELP_CENTER, style: TextStyle(fontSize: MediaQuery.of(context).devicePixelRatio * 7)),
+                      child: Text(Constants.APP_HELP_CENTER, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                     ),
-                    Text(store.versionNumber, style: TextStyle(fontSize: MediaQuery.of(context).devicePixelRatio * 7)),
+                    Text(store.versionNumber, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                   ],
                 ),
               ),

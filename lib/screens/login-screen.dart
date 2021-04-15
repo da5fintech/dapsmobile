@@ -133,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   style: GoogleFonts.roboto(
                                     color: Constants.COLOR_DARK_PURPLE,
                                     fontWeight: FontWeight.w500,
-                                    fontSize: MediaQuery.of(context).devicePixelRatio * 6,
+                                    fontSize: SizeConfig.blockSizeVertical * 2,
                                   )),
                             ),
                             Expanded(
@@ -153,13 +153,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             Container(
                               margin: EdgeInsets.only(right: 8),
                               child: CircleAvatar(
-                                radius: MediaQuery.of(context).devicePixelRatio * 13,
+                                radius: SizeConfig.blockSizeVertical * 3.5,
                                 backgroundColor: Colors.white,
                                 child: CircleAvatar(
                                   backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                  radius: MediaQuery.of(context).devicePixelRatio * 12.5,
+                                  radius: SizeConfig.blockSizeVertical * 3.5,
                                   child: IconButton(
-                                    iconSize: MediaQuery.of(context).devicePixelRatio * 15,
+                                    iconSize: SizeConfig.blockSizeVertical * 3,
                                     icon: FaIcon(
                                       FontAwesomeIcons.facebookF,
                                       color: Colors.white.withOpacity(.87),
@@ -174,13 +174,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             Container(
                               margin: EdgeInsets.only(right: 8),
                               child: CircleAvatar(
-                                radius: MediaQuery.of(context).devicePixelRatio * 13,
+                                radius: SizeConfig.blockSizeVertical * 3.5,
                                 backgroundColor: Colors.white,
                                 child: CircleAvatar(
                                   backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                  radius: MediaQuery.of(context).devicePixelRatio * 12.5,
+                                  radius: SizeConfig.blockSizeVertical * 3.5,
                                   child: IconButton(
-                                    iconSize: MediaQuery.of(context).devicePixelRatio * 15,
+                                    iconSize: SizeConfig.blockSizeVertical * 3,
                                     icon: FaIcon(
                                       FontAwesomeIcons.google,
                                       color: Colors.white.withOpacity(.87),
@@ -193,13 +193,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             CircleAvatar(
-                              radius: MediaQuery.of(context).devicePixelRatio * 13,
+                              radius: SizeConfig.blockSizeVertical * 3.5,
                               backgroundColor: Colors.white,
                               child: CircleAvatar(
                                 backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                radius: MediaQuery.of(context).devicePixelRatio * 12.5,
+                                radius: SizeConfig.blockSizeVertical * 3.5,
                                 child: IconButton(
-                                  iconSize: MediaQuery.of(context).devicePixelRatio * 15,
+                                  iconSize: SizeConfig.blockSizeVertical * 3,
                                   icon: FaIcon(
                                     FontAwesomeIcons.linkedinIn,
                                     color: Colors.white.withOpacity(.87),
@@ -220,9 +220,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               onTap: () {
                                 Get.toNamed('/help');
                               },
-                              child: Text(Constants.APP_HELP_CENTER, style: TextStyle(fontSize: MediaQuery.of(context).devicePixelRatio * 7)),
+                              child: Text(Constants.APP_HELP_CENTER, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                             ),
-                            Text(store.versionNumber, style: TextStyle(fontSize: MediaQuery.of(context).devicePixelRatio * 7)),
+                            Text(store.versionNumber, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
                           ],
                         ),
                         SizedBox(

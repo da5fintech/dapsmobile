@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/size.config.dart';
 
 class SecondaryButtonWidget extends StatelessWidget {
   final String text;
@@ -18,7 +19,7 @@ class SecondaryButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      height: MediaQuery.of(context).devicePixelRatio * 18,
+      height: SizeConfig.blockSizeVertical * 5,
       child: OutlineButton(
         borderSide: BorderSide(color: COLOR_DARK_PURPLE, width: 1.5),
         onPressed: onPressed,

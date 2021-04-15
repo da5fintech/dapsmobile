@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/size.config.dart';
 
 class ServiceButtonWidget extends StatelessWidget {
   final SwipeServiceOffering offering;
@@ -18,12 +19,13 @@ class ServiceButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Column(
       children: [
         IconButton(
           color: COLOR_GRAY,
           icon: icon,
-          iconSize: MediaQuery.of(context).devicePixelRatio * 24,
+          iconSize: SizeConfig.blockSizeVertical * 7,
           onPressed: () {
             this.onPressed(offering);
           },

@@ -81,7 +81,7 @@ class _RegistrationCreateMpinScreenState
                     children: [
                       Text(APP_NAME,
                           style: GoogleFonts.roboto(
-                              fontSize: queryData.devicePixelRatio * 10,
+                              fontSize: SizeConfig.blockSizeVertical * 3.5,
                               fontWeight: FontWeight.w800,
                               color: Colors.white,
                               letterSpacing: 15)),
@@ -109,7 +109,7 @@ class _RegistrationCreateMpinScreenState
                             REGISTER_MPIN_SCREEN_SET_PIN_TEXT,
                             textAlign: TextAlign.left,
                             style: GoogleFonts.roboto(
-                                fontSize: queryData.devicePixelRatio * 10,
+                                fontSize: SizeConfig.blockSizeVertical * 3,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white),
                           ),
@@ -119,7 +119,7 @@ class _RegistrationCreateMpinScreenState
                           child: Text(
                             REGISTER_MPIN_SCREEN_NOTE_TEXT,
                             style: GoogleFonts.roboto(
-                              fontSize: queryData.devicePixelRatio * 7,
+                              fontSize: SizeConfig.blockSizeVertical * 2,
                               height: 1.5,
                               color: Colors.white.withOpacity(.87),
                             ),
@@ -235,7 +235,7 @@ class _RegistrationCreateMpinScreenState
                                 text: "I agree to Swipe app's ",
                                 style: GoogleFonts.roboto(
                                   color: Colors.white,
-                                  fontSize: queryData.devicePixelRatio * 6,
+                                  fontSize: SizeConfig.blockSizeVertical * 1.7,
                                   height: 1.5,
                                 ),
                                 children: <TextSpan>[
@@ -294,7 +294,7 @@ class _RegistrationCreateMpinScreenState
                     children: [
                       SizedBox(
                         width: double.infinity,
-                        height: queryData.devicePixelRatio * 18,
+                        height: SizeConfig.blockSizeVertical * 5,
                         child: RaisedButton(
                           color: checkTerms
                               ? Colors.white
@@ -306,6 +306,7 @@ class _RegistrationCreateMpinScreenState
                           child: Text('Next'),
                         ),
                       ),
+                      SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -318,7 +319,7 @@ class _RegistrationCreateMpinScreenState
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize:
-                                    MediaQuery.of(context).devicePixelRatio * 7,
+                                    SizeConfig.blockSizeVertical * 2,
                               ),
                             ),
                           ),
@@ -327,7 +328,7 @@ class _RegistrationCreateMpinScreenState
                             style: TextStyle(
                               color: Colors.white,
                               fontSize:
-                                  MediaQuery.of(context).devicePixelRatio * 7,
+                                  SizeConfig.blockSizeVertical * 2,
                             ),
                           ),
                         ],

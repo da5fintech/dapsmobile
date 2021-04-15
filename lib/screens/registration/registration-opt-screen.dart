@@ -89,7 +89,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                     Text(
                       APP_NAME,
                       style: GoogleFonts.roboto(
-                          fontSize: queryData.devicePixelRatio * 10,
+                          fontSize: SizeConfig.blockSizeVertical * 4,
                           fontWeight: FontWeight.w800,
                           color: Colors.white,
                           letterSpacing: 15),
@@ -116,19 +116,19 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(top: queryData.devicePixelRatio * 15),
+                              padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 6),
                               child: Icon(
                                 Icons.mobile_friendly,
-                                size: queryData.devicePixelRatio * 30,
+                                size: SizeConfig.blockSizeVertical * 6,
                                 color: Colors.white,
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: queryData.devicePixelRatio * 12.5),
+                              padding: EdgeInsets.symmetric(vertical: SizeConfig.blockSizeVertical * 3),
                               child: Text(
                                 SETTINGS_SCREEN_BIOMETRIC_OTP_GREET,
                                 style: GoogleFonts.roboto(
-                                  fontSize: queryData.devicePixelRatio * 8,
+                                  fontSize: SizeConfig.blockSizeVertical * 2.5,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white,
                                 ),
@@ -141,7 +141,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.roboto(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: queryData.devicePixelRatio * 7,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   color: Colors.white,
                                   height: 1.5,
                                 ),
@@ -152,7 +152,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                               child: Text(
                                 SETTINGS_SCREEN_BIOMETRIC_OTP_LIMIT,
                                 style: GoogleFonts.roboto(
-                                  fontSize: queryData.devicePixelRatio * 7,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5,
                                   color: Colors.white,
@@ -183,7 +183,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                               Text(
                                 REGISTRATION_SCREEN_INCORRECT_OTP_TEXT,
                                 style: GoogleFonts.roboto(
-                                  fontSize: queryData.devicePixelRatio * 7,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   fontWeight: FontWeight.w500,
                                   color: COLOR_DANGER,
                                 ),
@@ -223,7 +223,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: queryData.devicePixelRatio * 10),
+                            SizedBox(height: SizeConfig.blockSizeVertical * 2),
                           ],
                         ),
                       ),

@@ -359,8 +359,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             child: Text(
                               APP_HELP_CENTER,
                               style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).devicePixelRatio * 7,
+                                fontSize: SizeConfig.blockSizeVertical * 2,
                                 color: Colors.white,
                               ),
                             ),
@@ -368,8 +367,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                           Text(
                             store.versionNumber,
                             style: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).devicePixelRatio * 7,
+                              fontSize: SizeConfig.blockSizeVertical * 2,
                               color: Colors.white,
                             ),
                           ),

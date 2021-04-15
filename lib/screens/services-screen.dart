@@ -105,7 +105,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     Row(
                       children: [
                         CircleAvatar(
-                          radius: MediaQuery.of(context).devicePixelRatio * 10,
+                          radius: SizeConfig.blockSizeVertical * 3,
                           backgroundColor: COLOR_ORANGE,
                           child: store.user.photoURL == null
                               ? Text(
@@ -123,29 +123,32 @@ class _ServicesScreenState extends State<ServicesScreen> {
                             builder: (_) => Text(
                               store.user.displayName,
                               style: GoogleFonts.roboto(
-                                  fontSize: queryData.devicePixelRatio * 7,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   color: Colors.white),
                             ),
                           ),
                         ),
                         Spacer(),
-                        Chip(
-                          // padding: EdgeInsets.only(bottom: 10),
-                          backgroundColor: store.user.level >= 3
-                              ? COLOR_GREEN
-                              : COLOR_DANGER,
-                          labelPadding: EdgeInsets.fromLTRB(3, -4, 3, -4),
-                          label: Container(
-                            child: Text(
-                              store.user.level >= 3
-                                  ? SERVICES_SCREEN_VERIFIED_TEXT
-                                  : "UNVERIFIED",
-                              style: GoogleFonts.roboto(
-                                fontSize: queryData.devicePixelRatio * 6,
-                                color: Colors.white,
-                              ),
+                        Container(
+                            height: MediaQuery.of(context).devicePixelRatio * 8,
+                            width: MediaQuery.of(context).size.width  * 0.18,
+                            decoration: BoxDecoration(
+                                color: store.user.level >= 3
+                                    ? COLOR_GREEN
+                                    : COLOR_DANGER,
+                                borderRadius: BorderRadius.all(Radius.circular(20))
                             ),
-                          ),
+                            child: Center(
+                              child: Text(
+                                store.user.level >= 3
+                                    ? SERVICES_SCREEN_VERIFIED_TEXT
+                                    : "GET VERIFIED",
+                                style: GoogleFonts.roboto(
+                                  fontSize: SizeConfig.blockSizeVertical * 1.5,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
                         ),
                       ],
                     ),
@@ -156,14 +159,14 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         Text(
                           SERVICES_SCREEN_BALANCE_TEXT,
                           style: GoogleFonts.roboto(
-                            fontSize: queryData.devicePixelRatio * 6,
+                            fontSize: SizeConfig.blockSizeVertical * 1.5,
                             color: Colors.white.withOpacity(0.7),
                           ),
                         )
                       ],
                     ),
                     SizedBox(
-                      height: queryData.devicePixelRatio * 2,
+                      height: SizeConfig.blockSizeVertical * 1,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +174,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         Text(
                           "**** *** ${_appUtil.formatUserPhoneNumber(store.user.mobileNumber)}",
                           style: GoogleFonts.roboto(
-                            fontSize: queryData.devicePixelRatio * 7,
+                            fontSize: SizeConfig.blockSizeVertical * 2,
                             color: Colors.white.withOpacity(0.7),
                           ),
                         ),
@@ -196,7 +199,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: queryData.devicePixelRatio * 10,
+                      height: SizeConfig.blockSizeVertical * 1.5,
                     )
                   ],
                 ),
@@ -220,8 +223,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               onPressed: _handleButtonClick,
                               icon: SvgPicture.asset(
                                 'assets/svg2/ICONS_CASH_IN.svg',
-                                height: 100,
-                                width: 100,
                               ),
                               text: SERVICES_SCREEN_CASH_IN_TEXT,
                             ),
@@ -375,7 +376,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 Text(
                                   SERVICES_SCREEN_TRANSACTION_TEXT,
                                   style: GoogleFonts.roboto(
-                                      fontSize: queryData.devicePixelRatio * 7,
+                                      fontSize: SizeConfig.blockSizeVertical * 1.5,
                                       color: Colors.black.withOpacity(.87)),
                                 ),
                               ],
@@ -405,7 +406,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT,
                                 style: GoogleFonts.roboto(
                                   color: Colors.black,
-                                  fontSize: queryData.devicePixelRatio * 7,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -416,7 +417,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 SERVICES_SCREEN_REASON_SWIPE_TEXT,
                                 style: GoogleFonts.roboto(
                                   color: COLOR_DARK_GRAY,
-                                  fontSize: queryData.devicePixelRatio * 6,
+                                  fontSize: 2 * SizeConfig.blockSizeVertical,
                                 ),
                               ),
                             ),
