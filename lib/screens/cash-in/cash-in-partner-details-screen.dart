@@ -57,6 +57,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                     child: Center(
                       child: Image.asset(
                         imagePath,
+                        height: height * 0.04,
                       ),
                     ),
                   ),
@@ -64,7 +65,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                     title,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.roboto(
-                      fontSize: 14,
+                      fontSize: SizeConfig.blockSizeVertical * 2,
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
                     ),
@@ -100,7 +101,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                                     style: GoogleFonts.roboto(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500,
-                                      fontSize: 14,
+                                      fontSize: SizeConfig.blockSizeVertical * 2,
                                     )
                                 )
                             )
@@ -123,19 +124,19 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                   },
                   leading: SvgPicture.asset(
                     'assets/svg/services/cash-in/barcode.svg',
+                    height: height * 0.08
                   ),
                   title: Text(
                     CASH_IN_GENERATE_BARCODE,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w500,
                       color: COLOR_DARK_PURPLE,
-                      fontSize: 14,
+                      fontSize: SizeConfig.blockSizeVertical * 2,
                     ),
                   ),
                   subtitle: Text(
-                    CASH_IN_SUBNOTE_BARCODE,
-                    style: GoogleFonts.roboto(
-                      fontSize: 12,
+                    CASH_IN_SUBNOTE_BARCODE, style: GoogleFonts.roboto(
+                      fontSize: SizeConfig.blockSizeVertical * 2,
                       color: COLOR_DARK_GRAY,
                       height: 1.5,
                     ),
@@ -153,7 +154,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                   CASH_IN_HOW_TO_CASH,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
-                    fontSize: 16,
+                    fontSize: SizeConfig.blockSizeVertical * 2.2,
                     color: COLOR_DARK_PURPLE,
                   )
                 ),
@@ -164,7 +165,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                     CASH_IN_HOW_TO_CASH_SUBNOTE,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w700,
-                      fontSize: 12,
+                      fontSize: SizeConfig.blockSizeVertical * 2,
                       color: Colors.black,
                       height: 2,
                     )
@@ -174,13 +175,13 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ListTile(
                   leading: CircleAvatar(
-                    radius: 20,
+                    radius: SizeConfig.blockSizeVertical * 2.8,
                     child: Text('1')
                   ),
                   subtitle: Text(
                     CASH_IN_STEP_1,
                     style: GoogleFonts.roboto(
-                      fontSize: 12,
+                      fontSize: SizeConfig.blockSizeVertical * 1.7,
                       color: COLOR_DARK_GRAY,
                       height: 1.5,
                     ),
@@ -191,13 +192,13 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ListTile(
                   leading: CircleAvatar(
-                      radius: 20,
+                      radius: SizeConfig.blockSizeVertical * 2.8,
                       child: Text('2')
                   ),
                   subtitle: Text(
                     CASH_IN_STEP_2,
                     style: GoogleFonts.roboto(
-                      fontSize: 12,
+                      fontSize: SizeConfig.blockSizeVertical * 1.7,
                       color: COLOR_DARK_GRAY,
                       height: 1.5,
                     ),
@@ -208,13 +209,13 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ListTile(
                   leading: CircleAvatar(
-                      radius: 20,
+                      radius: SizeConfig.blockSizeVertical * 2.8,
                       child: Text('3')
                   ),
                   subtitle: Text(
                     CASH_IN_STEP_3,
                     style: GoogleFonts.roboto(
-                      fontSize: 12,
+                      fontSize: SizeConfig.blockSizeVertical * 1.7,
                       color: COLOR_DARK_GRAY,
                       height: 1.5,
                     ),
