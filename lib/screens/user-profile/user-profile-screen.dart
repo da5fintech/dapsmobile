@@ -81,14 +81,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               Navigator.pop(context);
                             },
                             icon: Icon(Icons.arrow_back_ios,
-                                color: Colors.white, size: 24),
+                                color: Colors.white, size: SizeConfig.blockSizeVertical * 2.5),
                           ),
                           title: Transform(
                             transform: Matrix4.translationValues(-20, 0.0, 0),
                             child: Text(
                               USER_PROFILE_SCREEN_TITLE_TEXT,
                               style: GoogleFonts.roboto(
-                                fontSize: 20,
+                                fontSize: SizeConfig.blockSizeVertical * 2.5,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
@@ -113,7 +113,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               'Update',
                               style: GoogleFonts.roboto(
                                 color: Colors.white,
-                                fontSize: 16,
+                                fontSize: SizeConfig.blockSizeVertical * 2.2,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -124,12 +124,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         top: height * 0.18,
                         left: width * 0.37,
                         child: CircleAvatar(
-                          maxRadius: 50,
+                          maxRadius: SizeConfig.blockSizeVertical * 6.5,
                           backgroundColor: COLOR_ORANGE,
                           child: store.user.photoURL == null
                               ? Text(
                             store.user.getInitials(),
-                            style: GoogleFonts.roboto(color: Colors.white, fontSize: 80),
+                            style: GoogleFonts.roboto(color: Colors.white, fontSize: SizeConfig.blockSizeVertical * 10),
                           )
                               : ClipOval(
                             child: Image.network(store.user.photoURL),
@@ -162,7 +162,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             ? SERVICES_SCREEN_VERIFIED_TEXT
                             : "UNVERIFIED",
                         style: GoogleFonts.roboto(
-                          fontSize: 12,
+                          fontSize: SizeConfig.blockSizeVertical * 1.6,
                           color: Colors.white,
                         ),
                       ),
@@ -173,114 +173,116 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   flex: 2,
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        TextFormField(
-                          autofocus: true,
-                          textInputAction: TextInputAction.next,
-                          controller: firstname,
-                          decoration: InputDecoration(
-                            labelText: REGISTER_SCREEN_FIRSTNAME_TEXT,
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            errorStyle: TextStyle(
-                                color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          TextFormField(
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
+                            controller: firstname,
+                            decoration: InputDecoration(
+                              labelText: REGISTER_SCREEN_FIRSTNAME_TEXT,
+                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                            ),
                           ),
-                        ),
-                        TextFormField(
-                          autofocus: true,
-                          textInputAction: TextInputAction.next,
-                          controller: lastname,
-                          decoration: InputDecoration(
-                            labelText: REGISTER_SCREEN_LASTNAME_TEXT,
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            errorStyle: TextStyle(
-                                color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                          TextFormField(
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
+                            controller: lastname,
+                            decoration: InputDecoration(
+                              labelText: REGISTER_SCREEN_LASTNAME_TEXT,
+                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                            ),
                           ),
-                        ),
-                        TextFormField(
-                          autofocus: true,
-                          readOnly: true,
-                          showCursor: true,
-                          controller: address,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            labelText: REGISTER_SCREEN_ADDRESS_TEXT,
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            errorStyle: TextStyle(
-                                color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                          TextFormField(
+                            autofocus: true,
+                            readOnly: true,
+                            showCursor: true,
+                            controller: address,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              labelText: REGISTER_SCREEN_ADDRESS_TEXT,
+                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                            ),
                           ),
-                        ),
-                        TextFormField(
-                          autofocus: true,
-                          textInputAction: TextInputAction.next,
-                          readOnly: true,
-                          showCursor: true,
-                          initialValue: store.user.dateOfBirth,
-                          decoration: InputDecoration(
-                            labelText: REGISTER_SCREEN_BIRTHDAY_TEXT,
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            errorStyle: TextStyle(
-                                color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                          TextFormField(
+                            autofocus: true,
+                            textInputAction: TextInputAction.next,
+                            readOnly: true,
+                            showCursor: true,
+                            initialValue: store.user.dateOfBirth,
+                            decoration: InputDecoration(
+                              labelText: REGISTER_SCREEN_BIRTHDAY_TEXT,
+                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                            ),
                           ),
-                        ),
-                        TextFormField(
-                          autofocus: true,
-                          readOnly: true,
-                          showCursor: true,
-                          initialValue: store.user.emailAddress,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            labelText: REGISTER_SCREEN_EMAIL_TEXT,
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            errorStyle: TextStyle(
-                                color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                          TextFormField(
+                            autofocus: true,
+                            readOnly: true,
+                            showCursor: true,
+                            initialValue: store.user.emailAddress,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              labelText: REGISTER_SCREEN_EMAIL_TEXT,
+                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                            ),
                           ),
-                        ),
-                        TextFormField(
-                          autofocus: true,
-                          controller: mobileNumber,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                            errorStyle: TextStyle(
-                                color: COLOR_GRAY, fontSize: 12, height: 0.3),
-                            labelText: REGISTER_SCREEN_MOBIILE_TEXT,
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            prefix: Container(
-                              padding: EdgeInsets.only(right: 10),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  right: BorderSide(
-                                    color: Colors.black,
-                                    width: 0.5,
+                          TextFormField(
+                            autofocus: true,
+                            controller: mobileNumber,
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.phone,
+                            decoration: InputDecoration(
+                              errorStyle: TextStyle(
+                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                              labelText: REGISTER_SCREEN_MOBIILE_TEXT,
+                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              prefix: Container(
+                                padding: EdgeInsets.only(right: 10),
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    right: BorderSide(
+                                      color: Colors.black,
+                                      width: 0.5,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              child: Text(
-                                '+63',
-                                style: GoogleFonts.roboto(color: Colors.black),
+                                child: Text(
+                                  '+63',
+                                  style: GoogleFonts.roboto(color: Colors.black),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 20,
-                            horizontal: 30,
-                          ),
-                          child: Text(
-                            USER_PROFILE_SCREEN_NOTE_TEXT,
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.roboto(
-                              fontSize: 12,
-                              height: 1.5,
-                              fontWeight: FontWeight.w400,
-                              color: COLOR_DARK_GRAY,
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 20,
+                              horizontal: 30,
                             ),
-                          ),
-                        )
-                      ],
+                            child: Text(
+                              USER_PROFILE_SCREEN_NOTE_TEXT,
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.roboto(
+                                fontSize: 12,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400,
+                                color: COLOR_DARK_GRAY,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 )
