@@ -79,7 +79,7 @@ class _BillsPaymentCategoriesScreenState
                     Text(
                       BILLS_PAYMENT_CATEGORIES_SCREEN_SAVED_BILLERS_TEXT,
                       style: GoogleFonts.roboto(
-                          color: Colors.black, fontWeight: FontWeight.w500),
+                          color: Colors.black, fontWeight: FontWeight.w500, fontSize: SizeConfig.blockSizeVertical * 2),
                     ),
                     SizedBox(height: 10),
                     Container(
@@ -140,7 +140,7 @@ class _BillsPaymentCategoriesScreenState
                                                 biller.name,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: GoogleFonts.roboto(
-                                                    fontSize: 12,
+                                                    fontSize: SizeConfig.blockSizeVertical * 1.7,
                                                     fontWeight: FontWeight.w500,
                                                     color: COLOR_DARK_GRAY),
                                               ),
@@ -173,7 +173,7 @@ class _BillsPaymentCategoriesScreenState
                       'Biller Categories',
                       style: GoogleFonts.roboto(
                         height: 2,
-                        fontSize: 14,
+                        fontSize: SizeConfig.blockSizeVertical * 2,
                         color: Colors.black,
                         fontWeight: FontWeight.w500
                       ),
