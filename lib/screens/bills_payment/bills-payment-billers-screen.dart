@@ -91,7 +91,7 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
                                         style: GoogleFonts.roboto(
                                             color:
                                                 Colors.black.withOpacity(.87),
-                                            fontSize: 14,
+                                            fontSize: SizeConfig.blockSizeVertical * 2,
                                             fontWeight: FontWeight.w500),
                                       ),
                                     ],

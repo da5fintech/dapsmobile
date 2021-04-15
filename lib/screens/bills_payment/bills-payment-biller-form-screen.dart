@@ -120,6 +120,7 @@ class _BillsPaymentBillerFormScreenState
     double height = MediaQuery.of(context).size.height * 0.70;
     var avatar = store.selectedBiller.logo != null
         ? CircleAvatar(
+            radius: SizeConfig.blockSizeVertical * 3,
             backgroundColor: Colors.transparent,
             backgroundImage: NetworkImage(store.selectedBiller.logo),
           )
@@ -160,14 +161,14 @@ class _BillsPaymentBillerFormScreenState
                           Text(
                             "${store.selectedBiller.name}",
                             style: GoogleFonts.roboto(
-                                fontSize: 16,
+                                fontSize: SizeConfig.blockSizeVertical * 2.2,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
                             BILLS_PAYMENT_SCREEN_IMMEDIATE_POST_TEXT,
                             style: GoogleFonts.roboto(
-                              fontSize: 12,
+                              fontSize: SizeConfig.blockSizeVertical * 1.7,
                               color: Colors.white.withOpacity(.6),
                             ),
                           ),

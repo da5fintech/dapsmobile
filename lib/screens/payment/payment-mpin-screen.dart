@@ -96,15 +96,20 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(PAYMENT_MPIN_SCREEN_GREET,
-                          style: GoogleFonts.roboto(
-                              fontSize: 16,
-                              color: COLOR_DARK_PURPLE,
-                              fontWeight: FontWeight.w500)),
+                      Text(
+                        PAYMENT_MPIN_SCREEN_GREET,
+                        style: GoogleFonts.roboto(
+                          fontSize: SizeConfig.blockSizeVertical * 2.3,
+                          color: COLOR_DARK_PURPLE,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                       SizedBox(
                         height: 10,
                       ),
-                      Text(PAYMENT_MPIN_SCREEN_DIGIT_LIMIT),
+                      Text(PAYMENT_MPIN_SCREEN_DIGIT_LIMIT,
+                          style: TextStyle(
+                              fontSize: SizeConfig.blockSizeVertical * 2)),
                       Container(
                         width: width,
                         child: PinCodeTextField(

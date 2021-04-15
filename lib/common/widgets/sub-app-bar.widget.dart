@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/common/size.config.dart';
 import 'package:mobx/mobx.dart';
 
 class SubAppbarWidget extends StatefulWidget implements PreferredSizeWidget {
@@ -39,6 +40,7 @@ class _SubAppbarWidgetState extends State<SubAppbarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     Widget searchBtn = IconButton(
         icon: Icon(Icons.search),
         onPressed: () {
@@ -111,7 +113,7 @@ class _SubAppbarWidgetState extends State<SubAppbarWidget> {
             )
           : Text(widget.title,
               style: GoogleFonts.roboto(
-                  fontSize: 20, fontWeight: FontWeight.w500)),
+                  fontSize: SizeConfig.blockSizeVertical * 3, fontWeight: FontWeight.w500)),
       actions: actions,
       bottom: widget.bottom,
     );

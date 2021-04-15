@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/size.config.dart';
 
 class CategoryButtonWidget extends StatelessWidget {
   final String category;
@@ -34,7 +35,7 @@ class CategoryButtonWidget extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: GoogleFonts.roboto(color: Colors.black, fontSize: 12),
+            style: GoogleFonts.roboto(color: Colors.black, fontSize: SizeConfig.blockSizeVertical * 1.7),
           )
         ],
       ),

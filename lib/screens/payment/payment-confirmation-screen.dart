@@ -85,7 +85,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                     PAYMENT_CONFIRMATION_SCREEN_RECEIVED_TEXT,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontSize: SizeConfig.blockSizeVertical * 2.3,
                       color: Colors.white.withOpacity(.87),
                     ),
                   ),
@@ -116,12 +116,12 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(PAYMENT_CONFIRMATION_SCREEN_TRANSACTION_TEXT),
+                    Text(PAYMENT_CONFIRMATION_SCREEN_TRANSACTION_TEXT, style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7)),
                     Spacer(),
                     Text(
                       transactionType,
                       style: GoogleFonts.roboto(
-                          fontSize: 12,
+                          fontSize: SizeConfig.blockSizeVertical * 1.7,
                           color: Colors.black.withOpacity(.60),
                           fontWeight: FontWeight.w400),
                     ),
@@ -147,7 +147,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                       "$recipient",
                       textAlign: TextAlign.right,
                       style: GoogleFonts.roboto(
-                          fontSize: 12,
+                          fontSize: SizeConfig.blockSizeVertical * 1.7,
                           color: Colors.black.withOpacity(.60),
                           fontWeight: FontWeight.w400),
                     ),
@@ -167,12 +167,12 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(PAYMENT_CONFIRMATION_SCREEN_AMOUNT_TEXT),
+                    Text(PAYMENT_CONFIRMATION_SCREEN_AMOUNT_TEXT, style: GoogleFonts.roboto( fontSize: SizeConfig.blockSizeVertical * 1.7)),
                     Spacer(),
                     Text(
                       formatter.format(amount),
                       style: GoogleFonts.roboto(
-                          fontSize: 12,
+                          fontSize: SizeConfig.blockSizeVertical * 1.7,
                           color: Colors.black.withOpacity(.60),
                           fontWeight: FontWeight.w400),
                     ),
@@ -192,12 +192,12 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(PAYMENT_CONFIRMATION_SCREEN_FEE_TEXT),
+                    Text(PAYMENT_CONFIRMATION_SCREEN_FEE_TEXT, style: GoogleFonts.roboto( fontSize: SizeConfig.blockSizeVertical * 1.7)),
                     Spacer(),
                     Text(
                       formatter.format(fee),
                       style: GoogleFonts.roboto(
-                          fontSize: 12,
+                          fontSize: SizeConfig.blockSizeVertical * 1.7,
                           color: Colors.black.withOpacity(.60),
                           fontWeight: FontWeight.w400),
                     ),
@@ -217,12 +217,12 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(PAYMENT_CONFIRMATION_SCREEN_DUE_TEXT),
+                    Text(PAYMENT_CONFIRMATION_SCREEN_DUE_TEXT, style: GoogleFonts.roboto( fontSize: SizeConfig.blockSizeVertical * 1.7)),
                     Spacer(),
                     Text(
                       formatter.format(totalAmount),
                       style: GoogleFonts.roboto(
-                          fontSize: 12,
+                          fontSize: SizeConfig.blockSizeVertical * 1.7,
                           color: Colors.black.withOpacity(.60),
                           fontWeight: FontWeight.w400),
                     ),
@@ -242,12 +242,12 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(PAYMENT_CONFIRMATION_SCREEN_DATE_TEXT),
+                    Text(PAYMENT_CONFIRMATION_SCREEN_DATE_TEXT, style: GoogleFonts.roboto( fontSize: SizeConfig.blockSizeVertical * 1.7)),
                     Spacer(),
                     Text(
                       DateFormat.yMMMMEEEEd().format(DateTime.now()),
                       style: GoogleFonts.roboto(
-                          fontSize: 12,
+                          fontSize: SizeConfig.blockSizeVertical * 1.7,
                           color: Colors.black.withOpacity(.60),
                           fontWeight: FontWeight.w400),
                     ),
@@ -267,12 +267,12 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(PAYMENT_CONFIRMATION_SCREEN_REF_TEXT),
+                    Text(PAYMENT_CONFIRMATION_SCREEN_REF_TEXT, style: GoogleFonts.roboto( fontSize: SizeConfig.blockSizeVertical * 1.7)),
                     Spacer(),
                     Text(
                       store.lastTransactionResponse.reference,
                       style: GoogleFonts.roboto(
-                          fontSize: 12,
+                          fontSize: SizeConfig.blockSizeVertical * 1.7,
                           color: Colors.black.withOpacity(.60),
                           fontWeight: FontWeight.w400),
                     ),
@@ -285,7 +285,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                   Text(
                     PAYMENT_CONFIRMATION_SCREEN_PROCESSED_TEXT,
                     style: GoogleFonts.roboto(
-                        fontSize: 12,
+                        fontSize: SizeConfig.blockSizeVertical * 1.7,
                         color: Colors.black.withOpacity(.60),
                         fontWeight: FontWeight.w400),
                     textAlign: TextAlign.center,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/common/size.config.dart';
 
 import '../constants.dart';
 
@@ -13,6 +14,8 @@ class AmountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(SizeConfig.blockSizeVertical * 3);
+    SizeConfig().init(context);
     return Container(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,13 +26,13 @@ class AmountWidget extends StatelessWidget {
             child: Text("PHP",
                 style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
-                    fontSize: 12,
+                    fontSize: SizeConfig.blockSizeVertical * 1.5,
                     color: Colors.white)),
           ),
           Text(formatterWithoutPHP.format(amount),
               style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w700,
-                  fontSize: 24,
+                  fontSize:  SizeConfig.blockSizeVertical * 3,
                   color: Colors.white)),
         ],
       ),

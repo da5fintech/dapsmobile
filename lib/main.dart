@@ -27,7 +27,9 @@ GetIt getIt = GetIt.instance;
 void setupApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
-  await Firebase.initializeApp();
+  await Firebase.initializeApp().catchError((err) {
+    print(err);
+  });
   var cache = await SharedPreferences.getInstance();
   var dir = await getApplicationDocumentsDirectory();
   await Hive.init(dir.path);

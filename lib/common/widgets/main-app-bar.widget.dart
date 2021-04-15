@@ -7,9 +7,10 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final Size preferredSize; // default is 56.0
   final double elevation;
   final Function onPressed;
+  double queryData;
 
-  MainAppBarWidget({Key key, this.elevation, this.onPressed})
-      : preferredSize = Size.fromHeight(kToolbarHeight),
+  MainAppBarWidget({Key key, this.elevation, this.onPressed, this.queryData})
+      : preferredSize = Size.fromHeight(queryData * 25),
         super(key: key);
 
   @override
@@ -18,20 +19,20 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       elevation: elevation,
       centerTitle: true,
       leading: IconButton(
-          icon: Icon(Icons.list),
+          icon: Icon(Icons.list, size: queryData * 12),
           onPressed: () {
             onPressed();
           }),
       title: Text(APP_NAME,
           style: GoogleFonts.roboto(
-              fontSize: 12, fontWeight: FontWeight.w800, letterSpacing: 15)),
+              fontSize: queryData * 6, fontWeight: FontWeight.w800, letterSpacing: 15)),
       actions: [
         Icon(
           Icons.notifications,
-          size: 16,
+          size: queryData * 8
         ),
         SizedBox(
-          width: 10,
+          width: queryData * 5,
         )
       ],
     );

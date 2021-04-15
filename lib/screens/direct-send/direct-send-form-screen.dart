@@ -96,7 +96,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                           textAlign: TextAlign.start,
                           style: GoogleFonts.roboto(
                             color: COLOR_DARK_GRAY.withOpacity(0.52),
-                            fontSize: 12,
+                            fontSize: SizeConfig.blockSizeVertical * 1.7,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -170,7 +170,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                           textAlign: TextAlign.start,
                           style: GoogleFonts.roboto(
                             color: COLOR_DARK_GRAY.withOpacity(0.52),
-                            fontSize: 12,
+                            fontSize: SizeConfig.blockSizeVertical * 1.7,
                             fontWeight: FontWeight.w500,
                           ),
                         ),

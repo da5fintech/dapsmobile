@@ -37,6 +37,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
     SizeConfig().init(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    MediaQueryData queryData = MediaQuery.of(context);
 
     OverlayScreen().saveScreens({
       'progress': CustomOverlayScreen(
@@ -88,7 +89,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                     Text(
                       APP_NAME,
                       style: GoogleFonts.roboto(
-                          fontSize: 20,
+                          fontSize: SizeConfig.blockSizeVertical * 4,
                           fontWeight: FontWeight.w800,
                           color: Colors.white,
                           letterSpacing: 15),
@@ -115,19 +116,19 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 30.0),
+                              padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 6),
                               child: Icon(
                                 Icons.mobile_friendly,
-                                size: 60,
+                                size: SizeConfig.blockSizeVertical * 6,
                                 color: Colors.white,
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 25.0),
+                              padding: EdgeInsets.symmetric(vertical: SizeConfig.blockSizeVertical * 3),
                               child: Text(
                                 SETTINGS_SCREEN_BIOMETRIC_OTP_GREET,
                                 style: GoogleFonts.roboto(
-                                  fontSize: 16,
+                                  fontSize: SizeConfig.blockSizeVertical * 2.5,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white,
                                 ),
@@ -140,18 +141,18 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.roboto(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   color: Colors.white,
                                   height: 1.5,
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 50),
+                              padding: EdgeInsets.only(top: queryData.devicePixelRatio * 25),
                               child: Text(
                                 SETTINGS_SCREEN_BIOMETRIC_OTP_LIMIT,
                                 style: GoogleFonts.roboto(
-                                  fontSize: 14,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5,
                                   color: Colors.white,
@@ -182,7 +183,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                               Text(
                                 REGISTRATION_SCREEN_INCORRECT_OTP_TEXT,
                                 style: GoogleFonts.roboto(
-                                  fontSize: 14,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   fontWeight: FontWeight.w500,
                                   color: COLOR_DANGER,
                                 ),
@@ -222,7 +223,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(height: SizeConfig.blockSizeVertical * 2),
                           ],
                         ),
                       ),

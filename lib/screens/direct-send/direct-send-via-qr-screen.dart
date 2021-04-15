@@ -114,7 +114,7 @@ class _DirectSendViaQrScreen extends State<DirectSendViaQrScreen> {
                   DIRECT_SEND_VIA_QR_SCREEN_NOTE,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
-                    fontSize: 14,
+                    fontSize: SizeConfig.blockSizeVertical * 2,
                     height: 2,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,

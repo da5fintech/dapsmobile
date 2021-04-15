@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/size.config.dart';
 
 class SwipeDialog extends StatelessWidget {
   final Function onOk;
@@ -20,8 +21,9 @@ class SwipeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return AlertDialog(
-      actionsPadding: EdgeInsets.symmetric(vertical: 15),
+      actionsPadding: EdgeInsets.symmetric(vertical: SizeConfig.blockSizeVertical * 2),
       backgroundColor: Colors.white,
       titlePadding: EdgeInsets.only(top: 20, left: 20, right: 20),
       contentPadding: EdgeInsets.only(top: 15, left: 20, right: 30),
@@ -31,7 +33,7 @@ class SwipeDialog extends StatelessWidget {
             title,
             style: GoogleFonts.roboto(
               color: Colors.black,
-              fontSize: 18,
+              fontSize: SizeConfig.blockSizeVertical * 2.5,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -41,7 +43,7 @@ class SwipeDialog extends StatelessWidget {
         contentMessage,
         style: GoogleFonts.roboto(
           color: COLOR_DARK_GRAY,
-          fontSize: 16,
+          fontSize: SizeConfig.blockSizeVertical * 2.2,
           fontWeight: FontWeight.w400,
           // fontSize: normalizeSize(15),
         ),
@@ -55,6 +57,7 @@ class SwipeDialog extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               child: ButtonTheme(
                 buttonColor: COLOR_DARK_PURPLE,
+                height:  SizeConfig.blockSizeVertical * 5,
                 child: RaisedButton(
                   elevation: 0,
                   onPressed: () {
@@ -63,7 +66,7 @@ class SwipeDialog extends StatelessWidget {
                   child: Text(
                     'OK',
                     style: GoogleFonts.roboto(
-                      fontSize: 14,
+                      fontSize: SizeConfig.blockSizeVertical *2,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
@@ -76,6 +79,7 @@ class SwipeDialog extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 width: MediaQuery.of(context).size.width,
                 child: ButtonTheme(
+                  height:  SizeConfig.blockSizeVertical * 5,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(0),
                     side: BorderSide(
@@ -91,7 +95,7 @@ class SwipeDialog extends StatelessWidget {
                     child: Text(
                       'CANCEL',
                       style: GoogleFonts.roboto(
-                        fontSize: 14,
+                        fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
                         color: COLOR_DARK_PURPLE,
                       ),

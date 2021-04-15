@@ -81,7 +81,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
                 CASH_IN_VIA_CODE_SUBNOTE,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
-                  fontSize: 14,
+                  fontSize: SizeConfig.blockSizeVertical * 2,
                   height: 1.5,
                   color: COLOR_DARK_GRAY,
                 ),
@@ -114,7 +114,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
                   Text(
                     CASH_IN_VIA_CODE_AMOUNT_VALIDATION,
                     style: GoogleFonts.roboto(
-                      fontSize: 12,
+                      fontSize: SizeConfig.blockSizeVertical * 1.7,
                       color: COLOR_DARK_GRAY,
                       height: 5,
                     )
@@ -124,6 +124,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
                     child: SizedBox(
                       width: double.infinity,
                       child: ButtonTheme(
+                        height: SizeConfig.blockSizeVertical * 5,
                         buttonColor: COLOR_DARK_PURPLE,
                         child: RaisedButton(
                           // shape: ,

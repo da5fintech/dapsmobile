@@ -44,6 +44,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
     double height = queryData.size.height;
+    print(queryData.devicePixelRatio * 10);
     SizeConfig().init(context);
 
     OverlayScreen().saveScreens({
@@ -86,6 +87,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
         key: _drawerKey,
         drawer: DrawerMenuWidget(level: store.user.level),
         appBar: MainAppBarWidget(
+          queryData: queryData.devicePixelRatio,
           elevation: 0,
           onPressed: () {
             _drawerKey.currentState.openDrawer();
@@ -93,309 +95,361 @@ class _ServicesScreenState extends State<ServicesScreen> {
         ),
         body: Column(
           children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: COLOR_ORANGE,
-                        child: store.user.photoURL == null
-                            ? Text(
-                                store.user.getInitials(),
-                                style: GoogleFonts.roboto(color: Colors.white),
-                              )
-                            : ClipOval(
-                                child: Image.network(store.user.photoURL),
-                              ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        child: Observer(
-                          builder: (_) => Text(
-                            store.user.displayName,
-                            style: GoogleFonts.roboto(fontSize: 14, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      Spacer(),
-                      Container(
-                        height: 22,
-                        child: Chip(
-                          padding: EdgeInsets.only(bottom: 10),
-                          backgroundColor: store.user.level >= 3
-                              ? COLOR_GREEN
-                              : COLOR_DANGER,
-                          label: Text(
-                            store.user.level >= 3
-                                ? SERVICES_SCREEN_VERIFIED_TEXT
-                                : "UNVERIFIED",
-                            style: GoogleFonts.roboto(
-                              fontSize: 12,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        SERVICES_SCREEN_BALANCE_TEXT,
-                        style: GoogleFonts.roboto(
-                          fontSize: 12,
-                          color: Colors.white.withOpacity(0.7),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "**** *** ${_appUtil.formatUserPhoneNumber(store.user.mobileNumber)}",
-                        style: GoogleFonts.roboto(
-                          fontSize: 14,
-                          color: Colors.white.withOpacity(0.7),
-                        ),
-                      ),
-                      Observer(
-                        builder: (_) {
-                          return Row(
-                            children: [
-                              AmountWidget(amount: store.balance),
-                              SizedBox(width: 5),
-                              InkWell(
-                                onTap: () {
-                                  Get.toNamed("/services/cash-in");
-                                },
-                                child: Icon(Icons.add_circle, color: Colors.white),
-                              )
-                            ],
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  )
-                ],
-              ),
-            ),
             Flexible(
-              flex: 1,
+              flex: 2,
               child: Container(
-                color: Colors.white,
                 width: MediaQuery.of(context).size.width,
-                child: GridView.count(
-                  physics: queryData.devicePixelRatio >= 2.75 ? NeverScrollableScrollPhysics() : null,
-                  shrinkWrap: true,
-                  crossAxisCount: 3,
-                  crossAxisSpacing: (queryData.devicePixelRatio * 10 + 20),
-                  children: [
-                    ServiceButtonWidget(
-                      offering: SwipeServiceOffering.CASH_IN,
-                      onPressed: _handleButtonClick,
-                      icon: SvgPicture.asset(
-                        'assets/svg2/ICONS_CASH_IN.svg',
-                      ),
-                      text: SERVICES_SCREEN_CASH_IN_TEXT,
-                    ),
-                    ServiceButtonWidget(
-                      // offering: SwipeServiceOffering.REMITTANCE,
-                      offering: SwipeServiceOffering.DIRECT_SEND,
-                      onPressed: (offering) {
-                        if (store.user.level >= 2) {
-                          _handleButtonClick(offering);
-                          return null;
-                        }
-                        OverlayScreen().show(
-                          context,
-                          identifier: 'unverified',
-                        );
-                      },
-                      // icon: Image.asset('assets/icons/services/remittance.png'),
-                      icon: SvgPicture.asset(
-                          'assets/svg2/ICONS_DIRECT_SEND.svg'),
-                      text: SERVICES_SCREEN_REMITTANCE_TEXT,
-                    ),
-                    ServiceButtonWidget(
-                      offering: SwipeServiceOffering.REMITTANCE,
-                      onPressed: (offering) {
-                        if (store.user.level >= 2) {
-                          _handleButtonClick(offering);
-                          return null;
-                        }
-                        OverlayScreen().show(
-                          context,
-                          identifier: 'unverified',
-                        );
-                      },
-                      icon: SvgPicture.asset(
-                        'assets/svg2/ICONS_BANK.svg',
-                      ),
-                      text: SERVICES_SCREEN_BANK_TRANSFER_TEXT,
-                    ),
-                    ServiceButtonWidget(
-                      offering: SwipeServiceOffering.BUY_LOAD,
-                      onPressed: _handleButtonClick,
-                      // icon: Image.asset('assets/icons/services/buy-load.png'),
-                      icon: SvgPicture.asset(
-                        'assets/svg2/ICONS_BUY_LOAD.svg',
-                      ),
-                      text: SERVICES_SCREEN_BUY_LOAD_TEXT,
-                    ),
-                    ServiceButtonWidget(
-                      offering: SwipeServiceOffering.BILLS_PAYMENT,
-                      onPressed: _handleButtonClick,
-                      // icon: Image.asset('assets/icons/services/pay-bills.png'),
-                      icon: SvgPicture.asset(
-                        'assets/svg2/ICONS_BILLS_PAYMENT.svg',
-                      ),
-                      text: SERVICES_SCREEN_PAY_BILLS_TEXT,
-                    ),
-                    Opacity(
-                      opacity: .5,
-                      child: ServiceButtonWidget(
-                        offering: SwipeServiceOffering.REQUEST_MONEY,
-                        onPressed: _handleButtonClick,
-                        icon: SvgPicture.asset(
-                          'assets/svg2/ICONS_SEND_AND_RECEIVE.svg',
-                        ),
-                        text: SERVICES_SCREEN_REQUEST_MONEY_TEXT,
-                      ),
-                    ),
-                    Opacity(
-                      opacity: .5,
-                      child: ServiceButtonWidget(
-                        offering: SwipeServiceOffering.PAY_QR,
-                        onPressed: _handleButtonClick,
-                        icon: SvgPicture.asset(
-                            'assets/svg2/ICONS_SCAN_QR.svg'),
-                        text: SERVICES_SCREEN_PAY_QR_TEXT,
-                      ),
-                    ),
-                    Opacity(
-                      opacity: .5,
-                      child: ServiceButtonWidget(
-                        offering: SwipeServiceOffering.INSURANCE,
-                        onPressed: _handleButtonClick,
-                        icon: SvgPicture.asset(
-                          'assets/svg2/ICONS_INSURANCE.svg',
-                        ),
-                        text: SERVICES_SCREEN_INSURANCE_TEXT,
-                      ),
-                    ),
-                    Opacity(
-                      opacity: .5,
-                      child: ServiceButtonWidget(
-                        offering: SwipeServiceOffering.MORE,
-                        onPressed: _handleButtonClick,
-                        icon: SvgPicture.asset(
-                          'assets/svg/services/more.svg',
-                        ),
-                        text: SERVICES_SCREEN_MORE_TEXT,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Get.toNamed("/transactions/transaction-history-screen");
-              },
-              child: Container(
-                padding:
-                    EdgeInsets.only(left: 10, right: 10, bottom: 4, top: 10),
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
                   children: [
                     Row(
                       children: [
-                        Icon(
-                          Icons.book,
-                          color: COLOR_GREEN,
+                        CircleAvatar(
+                          radius: SizeConfig.blockSizeVertical * 3,
+                          backgroundColor: COLOR_ORANGE,
+                          child: store.user.photoURL == null
+                              ? Text(
+                                  store.user.getInitials(),
+                                  style:
+                                      GoogleFonts.roboto(color: Colors.white),
+                                )
+                              : ClipOval(
+                                  child: Image.network(store.user.photoURL),
+                                ),
                         ),
-                        Text(
-                          SERVICES_SCREEN_TRANSACTION_TEXT,
-                          style: GoogleFonts.roboto(
-                              fontSize: 14,
-                              color: Colors.black.withOpacity(.87)),
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: Observer(
+                            builder: (_) => Text(
+                              store.user.displayName,
+                              style: GoogleFonts.roboto(
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        Spacer(),
+                        Container(
+                            height: MediaQuery.of(context).devicePixelRatio * 8,
+                            width: MediaQuery.of(context).size.width  * 0.18,
+                            decoration: BoxDecoration(
+                                color: store.user.level >= 3
+                                    ? COLOR_GREEN
+                                    : COLOR_DANGER,
+                                borderRadius: BorderRadius.all(Radius.circular(20))
+                            ),
+                            child: Center(
+                              child: Text(
+                                store.user.level >= 3
+                                    ? SERVICES_SCREEN_VERIFIED_TEXT
+                                    : "GET VERIFIED",
+                                style: GoogleFonts.roboto(
+                                  fontSize: SizeConfig.blockSizeVertical * 1.5,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
                         ),
                       ],
                     ),
-                    Icon(Icons.chevron_right),
+                    Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          SERVICES_SCREEN_BALANCE_TEXT,
+                          style: GoogleFonts.roboto(
+                            fontSize: SizeConfig.blockSizeVertical * 1.5,
+                            color: Colors.white.withOpacity(0.7),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 1,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "**** *** ${_appUtil.formatUserPhoneNumber(store.user.mobileNumber)}",
+                          style: GoogleFonts.roboto(
+                            fontSize: SizeConfig.blockSizeVertical * 2,
+                            color: Colors.white.withOpacity(0.7),
+                          ),
+                        ),
+                        Observer(
+                          builder: (_) {
+                            return Row(
+                              children: [
+                                AmountWidget(amount: store.balance),
+                                SizedBox(width: 5),
+                                InkWell(
+                                  onTap: () {
+                                    Get.toNamed("/services/cash-in");
+                                  },
+                                  child: Icon(Icons.add_circle,
+                                      size: queryData.devicePixelRatio * 12,
+                                      color: Colors.white),
+                                )
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 1.5,
+                    )
                   ],
                 ),
               ),
             ),
-            SizedBox(
-              height: 10,
+            Flexible(
+              flex: 4,
               child: Container(
-                color: COLOR_LIGHT_PURPLE,
+                color: Colors.white,
+                child: Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        width: queryData.size.width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ServiceButtonWidget(
+                              offering: SwipeServiceOffering.CASH_IN,
+                              onPressed: _handleButtonClick,
+                              icon: SvgPicture.asset(
+                                'assets/svg2/ICONS_CASH_IN.svg',
+                              ),
+                              text: SERVICES_SCREEN_CASH_IN_TEXT,
+                            ),
+                            ServiceButtonWidget(
+                              offering: SwipeServiceOffering.BUY_LOAD,
+                              onPressed: _handleButtonClick,
+                              // icon: Image.asset('assets/icons/services/buy-load.png'),
+                              icon: SvgPicture.asset(
+                                'assets/svg2/ICONS_BUY_LOAD.svg',
+                              ),
+                              text: SERVICES_SCREEN_BUY_LOAD_TEXT,
+                            ),
+                            Opacity(
+                              opacity: .5,
+                              child: ServiceButtonWidget(
+                                offering: SwipeServiceOffering.PAY_QR,
+                                onPressed: _handleButtonClick,
+                                icon: SvgPicture.asset(
+                                    'assets/svg2/ICONS_SCAN_QR.svg'),
+                                text: SERVICES_SCREEN_PAY_QR_TEXT,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        color: Colors.white,
+                        width: queryData.size.width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ServiceButtonWidget(
+                              // offering: SwipeServiceOffering.REMITTANCE,
+                              offering: SwipeServiceOffering.DIRECT_SEND,
+                              onPressed: (offering) {
+                                if (store.user.level >= 2) {
+                                  _handleButtonClick(offering);
+                                  return null;
+                                }
+                                OverlayScreen().show(
+                                  context,
+                                  identifier: 'unverified',
+                                );
+                              },
+                              // icon: Image.asset('assets/icons/services/remittance.png'),
+                              icon: SvgPicture.asset(
+                                  'assets/svg2/ICONS_DIRECT_SEND.svg'),
+                              text: SERVICES_SCREEN_REMITTANCE_TEXT,
+                            ),
+                            ServiceButtonWidget(
+                              offering: SwipeServiceOffering.BILLS_PAYMENT,
+                              onPressed: _handleButtonClick,
+                              // icon: Image.asset('assets/icons/services/pay-bills.png'),
+                              icon: SvgPicture.asset(
+                                'assets/svg2/ICONS_BILLS_PAYMENT.svg',
+                              ),
+                              text: SERVICES_SCREEN_PAY_BILLS_TEXT,
+                            ),
+                            Opacity(
+                              opacity: .5,
+                              child: ServiceButtonWidget(
+                                offering: SwipeServiceOffering.INSURANCE,
+                                onPressed: _handleButtonClick,
+                                icon: SvgPicture.asset(
+                                  'assets/svg2/ICONS_INSURANCE.svg',
+                                ),
+                                text: SERVICES_SCREEN_INSURANCE_TEXT,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        width: queryData.size.width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ServiceButtonWidget(
+                              offering: SwipeServiceOffering.REMITTANCE,
+                              onPressed: (offering) {
+                                if (store.user.level >= 2) {
+                                  _handleButtonClick(offering);
+                                  return null;
+                                }
+                                OverlayScreen().show(
+                                  context,
+                                  identifier: 'unverified',
+                                );
+                              },
+                              icon: SvgPicture.asset(
+                                'assets/svg2/ICONS_BANK.svg',
+                              ),
+                              text: SERVICES_SCREEN_BANK_TRANSFER_TEXT,
+                            ),
+                            Opacity(
+                              opacity: .5,
+                              child: ServiceButtonWidget(
+                                offering: SwipeServiceOffering.REQUEST_MONEY,
+                                onPressed: _handleButtonClick,
+                                icon: SvgPicture.asset(
+                                  'assets/svg2/ICONS_SEND_AND_RECEIVE.svg',
+                                ),
+                                text: SERVICES_SCREEN_REQUEST_MONEY_TEXT,
+                              ),
+                            ),
+                            Opacity(
+                              opacity: .5,
+                              child: ServiceButtonWidget(
+                                offering: SwipeServiceOffering.MORE,
+                                onPressed: _handleButtonClick,
+                                icon: SvgPicture.asset(
+                                  'assets/svg/services/more.svg',
+                                ),
+                                text: SERVICES_SCREEN_MORE_TEXT,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            Container(
-              color: Colors.white,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15, left: 15),
-                    child: Text(
-                      SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT,
-                      style: GoogleFonts.roboto(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+            Flexible(
+              flex: 3,
+              child: Container(
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed("/transactions/transaction-history-screen");
+                      },
+                      child: Container(
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.book,
+                                  color: COLOR_GREEN,
+                                ),
+                                Text(
+                                  SERVICES_SCREEN_TRANSACTION_TEXT,
+                                  style: GoogleFonts.roboto(
+                                      fontSize: SizeConfig.blockSizeVertical * 1.5,
+                                      color: Colors.black.withOpacity(.87)),
+                                ),
+                              ],
+                            ),
+                            Icon(Icons.chevron_right),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 2, left: 15),
-                    child: Text(
-                      SERVICES_SCREEN_REASON_SWIPE_TEXT,
-                      style: GoogleFonts.roboto(
-                        color: COLOR_DARK_GRAY,
-                        fontSize: 12,
+                    SizedBox(
+                      height: queryData.devicePixelRatio * 5,
+                      child: Container(
+                        color: COLOR_LIGHT_PURPLE,
                       ),
                     ),
-                  ),
-                  Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        PromoCard(
-                          iconPath: 'assets/svg/promos/undraw_wallet.svg',
-                          title: PROMOS_SCREEN_TITLE_DO_MORE_TEXT,
-                          subTitle: PROMOS_SCREEN_TITLE_EXTENDS_TEXT,
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        color: Colors.white,
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: queryData.devicePixelRatio * 7.5, left: queryData.devicePixelRatio * 7.5),
+                              child: Text(
+                                SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT,
+                                style: GoogleFonts.roboto(
+                                  color: Colors.black,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 2, left: queryData.devicePixelRatio * 7.5),
+                              child: Text(
+                                SERVICES_SCREEN_REASON_SWIPE_TEXT,
+                                style: GoogleFonts.roboto(
+                                  color: COLOR_DARK_GRAY,
+                                  fontSize: 2 * SizeConfig.blockSizeVertical,
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    PromoCard(
+                                      iconPath: 'assets/svg/promos/undraw_wallet.svg',
+                                      title: PROMOS_SCREEN_TITLE_DO_MORE_TEXT,
+                                      subTitle: PROMOS_SCREEN_TITLE_EXTENDS_TEXT,
+                                    ),
+                                    PromoCard(
+                                      iconPath: 'assets/svg/promos/undraw_savings.svg',
+                                      title: PROMOS_SCREEN_TITLE_SAVE,
+                                      subTitle: PROMOS_SCREEN_TITLE_ANNUM,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
                         ),
-                        PromoCard(
-                          iconPath: 'assets/svg/promos/undraw_savings.svg',
-                          title: PROMOS_SCREEN_TITLE_SAVE,
-                          subTitle: PROMOS_SCREEN_TITLE_ANNUM,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                      ),
+                    )
+                  ],
+                )
               ),
-            )
+            ),
           ],
         ),
       ),

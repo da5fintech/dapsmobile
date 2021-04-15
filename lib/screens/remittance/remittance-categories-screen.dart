@@ -37,7 +37,7 @@ class _RemittanceCategoriesScreenState
 
   Widget createSlideupPanelContent() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 8, right: 8),
@@ -47,7 +47,7 @@ class _RemittanceCategoriesScreenState
               Text(
                 REMITTANCE_SCREEN_PANEL_SEND_MONEY_TEXT,
                 style: GoogleFonts.roboto(
-                  fontSize: 14,
+                  fontSize: SizeConfig.blockSizeVertical * 2,
                   fontWeight: FontWeight.w500,
                   color: Colors.black.withOpacity(.87),
                 ),
@@ -80,13 +80,13 @@ class _RemittanceCategoriesScreenState
                             Text(
                               REMITTANCE_SCREEN_PANEL_SEND_INSTANCE_FREE_TEXT,
                               style: GoogleFonts.roboto(
-                                  fontSize: 14,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   fontWeight: FontWeight.w500,
                                   color: COLOR_DARK_PURPLE),
                             ),
                             Image(
-                              width: 90,
-                              image: AssetImage("assets/icons/instapay.png"),
+                              width: 50,
+                              image: AssetImage("assets/images/instapay.png"),
                             )
                           ],
                         ),
@@ -103,7 +103,7 @@ class _RemittanceCategoriesScreenState
                             ),
                             Text(
                               REMITTANCE_SCREEN_PANEL_SEND_OTHER_BANKS_TEXT,
-                              style: GoogleFonts.roboto(fontSize: 12),
+                              style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7),
                             )
                           ],
                         ),
@@ -123,7 +123,7 @@ class _RemittanceCategoriesScreenState
                             ),
                             Text(
                               REMITTANCE_SCREEN_PANEL_CUT_OFF_TEXT,
-                              style: GoogleFonts.roboto(fontSize: 12),
+                              style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7),
                             )
                           ],
                         ),
@@ -143,7 +143,7 @@ class _RemittanceCategoriesScreenState
                             ),
                             Text(
                               REMITTANCE_SCREEN_PANEL_TRANSACTION_LIMIT,
-                              style: GoogleFonts.roboto(fontSize: 12),
+                              style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7),
                             )
                           ],
                         ),
@@ -174,14 +174,14 @@ class _RemittanceCategoriesScreenState
                             Text(
                               REMITTANCE_SCREEN_PANEL_SEND_FOR_FREE,
                               style: GoogleFonts.roboto(
-                                  fontSize: 14,
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
                                   fontWeight: FontWeight.w500,
                                   color: COLOR_DARK_PURPLE),
                             ),
                             Image(
-                              width: 90,
-                              image: AssetImage("assets/icons/pesonet.png"),
-                            ),
+                              width: 50,
+                              image: AssetImage("assets/images/pesonet.png"),
+                            )
                           ],
                         ),
                         Row(
@@ -197,7 +197,7 @@ class _RemittanceCategoriesScreenState
                             ),
                             Text(
                               REMITTANCE_SCREEN_PANEL_SEND_TO_OTHER_BANKS_INSTANCE_TEXT,
-                              style: GoogleFonts.roboto(fontSize: 12),
+                              style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7),
                             ),
                           ],
                         ),
@@ -218,7 +218,7 @@ class _RemittanceCategoriesScreenState
                             Expanded(
                               child: Text(
                                 REMITTANCE_SCREEN_PANEL_TRANSACTION_NOTE,
-                                style: GoogleFonts.roboto(fontSize: 12),
+                                style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7),
                               ),
                             )
                           ],
@@ -290,7 +290,7 @@ class _RemittanceCategoriesScreenState
             color: Colors.white,
             controller: _panelController,
             minHeight: 0,
-            maxHeight: 350,
+            maxHeight: SizeConfig.screenHeight * 0.45,
             backdropEnabled: true,
             panel: createSlideupPanelContent(),
             body: TabBarView(
@@ -327,7 +327,7 @@ class _RemittanceCategoriesScreenState
                                           style: GoogleFonts.roboto(
                                               color: index < 1 ?
                                                   Colors.black.withOpacity(.87) : Colors.black.withOpacity(0.5),
-                                              fontSize: 14,
+                                              fontSize: SizeConfig.blockSizeVertical * 2,
                                               fontWeight: FontWeight.w500),
                                         ),
                                       ],
