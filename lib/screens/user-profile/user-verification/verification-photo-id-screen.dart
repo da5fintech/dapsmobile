@@ -178,7 +178,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                             child: Text(
                               'Place your ID within the frame and take a photo.',
                               style: GoogleFonts.roboto(
-                                fontSize: 16,
+                                fontSize: SizeConfig.blockSizeVertical * 2.2,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
@@ -191,14 +191,14 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                               //     '/user-profile/user-verification/verification-scan-face-boarding');
                             },
                             child: CircleAvatar(
-                              radius: 36,
+                              radius: SizeConfig.blockSizeVertical * 5,
                               backgroundColor: Colors.white,
                               child: CircleAvatar(
-                                radius: 32,
+                                radius: SizeConfig.blockSizeVertical * 4.5,
                                 backgroundColor: Colors.black,
                                 child: CircleAvatar(
                                   backgroundColor: Colors.white,
-                                  radius: 28,
+                                  radius: SizeConfig.blockSizeVertical * 4,
                                 ),
                               ),
                             ),
@@ -212,7 +212,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                             child: Text(
                               'Would you like to Proceed using this ID?',
                               style: GoogleFonts.roboto(
-                                fontSize: 16,
+                                fontSize: SizeConfig.blockSizeVertical * 2.2,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
@@ -220,10 +220,11 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsets.only(top: 10, left: 15, right: 15),
+                                EdgeInsets.only(top: 0, left: 15, right: 15),
                             child: SizedBox(
                               width: double.infinity,
                               child: ButtonTheme(
+                                height: SizeConfig.blockSizeVertical * 5,
                                 buttonColor: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
@@ -245,7 +246,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                                     'NEXT',
                                     style: GoogleFonts.roboto(
                                       fontWeight: FontWeight.w500,
-                                      fontSize: 14,
+                                      fontSize: SizeConfig.blockSizeVertical * 2,
                                       color: Colors.black,
                                     ),
                                   ),
@@ -255,10 +256,11 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsets.only(top: 10, left: 15, right: 15),
+                                EdgeInsets.only(top: 0, left: 15, right: 15),
                             child: SizedBox(
                               width: double.infinity,
                               child: ButtonTheme(
+                                height: SizeConfig.blockSizeVertical * 5,
                                 buttonColor: Colors.transparent,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
@@ -277,7 +279,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                                     'Retake Photo',
                                     style: GoogleFonts.roboto(
                                       fontWeight: FontWeight.w500,
-                                      fontSize: 14,
+                                      fontSize: SizeConfig.blockSizeVertical * 2,
                                       color: Colors.white,
                                     ),
                                   ),
