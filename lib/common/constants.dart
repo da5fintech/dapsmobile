@@ -316,6 +316,15 @@ const PESONET_PAY_API_STAGING_ENDPOINT =
 const PESONET_PAY_SCOPE = "pesonet";
 const PESONET_PAY_FEE = 25.00;
 
+const UNION_BANK_ENDPOINT = "https://api-uat.unionbankph.com/partners/sb/customers/v1/oauth2";
+const UNION_BANK_CLIENT_ID = "f783917c-507f-4423-81b8-b76beb061a45";
+const UNION_BANK_RESPONSE_TYPE = "code";
+const UNION_BANK_SCOPE = "account_info";
+const UNION_BANK_REDIRECT_URI = "https://hard-eel-41.loca.lt/oauth/redirect";
+const UNION_BANK_STATE = '{"at": "test_state_transfer"}';
+const UNION_BANK_LINKING = "linking";
+const UNION_BANK_PARTNER_ID = "5dff2cdf-ef15-48fb-a87b-375ebff415bb";
+
 const CASHIN_MERCHANT_ID = "";
 const CASHIN_NETWORK_ID = "";
 const CASHIN_USERNAME = "";
