@@ -102,7 +102,7 @@ const SETTINGS_SCREEN_MPIN_UPDATED_PIN = "MPIN updated";
 const SETTINGS_SCREEN_MPIN_UPDATED_SUCCESS_PIN =
     "You have successfully updated your MPIN";
 
-const LINKS_ACCOUNT_SCREEN_TITLE = "Links Account";
+const LINKS_ACCOUNT_SCREEN_TITLE = "Accounts";
 
 const PARTNER_MERCHANT_TITLE_TEXT = "Partner Merchants";
 const PARTNER_MERCHANT_SHOP_TEXT = "Find where you can stop";
@@ -442,7 +442,7 @@ const DRAWER_MENU_SCREEN_VIEW_NOW = "Verify Now";
 const DRAWER_MENU_SCREEN_BASIC_LEVEL = "Basic Level";
 const DRAWER_MENU_SCREEN_SEMI_VERIFIED = "Semi Verified";
 const DRAWER_MENU_SCREEN_FULLY_VERIFIED = "Fully Verified";
-const DRAWER_MENU_SCREEN_LINK_ACCOUNTS = "My Links Account";
+const DRAWER_MENU_SCREEN_LINK_ACCOUNTS = "My Account";
 const DRAWER_MENU_SCREEN_PARTNER_MERCHANTS = "Partner Merchants";
 const DRAWER_MENU_SCREEN_PROMOS = "Promos";
 const DRAWER_MENU_SCREEN_VOUCHER = "Voucher Pocket";

@@ -44,7 +44,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
     double height = queryData.size.height;
-    print(queryData.devicePixelRatio * 10);
     SizeConfig().init(context);
 
     OverlayScreen().saveScreens({
