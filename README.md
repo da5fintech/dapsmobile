@@ -26,3 +26,7 @@ After retrieving the signing key. Register the sha1 and sha2 fingerprints in fir
 - flutter packages get
 - flutter packages pub run build_runner watch --delete-conflicting-outputs
 - flutter run --flavor dev -t lib/main-dev.dart
+
+# Generate AppBundle
+# Update the pubspec.yaml file for the new version of app
+- flutter build appbundle --flavor prod -t lib/main-prod.dart
