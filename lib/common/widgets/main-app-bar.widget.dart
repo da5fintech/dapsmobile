@@ -29,7 +29,8 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Icon(
           Icons.notifications,
-          size: queryData * 8
+          size: queryData * 8,
+          color: Colors.grey[500],
         ),
         SizedBox(
           width: queryData * 5,
