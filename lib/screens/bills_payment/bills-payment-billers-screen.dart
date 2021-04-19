@@ -79,7 +79,7 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
                             child: Row(
                               children: [
                                 Container(
-                                  height: 35,
+                                  height: 45,
                                   width: width,
                                   child: Column(
                                     crossAxisAlignment:
@@ -97,14 +97,6 @@ class _BillsPaymentBillersScreenState extends State<BillsPaymentBillersScreen> {
                                     ],
                                   ),
                                 ),
-                                Spacer(),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.favorite,
-                                    color: Colors.black.withOpacity(.54),
-                                  ),
-                                )
                               ],
                             ),
                           ),

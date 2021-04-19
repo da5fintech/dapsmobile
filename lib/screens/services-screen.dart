@@ -145,6 +145,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 style: GoogleFonts.roboto(
                                   fontSize: SizeConfig.blockSizeVertical * 1.5,
                                   color: Colors.white,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             )

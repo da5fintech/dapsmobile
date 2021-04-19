@@ -137,7 +137,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                                     height: 5,
                                   ),
                                   Text(
-                                    '${transaction.transactionTypePretty} (${transaction.product})',
+                                    '${transaction.transactionTypePretty} ${transaction.recipient == "" ? "" : "(${transaction.recipient})"}',
                                     style: GoogleFonts.roboto(
                                         color:
                                             Colors.black.withOpacity(.87),
