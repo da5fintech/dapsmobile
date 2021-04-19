@@ -233,86 +233,86 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                 color: Colors.white.withOpacity(0.5),
                 thickness: 0.5,
               ),
-              ListTile(
-                onTap: () => Get.toNamed('/partner-merchants'),
-                visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.people, color: Colors.white),
-                title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0),
-                  child: Text(
-                    DRAWER_MENU_SCREEN_PARTNER_MERCHANTS,
-                    style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white),
-                  ),
-                ),
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 14,
-                    color: Colors.white.withOpacity(0.5),
-                  ),
-                ),
-              ),
-              Divider(
-                color: Colors.white.withOpacity(0.5),
-                thickness: 0.5,
-              ),
-              ListTile(
-                onTap: () {
-                  Get.toNamed('/promos');
-                },
-                visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.wallet_giftcard, color: Colors.white),
-                title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0),
-                  child: Text(
-                    DRAWER_MENU_SCREEN_PROMOS,
-                    style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white),
-                  ),
-                ),
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 14,
-                    color: Colors.white.withOpacity(0.5),
-                  ),
-                ),
-              ),
-              Divider(
-                color: Colors.white.withOpacity(0.5),
-                thickness: 0.5,
-              ),
-              ListTile(
-                onTap: () => Get.toNamed('/voucher-pockets'),
-                visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                leading: Icon(Icons.receipt, color: Colors.white),
-                title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0),
-                  child: Text(
-                    DRAWER_MENU_SCREEN_VOUCHER,
-                    style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white),
-                  ),
-                ),
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 14,
-                    color: Colors.white.withOpacity(0.5),
-                  ),
-                ),
-              ),
-              Divider(
-                color: Colors.white.withOpacity(0.5),
-                thickness: 0.5,
-              ),
+              // ListTile(
+              //   onTap: () => Get.toNamed('/partner-merchants'),
+              //   visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+              //   leading: Icon(Icons.people, color: Colors.white),
+              //   title: Transform(
+              //     transform: Matrix4.translationValues(-20, 0.0, 0),
+              //     child: Text(
+              //       DRAWER_MENU_SCREEN_PARTNER_MERCHANTS,
+              //       style: GoogleFonts.roboto(
+              //           fontSize: 14,
+              //           fontWeight: FontWeight.w400,
+              //           color: Colors.white),
+              //     ),
+              //   ),
+              //   trailing: IconButton(
+              //     icon: Icon(
+              //       Icons.arrow_forward_ios,
+              //       size: 14,
+              //       color: Colors.white.withOpacity(0.5),
+              //     ),
+              //   ),
+              // ),
+              // Divider(
+              //   color: Colors.white.withOpacity(0.5),
+              //   thickness: 0.5,
+              // ),
+              // ListTile(
+              //   onTap: () {
+              //     Get.toNamed('/promos');
+              //   },
+              //   visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+              //   leading: Icon(Icons.wallet_giftcard, color: Colors.white),
+              //   title: Transform(
+              //     transform: Matrix4.translationValues(-20, 0.0, 0),
+              //     child: Text(
+              //       DRAWER_MENU_SCREEN_PROMOS,
+              //       style: GoogleFonts.roboto(
+              //           fontSize: 14,
+              //           fontWeight: FontWeight.w400,
+              //           color: Colors.white),
+              //     ),
+              //   ),
+              //   trailing: IconButton(
+              //     icon: Icon(
+              //       Icons.arrow_forward_ios,
+              //       size: 14,
+              //       color: Colors.white.withOpacity(0.5),
+              //     ),
+              //   ),
+              // ),
+              // Divider(
+              //   color: Colors.white.withOpacity(0.5),
+              //   thickness: 0.5,
+              // ),
+              // ListTile(
+              //   onTap: () => Get.toNamed('/voucher-pockets'),
+              //   visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+              //   leading: Icon(Icons.receipt, color: Colors.white),
+              //   title: Transform(
+              //     transform: Matrix4.translationValues(-20, 0.0, 0),
+              //     child: Text(
+              //       DRAWER_MENU_SCREEN_VOUCHER,
+              //       style: GoogleFonts.roboto(
+              //           fontSize: 14,
+              //           fontWeight: FontWeight.w400,
+              //           color: Colors.white),
+              //     ),
+              //   ),
+              //   trailing: IconButton(
+              //     icon: Icon(
+              //       Icons.arrow_forward_ios,
+              //       size: 14,
+              //       color: Colors.white.withOpacity(0.5),
+              //     ),
+              //   ),
+              // ),
+              // Divider(
+              //   color: Colors.white.withOpacity(0.5),
+              //   thickness: 0.5,
+              // ),
               ListTile(
                 onTap: () => Get.toNamed('/settings'),
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),

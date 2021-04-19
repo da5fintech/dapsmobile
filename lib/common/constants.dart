@@ -102,7 +102,7 @@ const SETTINGS_SCREEN_MPIN_UPDATED_PIN = "MPIN updated";
 const SETTINGS_SCREEN_MPIN_UPDATED_SUCCESS_PIN =
     "You have successfully updated your MPIN";
 
-const LINKS_ACCOUNT_SCREEN_TITLE = "Links Account";
+const LINKS_ACCOUNT_SCREEN_TITLE = "Accounts";
 
 const PARTNER_MERCHANT_TITLE_TEXT = "Partner Merchants";
 const PARTNER_MERCHANT_SHOP_TEXT = "Find where you can stop";
@@ -316,6 +316,15 @@ const PESONET_PAY_API_STAGING_ENDPOINT =
 const PESONET_PAY_SCOPE = "pesonet";
 const PESONET_PAY_FEE = 25.00;
 
+const UNION_BANK_ENDPOINT = "https://api-uat.unionbankph.com/partners/sb/customers/v1/oauth2";
+const UNION_BANK_CLIENT_ID = "f783917c-507f-4423-81b8-b76beb061a45";
+const UNION_BANK_RESPONSE_TYPE = "code";
+const UNION_BANK_SCOPE = "account_info";
+const UNION_BANK_REDIRECT_URI = "https://hard-eel-41.loca.lt/oauth/redirect";
+const UNION_BANK_STATE = '{"at": "test_state_transfer"}';
+const UNION_BANK_LINKING = "linking";
+const UNION_BANK_PARTNER_ID = "5dff2cdf-ef15-48fb-a87b-375ebff415bb";
+
 const CASHIN_MERCHANT_ID = "";
 const CASHIN_NETWORK_ID = "";
 const CASHIN_USERNAME = "";
@@ -433,7 +442,7 @@ const DRAWER_MENU_SCREEN_VIEW_NOW = "Verify Now";
 const DRAWER_MENU_SCREEN_BASIC_LEVEL = "Basic Level";
 const DRAWER_MENU_SCREEN_SEMI_VERIFIED = "Semi Verified";
 const DRAWER_MENU_SCREEN_FULLY_VERIFIED = "Fully Verified";
-const DRAWER_MENU_SCREEN_LINK_ACCOUNTS = "My Links Account";
+const DRAWER_MENU_SCREEN_LINK_ACCOUNTS = "My Account";
 const DRAWER_MENU_SCREEN_PARTNER_MERCHANTS = "Partner Merchants";
 const DRAWER_MENU_SCREEN_PROMOS = "Promos";
 const DRAWER_MENU_SCREEN_VOUCHER = "Voucher Pocket";
