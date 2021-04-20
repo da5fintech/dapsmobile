@@ -76,10 +76,15 @@ class _ServicesScreenState extends State<ServicesScreen> {
     });
     return WillPopScope(
       onWillPop: () async {
-        OverlayScreen().show(
-          context,
-          identifier: 'close-dialog',
-        );
+        if(_drawerKey.currentState.isDrawerOpen) {
+          Navigator.of(context).pop();
+        } else {
+          OverlayScreen().show(
+            context,
+            identifier: 'close-dialog',
+          );
+        }
+
       },
       child: Scaffold(
         // backgroundColor: Constants.backgroundColor2,

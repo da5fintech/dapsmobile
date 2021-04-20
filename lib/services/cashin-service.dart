@@ -36,7 +36,7 @@ class CashInService extends Da5Service {
   );
 
 
-  Future<CashInResponse> addMoney ({UserModel user, String amount}) async {
+  Future<CashInResponse> addMoney ({UserModel user, double amount}) async {
     var mockResult = {
       "reference_number": _appUtil.generateTransactionNumber(),
       "message": "Success",
@@ -50,7 +50,7 @@ class CashInService extends Da5Service {
         "user_email_address": user.emailAddress,
         "user_name": user.displayName,
         "user_mobile_number": user.mobileNumber,
-        "amount": amount,
+        "amount": amount.toString(),
         "transaction_number": _appUtil.generateTransactionNumber(),
       });
       return CashInResponse(

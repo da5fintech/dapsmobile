@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/amount-masking.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/screens/cash-in/cash-in-generate-code-screen.dart';
 import 'package:swipe/screens/payment/processing-failed-dialog.dart';
 import 'package:swipe/store/application-store.dart';
+import 'package:swipe/common/util.dart';
 
 final store = getIt<ApplicationStore>();
 
@@ -28,6 +32,9 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   TextEditingController amountText = TextEditingController();
+  bool hasError = false;
+  AppUtil _appUtil = AppUtil();
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,25 +95,17 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
               ),
               Form(
                 key: _formKey,
-                child:  TextFormField(
-                  autofocus: true,
-                  textInputAction: TextInputAction.next,
-                  textAlign: TextAlign.end,
-                  keyboardType: TextInputType.numberWithOptions(),
+                child: AmountMasking(
                   controller: amountText,
-                  onFieldSubmitted: (text) {
+                  type: 'Amount',
+                  onChanged: (string) {
+                    string = '${_appUtil.formatNumber(string.replaceAll(',', ''))}';
+                    amountText.value = TextEditingValue(
+                      text: string,
+                      selection: TextSelection.collapsed(offset: string.length),
+                    );
                   },
-                  validator: (text) {
-                    if(text.isEmpty) {
-                      return "Please input amount";
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    labelText: "Amount",
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    focusColor: COLOR_DARK_PURPLE,
-                  ),
+                  hasError: hasError,
                 ),
               ),
               Column(
@@ -151,8 +150,11 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
   }
 
   void _handleNext () async {
-    bool status = _formKey.currentState.validate();
-    if(status) {
+    if(amountText.text.length <= 0) {
+      hasError = true;
+      setState(() {});
+    } else {
+      hasError = false;
       FocusScope.of(context).unfocus();
       OverlayScreen().show(
         context,
@@ -160,7 +162,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
       );
       final a = await store.cashInService.addMoney(
         user: store.user,
-        amount: amountText.text,
+        amount: _appUtil.unFormatAmount(amountText.text),
       );
 
       if(!a.status) {
@@ -174,11 +176,12 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
       OverlayScreen().pop();
       Navigator.push(context, MaterialPageRoute(builder: (_) => CashInGenerateCodeScreen(
         product: CashInProduct(
-          amount: double.parse(amountText.text),
+          amount: _appUtil.unFormatAmount(amountText.text),
           referenceNumber: a.referenceNumber,
           timestamp: a.timestamp,
         ),
       )));
+      setState(() {});
     }
   }
 

@@ -6,6 +6,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
+import 'package:swipe/common/widgets/amount-masking.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/models/auto-suggest-model.dart';
 import 'package:swipe/models/product-model.dart';
@@ -31,6 +32,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
   TextEditingController amount = TextEditingController();
   TextEditingController message = TextEditingController();
   List<String> numbers = new List<String>();
+  bool hasError = false;
 
   @override
   void initState() {
@@ -107,6 +109,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                           keyboardType: TextInputType.phone,
                           controller: mobileNumber,
                           decoration: InputDecoration(
+                            errorText: hasError ? "Mobile number is required" : null,
                             errorStyle: TextStyle(
                                 color: COLOR_DANGER, fontSize: 12, height: 1),
                             labelText: DIRECT_SEND_FORM_SCREEN_MOBILE,
@@ -129,26 +132,17 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                             ),
                           ),
                         ),
-                        TextFormField(
-                          autofocus: true,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.phone,
-                          onFieldSubmitted: (val) {},
-                          onSaved: (v) {},
-                          validator: (text) {
-                            if (text.isEmpty) {
-                              return "${DIRECT_SEND_FORM_SCREEN_AMOUNT} is Required!";
-                            }
-                            return null;
-                          },
-                          controller: amount,
-                          decoration: InputDecoration(
-                            errorStyle: TextStyle(
-                                color: COLOR_DANGER, fontSize: 12),
-                            labelText: DIRECT_SEND_FORM_SCREEN_AMOUNT,
-                            floatingLabelBehavior:
-                            FloatingLabelBehavior.always,
-                          ),
+                        AmountMasking(
+                            controller: amount,
+                            onChanged: (string) {
+                              string = '${_appUtil.formatNumber(string.replaceAll(',', ''))}';
+                              amount.value = TextEditingValue(
+                                text: string,
+                                selection: TextSelection.collapsed(offset: string.length),
+                              );
+                            },
+                            type: 'Amount',
+                            hasError: hasError
                         ),
                         TextFormField(
                           autofocus: true,
@@ -201,9 +195,12 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
   }
 
   void _handleNext() async {
-    bool status = _formKey.currentState.validate();
-    if(status) {
+    if(mobileNumber.text.length <= 0 || amount.text.length <= 0) {
+      hasError = true;
+      setState(() {});
+    } else {
       try {
+        hasError = false;
         OverlayScreen().show(
           context,
           identifier: "progress",

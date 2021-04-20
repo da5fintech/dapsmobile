@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:swipe/common/common-alert.dialog.dart';
 import 'package:swipe/common/size.config.dart';
 import 'dart:io';
@@ -294,6 +295,14 @@ class AppUtil extends DateUtil {
     );
   }
 
+  //amount mask formatter
+  String formatNumber(String s) => NumberFormat.decimalPattern('en').format(int.parse(s));
+  String get currency => NumberFormat.compactSimpleCurrency(locale: 'en').currencySymbol;
+
+  double unFormatAmount (String amount) {
+    var a = amount.replaceAll(",", "");
+    return double.parse(a);
+  }
 
 }
 
@@ -421,6 +430,27 @@ class DateUtil {
 
     return leapYear;
   }
+}
+
+class CurrencyInputFormatter extends TextInputFormatter {
+
+    TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+
+        if(newValue.selection.baseOffset == 0){
+            print(true);
+            return newValue;
+        }
+
+        double value = double.parse(newValue.text);
+
+        final formatter = NumberFormat.simpleCurrency(locale: "PHP_\u20b1");
+
+        String newText = formatter.format(value/100);
+
+        return newValue.copyWith(
+            text: newText,
+            selection: new TextSelection.collapsed(offset: newText.length));
+    }
 }
 
 var appUtil = AppUtil();
