@@ -250,22 +250,22 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                       ),
                                     ),
                                   ),
-                                  CircleAvatar(
-                                    radius: SizeConfig.blockSizeVertical * 3.5,
-                                    backgroundColor: Colors.white,
-                                    child: CircleAvatar(
-                                      backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                      radius: SizeConfig.blockSizeVertical * 3.5,
-                                      child: IconButton(
-                                        iconSize: SizeConfig.blockSizeVertical * 3,
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.linkedinIn,
-                                          color: Colors.white.withOpacity(.87),
-                                        ),
-                                        onPressed: () {},
-                                      ),
-                                    ),
-                                  ),
+                                  // CircleAvatar(
+                                  //   radius: SizeConfig.blockSizeVertical * 3.5,
+                                  //   backgroundColor: Colors.white,
+                                  //   child: CircleAvatar(
+                                  //     backgroundColor: Constants.COLOR_DARK_PURPLE,
+                                  //     radius: SizeConfig.blockSizeVertical * 3.5,
+                                  //     child: IconButton(
+                                  //       iconSize: SizeConfig.blockSizeVertical * 3,
+                                  //       icon: FaIcon(
+                                  //         FontAwesomeIcons.linkedinIn,
+                                  //         color: Colors.white.withOpacity(.87),
+                                  //       ),
+                                  //       onPressed: () {},
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ],
