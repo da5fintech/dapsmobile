@@ -65,6 +65,8 @@ class _BillsPaymentBillerFormScreenState
           prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
           labelText: "${field.label}", suffixIcon: field.label == "Meralco Reference No / Account Number" ? IconButton(
             onPressed: () async {
+              FocusScope.of(context).unfocus();
+              await Future.delayed(Duration(seconds: 1));
               Navigator.push(context, MaterialPageRoute(builder: (_) => BillPaymentScanner()));
             },
             icon: Icon(Icons.qr_code_scanner, color: COLOR_DARK_PURPLE),

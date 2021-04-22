@@ -87,7 +87,7 @@ class _BillPaymentScannerState extends State<BillPaymentScanner> {
                   borderRadius: 10,
                   borderLength: 30,
                   borderWidth: 10,
-                  cutOutSize: 300,
+                  cutOutSize: 400,
                   overlayColor: COLOR_DARK_PURPLE.withOpacity(0.50),
                 ),
               ),
