@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/models/product-model.dart';
+import 'package:swipe/screens/bills_payment/bills-payment-scanner.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 
@@ -42,7 +43,7 @@ class _BillsPaymentBillerFormScreenState
 
   Widget createTextField(BillerField field) {
     return TextFormField(
-      initialValue: "${field.defaultValue}",
+      initialValue: field.defaultValue == null ? "" : "${field.defaultValue}",
       onSaved: (v) {
         values[field.field] = v;
       },
@@ -62,15 +63,22 @@ class _BillsPaymentBillerFormScreenState
       // controller: controller,
       decoration: InputDecoration(
           prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
-          labelText: "${field.label}",
+          labelText: "${field.label}", suffixIcon: field.label == "Meralco Reference No / Account Number" ? IconButton(
+            onPressed: () async {
+              FocusScope.of(context).unfocus();
+              await Future.delayed(Duration(seconds: 1));
+              Navigator.push(context, MaterialPageRoute(builder: (_) => BillPaymentScanner()));
+            },
+            icon: Icon(Icons.qr_code_scanner, color: COLOR_DARK_PURPLE),
+          ) : null,
           hintText: ""),
     );
   }
 
   Widget createDropdownField(BillerField field) {
-    print("options length ${field.options.length}");
+    // // print("options length ${field.options.length}");
     var dropdownItems = field.options.map((opt) {
-      print("value ${opt.key} ${opt.value}");
+      // print("value ${opt.key} ${opt.value}");
       return DropdownMenuItem(
         child: Text(opt.key),
         value: opt.value,
@@ -108,7 +116,7 @@ class _BillsPaymentBillerFormScreenState
     ThemeData td = createThemePurpleOnWhite(context);
 
     var fields = store.selectedBiller.fields.map((field) {
-      print("${field.field}, ${field.fieldType}");
+      // print("${field.field}, ${field.fieldType}");
       if (field.fieldType == BillerFieldType.DROPDOWN) {
         return createDropdownField(field);
       } else {

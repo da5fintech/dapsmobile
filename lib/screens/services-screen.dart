@@ -134,12 +134,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         ),
                         Spacer(),
                         Container(
-                            height: MediaQuery.of(context).devicePixelRatio * 8,
-                            width: MediaQuery.of(context).size.width  * 0.18,
+                            height: SizeConfig.blockSizeVertical * 3,
+                            width: MediaQuery.of(context).size.width  * 0.19,
                             decoration: BoxDecoration(
                                 color: store.user.level >= 3
                                     ? COLOR_GREEN
-                                    : COLOR_DANGER,
+                                    : null,
+                                border: store.user.level >= 3 ?  null : Border.all(color: Colors.white),
                                 borderRadius: BorderRadius.all(Radius.circular(20))
                             ),
                             child: Center(
@@ -148,7 +149,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                     ? SERVICES_SCREEN_VERIFIED_TEXT
                                     : "GET VERIFIED",
                                 style: GoogleFonts.roboto(
-                                  fontSize: SizeConfig.blockSizeVertical * 1.5,
+                                  fontSize: SizeConfig.blockSizeVertical * 1.3,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
                                 ),

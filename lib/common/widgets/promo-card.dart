@@ -60,7 +60,7 @@ class PromoCard extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Container(
-                        height: MediaQuery.of(context).devicePixelRatio * 8,
+                        height: SizeConfig.blockSizeVertical * 2.5,
                         width: MediaQuery.of(context).size.width  * 0.18,
                         decoration: BoxDecoration(
                           color: COLOR_DARK_GRAY.withOpacity(0.5),
