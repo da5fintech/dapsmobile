@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/models/auto-suggest-model.dart';
 import 'package:swipe/models/product-model.dart';
+import 'package:swipe/screens/onboarding/onboard-main-screen.dart';
 import 'package:swipe/screens/splash-screen.dart';
 import 'package:swipe/screens/user-profile/user-verification/verification-user-information-screen.dart';
 import 'package:swipe/store/application-store.dart';
@@ -59,9 +60,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  ApplicationStore store;
   @override
   void initState() {
-    ApplicationStore store =
+    store =
         ApplicationStore(prefs: getIt.get<SharedPreferences>());
     getIt.registerSingleton<ApplicationStore>(store);
     super.initState();
@@ -82,7 +84,7 @@ class _MyAppState extends State<MyApp> {
           //     builder: (context) => UpdateApp(child: widget),
           //   ),
           // ),
-          home: SplashScreen(),
+          home: store.freshInstall ? OnboardingMainScreen() : SplashScreen(),
           onGenerateRoute: onRouter.Router.generateRouting,
         ),
       ),

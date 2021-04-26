@@ -100,6 +100,21 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     });
   }
 
+  final _$freshInstallAtom = Atom(name: '_ApplicationStore.freshInstall');
+
+  @override
+  bool get freshInstall {
+    _$freshInstallAtom.reportRead();
+    return super.freshInstall;
+  }
+
+  @override
+  set freshInstall(bool value) {
+    _$freshInstallAtom.reportWrite(value, super.freshInstall, () {
+      super.freshInstall = value;
+    });
+  }
+
   final _$idImageAtom = Atom(name: '_ApplicationStore.idImage');
 
   @override
@@ -241,6 +256,7 @@ balance: ${balance},
 swipePoints: ${swipePoints},
 savedBillers: ${savedBillers},
 enabledBiometrics: ${enabledBiometrics},
+freshInstall: ${freshInstall},
 idImage: ${idImage},
 faceImage: ${faceImage}
     ''';

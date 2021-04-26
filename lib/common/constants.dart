@@ -13,6 +13,37 @@ const APP_HELP_CENTER = "Help Center";
 const APP_VERSION = "v5.0.1";
 const APP_EMAIL = "info@swipe.ph";
 
+const ONBOARDING_FIRST_SCREEN_TITLE = "The Launch of Your New And Secured E-wallet!";
+const ONBOARDING_FIRST_SCREEN_SUB_TITLE =
+    "The swipe app was launched to help people accomplish things easily "
+    "without the rush and risk of going outside. This mobile application "
+    "is perfect for entrepreneurs and individuals who are looking for "
+    "a trusted e-wallet with helpful features.";
+
+const ONBOARDING_SECOND_SCREEN_TITLE = "Made perfect for personal and business transactions";
+const ONBOARDING_SECOND_SCREEN_SUB_TITLE =
+    "Swipe app offers an easier and secure payment solution to everyone without any hassle. "
+    "If you are a homeowner and have utility bills to pay, download the Swipe app and a single "
+    "tap on your smartphone will do!";
+
+const ONBOARDING_THIRD_SCREEN_TITLE = "Multiple transactions in one app";
+const ONBOARDING_THIRD_SCREEN_SUB_TITLE =
+    "Skip the traditional way of dealing with your finances."
+    " Swipe app has multiple payment solutions and features that you will enjoy."
+    " Once your account is verified, you can start sending or receiving payments from your customers,"
+    " shop online, buy load, pay using the hassle-free QR code, and many more. "
+    "You do not need to hop on remittance centers, convenience stores, and malls, "
+    "to deal with your finances, the Swipe app is all you need!";
+
+const ONBOARDING_FOURTH_SCREEN_TITLE = "Easy-to-use interface for all ages";
+const ONBOARDING_FOURTH_SCREEN_SUB_TITLE =
+  "Our developers of the Swipe app ensure that its interface fits everyone. "
+  "All the buttons, colors, fonts, and redirected pages were all designed very "
+  "carefully to give a pleasing yet straightforward appearance for all. "
+  "You do not need to feel overwhelmed by the app's design because it is "
+  "purposely made to be beginner and user-friendly. "
+  "Swipe app is here to help by being your go-to payment solution anytime and anywhere. ";
+
 const LOGIN_SCREEN_LOGIN_TEXT = "LOG IN";
 const LOGIN_SCREEN_REGISTER_TEXT = "REGISTER";
 const LOGIN_SCREEN_SIGN_UP_TEXT = "OR SIGN-UP USING";

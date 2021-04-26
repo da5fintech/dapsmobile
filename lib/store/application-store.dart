@@ -42,6 +42,8 @@ abstract class _ApplicationStore with Store {
   @observable
   bool enabledBiometrics;
   @observable
+  bool freshInstall;
+  @observable
   File idImage;
   @observable
   File faceImage;
@@ -85,6 +87,7 @@ abstract class _ApplicationStore with Store {
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
     enabledBiometrics = prefs.getBool('biometrics') ?? false;
+    freshInstall = prefs.getBool('freshInstall') ?? true;
 
     authService = AuthenticationService();
     verifyService = VerifyService();
@@ -118,6 +121,11 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(PhRegionsService());
 
     // user = UserModel(id: "", mpin: "888888");
+  }
+
+  setIfFreshInstall () {
+    freshInstall = false;
+    prefs.setBool('freshInstall', freshInstall);
   }
 
   setPermissionsGranted() {
