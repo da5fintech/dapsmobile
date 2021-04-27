@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/screens/onboarding/first-screen.dart';
 import 'package:swipe/screens/onboarding/fourth-screen.dart';
 import 'package:swipe/screens/onboarding/second-screen.dart';
@@ -13,6 +15,10 @@ import 'package:swipe/main.dart';
 final store = getIt<ApplicationStore>();
 
 class OnboardingMainScreen extends StatefulWidget {
+  bool navInSetting;
+
+  OnboardingMainScreen({this.navInSetting = false});
+
   @override
   _OnboardingMainScreenState createState() => _OnboardingMainScreenState();
 }
@@ -41,22 +47,36 @@ class _OnboardingMainScreenState extends State<OnboardingMainScreen> {
     return Theme(
       data: td,
       child: Scaffold(
+        appBar: widget.navInSetting ? SubAppbarWidget(
+          title: "Onboarding",
+          actions: [
+            Observer(
+              builder: (_) => Switch(
+                activeColor: Colors.white,
+                value: store.freshInstall,
+                onChanged: (v) {
+                  store.setIfFreshInstall(v);
+                },
+              ),
+            ),
+          ],
+        ) : null,
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 20),
           child: Column(
             children: [
               Align(
                 alignment: Alignment.topRight,
-                child: FlatButton(
+                child: !widget.navInSetting ? FlatButton(
                   onPressed: () {
-                    store.setIfFreshInstall();
+                    store.setIfFreshInstall(false);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => SplashScreen()),
                     );
                   },
                   child: Text('Skip'),
-                ),
+                ) : null,
               ),
               Expanded(
                 flex: 1,
@@ -114,7 +134,10 @@ class _OnboardingMainScreenState extends State<OnboardingMainScreen> {
             if(_current < 3 ) {
               carouselController.nextPage();
             } else {
-              store.setIfFreshInstall();
+              if(!widget.navInSetting) {
+                Navigator.pop(context);
+              }
+              store.setIfFreshInstall(false);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => SplashScreen()),

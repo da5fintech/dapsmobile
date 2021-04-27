@@ -61,10 +61,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   ApplicationStore store;
+
   @override
   void initState() {
-    store =
-        ApplicationStore(prefs: getIt.get<SharedPreferences>());
+    store = ApplicationStore(prefs: getIt.get<SharedPreferences>());
     getIt.registerSingleton<ApplicationStore>(store);
     super.initState();
   }

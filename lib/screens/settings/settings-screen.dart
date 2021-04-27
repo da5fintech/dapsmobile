@@ -6,6 +6,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/common/widgets/swipe-dialog.dart';
+import 'package:swipe/screens/onboarding/onboard-main-screen.dart';
 import 'package:swipe/services/authentication-service.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -76,6 +77,23 @@ class SettingsScreen extends StatelessWidget {
                 trailing: Icon(Icons.arrow_forward_ios, size: 16),
               ),
               Divider(thickness: 0.5),
+              ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => OnboardingMainScreen(navInSetting: true))
+                  );
+                },
+                title: Text(
+                  'Onboarding',
+                  style: GoogleFonts.roboto(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                  ),
+                ),
+                trailing: Icon(Icons.arrow_forward_ios, size: 16),
+              ),
             ],
           ),
         ),
