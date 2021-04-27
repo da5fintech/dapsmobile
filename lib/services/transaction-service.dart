@@ -223,7 +223,7 @@ class TransactionService extends FireStoreService {
       return transaction.recipient;
     } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
       DirectPayProduct product = transaction.product;
-      return product.name;
+      return product.mobileNumber;
     }
   }
 
