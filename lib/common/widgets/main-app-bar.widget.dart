@@ -21,16 +21,21 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
           icon: Icon(Icons.list, size: queryData * 12),
           onPressed: () {
-            onPressed();
+            onPressed('drawer');
           }),
       title: Text(APP_NAME,
           style: GoogleFonts.roboto(
               fontSize: queryData * 6, fontWeight: FontWeight.w800, letterSpacing: 15)),
       actions: [
-        Icon(
-          Icons.notifications,
-          size: queryData * 8,
-          color: Colors.grey[500],
+        IconButton(
+          padding: EdgeInsets.zero,
+          onPressed: () {
+            onPressed('notification');
+          },
+          icon: Icon(
+            Icons.notifications,
+            size: queryData * 8,
+          ),
         ),
         SizedBox(
           width: queryData * 5,

@@ -11,6 +11,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/close-dialog.dart';
+import 'package:swipe/common/widgets/notification-drawer.dart';
 import 'package:swipe/common/widgets/promo-card.dart';
 
 import 'package:swipe/common/widgets/amount-widget.dart';
@@ -90,11 +91,16 @@ class _ServicesScreenState extends State<ServicesScreen> {
         // backgroundColor: Constants.backgroundColor2,
         key: _drawerKey,
         drawer: DrawerMenuWidget(level: store.user.level),
+        endDrawer: NotificationDrawer(),
         appBar: MainAppBarWidget(
           queryData: queryData.devicePixelRatio,
           elevation: 0,
-          onPressed: () {
-            _drawerKey.currentState.openDrawer();
+          onPressed: (val) {
+            if(val == 'drawer') {
+              _drawerKey.currentState.openDrawer();
+            } else {
+              _drawerKey.currentState.openEndDrawer();
+            }
           },
         ),
         body: Column(
