@@ -251,7 +251,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                           color: COLOR_DARK_GRAY),
                     ),
                     Text(
-                      transaction.product,
+                      transaction.recipient,
                       style: GoogleFonts.roboto(
                           color: Colors.black,
                           fontSize: 12,
