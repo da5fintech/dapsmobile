@@ -134,14 +134,16 @@ class _OnboardingMainScreenState extends State<OnboardingMainScreen> {
             if(_current < 3 ) {
               carouselController.nextPage();
             } else {
-              if(!widget.navInSetting) {
+              if(widget.navInSetting) {
                 Navigator.pop(context);
+              } else {
+                store.setIfFreshInstall(false);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => SplashScreen()),
+                );
               }
-              store.setIfFreshInstall(false);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => SplashScreen()),
-              );
+
             }
           },
           child: Icon(_current < 3  ? Icons.arrow_forward_ios : Icons.check, color: Colors.white),
