@@ -206,7 +206,6 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                                   padding: EdgeInsets.zero,
                                   onPressed: () async {
                                     var a = _appUtil.generateOtp();
-                                    print(a);
                                     expectedOtp = a;
                                     setState(() {});
                                     OverlayScreen().show(context, identifier: 'progress');
@@ -218,7 +217,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                                     style: GoogleFonts.roboto(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
-                                        color: COLOR_GREEN),
+                                        color: COLOR_ORANGE),
                                   ),
                                 ),
                               ],

@@ -141,12 +141,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         Spacer(),
                         Container(
                             height: SizeConfig.blockSizeVertical * 3,
-                            width: MediaQuery.of(context).size.width  * 0.19,
+                            padding: EdgeInsets.symmetric(horizontal: 10),
                             decoration: BoxDecoration(
                                 color: store.user.level >= 3
-                                    ? COLOR_GREEN
-                                    : null,
-                                border: store.user.level >= 3 ?  null : Border.all(color: Colors.white),
+                                    ? null
+                                    : COLOR_DANGER,
+                                border: store.user.level >= 3 ?  Border.all(color: Colors.white) : null,
                                 borderRadius: BorderRadius.all(Radius.circular(20))
                             ),
                             child: Center(
@@ -376,6 +376,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       },
                       child: Container(
                         color: Colors.white,
+                        padding: EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -385,10 +386,11 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                   Icons.book,
                                   color: COLOR_GREEN,
                                 ),
+                                SizedBox(width: 10),
                                 Text(
                                   SERVICES_SCREEN_TRANSACTION_TEXT,
                                   style: GoogleFonts.roboto(
-                                      fontSize: SizeConfig.blockSizeVertical * 1.5,
+                                      fontSize: SizeConfig.blockSizeVertical * 1.7,
                                       color: Colors.black.withOpacity(.87)),
                                 ),
                               ],
@@ -399,7 +401,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: queryData.devicePixelRatio * 5,
+                      height: SizeConfig.blockSizeVertical * 1,
                       child: Container(
                         color: COLOR_LIGHT_PURPLE,
                       ),
@@ -407,13 +409,14 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     Flexible(
                       flex: 1,
                       child: Container(
+                        padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 2),
                         color: Colors.white,
                         width: MediaQuery.of(context).size.width,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(top: queryData.devicePixelRatio * 7.5, left: queryData.devicePixelRatio * 7.5),
+                              padding: EdgeInsets.only(top: 2, left: SizeConfig.blockSizeVertical * 2),
                               child: Text(
                                 SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT,
                                 style: GoogleFonts.roboto(
@@ -424,7 +427,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 2, left: queryData.devicePixelRatio * 7.5),
+                              padding: EdgeInsets.only(top: 2, left: SizeConfig.blockSizeVertical * 2),
                               child: Text(
                                 SERVICES_SCREEN_REASON_SWIPE_TEXT,
                                 style: GoogleFonts.roboto(

@@ -107,10 +107,10 @@ const SETTINGS_SCREEN_BIOMETRIC_DISCLAIMER_TEXT =
     'shall be used for securing your login. The data will not be used for\n'
     'any other purposes.';
 const SETTINGS_SCREEN_BIOMETRIC_OTP_GREET = "Fantastic!";
-const SETTINGS_SCREEN_BIOMETRIC_OTP_LIMIT = "Please enter your 6-digit OTP!";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_LIMIT = "Please enter your 6-digit OTP.";
 const SETTINGS_SCREEN_BIOMETRIC_OTP_SEND =
-    "We've sent a 6-digit Authentication code on your registered mobile number.";
-const SETTINGS_SCREEN_BIOMETRIC_OTP_NEW_CODE = "Need new Code?";
+    "We've sent a 6-digit One Time Password(OTP) to your registered mobile number.";
+const SETTINGS_SCREEN_BIOMETRIC_OTP_NEW_CODE = "Need new code?";
 const SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE = "Resend Code";
 const SETTINGS_SCREEN_BIOMETRIC_OTP_ENROLL_NOW = "ENROLL NOW";
 const SETTINGS_SCREEN_SWIPE_DIALOG_CONFIRMATION = "Confirmation";
@@ -150,7 +150,7 @@ const PARTNER_MERCHANT_SERVICES_TEXT = "Services";
 const PROMOS_SCREEN_TITLE_TEXT = "Promos";
 const PROMOS_SCREEN_TITLE_DO_MORE_TEXT = "Do more with Swipe!";
 const PROMOS_SCREEN_TITLE_EXTENDS_TEXT =
-    "Extends your wallet limit up to\nPHP 500K!";
+    "Extends your wallet limit up to PHP 500K!";
 const PROMOS_SCREEN_TITLE_SAVE = "Save for the future!";
 const PROMOS_SCREEN_TITLE_ANNUM = "Up to 25% interests per annum.";
 const PROMOS_SCEREN_LINK_NOW = "LINK NOW";
@@ -176,9 +176,9 @@ const SERVICES_SCREEN_INSURANCE_TEXT = "Insurance";
 const SERVICES_SCREEN_MORE_TEXT = "More";
 const SERVICES_SCREEN_TRANSACTION_TEXT = "Transaction History";
 const SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT =
-    "More Advantages to know about Swipe";
+    "Know more about SWIPE";
 const SERVICES_SCREEN_REASON_SWIPE_TEXT =
-    "Because you deserve bettwer from us.";
+    "We can do things better";
 
 const HELP_SCREEN_TITLE_TEXT = "Help";
 
@@ -411,10 +411,10 @@ const TRANSACTION_HISTORY_REFERENCE_TEXT = "Reference No.:";
 
 const REGISTER_MPIN_SCREEN_SET_PIN_TEXT = "Set your Mobile Pin";
 const REGISTER_MPIN_SCREEN_NOTE_TEXT =
-    "MPIN is a 6 digit security codes used to authenticate"
-    "\nlogin request and transactions."
-    "\n\nNote: Please avoid using weak MPINs like your"
-    "\nBirthdate, 123456, 888888.";
+    "MPIN is a 6 digit security code which is used to authenticate "
+    "login request and transactions."
+    "\n\nNote: Please avoid using weak MPINs such as your "
+    "Birthdate, 123456 or 888888.";
 const REGISTER_MPIN_SCREEN_TEXT = "MPIN";
 const REGISTER_SCREEN_FIRSTNAME_TEXT = "First Name";
 const REGISTER_SCREEN_LASTNAME_TEXT = "Last Name";
