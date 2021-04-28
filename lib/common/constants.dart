@@ -57,6 +57,9 @@ const LOGIN_EMAIL_SCREEN_LOGIN_TEXT = "Log in";
 const LOGIN_EMAIL_SCREEN_ALTERNATE_LOGIN_TEXT = "OR LOGIN USING";
 const LOGIN_EMAIL_SCREEN_FAILED_ATTEMPT_TEXT = "Login Error";
 
+const LOGIN_FAILED_TITLE = "Try Again!";
+const LOGIN_FAILED_SUB_TITLE = "There was an error with your login information.";
+
 const PAYQR_SCREEN_TITLE_TEXT = "Pay QR/Barcode";
 const PAYQR_SCREEN_UPLOAD_TEXT = "Upload QR";
 const PAYQR_SCREEN_GENERATE_QR_TEXT = "Generate QR / Bar code";
