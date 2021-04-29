@@ -62,6 +62,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   ApplicationStore store;
+  Timer _timer;
 
   @override
   void initState() {
@@ -77,14 +78,18 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     ///detect app if it's in the background
     switch(state) {
       case AppLifecycleState.paused:
-        break;
-      case AppLifecycleState.resumed:
-        break;
-      case AppLifecycleState.inactive:
-        Future.delayed(Duration(seconds: 60), () {
-          print('CLOSE APP');
+        print('paused');
+        _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+          _timer?.cancel();
           exit(0);
         });
+        setState(() {});
+        break;
+      case AppLifecycleState.resumed:
+        print('resumed');
+        _timer?.cancel();
+        break;
+      case AppLifecycleState.inactive:
         break;
       case AppLifecycleState.detached:
         break;
@@ -116,6 +121,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _timer?.cancel();
     super.dispose();
   }
 }
