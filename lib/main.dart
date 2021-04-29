@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:async';
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -59,14 +60,35 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   ApplicationStore store;
 
   @override
   void initState() {
     store = ApplicationStore(prefs: getIt.get<SharedPreferences>());
     getIt.registerSingleton<ApplicationStore>(store);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    ///detect app if it's in the background
+    switch(state) {
+      case AppLifecycleState.paused:
+        break;
+      case AppLifecycleState.resumed:
+        break;
+      case AppLifecycleState.inactive:
+        Future.delayed(Duration(seconds: 60), () {
+          print('CLOSE APP');
+          exit(0);
+        });
+        break;
+      case AppLifecycleState.detached:
+        break;
+    }
   }
 
   @override
@@ -93,6 +115,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 }
