@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     switch(state) {
       case AppLifecycleState.paused:
         print('paused');
-        _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+        _timer = Timer.periodic(Duration(seconds: 60), (timer) {
           _timer?.cancel();
           exit(0);
         });
