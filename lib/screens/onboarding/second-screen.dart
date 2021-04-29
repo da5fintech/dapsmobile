@@ -22,7 +22,7 @@ class SecondScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: GoogleFonts.roboto(
                 height: 1.5,
-                fontSize: SizeConfig.blockSizeVertical * 3,
+                fontSize: SizeConfig.blockSizeVertical * 2,
                 color: COLOR_DARK_PURPLE,
                 fontWeight: FontWeight.w600,
               )
@@ -31,7 +31,7 @@ class SecondScreen extends StatelessWidget {
               ONBOARDING_SECOND_SCREEN_SUB_TITLE,
               style: GoogleFonts.roboto(
                 fontWeight: FontWeight.w400,
-                fontSize: SizeConfig.blockSizeVertical * 2,
+                fontSize: SizeConfig.blockSizeVertical * 1.5,
                 height: 2,
                 color: COLOR_DARK_GRAY,
               )

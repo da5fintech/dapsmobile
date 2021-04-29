@@ -230,49 +230,56 @@ class _RegistrationCreateMpinScreenState
                                 setState(() {});
                               },
                             ),
-                            RichText(
-                              text: TextSpan(
-                                text: "I agree to Swipe app's ",
-                                style: GoogleFonts.roboto(
-                                  color: Colors.white,
-                                  fontSize: SizeConfig.blockSizeVertical * 1.7,
-                                  height: 1.5,
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    recognizer: new TapGestureRecognizer()
-                                      ..onTap = () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  TermsAndCondtionScreen(
-                                                      type: 'terms')),
-                                        );
-                                      },
-                                    text: 'Terms of Service',
-                                    style: GoogleFonts.roboto(
-                                      color: COLOR_GLOBE_BLUE,
-                                      fontWeight: FontWeight.w500,
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      text: "I agree to Swipe app's ",
+                                      style: GoogleFonts.roboto(
+                                        color: Colors.white,
+                                        fontSize: SizeConfig.blockSizeVertical * 1.7,
+                                        height: 1.5,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          recognizer: new TapGestureRecognizer()
+                                            ..onTap = () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        TermsAndCondtionScreen(
+                                                            type: 'terms')),
+                                              );
+                                            },
+                                          text: 'Terms of Service ',
+                                          style: GoogleFonts.roboto(
+                                            color: COLOR_ORANGE,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        TextSpan(text: 'and '),
+                                        TextSpan(
+                                            recognizer: new TapGestureRecognizer()
+                                              ..onTap = () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          TermsAndCondtionScreen(
+                                                              type: 'privacy')),
+                                                );
+                                              },
+                                            text: 'Privacy Policy',
+                                            style: GoogleFonts.roboto(
+                                              color: COLOR_ORANGE,
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                      ],
                                     ),
                                   ),
-                                  TextSpan(text: ' and\n'),
-                                  TextSpan(
-                                      recognizer: new TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    TermsAndCondtionScreen(
-                                                        type: 'privacy')),
-                                          );
-                                        },
-                                      text: 'Privacy Policy',
-                                      style: GoogleFonts.roboto(
-                                        color: COLOR_GLOBE_BLUE,
-                                        fontWeight: FontWeight.w500,
-                                      )),
                                 ],
                               ),
                             ),

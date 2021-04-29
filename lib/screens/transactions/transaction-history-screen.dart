@@ -110,105 +110,107 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
               ),
             ),
             Expanded(
-              child: ListView(
-                children: filteredTransactions?.map((transaction) {
-                  return GestureDetector(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Colors.grey.withOpacity(.36),
+              child: Scrollbar(
+                child: ListView(
+                  children: filteredTransactions?.map((transaction) {
+                    return GestureDetector(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.grey.withOpacity(.36),
+                            ),
                           ),
                         ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 10),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      '${transaction.transactionTypePretty} ${transaction.recipient == "" ? "" : "(${transaction.recipient})"}',
+                                      style: GoogleFonts.roboto(
+                                          color:
+                                              Colors.black.withOpacity(.87),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      dateformatter
+                                          .format(transaction.creationDate),
+                                      style: GoogleFonts.roboto(
+                                          color:
+                                              Colors.black.withOpacity(.87),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
                               child: Column(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   SizedBox(
                                     height: 5,
                                   ),
                                   Text(
-                                    '${transaction.transactionTypePretty} ${transaction.recipient == "" ? "" : "(${transaction.recipient})"}',
+                                    formatter
+                                        .format(transaction.totalAmount * -1),
                                     style: GoogleFonts.roboto(
-                                        color:
-                                            Colors.black.withOpacity(.87),
+                                        color: Colors.black.withOpacity(.87),
                                         fontSize: 12,
-                                        fontWeight: FontWeight.w400),
+                                        fontWeight: FontWeight.w300),
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Text(
-                                    dateformatter
-                                        .format(transaction.creationDate),
-                                    style: GoogleFonts.roboto(
-                                        color:
-                                            Colors.black.withOpacity(.87),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
+                                  InkWell(
+                                    onTap: () {
+                                      showDetails(transaction);
+                                    },
+                                    child: Text(
+                                      TRANSACTION_HISTORY_SCREEN_DETAILS_TEXT,
+                                      style: GoogleFonts.roboto(
+                                          color: COLOR_DARK_PURPLE
+                                              .withOpacity(.87),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500),
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
                                 ],
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  formatter
-                                      .format(transaction.totalAmount * -1),
-                                  style: GoogleFonts.roboto(
-                                      color: Colors.black.withOpacity(.87),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w300),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    showDetails(transaction);
-                                  },
-                                  child: Text(
-                                    TRANSACTION_HISTORY_SCREEN_DETAILS_TEXT,
-                                    style: GoogleFonts.roboto(
-                                        color: COLOR_DARK_PURPLE
-                                            .withOpacity(.87),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    onTap: () {
-                      _handleTap(transaction);
-                    },
-                  );
-                })?.toList() ?? [],
+                      onTap: () {
+                        _handleTap(transaction);
+                      },
+                    );
+                  })?.toList() ?? [],
+                ),
               ),
             ),
           ],
@@ -251,7 +253,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
                           color: COLOR_DARK_GRAY),
                     ),
                     Text(
-                      transaction.product,
+                      transaction.recipient,
                       style: GoogleFonts.roboto(
                           color: Colors.black,
                           fontSize: 12,

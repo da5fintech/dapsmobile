@@ -7,7 +7,9 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/util.dart';
+import 'package:swipe/screens/login/failed-login-dialog.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
+import 'package:swipe/screens/registration/registration-failed-dialog.dart';
 import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
@@ -64,6 +66,14 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
         content: WrongMpinDialog(
           onOk: () {
             _handleOk();
+          },
+        ),
+      ),
+      'failed-login': CustomOverlayScreen(
+        backgroundColor: Colors.white.withOpacity(.2),
+        content: FailedLoginDialog(
+          onOk: () {
+            OverlayScreen().pop();
           },
         ),
       ),
@@ -124,7 +134,6 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                 onSaved: (v) {},
                                 validator: _appUtil.validateEmail,
                                 decoration: InputDecoration(
-                                  errorStyle: TextStyle(color: Constants.COLOR_GRAY),
                                   hintText: Constants.LOGIN_EMAIL_SCREEN_EMAIL_TEXT,
                                 ),
                               ),
@@ -145,7 +154,6 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                  errorStyle: TextStyle(color: Constants.COLOR_GRAY),
                                   hintText:
                                       Constants.LOGIN_EMAIL_SCREEN_PASSWORD_TEXT,
                                   suffixIcon: IconButton(
@@ -164,10 +172,10 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                               SizedBox(
                                 height: 15,
                               ),
-                              loginError
-                                  ? Text(Constants
-                                      .LOGIN_EMAIL_SCREEN_FAILED_ATTEMPT_TEXT)
-                                  : Container(),
+                              // loginError
+                              //     ? Text(Constants
+                              //         .LOGIN_EMAIL_SCREEN_FAILED_ATTEMPT_TEXT)
+                              //     : Container(),
                               SizedBox(
                                 width: double.infinity,
                                 child: PrimaryButtonWidget(
@@ -326,6 +334,10 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
     } catch (e) {
       loginError = true;
       OverlayScreen().pop();
+      OverlayScreen().show(
+        context,
+        identifier: 'failed-login',
+      );
       setState(() {});
     }
   }

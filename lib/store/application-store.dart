@@ -123,8 +123,8 @@ abstract class _ApplicationStore with Store {
     // user = UserModel(id: "", mpin: "888888");
   }
 
-  setIfFreshInstall () {
-    freshInstall = false;
+  setIfFreshInstall (bool val) {
+    freshInstall = val;
     prefs.setBool('freshInstall', freshInstall);
   }
 

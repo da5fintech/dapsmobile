@@ -7,6 +7,7 @@ import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/cash-in/cash-in-main-screen.dart';
+import 'package:swipe/screens/onboarding/onboard-main-screen.dart';
 import 'package:swipe/screens/cash-out/cash-out.main-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-screen.dart';
@@ -51,6 +52,8 @@ import 'package:flutter/material.dart';
 class Router {
   static Route<dynamic> generateRouting(RouteSettings settings) {
     switch (settings.name) {
+      case '/onboarding':
+        return MaterialPageRoute(builder: (_) => OnboardingMainScreen());
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/login/login-email-screen':

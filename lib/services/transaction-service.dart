@@ -26,77 +26,93 @@ class TransactionService extends FireStoreService {
       UserModel user, TransactionModel transaction) async {
     TransactionProcessingResponse response;
 
-    try {
-      if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
-        var service = getIt.get<EloadingService>();
-        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
-        response =
-            await service.process(transaction.recipient, transaction.product);
-        await saveSuggestion.saveNumber(
-            transaction.recipient, transaction.offering);
-      } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
-        var service = getIt.get<BillsPaymentService>();
-        response = await service.process(transaction.product);
-      } else if (transaction.offering ==
-          SwipeServiceOffering.REMITTANCE_INSTAPAY) {
-        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
-        var service = getIt.get<InstapayService>();
-        response =
-            await service.process(transaction.product, transaction.amount);
-        await saveSuggestion.saveAccountNumbers(
-            transaction.product, transaction.offering);
-      } else if (transaction.offering ==
-          SwipeServiceOffering.REMITTANCE_PESONET) {
-        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
-        var service = getIt.get<PesonetService>();
-        response =
-            await service.process(transaction.product, transaction.amount);
-        await saveSuggestion.saveAccountNumbers(
-            transaction.product, transaction.offering);
-      } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
-        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
-        var service = getIt.get<AutosweepService>();
-        response =
-            await service.process(transaction.product, transaction.amount);
-        await saveSuggestion.savePlateNumbers(transaction.product);
-      } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
-        var saveSuggestion = getIt.get<SaveSuggestionsServices>();
-        var service = getIt.get<DirectPayService>();
-        DirectPayProduct product = transaction.product;
-        response = await service.process(
-            transaction.product, transaction.amount, user);
-        await saveSuggestion.saveNumber(product.mobileNumber, transaction.offering);
-      }
-
-      ///Deduct user balance if any services
-      ///return true;
-      if (response.status) {
-        var otpService = getIt.get<OtpService>();
-        await tryChargeAccount(user, transaction);
-        await recordTransaction(user, transaction, response);
-        if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+    if(await checkBalance(user, transaction)) {
+      try {
+        if (transaction.offering == SwipeServiceOffering.BUY_LOAD) {
+          var service = getIt.get<EloadingService>();
+          var saveSuggestion = getIt.get<SaveSuggestionsServices>();
+          response =
+          await service.process(transaction.recipient, transaction.product);
+          await saveSuggestion.saveNumber(
+              transaction.recipient, transaction.offering);
+        } else if (transaction.offering == SwipeServiceOffering.BILLS_PAYMENT) {
+          var service = getIt.get<BillsPaymentService>();
+          response = await service.process(transaction.product);
+        } else if (transaction.offering ==
+            SwipeServiceOffering.REMITTANCE_INSTAPAY) {
+          var saveSuggestion = getIt.get<SaveSuggestionsServices>();
+          var service = getIt.get<InstapayService>();
+          response =
+          await service.process(transaction.product, transaction.amount);
+          await saveSuggestion.saveAccountNumbers(
+              transaction.product, transaction.offering);
+        } else if (transaction.offering ==
+            SwipeServiceOffering.REMITTANCE_PESONET) {
+          var saveSuggestion = getIt.get<SaveSuggestionsServices>();
+          var service = getIt.get<PesonetService>();
+          response =
+          await service.process(transaction.product, transaction.amount);
+          await saveSuggestion.saveAccountNumbers(
+              transaction.product, transaction.offering);
+        } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
+          var saveSuggestion = getIt.get<SaveSuggestionsServices>();
+          var service = getIt.get<AutosweepService>();
+          response =
+          await service.process(transaction.product, transaction.amount);
+          await saveSuggestion.savePlateNumbers(transaction.product);
+        } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+          var saveSuggestion = getIt.get<SaveSuggestionsServices>();
+          var service = getIt.get<DirectPayService>();
           DirectPayProduct product = transaction.product;
-          await otpService.sendReferenceNumber(
-            senderName: user.displayName,
-            senderMobileNumber: user.mobileNumber,
-            senderMessage: product.message,
-            amount: product.amount.toString(),
-            receiverMobileNumber: product.mobileNumber,
-            referenceNumber: response.reference,
-          );
+          response = await service.process(
+              transaction.product, transaction.amount, user);
+          await saveSuggestion.saveNumber(
+              product.mobileNumber, transaction.offering);
+        }
+
+        ///Deduct user balance if any services
+        ///return true;
+        if (response.status) {
+          var otpService = getIt.get<OtpService>();
+          await tryChargeAccount(user, transaction);
+          await recordTransaction(user, transaction, response);
+          if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+            DirectPayProduct product = transaction.product;
+            await otpService.sendReferenceNumber(
+              senderName: user.displayName,
+              senderMobileNumber: user.mobileNumber,
+              senderMessage: product.message,
+              amount: product.amount.toString(),
+              receiverMobileNumber: product.mobileNumber,
+              referenceNumber: response.reference,
+            );
+          }
+          return response;
         }
         return response;
-      }
-      return response;
-    } on NotEnoughFundsError catch (e) {
-      response = GenericProcessingResponse(
-          status: false, reference: "", message: e.message, result: e.message);
+      } on NotEnoughFundsError catch (e) {
+        response = GenericProcessingResponse(
+            status: false, reference: "", message: e.message, result: e.message);
 
-      await recordTransaction(user, transaction, response);
-      return response;
-    } catch (e) {
-      return response;
+        await recordTransaction(user, transaction, response);
+        return response;
+      } catch (e) {
+        return response;
+      }
+    } else {
+      return GenericProcessingResponse(
+          status: false, reference: "", message: "Not enough fund", result: "Not enough fund");
     }
+
+  }
+
+  Future<bool> checkBalance(
+      UserModel user, TransactionModel transaction) async {
+    double fee = 30;
+    double balance = await accountService.getWalletAmount(user);
+    double transactionAmount = getTotalAmount(transaction);
+
+    return transactionAmount + fee > balance ? false : true;
   }
 
   Future<bool> tryChargeAccount(
@@ -196,7 +212,8 @@ class TransactionService extends FireStoreService {
     } else if (transaction.offering ==
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       fee = INSTAPAY_FEE;
-    } else if (transaction.offering == SwipeServiceOffering.REMITTANCE_PESONET) {
+    } else if (transaction.offering ==
+        SwipeServiceOffering.REMITTANCE_PESONET) {
       fee = PESONET_PAY_FEE;
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       fee = AUTOSWEEP_FEE;
@@ -216,14 +233,15 @@ class TransactionService extends FireStoreService {
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       InstapayBankProduct product = transaction.product;
       return "${product.name}\n${product.accountNumber}";
-    } else if (transaction.offering == SwipeServiceOffering.REMITTANCE_PESONET) {
+    } else if (transaction.offering ==
+        SwipeServiceOffering.REMITTANCE_PESONET) {
       PesonetBankProduct product = transaction.product;
       return "${product.name}\n${product.accountNumber}";
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       return transaction.recipient;
     } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
       DirectPayProduct product = transaction.product;
-      return product.name;
+      return product.mobileNumber;
     }
   }
 
@@ -235,7 +253,8 @@ class TransactionService extends FireStoreService {
     } else if (transaction.offering ==
         SwipeServiceOffering.REMITTANCE_INSTAPAY) {
       return "Instapay";
-    } else if(transaction.offering == SwipeServiceOffering.REMITTANCE_PESONET) {
+    } else if (transaction.offering ==
+        SwipeServiceOffering.REMITTANCE_PESONET) {
       return "Pesonet";
     } else if (transaction.offering == SwipeServiceOffering.AUTOSWEEP) {
       return AUTOSWEEP_TRANSACTION_TYPE;
