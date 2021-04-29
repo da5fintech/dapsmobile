@@ -204,6 +204,7 @@ class _AutosweepBillerFormScreenState extends State<AutosweepBillerFormScreen> {
                   child: SizedBox(
                     width: double.infinity,
                     child: PrimaryButtonWidget(
+                      color: Colors.white,
                       onPressed: () => {
                         _handleNext(),
                       },
