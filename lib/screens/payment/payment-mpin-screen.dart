@@ -171,7 +171,7 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
 
         OverlayScreen().pop();
         print('here we goooo');
-        await Future.delayed(Duration(seconds: 1));
+        // await Future.delayed(Duration(seconds: 3));
         if (store.lastTransactionResponse == null ||
             store.lastTransactionResponse.status == false) {
           setState(() {});
