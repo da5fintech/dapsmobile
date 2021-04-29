@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>swipe app</string>
+	<string>Swipe</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>swipe</string>
+	<string>Swipe</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -37,7 +37,7 @@
 	<key>FacebookAppID</key>
 	<string>171589144756492</string>
 	<key>FacebookDisplayName</key>
-	<string>Swipe App</string>
+	<string>S W I P E</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -58,6 +58,22 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow app to access the camera?</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Allow app to access your contacts?</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Allow app to authenticate using the Face ID?</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow app to access your location while in use?</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Allow app to access your location in the background?</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow app to access your location when use?</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow app to access the microphone?</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow app to access the photo library?</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -77,17 +93,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSFaceIDUsageDescription</key>
-    <string>Why is my app authenticating using face id?</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Can I use the camera please?</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Allow access to photo library</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Allow access to microphone</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>This app needs access to location when open.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>This app needs access to location when in the background.</string>
 </dict>
 </plist>
