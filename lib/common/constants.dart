@@ -13,36 +13,38 @@ const APP_HELP_CENTER = "Help Center";
 const APP_VERSION = "v5.0.1";
 const APP_EMAIL = "info@swipe.ph";
 
-const ONBOARDING_FIRST_SCREEN_TITLE = "The Launch of Your New And Secured E-wallet!";
+const ONBOARDING_FIRST_SCREEN_TITLE =
+    "The Launch of Your New And Secured E-wallet!";
 const ONBOARDING_FIRST_SCREEN_SUB_TITLE =
-    "The swipe app was launched to help people accomplish things easily "
+    "The SWIPE app was launched to help people accomplish things easily "
     "without the rush and risk of going outside. This mobile application "
     "is perfect for entrepreneurs and individuals who are looking for "
     "a trusted e-wallet with helpful features.";
 
-const ONBOARDING_SECOND_SCREEN_TITLE = "Made perfect for personal and business transactions";
+const ONBOARDING_SECOND_SCREEN_TITLE =
+    "Made perfect for personal and Business transactions";
 const ONBOARDING_SECOND_SCREEN_SUB_TITLE =
-    "Swipe app offers an easier and secure payment solution to everyone without any hassle. "
-    "If you are a homeowner and have utility bills to pay, download the Swipe app and a single "
+    "SWIPE app offers an easier and secure payment solution to everyone without any hassle. "
+    "If you are a homeowner and have utility bills to pay, download the SWIPE app and a single "
     "tap on your smartphone will do!";
 
 const ONBOARDING_THIRD_SCREEN_TITLE = "Multiple transactions in one app";
 const ONBOARDING_THIRD_SCREEN_SUB_TITLE =
     "Skip the traditional way of dealing with your finances."
-    " Swipe app has multiple payment solutions and features that you will enjoy."
+    " SWIPE app has multiple payment solutions and features that you will enjoy."
     " Once your account is verified, you can start sending or receiving payments from your customers,"
     " shop online, buy load, pay using the hassle-free QR code, and many more. "
     "You do not need to hop on remittance centers, convenience stores, and malls, "
-    "to deal with your finances, the Swipe app is all you need!";
+    "to deal with your finances, the SWIPE app is all you need!";
 
 const ONBOARDING_FOURTH_SCREEN_TITLE = "Easy-to-use interface for all ages";
 const ONBOARDING_FOURTH_SCREEN_SUB_TITLE =
-  "Our developers of the Swipe app ensure that its interface fits everyone. "
-  "All the buttons, colors, fonts, and redirected pages were all designed very "
-  "carefully to give a pleasing yet straightforward appearance for all. "
-  "You do not need to feel overwhelmed by the app's design because it is "
-  "purposely made to be beginner and user-friendly. "
-  "Swipe app is here to help by being your go-to payment solution anytime and anywhere. ";
+    "Our developers of the SWIPE app ensure that its interface fits everyone. "
+    "All the buttons, colors, fonts, and redirected pages were all designed very "
+    "carefully to give a pleasing yet straightforward appearance for all. "
+    "You do not need to feel overwhelmed by the app's design because it is "
+    "purposely made to be beginner and user-friendly. "
+    "SWIPE app is here to help by being your go-to payment solution anytime and anywhere. ";
 
 const LOGIN_SCREEN_LOGIN_TEXT = "LOG IN";
 const LOGIN_SCREEN_REGISTER_TEXT = "REGISTER";
@@ -58,7 +60,8 @@ const LOGIN_EMAIL_SCREEN_ALTERNATE_LOGIN_TEXT = "OR LOGIN USING";
 const LOGIN_EMAIL_SCREEN_FAILED_ATTEMPT_TEXT = "Login Error";
 
 const LOGIN_FAILED_TITLE = "Try Again!";
-const LOGIN_FAILED_SUB_TITLE = "There was an error with your login information.";
+const LOGIN_FAILED_SUB_TITLE =
+    "There was an error with your login information.";
 
 const PAYQR_SCREEN_TITLE_TEXT = "Pay QR/Barcode";
 const PAYQR_SCREEN_UPLOAD_TEXT = "Upload QR";
@@ -79,11 +82,11 @@ const REGISTRATION_SCREEN_USER_CREATION_TEXT =
     'We\'ve successfully created your account!';
 const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
 const REGISTRATION_SCREEN_OTP_TITLE_TEXT = "Verify Registration";
-const REGISTRATION_SCREEN_INCORRECT_OTP_TEXT = "Invalid OTP! Please Try again.";
+const REGISTRATION_SCREEN_INCORRECT_OTP_TEXT = "Invalid OTP! Please try again.";
 const REGISTRATION_SCREEN_OTP_GREET = "Welcome to SWIPE! \n\n"
     "Enjoy convenience at your fingertips! \n\n"
     "Make sure to verify your account to have access to all the services SWIPE has to offer. \n\n"
-    "Directly send money to other Swipe users, Transfer money to Bank Accounts, Pay your Bills and many more! \n\n"
+    "Directly send money to other SWIPE users, Transfer money to Bank Accounts, Pay your Bills and many more! \n\n"
     "Do it all with SWIPE!";
 
 const REGISTRATION_FAILED_TITLE = "Failed Registration:";
@@ -98,15 +101,15 @@ const SETTINGS_SCREEN_TITLE = "Settings";
 const SETTINGS_SCREEN_CHANGE_MPIN_TEXT = "Change MPIN";
 const SETTINGS_SCREEN_ACCOUNT_AUTH_TEXT = "Account Authentication";
 const SETTINGS_SCREEN_BIOMETRIC_LOGIN_TEXT = "Biometric Login";
-const SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT = "Biometrics Log in";
+const SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT = "Biometric Log in";
 const SETTINGS_SCREEN_BIOMETRIC_BANNER_NOTE_TEXT =
-    "Log in faster to swipe using biometrics";
-const SETTINGS_SCREEN_BIOMETRIC_ENABLE_TEXT = "Enable Biometrics";
+    "Login faster to SWIPE using Biometric Authentication";
+const SETTINGS_SCREEN_BIOMETRIC_ENABLE_TEXT = "Enable Biometric";
 const SETTINGS_SCREEN_BIOMETRIC_NOT_AVAILABLE =
-    "Biometrics is not available on your device.";
+    "Biometric is not available on your device.";
 const SETTINGS_SCREEN_BIOMETRIC_DISCLAIMER_TEXT =
-    'By enabling biometrics login, you allow Swipe to access your saved\nbiometrics'
-    'data on your device to create and save data in Swipe that\n'
+    'By enabling Biometric login, you allow SWIPE to access your saved\nbiometrics'
+    'data on your device to create and save data in SWIPE that\n'
     'shall be used for securing your login. The data will not be used for\n'
     'any other purposes.';
 const SETTINGS_SCREEN_BIOMETRIC_OTP_GREET = "Fantastic!";
@@ -118,12 +121,12 @@ const SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE = "Resend Code";
 const SETTINGS_SCREEN_BIOMETRIC_OTP_ENROLL_NOW = "ENROLL NOW";
 const SETTINGS_SCREEN_SWIPE_DIALOG_CONFIRMATION = "Confirmation";
 const SETTINGS_SCREEN_SWIPE_BIOMETRIC_NOTE_TEXT =
-    "Swipe would like to use your Biometrics for the additional Security.";
+    "SWIPE would like to use your Biometric for additional Security.";
 const SETTINGS_SCREEN_SWIPE_FACEID_NOTE_TEXT =
-    "Swipe would like to use your face ID for the additional Security.";
-const SETTINGS_SCREEN_SWIPE_DISABLE_TEXT = "Disable Biometrics Log in";
+    "SWIPE would like to use your Face ID for additional Security.";
+const SETTINGS_SCREEN_SWIPE_DISABLE_TEXT = "Disable Biometric Login";
 const SETTINGS_SCREEN_SWIPE_DISABLE_CONFIRMATION_TEXT =
-    "Are you sure you want to disable biometrics log in?";
+    "Are you sure you want to disable Biometric login?";
 const SETTINGS_SCREEN_CHANGE_PIN_TITLE = "MPIN";
 const SETTINGS_SCREEN_INCORRECT_PIN_TITLE = "Incorrect PIN";
 const SETTINGS_SCREEN_CHANGE_YOUR_PIN = "Change your MPIN";
@@ -131,7 +134,7 @@ const SETTINGS_SCREEN_ENTER_NEW_PIN = "Please enter your new 6-digit MPIN";
 const SETTINGS_SCREEN_CONFIRM_PIN_TITLE = "Confirm MPIN";
 const SETTINGS_SCREEN_CONFIRM_PIN_BANNER_TITLE = "Confirm you MPIN";
 const SETTINGS_SCREEN_RE_CONFIRM_PIN_BANNER_TITLE =
-    "Please re-enter your nre 6-digit MPIN";
+    "Please re-enter your 6-digit MPIN";
 const SETTINGS_SCREEN_MPIN_UPDATED_PIN = "MPIN updated";
 const SETTINGS_SCREEN_MPIN_UPDATED_SUCCESS_PIN =
     "You have successfully updated your MPIN";
@@ -151,9 +154,9 @@ const PARTNER_MERCHANT_GADGETS_TEXT = "Gadgets";
 const PARTNER_MERCHANT_SERVICES_TEXT = "Services";
 
 const PROMOS_SCREEN_TITLE_TEXT = "Promos";
-const PROMOS_SCREEN_TITLE_DO_MORE_TEXT = "Do more with Swipe!";
+const PROMOS_SCREEN_TITLE_DO_MORE_TEXT = "Do more with SWIPE!";
 const PROMOS_SCREEN_TITLE_EXTENDS_TEXT =
-    "Extends your wallet limit up to PHP 500K!";
+    "Increase your wallet limit up to PHP 500K!";
 const PROMOS_SCREEN_TITLE_SAVE = "Save for the future!";
 const PROMOS_SCREEN_TITLE_ANNUM = "Up to 25% interests per annum.";
 const PROMOS_SCEREN_LINK_NOW = "LINK NOW";
@@ -163,12 +166,12 @@ const VOUCHER_POCKETS_TAB_1_TITLE = "Active";
 const VOUCHER_POCKETS_TAB_2_TITLE = "Used";
 const VOUCHER_POCKETS_TAB_3_TITLE = "Expired";
 const VOUCHER_POCKETS_NOTE_TEXT =
-    "Get voucher by scanning promo QR, paying with SWIPE QR, or buying a load with Swipe";
+    "Get voucher by scanning the Promo QR Code, Pay using QR Code, or buying a load with SWIPE";
 const VOUCHER_POCKETS_INFORMATION_TEXT = "Learn more about voucher";
 
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
 const SERVICES_SCREEN_BALANCE_TEXT = "Available balance";
-const SERVICES_SCREEN_CASH_IN_TEXT = "Cash in";
+const SERVICES_SCREEN_CASH_IN_TEXT = "Cash In";
 const SERVICES_SCREEN_REMITTANCE_TEXT = "Direct Send";
 const SERVICES_SCREEN_BANK_TRANSFER_TEXT = "Bank Transfer";
 const SERVICES_SCREEN_BUY_LOAD_TEXT = "Buy Load";
@@ -178,19 +181,17 @@ const SERVICES_SCREEN_PAY_QR_TEXT = "Pay QR";
 const SERVICES_SCREEN_INSURANCE_TEXT = "Insurance";
 const SERVICES_SCREEN_MORE_TEXT = "More";
 const SERVICES_SCREEN_TRANSACTION_TEXT = "Transaction History";
-const SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT =
-    "Know more about SWIPE";
-const SERVICES_SCREEN_REASON_SWIPE_TEXT =
-    "We can do things better";
+const SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT = "Know more about SWIPE";
+const SERVICES_SCREEN_REASON_SWIPE_TEXT = "We can do things better";
 
 const HELP_SCREEN_TITLE_TEXT = "Help";
 
 const CASH_IN_TITLE_TEXT = "Cash In";
 const CASH_IN_LINKED_ACCOUNTS_TEXT = "My Linked Accounts";
 const CASH_IN_MANAGED_TEXT = "Manage";
-const CASH_IN_LINKED_NOTE_TEXT = "Linked your accounts for more easy access";
+const CASH_IN_LINKED_NOTE_TEXT = "Link your accounts for easy access";
 const CASH_IN_LINKED_SUBNOTE_TEXT =
-    "Connect your accounts with swipe wallet for\neasy cash in process.";
+    "Connect your accounts with SWIPE wallet for\neasy cash-in process.";
 const CASH_IN_OTC_TEXT = "Over the Counter";
 const CASH_IN_ONLINE_BANK = "Online Bank";
 const CASH_IN_REMITTANCE = "Remittance";
@@ -209,9 +210,9 @@ const CASH_IN_STEP_2 =
 const CASH_IN_STEP_3 =
     "Cashier to confirm, collect payment and print receipt. Wait for a text confirmation upon successful Cash In before leaving the store.";
 
-const CASH_IN_VIA_CODE = "Cash in Via Code";
+const CASH_IN_VIA_CODE = "Cash In via Code";
 const CASH_IN_VIA_CODE_SUBNOTE =
-    "Cash in made easier via Barcode\nor a unique Reference Code";
+    "Cash In made easier via Barcode\nor a unique Reference Code";
 const CASH_IN_VIA_CODE_DONE = "Done";
 const CASH_IN_VIA_CODE_NEXT = "Next";
 const CASH_IN_VIA_CODE_DOWLOAD = "Download";
@@ -221,12 +222,12 @@ const CASH_IN_DOWNLOAD_CODE = "Photo has been Saved to the Gallery";
 
 const DIRECT_SEND_SCREEN_TITLE_TEXT = "Send / Request Money";
 const DIRECT_SEND_SCREEN_SWIPE_SEND_TEXT =
-    "Send money to another SWIPE account";
+    "Send Money to another SWIPE account";
 const DIRECT_SEND_SCREEN_DIRECT_SEND_TEXT = "Direct Send";
 const DIRECT_SEND_SCREEN_SEND_QR_TEXT = "Send Via QR";
-const DIRECT_SEND_SCREEN_SEND_TO_BANK_TEXT = "Send money to bank account";
+const DIRECT_SEND_SCREEN_SEND_TO_BANK_TEXT = "Send Money to Bank Account";
 const DIRECT_SEND_SCREEN_BANKS_TEXT = "Banks";
-const DIRECT_SEND_SCREEN_REMITTANCE_TEXT = "Send money to Remittance Center";
+const DIRECT_SEND_SCREEN_REMITTANCE_TEXT = "Send Money to Remittance Center";
 const DIRECT_SEND_SCREEN_REMITTANCE_CENTERS_TEXT = "Remittance Centers";
 
 const DIRECT_SEND_FORM_SCREEN_MOBILE = "Mobile Number";
@@ -244,8 +245,8 @@ const DIRECT_REQUEST_FORM_SCREEN_SAVE = "Save";
 const DIRECT_SEND_VIA_QR_SCREEN_TITLE = "Send Via QR";
 const DIRECT_SEND_VIA_QR_SCREEN_NOTE = 'Align QR code to the frame to\n'
     'start scanning.';
-const DIRECT_SEND_VIA_QR_SCREEN_DETECTED = "QR code Detected!";
-const DIRECT_SEND_VIA_QR_SCREEN_RESCAN = "Re-scan QR code";
+const DIRECT_SEND_VIA_QR_SCREEN_DETECTED = "QR Code detected!";
+const DIRECT_SEND_VIA_QR_SCREEN_RESCAN = "Re-scan QR Code";
 const DIRECT_SEND_VIA_QR_SCREEN_PROCEED = "PROCEED";
 
 const BILLS_PAYMENT_TITLE_TEXT = "Pay Bills";
@@ -256,7 +257,7 @@ const BILLS_PAYMENT_BILLER_SCREEN_ALL_BILLERS_TEXT = "All Billers";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_SAVED_BILLERS_TEXT = "Recent Biller(s)";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_ADD_BILLER_TEXT = "Add Biller";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_DELETE_BILLER_TEXT =
-    "Are you sure you want to Delete";
+    "Are you sure you want to delete";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT = "Airlines";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT = "Cable / Internet";
 const BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT = "Electricity";
@@ -350,7 +351,8 @@ const PESONET_PAY_API_STAGING_ENDPOINT =
 const PESONET_PAY_SCOPE = "pesonet";
 const PESONET_PAY_FEE = 25.00;
 
-const UNION_BANK_ENDPOINT = "https://api-uat.unionbankph.com/partners/sb/customers/v1/oauth2";
+const UNION_BANK_ENDPOINT =
+    "https://api-uat.unionbankph.com/partners/sb/customers/v1/oauth2";
 const UNION_BANK_CLIENT_ID = "f783917c-507f-4423-81b8-b76beb061a45";
 const UNION_BANK_RESPONSE_TYPE = "code";
 const UNION_BANK_SCOPE = "account_info";
@@ -385,16 +387,16 @@ const INSTAPAY_SCOPE = 'instapay';
 const REMITTANCE_SCREEN_CATEGORIES_BANK_TEXT = "Banks";
 const REMITTANCE_SCREEN_CATEGORIES_WALLET_TEXT = "Wallets";
 const REMITTANCE_SCREEN_CATEGORIES_CENTERS_TEXT = "Remittance Centers";
-const REMITTANCE_SCREEN_PANEL_SEND_MONEY_TEXT = "Send money via:";
+const REMITTANCE_SCREEN_PANEL_SEND_MONEY_TEXT = "Send Money via:";
 const REMITTANCE_SCREEN_PANEL_SEND_INSTANCE_FREE_TEXT =
     "Send Instantly for free";
 const REMITTANCE_SCREEN_PANEL_SEND_OTHER_BANKS_TEXT =
-    "Send to other banks and Wallets, Received instantly";
+    "Send to other Banks and Wallets, Received instantly";
 const REMITTANCE_SCREEN_PANEL_CUT_OFF_TEXT = "No Cutoff";
-const REMITTANCE_SCREEN_PANEL_TRANSACTION_LIMIT = "50,000.00 transaction Limit";
-const REMITTANCE_SCREEN_PANEL_SEND_FOR_FREE = "Send for free";
+const REMITTANCE_SCREEN_PANEL_TRANSACTION_LIMIT = "50,000.00 Transaction Limit";
+const REMITTANCE_SCREEN_PANEL_SEND_FOR_FREE = "Send for Free";
 const REMITTANCE_SCREEN_PANEL_SEND_TO_OTHER_BANKS_INSTANCE_TEXT =
-    "Send to other banks and Wallets, Receive by end of the day";
+    "Send to other Banks and Wallets, Receive by end of the day";
 const REMITTANCE_SCREEN_PANEL_TRANSACTION_NOTE =
     "Transactions before 3:00 PM cut-off are processed same banking day. Transactions after cut-off, weekends of holidays are processed the next banking day";
 const REMITTANCE_SCREEN_TITLE_TEXT = "Send/Request Money";
