@@ -57,7 +57,7 @@ class VerificationScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Your Account is in basic level',
+                    VERIFICATION_MAIN_SCREEN,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w500,
                       fontSize: SizeConfig.blockSizeVertical * 2.2,
@@ -66,7 +66,7 @@ class VerificationScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Upgrade your account to a fully verified level to ensure account security and unlock SWIPE services.',
+                    VERIFICATION_MAIN_UPGRADE,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w400,
                       fontSize: SizeConfig.blockSizeVertical * 1.7,
@@ -90,7 +90,7 @@ class VerificationScreen extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'Get fully verified in just 3 steps',
+                        VERIFICATION_MAIN_SCREE_STEPS,
                         style: GoogleFonts.roboto(
                           fontSize: SizeConfig.blockSizeVertical * 2.2,
                           fontWeight: FontWeight.w500,
@@ -116,18 +116,18 @@ class VerificationScreen extends StatelessWidget {
                               },
                               child: _iconLabel(
                                 icon: 'assets/svg/services/user-id.svg',
-                                label: 'Take ID Photo',
+                                label: VERIFICATION_MAIN_LABEL_ID,
                               ),
                             ),
                             Icon(Icons.arrow_forward_ios, color: COLOR_ORANGE),
                             _iconLabel(
                               icon: 'assets/svg/services/faceid.svg',
-                              label: 'Scan Face',
+                              label: VERIFICATION_MAIN_LABEL_SCAN_FACE,
                             ),
                             Icon(Icons.arrow_forward_ios, color: COLOR_ORANGE),
                             _iconLabel(
                               icon: 'assets/svg/help/help.svg',
-                              label: 'Scan Face',
+                              label: VERIFICATIOPN_MAIN_LABEL_INFORMATION,
                             ),
                           ],
                         )
@@ -137,7 +137,7 @@ class VerificationScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(SizeConfig.blockSizeVertical * 2),
                     child: Text(
-                      'After verification, unlock more features like:',
+                      VERIFICATION_MAIN_UNLOCK,
                       style: GoogleFonts.roboto(
                         fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
@@ -152,21 +152,21 @@ class VerificationScreen extends StatelessWidget {
                       children: [
                         _iconLabel(
                           icon: 'assets/svg/services/remittance.svg',
-                          label: 'Remittance',
+                          label: VERIFICATION_MAIN_LABEL_REMITTANCE,
                         ),
                         _iconLabel(
                           icon: 'assets/svg/services/bank-transfer.svg',
-                          label: 'Bank Transfer',
+                          label: VERIFICATION_MAIN_LABEL_BANK_TRANSFER,
                         ),
                         _iconLabel(
                           icon: 'assets/svg/services/request-money.svg',
-                          label: 'Send / Request',
+                          label: VERIFICATION_MAIN_LABEL_SEND_REQUEST,
                         ),
                       ],
                     ),
                   ),
                   Text(
-                    'Learn more about verification level perks',
+                    VERIFICATION_MAIN_LEARN_MORE,
                     style: GoogleFonts.roboto(
                       color: COLOR_DARK_PURPLE,
                       fontWeight: FontWeight.w500,

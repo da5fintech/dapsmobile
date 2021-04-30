@@ -13,6 +13,15 @@ const APP_HELP_CENTER = "Help Center";
 const APP_VERSION = "v5.0.1";
 const APP_EMAIL = "info@swipe.ph";
 
+const UPDATE_DIALOG = "IMPORTANT UPDATE!";
+const UPDATE_DIALOG_CONTENT_MESSAGE =
+    "In order to enjoy and secured experience Please UPDATE to the latest version of our app now!";
+
+const MPIN_RECOVERY_TITLE = "MPIN Recovery";
+const MPIN_RECOVERY_CONTENT_MESSAGE = "We need to do 2-step authentication before resetting your MPIN. 6-digit code will be sent to your registered mobile number.";
+const MPIN_RECOVERY_PROCEED = "Proceed";
+
+
 const ONBOARDING_FIRST_SCREEN_TITLE =
     "The Launch of Your New And Secured E-wallet!";
 const ONBOARDING_FIRST_SCREEN_SUB_TITLE =
@@ -62,6 +71,35 @@ const LOGIN_EMAIL_SCREEN_FAILED_ATTEMPT_TEXT = "Login Error";
 const LOGIN_FAILED_TITLE = "Try Again!";
 const LOGIN_FAILED_SUB_TITLE =
     "There was an error with your login information.";
+
+const VERIFICATION_MAIN_SCREEN = "Your account is in Basic Level";
+const VERIFICATION_MAIN_UPGRADE = "Verify your account to ensure account security and unlock more SWIPE services.";
+const VERIFICATION_MAIN_SCREE_STEPS = "Get fully verified in just 3 steps";
+const VERIFICATION_MAIN_LABEL_ID = "Take ID Photo";
+const VERIFICATION_MAIN_LABEL_SCAN_FACE = "Scan Face";
+const VERIFICATIOPN_MAIN_LABEL_INFORMATION = "Personal Information";
+const VERIFICATION_MAIN_UNLOCK = "After verification, unlock more features like:";
+const VERIFICATION_MAIN_LABEL_REMITTANCE = "Remittance";
+const VERIFICATION_MAIN_LABEL_SEND_REQUEST = "Send / Request";
+const VERIFICATION_MAIN_LABEL_BANK_TRANSFER = "Bank Transfer";
+const VERIFICATION_MAIN_LEARN_MORE = "Learn more about verification level perks";
+
+const VERIFICATION_PHOTO = "Take ID Photo";
+const VERIFICATION_VALID_ID = "Valid IDs";
+const VERFICATION_FRONT_ID = "Front of ID";
+const VERIFICATION_PLACE_ID = "Place your ID within the frame and take a photo.";
+const VERIFICATION_PROCEED_id = "Would you like to proceed using this ID?";
+const VERIFICATION_NEXT = "NEXT";
+const VERIFICATION_RETAKE_PHOTO = "Retake Photo";
+
+const VERIFICATION_SCAN_TITLE = "Scan Face";
+const VERIFICATION_TAKE_SELFIE = "Get ready to take a selfie";
+const VERIFICATION_NOTE = "To fully verify your identity, we need to gather your biological information.";
+const VERIFICATION_GUIDE = "Position your face within the frame.";
+const VERIFICATION_GUIDE_2 = "You will be automatically scanned.";
+const VERIFICATION_GUIDE_3 = "The process will take few seconds.";
+const VERIFICATION_NOTE_NEXT = 'Are you ready? Tap "NEXT" to start scanning.';
+
 
 const PAYQR_SCREEN_TITLE_TEXT = "Pay QR/Barcode";
 const PAYQR_SCREEN_UPLOAD_TEXT = "Upload QR";
@@ -196,19 +234,22 @@ const CASH_IN_OTC_TEXT = "Over the Counter";
 const CASH_IN_ONLINE_BANK = "Online Bank";
 const CASH_IN_REMITTANCE = "Remittance";
 
+const CASH_IN_LOCATION_DIALOG_TITLE = "Allowed Location Permission";
+const CASH_IN_LOCATION_DIALOG_CONTENT = "In order for us to locate you to our nearby partners we need you allow us access your location.";
+
 const CASH_IN_PARTNER_DETAILS_TITLE = "Partner Details";
 const CASH_IN_VIEW_NEARBY_STORES = "View nearby branches";
 const CASH_IN_GENERATE_BARCODE = "Generate Barcode";
 const CASH_IN_SUBNOTE_BARCODE =
     "Have the cashier scan this barcode linked to your SWIPE account.";
 const CASH_IN_HOW_TO_CASH = "How to Cash In";
-const CASH_IN_HOW_TO_CASH_SUBNOTE = "At any branch of this official partners.";
+const CASH_IN_HOW_TO_CASH_SUBNOTE = "You can cash in at any available branch of our official partners.";
 const CASH_IN_STEP_1 =
-    "Inform the Cashier that you would like to Cash In to your SWIPE wallet.";
+    "Inform the cashier that you would like to ‘Cash In’ to your SWIPE wallet.";
 const CASH_IN_STEP_2 =
-    'Tap on “Generate Barcode” button above. Enter the amount then Tap ‘Generate Barcode’. Show the generated barcode in the app.';
+    'Tap on the ‘Generate Barcode’ button above. Enter the amount that you wish to cash in then tap ‘Next’.';
 const CASH_IN_STEP_3 =
-    "Cashier to confirm, collect payment and print receipt. Wait for a text confirmation upon successful Cash In before leaving the store.";
+    "The cashier will confirm if the barcode was accepted, collect the payment and print the receipt.";
 
 const CASH_IN_VIA_CODE = "Cash In via Code";
 const CASH_IN_VIA_CODE_SUBNOTE =
@@ -448,7 +489,7 @@ const PAYMENT_MPIN_SCREEN_DIGIT_LIMIT =
     "Please enter your 6-digit MPIN to proceed.";
 const PAYMENT_MPIN_SCREEN_PROCEED_TEXT = "PROCEED";
 const PAYMENT_VERIFICATION_SCREEN_LOAD_FOR_TEXT = "Buy Load for";
-const PAYMENT_VERIFICATION_SCREEN_MY_NUMBER_TEXT = "MY Number";
+const PAYMENT_VERIFICATION_SCREEN_MY_NUMBER_TEXT = "Number";
 const PAYMENT_VERIFICATION_SCREEN_PAY_BILLS_TEXT = "Pay Bills for";
 const PAYMENT_VERIFICATION_SCREEN_FEE_TEXT = "Fee";
 const PAYMENT_VERIFICATION_SCREEN_SEND_MONEY_TEXT = "Send Money For";
@@ -465,7 +506,7 @@ const PAYMENT_VERIFICATION_SCREEN_TOTAL_AMOUNT_TEXT = "Total Amount";
 const PAYMENT_VERIFICATION_AGREE_TERMS_TEXT = "I agree to the ";
 const PAYMENT_VERIFICATION_TERMS_CONDITION_TEXT = "Terms & Conditions";
 const PAYMENT_VERIFICATION_NOTE_TEXT =
-    "Please review to ensure all the details above is correct before proceeding to payment.";
+    "Please make sure that all the details above are correct before proceeding to payment.";
 const PAYMENT_VERIFICATION_WARNING_TEXT =
     "If you agree please check the terms & condition";
 const PAYMENT_VERIFICATION_SCREEN_PAY_TEXT = "Pay";
@@ -490,13 +531,13 @@ const BUY_LOAD_TITLE_TEXT = "Buy Load";
 const BUY_LOAD_MOBILE_TEXT = "Mobile";
 const BUY_LOAD_PHP_TEXT = "PHP";
 const BUY_LOAD_NEXT_TEXT = "Next";
-const BUY_LOAD_RECIPIENT_SCREEN_LOAD_FOR_TEXT = "Buy Load For";
+const BUY_LOAD_RECIPIENT_SCREEN_LOAD_FOR_TEXT = "Buy load for:";
 
 const BUY_LOAD_AMOUNT_SCREEN_TAB_OPTION_1 = "Regular Load";
 const BUY_LOAD_AMOUNT_SCREEN_TAB_OPTION_2 = "Load Promos";
 const BUY_LOAD_AMOUNT_SCREEN_AMOUNT_TEXT = "Amount";
-const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION = "Enter amount between 10-1000";
-const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION_OR = "or choose denomination below:";
+const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION = "Select an amount between 10-1000";
+const BUY_LOAD_AMOUNT_ENTER_AMOUNT_OPTION_OR = "or choose Load promo below:";
 
 const SOON_RELEASED_SCREEN_FEATURED_TEXT = "Feature not yet released";
 const SOON_RELEASED_SCREEN_NOTE_TEXT =

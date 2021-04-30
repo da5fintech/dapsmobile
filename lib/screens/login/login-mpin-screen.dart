@@ -78,8 +78,8 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
       'mpin-recovery': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
         content: SwipeDialog(
-          title: "MPIN Recovery",
-          contentMessage: "We need to do 2-step authentication before resetting your MPIN. 6-digit code will be sent to your registered mobile number.",
+          title: MPIN_RECOVERY_TITLE,
+          contentMessage: MPIN_RECOVERY_CONTENT_MESSAGE,
           cancelBtn: true,
           onOk: () async {
             OverlayScreen().pop();
@@ -89,7 +89,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                   builder: (_) => OtpScreen(
                     mobileNumber: store.user.mobileNumber,
                     type: OtpServiceAction.FORGOT_MPIN,
-                    btnText: "Proceed",
+                    btnText: MPIN_RECOVERY_PROCEED,
                     onOk: () {
                       Navigator.push(
                         context,

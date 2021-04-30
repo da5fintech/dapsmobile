@@ -81,8 +81,8 @@ class _CashInMainScreen extends State<CashInMainScreen>{
       'location-dialog': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
         content: SwipeDialog(
-          title: 'Allowed Location Permission',
-          contentMessage: "In order for us to locate you to our nearby partners we need you allow us access your location.",
+          title: CASH_IN_LOCATION_DIALOG_TITLE,
+          contentMessage: CASH_IN_LOCATION_DIALOG_CONTENT,
           cancelBtn: true,
           onOk: () async {
             OverlayScreen().pop();
