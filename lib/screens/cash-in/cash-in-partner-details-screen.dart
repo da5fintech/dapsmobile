@@ -160,14 +160,14 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15.0),
+                padding: const EdgeInsets.only(left: 15.0, top: 5),
                 child: Text(
                     CASH_IN_HOW_TO_CASH_SUBNOTE,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w700,
-                      fontSize: SizeConfig.blockSizeVertical * 2,
+                      fontSize: SizeConfig.blockSizeVertical * 1.9,
                       color: Colors.black,
-                      height: 2,
+                      height: 1,
                     )
                 ),
               ),

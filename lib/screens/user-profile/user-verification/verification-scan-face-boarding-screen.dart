@@ -16,7 +16,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
     return Theme(
       data: td,
       child: Scaffold(
-        appBar: SubAppbarWidget(title: "Scan Face"),
+        appBar: SubAppbarWidget(title: VERIFICATION_SCAN_TITLE),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -62,7 +62,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
               padding: const EdgeInsets.only(
                   top: 20.0, left: 20, right: 20, bottom: 10),
               child: Text(
-                'Get ready to take a selfie',
+                VERIFICATION_TAKE_SELFIE,
                 style: GoogleFonts.roboto(
                   fontSize: SizeConfig.blockSizeVertical * 2.2,
                   fontWeight: FontWeight.w500,
@@ -73,7 +73,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                'To fully verify your identity, we need to gather your bio information.',
+                VERIFICATION_NOTE,
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w400,
                   fontSize: SizeConfig.blockSizeVertical * 1.7,
@@ -110,7 +110,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                            'Position your face within the frame',
+                            VERIFICATION_GUIDE,
                             style: GoogleFonts.roboto(
                               fontSize: SizeConfig.blockSizeVertical * 1.7,
                               fontWeight: FontWeight.w400,
@@ -118,7 +118,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                             )
                         ),
                         Text(
-                            'You will be automatically scanned',
+                            VERIFICATION_GUIDE_2,
                             style: GoogleFonts.roboto(
                               fontSize: SizeConfig.blockSizeVertical * 1.7,
                               fontWeight: FontWeight.w400,
@@ -126,7 +126,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                             )
                         ),
                         Text(
-                            'The process will take few seconds',
+                            VERIFICATION_GUIDE_3,
                             style: GoogleFonts.roboto(
                               fontSize: SizeConfig.blockSizeVertical * 1.7,
                               fontWeight: FontWeight.w400,
@@ -145,7 +145,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
-                  'Are you ready? Tap “NEXT” to start scanning.',
+                  VERIFICATION_NOTE_NEXT,
                   style: GoogleFonts.roboto(
                     fontSize: SizeConfig.blockSizeVertical * 1.7,
                     color: COLOR_DARK_GRAY,

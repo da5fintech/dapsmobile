@@ -59,7 +59,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
             children: [
               Text(PAYMENT_VERIFICATION_SCREEN_MY_NUMBER_TEXT, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
               Spacer(),
-              Text(store.transaction.recipient, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
+              Text('+${store.transaction.recipient}', style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
             ],
           ),
         ),

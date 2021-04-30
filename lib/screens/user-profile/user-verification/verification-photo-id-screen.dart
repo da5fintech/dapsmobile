@@ -87,7 +87,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
       data: td,
       child: Scaffold(
         appBar: SubAppbarWidget(
-          title: 'Take ID Photo',
+          title: VERIFICATION_PHOTO,
           actions: [
             FlatButton.icon(
               onPressed: () {
@@ -96,7 +96,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
               },
               icon: Icon(Icons.list, color: Colors.white),
               label: Text(
-                'Valid IDs',
+                VERIFICATION_VALID_ID,
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -136,7 +136,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Front of ID',
+                          VERFICATION_FRONT_ID,
                           style: GoogleFonts.roboto(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -176,7 +176,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Text(
-                              'Place your ID within the frame and take a photo.',
+                              VERIFICATION_PLACE_ID,
                               style: GoogleFonts.roboto(
                                 fontSize: SizeConfig.blockSizeVertical * 2.2,
                                 fontWeight: FontWeight.w500,
@@ -210,7 +210,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Text(
-                              'Would you like to Proceed using this ID?',
+                              VERIFICATION_PROCEED_id,
                               style: GoogleFonts.roboto(
                                 fontSize: SizeConfig.blockSizeVertical * 2.2,
                                 fontWeight: FontWeight.w500,
@@ -243,7 +243,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                                     }
                                   },
                                   child: Text(
-                                    'NEXT',
+                                    VERIFICATION_NEXT,
                                     style: GoogleFonts.roboto(
                                       fontWeight: FontWeight.w500,
                                       fontSize: SizeConfig.blockSizeVertical * 2,
@@ -276,7 +276,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
                                     });
                                   },
                                   child: Text(
-                                    'Retake Photo',
+                                    VERIFICATION_RETAKE_PHOTO,
                                     style: GoogleFonts.roboto(
                                       fontWeight: FontWeight.w500,
                                       fontSize: SizeConfig.blockSizeVertical * 2,

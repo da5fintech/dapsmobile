@@ -73,8 +73,8 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
     _camera = CameraController(
       description,
       defaultTargetPlatform == TargetPlatform.iOS
-          ? ResolutionPreset.high
-          : ResolutionPreset.ultraHigh,
+          ? ResolutionPreset.ultraHigh
+          : ResolutionPreset.veryHigh,
     );
     await _camera.initialize();
 
@@ -187,8 +187,8 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
                   : Stack(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * 0.30,
-                          width: MediaQuery.of(context).size.width * 0.60,
+                          height: MediaQuery.of(context).size.height * 0.35,
+                          width: MediaQuery.of(context).size.width * 0.65,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(200),
                             border: Border.all(color: COLOR_BLUE, width: 5),

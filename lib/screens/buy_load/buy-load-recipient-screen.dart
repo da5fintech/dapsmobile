@@ -25,6 +25,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
   bool showSuggestion = false;
   List<BuyLoadSuggest> numbers = [];
   AppUtil _appUtil = AppUtil();
+  FocusNode mobileNumber = new FocusNode();
 
   @override
   void initState() {
@@ -76,6 +77,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                                   },
                                   child: TextFormField(
                                     maxLength: 10,
+                                    focusNode: mobileNumber,
                                     keyboardType: TextInputType.phone,
                                     validator: (text) {
                                       if (text == null || text.isEmpty) {

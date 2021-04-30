@@ -45,8 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
       'update-dialog': CustomOverlayScreen(
         backgroundColor: Colors.white.withOpacity(.2),
         content: SwipeDialog(
-          title: 'IMPORTANT UPDATE!',
-          contentMessage: "In order to enjoy and secured experience Please UPDATE to the latest version of our app now!",
+          title: Constants.UPDATE_DIALOG,
+          contentMessage: Constants.UPDATE_DIALOG_CONTENT_MESSAGE,
           cancelBtn: true,
           onOk: () {
             OverlayScreen().pop();
