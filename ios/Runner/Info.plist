@@ -69,7 +69,7 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Allow app to access your location in the background?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow app to access your location when use?</string>
+	<string>Allow app to access your location when in use?</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow app to access the microphone?</string>
 	<key>NSPhotoLibraryUsageDescription</key>

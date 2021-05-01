@@ -15,12 +15,12 @@ const APP_EMAIL = "info@swipe.ph";
 
 const UPDATE_DIALOG = "IMPORTANT UPDATE!";
 const UPDATE_DIALOG_CONTENT_MESSAGE =
-    "In order to enjoy and secured experience Please UPDATE to the latest version of our app now!";
+    "In order to enjoy using this app securely, please UPDATE to the latest version of our app now!";
 
 const MPIN_RECOVERY_TITLE = "MPIN Recovery";
-const MPIN_RECOVERY_CONTENT_MESSAGE = "We need to do 2-step authentication before resetting your MPIN. 6-digit code will be sent to your registered mobile number.";
+const MPIN_RECOVERY_CONTENT_MESSAGE =
+    "We need to do a 2-step authentication process before resetting your MPIN. We will send a 6-digit code to your registered mobile number.";
 const MPIN_RECOVERY_PROCEED = "Proceed";
-
 
 const ONBOARDING_FIRST_SCREEN_TITLE =
     "The Launch of Your New And Secured E-wallet!";
@@ -73,33 +73,37 @@ const LOGIN_FAILED_SUB_TITLE =
     "There was an error with your login information.";
 
 const VERIFICATION_MAIN_SCREEN = "Your account is in Basic Level";
-const VERIFICATION_MAIN_UPGRADE = "Verify your account to ensure account security and unlock more SWIPE services.";
+const VERIFICATION_MAIN_UPGRADE =
+    "Verify your account to ensure account security and unlock more SWIPE services.";
 const VERIFICATION_MAIN_SCREE_STEPS = "Get fully verified in just 3 steps";
 const VERIFICATION_MAIN_LABEL_ID = "Take ID Photo";
 const VERIFICATION_MAIN_LABEL_SCAN_FACE = "Scan Face";
 const VERIFICATIOPN_MAIN_LABEL_INFORMATION = "Personal Information";
-const VERIFICATION_MAIN_UNLOCK = "After verification, unlock more features like:";
+const VERIFICATION_MAIN_UNLOCK =
+    "After verification, unlock more features like:";
 const VERIFICATION_MAIN_LABEL_REMITTANCE = "Remittance";
 const VERIFICATION_MAIN_LABEL_SEND_REQUEST = "Send / Request";
 const VERIFICATION_MAIN_LABEL_BANK_TRANSFER = "Bank Transfer";
-const VERIFICATION_MAIN_LEARN_MORE = "Learn more about verification level perks";
+const VERIFICATION_MAIN_LEARN_MORE =
+    "Learn more about verification level perks";
 
 const VERIFICATION_PHOTO = "Take ID Photo";
 const VERIFICATION_VALID_ID = "Valid IDs";
 const VERFICATION_FRONT_ID = "Front of ID";
-const VERIFICATION_PLACE_ID = "Place your ID within the frame and take a photo.";
+const VERIFICATION_PLACE_ID =
+    "Place your ID within the frame and take a photo.";
 const VERIFICATION_PROCEED_id = "Would you like to proceed using this ID?";
 const VERIFICATION_NEXT = "NEXT";
 const VERIFICATION_RETAKE_PHOTO = "Retake Photo";
 
 const VERIFICATION_SCAN_TITLE = "Scan Face";
 const VERIFICATION_TAKE_SELFIE = "Get ready to take a selfie";
-const VERIFICATION_NOTE = "To fully verify your identity, we need to gather your biological information.";
+const VERIFICATION_NOTE =
+    "To fully verify your identity, we need to gather your biological information.";
 const VERIFICATION_GUIDE = "Position your face within the frame.";
 const VERIFICATION_GUIDE_2 = "You will be automatically scanned.";
 const VERIFICATION_GUIDE_3 = "The process will take few seconds.";
 const VERIFICATION_NOTE_NEXT = 'Are you ready? Tap "NEXT" to start scanning.';
-
 
 const PAYQR_SCREEN_TITLE_TEXT = "Pay QR/Barcode";
 const PAYQR_SCREEN_UPLOAD_TEXT = "Upload QR";
@@ -235,7 +239,8 @@ const CASH_IN_ONLINE_BANK = "Online Bank";
 const CASH_IN_REMITTANCE = "Remittance";
 
 const CASH_IN_LOCATION_DIALOG_TITLE = "Allowed Location Permission";
-const CASH_IN_LOCATION_DIALOG_CONTENT = "In order for us to locate you to our nearby partners we need you allow us access your location.";
+const CASH_IN_LOCATION_DIALOG_CONTENT =
+    "In order for us to locate you to our nearby partners we need you allow us access your location.";
 
 const CASH_IN_PARTNER_DETAILS_TITLE = "Partner Details";
 const CASH_IN_VIEW_NEARBY_STORES = "View nearby branches";
@@ -243,7 +248,8 @@ const CASH_IN_GENERATE_BARCODE = "Generate Barcode";
 const CASH_IN_SUBNOTE_BARCODE =
     "Have the cashier scan this barcode linked to your SWIPE account.";
 const CASH_IN_HOW_TO_CASH = "How to Cash In";
-const CASH_IN_HOW_TO_CASH_SUBNOTE = "You can cash in at any available branch of our official partners.";
+const CASH_IN_HOW_TO_CASH_SUBNOTE =
+    "You can cash in at any available branch of our official partners.";
 const CASH_IN_STEP_1 =
     "Inform the cashier that you would like to ‘Cash In’ to your SWIPE wallet.";
 const CASH_IN_STEP_2 =
