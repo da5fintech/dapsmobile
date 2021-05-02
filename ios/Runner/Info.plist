@@ -58,6 +58,10 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Allow app to access play music in the background?</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Allow app to access the calendar?</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow app to access the camera?</string>
 	<key>NSContactsUsageDescription</key>
@@ -71,9 +75,13 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow app to access your location when in use?</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow app to access the microphone?</string>
+	<string>Allow app to access microphone?</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This app needs to be able to access your motion use</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow app to access the photo library?</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>recognize speech</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
