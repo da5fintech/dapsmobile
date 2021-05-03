@@ -120,6 +120,7 @@ class _SubAppbarWidgetState extends State<SubAppbarWidget> {
   }
 
   void _handleBack() {
-    Get.back();
+    // Get.back();
+    Navigator.pop(context);
   }
 }

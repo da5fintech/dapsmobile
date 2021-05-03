@@ -33,6 +33,7 @@ import 'package:swipe/screens/remittance/pesonet/remittance-pesonet-bank-form-sc
 import 'package:swipe/screens/remittance/pesonet/remittance-pesonet-bank-screen.dart';
 import 'package:swipe/screens/remittance/remittance-categories-screen.dart';
 import 'package:swipe/screens/remittance/instapay/remittance-instapay-banks-screen.dart';
+import 'package:swipe/screens/request_money/request-money-screen.dart';
 import 'package:swipe/screens/services-screen.dart';
 import 'package:swipe/screens/settings/biometrics/biometric-fingerprint-screen.dart';
 import 'package:swipe/screens/settings/change-swipe-mpin/swipe-mpin-screen.dart';
@@ -171,6 +172,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => PayQrUploadScreen());
       case '/services/pay-qr/pay-qr-generate-screen':
         return MaterialPageRoute(builder: (_) => PayQrGenerateScreen());
+      case '/services/request-money':
+        return MaterialPageRoute(builder: (_) => RequestMoneyScreen());
       default:
         return null;
     }

@@ -7,12 +7,14 @@ class AmountMasking extends StatefulWidget {
   Function onChanged;
   String type;
   bool hasError;
+  bool noUnderline;
 
   AmountMasking({
     @required this.controller,
     @required this.onChanged,
     @required this.type,
     @required this.hasError = false,
+    this.noUnderline = false,
   });
 
   @override
@@ -39,6 +41,11 @@ class _AmountMaskingState extends State<AmountMasking> {
         );
       },
       decoration: InputDecoration(
+        border: widget.noUnderline ? InputBorder.none : null,
+        focusedBorder: widget.noUnderline ? InputBorder.none : null,
+        enabledBorder: widget.noUnderline ? InputBorder.none : null,
+        errorBorder: widget.noUnderline ? InputBorder.none : null,
+        disabledBorder: widget.noUnderline ? InputBorder.none : null,
         labelText: widget.type,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         errorText: widget.hasError ? '${widget.type} is required' : null,

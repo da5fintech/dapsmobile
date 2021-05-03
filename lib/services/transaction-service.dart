@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:community_material_icon/community_material_icon.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
+import 'package:swipe/models/notification-model.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
@@ -68,6 +70,11 @@ class TransactionService extends FireStoreService {
               transaction.product, transaction.amount, user);
           await saveSuggestion.saveNumber(
               product.mobileNumber, transaction.offering);
+        } else if(transaction.offering == SwipeServiceOffering.REQUEST_MONEY) {
+          NotificationModel product = transaction.product;
+          var service = getIt.get<AccountService>();
+          print('REQUEST MONEY');
+          return null;
         }
 
         ///Deduct user balance if any services
