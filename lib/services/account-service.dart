@@ -146,5 +146,4 @@ class AccountService extends FireStoreService {
     return result;
   }
 
-
 }

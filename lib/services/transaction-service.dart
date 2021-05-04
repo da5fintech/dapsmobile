@@ -70,11 +70,6 @@ class TransactionService extends FireStoreService {
               transaction.product, transaction.amount, user);
           await saveSuggestion.saveNumber(
               product.mobileNumber, transaction.offering);
-        } else if(transaction.offering == SwipeServiceOffering.REQUEST_MONEY) {
-          NotificationModel product = transaction.product;
-          var service = getIt.get<AccountService>();
-          print('REQUEST MONEY');
-          return null;
         }
 
         ///Deduct user balance if any services
