@@ -50,7 +50,8 @@ class NotificationModel extends ProductModel {
     var data = document.data();
     var model = new NotificationModel();
     model.ownerId = data['ownerId'];
-    model.senderMobileNumber = data['senderDisplayName'];
+    model.amount = data['amount'];
+    model.senderDisplayName = data['senderDisplayName'];
     model.createdAt = data['createdAt'];
     model.subject = data['subject'];
     model.content = data['content'];

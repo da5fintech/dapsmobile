@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:swipe/models/notification-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/services/firestore-service.dart';
@@ -36,6 +37,19 @@ class RequestMoneyService extends FireStoreService {
       print('Something went wrong');
       print(err);
     }
+  }
+
+  Future<List<NotificationModel>> getRequest (UserModel user) async {
+    var result = await collection.doc(user.id).collection('notifications')
+       .orderBy('createdAt', descending: true)
+       .get();
+
+    var notifcations = result.docs.map((res) {
+      return NotificationModel.fromDocumentSnapshot(res);
+    }).toList();
+
+    return notifcations;
+
   }
 
 }

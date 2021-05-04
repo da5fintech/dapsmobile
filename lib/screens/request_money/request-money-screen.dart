@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/amount-masking.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/common/widgets/swipe-dialog.dart';
@@ -31,6 +32,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
   bool hasError = false;
   String currentDate;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  AppUtil _appUtil = AppUtil();
   TextEditingController amount = TextEditingController(text: "100");
   TextEditingController subjectRequest = TextEditingController();
   TextEditingController messageRequest = TextEditingController();
@@ -76,7 +78,6 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
           cancelBtn: false,
           onOk: () {
             OverlayScreen().pop();
-            Navigator.pop(context);
             Navigator.pop(context);
           },
         ),
@@ -384,7 +385,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
     if(status || hasError) {
       try {
         //find reciever id number
-        var notificationModel = new NotificationModel(amount: double.parse(amount.text));
+        var notificationModel = new NotificationModel(amount: _appUtil.unFormatAmount(amount.text));
         notificationModel.profilePhoto = store.user.photoURL;
         notificationModel.ownerId = store.user.id;
         notificationModel.senderDisplayName = store.user.displayName;
