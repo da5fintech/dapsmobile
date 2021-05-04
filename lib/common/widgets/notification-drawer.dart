@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/models/notification-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
@@ -29,7 +30,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
   }
 
   Widget _hasNotifications () {
-    if(notifications.length < 0) {
+    if(notifications.length > 1) {
       return Expanded(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +69,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                   backgroundColor: COLOR_ORANGE,
                   child: store.user.photoURL == null
                       ? Text(
-                    store.user.getInitials(),
+                    res.senderDisplayName.substring(0, 1).toUpperCase(),
                     style: GoogleFonts.roboto(color: Colors.white),
                   )
                       : ClipOval(
@@ -81,7 +82,6 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                     style: GoogleFonts.roboto(
                       color: Colors.black,
                       fontSize: SizeConfig.blockSizeVertical * 2,
-                      height: 1.5,
                       fontWeight: FontWeight.bold
                     ),
                     children: <TextSpan>[
@@ -96,8 +96,42 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                     ],
                   ),
                 ),
+                subtitle: Padding(
+                  padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 1),
+                  child: Row(
+                    children: [
+                      Container(
+                          height: SizeConfig.blockSizeVertical * 3,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                              color: COLOR_DARK_PURPLE,
+                              borderRadius: BorderRadius.all(Radius.circular(20))
+                          ),
+                          child: Center(
+                            child: Text(
+                              res.status,
+                              style: GoogleFonts.roboto(
+                                fontSize: SizeConfig.blockSizeVertical * 1.3,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          )
+                      ),
+                      Spacer(),
+                      Text(
+                        res.createdAt,
+                          style: GoogleFonts.roboto(
+                              fontSize: SizeConfig.blockSizeVertical * 1.5,
+                              color: COLOR_DARK_GRAY
+                          )
+                      )
+                    ],
+                  ),
+                ),
                 trailing: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                  },
                   child: Icon(Icons.send_to_mobile)
                 ),
               );

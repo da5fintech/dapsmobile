@@ -14,6 +14,7 @@ class NotificationModel extends ProductModel {
   String receiverId;
   String purpose;
   String profilePhoto;
+  String status;
 
   NotificationModel({
     this.ownerId,
@@ -26,6 +27,7 @@ class NotificationModel extends ProductModel {
     this.receiverId,
     this.purpose,
     this.profilePhoto,
+    this.status,
     double amount,
   }) : super(amount: amount);
 
@@ -60,6 +62,7 @@ class NotificationModel extends ProductModel {
     model.receiverId = data['receiverId'];
     model.purpose = data['purpose'];
     model.profilePhoto = data['profilePhoto'];
+    model.status = data['status'];
     return model;
   }
 
