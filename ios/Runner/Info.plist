@@ -66,19 +66,19 @@
 	<string>Allow app to access the calendar?</string>
 
 	<key>NSCameraUsageDescription</key>
-	<string>Allow app to access the camera?</string>
+	<string>Allow access to camera to use it as scanner?</string>
 
 	<key>NSFaceIDUsageDescription</key>
 	<string>Allow app to authenticate using the Face ID?</string>
 
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Allow app to access your location while in use?</string>
+	<string>Allow app to access to locate you to our nearest partners?</string>
 
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Allow app to access your location in the background?</string>
 
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow app to access your location when in use?</string>
+	<string>Allow app to access to locate you to our nearest partners?</string>
 
 	<key>NSMotionUsageDescription</key>
 	<string>This app needs to be able to access your motion use</string>
