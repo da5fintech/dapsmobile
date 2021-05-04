@@ -79,6 +79,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
           onOk: () {
             OverlayScreen().pop();
             Navigator.pop(context);
+            Navigator.pop(context);
           },
         ),
       ),

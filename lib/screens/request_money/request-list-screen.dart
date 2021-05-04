@@ -1,41 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/util.dart';
+import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/main.dart';
 import 'package:swipe/models/notification-model.dart';
 import 'package:swipe/store/application-store.dart';
-import 'package:swipe/main.dart';
 
 final store = getIt<ApplicationStore>();
 
-class NotificationDrawer extends StatefulWidget {
+class RequestListScreen extends StatefulWidget {
   @override
-  _NotificationDrawerState createState () =>
-      _NotificationDrawerState();
+  _RequestListScreenState createState() =>
+      _RequestListScreenState();
 }
 
-class _NotificationDrawerState extends State<NotificationDrawer> {
-  List<NotificationModel> notifications = List<NotificationModel>();
+class _RequestListScreenState extends State<RequestListScreen> {
+  List<NotificationModel> saveRequests = [];
 
   @override
-  void initState () {
-    getNotifications();
-
+  void initState() {
+    super.initState();
+    getSaveRequest();
   }
 
-  Future<void> getNotifications () async {
-    notifications = await store.requestMoneyService.getRequest(store.user);
+  getSaveRequest() async {
+    saveRequests = await store.requestMoneyService.getSendRequest(store.user);
+    print('length ');
+    print(saveRequests.length);
     setState(() {});
   }
 
-  Widget _hasNotifications () {
-    if(notifications.isEmpty) {
+  Widget _hasSaveRequest() {
+    if (saveRequests.isEmpty) {
       return Expanded(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.notification_important, size: SizeConfig.blockSizeVertical * 18, color: COLOR_DARK_PURPLE),
+            Icon(Icons.mark_email_read_rounded,
+                size: SizeConfig.blockSizeVertical * 18,
+                color: Colors.white),
             Text(
                 'Nothing here!',
                 style: GoogleFonts.roboto(
@@ -46,7 +51,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
             ),
             SizedBox(height: 20),
             Text(
-                'Tap the notification button below and\ncheck again',
+                'Tap the button below to create Invoice request.',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
                   fontSize: SizeConfig.blockSizeVertical * 2.3,
@@ -61,8 +66,9 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
       return Expanded(
         child: ListView(
           children: ListTile.divideTiles(
+            color: Colors.white,
             context: context,
-            tiles: notifications?.map((res) {
+            tiles: saveRequests?.map((res) {
               return ListTile(
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: CircleAvatar(
@@ -80,15 +86,16 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                   text: TextSpan(
                     text: res.senderDisplayName,
                     style: GoogleFonts.roboto(
-                      color: Colors.black,
-                      fontSize: SizeConfig.blockSizeVertical * 2,
-                      fontWeight: FontWeight.bold
+                        color: Colors.white,
+                        fontSize: SizeConfig.blockSizeVertical * 2,
+                        fontWeight: FontWeight.bold
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: ' was requesting you to send PHP ${res.amount}0',
+                        text: ' you request to +${res.receiverMobileNumber} PHP ${res
+                            .amount}0',
                         style: GoogleFonts.roboto(
-                          color: COLOR_DARK_GRAY,
+                          color: Colors.white,
                           fontSize: SizeConfig.blockSizeVertical * 1.7,
                           fontWeight: FontWeight.w300,
                         ),
@@ -97,21 +104,24 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                   ),
                 ),
                 subtitle: Padding(
-                  padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 1),
+                  padding: EdgeInsets.only(
+                      top: SizeConfig.blockSizeVertical * 1),
                   child: Row(
                     children: [
                       Container(
                           height: SizeConfig.blockSizeVertical * 3,
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           decoration: BoxDecoration(
-                              color: COLOR_DARK_PURPLE,
-                              borderRadius: BorderRadius.all(Radius.circular(20))
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(20))
                           ),
                           child: Center(
                             child: Text(
                               res.status,
                               style: GoogleFonts.roboto(
-                                fontSize: SizeConfig.blockSizeVertical * 1.3,
+                                fontSize: SizeConfig.blockSizeVertical *
+                                    1.3,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -120,19 +130,19 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                       ),
                       Spacer(),
                       Text(
-                        res.createdAt,
+                          res.createdAt,
                           style: GoogleFonts.roboto(
-                              fontSize: SizeConfig.blockSizeVertical * 1.5,
-                              color: COLOR_DARK_GRAY
+                              fontSize: SizeConfig.blockSizeVertical *
+                                  1.5,
+                              color: Colors.white
                           )
                       )
                     ],
                   ),
                 ),
                 trailing: InkWell(
-                  onTap: () {
-                  },
-                  child: Icon(Icons.send_to_mobile)
+                    onTap: () {},
+                    child: Icon(Icons.send_to_mobile, color: Colors.white)
                 ),
               );
             })?.toList() ?? []
@@ -142,46 +152,28 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: SizeConfig.screenHeight,
-      width: SizeConfig.screenWidth,
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              'Notification',
-              style: GoogleFonts.roboto(
-                fontSize: SizeConfig.blockSizeVertical * 3,
-                fontWeight: FontWeight.w700,
-                color: Colors.black
-              )
-            ),
-            trailing: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.close, color: COLOR_DARK_GRAY),
-            ),
-          ),
-          _hasNotifications(),
-          ButtonTheme(
-            minWidth: double.infinity,
-            child: RaisedButton(
-              color: COLOR_DARK_PURPLE,
-              onPressed: () async {
-                getNotifications();
-              },
-              child: Text('Refresh', style: TextStyle(color: Colors.white)),
-            )
-          )
-        ],
+    return Scaffold(
+      appBar: SubAppbarWidget(
+        elevation: 0,
+        title: 'Request Money',
+      ),
+      body: Container(
+        width: SizeConfig.screenWidth,
+        child: Column(
+          children: [
+            _hasSaveRequest(),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.toNamed('/services/request-money/form');
+          },
+          child: Icon(Icons.email, color: COLOR_DARK_GRAY)
       ),
     );
   }
+
 }

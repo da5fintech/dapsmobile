@@ -47,9 +47,18 @@ class RequestMoneyService extends FireStoreService {
     var notifcations = result.docs.map((res) {
       return NotificationModel.fromDocumentSnapshot(res);
     }).toList();
-
     return notifcations;
+  }
 
+  Future<List<NotificationModel>> getSendRequest (UserModel user) async {
+    var result = await collection.doc(user.id).collection('save_requests')
+        .orderBy('createdAt', descending: true)
+        .get();
+
+    var saveRequests = result.docs.map((res) {
+      return NotificationModel.fromDocumentSnapshot(res);
+    }).toList();
+    return saveRequests;
   }
 
 }

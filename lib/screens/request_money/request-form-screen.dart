@@ -193,7 +193,7 @@ class _RequestFormScreenState extends State<RequestFormScreen> {
                                         "----------------------\n"
                                         "content of the message\n"
                                         "-----------------------\n",
-                                      labelText: 'Message: (optional)',
+                                      labelText: 'Invoice Message: (optional)',
                                       floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                     ),
