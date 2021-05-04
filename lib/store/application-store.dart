@@ -14,6 +14,7 @@ import 'package:swipe/services/authentication-service.dart';
 import 'package:swipe/services/autosweep-service.dart';
 import 'package:swipe/services/bills-payment-service.dart';
 import 'package:swipe/services/cashin-service.dart';
+import 'package:swipe/services/request-money-service.dart';
 import 'package:swipe/services/direct-pay-service.dart';
 import 'package:swipe/services/eloading-service.dart';
 import 'package:swipe/services/instapay-service.dart';
@@ -59,6 +60,7 @@ abstract class _ApplicationStore with Store {
   EloadingService eloadingService;
   BillsPaymentService billsPaymentService;
   InstapayService instapayService;
+  RequestMoneyService requestMoneyService;
   PesonetService pesonetService;
   TransactionService transactionService;
   AutosweepService autosweepService;
@@ -97,6 +99,7 @@ abstract class _ApplicationStore with Store {
     transactionService = TransactionService(accountService: accountService);
     instapayService = InstapayService();
     pesonetService = PesonetService();
+    requestMoneyService = RequestMoneyService();
     autosweepService = AutosweepService();
     directPayService = DirectPayService();
     cashInService = CashInService();
@@ -112,6 +115,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(transactionService);
     getIt.registerSingleton(instapayService);
     getIt.registerSingleton(pesonetService);
+    getIt.registerSingleton(requestMoneyService);
     getIt.registerSingleton(autosweepService);
     getIt.registerSingleton(directPayService);
     getIt.registerSingleton(cashInService);

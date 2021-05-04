@@ -335,16 +335,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ),
                               text: SERVICES_SCREEN_BANK_TRANSFER_TEXT,
                             ),
-                            Opacity(
-                              opacity: .5,
-                              child: ServiceButtonWidget(
-                                offering: SwipeServiceOffering.REQUEST_MONEY,
-                                onPressed: _handleButtonClick,
-                                icon: SvgPicture.asset(
-                                  'assets/svg2/ICONS_SEND_AND_RECEIVE.svg',
-                                ),
-                                text: SERVICES_SCREEN_REQUEST_MONEY_TEXT,
+                            ServiceButtonWidget(
+                              offering: SwipeServiceOffering.REQUEST_MONEY,
+                              onPressed: _handleButtonClick,
+                              icon: SvgPicture.asset(
+                                'assets/svg2/ICONS_SEND_AND_RECEIVE.svg',
                               ),
+                              text: SERVICES_SCREEN_REQUEST_MONEY_TEXT,
                             ),
                             Opacity(
                               opacity: .5,
@@ -487,6 +484,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
       Get.toNamed("/services/remittance/remittance-categories-screen");
     } else if (offering == SwipeServiceOffering.DIRECT_SEND) {
       Get.toNamed("/services/direct-send");
+    } else if (offering == SwipeServiceOffering.REQUEST_MONEY) {
+      Get.toNamed('/services/request-money');
     } else {
       OverlayScreen().show(
         context,

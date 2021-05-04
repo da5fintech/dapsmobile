@@ -114,4 +114,36 @@ class AccountService extends FireStoreService {
 
     return records;
   }
+
+  Future<Map<String, dynamic>> findMobileUser (String mobileNumber) async {
+    var result = await collection
+        .where('mobileNumber', isEqualTo: mobileNumber)
+        .get()
+        .then((value) {
+          if(value.docs.length > 0) {
+            print('has items');
+            return {
+              'status': true,
+              'reason': 'User mobile number found',
+              'queryUser': UserModel.fromDocumentSnapshot(value.docs.first),
+            };
+          } else {
+            print('no items');
+            return {
+              'status': false,
+              'reason': 'Something went wrong',
+              'queryUser': [],
+            };
+          }
+
+        })
+        .catchError((error) {
+          return {
+            'status': false,
+            'reason': 'Something went wrong!',
+          };
+        });
+    return result;
+  }
+
 }

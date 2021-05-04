@@ -76,6 +76,7 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                                     setState(() {});
                                   },
                                   child: TextFormField(
+                                    autofocus: true,
                                     maxLength: 10,
                                     focusNode: mobileNumber,
                                     keyboardType: TextInputType.phone,
