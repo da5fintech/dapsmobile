@@ -18,6 +18,8 @@ import 'package:swipe/common/widgets/amount-widget.dart';
 import 'package:swipe/common/widgets/drawer-menu-widget.dart';
 import 'package:swipe/common/widgets/soon-release-dialog.dart';
 import 'package:swipe/common/widgets/verified-dialog.dart';
+import 'package:swipe/models/notification-model.dart';
+import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
 import 'package:swipe/services/account-service.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/main-app-bar.widget.dart';
@@ -39,6 +41,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
   @override
   void initState() {
     super.initState();
+    getNotifications();
+  }
+
+  Future<void> getNotifications () async {
+    store.notifications = await store.requestMoneyService.getRequest(store.user);
+    setState(() {});
   }
 
   @override
@@ -77,7 +85,11 @@ class _ServicesScreenState extends State<ServicesScreen> {
     });
     return WillPopScope(
       onWillPop: () async {
-        if(_drawerKey.currentState.isDrawerOpen) {
+        if(_drawerKey.currentState.isDrawerOpen || _drawerKey.currentState.isEndDrawerOpen) {
+          if(_drawerKey.currentState.isEndDrawerOpen) {
+            store.notifications = await store.requestMoneyService.isNotificationSeen(store.user, store.notifications);
+            setState(() {});
+          }
           Navigator.of(context).pop();
         } else {
           OverlayScreen().show(
@@ -85,13 +97,25 @@ class _ServicesScreenState extends State<ServicesScreen> {
             identifier: 'close-dialog',
           );
         }
-
       },
       child: Scaffold(
         // backgroundColor: Constants.backgroundColor2,
         key: _drawerKey,
         drawer: DrawerMenuWidget(level: store.user.level),
-        endDrawer: NotificationDrawer(),
+        endDrawer: NotificationDrawer(
+          notifications: store.notifications,
+          directSend: (notification) {
+            if (store.user.level >= 1) {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => DirectSendFormScreen(notification: notification))
+              );
+              return null;
+            }
+          },
+              
+        ),
         appBar: MainAppBarWidget(
           queryData: queryData.devicePixelRatio,
           elevation: 0,

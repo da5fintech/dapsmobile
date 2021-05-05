@@ -84,6 +84,9 @@ class _CashInMainScreen extends State<CashInMainScreen>{
           title: CASH_IN_LOCATION_DIALOG_TITLE,
           contentMessage: CASH_IN_LOCATION_DIALOG_CONTENT,
           cancelBtn: true,
+          cancel: () {
+            OverlayScreen().pop();
+          },
           onOk: () async {
             OverlayScreen().pop();
             if(await handler.Permission.location.request().isGranted) {

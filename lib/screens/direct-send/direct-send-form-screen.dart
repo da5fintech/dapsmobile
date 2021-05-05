@@ -9,6 +9,7 @@ import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/amount-masking.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/models/auto-suggest-model.dart';
+import 'package:swipe/models/notification-model.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/screens/payment/processing-failed-dialog.dart';
@@ -18,6 +19,10 @@ import 'package:swipe/main.dart';
 final store = getIt<ApplicationStore>();
 
 class DirectSendFormScreen extends StatefulWidget {
+  NotificationModel notification;
+
+  DirectSendFormScreen({this.notification});
+
   @override
   _DirectSendFormScreenState createState() =>
       _DirectSendFormScreenState();
@@ -37,6 +42,8 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
   @override
   void initState() {
     super.initState();
+    mobileNumber.text = _appUtil.removeCountryCodeNumber(widget.notification.senderMobileNumber);
+    amount.text = widget.notification.amount.toString();
     onLoadNumbers();
   }
 

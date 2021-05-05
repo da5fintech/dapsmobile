@@ -15,6 +15,8 @@ import 'package:swipe/common/size.config.dart';
 import 'dart:io';
 import 'dart:core';
 
+import 'package:swipe/models/notification-model.dart';
+
 typedef HandleDetection = Future<List<Face>> Function(
     FirebaseVisionImage image);
 
@@ -302,6 +304,17 @@ class AppUtil extends DateUtil {
   double unFormatAmount (String amount) {
     var a = amount.replaceAll(",", "");
     return double.parse(a);
+  }
+
+  int countUnseenNotifications (List<NotificationModel> notifs) {
+    int counter = 0;
+    if(notifs.isEmpty) return 0;
+    notifs.map((n) {
+      if(!n.isSeen) {
+        counter += 1;
+      }
+    }).toList();
+    return counter;
   }
 
 }
