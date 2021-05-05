@@ -109,11 +109,11 @@ class _SplashScreenState extends State<SplashScreen> {
   _initialize(BuildContext context) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     Map<Permission, PermissionStatus> statuses = await [
-      Permission.contacts,
+      // Permission.contacts,
       Permission.storage,
       Permission.location,
       Permission.camera,
-      Permission.microphone,
+      // Permission.microphone,
     ].request();
 
     store.setVersionNumber(packageInfo.version);
