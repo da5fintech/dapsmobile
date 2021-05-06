@@ -111,9 +111,19 @@ class _ServicesScreenState extends State<ServicesScreen> {
                 context,
                 MaterialPageRoute(builder: (_) => DirectSendFormScreen(notification: notification))
               );
-              return null;
+            } else {
+              Navigator.pop(context);
+              OverlayScreen().show(
+                context,
+                identifier: 'unverified',
+              );
             }
           },
+          close: () async {
+            store.notifications = await store.requestMoneyService.isNotificationSeen(store.user, store.notifications);
+            setState(() {});
+            Navigator.pop(context);
+          }
               
         ),
         appBar: MainAppBarWidget(

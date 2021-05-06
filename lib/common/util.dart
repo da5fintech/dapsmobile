@@ -132,6 +132,14 @@ class AppUtil extends DateUtil {
     return int.parse(rndnumber);
   }
 
+  int uid () {
+    var rndnumber = "";
+    var rnd = new Random();
+    rndnumber = (rnd.nextInt(90000000) + 10000000).toString();
+    return int.parse(rndnumber);
+
+  }
+
   String splitQrData (String customQr, amount) {
 
     List qrData = customQr.split('/');

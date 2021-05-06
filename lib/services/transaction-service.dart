@@ -15,6 +15,7 @@ import 'package:swipe/services/firestore-service.dart';
 import 'package:swipe/services/instapay-service.dart';
 import 'package:swipe/services/opt-service.dart';
 import 'package:swipe/services/pesonet-service.dart';
+import 'package:swipe/services/request-money-service.dart';
 import 'package:swipe/services/save-suggestions-services.dart';
 
 import '../main.dart';
@@ -63,6 +64,7 @@ class TransactionService extends FireStoreService {
           await service.process(transaction.product, transaction.amount);
           await saveSuggestion.savePlateNumbers(transaction.product);
         } else if (transaction.offering == SwipeServiceOffering.DIRECT_SEND) {
+          var updateRequest = getIt.get<RequestMoneyService>();
           var saveSuggestion = getIt.get<SaveSuggestionsServices>();
           var service = getIt.get<DirectPayService>();
           DirectPayProduct product = transaction.product;
@@ -70,6 +72,9 @@ class TransactionService extends FireStoreService {
               transaction.product, transaction.amount, user);
           await saveSuggestion.saveNumber(
               product.mobileNumber, transaction.offering);
+          if(product.notification != null) {
+            await updateRequest.updateRequestStatus(user, product.notification);
+          }
         }
 
         ///Deduct user balance if any services
