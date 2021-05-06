@@ -105,7 +105,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
         endDrawer: NotificationDrawer(
           notifications: store.notifications,
           directSend: (notification) {
-            if (store.user.level >= 1) {
+            if (store.user.level >= 2) {
               Navigator.pop(context);
               Navigator.push(
                 context,
