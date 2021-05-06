@@ -142,16 +142,33 @@ class _RequestListScreenState extends State<RequestListScreen> {
                     ],
                   ),
                 ),
-                trailing: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => RequestMoneyScreen(notification: res),
-                        )
-                      );
-                    },
-                    child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: SizeConfig.blockSizeVertical * 2)
+                trailing: PopupMenuButton(
+                  onSelected: (value) {
+                    switch(value) {
+                      case 'view':
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => RequestMoneyScreen(notification: res),
+                            )
+                        );
+                        break;
+                      case 'delete':
+                        print('delete');
+                        break;
+                    }
+                  },
+                  icon: Icon(Icons.more_vert, color: Colors.white, size: SizeConfig.blockSizeVertical * 2),
+                  itemBuilder: (_) => <PopupMenuItem<String>>[
+                    new PopupMenuItem<String>(
+                      value: 'view',
+                      child: Text('View', style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7, color: Colors.black)),
+                    ),
+                    new PopupMenuItem<String>(
+                      value: 'delete',
+                      child: Text('delete', style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7, color: Colors.black)),
+                    ),
+                  ],
                 ),
               );
             })?.toList() ?? []
