@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/models/notification-model.dart';
+import 'package:swipe/screens/request_money/request-money-screen.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
 
@@ -78,6 +79,12 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                 onLongPress: () async {
                   _deleteNotification(res);
                 },
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => RequestMoneyScreen(notification: res))
+                  );
+                },
                 tileColor: !res.isSeen ? COLOR_BLUE.withOpacity(0.2) : null,
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: CircleAvatar(
@@ -146,9 +153,11 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                 ),
                 trailing: InkWell(
                   onTap: () async {
-                    await _confirmationModal(res);
+                    if(res.status != 'Closed') {
+                      await _confirmationModal(res);
+                    }
                   },
-                  child: Icon(Icons.send_to_mobile, color: COLOR_DARK_PURPLE)
+                  child: Icon(Icons.send_to_mobile, color: res.status != 'Closed' ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY)
                 ),
               );
             })?.toList() ?? []

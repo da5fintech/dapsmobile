@@ -143,7 +143,8 @@ class _RequestListScreenState extends State<RequestListScreen> {
                   ),
                 ),
                 trailing: PopupMenuButton(
-                  onSelected: (value) {
+                  padding: EdgeInsets.zero,
+                  onSelected: (value) async {
                     switch(value) {
                       case 'view':
                         Navigator.push(
@@ -152,9 +153,11 @@ class _RequestListScreenState extends State<RequestListScreen> {
                               builder: (_) => RequestMoneyScreen(notification: res),
                             )
                         );
-                        break;
+                        return;
                       case 'delete':
-                        print('delete');
+                        await store.requestMoneyService.deleteSendRequest(store.user, res);
+                        saveRequests.remove(res);
+                        setState(() {});
                         break;
                     }
                   },
@@ -166,7 +169,7 @@ class _RequestListScreenState extends State<RequestListScreen> {
                     ),
                     new PopupMenuItem<String>(
                       value: 'delete',
-                      child: Text('delete', style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7, color: Colors.black)),
+                      child: Text('Delete', style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7, color: Colors.black)),
                     ),
                   ],
                 ),

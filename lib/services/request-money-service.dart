@@ -109,9 +109,33 @@ class RequestMoneyService extends FireStoreService {
     return result;
   }
 
+  Future<NotificationModel> findReceiver(pathName, uid) async {
+    var result = await db
+        .collection(pathName)
+        .where('uid', isEqualTo: uid)
+        .get()
+        .then((res) {
+      return NotificationModel.fromDocumentSnapshot(res.docs.first);
+    }).catchError((err) {
+      print(err);
+    });
+    return result;
+  }
+
   Future deleteRequest(
       UserModel user,
       NotificationModel notification) async {
     await deleteById('${user.id}/notifications/${notification.id}');
+  }
+
+  Future deleteSendRequest(
+      UserModel user,
+      NotificationModel notification) async {
+    await deleteById('${user.id}/save_requests/${notification.id}');
+    var a = await findReceiver('$collectionName/${notification.receiverId}/notifications', notification.uid);
+    if(a == null) return null;
+    await update('${notification.receiverId}/notifications/${a.id}',
+      {...notification.toMap(), 'status': 'Closed'}
+    );
   }
 }
