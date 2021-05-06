@@ -108,7 +108,7 @@ class TransactionService extends FireStoreService {
       }
     } else {
       return GenericProcessingResponse(
-          status: false, reference: "", message: "Not enough fund", result: "Not enough fund");
+          status: false, reference: "", message: "Insufficient funds", result: "Insufficient funds");
     }
 
   }
@@ -132,7 +132,7 @@ class TransactionService extends FireStoreService {
 
     if (balance < totalAmount) {
       await Future.delayed(Duration(seconds: 1));
-      throw NotEnoughFundsError(message: "Not enough funds");
+      throw NotEnoughFundsError(message: "Insufficient funds");
     }
 
     await collection.doc(user.id).update({
