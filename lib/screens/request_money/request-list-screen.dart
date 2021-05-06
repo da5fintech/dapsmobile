@@ -6,6 +6,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/models/notification-model.dart';
+import 'package:swipe/screens/request_money/request-money-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
@@ -112,6 +113,7 @@ class _RequestListScreenState extends State<RequestListScreen> {
                           height: SizeConfig.blockSizeVertical * 3,
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           decoration: BoxDecoration(
+                              color: res.status == "Approved" ? COLOR_GREEN : null,
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.all(
                                   Radius.circular(20))
@@ -141,8 +143,15 @@ class _RequestListScreenState extends State<RequestListScreen> {
                   ),
                 ),
                 trailing: InkWell(
-                    onTap: () {},
-                    child: Icon(Icons.send_to_mobile, color: Colors.white)
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => RequestMoneyScreen(notification: res),
+                        )
+                      );
+                    },
+                    child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: SizeConfig.blockSizeVertical * 2)
                 ),
               );
             })?.toList() ?? []

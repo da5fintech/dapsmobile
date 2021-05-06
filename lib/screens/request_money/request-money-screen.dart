@@ -21,6 +21,10 @@ import 'package:swipe/models/transaction-model.dart';
 final store = getIt<ApplicationStore>();
 
 class RequestMoneyScreen extends StatefulWidget {
+  NotificationModel notification;
+
+  RequestMoneyScreen({this.notification = null});
+
   @override
   _RequestMoneyScreenState createState () =>
       _RequestMoneyScreenState();
@@ -44,6 +48,15 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
     var outputDate = DateFormat('MM/dd/yyyy');
     var date = outputDate.format(DateTime.now());
     currentDate = date;
+
+    if(widget.notification != null) {
+      amount.text = widget.notification.amount.toString();
+      subjectRequest.text = widget.notification.subject;
+      messageRequest.text = widget.notification.subject;
+      purposeRequest.text = widget.notification.purpose;
+      receiver.text = widget.notification.receiverMobileNumber;
+    }
+
     super.initState();
   }
 
@@ -354,27 +367,29 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              width: double.infinity,
-              height: 40,
-              child: RaisedButton(
-                onPressed: () {
-                  if(amount.text == "") {
-                    hasError = true;
-                  } else {
-                    hasError = false;
-                  }
-                  setState(() {});
+            if(widget.notification == null) ...[
+              SizedBox(
+                  width: double.infinity,
+                  height: 40,
+                  child: RaisedButton(
+                    onPressed: () {
+                      if(amount.text == "") {
+                        hasError = true;
+                      } else {
+                        hasError = false;
+                      }
+                      setState(() {});
 
-                  if(subjectRequest.text == "") {
-                    _navigateToForm();
-                  } else {
-                    _handleNext();
-                  }
-                },
-                child: Text('Request Now'),
+                      if(subjectRequest.text == "") {
+                        _navigateToForm();
+                      } else {
+                        _handleNext();
+                      }
+                    },
+                    child: Text('Request Now'),
+                  )
               )
-            )
+            ]
           ],
         ),
       ),
