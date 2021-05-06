@@ -5,6 +5,7 @@ import 'package:swipe/models/product-model.dart';
 
 class NotificationModel extends ProductModel {
   String id;
+  int uid;
   String ownerId;
   String senderDisplayName;
   String createdAt;
@@ -20,6 +21,7 @@ class NotificationModel extends ProductModel {
 
   NotificationModel({
     this.id,
+    this.uid,
     this.ownerId,
     this.senderDisplayName,
     this.createdAt,
@@ -56,6 +58,7 @@ class NotificationModel extends ProductModel {
     var data = document.data();
     var model = new NotificationModel();
     model.id = document.id;
+    model.uid = data['uid'];
     model.ownerId = data['ownerId'];
     model.amount = data['amount'];
     model.senderDisplayName = data['senderDisplayName'];

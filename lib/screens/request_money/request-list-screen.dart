@@ -6,6 +6,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/models/notification-model.dart';
+import 'package:swipe/screens/request_money/request-money-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
@@ -112,6 +113,7 @@ class _RequestListScreenState extends State<RequestListScreen> {
                           height: SizeConfig.blockSizeVertical * 3,
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           decoration: BoxDecoration(
+                              color: res.status == "Approved" ? COLOR_GREEN : null,
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.all(
                                   Radius.circular(20))
@@ -140,9 +142,36 @@ class _RequestListScreenState extends State<RequestListScreen> {
                     ],
                   ),
                 ),
-                trailing: InkWell(
-                    onTap: () {},
-                    child: Icon(Icons.send_to_mobile, color: Colors.white)
+                trailing: PopupMenuButton(
+                  padding: EdgeInsets.zero,
+                  onSelected: (value) async {
+                    switch(value) {
+                      case 'view':
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => RequestMoneyScreen(notification: res),
+                            )
+                        );
+                        return;
+                      case 'delete':
+                        await store.requestMoneyService.deleteSendRequest(store.user, res);
+                        saveRequests.remove(res);
+                        setState(() {});
+                        break;
+                    }
+                  },
+                  icon: Icon(Icons.more_vert, color: Colors.white, size: SizeConfig.blockSizeVertical * 2),
+                  itemBuilder: (_) => <PopupMenuItem<String>>[
+                    new PopupMenuItem<String>(
+                      value: 'view',
+                      child: Text('View', style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7, color: Colors.black)),
+                    ),
+                    new PopupMenuItem<String>(
+                      value: 'delete',
+                      child: Text('Delete', style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 1.7, color: Colors.black)),
+                    ),
+                  ],
                 ),
               );
             })?.toList() ?? []

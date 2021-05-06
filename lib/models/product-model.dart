@@ -2,6 +2,7 @@ import 'package:flavor/flavor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:hive/hive.dart';
+import 'package:swipe/models/notification-model.dart';
 
 part 'product-model.g.dart';
 
@@ -260,7 +261,8 @@ class DirectPayProduct extends ProductModel {
   int fee;
   String message;
   String mobileNumber;
-  DirectPayProduct({String name, double amount, this.mobileNumber, this.message, this.fee}) : super(name: name, amount: amount);
+  NotificationModel notification;
+  DirectPayProduct({String name, double amount, this.mobileNumber, this.message, this.fee, this.notification = null}) : super(name: name, amount: amount);
 }
 
 class CashInProduct extends ProductModel {

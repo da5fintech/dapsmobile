@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/models/notification-model.dart';
+import 'package:swipe/screens/request_money/request-money-screen.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
 
@@ -13,11 +14,13 @@ final store = getIt<ApplicationStore>();
 
 class NotificationDrawer extends StatefulWidget {
   List<NotificationModel> notifications;
-  final directSend;
+  final Function directSend;
+  final Function close;
 
   NotificationDrawer({
     this.notifications,
     this.directSend,
+    this.close
   });
 
   @override
@@ -73,6 +76,15 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
             context: context,
             tiles: notifications?.map((res) {
               return ListTile(
+                onLongPress: () async {
+                  _deleteNotification(res);
+                },
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => RequestMoneyScreen(notification: res))
+                  );
+                },
                 tileColor: !res.isSeen ? COLOR_BLUE.withOpacity(0.2) : null,
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: CircleAvatar(
@@ -141,9 +153,11 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                 ),
                 trailing: InkWell(
                   onTap: () async {
-                    await _confirmationModal(res);
+                    if(res.status != 'Closed') {
+                      await _confirmationModal(res);
+                    }
                   },
-                  child: Icon(Icons.send_to_mobile, color: COLOR_DARK_PURPLE)
+                  child: Icon(Icons.send_to_mobile, color: res.status != 'Closed' ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY)
                 ),
               );
             })?.toList() ?? []
@@ -171,6 +185,28 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
     );
   }
 
+  Future<Widget> _deleteNotification (NotificationModel n) async{
+    return showDialog(
+        context: context,
+        builder: (_) => SwipeDialog(
+          title: 'Delete this request?',
+          contentMessage: "Are you sure you want to delete this request? The Sender will not know you've decline the request",
+          cancelBtn: true,
+          textAlign: TextAlign.left,
+          onOk: () async {
+            store.requestMoneyService.deleteRequest(store.user, n);
+            store.notifications.remove(n);
+            setState(() {});
+            Navigator.pop(context);
+          },
+          cancel: () {
+            Navigator.pop(context);
+          },
+        )
+    );
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -191,8 +227,9 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
             ),
             trailing: IconButton(
               onPressed: () async {
-                store.notifications = await store.requestMoneyService.isNotificationSeen(store.user, store.notifications);
-                Navigator.pop(context);
+                // store.notifications = await store.requestMoneyService.isNotificationSeen(store.user, store.notifications);
+                // Navigator.pop(context);
+                widget.close();
               },
               icon: Icon(Icons.close, color: COLOR_DARK_GRAY),
             ),

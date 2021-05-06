@@ -42,15 +42,16 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
   @override
   void initState() {
     super.initState();
-    mobileNumber.text = _appUtil.removeCountryCodeNumber(widget.notification.senderMobileNumber);
-    amount.text = widget.notification.amount.toString();
+    if(widget.notification != null) {
+      mobileNumber.text = _appUtil.removeCountryCodeNumber(widget.notification.senderMobileNumber);
+      amount.text = widget.notification.amount.toString();
+    }
     onLoadNumbers();
   }
 
   Future onLoadNumbers () async {
     final nums = await store.saveSuggestionsServices.onloadNumbers();
     nums.forEach((n) {
-      print(n.mobileNumber);
       numbers.add(_appUtil.removeCountryExtension(n.mobileNumber));
     });
   }
@@ -225,7 +226,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
 
         store.createTransaction(SwipeServiceOffering.DIRECT_SEND, "");
         store.setTransactionProduct(DirectPayProduct(
-            name: '', mobileNumber: '63${mobileNumber.text}', message: message.text, fee: a.fee, amount: double.tryParse(a.amount)),
+            name: '', mobileNumber: '63${mobileNumber.text}', message: message.text, fee: a.fee, amount: double.tryParse(a.amount), notification: widget.notification),
             double.parse(a.amount));
         OverlayScreen().pop();
         Get.toNamed("/services/payment/payment-verification-screen");
