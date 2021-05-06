@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/util.dart';
+import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/models/notification-model.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
@@ -10,6 +12,14 @@ import 'package:swipe/main.dart';
 final store = getIt<ApplicationStore>();
 
 class NotificationDrawer extends StatefulWidget {
+  List<NotificationModel> notifications;
+  final directSend;
+
+  NotificationDrawer({
+    this.notifications,
+    this.directSend,
+  });
+
   @override
   _NotificationDrawerState createState () =>
       _NotificationDrawerState();
@@ -20,8 +30,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
 
   @override
   void initState () {
-    getNotifications();
-
+    notifications = widget.notifications;
   }
 
   Future<void> getNotifications () async {
@@ -64,6 +73,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
             context: context,
             tiles: notifications?.map((res) {
               return ListTile(
+                tileColor: !res.isSeen ? COLOR_BLUE.withOpacity(0.2) : null,
                 visualDensity: VisualDensity(vertical: -4, horizontal: 0),
                 leading: CircleAvatar(
                   backgroundColor: COLOR_ORANGE,
@@ -121,18 +131,19 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                       Spacer(),
                       Text(
                         res.createdAt,
-                          style: GoogleFonts.roboto(
-                              fontSize: SizeConfig.blockSizeVertical * 1.5,
-                              color: COLOR_DARK_GRAY
-                          )
+                        style: GoogleFonts.roboto(
+                          fontSize: SizeConfig.blockSizeVertical * 1.5,
+                          color: COLOR_DARK_GRAY
+                        )
                       )
                     ],
                   ),
                 ),
                 trailing: InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    await _confirmationModal(res);
                   },
-                  child: Icon(Icons.send_to_mobile)
+                  child: Icon(Icons.send_to_mobile, color: COLOR_DARK_PURPLE)
                 ),
               );
             })?.toList() ?? []
@@ -142,7 +153,23 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
     }
   }
 
-
+  Future<Widget> _confirmationModal (NotificationModel n) async {
+    return showDialog(
+        context: context,
+        builder: (_) => SwipeDialog(
+          title: 'Confirmation',
+          contentMessage: '${n.senderDisplayName} was requesting you to send PHP ${n.amount}',
+          cancelBtn: true,
+          textAlign: TextAlign.center,
+          onOk: () {
+            widget.directSend(n);
+          },
+          cancel: () {
+            Navigator.pop(context);
+          },
+        )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +190,8 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
               )
             ),
             trailing: IconButton(
-              onPressed: () {
+              onPressed: () async {
+                store.notifications = await store.requestMoneyService.isNotificationSeen(store.user, store.notifications);
                 Navigator.pop(context);
               },
               icon: Icon(Icons.close, color: COLOR_DARK_GRAY),

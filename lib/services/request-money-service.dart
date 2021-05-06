@@ -20,11 +20,25 @@ class RequestMoneyService extends FireStoreService {
       var result = collection
           .doc(receiver.id)
           .collection('notifications')
-          .add({...notif.toMap(), 'status': 'Pending'});
+          .add({...notif.toMap(), 'status': 'Pending', 'isSeen': false});
     } catch (err) {
       print('Something went wrong');
       print(err);
     }
+  }
+
+  Future<List<NotificationModel>> isNotificationSeen(UserModel user, List<NotificationModel> notifications) async {
+    List<NotificationModel> a = notifications.map((notif) {
+      if(!notif.isSeen) {
+        // getUnseenNotifications.add(notif);
+        update('${user.id}/notifications/${notif.id}', {...notif.toMap(), 'isSeen': true});
+        notif.isSeen = true;
+        return notif;
+      } else {
+        return notif;
+      }
+    }).toList();
+    return a;
   }
 
   Future saveRequest (UserModel user, notif) async {

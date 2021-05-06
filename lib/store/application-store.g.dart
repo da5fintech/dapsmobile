@@ -84,6 +84,21 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
     });
   }
 
+  final _$notificationsAtom = Atom(name: '_ApplicationStore.notifications');
+
+  @override
+  List<NotificationModel> get notifications {
+    _$notificationsAtom.reportRead();
+    return super.notifications;
+  }
+
+  @override
+  set notifications(List<NotificationModel> value) {
+    _$notificationsAtom.reportWrite(value, super.notifications, () {
+      super.notifications = value;
+    });
+  }
+
   final _$enabledBiometricsAtom =
       Atom(name: '_ApplicationStore.enabledBiometrics');
 
@@ -154,6 +169,17 @@ mixin _$ApplicationStore on _ApplicationStore, Store {
         name: '_ApplicationStore.setVersionNumber');
     try {
       return super.setVersionNumber(version);
+    } finally {
+      _$_ApplicationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setNotitications(List<NotificationModel> a) {
+    final _$actionInfo = _$_ApplicationStoreActionController.startAction(
+        name: '_ApplicationStore.setNotitications');
+    try {
+      return super.setNotitications(a);
     } finally {
       _$_ApplicationStoreActionController.endAction(_$actionInfo);
     }
@@ -255,6 +281,7 @@ user: ${user},
 balance: ${balance},
 swipePoints: ${swipePoints},
 savedBillers: ${savedBillers},
+notifications: ${notifications},
 enabledBiometrics: ${enabledBiometrics},
 freshInstall: ${freshInstall},
 idImage: ${idImage},

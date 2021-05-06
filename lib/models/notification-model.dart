@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:swipe/models/product-model.dart';
 
 class NotificationModel extends ProductModel {
+  String id;
   String ownerId;
   String senderDisplayName;
   String createdAt;
@@ -15,8 +16,10 @@ class NotificationModel extends ProductModel {
   String purpose;
   String profilePhoto;
   String status;
+  bool isSeen;
 
   NotificationModel({
+    this.id,
     this.ownerId,
     this.senderDisplayName,
     this.createdAt,
@@ -28,6 +31,7 @@ class NotificationModel extends ProductModel {
     this.purpose,
     this.profilePhoto,
     this.status,
+    this.isSeen = false,
     double amount,
   }) : super(amount: amount);
 
@@ -51,6 +55,7 @@ class NotificationModel extends ProductModel {
   factory NotificationModel.fromDocumentSnapshot(DocumentSnapshot document) {
     var data = document.data();
     var model = new NotificationModel();
+    model.id = document.id;
     model.ownerId = data['ownerId'];
     model.amount = data['amount'];
     model.senderDisplayName = data['senderDisplayName'];
@@ -63,6 +68,7 @@ class NotificationModel extends ProductModel {
     model.purpose = data['purpose'];
     model.profilePhoto = data['profilePhoto'];
     model.status = data['status'];
+    model.isSeen = data['isSeen'] ?? false;
     return model;
   }
 

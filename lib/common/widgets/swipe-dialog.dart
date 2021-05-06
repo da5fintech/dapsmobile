@@ -9,6 +9,7 @@ class SwipeDialog extends StatelessWidget {
   final Function cancel;
   final String title;
   final String contentMessage;
+  TextAlign textAlign;
   bool cancelBtn = false;
 
   SwipeDialog({
@@ -17,6 +18,7 @@ class SwipeDialog extends StatelessWidget {
     @required this.contentMessage,
     this.cancelBtn,
     this.cancel,
+    this.textAlign = TextAlign.left,
   });
 
   @override
@@ -47,7 +49,7 @@ class SwipeDialog extends StatelessWidget {
           fontWeight: FontWeight.w400,
           // fontSize: normalizeSize(15),
         ),
-        textAlign: TextAlign.left,
+        textAlign: textAlign,
       ),
       actions: <Widget>[
         Column(
@@ -89,7 +91,6 @@ class SwipeDialog extends StatelessWidget {
                   child: RaisedButton(
                     elevation: 0,
                     onPressed: () {
-                      OverlayScreen().pop();
                       cancel();
                     },
                     child: Text(

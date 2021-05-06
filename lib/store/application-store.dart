@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/models/UserVerificationModel.dart';
+import 'package:swipe/models/notification-model.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
@@ -40,6 +41,8 @@ abstract class _ApplicationStore with Store {
   double swipePoints = 0;
   @observable
   List<BillerProduct> savedBillers = [];
+  @observable
+  List<NotificationModel> notifications = [];
   @observable
   bool enabledBiometrics;
   @observable
@@ -145,6 +148,11 @@ abstract class _ApplicationStore with Store {
   @action
   setVersionNumber (String version) {
     this.versionNumber = version;
+  }
+
+  @action
+  setNotitications (List<NotificationModel> a) {
+    this.notifications = a;
   }
 
   @action
