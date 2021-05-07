@@ -50,11 +50,12 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
     currentDate = date;
 
     if(widget.notification != null) {
+      currentDate = widget.notification.createdAt;
       amount.text = widget.notification.amount.toString();
       subjectRequest.text = widget.notification.subject;
       messageRequest.text = widget.notification.subject;
       purposeRequest.text = widget.notification.purpose;
-      receiver.text = widget.notification.receiverMobileNumber;
+      receiver.text = _appUtil.removeCountryCodeNumber(widget.notification.receiverMobileNumber);
     }
 
     super.initState();
@@ -146,7 +147,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                                 ),
                               ),
                               title: Text(
-                                store.user.displayName,
+                              widget.notification == null ? store.user.displayName : widget.notification.senderDisplayName,
                                 style: GoogleFonts.roboto(
                                   color: Colors.black,
                                   fontSize: SizeConfig.blockSizeVertical * 2,
@@ -154,7 +155,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                                 )
                               ),
                               subtitle: Text(
-                                '+${store.user.mobileNumber}',
+                                widget.notification == null ? '+${store.user.mobileNumber}' : '+${widget.notification.senderMobileNumber}',
                                 style: GoogleFonts.roboto(
                                     color: Colors.black,
                                     fontSize: SizeConfig.blockSizeVertical * 2,
@@ -441,6 +442,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
     Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => RequestFormScreen(
+          notification: widget?.notification,
           amount: amount.text,
           date: currentDate,
           subjectRequest: subjectRequest,

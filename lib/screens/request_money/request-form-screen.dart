@@ -5,10 +5,12 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/store/application-store.dart';
+import 'package:swipe/models/notification-model.dart';
 
 final store = getIt<ApplicationStore>();
 
 class RequestFormScreen extends StatefulWidget {
+  NotificationModel notification;
   String amount;
   String date;
   TextEditingController subjectRequest;
@@ -17,6 +19,7 @@ class RequestFormScreen extends StatefulWidget {
   Function onChangeMessage;
 
   RequestFormScreen({
+    this.notification = null,
     this.amount,
     this.date,
     this.subjectRequest,
@@ -79,7 +82,7 @@ class _RequestFormScreenState extends State<RequestFormScreen> {
                                   ),
                                 ),
                                 title: Text(
-                                    store.user.displayName,
+                                    widget.notification == null ? store.user.displayName : widget.notification.senderDisplayName,
                                     style: GoogleFonts.roboto(
                                         color: Colors.black,
                                         fontSize: SizeConfig.blockSizeVertical * 2,
@@ -87,7 +90,7 @@ class _RequestFormScreenState extends State<RequestFormScreen> {
                                     )
                                 ),
                                 subtitle: Text(
-                                    '+${store.user.mobileNumber}',
+                                    widget.notification == null ? '+${store.user.mobileNumber}' : '+${widget.notification.senderMobileNumber}',
                                     style: GoogleFonts.roboto(
                                         color: Colors.black,
                                         fontSize: SizeConfig.blockSizeVertical * 2,
