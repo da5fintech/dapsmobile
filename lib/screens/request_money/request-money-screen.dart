@@ -1,3 +1,4 @@
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import 'package:swipe/common/widgets/amount-masking.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/main.dart';
+import 'package:swipe/models/auto-suggest-model.dart';
 import 'package:swipe/models/user-model.dart';
 import 'package:swipe/screens/payment/processing-failed-dialog.dart';
 import 'package:swipe/screens/request_money/request-form-screen.dart';
@@ -26,12 +28,11 @@ class RequestMoneyScreen extends StatefulWidget {
   RequestMoneyScreen({this.notification = null});
 
   @override
-  _RequestMoneyScreenState createState () =>
-      _RequestMoneyScreenState();
-
+  _RequestMoneyScreenState createState() => _RequestMoneyScreenState();
 }
 
 class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
+  GlobalKey<AutoCompleteTextFieldState<String>> key = new GlobalKey();
   final _formKey = GlobalKey<FormState>();
   bool hasError = false;
   String currentDate;
@@ -42,29 +43,36 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
   TextEditingController messageRequest = TextEditingController();
   TextEditingController purposeRequest = TextEditingController();
   TextEditingController receiver = TextEditingController();
+  List<String> saveNumbers = [];
 
   @override
-  void initState () {
+  void initState() {
     var outputDate = DateFormat('MM/dd/yyyy');
     var date = outputDate.format(DateTime.now());
     currentDate = date;
-
-    if(widget.notification != null) {
+    _onloadSaveNumbers();
+    if (widget.notification != null) {
       currentDate = widget.notification.createdAt;
       amount.text = widget.notification.amount.toString();
       subjectRequest.text = widget.notification.subject;
       messageRequest.text = widget.notification.subject;
       purposeRequest.text = widget.notification.purpose;
-      receiver.text = _appUtil.removeCountryCodeNumber(widget.notification.receiverMobileNumber);
+      receiver.text = _appUtil
+          .removeCountryCodeNumber(widget.notification.receiverMobileNumber);
     }
 
     super.initState();
   }
 
+  _onloadSaveNumbers () async {
+    final nums = await store.saveSuggestionsServices.onloadNumbers();
+    nums.forEach((n) {
+      saveNumbers.add(_appUtil.removeCountryExtension(n.mobileNumber));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-
     SizeConfig().init(context);
 
     OverlayScreen().saveScreens({
@@ -118,7 +126,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
           cancel: () {
             OverlayScreen().pop();
           },
-        )
+        ),
       )
     });
 
@@ -134,16 +142,14 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
           key: _scaffoldKey,
           appBar: AppBar(
             leading: IconButton(
-              onPressed: () {
-                _discardMessage();
-              },
-              icon: Icon(Icons.arrow_back_ios, color: Colors.white)
-            ),
-            title: Text(
-              'Request Money',
-              style: GoogleFonts.roboto(
-                  fontSize: SizeConfig.blockSizeVertical * 3, fontWeight: FontWeight.w500)
-            ),
+                onPressed: () {
+                  _discardMessage();
+                },
+                icon: Icon(Icons.arrow_back_ios, color: Colors.white)),
+            title: Text('Request Money',
+                style: GoogleFonts.roboto(
+                    fontSize: SizeConfig.blockSizeVertical * 3,
+                    fontWeight: FontWeight.w500)),
           ),
           body: Column(
             children: [
@@ -157,76 +163,79 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                         width: SizeConfig.screenWidth,
                         margin: EdgeInsets.all(20),
                         child: Card(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              ListTile(
-                                visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                                leading: CircleAvatar(
-                                  radius: SizeConfig.blockSizeVertical * 3,
-                                  backgroundColor: COLOR_ORANGE,
-                                  child: store.user.photoURL == null
-                                      ? Text(
-                                    store.user.getInitials(),
-                                    style: GoogleFonts.roboto(color: Colors.white),
-                                  )
-                                      : ClipOval(
-                                    child: Image.network(store.user.photoURL),
-                                  ),
-                                ),
-                                title: Text(
-                                widget.notification == null ? store.user.displayName : widget.notification.senderDisplayName,
-                                  style: GoogleFonts.roboto(
-                                    color: Colors.black,
-                                    fontSize: SizeConfig.blockSizeVertical * 2,
-                                    fontWeight: FontWeight.w500
-                                  )
-                                ),
-                                subtitle: Text(
-                                  widget.notification == null ? '+${store.user.mobileNumber}' : '+${widget.notification.senderMobileNumber}',
+                            child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ListTile(
+                              visualDensity:
+                                  VisualDensity(vertical: -4, horizontal: 0),
+                              leading: CircleAvatar(
+                                radius: SizeConfig.blockSizeVertical * 3,
+                                backgroundColor: COLOR_ORANGE,
+                                child: store.user.photoURL == null
+                                    ? Text(
+                                        store.user.getInitials(),
+                                        style: GoogleFonts.roboto(
+                                            color: Colors.white),
+                                      )
+                                    : ClipOval(
+                                        child:
+                                            Image.network(store.user.photoURL),
+                                      ),
+                              ),
+                              title: Text(
+                                  widget.notification == null
+                                      ? store.user.displayName
+                                      : widget.notification.senderDisplayName,
                                   style: GoogleFonts.roboto(
                                       color: Colors.black,
-                                      fontSize: SizeConfig.blockSizeVertical * 2,
-                                      fontWeight: FontWeight.w500
-                                  )
-                                ),
-                              ),
-                              Divider(
-                                thickness: 1.5,
-                              ),
-                              ListTile(
-                                visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                                onTap: () {
-                                  _navigateToForm();
-                                },
-                                title: Text(
-                                  subjectRequest.text == "" ? 'Subject For request' : subjectRequest.text,
+                                      fontSize:
+                                          SizeConfig.blockSizeVertical * 2,
+                                      fontWeight: FontWeight.w500)),
+                              subtitle: Text(
+                                  widget.notification == null
+                                      ? '+${store.user.mobileNumber}'
+                                      : '+${widget.notification.senderMobileNumber}',
                                   style: GoogleFonts.roboto(
-                                    color: Colors.black,
-                                    fontSize: SizeConfig.blockSizeVertical * 1.7
-                                  )
-                                ),
-                                trailing: Icon(Icons.arrow_forward_ios),
-                              ),
-                            ],
-                          )
-                        ),
+                                      color: Colors.black,
+                                      fontSize:
+                                          SizeConfig.blockSizeVertical * 2,
+                                      fontWeight: FontWeight.w500)),
+                            ),
+                            Divider(
+                              thickness: 1.5,
+                            ),
+                            ListTile(
+                              visualDensity:
+                                  VisualDensity(vertical: -4, horizontal: 0),
+                              onTap: () {
+                                _navigateToForm();
+                              },
+                              title: Text(
+                                  subjectRequest.text == ""
+                                      ? 'Subject For request'
+                                      : subjectRequest.text,
+                                  style: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontSize:
+                                          SizeConfig.blockSizeVertical * 1.7)),
+                              trailing: Icon(Icons.arrow_forward_ios),
+                            ),
+                          ],
+                        )),
                       ),
                       Align(
                         alignment: Alignment.topCenter,
                         child: CircleAvatar(
-                          backgroundColor: COLOR_DARK_ORANGE,
-                          radius: SizeConfig.blockSizeVertical * 5.5,
-                          child: Text(
-                            '₱ ${amount.text}',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.roboto(
-                              color: Colors.white,
-                              fontSize: SizeConfig.blockSizeVertical * 2.5,
-                              fontWeight: FontWeight.bold
-                            )
-                          )
-                        ),
+                            backgroundColor: COLOR_DARK_ORANGE,
+                            radius: SizeConfig.blockSizeVertical * 5.5,
+                            child: Text('₱ ${amount.text}',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                    color: Colors.white,
+                                    fontSize:
+                                        SizeConfig.blockSizeVertical * 2.5,
+                                    fontWeight: FontWeight.bold))),
                       )
                     ],
                   ),
@@ -238,14 +247,16 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                   child: ListView(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 20, right: SizeConfig.screenWidth * 0.40),
+                        padding: EdgeInsets.only(
+                            left: 20, right: SizeConfig.screenWidth * 0.40),
                         child: AmountMasking(
                           noUnderline: true,
                           controller: amount,
                           onChanged: (string) {
                             amount.value = TextEditingValue(
                               text: string,
-                              selection: TextSelection.collapsed(offset: string.length),
+                              selection: TextSelection.collapsed(
+                                  offset: string.length),
                             );
                             setState(() {});
                           },
@@ -257,14 +268,15 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                         color: Colors.white,
                       ),
                       ListTile(
-                        visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+                        visualDensity:
+                            VisualDensity(vertical: -4, horizontal: 0),
                         title: TextFormField(
                           controller: purposeRequest,
                           autofocus: false,
                           textInputAction: TextInputAction.next,
                           style: TextStyle(color: Colors.white),
                           validator: (text) {
-                            if(text.isEmpty) {
+                            if (text.isEmpty) {
                               return "Purpose for this request is required!";
                             }
                             return null;
@@ -280,8 +292,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                             errorStyle: TextStyle(
                                 color: COLOR_GRAY, fontSize: 12, height: 0.3),
                             labelText: 'Purpose for this Request.',
-                            floatingLabelBehavior:
-                            FloatingLabelBehavior.always,
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
                           ),
                         ),
                       ),
@@ -289,51 +300,47 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                         color: Colors.white,
                       ),
                       ListTile(
-                        visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+                        visualDensity:
+                            VisualDensity(vertical: -4, horizontal: 0),
                         title: Row(
                           children: [
-                            Text(
-                              'Fee',
-                              style: GoogleFonts.roboto(
-                                fontSize: SizeConfig.blockSizeVertical * 2,
-                                height: 2,
-                                fontWeight: FontWeight.bold,
-                              )
-                            ),
+                            Text('Fee',
+                                style: GoogleFonts.roboto(
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
+                                  height: 2,
+                                  fontWeight: FontWeight.bold,
+                                )),
                             Spacer(),
-                            Text(
-                              "It's free!",
-                              style: GoogleFonts.roboto(
-                                fontSize: SizeConfig.blockSizeVertical * 2,
-                                height: 2,
-                                fontWeight: FontWeight.bold,
-                              )
-                            ),
+                            Text("It's free!",
+                                style: GoogleFonts.roboto(
+                                  fontSize: SizeConfig.blockSizeVertical * 2,
+                                  height: 2,
+                                  fontWeight: FontWeight.bold,
+                                )),
                           ],
                         ),
                         subtitle: RichText(
                           text: TextSpan(
-                            text: 'You pay no fee when requesting money domestically with your bank or balance. ',
-                            style: GoogleFonts.roboto(
-                              color: Colors.white,
-                              fontSize: SizeConfig.blockSizeVertical * 1.7,
-                              height: 1.5,
-                            ),
-                            children: [
-                              TextSpan(
-                                recognizer: new TapGestureRecognizer()
-                                  ..onTap = () {
-                                  },
-                                text: 'Learn More',
-                                style: GoogleFonts.roboto(
-                                  color: Colors.white,
-                                  height: 1.5,
-                                  fontWeight: FontWeight.w500,
-                                  decoration: TextDecoration.underline,
-                                ),
+                              text:
+                                  'You pay no fee when requesting money domestically with your bank or balance. ',
+                              style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontSize: SizeConfig.blockSizeVertical * 1.7,
+                                height: 1.5,
                               ),
-                            ]
-                          ),
+                              children: [
+                                TextSpan(
+                                  recognizer: new TapGestureRecognizer()
+                                    ..onTap = () {},
+                                  text: 'Learn More',
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.white,
+                                    height: 1.5,
+                                    fontWeight: FontWeight.w500,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ]),
                         ),
                       ),
                       Divider(
@@ -341,35 +348,23 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: TextFormField(
-                          autofocus: false,
+                        child: SimpleAutoCompleteTextField(
+                          key: key,
+                          suggestions: saveNumbers,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.phone,
                           controller: receiver,
-                          onFieldSubmitted: (val) {
-                          },
-                          onSaved: (v) {
-                          },
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return '${REGISTER_SCREEN_MOBIILE_TEXT} is required';
-                            }
-                            return null;
-                          },
-                          maxLength: 10,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             focusedBorder: InputBorder.none,
                             enabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
-                            counterStyle: TextStyle(color: Colors.white),
-                            hintText: "904033902",
+                            errorText: hasError ? "Mobile number is required" : null,
                             errorStyle: TextStyle(
-                                color: COLOR_GRAY, fontSize: 12, height: 0.3),
-                            labelText: 'Sending from',
-                            floatingLabelBehavior:
-                            FloatingLabelBehavior.always,
+                                color: COLOR_DANGER, fontSize: 12, height: 1),
+                            labelText: DIRECT_SEND_FORM_SCREEN_MOBILE,
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
                             prefix: Container(
                               padding: EdgeInsets.only(right: 10),
                               decoration: BoxDecoration(
@@ -389,6 +384,52 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                           ),
                         ),
                       ),
+                      // Padding(
+                      //   padding: EdgeInsets.symmetric(horizontal: 20),
+                      //   child: TextFormField(
+                      //     autofocus: false,
+                      //     textInputAction: TextInputAction.next,
+                      //     keyboardType: TextInputType.phone,
+                      //     controller: receiver,
+                      //     onFieldSubmitted: (val) {},
+                      //     onSaved: (v) {},
+                      //     validator: (text) {
+                      //       if (text == null || text.isEmpty) {
+                      //         return '${REGISTER_SCREEN_MOBIILE_TEXT} is required';
+                      //       }
+                      //       return null;
+                      //     },
+                      //     maxLength: 10,
+                      //     decoration: InputDecoration(
+                      //       border: InputBorder.none,
+                      //       focusedBorder: InputBorder.none,
+                      //       enabledBorder: InputBorder.none,
+                      //       errorBorder: InputBorder.none,
+                      //       disabledBorder: InputBorder.none,
+                      //       counterStyle: TextStyle(color: Colors.white),
+                      //       hintText: "904033902",
+                      //       errorStyle: TextStyle(
+                      //           color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                      //       labelText: 'Sending from',
+                      //       floatingLabelBehavior: FloatingLabelBehavior.always,
+                      //       prefix: Container(
+                      //         padding: EdgeInsets.only(right: 10),
+                      //         decoration: BoxDecoration(
+                      //           border: Border(
+                      //             right: BorderSide(
+                      //               color: Colors.white,
+                      //               width: 0.5,
+                      //             ),
+                      //           ),
+                      //         ),
+                      //         child: Text(
+                      //           '+63',
+                      //           style: GoogleFonts.roboto(color: Colors.white),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       Divider(
                         color: Colors.white,
                       )
@@ -396,28 +437,27 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                   ),
                 ),
               ),
-              if(widget.notification == null) ...[
+              if (widget.notification == null) ...[
                 SizedBox(
                     width: double.infinity,
                     height: 40,
                     child: RaisedButton(
                       onPressed: () {
-                        if(amount.text == "") {
+                        if (receiver.text == "") {
                           hasError = true;
                         } else {
                           hasError = false;
                         }
                         setState(() {});
 
-                        if(subjectRequest.text == "") {
+                        if (subjectRequest.text == "") {
                           _navigateToForm();
                         } else {
                           _handleNext();
                         }
                       },
                       child: Text('Request Now'),
-                    )
-                )
+                    ))
               ]
             ],
           ),
@@ -428,10 +468,11 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
 
   _handleNext() async {
     bool status = _formKey.currentState.validate();
-    if(status || hasError) {
+    if (status || hasError) {
       try {
         //find reciever id number
-        var notificationModel = new NotificationModel(amount: _appUtil.unFormatAmount(amount.text));
+        var notificationModel =
+            new NotificationModel(amount: _appUtil.unFormatAmount(amount.text));
         notificationModel.profilePhoto = store.user.photoURL;
         notificationModel.ownerId = store.user.id;
         notificationModel.senderDisplayName = store.user.displayName;
@@ -445,57 +486,60 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
           context,
           identifier: 'progress',
         );
-       Map<String, dynamic> result = await store.accountService.findMobileUser(notificationModel.receiverMobileNumber);
-       if(result['status'] == false) {
-         //if failed show error.
-         OverlayScreen().pop();
-         _scaffoldKey.currentState.showSnackBar(
-             SnackBar(content: Text(result['reason']), backgroundColor: COLOR_DANGER));
-       } else {
-         notificationModel.receiverId = result['queryUser'].id;
-         await store.requestMoneyService.notify(result, store.user, notificationModel);
-         OverlayScreen().pop();
-         await Future.delayed(Duration(seconds: 2));
-         OverlayScreen().show(
-           context,
-           identifier: 'success'
-         );
-       }
+        Map<String, dynamic> result = await store.accountService
+            .findMobileUser(notificationModel.receiverMobileNumber);
+        if (result['status'] == false) {
+          //if failed show error.
+          OverlayScreen().pop();
+          _scaffoldKey.currentState.showSnackBar(SnackBar(
+              content: Text(result['reason']), backgroundColor: COLOR_DANGER));
+        } else {
+          notificationModel.receiverId = result['queryUser'].id;
+          await store.requestMoneyService
+              .notify(result, store.user, notificationModel);
+          await store.saveSuggestionsServices.saveNumber(notificationModel.receiverMobileNumber, SwipeServiceOffering.REQUEST_MONEY);
+          OverlayScreen().pop();
+          // await Future.delayed(Duration(seconds: 2));
+          OverlayScreen().show(context, identifier: 'success');
+        }
       } catch (err) {
         rethrow;
       }
     }
   }
 
-  _navigateToForm () async {
+  _navigateToForm() async {
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => RequestFormScreen(
-          notification: widget?.notification,
-          amount: amount.text,
-          date: currentDate,
-          subjectRequest: subjectRequest,
-          messageRequest: messageRequest,
-          onChangeSubject: (string) {
-            subjectRequest.value = TextEditingValue(
-              text: string,
-              selection: TextSelection.collapsed(offset: string.length),
-            );
-            setState(() {});
-          },
-          onChangeMessage: (string) {
-            messageRequest.value = TextEditingValue(
-              text: string,
-              selection: TextSelection.collapsed(offset: string.length),
-            );
-          },
-        ))
-    );
+        MaterialPageRoute(
+            builder: (_) => RequestFormScreen(
+                  notification: widget?.notification,
+                  amount: amount.text,
+                  date: currentDate,
+                  subjectRequest: subjectRequest,
+                  messageRequest: messageRequest,
+                  onChangeSubject: (string) {
+                    subjectRequest.value = TextEditingValue(
+                      text: string,
+                      selection: TextSelection.collapsed(offset: string.length),
+                    );
+                    setState(() {});
+                  },
+                  onChangeMessage: (string) {
+                    messageRequest.value = TextEditingValue(
+                      text: string,
+                      selection: TextSelection.collapsed(offset: string.length),
+                    );
+                  },
+                )));
   }
 
-  _discardMessage () async {
-    if(widget.notification == null) {
-      if(subjectRequest.text != "" || purposeRequest.text != "" || receiver.text != "" || messageRequest.text != "") {
+  _discardMessage() async {
+    if (widget.notification == null) {
+      if (subjectRequest.text != "" ||
+          purposeRequest.text != "" ||
+          receiver.text != "" ||
+          messageRequest.text != "") {
         OverlayScreen().show(
           context,
           identifier: 'discard-message',
@@ -506,6 +550,5 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
     } else {
       Navigator.pop(context);
     }
-
   }
 }
