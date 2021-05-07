@@ -227,8 +227,6 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
             ),
             trailing: IconButton(
               onPressed: () async {
-                // store.notifications = await store.requestMoneyService.isNotificationSeen(store.user, store.notifications);
-                // Navigator.pop(context);
                 widget.close();
               },
               icon: Icon(Icons.close, color: COLOR_DARK_GRAY),
