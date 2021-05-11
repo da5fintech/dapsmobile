@@ -232,15 +232,17 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                             autofocus: true,
                             textInputAction: TextInputAction.next,
                             focusNode: email,
+                            readOnly: store.registrant.emailAddress != null ? true : false,
+                            initialValue: store.registrant.emailAddress != null ? store.registrant.emailAddress : "",
                             onFieldSubmitted: (val) {
                               email.unfocus();
                               FocusScope.of(context).requestFocus(password);
                             },
                             keyboardType: TextInputType.emailAddress,
-                            readOnly: store.registrant != null ? true : false,
-                            initialValue: store.registrant != null
-                                ? store.registrant.emailAddress
-                                : "",
+                            // readOnly: store.registrant != null ? true : false,
+                            // initialValue: store.registrant != null
+                            //     ? store.registrant.emailAddress
+                            //     : "",
                             onSaved: (v) {
                               values["emailAddress"] = v;
                             },
@@ -252,80 +254,82 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                                     height: 0.3),
                                 hintText: "Email"),
                           ),
-                          TextFormField(
-                            autofocus: true,
-                            textInputAction: TextInputAction.next,
-                            focusNode: password,
-                            controller: passwordText,
-                            onFieldSubmitted: (val) {
-                              email.unfocus();
-                              FocusScope.of(context).requestFocus(conPassword);
-                            },
-                            obscureText: obscureTextPass,
-                            onSaved: (v) {
-                              values["password"] = v;
-                            },
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return '${REGISTER_SCREEN_PASSWORD_TEXT} is required';
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              errorStyle: TextStyle(
-                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
-                              hintText:
-                                  "Create ${REGISTER_SCREEN_PASSWORD_TEXT}",
-                              suffixIcon: IconButton(
-                                onPressed: () => setState(
-                                    () => obscureTextPass = !obscureTextPass),
-                                icon: obscureTextPass
-                                    ? Icon(Icons.visibility_off,
-                                        color: Colors.white.withOpacity(.6))
-                                    : Icon(Icons.visibility,
-                                        color: Colors.white.withOpacity(.6)),
+                          if(!store.registrant.thirdPartySign) ...[
+                            TextFormField(
+                              autofocus: true,
+                              textInputAction: TextInputAction.next,
+                              focusNode: password,
+                              controller: passwordText,
+                              onFieldSubmitted: (val) {
+                                email.unfocus();
+                                FocusScope.of(context).requestFocus(conPassword);
+                              },
+                              obscureText: obscureTextPass,
+                              onSaved: (v) {
+                                values["password"] = v;
+                              },
+                              validator: (text) {
+                                if (text == null || text.isEmpty) {
+                                  return '${REGISTER_SCREEN_PASSWORD_TEXT} is required';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                errorStyle: TextStyle(
+                                    color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                                hintText:
+                                "Create ${REGISTER_SCREEN_PASSWORD_TEXT}",
+                                suffixIcon: IconButton(
+                                  onPressed: () => setState(
+                                          () => obscureTextPass = !obscureTextPass),
+                                  icon: obscureTextPass
+                                      ? Icon(Icons.visibility_off,
+                                      color: Colors.white.withOpacity(.6))
+                                      : Icon(Icons.visibility,
+                                      color: Colors.white.withOpacity(.6)),
+                                ),
                               ),
                             ),
-                          ),
-                          TextFormField(
-                            controller: confirmPasswordText,
-                            focusNode: conPassword,
-                            obscureText: obscureTextConPass,
-                            onFieldSubmitted: (val) {
-                              conPassword.unfocus();
-                              _handleNext();
-                            },
-                            onSaved: (v) {
-                              values["confirmPassword"] = v;
-                            },
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return 'Confirm ${REGISTER_SCREEN_PASSWORD_TEXT} is required';
-                              } else if (text != passwordText.text) {
-                                return 'Confirmation ${REGISTER_SCREEN_PASSWORD_TEXT} not match with ${REGISTER_SCREEN_PASSWORD_TEXT}';
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              errorStyle: TextStyle(
-                                  color: COLOR_GRAY, fontSize: 12, height: 0.3),
-                              hintText:
-                                  "Confirm ${REGISTER_SCREEN_PASSWORD_TEXT}",
-                              suffixIcon: IconButton(
-                                onPressed: () => setState(() =>
-                                    obscureTextConPass = !obscureTextConPass),
-                                icon: obscureTextConPass
-                                    ? Icon(
-                                        Icons.visibility_off,
-                                        color: Colors.white.withOpacity(0.6),
-                                      )
-                                    : Icon(
-                                        Icons.visibility,
-                                        color: Colors.white.withOpacity(0.6),
-                                      ),
+                            TextFormField(
+                              controller: confirmPasswordText,
+                              focusNode: conPassword,
+                              obscureText: obscureTextConPass,
+                              onFieldSubmitted: (val) {
+                                conPassword.unfocus();
+                                _handleNext();
+                              },
+                              onSaved: (v) {
+                                values["confirmPassword"] = v;
+                              },
+                              validator: (text) {
+                                if (text == null || text.isEmpty) {
+                                  return 'Confirm ${REGISTER_SCREEN_PASSWORD_TEXT} is required';
+                                } else if (text != passwordText.text) {
+                                  return 'Confirmation ${REGISTER_SCREEN_PASSWORD_TEXT} not match with ${REGISTER_SCREEN_PASSWORD_TEXT}';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                errorStyle: TextStyle(
+                                    color: COLOR_GRAY, fontSize: 12, height: 0.3),
+                                hintText:
+                                "Confirm ${REGISTER_SCREEN_PASSWORD_TEXT}",
+                                suffixIcon: IconButton(
+                                  onPressed: () => setState(() =>
+                                  obscureTextConPass = !obscureTextConPass),
+                                  icon: obscureTextConPass
+                                      ? Icon(
+                                    Icons.visibility_off,
+                                    color: Colors.white.withOpacity(0.6),
+                                  )
+                                      : Icon(
+                                    Icons.visibility,
+                                    color: Colors.white.withOpacity(0.6),
+                                  ),
+                                ),
                               ),
-                            ),
-                          )
+                            )
+                          ],
                         ],
                       ),
                     ),
@@ -396,20 +400,24 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
     bool status = _formKey.currentState.validate();
     if (status) {
       _formKey.currentState.save();
-      if (store.registrant == null) {
-        store.registrant = UserModel(
-            isNew: true,
-            emailAddress: values["emailAddress"],
-            displayName: "${values["firstName"]} ${values["lastName"]}");
-      }
+      // if (store.registrant == null) {
+      //   store.registrant = UserModel(
+      //       isNew: true,
+      //       emailAddress: values["emailAddress"],
+      //       displayName: "${values["firstName"]} ${values["lastName"]}");
+      // }
 
       store.registrant.isNew = true;
+      store.registrant.displayName = "${values["firstName"]} ${values["lastName"]}";
+      store.registrant.emailAddress = values["emailAddress"];
       store.registrant.firstName = values["firstName"];
       store.registrant.lastName = values["lastName"];
       store.registrant.dateOfBirth = values["dateOfBirth"];
       store.registrant.address = values['address'];
       store.registrant.mobileNumber = '63${values['mobileNumber']}';
-      store.registrant.password = values["password"];
+      if(!store.registrant.thirdPartySign) {
+        store.registrant.password = values["password"];
+      }
       Get.toNamed("/registration/registration-create-mpin-screen");
     }
   }

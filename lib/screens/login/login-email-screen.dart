@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/models/user-model.dart';
 import 'package:swipe/common/util.dart';
 import 'package:swipe/screens/login/failed-login-dialog.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
@@ -351,8 +352,16 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
       print(provider);
       setState(() {});
       var user = await store.authService.login(provider);
-      var account = await store.accountService.getAccount(user.id);
+      var account = await store.accountService.getAccount(user.uid);
       if (account == null) {
+        UserModel registrant = UserModel(
+            thirdPartySign: true,
+            id: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            emailAddress: user.email);
+        store.registrant = registrant;
+        Get.toNamed('/registration/registration-details-screen');
         throw AuthenticationError(message: "Account not found");
       }
       store.setUser(account);

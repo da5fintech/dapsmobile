@@ -294,35 +294,44 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
             context,
             identifier: 'progress',
           );
-          // await Future.delayed(Duration(seconds: 5));
-          // OverlayScreen().pop();
-
           if (store.registrant.isNew) {
-            print('USER auth sign up');
-            Map<String, dynamic> creds = await store.authService.createAuth(
-                email: store.registrant.emailAddress,
-                password: store.registrant.password);
-            if(creds['success'] == false) {
-              print('no user is created');
-              OverlayScreen().pop();
-              OverlayScreen().show(
-                context,
-                identifier: 'failed-registration',
-              );
-            } else {
-              OverlayScreen().pop();
-              store.registrant.id = creds['id'];
-              print('USER creation');
-              await store.accountService.create(store.registrant);
+            if(store.registrant.thirdPartySign) {
+              var user = await store.accountService.create(store.registrant);
+              store.registrant.id = user.id;
               await store.otpService.smsGreeting('${store.registrant.mobileNumber}');
               store.setUser(store.registrant);
+              OverlayScreen().pop();
               OverlayScreen().show(
                 context,
                 identifier: 'registration-success',
               );
+              print('third party sign in');
+            } else {
+              print('USER auth sign up');
+              Map<String, dynamic> creds = await store.authService.createAuth(
+                  email: store.registrant.emailAddress,
+                  password: store.registrant.password);
+              if(creds['success'] == false) {
+                print('no user is created');
+                OverlayScreen().pop();
+                OverlayScreen().show(
+                  context,
+                  identifier: 'failed-registration',
+                );
+              } else {
+                OverlayScreen().pop();
+                store.registrant.id = creds['id'];
+                print('USER creation');
+                await store.accountService.create(store.registrant);
+                await store.otpService.smsGreeting('${store.registrant.mobileNumber}');
+                store.setUser(store.registrant);
+                OverlayScreen().show(
+                  context,
+                  identifier: 'registration-success',
+                );
+              }
             }
           }
-
         } catch (e) {
           print(e);
         }

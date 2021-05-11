@@ -130,6 +130,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void userLogin () async {
+    OverlayScreen().pop();
     User creds = store.authService.getCurrentUser();
     if (creds != null) {
       print("creds ${creds.uid}");

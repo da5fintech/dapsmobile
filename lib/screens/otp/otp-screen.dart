@@ -36,7 +36,7 @@ class _OtpScreenState extends State<OtpScreen> {
   void initState() {
     super.initState();
     expectedOtp = _appUtil.generateOtp();
-    controller.text = expectedOtp.toString();
+    // controller.text = expectedOtp.toString();
     _handleOtpSms();
   }
 

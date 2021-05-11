@@ -49,7 +49,7 @@ class AuthenticationService {
     return _auth.currentUser;
   }
 
-  Future<UserModel> login(LoginProvider provider) {
+  Future<User> login(LoginProvider provider) {
     switch (provider) {
       case LoginProvider.GOOGLE:
         return _googleLogin();
@@ -60,7 +60,7 @@ class AuthenticationService {
     }
   }
 
-  Future<UserModel> _googleLogin() async {
+  Future<User> _googleLogin() async {
     try {
       if (null == _googleSignIn) {
         _googleSignIn = GoogleSignIn(
@@ -83,24 +83,25 @@ class AuthenticationService {
         idToken: googleAuth.idToken,
       );
 
-      // var res = await _auth.signInWithCredential(credential);
+      var res = await _auth.signInWithCredential(credential);
 
-      // if (null != res.user) {
-      //   print('Logged in: ${res.user.email}');
+      if (null != res.user) {
+        print('Logged in: ${res.user.email}');
         // additional step for sync
         // if (res.user.photoUrl == null && googleUser.photoUrl != null) {
         //   UserUpdateInfo updateUser = UserUpdateInfo();
         //   updateUser.photoUrl = googleUser.photoUrl;
         //   await res.user.updateProfile(updateUser);
-        // }
+        }
       // }
 
-      return UserModel(
-          id: googleUser.id,
-          displayName: googleUser.displayName,
-          photoURL: googleUser.photoUrl,
-          emailAddress:googleUser.email,
-      );
+      // return UserModel(
+      //     id: googleUser.id,
+      //     displayName: googleUser.displayName,
+      //     photoURL: googleUser.photoUrl,
+      //     emailAddress:googleUser.email,
+      // );
+      return res.user;
     } on NoSuchMethodError catch (e) {
       print('User cancelled');
       return null;
@@ -110,7 +111,7 @@ class AuthenticationService {
     }
   }
 
-  Future<UserModel> _facebookLogin() async {
+  Future<User> _facebookLogin() async {
     try {
       final _facebookSignIn = FacebookLogin();
       final res = await _facebookSignIn.logIn(
@@ -146,20 +147,20 @@ class AuthenticationService {
           final AuthCredential credential =
           FacebookAuthProvider.credential(accessToken.token);
 
-          // var result = await _auth.signInWithCredential(credential);
+          var result = await _auth.signInWithCredential(credential);
 
-          // if (null != result.user) {
-          //   print('Logged in: ${result.user.email}');
-          // }
+          if (null != result.user) {
+            print('Logged in: ${result.user.email}');
+          }
 
-          UserModel result = UserModel(
-            id: profile.userId,
-            displayName: profile.name,
-            photoURL: imageUrl,
-            emailAddress: email
-          );
+          // UserModel result = UserModel(
+          //   id: profile.userId,
+          //   displayName: profile.name,
+          //   photoURL: imageUrl,
+          //   emailAddress: email
+          // );
 
-          return result;
+          return result.user;
           break;
         case FacebookLoginStatus.cancel:
         // User cancel log in

@@ -8,6 +8,7 @@ class AmountMasking extends StatefulWidget {
   String type;
   bool hasError;
   bool noUnderline;
+  bool readOnly;
 
   AmountMasking({
     @required this.controller,
@@ -15,6 +16,7 @@ class AmountMasking extends StatefulWidget {
     @required this.type,
     @required this.hasError = false,
     this.noUnderline = false,
+    this.readOnly = false,
   });
 
   @override
@@ -28,6 +30,7 @@ class _AmountMaskingState extends State<AmountMasking> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      readOnly: widget.readOnly,
       textInputAction: TextInputAction.next,
       textAlign: TextAlign.start,
       keyboardType: TextInputType.numberWithOptions(),
