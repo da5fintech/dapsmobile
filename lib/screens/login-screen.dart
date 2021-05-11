@@ -266,12 +266,6 @@ class _LoginScreenState extends State<LoginScreen> {
           displayName: res.displayName,
           photoURL: res.photoURL,
           emailAddress: res.email);
-          // mobileNumber: '639056535707',
-          // address: 'Cabuyao Laguna',
-          // firstName: 'Jose Paul',
-          // lastName: 'Dela Cruz',
-          // dateOfBirth: '10/21/1995',
-          // mpin: '123456');
       store.registrant = registrant;
       print("setting registrant to ${store.registrant.id}");
       // var user = await store.accountService.findOrCreate(
