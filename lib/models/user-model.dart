@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
+  bool thirdPartySign;
   bool isNew;
   String id;
   String displayName;
@@ -20,7 +21,8 @@ class UserModel {
   String password;
 
   UserModel(
-      {this.isNew = false,
+      {this.thirdPartySign = false,
+      this.isNew = false,
       this.id,
       this.displayName,
       this.firstName,

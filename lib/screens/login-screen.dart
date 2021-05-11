@@ -245,6 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _handleRegister() {
+    store.registrant = UserModel(thirdPartySign: false);
     Get.toNamed("/registration/registration-details-screen");
   }
 
@@ -257,13 +258,20 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       var res = await store.authService.login(provider);
 
-      UserModel registrant = res;
+      // UserModel registrant = res;
 
-      // UserModel registrant = UserModel(
-      //     id: res.uid,
-      //     displayName: res.displayName,
-      //     photoURL: res.photoURL,
-      //     emailAddress: res.email);
+      UserModel registrant = UserModel(
+          thirdPartySign: true,
+          id: res.uid,
+          displayName: res.displayName,
+          photoURL: res.photoURL,
+          emailAddress: res.email);
+          // mobileNumber: '639056535707',
+          // address: 'Cabuyao Laguna',
+          // firstName: 'Jose Paul',
+          // lastName: 'Dela Cruz',
+          // dateOfBirth: '10/21/1995',
+          // mpin: '123456');
       store.registrant = registrant;
       print("setting registrant to ${store.registrant.id}");
       // var user = await store.accountService.findOrCreate(
@@ -272,6 +280,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // print("user url ${user.toMap()}");
       // store.setUser(user);
       Get.toNamed("/registration/registration-details-screen");
+      // Get.toNamed('/registration/registration-otp-screen');
     } catch (e) {}
   }
 }
