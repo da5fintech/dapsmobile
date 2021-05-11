@@ -64,7 +64,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
     super.initState();
   }
 
-  _onloadSaveNumbers () async {
+  _onloadSaveNumbers() async {
     final nums = await store.saveSuggestionsServices.onloadNumbers();
     nums.forEach((n) {
       saveNumbers.add(_appUtil.removeCountryExtension(n.mobileNumber));
@@ -250,6 +250,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                         padding: EdgeInsets.only(
                             left: 20, right: SizeConfig.screenWidth * 0.40),
                         child: AmountMasking(
+                          readOnly: widget.notification != null ? true : false,
                           noUnderline: true,
                           controller: amount,
                           onChanged: (string) {
@@ -271,6 +272,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                         visualDensity:
                             VisualDensity(vertical: -4, horizontal: 0),
                         title: TextFormField(
+                          readOnly: widget.notification != null ? true : false,
                           controller: purposeRequest,
                           autofocus: false,
                           textInputAction: TextInputAction.next,
@@ -360,7 +362,8 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                             enabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
-                            errorText: hasError ? "Mobile number is required" : null,
+                            errorText:
+                                hasError ? "Mobile number is required" : null,
                             errorStyle: TextStyle(
                                 color: COLOR_DANGER, fontSize: 12, height: 1),
                             labelText: DIRECT_SEND_FORM_SCREEN_MOBILE,
@@ -377,8 +380,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                               ),
                               child: Text(
                                 '+63',
-                                style:
-                                GoogleFonts.roboto(color: Colors.white),
+                                style: GoogleFonts.roboto(color: Colors.white),
                               ),
                             ),
                           ),
@@ -439,25 +441,26 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
               ),
               if (widget.notification == null) ...[
                 SizedBox(
-                    width: double.infinity,
-                    height: 40,
-                    child: RaisedButton(
-                      onPressed: () {
-                        if (receiver.text == "") {
-                          hasError = true;
-                        } else {
-                          hasError = false;
-                        }
-                        setState(() {});
+                  width: double.infinity,
+                  height: 40,
+                  child: RaisedButton(
+                    onPressed: () {
+                      if (amount.text == "") {
+                        hasError = true;
+                      } else {
+                        hasError = false;
+                      }
+                      setState(() {});
 
-                        if (subjectRequest.text == "") {
-                          _navigateToForm();
-                        } else {
-                          _handleNext();
-                        }
-                      },
-                      child: Text('Request Now'),
-                    ))
+                      if (subjectRequest.text == "") {
+                        _navigateToForm();
+                      } else {
+                        _handleNext();
+                      }
+                    },
+                    child: Text('Request Now'),
+                  ),
+                )
               ]
             ],
           ),
@@ -497,7 +500,9 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
           notificationModel.receiverId = result['queryUser'].id;
           await store.requestMoneyService
               .notify(result, store.user, notificationModel);
-          await store.saveSuggestionsServices.saveNumber(notificationModel.receiverMobileNumber, SwipeServiceOffering.REQUEST_MONEY);
+          await store.saveSuggestionsServices.saveNumber(
+              notificationModel.receiverMobileNumber,
+              SwipeServiceOffering.REQUEST_MONEY);
           OverlayScreen().pop();
           // await Future.delayed(Duration(seconds: 2));
           OverlayScreen().show(context, identifier: 'success');

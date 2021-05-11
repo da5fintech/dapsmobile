@@ -108,6 +108,7 @@ class _RequestFormScreenState extends State<RequestFormScreen> {
                                     Expanded(
                                       flex: 2,
                                       child: TextFormField(
+                                        readOnly: widget.notification != null ? true : false,
                                         controller: subjectRequest,
                                         autofocus: false,
                                         textInputAction: TextInputAction.next,
@@ -168,6 +169,7 @@ class _RequestFormScreenState extends State<RequestFormScreen> {
                                 child: Container(
                                   padding: EdgeInsets.all(20),
                                   child: TextFormField(
+                                    readOnly: widget.notification != null ? true : false,
                                     controller: messageRequest,
                                     keyboardType: TextInputType.multiline,
                                     maxLines: 100,
