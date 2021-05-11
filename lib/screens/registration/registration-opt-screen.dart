@@ -29,7 +29,6 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
   void initState() {
     super.initState();
     expectedOtp = _appUtil.generateOtp();
-    controller.text = expectedOtp.toString();
     _handleOtpSms();
   }
 

@@ -31,6 +31,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
   AuthenticationService authenticationService = AuthenticationService();
   TextEditingController mpin = TextEditingController();
   bool obscureText = true;
+  int counter = 0;
 
   @override
   void initState() {
@@ -298,10 +299,17 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
 
   _handleLogin() {
     if (mpin.text != store.user.mpin) {
-      OverlayScreen().show(
-        context,
-        identifier: 'wrong-mpin',
-      );
+      counter += 1;
+      setState(() {});
+      if(counter >= 4) {
+        store.authService.logout();
+        Get.toNamed('/login');
+      } else {
+        OverlayScreen().show(
+          context,
+          identifier: 'wrong-mpin',
+        );
+      }
     } else {
       Get.offAllNamed("/services");
     }
