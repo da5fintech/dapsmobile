@@ -36,9 +36,7 @@ class _LinksAccountScreenState extends State<LinksAccountScreen> {
                 'union' ? "Union Bank" : "BPI"} account.",
             cancelBtn: true,
             cancel: () {
-              setState(() {
-                isSelected = "";
-              });
+              OverlayScreen().pop();
             },
             onOk: () {
               if (isSelected == 'union') {

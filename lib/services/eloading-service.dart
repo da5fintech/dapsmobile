@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/product-model.dart';
@@ -65,6 +67,8 @@ class EloadingService extends Da5Service {
         list.add(product);
       });
       print("got list ${list.length}");
+      return list;
+    } on TimeoutException catch (e) {
       return list;
     } on ApiResponseError catch (e) {
       print("Got api error ${e.message}");
