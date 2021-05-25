@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:sensitive_http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:swipe/common/constants.dart';
@@ -57,6 +59,12 @@ class GcashService extends Da5Service {
         result: "",
         message: "Failed processing. \ncode: ${err.code}, \nmessage: ${err.message}",
       );
+    } on TimeoutException catch (e) {
+      return GcashResponse(
+        status: false,
+        result: "",
+        message: "Failed processing. \nmessage: ${e.message}",
+      );
     } catch (e, stack) {
       print(e);
       print(stack);
@@ -90,6 +98,12 @@ class GcashService extends Da5Service {
         result: "Success",
       );
 
+    } on TimeoutException catch (e) {
+      return GcashResponse(
+        status: false,
+        result: "",
+        message: "Failed processing. \nmessage: ${e.message}",
+      );
     } on ApiResponseError catch (err) {
       return GcashResponse(
         status: false,
