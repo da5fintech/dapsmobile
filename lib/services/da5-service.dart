@@ -98,6 +98,7 @@ class Da5Service {
   Future<Map<String, dynamic>> rawPostCashIn(String resource,
       [Map<String, String> body, String token]) async {
     try {
+      Map<String, dynamic> a;
       String uri = "$endpoint$resource";
 
       Map<String, String> headers = {"Authorization": 'Bearer ${token}'};
@@ -114,7 +115,7 @@ class Da5Service {
         body: requestBody,
       ).timeout(
         Duration(seconds: 10),
-        onTimeout: () {
+        onTimeout: () async {
           throw TimeoutException("The connection has timed out, Please try again!");
         }
       );

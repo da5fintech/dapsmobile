@@ -25,6 +25,8 @@ import 'package:swipe/services/ph-regions-service.dart';
 import 'package:swipe/services/save-suggestions-services.dart';
 import 'package:swipe/services/transaction-service.dart';
 import 'package:swipe/services/verify-service.dart';
+import 'package:swipe/services/gcash-service.dart';
+
 
 part 'application-store.g.dart';
 
@@ -70,6 +72,7 @@ abstract class _ApplicationStore with Store {
   AddBillerService addBillerService;
   DirectPayService directPayService;
   CashInService cashInService;
+  GcashService gcashService;
   OtpService otpService;
   SaveSuggestionsServices saveSuggestionsServices;
   PhRegionsService phRegionsService;
@@ -106,6 +109,7 @@ abstract class _ApplicationStore with Store {
     autosweepService = AutosweepService();
     directPayService = DirectPayService();
     cashInService = CashInService();
+    gcashService = GcashService();
     addBillerService = AddBillerService();
     otpService = OtpService();
     saveSuggestionsServices = SaveSuggestionsServices();
@@ -126,6 +130,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(otpService);
     getIt.registerSingleton(saveSuggestionsServices);
     getIt.registerSingleton(PhRegionsService());
+    getIt.registerSingleton(gcashService);
 
     // user = UserModel(id: "", mpin: "888888");
   }

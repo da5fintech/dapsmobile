@@ -414,6 +414,15 @@ const CASHIN_USERNAME = "";
 const CASHIN_SIGNATURE = "";
 const CASHIN_ENDPOINT = "https://api.swipe.ph";
 
+const GCASH_MERCHANT_ID = "1234";
+const GCASH_NETWORK_ID = "5678";
+const GCASH_USERNAME = "testonly";
+const GCASH_AUTH_SIGNATURE = "6c093c3205e252b43c36b22124549bfc6b625efd";
+const GCASH_ENDPOINT = "https://accounts.daps.ph/staging/index.php";
+const GCASH_SCOPE = "gcash";
+const GCASH_REFERENCE = "100035";
+const GCASH_FEE = "10";
+
 const VERIFY_MERCHANT_ID = "";
 const VERIFY_NETWORK_ID = "";
 const VERIFY_USERNAME = "";
