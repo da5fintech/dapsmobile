@@ -23,19 +23,18 @@ class CashInMainScreen extends StatefulWidget {
 
 class _CashInMainScreen extends State<CashInMainScreen>{
 
-  Widget partnerWidget ({String title, String imagePath, bool isDisable = false, bool isEnable}) {
+  Widget partnerWidget ({String title, String imagePath, bool isDisable = false, bool isEnable, otc = false}) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     print(isEnable);
     return GestureDetector(
       onTap: () {
-
-        if(title == "G-Cash") {
+        if(title == "G-Cash" && !otc) {
           Navigator.push(context, MaterialPageRoute(builder: (_) => GcashMainScreen()));
           return null;
         }
 
-        if(!isDisable) {
+        if(isEnable) {
           Navigator.push(context, MaterialPageRoute(builder: (_) => CashInPartnerDetailsScreen(
             title: title,
             imagePath: imagePath,
@@ -196,7 +195,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 children: <Widget>[
                   SizedBox(width: 10),
                   ...otcOptions.map((otc) {
-                    return partnerWidget(title: otc['title'], imagePath: otc['imagePath'], isEnable: otc['enable']);
+                    return partnerWidget(title: otc['title'], imagePath: otc['imagePath'], isEnable: otc['enable'], otc: true);
                   }).toList(),
                 ],
               ),
