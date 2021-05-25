@@ -23,9 +23,8 @@ class _GCashInState extends State<GcashIn> {
 
   @override
   void initState() {
+
     super.initState();
-    mobileNumber.text = "9056535707";
-    amount.text = "200";
   }
 
   @override
@@ -146,7 +145,7 @@ class _GCashInState extends State<GcashIn> {
               ),
             ),
             TextFormField(
-              // readOnly: true,
+              readOnly: true,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 counterStyle: TextStyle(color: Colors.white),
@@ -173,7 +172,6 @@ class _GCashInState extends State<GcashIn> {
             SizedBox(
               width: double.infinity,
               child: RaisedButton(
-                onPressed: _handleNext,
                 child: Text('Cash In'),
               ),
             )

@@ -34,7 +34,7 @@ class SuccessDialog extends StatelessWidget {
         ],
       ),
       content: Text(
-        'Transaction Success',
+        'Transaction Success!\nPlease wait for your money to reflect in your balance.',
         style: GoogleFonts.roboto(
           color: Colors.black,
           // fontSize: normalizeSize(15),
