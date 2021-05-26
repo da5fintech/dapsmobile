@@ -13,6 +13,7 @@ import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/common/widgets/swipe-dialog.dart';
 import 'package:swipe/screens/cash-in/cash-in-map-screen.dart';
 import 'package:swipe/screens/cash-in/cash-in-partner-details-screen.dart';
+import 'package:swipe/screens/cash-in/gcash/gcash-main-screen.dart';
 
 class CashInMainScreen extends StatefulWidget {
   @override
@@ -22,12 +23,18 @@ class CashInMainScreen extends StatefulWidget {
 
 class _CashInMainScreen extends State<CashInMainScreen>{
 
-  Widget partnerWidget ({String title, String imagePath, bool isDisable = false}) {
+  Widget partnerWidget ({String title, String imagePath, bool isDisable = false, bool isEnable, otc = false}) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    print(isEnable);
     return GestureDetector(
       onTap: () {
-        if(!isDisable) {
+        if(title == "G-Cash" && !otc) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => GcashMainScreen()));
+          return null;
+        }
+
+        if(isEnable) {
           Navigator.push(context, MaterialPageRoute(builder: (_) => CashInPartnerDetailsScreen(
             title: title,
             imagePath: imagePath,
@@ -50,7 +57,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
             child: Center(
               child: Image.asset(
                 imagePath,
-                color: isDisable ? COLOR_DARK_GRAY : null,
+                color: !isEnable ? COLOR_DARK_GRAY : null,
                 height: height * 0.04
               ),
             ),
@@ -188,7 +195,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 children: <Widget>[
                   SizedBox(width: 10),
                   ...otcOptions.map((otc) {
-                    return partnerWidget(title: otc['title'], imagePath: otc['imagePath']);
+                    return partnerWidget(title: otc['title'], imagePath: otc['imagePath'], isEnable: otc['enable'], otc: true);
                   }).toList(),
                 ],
               ),
@@ -263,7 +270,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 children: <Widget>[
                   SizedBox(width: 10),
                   ...bankOptions.map((bank) {
-                    return partnerWidget(title: bank['title'], imagePath: bank['imagePath'], isDisable: true);
+                    return partnerWidget(title: bank['title'], imagePath: bank['imagePath'], isEnable: bank['enable']);
                   }).toList(),
                 ],
               ),
@@ -296,7 +303,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                 children: <Widget>[
                   SizedBox(width: 10),
                   ...remittanceOptions.map((remittance) {
-                    return partnerWidget(title: remittance['title'], imagePath: remittance['imagePath'], isDisable: true);
+                    return partnerWidget(title: remittance['title'], imagePath: remittance['imagePath'], isEnable: remittance['enable']);
                   }).toList(),
                 ],
               ),
