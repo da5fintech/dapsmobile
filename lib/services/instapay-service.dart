@@ -63,7 +63,7 @@ class InstapayService extends Da5Service {
       var list = instapayBanksRaw['collection'];
 
       list.forEach((b) {
-        instapayBanks .add(InstapayBankProduct(code: b["code"], name: b["bank"]));
+        instapayBanks.add(InstapayBankProduct(code: b["code"], name: b["bank"]));
       });
 
       return instapayBanks;
