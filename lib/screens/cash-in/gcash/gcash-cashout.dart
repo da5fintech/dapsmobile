@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/store/application-store.dart';
@@ -199,15 +200,11 @@ class _GcashOutState extends State<GCashOut> {
     bool status = _formKey.currentState.validate();
     if(status) {
       try {
-        OverlayScreen().show(
-          context,
-          identifier: 'progress',
-        );
+        modalHudLoad(context);
         store.lastTransactionResponse = await store.gcashService.cashOut("0${mobileNumber.text}", amount.text);
         if (store.lastTransactionResponse == null ||
             store.lastTransactionResponse.status == false) {
-          OverlayScreen().pop();
-          print('FAILED TRANSACTION');
+          Navigator.pop(context);
           OverlayScreen().show(
             context,
             identifier: 'processing-failed',
@@ -216,7 +213,7 @@ class _GcashOutState extends State<GCashOut> {
           store.user.balance = store.user.balance + double.tryParse(amount.text);
           await store.accountService.create(store.user);
           store.setNewBalance(store.user.balance);
-          OverlayScreen().pop();
+          Navigator.pop(context);
           OverlayScreen().show(
             context,
             identifier: 'success-dialog',

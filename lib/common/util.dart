@@ -500,7 +500,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
   }
 }
 
-void modalHudLoad(context, {String load = "Loading..."}) async {
+void modalHudLoad(context, {String load = "Loading...", Color color = Colors.white}) async {
   showDialog(
     barrierColor: Colors.black.withOpacity(0.4),
     barrierDismissible: false,
@@ -514,7 +514,7 @@ void modalHudLoad(context, {String load = "Loading..."}) async {
           SizedBox(height: 10),
           Text(
             load,
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.subtitle1.copyWith(color: color),
           ),
         ],
       ),
