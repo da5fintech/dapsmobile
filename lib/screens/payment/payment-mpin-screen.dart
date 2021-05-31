@@ -6,6 +6,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/screens/payment/processing-failed-dialog.dart';
 import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
 import 'package:swipe/store/application-store.dart';
@@ -162,19 +163,21 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
   void _handlePay() async {
     try {
       if (controller.text == store.user.mpin) {
-        OverlayScreen().show(
-          context,
-          identifier: 'progress',
-        );
+        modalHudLoad(context);
+        // OverlayScreen().show(
+        //   context,
+        //   identifier: 'progress',
+        // );
         store.lastTransactionResponse = await store.transactionService
             .process(store.user, store.transaction);
 
-        OverlayScreen().pop();
+        // OverlayScreen().pop();
         print('here we goooo');
         // await Future.delayed(Duration(seconds: 3));
         if (store.lastTransactionResponse == null ||
             store.lastTransactionResponse.status == false) {
           setState(() {});
+          Navigator.pop(context);
           OverlayScreen().show(
             context,
             identifier: 'processing-failed',
