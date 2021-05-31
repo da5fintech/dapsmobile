@@ -6,6 +6,7 @@ import 'package:overlay_screen/overlay_screen.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/soon-release-dialog.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
@@ -403,27 +404,19 @@ class _RemittanceCategoriesScreenState
   }
 
   void _openInstapay() async {
-    OverlayScreen().show(
-      context,
-      identifier: 'progress',
-    );
+    modalHudLoad(context, load: "Processing...");
     var banks = await store.instapayService.getBanks();
-    OverlayScreen().pop();
+    Navigator.pop(context);
     store.instapayBanks = banks;
     Get.toNamed(
         "/services/remittance/instapay/remittance-instapay-banks-screen");
   }
 
   void _openPesonet() async {
-    OverlayScreen().show(
-      context,
-      identifier: 'progress',
-    );
+    modalHudLoad(context, load: "Processing...");
     var banks = await store.pesonetService.getBanks();
-    OverlayScreen().pop();
+    Navigator.pop(context);
     store.pesonetBanks = banks;
     Get.toNamed('/services/remittance/pesonet/remittance-pesonet-banks-screen');
-
-
   }
 }

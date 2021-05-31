@@ -500,7 +500,10 @@ class CurrencyInputFormatter extends TextInputFormatter {
   }
 }
 
-void modalHudLoad(context, {String load = "Loading...", Color color = Colors.white}) async {
+void modalHudLoad(context,
+    {String load = "Loading...",
+    Color color = Colors.white,
+    Color indicatorColor = Colors.white}) async {
   showDialog(
     barrierColor: Colors.black.withOpacity(0.4),
     barrierDismissible: false,
