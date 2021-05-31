@@ -41,7 +41,7 @@ class ProcessingFailedDialog extends StatelessWidget {
         ],
       ),
       content: Text(
-        store.lastTransactionResponse.message,
+        store.lastTransactionResponse?.message ?? "Something went wrong\nPlease try again later.",
         style: GoogleFonts.roboto(
           color: Colors.black,
           // fontSize: normalizeSize(15),
