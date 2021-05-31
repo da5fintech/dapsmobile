@@ -209,14 +209,16 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
     } else {
       try {
         hasError = false;
-        OverlayScreen().show(
-          context,
-          identifier: "progress",
-        );
+        modalHudLoad(context);
+        // OverlayScreen().show(
+        //   context,
+        //   identifier: "progress",
+        // );
         final a = await store.directPayService.getFees(
             amount.text, mobileNumber.text);
         if(!a.status) {
-          OverlayScreen().pop();
+          // OverlayScreen().pop();
+          Navigator.pop(context);
           OverlayScreen().show(
             context,
             identifier: 'processing-failed',
@@ -228,7 +230,8 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
         store.setTransactionProduct(DirectPayProduct(
             name: '', mobileNumber: '63${mobileNumber.text}', message: message.text, fee: a.fee, amount: double.tryParse(a.amount), notification: widget.notification),
             double.parse(a.amount));
-        OverlayScreen().pop();
+        // OverlayScreen().pop();
+        Navigator.pop(context);
         Get.toNamed("/services/payment/payment-verification-screen");
       } catch(err) {}
     }
