@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/product-model.dart';
@@ -142,6 +144,14 @@ class PesonetService extends Da5Service {
         status: false,
         reference: "",
         message: "Failed processing. \ncode: ${e.code}, \nreason: ${e.message}",
+        result: "",
+      );
+    } on TimeoutException catch (e) {
+      print("Caught timeout exception");
+      return PesonetProcessingResponse(
+        status: false,
+        reference: "",
+        message: "Failed processing.\nreason: ${e.message}",
         result: "",
       );
     } catch (e, stack) {

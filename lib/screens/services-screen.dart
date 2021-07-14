@@ -281,15 +281,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ),
                               text: SERVICES_SCREEN_BUY_LOAD_TEXT,
                             ),
-                            Opacity(
-                              opacity: .5,
-                              child: ServiceButtonWidget(
-                                offering: SwipeServiceOffering.PAY_QR,
-                                onPressed: _handleButtonClick,
-                                icon: SvgPicture.asset(
-                                    'assets/svg2/ICONS_SCAN_QR.svg'),
-                                text: SERVICES_SCREEN_PAY_QR_TEXT,
-                              ),
+                            ServiceButtonWidget(
+                              offering: SwipeServiceOffering.PAY_QR,
+                              onPressed: _handleButtonClick,
+                              icon: SvgPicture.asset(
+                                  'assets/svg2/ICONS_SCAN_QR.svg'),
+                              text: SERVICES_SCREEN_PAY_QR_TEXT,
                             ),
                           ],
                         ),
@@ -520,14 +517,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
       Get.toNamed("/services/direct-send");
     } else if (offering == SwipeServiceOffering.REQUEST_MONEY) {
       Get.toNamed('/services/request-money');
+    } else if(offering == SwipeServiceOffering.PAY_QR) {
+      Get.toNamed("/services/pay-qr/pay-qr-screen");
     } else {
       OverlayScreen().show(
         context,
         identifier: 'oncoming-update',
       );
     }
-    // } else if(offering == SwipeServiceOffering.PAY_QR) {
-    //   Get.toNamed("/services/pay-qr/pay-qr-screen");
-    // }
   }
 }

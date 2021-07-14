@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/product-model.dart';
@@ -103,6 +105,14 @@ class InstapayService extends Da5Service {
 
       var response = await post("/API_instapay/process", params);
       return InstapayProcessingResponse.fromMap(response);
+    } on TimeoutException catch (e) {
+      print("caught timeout exception");
+      return InstapayProcessingResponse(
+        status: false,
+        reference: "",
+        message: "Failed processing. \nreason: ${e.message}",
+        result: "",
+      );
     } on ApiResponseError catch (e) {
       print("caught2");
       return InstapayProcessingResponse(

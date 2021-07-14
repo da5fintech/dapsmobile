@@ -318,10 +318,8 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
     try {
       loginError = false;
       setState(() {});
-      OverlayScreen().show(
-        context,
-        identifier: 'progress',
-      );
+      modalHudLoad(context);
+      await Future.delayed(Duration(seconds: 2));
       var user = await store.authService
           .emailLogin(email: email.text, password: password.text);
       print("user logged in");
@@ -329,12 +327,12 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
       if (account == null) {
         throw AuthenticationError(message: "Account not found");
       }
-      OverlayScreen().pop();
+      Navigator.pop(context);
       store.setUser(account);
       Get.toNamed("/services");
     } catch (e) {
       loginError = true;
-      OverlayScreen().pop();
+      Navigator.pop(context);
       OverlayScreen().show(
         context,
         identifier: 'failed-login',

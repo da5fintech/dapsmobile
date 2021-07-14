@@ -108,7 +108,7 @@ const VERIFICATION_NOTE_NEXT = 'Are you ready? Tap "NEXT" to start scanning.';
 const PAYQR_SCREEN_TITLE_TEXT = "Pay QR/Barcode";
 const PAYQR_SCREEN_UPLOAD_TEXT = "Upload QR";
 const PAYQR_SCREEN_GENERATE_QR_TEXT = "Generate QR / Bar code";
-const PAYQR_SCREEN_SCAN_TEXT = "Scan QR";
+const PAYQR_SCREEN_SCAN_TEXT = "Swipe Scan Pay";
 const PAYQR_UPLOAD_SCREEN_TITLE = "Photos";
 const PAYQR_UPLOAD_TAB_1 = "All Photos";
 const PAYQR_UPLOAD_TAB_2 = "Albums";
@@ -291,7 +291,8 @@ const DIRECT_REQUEST_FORM_SCREEN_SAVE = "Save";
 
 const DIRECT_SEND_VIA_QR_SCREEN_TITLE = "Send Via QR";
 const DIRECT_SEND_VIA_QR_SCREEN_NOTE = 'Align QR code to the frame to\n'
-    'start scanning.';
+    'start scanning.\n\n'
+    'SCAN QR CODE';
 const DIRECT_SEND_VIA_QR_SCREEN_DETECTED = "QR Code detected!";
 const DIRECT_SEND_VIA_QR_SCREEN_RESCAN = "Re-scan QR Code";
 const DIRECT_SEND_VIA_QR_SCREEN_PROCEED = "PROCEED";

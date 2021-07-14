@@ -4,8 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/screens/pay_qr/pay-qr-scan-swipe-partners.dart';
 
-enum ScreenNav {upload, generate, scan}
+enum ScreenNav {pay, generate, scan}
 
 class PayQRScreen extends StatelessWidget {
   @override
@@ -18,8 +19,11 @@ class PayQRScreen extends StatelessWidget {
       return GestureDetector(
         onTap: () {
           switch(navTo) {
-            case ScreenNav.upload:
-              Get.toNamed('/services/pay-qr/pay-qr-upload-screen');
+            case ScreenNav.pay:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => PayQrScanSwipePartnersScreen()),
+              );
               return;
             case ScreenNav.generate:
               Get.toNamed('/services/pay-qr/pay-qr-generate-screen');
@@ -62,9 +66,9 @@ class PayQRScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            _card(imagePath: "assets/icons/services/pay-qr/upload-qr.png", title: PAYQR_SCREEN_UPLOAD_TEXT, navTo: ScreenNav.upload),
-            _card(imagePath: "assets/icons/services/pay-qr/generate-qr.png", title: PAYQR_SCREEN_GENERATE_QR_TEXT, navTo: ScreenNav.generate),
-            _card(imagePath: "assets/icons/services/pay-qr/scan-qr.png", title: PAYQR_SCREEN_SCAN_TEXT, navTo: ScreenNav.upload),
+            _card(imagePath: "assets/icons/services/pay-qr/scan-qr.png", title: PAYQR_SCREEN_SCAN_TEXT, navTo: ScreenNav.pay),
+            // _card(imagePath: "assets/icons/services/pay-qr/upload-qr.png", title: PAYQR_SCREEN_UPLOAD_TEXT, navTo: ScreenNav.upload),
+            // _card(imagePath: "assets/icons/services/pay-qr/generate-qr.png", title: PAYQR_SCREEN_GENERATE_QR_TEXT, navTo: ScreenNav.generate),
           ],
         )
       ),

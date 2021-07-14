@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:swipe/common/common-alert.dialog.dart';
+import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'dart:io';
 import 'dart:core';
@@ -22,11 +23,13 @@ typedef HandleDetection = Future<List<Face>> Function(
 
 class AppUtil extends DateUtil {
   static AppUtil _instance = AppUtil._internal();
+
   AppUtil._internal();
 
   factory AppUtil() {
     return _instance;
   }
+
   double normalizeSize(double size) {
     return size * SizeConfig.screenDiagonal * .00085;
   }
@@ -92,7 +95,7 @@ class AppUtil extends DateUtil {
       return null;
   }
 
-  String removeCountryExtension (String mobileNumber) {
+  String removeCountryExtension(String mobileNumber) {
     return mobileNumber.substring(2);
   }
 
@@ -105,19 +108,19 @@ class AppUtil extends DateUtil {
     return int.parse(rndnumber);
   }
 
-  String formatUserPhoneNumber (String mobileNumber) {
+  String formatUserPhoneNumber(String mobileNumber) {
     var splitNumber = mobileNumber.split("");
     var formattedNumber = "";
     var mobileLength = 8;
 
-    for(int i = 8 ; i < mobileNumber.length; i++) {
+    for (int i = 8; i < mobileNumber.length; i++) {
       formattedNumber = formattedNumber + splitNumber[i];
     }
 
     return formattedNumber;
   }
 
-  String removeCountryCodeNumber (String mobileNumber) {
+  String removeCountryCodeNumber(String mobileNumber) {
     var splitNumber = mobileNumber.split("");
     splitNumber.removeAt(0);
     splitNumber.removeAt(0);
@@ -125,37 +128,34 @@ class AppUtil extends DateUtil {
     return formmated;
   }
 
-  int generateOtp () {
+  int generateOtp() {
     var rndnumber = "";
     var rnd = new Random();
     rndnumber = (rnd.nextInt(900000) + 100000).toString();
     return int.parse(rndnumber);
   }
 
-  int uid () {
+  int uid() {
     var rndnumber = "";
     var rnd = new Random();
     rndnumber = (rnd.nextInt(90000000) + 10000000).toString();
     return int.parse(rndnumber);
-
   }
 
-  String splitQrData (String customQr, amount) {
-
+  String splitQrData(String customQr, amount) {
     List qrData = customQr.split('/');
     qrData.add(amount);
     String a = qrData.join('/');
     return a;
   }
 
-  String generateTransactionNumber () {
+  String generateTransactionNumber() {
     var transactionNumber = "";
     var rnd = new Random();
     // for (var i = 0; i < 11; i++) {
-      transactionNumber = transactionNumber + rnd.nextInt(999999).toString();
+    transactionNumber = transactionNumber + rnd.nextInt(999999).toString();
     // }
     return transactionNumber;
-
   }
 
   String generateBarcodeNumber() {
@@ -169,28 +169,31 @@ class AppUtil extends DateUtil {
 
   Future<Uint8List> getBytesFromAsset(String path, int width) async {
     ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+        targetWidth: width);
     ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png)).buffer.asUint8List();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))
+        .buffer
+        .asUint8List();
   }
 
-  Future<BitmapDescriptor> getBitmapDescriptorFromAssetBytes(String path, int width) async {
+  Future<BitmapDescriptor> getBitmapDescriptorFromAssetBytes(
+      String path, int width) async {
     final Uint8List imageData = await getBytesFromAsset(path, width);
     return BitmapDescriptor.fromBytes(imageData);
   }
 
-  Future<void> deleteImage (path) async {
+  Future<void> deleteImage(path) async {
     try {
       final file = await File(path);
       print('deleting file image');
       print(path);
       await file.delete();
       print('FILE DELETED');
-    } catch(err) {
+    } catch (err) {
       rethrow;
     }
   }
-
 
   ///image convertion
   Future<List<int>> convertImagetoPng(CameraImage image) async {
@@ -231,14 +234,14 @@ class AppUtil extends DateUtil {
     // Fill image buffer with plane[0] from YUV420_888
     for (int x = 0; x < image.width; x++) {
       for (int planeOffset = 0;
-      planeOffset < image.height * image.width;
-      planeOffset += image.width) {
+          planeOffset < image.height * image.width;
+          planeOffset += image.width) {
         final pixelColor = plane.bytes[planeOffset + x];
         // color: 0x FF  FF  FF  FF
         //           A   B   G   R
         // Calculate pixel color
         var newVal =
-        shift | (pixelColor << 16) | (pixelColor << 8) | pixelColor;
+            shift | (pixelColor << 16) | (pixelColor << 8) | pixelColor;
 
         img.data[planeOffset + x] = newVal;
       }
@@ -249,8 +252,8 @@ class AppUtil extends DateUtil {
 
   Future<CameraDescription> getCamera(CameraLensDirection dir) async {
     return await availableCameras().then(
-          (List<CameraDescription> cameras) => cameras.firstWhere(
-            (CameraDescription camera) => camera.lensDirection == dir,
+      (List<CameraDescription> cameras) => cameras.firstWhere(
+        (CameraDescription camera) => camera.lensDirection == dir,
       ),
     );
   }
@@ -286,15 +289,15 @@ class AppUtil extends DateUtil {
   }
 
   FirebaseVisionImageMetadata buildMetaData(
-      CameraImage image,
-      ImageRotation rotation,
-      ) {
+    CameraImage image,
+    ImageRotation rotation,
+  ) {
     return FirebaseVisionImageMetadata(
       rawFormat: image.format.raw,
       size: Size(image.width.toDouble(), image.height.toDouble()),
       rotation: rotation,
       planeData: image.planes.map(
-            (Plane plane) {
+        (Plane plane) {
           return FirebaseVisionImagePlaneMetadata(
             bytesPerRow: plane.bytesPerRow,
             height: plane.height,
@@ -306,29 +309,32 @@ class AppUtil extends DateUtil {
   }
 
   //amount mask formatter
-  String formatNumber(String s) => NumberFormat.decimalPattern('en').format(int.parse(s));
-  String get currency => NumberFormat.compactSimpleCurrency(locale: 'en').currencySymbol;
+  String formatNumber(String s) =>
+      NumberFormat.decimalPattern('en').format(int.parse(s));
 
-  double unFormatAmount (String amount) {
+  String get currency =>
+      NumberFormat.compactSimpleCurrency(locale: 'en').currencySymbol;
+
+  double unFormatAmount(String amount) {
     var a = amount.replaceAll(",", "");
     return double.parse(a);
   }
 
-  int countUnseenNotifications (List<NotificationModel> notifs) {
+  int countUnseenNotifications(List<NotificationModel> notifs) {
     int counter = 0;
-    if(notifs.isEmpty) return 0;
+    if (notifs.isEmpty) return 0;
     notifs.map((n) {
-      if(!n.isSeen) {
+      if (!n.isSeen) {
         counter += 1;
       }
     }).toList();
     return counter;
   }
-
 }
 
 class DateUtil {
   var dayOfWeek = 0;
+
   int yearLength(int year) {
     var yearLength = 0;
     for (int counter = 1; counter < year; counter++) {
@@ -344,7 +350,15 @@ class DateUtil {
   }
 
   String day(int length) {
-    final day = <String>['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    final day = <String>[
+      'Saturday',
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday'
+    ];
 
     var count = 0;
     String resultDay;
@@ -368,12 +382,24 @@ class DateUtil {
   }
 
   String month(final int monthNum) {
-    final month = <String>['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    final month = <String>[
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
     return month[monthNum - 1];
   }
 
   int daysInMonth(int monthNum, int year) {
-
     List<int> monthLength = List(12);
 
     monthLength[0] = 31;
@@ -408,7 +434,8 @@ class DateUtil {
     return monthLengthTotal;
   }
 
-  totalLengthOfDays(final int monthNum, final int dayNum, final int year) => daysPastInYear(monthNum, dayNum, year) + yearLength(year);
+  totalLengthOfDays(final int monthNum, final int dayNum, final int year) =>
+      daysPastInYear(monthNum, dayNum, year) + yearLength(year);
 
   void printMonthCalendar(final int monthNum, final int year) {
     int dayNum = 1;
@@ -454,24 +481,48 @@ class DateUtil {
 }
 
 class CurrencyInputFormatter extends TextInputFormatter {
-
-    TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
-
-        if(newValue.selection.baseOffset == 0){
-            print(true);
-            return newValue;
-        }
-
-        double value = double.parse(newValue.text);
-
-        final formatter = NumberFormat.simpleCurrency(locale: "PHP_\u20b1");
-
-        String newText = formatter.format(value/100);
-
-        return newValue.copyWith(
-            text: newText,
-            selection: new TextSelection.collapsed(offset: newText.length));
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.selection.baseOffset == 0) {
+      print(true);
+      return newValue;
     }
+
+    double value = double.parse(newValue.text);
+
+    final formatter = NumberFormat.simpleCurrency(locale: "PHP_\u20b1");
+
+    String newText = formatter.format(value / 100);
+
+    return newValue.copyWith(
+        text: newText,
+        selection: new TextSelection.collapsed(offset: newText.length));
+  }
+}
+
+void modalHudLoad(context,
+    {String load = "Loading...",
+    Color color = Colors.white,
+    Color indicatorColor = Colors.white}) async {
+  showDialog(
+    barrierColor: Colors.black.withOpacity(0.4),
+    barrierDismissible: false,
+    context: context,
+    builder: (_) => WillPopScope(
+      onWillPop: () => Future.value(false),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircularProgressIndicator(),
+          SizedBox(height: 10),
+          Text(
+            load,
+            style: Theme.of(context).textTheme.subtitle1.copyWith(color: color),
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 var appUtil = AppUtil();
