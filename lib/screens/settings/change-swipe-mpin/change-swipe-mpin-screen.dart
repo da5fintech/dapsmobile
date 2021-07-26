@@ -22,6 +22,11 @@ class _ChangeSwipeMpinScreenState extends State<ChangeSwipeMpinScreen> {
   TextEditingController controller = TextEditingController();
 
   @override
+  void initState () {
+    print(controller.text);
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     ThemeData td = createThemePurpleOnWhite(context);

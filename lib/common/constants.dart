@@ -409,6 +409,8 @@ const UNION_BANK_STATE = '{"at": "test_state_transfer"}';
 const UNION_BANK_LINKING = "linking";
 const UNION_BANK_PARTNER_ID = "5dff2cdf-ef15-48fb-a87b-375ebff415bb";
 
+const BPI_BANK_ENDPOINT = "https://oauth.bpi.com.ph/bpi/api/oauth2/authorize?response_type=code&client_id=71939b76-ec62-43c8-94b3-5c81c93722e2&redirect_uri=https://accounts.daps.ph/web/index.php/&scope=transactionalAccountsForBillsPay";
+
 const CASHIN_MERCHANT_ID = "";
 const CASHIN_NETWORK_ID = "";
 const CASHIN_USERNAME = "";

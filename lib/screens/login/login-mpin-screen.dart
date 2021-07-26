@@ -81,6 +81,9 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
         content: SwipeDialog(
           title: MPIN_RECOVERY_TITLE,
           contentMessage: MPIN_RECOVERY_CONTENT_MESSAGE,
+          cancel: () {
+            OverlayScreen().pop();
+          },
           cancelBtn: true,
           onOk: () async {
             OverlayScreen().pop();
