@@ -50,6 +50,7 @@ import 'package:swipe/screens/user-profile/user-verification/verification-user-i
 import 'package:swipe/screens/voucher-pockets/voucher-pockets-screen.dart';
 import 'package:swipe/screens/bills_payment/transportation/transportation-categories-screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class Router {
   static Route<dynamic> generateRouting(RouteSettings settings) {
@@ -63,13 +64,13 @@ class Router {
       case '/login/login-mpin-screen':
         return MaterialPageRoute(builder: (_) => LoginMpinScreen());
       case '/registration/registration-details-screen':
-        return MaterialPageRoute(
+        return CupertinoPageRoute(
             builder: (_) => RegistrationDetailsScreen());
       case '/registration/registration-otp-screen':
-        return MaterialPageRoute(
+        return CupertinoPageRoute(
             builder: (_) => RegistrationOptScreen());
       case '/registration/registration-create-mpin-screen':
-        return MaterialPageRoute(
+        return CupertinoPageRoute(
             builder: (_) => RegistrationCreateMpinScreen());
       case '/transactions/transaction-history-screen':
         return MaterialPageRoute(
