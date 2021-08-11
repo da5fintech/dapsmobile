@@ -103,7 +103,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         child: MaterialApp(
           navigatorKey: Get.key,
           debugShowCheckedModeBanner: false,
-          title: 'Curiociti',
+          title: 'Swipe',
           theme: createTheme(context),
           // darkTheme: ThemeData.dark(),
           // builder: (context, widget) => Navigator(
