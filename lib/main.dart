@@ -23,6 +23,7 @@ import 'common/constants.dart';
 
 const String namespaceKey = 'namespace';
 const String packageIdKey = 'packageId';
+const String dapsUrl = 'dapsUrl';
 
 GetIt getIt = GetIt.instance;
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flavor/flavor.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/product-model.dart';
@@ -34,7 +35,7 @@ class EloadProcessResponse extends TransactionProcessingResponse {
 class EloadingService extends Da5Service {
   EloadingService()
       : super(
-            endpoint: E_LOADING_API_ENDPOINT,
+            endpoint: Flavor.instance.properties['dapsUrl'],
             merchantId: E_LOADING_AUTH_MERCHANT_ID,
             networkId: E_LOADING_AUTH_NETWORK_ID,
             signature: E_LOADING_AUTH_SIGNATURE,
