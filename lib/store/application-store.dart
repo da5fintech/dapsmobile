@@ -9,6 +9,7 @@ import 'package:swipe/models/notification-model.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/models/user-model.dart';
+import 'package:swipe/models/bpi-account-model.dart';
 import 'package:swipe/services/account-service.dart';
 import 'package:swipe/services/add-biller-service.dart';
 import 'package:swipe/services/authentication-service.dart';
@@ -26,6 +27,7 @@ import 'package:swipe/services/save-suggestions-services.dart';
 import 'package:swipe/services/transaction-service.dart';
 import 'package:swipe/services/verify-service.dart';
 import 'package:swipe/services/gcash-service.dart';
+import 'package:swipe/services/bpi-service.dart';
 
 
 part 'application-store.g.dart';
@@ -74,6 +76,7 @@ abstract class _ApplicationStore with Store {
   CashInService cashInService;
   GcashService gcashService;
   OtpService otpService;
+  BpiService bpiService;
   SaveSuggestionsServices saveSuggestionsServices;
   PhRegionsService phRegionsService;
 
@@ -91,6 +94,7 @@ abstract class _ApplicationStore with Store {
   InstapayBankProduct selectedInstapayBank;
   List<PesonetBankProduct> pesonetBanks;
   PesonetBankProduct selectedPesonetBank;
+  List<BpiAccountModel> bpiAccountModel;
 
   _ApplicationStore({this.prefs}) {
     permissionsGranted = prefs.getBool('permissionGranted') ?? false;
@@ -114,6 +118,7 @@ abstract class _ApplicationStore with Store {
     otpService = OtpService();
     saveSuggestionsServices = SaveSuggestionsServices();
     phRegionsService = PhRegionsService();
+    bpiService = BpiService();
 
     getIt.registerSingleton(accountService);
     getIt.registerSingleton(VerifyService());
@@ -121,6 +126,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(billsPaymentService);
     getIt.registerSingleton(transactionService);
     getIt.registerSingleton(instapayService);
+    getIt.registerSingleton(bpiService);
     getIt.registerSingleton(pesonetService);
     getIt.registerSingleton(requestMoneyService);
     getIt.registerSingleton(autosweepService);

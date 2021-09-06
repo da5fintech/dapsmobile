@@ -7,6 +7,7 @@ import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/cash-in/cash-in-main-screen.dart';
+import 'package:swipe/screens/links-account/bpi-bank/bpi-accounts-screen.dart';
 import 'package:swipe/screens/onboarding/onboard-main-screen.dart';
 import 'package:swipe/screens/cash-out/cash-out.main-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
@@ -93,6 +94,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => LinksAccountScreen());
       case '/links-account/union-bank':
         return MaterialPageRoute(builder: (_) => UnionBankLoginScreen());
+      case '/links-account/bpi':
+        return CupertinoPageRoute(builder: (_) => BpiAccountsScreen());
       case '/partner-merchants':
         return MaterialPageRoute(
             builder: (_) => PartnerMerchantsScreen());
