@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:swipe/common/widgets/error-dialog.dart';
 import 'package:image/image.dart' as imglib;
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:camera/camera.dart';
@@ -521,6 +522,22 @@ void modalHudLoad(context,
           ),
         ],
       ),
+    ),
+  );
+}
+
+void errorModal(context, {
+  String title,
+  String message,
+}) {
+  showDialog(
+    context: context,
+    builder: (_) => ErrorDialog(
+      title: title,
+      message: message,
+      onOk: () {
+        Navigator.pop(context);
+      },
     ),
   );
 }
