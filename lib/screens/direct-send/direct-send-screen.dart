@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:native_screenshot/native_screenshot.dart';
@@ -11,6 +12,7 @@ import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/screens/direct-send/direct-request-form-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-via-qr-screen.dart';
+import 'package:swipe/screens/direct-send/import-qr-screen.dart';
 import 'package:swipe/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
@@ -126,6 +128,31 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       },
                       title: Text(
                         DIRECT_SEND_SCREEN_SEND_QR_TEXT,
+                        style: GoogleFonts.roboto(
+                          fontSize: SizeConfig.blockSizeVertical * 2,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios, size: 14),
+                    ),
+                  ),
+                  Card(
+                    margin: EdgeInsets.zero,
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: ListTile(
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => ImportQrScreen()),
+                         );
+
+                      },
+                      title: Text(
+                        'Import QR',
                         style: GoogleFonts.roboto(
                           fontSize: SizeConfig.blockSizeVertical * 2,
                           fontWeight: FontWeight.w500,
