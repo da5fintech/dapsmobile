@@ -1,3 +1,4 @@
+import 'package:flavor/flavor.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/models/product-model.dart';
 import 'package:swipe/models/transaction-model.dart';
@@ -41,7 +42,7 @@ class AutosweepProcessingResponse extends TransactionProcessingResponse {
 class AutosweepService extends Da5Service {
   AutosweepService()
       : super(
-          endpoint: AUTOSWEEP_API_ENDPOINT,
+          endpoint: Flavor.instance.properties['dapsUrl'],
           merchantId: AUTOSWEEP_AUTH_MERCHANT_ID,
           networkId: AUTOSWEEP_AUTH_NETWORK_ID,
           signature: AUTOSWEEP_AUTH_SIGNATURE,

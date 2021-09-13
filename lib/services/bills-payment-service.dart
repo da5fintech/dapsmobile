@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flavor/flavor.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/product-model.dart';
@@ -34,7 +35,7 @@ class BillsPaymentProcessResponse extends TransactionProcessingResponse {
 class BillsPaymentService extends Da5Service {
   BillsPaymentService()
       : super(
-            endpoint: BILLS_PAYMENT_API_ENDPOINT,
+            endpoint: Flavor.instance.properties['dapsUrl'],
             merchantId: BILLS_PAYMENT_AUTH_MERCHANT_ID,
             networkId: BILLS_PAYMENT_AUTH_NETWORK_ID,
             signature: BILLS_PAYMENT_AUTH_SIGNATURE,

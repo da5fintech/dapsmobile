@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flavor/flavor.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/product-model.dart';
@@ -37,7 +38,7 @@ class InstapayProcessingResponse extends TransactionProcessingResponse {
 class InstapayService extends Da5Service {
   InstapayService()
       : super(
-            endpoint: INSTAPAY_API_ENDPOINT,
+            endpoint: Flavor.instance.properties['dapsUrl'],
             merchantId: INSTAPAY_AUTH_MERCHANT_ID,
             networkId: INSTAPAY_AUTH_NETWORK_ID,
             signature: INSTAPAY_AUTH_SIGNATURE,

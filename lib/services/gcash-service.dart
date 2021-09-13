@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flavor/flavor.dart';
 import 'package:sensitive_http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:swipe/common/constants.dart';
@@ -20,7 +21,7 @@ class GcashService extends Da5Service {
 
   GcashService() :
       super(
-        endpoint: GCASH_ENDPOINT,
+        endpoint: Flavor.instance.properties['dapsUrl'],
         networkId: GCASH_NETWORK_ID,
         merchantId: GCASH_MERCHANT_ID,
         username: GCASH_USERNAME,

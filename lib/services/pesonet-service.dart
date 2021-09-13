@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flavor/flavor.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
 import 'package:swipe/models/product-model.dart';
@@ -41,7 +42,7 @@ class PesonetProcessingResponse extends TransactionProcessingResponse {
 class PesonetService extends Da5Service {
   PesonetService() :
         super(
-        endpoint: PESONET_PAY_API_STAGING_ENDPOINT,
+        endpoint: Flavor.instance.properties['dapsUrl'],
         merchantId: PESONET_PAY_AUTH_MERCHANT_ID,
         networkId: PESONET_PAY_AUTH_NETWORK_ID,
         signature: PESONET_PAY_AUTH_SIGNATURE,

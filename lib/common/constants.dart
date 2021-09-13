@@ -410,6 +410,12 @@ const UNION_BANK_LINKING = "linking";
 const UNION_BANK_PARTNER_ID = "5dff2cdf-ef15-48fb-a87b-375ebff415bb";
 
 const BPI_BANK_ENDPOINT = "https://oauth.bpi.com.ph/bpi/api/oauth2/authorize?response_type=code&client_id=71939b76-ec62-43c8-94b3-5c81c93722e2&redirect_uri=https://accounts.daps.ph/web/index.php/&scope=transactionalAccountsForBillsPay";
+const BPI_MAIN_ENDPOINT = "https://accounts.daps.ph/web/index.php";
+const BPI_NETWORK_ID = "5678";
+const BPI_MERCHANT_ID = "1234";
+const BPI_USERNAME = "testonly";
+const BPI_AUTHENTICATION = "6c093c3205e252b43c36b22124549bfc6b625efd";
+const BPI_SCOPE = "banks";
 
 const CASHIN_MERCHANT_ID = "";
 const CASHIN_NETWORK_ID = "";

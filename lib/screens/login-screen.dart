@@ -78,10 +78,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Constants.COLOR_DARK_PURPLE,
                           ),
                         ),
-                        Image.asset(
-                          'assets/icons/swipe-logo.png',
-                          height: height * 0.35,
-                          width: width,
+                        Hero(
+                          tag: 'swipe',
+                          child: Image.asset(
+                            'assets/icons/swipe-logo.png',
+                            height: height * 0.35,
+                            width: width,
+                          ),
                         ),
                         SizedBox(
                           height: 5,
