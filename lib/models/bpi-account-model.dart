@@ -35,10 +35,6 @@ class BpiAccountModel {
     model.accountPreferredName = map['accountPreferredName'];
     model.institution = map['institution'];
     model.accountType = map['accountType'];
-    model.mobileNumber = map['mobileNumber'];
-    model.mobileNumberToken = map['mobileNumberToken'];
-    model.amount = map['amount'];
-    model.transactionId = map['transactionId'];
     return model;
   }
 }

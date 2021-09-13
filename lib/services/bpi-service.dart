@@ -5,7 +5,7 @@ import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:flavor/flavor.dart';
 
-const accessToken = "AAEkNzE5MzliNzYtZWM2Mi00M2M4LTk0YjMtNWM4MWM5MzcyMmUyOk434g3jmYJNFDFGJWgNCZKtzqUSTcSeKePp4FqH56n56x7737DGNyZOy8Z3kSALB73FlO5Yenc2ywKwsIDRsSyDDoGW9LOECCOZ5Ew4UA5EEUWjxz3a6FMBNayjKbT4-VXeOR6Z00VtYwiFQTFT0A";
+const accessToken = "AAEkNzE5MzliNzYtZWM2Mi00M2M4LTk0YjMtNWM4MWM5MzcyMmUyVXCGzpN6ershJ7rlNFfNtVd4d284i0jNh7h7FNyvqL2NBSqifSVaVQ5kaJGnIl31rn7gC_4pldDAxBKc1j5nAnCHdWEq026M-jUM-DNo9v0fe5J9Q1e6rSFT8Se7CJ3GNIFtYYeyO2gMHZrcX09E5g";
 
 class BpiTransactionProcessingResponse extends TransactionProcessingResponse {
   List<dynamic> collections;
@@ -62,19 +62,19 @@ class BpiService extends Da5Service {
       print('API Reponse Error ${e.message}');
       return BpiTransactionProcessingResponse(status: false, message: 'Please re-login your Bpi Account');
     } catch (e) {
-      print('Caugth error');
+      print('Caught error');
       return BpiTransactionProcessingResponse(status: false, message: "Something went wrong");
     }
   }
 
-  Future<BpiTransactionProcessingResponse> init(BpiAccountModel bpiAccountModel) async {
+  Future<BpiTransactionProcessingResponse> init(BpiAccountModel bpiAccountModel, double amount) async {
     BpiTransactionProcessingResponse response = new BpiTransactionProcessingResponse();
     try {
       Map<String, String> params = {
         'AccessToken': accessToken,
         'Scope': BPI_SCOPE,
         'AccountNumberToken': bpiAccountModel.accountNumberToken,
-        'Amount': formatterWithoutPHP.format(bpiAccountModel.amount).replaceFirst(" ", "")
+        'Amount': formatterWithoutPHP.format(amount).replaceFirst(" ", "")
       };
       var request = await post('/API_BPICashin/initiate', params);
       response = BpiTransactionProcessingResponse.fromMap(request);
@@ -93,6 +93,7 @@ class BpiService extends Da5Service {
     BpiTransactionProcessingResponse response = new BpiTransactionProcessingResponse();
     try {
       Map<String, String> params = {
+        'Scope': BPI_SCOPE,
         'AccessToken': accessToken,
         'MobileNumber': model.mobileNumber,
         'MobileNumberToken': model.mobileNumberToken,
@@ -103,13 +104,37 @@ class BpiService extends Da5Service {
       var request = await post('/API_BPICashin/sendOTP', params);
       response = BpiTransactionProcessingResponse.fromMap(request);
       return response;
+    } on ApiResponseError catch(e) {
+      print('API Response Error ${e.message}');
+      return BpiTransactionProcessingResponse(status: false, message: 'Failed to request OTP');
     } catch (e) {
-      print('Caught error $e');
+      print('Caught Error');
+      print(e);
+      return BpiTransactionProcessingResponse(status: false, message: "Something went wrong");
     }
   }
 
-  Future<BpiTransactionProcessingResponse> process (BpiAccountModel model) {
+  Future<BpiTransactionProcessingResponse> process (BpiAccountModel model, String otp) async {
     BpiTransactionProcessingResponse response = new BpiTransactionProcessingResponse();
-
+    try {
+      Map<String, dynamic> params = {
+        'Scope': BPI_SCOPE,
+        'AccessToken': accessToken,
+        'MobileNumber': model.mobileNumberToken,
+        'Amount': formatterWithoutPHP.format(model.amount).replaceFirst(" ", ""),
+        'OTP': otp,
+        'TransactionId': model.transactionId,
+    };
+     var request = await post('/API_BPICashin/process', params);
+     response = BpiTransactionProcessingResponse.fromMap(request);
+     return response;
+    } on ApiResponseError catch (e) {
+      print('API Response Error ${e.message}');
+      return BpiTransactionProcessingResponse(status: false, message: 'Failed to request OTP');
+    } catch (e) {
+      print('Caught Error');
+      print(e);
+      return BpiTransactionProcessingResponse(status: false, message: "Something went wrong");
+    }
   }
 }

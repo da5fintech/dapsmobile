@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:swipe/common/constants.dart';
+import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/store/application-store.dart';
 import 'package:swipe/main.dart';
@@ -169,7 +171,13 @@ class _BpiOtpScreenState extends State<BpiOtpScreen> {
                   elevation: 0,
                   color: controller.text.length != 6 ? Colors.grey[500] : null,
                   // shape: ,
-                  // onPressed: _handleSubmit,
+                  onPressed: () {
+                    if(controller.text.length != 6) {
+                      return null;
+                    } else {
+                      _handleSubmit();
+                    }
+                  },
                   child: Text('PROCESS'),
                 ),
               ),
@@ -206,5 +214,23 @@ class _BpiOtpScreenState extends State<BpiOtpScreen> {
         ),
       ),
     );
+  }
+
+  void _handleSubmit () async {
+    try {
+      modalHudLoad(context);
+      var a = await store.bpiService.process(store.bpiAccountModel[0], controller.text);
+      if(!a.status) {
+        Navigator.pop(context);
+        errorModal(context, message: a.message);
+      } else {
+        /*Add user balance here*/
+        Get.offAndToNamed('/services');
+      }
+    } catch (e) {
+      print(e);
+      Navigator.pop(context);
+      errorModal(context);
+    }
   }
 }

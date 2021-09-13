@@ -56,10 +56,10 @@ class _LinksAccountScreenState extends State<LinksAccountScreen> {
                     builder: (_) => UnionBankWebView(uri: url)));
               } else {
                 OverlayScreen().pop();
-                Get.toNamed('/links-account/bpi');
                 // Navigator.push(context, MaterialPageRoute(
                 //   builder: (_) => BpiBankMainScreen(uri: BPI_BANK_ENDPOINT),
                 // ));
+                Get.toNamed('/link-account/bpi/success');
               }
               // return null;
             },

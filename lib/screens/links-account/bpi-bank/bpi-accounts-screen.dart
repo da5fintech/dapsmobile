@@ -23,7 +23,7 @@ class BpiAccountsScreen extends StatefulWidget {
 
 class _BpiAccountsScreenState extends State<BpiAccountsScreen> {
   TextEditingController controller = TextEditingController();
-  BpiAccountModel bpiModel;
+  BpiAccountModel bpiModel = new BpiAccountModel();
 
   @override
   void initState () {
@@ -144,6 +144,12 @@ class _BpiAccountsScreenState extends State<BpiAccountsScreen> {
                     ),
                     SizedBox(height: 10),
                     TextFormField(
+                      onFieldSubmitted: (a) {
+                        FocusScopeNode().unfocus();
+                        if(isLinked()) {
+                          transferFunds();
+                        }
+                      },
                       controller: controller,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
@@ -159,10 +165,14 @@ class _BpiAccountsScreenState extends State<BpiAccountsScreen> {
                     Align(
                         alignment: Alignment.centerRight,
                         child: ButtonTheme(
-                          buttonColor: COLOR_DARK_PURPLE,
+                          buttonColor: isLinked() ? COLOR_DARK_PURPLE : Colors.grey,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                           child: RaisedButton(
-                            onPressed: transferFunds,
+                            onPressed: () {
+                              if(isLinked()) {
+                                transferFunds();
+                              }
+                            },
                             child: Text(
                               'Transfer',
                               style: TextStyle(color: Colors.white),
@@ -178,6 +188,10 @@ class _BpiAccountsScreenState extends State<BpiAccountsScreen> {
         ),
       ),
     );
+  }
+
+  bool isLinked () {
+    return bpiModel == null ? false : true;
   }
 
   Future<void> linkedAccount() async {
@@ -198,25 +212,30 @@ class _BpiAccountsScreenState extends State<BpiAccountsScreen> {
       }
     } catch (e) {
       print(e);
+      errorModal(context);
     }
   }
 
   Future<void> transferFunds () async {
-    Get.toNamed('/link-account/bpi/otp');
-    // try {
-    //   modalHudLoad(context);
-    //   bpiModel.amount = double.parse(controller.text);
-    //   var a = await store.bpiService.init(bpiModel);
-    //
-    //   if(!a.status) {
-    //     Navigator.pop(context);
-    //     errorModal(context, message: a.message);
-    //   }
-    //   // Get.toNamed("/services/payment/payment-verification-screen");
-    // } catch (e) {
-    //   Navigator.pop(context);
-    //   errorModal(context);
-    // }
+    try {
+      modalHudLoad(context);
+      var a = await store.bpiService.init(bpiModel, double.parse(controller.text));
+      if(!a.status) {
+        Navigator.pop(context);
+        errorModal(context, message: a.message);
+      } else {
+        store.bpiAccountModel[0].mobileNumber = a.collections[0]['mobileNumber'];
+        store.bpiAccountModel[0].mobileNumberToken = a.collections[0]['mobileNumberToken'];
+        store.bpiAccountModel[0].amount = double.parse(a.collections[0]['amount']);
+        store.bpiAccountModel[0].transactionId = a.collections[0]['transactionId'];
+        await store.bpiService.sendOtp(store.bpiAccountModel[0]);
+        Get.toNamed('/link-account/bpi/otp');
+      }
+    } catch (e) {
+      print(e);
+      Navigator.pop(context);
+      errorModal(context);
+    }
   }
 
 }

@@ -9,6 +9,7 @@ import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/cash-in/cash-in-main-screen.dart';
 import 'package:swipe/screens/links-account/bpi-bank/bpi-accounts-screen.dart';
 import 'package:swipe/screens/links-account/bpi-bank/bpi-otp-screen.dart';
+import 'package:swipe/screens/links-account/bpi-bank/bpi-success-screen.dart';
 import 'package:swipe/screens/onboarding/onboard-main-screen.dart';
 import 'package:swipe/screens/cash-out/cash-out.main-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
@@ -99,6 +100,8 @@ class Router {
         return CupertinoPageRoute(builder: (_) => BpiAccountsScreen());
       case '/link-account/bpi/otp':
         return CupertinoPageRoute(builder: (_) => BpiOtpScreen());
+      case '/link-account/bpi/success':
+        return CupertinoPageRoute(builder: (_) => BpiSuccessScreen());
       case '/partner-merchants':
         return MaterialPageRoute(
             builder: (_) => PartnerMerchantsScreen());

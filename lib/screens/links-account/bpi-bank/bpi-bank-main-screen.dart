@@ -36,7 +36,10 @@ class _BpiBankMainScreenState extends State<BpiBankMainScreen> {
       ),
       body: WebView(
         onWebViewCreated: (WebViewController webViewController) {
-          _controllerCompleter.future.then((value) => _controller = value);
+          _controllerCompleter.future.then((value) async {
+            _controller = value;
+            print(await value.currentUrl());
+          });
           _controllerCompleter.complete(webViewController);
         },
         initialUrl: widget.uri,
