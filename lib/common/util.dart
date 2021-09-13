@@ -12,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:swipe/common/common-alert.dialog.dart';
+import 'package:swipe/common/widgets/error-dialog.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'dart:io';
@@ -526,10 +527,10 @@ void modalHudLoad(context,
   );
 }
 
-void errorModal(context, {
-  String title,
-  String message,
-}) {
+void errorModal(context,
+    {String title = "Ooopps",
+      Function back,
+      String message = "Something went wrong\nPlease try again later."}) async {
   showDialog(
     context: context,
     builder: (_) => ErrorDialog(
