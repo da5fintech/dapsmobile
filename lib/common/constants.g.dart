@@ -40,7 +40,7 @@ class SwipeServiceOfferingAdapter extends TypeAdapter<SwipeServiceOffering> {
       case 12:
         return SwipeServiceOffering.REMITTANCE_PESONET;
       default:
-        return null;
+        return SwipeServiceOffering.BUY_LOAD;
     }
   }
 

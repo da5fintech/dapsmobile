@@ -5,8 +5,6 @@ import 'package:swipe/models/transaction-model.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:flavor/flavor.dart';
 
-const accessToken = "AAEkNzE5MzliNzYtZWM2Mi00M2M4LTk0YjMtNWM4MWM5MzcyMmUyVXCGzpN6ershJ7rlNFfNtVd4d284i0jNh7h7FNyvqL2NBSqifSVaVQ5kaJGnIl31rn7gC_4pldDAxBKc1j5nAnCHdWEq026M-jUM-DNo9v0fe5J9Q1e6rSFT8Se7CJ3GNIFtYYeyO2gMHZrcX09E5g";
-
 class BpiTransactionProcessingResponse extends TransactionProcessingResponse {
   List<dynamic> collections;
   BpiTransactionProcessingResponse({this.collections, status, code, result, message}) :
@@ -48,7 +46,7 @@ class BpiService extends Da5Service {
         username:  BPI_USERNAME,
       );
 
-  Future<BpiTransactionProcessingResponse> getAccounts () async {
+  Future<BpiTransactionProcessingResponse> getAccounts (String accessToken) async {
     BpiTransactionProcessingResponse response = new BpiTransactionProcessingResponse();
     Map<String, String> params = {
       'Scope': BPI_SCOPE,
@@ -67,7 +65,7 @@ class BpiService extends Da5Service {
     }
   }
 
-  Future<BpiTransactionProcessingResponse> init(BpiAccountModel bpiAccountModel, double amount) async {
+  Future<BpiTransactionProcessingResponse> init(BpiAccountModel bpiAccountModel, double amount, String accessToken) async {
     BpiTransactionProcessingResponse response = new BpiTransactionProcessingResponse();
     try {
       Map<String, String> params = {
@@ -89,7 +87,7 @@ class BpiService extends Da5Service {
     }
   }
 
-  Future<BpiTransactionProcessingResponse> sendOtp (BpiAccountModel model) async {
+  Future<BpiTransactionProcessingResponse> sendOtp (BpiAccountModel model, String accessToken) async {
     BpiTransactionProcessingResponse response = new BpiTransactionProcessingResponse();
     try {
       Map<String, String> params = {
@@ -114,7 +112,7 @@ class BpiService extends Da5Service {
     }
   }
 
-  Future<BpiTransactionProcessingResponse> process (BpiAccountModel model, String otp) async {
+  Future<BpiTransactionProcessingResponse> process (BpiAccountModel model, String otp, String accessToken) async {
     BpiTransactionProcessingResponse response = new BpiTransactionProcessingResponse();
     try {
       Map<String, dynamic> params = {

@@ -219,7 +219,7 @@ class _BpiOtpScreenState extends State<BpiOtpScreen> {
   void _handleSubmit () async {
     try {
       modalHudLoad(context);
-      var a = await store.bpiService.process(store.bpiAccountModel[0], controller.text);
+      var a = await store.bpiService.process(store.bpiAccountModel[0], controller.text, store.bpiAccessToken);
       if(!a.status) {
         Navigator.pop(context);
         errorModal(context, message: a.message);

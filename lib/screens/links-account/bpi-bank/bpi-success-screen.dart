@@ -160,8 +160,6 @@ class _BpiSuccessScreenState extends State<BpiSuccessScreen> {
                   ),
                 ),
               ),
-
-
             ],
           ),
         ),

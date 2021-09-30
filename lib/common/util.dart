@@ -543,4 +543,22 @@ void errorModal(context,
   );
 }
 
+void bpiLogin(context,
+    {String title = "Ooopps",
+      Function onOk,
+      String message = "Something went wrong\nPlease try again later."}) async {
+  showDialog(
+    context: context,
+    builder: (_) => ErrorDialog(
+      title: title,
+      message: message,
+      onOk: () {
+        onOk();
+      },
+    ),
+  );
+}
+
+
+
 var appUtil = AppUtil();
