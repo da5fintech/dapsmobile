@@ -61,10 +61,10 @@ class _KycSelfieScreenState extends State<KycSelfieScreen> {
                   child: RaisedButton.icon(
                     color: Colors.white,
                     onPressed: () async {
-                      File image = await ImagePicker.pickImage(
-                          source: ImageSource.camera, imageQuality: 50
-                      );
-                      _image = image;
+                      // File image = await ImagePicker.pickImage(
+                      //     source: ImageSource.camera, imageQuality: 50
+                      // );
+                      // _image = image;
                       setState(() {});
                     },
                     icon: Icon(Icons.camera_alt, color: COLOR_DARK_PURPLE),
@@ -84,10 +84,10 @@ class _KycSelfieScreenState extends State<KycSelfieScreen> {
                   minWidth: 160,
                   child: RaisedButton(
                     onPressed: () async {
-                       File image = await ImagePicker.pickImage(
-                          source: ImageSource.gallery, imageQuality: 50
-                      );
-                      _image = image;
+                      //  File image = await ImagePicker.pickImage(
+                      //     source: ImageSource.gallery, imageQuality: 50
+                      // );
+                      // _image = image;
                        setState(() {});
                     },
                     color: COLOR_DARK_PURPLE,

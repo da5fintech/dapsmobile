@@ -68,13 +68,13 @@ class FireStoreService {
     result = await query.get(GetOptions(source: source));
 
     if (null == result ||
-        (source == Source.cache && result.documents.isEmpty)) {
+        (source == Source.cache && result.docs.isEmpty)) {
       result = await query.get(GetOptions(source: Source.server));
     }
 
     print('from cache: ${result.metadata.isFromCache}');
 
-    return result.documents;
+    return result.docs;
   }
 
   Stream<QuerySnapshot> findAllAsStream({
@@ -157,7 +157,7 @@ class FireStoreService {
   }
 
   Future<bool> update(id, data) async {
-    DocumentSnapshot ds = await db.document('$collectionName/$id').get();
+    DocumentSnapshot ds = await db.doc('$collectionName/$id').get();
     try {
       await ds.reference.set(
         data,
@@ -176,7 +176,7 @@ class FireStoreService {
     batchArray.add(db.batch());
     int batchIndex = 0;
 
-    snapshot.documents.forEach((doc) async {
+    snapshot.docs.forEach((doc) async {
       if (i == 499) {
         batchArray.add(db.batch());
         i = 0;
@@ -203,7 +203,7 @@ class FireStoreService {
         i = 0;
         batchIndex++;
       }
-      batchArray[batchIndex].updateData(doc, data);
+      batchArray[batchIndex].update(doc, data);
       i++;
     });
 

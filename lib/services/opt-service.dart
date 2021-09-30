@@ -9,13 +9,12 @@ class OtpService {
     var message = "Your OTP verification is ${otp}";
     try {
       var a = await http.get(
-          '${SMS_API}'
+          Uri.parse('${SMS_API}'
               'un=${SMS_USERNAME}&'
               'pwd=${SMS_PASSWORD}&'
               'dstno=${mobileNumber}&'
               'msg=${message}&agreedterm=YES&type=1&'
-              'sendid=Swipe'
-      );
+              'sendid=Swipe'));
       print(a.statusCode);
     } on ApiResponseError catch (e) {
       print("Failed $e");
@@ -33,20 +32,20 @@ class OtpService {
         "Sender Message ${senderMessage}";
     try {
       var receiver = await http.get(
-          '${SMS_API}'
+          Uri.parse('${SMS_API}'
               'un=${SMS_USERNAME}&'
               'pwd=${SMS_PASSWORD}&'
               'dstno=${receiverMobileNumber}&'
               'msg=${message}&agreedterm=YES&type=1&'
-              'sendid=Swipe'
+              'sendid=Swipe')
       );
       var sender = await http.get(
-          '${SMS_API}'
+          Uri.parse('${SMS_API}'
               'un=${SMS_USERNAME}&'
               'pwd=${SMS_PASSWORD}&'
               'dstno=${senderMobileNumber}&'
               'msg=${message}&agreedterm=YES&type=1&'
-              'sendid=Swipe'
+              'sendid=Swipe')
       );
     } catch (e) {
       print(e);
@@ -58,12 +57,12 @@ class OtpService {
     print('send sms greeting');
     try {
       var greetings = await http.get(
-        '${SMS_API}'
-        'un=${SMS_USERNAME}&'
+        Uri.parse('${SMS_API}'
+            'un=${SMS_USERNAME}&'
             'pwd=${SMS_PASSWORD}&'
             'dstno=${mobileNumber}&'
             'msg=${message}&agreedterm=YES&type=1&'
-            'sendid=Swipe'
+            'sendid=Swipe')
       );
     } catch(err) {
       rethrow;
@@ -74,12 +73,12 @@ class OtpService {
     var message = "Your MPIN is ${user.mpin}\nPlease delete this after reading this.";
     try {
       var mpinReq = await http.get(
-          '${SMS_API}'
+          Uri.parse('${SMS_API}'
               'un=${SMS_USERNAME}&'
               'pwd=${SMS_PASSWORD}&'
               'dstno=${mobileNumber}&'
               'msg=${message}&agreedterm=YES&type=1&'
-              'sendid=Swipe'
+              'sendid=Swipe')
       );
     } catch(err) {
       rethrow;

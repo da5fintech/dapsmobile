@@ -67,7 +67,7 @@ class UserModel {
   }
 
   factory UserModel.fromDocumentSnapshot(DocumentSnapshot document) {
-    var data = document.data();
+    var data = document.data() as Map<String, dynamic>;
     var model = new UserModel();
     var ts = data["createdAt"] as Timestamp;
     var uts = data['updatedAt'] as Timestamp;

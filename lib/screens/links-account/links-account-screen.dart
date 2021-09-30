@@ -6,6 +6,7 @@ import 'package:swipe/common/size.config.dart';
 import 'package:swipe/common/widgets/greet-dialog.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/common/widgets/swipe-dialog.dart';
+import 'package:swipe/screens/links-account/bpi-bank/bpi-accounts-screen.dart';
 import 'package:swipe/screens/links-account/bpi-bank/bpi-bank-main-screen.dart';
 import 'package:swipe/screens/links-account/union-bank/union-bank-login-screen.dart';
 import 'package:swipe/screens/links-account/union-bank/union-bank-web-view-screen.dart';
@@ -56,10 +57,10 @@ class _LinksAccountScreenState extends State<LinksAccountScreen> {
                     builder: (_) => UnionBankWebView(uri: url)));
               } else {
                 OverlayScreen().pop();
-                // Navigator.push(context, MaterialPageRoute(
-                //   builder: (_) => BpiBankMainScreen(uri: BPI_BANK_ENDPOINT),
-                // ));
-                Get.toNamed('/link-account/bpi/success');
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (_) => BpiAccountsScreen(),
+                ));
+                // Get.toNamed('/link-account/bpi/success');
               }
               // return null;
             },

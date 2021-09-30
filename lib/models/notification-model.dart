@@ -55,7 +55,7 @@ class NotificationModel extends ProductModel {
   }
 
   factory NotificationModel.fromDocumentSnapshot(DocumentSnapshot document) {
-    var data = document.data();
+    var data = document.data() as Map<String, dynamic>;
     var model = new NotificationModel();
     model.id = document.id;
     model.uid = data['uid'];
