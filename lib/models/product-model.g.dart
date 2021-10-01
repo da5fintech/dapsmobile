@@ -6,55 +6,6 @@ part of 'product-model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class BillerFieldTypeAdapter extends TypeAdapter<BillerFieldType> {
-  @override
-  final int typeId = 4;
-
-  @override
-  BillerFieldType read(BinaryReader reader) {
-    switch (reader.readByte()) {
-      case 0:
-        return BillerFieldType.TEXT;
-      case 1:
-        return BillerFieldType.NUMBER;
-      case 2:
-        return BillerFieldType.CALENDAR;
-      case 3:
-        return BillerFieldType.DROPDOWN;
-      default:
-        return null;
-    }
-  }
-
-  @override
-  void write(BinaryWriter writer, BillerFieldType obj) {
-    switch (obj) {
-      case BillerFieldType.TEXT:
-        writer.writeByte(0);
-        break;
-      case BillerFieldType.NUMBER:
-        writer.writeByte(1);
-        break;
-      case BillerFieldType.CALENDAR:
-        writer.writeByte(2);
-        break;
-      case BillerFieldType.DROPDOWN:
-        writer.writeByte(3);
-        break;
-    }
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BillerFieldTypeAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
 class ProductModelAdapter extends TypeAdapter<ProductModel> {
   @override
   final int typeId = 5;
@@ -244,6 +195,55 @@ class BillerProductAdapter extends TypeAdapter<BillerProduct> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is BillerProductAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class BillerFieldTypeAdapter extends TypeAdapter<BillerFieldType> {
+  @override
+  final int typeId = 4;
+
+  @override
+  BillerFieldType read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return BillerFieldType.TEXT;
+      case 1:
+        return BillerFieldType.NUMBER;
+      case 2:
+        return BillerFieldType.CALENDAR;
+      case 3:
+        return BillerFieldType.DROPDOWN;
+      default:
+        return BillerFieldType.TEXT;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, BillerFieldType obj) {
+    switch (obj) {
+      case BillerFieldType.TEXT:
+        writer.writeByte(0);
+        break;
+      case BillerFieldType.NUMBER:
+        writer.writeByte(1);
+        break;
+      case BillerFieldType.CALENDAR:
+        writer.writeByte(2);
+        break;
+      case BillerFieldType.DROPDOWN:
+        writer.writeByte(3);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BillerFieldTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

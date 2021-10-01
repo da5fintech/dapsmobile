@@ -48,7 +48,7 @@ class Da5Service {
       print("sending body $requestBody");
 
       var result = await http.post(
-        uri,
+        Uri.parse(uri),
         headers: headers,
         body: requestBody,
       ).timeout(
@@ -110,7 +110,7 @@ class Da5Service {
       print("sending body $requestBody");
 
       var result = await http.post(
-        uri,
+        Uri.parse(uri),
         headers: headers,
         body: requestBody,
       ).timeout(
@@ -156,7 +156,7 @@ class Da5Service {
     print('geting token');
     try {
       var request = await http.post(
-        endpoint + '/api/user/accessToken',
+        Uri.parse(endpoint + '/api/user/accessToken'),
         headers: null,
         body: {
           "email": "info@swipe.ph",
@@ -174,7 +174,7 @@ class Da5Service {
     print('fetch ph services');
     try {
       var uri = PH_SERVICE_ENDPOINT + "/api/" + endpoint + (req == "" ? "" : "/" + req);
-      var request = await http.get(uri).timeout(Duration(seconds: 15));
+      var request = await http.get(Uri.parse(uri)).timeout(Duration(seconds: 15));
       var response = jsonDecode(request.body);
 
       if (request.statusCode >= 200 && request.statusCode < 400) {

@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:swipe/common/widgets/error-dialog.dart';
 import 'package:image/image.dart' as imglib;
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+// import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +20,8 @@ import 'dart:core';
 
 import 'package:swipe/models/notification-model.dart';
 
-typedef HandleDetection = Future<List<Face>> Function(
-    FirebaseVisionImage image);
+// typedef HandleDetection = Future<List<Face>> Function(
+//     FirebaseVisionImage image);
 
 class AppUtil extends DateUtil {
   static AppUtil _instance = AppUtil._internal();
@@ -252,63 +252,63 @@ class AppUtil extends DateUtil {
     return img;
   }
 
-  Future<CameraDescription> getCamera(CameraLensDirection dir) async {
-    return await availableCameras().then(
-      (List<CameraDescription> cameras) => cameras.firstWhere(
-        (CameraDescription camera) => camera.lensDirection == dir,
-      ),
-    );
-  }
-
-  ImageRotation rotationIntToImageRotation(int rotation) {
-    switch (rotation) {
-      case 0:
-        return ImageRotation.rotation0;
-      case 90:
-        return ImageRotation.rotation90;
-      case 180:
-        return ImageRotation.rotation180;
-      default:
-        assert(rotation == 270);
-        return ImageRotation.rotation270;
-    }
-  }
-
-  Future<List<Face>> detect(CameraImage image, HandleDetection handleDetection,
-      ImageRotation rotation) async {
-    return handleDetection(
-      FirebaseVisionImage.fromBytes(
-        concatenatePlanes(image.planes),
-        buildMetaData(image, rotation),
-      ),
-    );
-  }
-
-  Uint8List concatenatePlanes(List<Plane> planes) {
-    final WriteBuffer allBytes = WriteBuffer();
-    planes.forEach((Plane plane) => allBytes.putUint8List(plane.bytes));
-    return allBytes.done().buffer.asUint8List();
-  }
-
-  FirebaseVisionImageMetadata buildMetaData(
-    CameraImage image,
-    ImageRotation rotation,
-  ) {
-    return FirebaseVisionImageMetadata(
-      rawFormat: image.format.raw,
-      size: Size(image.width.toDouble(), image.height.toDouble()),
-      rotation: rotation,
-      planeData: image.planes.map(
-        (Plane plane) {
-          return FirebaseVisionImagePlaneMetadata(
-            bytesPerRow: plane.bytesPerRow,
-            height: plane.height,
-            width: plane.width,
-          );
-        },
-      ).toList(),
-    );
-  }
+  // Future<CameraDescription> getCamera(CameraLensDirection dir) async {
+  //   return await availableCameras().then(
+  //     (List<CameraDescription> cameras) => cameras.firstWhere(
+  //       (CameraDescription camera) => camera.lensDirection == dir,
+  //     ),
+  //   );
+  // }
+  //
+  // ImageRotation rotationIntToImageRotation(int rotation) {
+  //   switch (rotation) {
+  //     case 0:
+  //       return ImageRotation.rotation0;
+  //     case 90:
+  //       return ImageRotation.rotation90;
+  //     case 180:
+  //       return ImageRotation.rotation180;
+  //     default:
+  //       assert(rotation == 270);
+  //       return ImageRotation.rotation270;
+  //   }
+  // }
+  //
+  // Future<List<Face>> detect(CameraImage image, HandleDetection handleDetection,
+  //     ImageRotation rotation) async {
+  //   return handleDetection(
+  //     FirebaseVisionImage.fromBytes(
+  //       concatenatePlanes(image.planes),
+  //       buildMetaData(image, rotation),
+  //     ),
+  //   );
+  // }
+  //
+  // Uint8List concatenatePlanes(List<Plane> planes) {
+  //   final WriteBuffer allBytes = WriteBuffer();
+  //   planes.forEach((Plane plane) => allBytes.putUint8List(plane.bytes));
+  //   return allBytes.done().buffer.asUint8List();
+  // }
+  //
+  // FirebaseVisionImageMetadata buildMetaData(
+  //   CameraImage image,
+  //   ImageRotation rotation,
+  // ) {
+  //   return FirebaseVisionImageMetadata(
+  //     rawFormat: image.format.raw,
+  //     size: Size(image.width.toDouble(), image.height.toDouble()),
+  //     rotation: rotation,
+  //     planeData: image.planes.map(
+  //       (Plane plane) {
+  //         return FirebaseVisionImagePlaneMetadata(
+  //           bytesPerRow: plane.bytesPerRow,
+  //           height: plane.height,
+  //           width: plane.width,
+  //         );
+  //       },
+  //     ).toList(),
+  //   );
+  // }
 
   //amount mask formatter
   String formatNumber(String s) =>
@@ -542,5 +542,23 @@ void errorModal(context,
     ),
   );
 }
+
+void bpiLogin(context,
+    {String title = "Ooopps",
+      Function onOk,
+      String message = "Something went wrong\nPlease try again later."}) async {
+  showDialog(
+    context: context,
+    builder: (_) => ErrorDialog(
+      title: title,
+      message: message,
+      onOk: () {
+        onOk();
+      },
+    ),
+  );
+}
+
+
 
 var appUtil = AppUtil();

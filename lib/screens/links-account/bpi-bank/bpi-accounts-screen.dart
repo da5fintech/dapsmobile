@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
+import 'package:swipe/screens/links-account/bpi-bank/bpi-bank-main-screen.dart';
 import 'package:swipe/screens/links-account/bpi-bank/widgets/credit-card-widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/store/application-store.dart';
@@ -197,10 +198,16 @@ class _BpiAccountsScreenState extends State<BpiAccountsScreen> {
   Future<void> linkedAccount() async {
     try {
       modalHudLoad(context);
-      var a = await store.bpiService.getAccounts();
+      var a = await store.bpiService.getAccounts(store.bpiAccessToken);
       if(a == null || !a.status) {
         Navigator.pop(context);
-        errorModal(context, message: a.message);
+        bpiLogin(context, message: a.message, onOk: () {
+          Navigator.pop(context);
+          Navigator.push(context, MaterialPageRoute(
+            builder: (_) => BpiBankMainScreen(uri: BPI_BANK_ENDPOINT),
+          ));
+        });
+        // errorModal(context, message: a.message);
       } else {
         Navigator.pop(context);
         store.bpiAccountModel = a.collections?.map((collection) {
@@ -219,7 +226,7 @@ class _BpiAccountsScreenState extends State<BpiAccountsScreen> {
   Future<void> transferFunds () async {
     try {
       modalHudLoad(context);
-      var a = await store.bpiService.init(bpiModel, double.parse(controller.text));
+      var a = await store.bpiService.init(bpiModel, double.parse(controller.text), store.bpiAccessToken);
       if(!a.status) {
         Navigator.pop(context);
         errorModal(context, message: a.message);
@@ -228,7 +235,7 @@ class _BpiAccountsScreenState extends State<BpiAccountsScreen> {
         store.bpiAccountModel[0].mobileNumberToken = a.collections[0]['mobileNumberToken'];
         store.bpiAccountModel[0].amount = double.parse(a.collections[0]['amount']);
         store.bpiAccountModel[0].transactionId = a.collections[0]['transactionId'];
-        await store.bpiService.sendOtp(store.bpiAccountModel[0]);
+        await store.bpiService.sendOtp(store.bpiAccountModel[0], store.bpiAccessToken);
         Get.toNamed('/link-account/bpi/otp');
       }
     } catch (e) {

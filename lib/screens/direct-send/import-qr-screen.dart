@@ -7,7 +7,7 @@ import 'package:swipe/models/notification-model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+// import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:swipe/common/util.dart';
 
 class ImportQrScreen extends StatefulWidget {
@@ -20,7 +20,7 @@ class ImportQrScreen extends StatefulWidget {
 class _ImportQrScreenState extends State<ImportQrScreen> {
   File _image;
   final picker = ImagePicker();
-  FirebaseVisionImage visionImage;
+  // FirebaseVisionImage visionImage;
   AppUtil _appUtil = AppUtil();
 
   Future getImage() async {
@@ -35,18 +35,18 @@ class _ImportQrScreenState extends State<ImportQrScreen> {
     });
   }
 
-  Future<String> decode() async {
-    String qrCode;
-    if(_image == null) return null;
-    FirebaseVisionImage ourImage = FirebaseVisionImage.fromFile(_image);
-    BarcodeDetector barcodeDetector = FirebaseVision.instance.barcodeDetector();
-    List barCodes = await barcodeDetector.detectInImage(ourImage);
-
-    for (Barcode readableCode in barCodes) {
-      qrCode = readableCode.displayValue;
-    }
-    return qrCode;
-  }
+  // Future<String> decode() async {
+  //   String qrCode;
+  //   if(_image == null) return null;
+  //   FirebaseVisionImage ourImage = FirebaseVisionImage.fromFile(_image);
+  //   BarcodeDetector barcodeDetector = FirebaseVision.instance.barcodeDetector();
+  //   List barCodes = await barcodeDetector.detectInImage(ourImage);
+  //
+  //   for (Barcode readableCode in barCodes) {
+  //     qrCode = readableCode.displayValue;
+  //   }
+  //   return qrCode;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,8 @@ class _ImportQrScreenState extends State<ImportQrScreen> {
 
   Future<void> handleNext() async {
     modalHudLoad(context);
-    String code = await decode();
+    String code;
+    // String code = await decode();
     await Future.delayed(Duration(seconds: 2));
     Navigator.pop(context);
     if(code == null) {

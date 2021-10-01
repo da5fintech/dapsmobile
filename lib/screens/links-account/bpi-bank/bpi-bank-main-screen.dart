@@ -1,8 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:swipe/store/application-store.dart';
+import 'package:swipe/main.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+final store = getIt<ApplicationStore>();
 
 class BpiBankMainScreen extends StatefulWidget {
   String uri;
@@ -15,35 +21,85 @@ class BpiBankMainScreen extends StatefulWidget {
 
 class _BpiBankMainScreenState extends State<BpiBankMainScreen> {
   WebViewController _controller;
+  final flutterWebviewPlugin = new FlutterWebviewPlugin();
+  StreamSubscription _onDestroy;
+  StreamSubscription<String> _onUrlChanged;
+  StreamSubscription<WebViewStateChanged> _onStateChanged;
 
-  final Completer<WebViewController> _controllerCompleter =
-  Completer<WebViewController>();
-  //Make sure this function return Future<bool> otherwise you will get an error
-  Future<bool> _onWillPop(BuildContext context) async {
-    if (await _controller.canGoBack()) {
-      _controller.goBack();
-      return Future.value(false);
-    } else {
-      return Future.value(true);
-    }
+  String token;
+  String _url;
+
+  @override
+  void initState() {
+    super.initState();
+
+    flutterWebviewPlugin.close();
+
+    // Add a listener to on destroy WebView, so you can make came actions.
+    _onDestroy = flutterWebviewPlugin.onDestroy.listen((_) {
+      print("destroy");
+    });
+
+    _onStateChanged =
+        flutterWebviewPlugin.onStateChanged.listen((WebViewStateChanged state) {
+          print("onStateChanged: ${state.type} ${state.url}");
+          var a = Uri.parse(state.url);
+          print('query params');
+          print(a.queryParameters);
+
+        });
+
+    // Add a listener to on url changed
+    _onUrlChanged = flutterWebviewPlugin.onUrlChanged.listen((String url) {
+      if (mounted) {
+        setState(() {
+          print("URL changed: $url");
+          if (url.startsWith(BPI_MAIN_ENDPOINT)) {
+            setState(() {
+              _url = url;
+            });
+            store.bpiAccessToken = _url.split('=')[1];
+            Navigator.pop(context);
+          }
+        });
+      }
+    });
+
   }
+
+  @override
+  void dispose() {
+    // Every listener should be canceled, the same should be done with this stream.
+    _onDestroy.cancel();
+    _onUrlChanged.cancel();
+    _onStateChanged.cancel();
+    flutterWebviewPlugin.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SubAppbarWidget(
-        title: "BPI Bank",
+      // appBar: SubAppbarWidget(
+      //   title: "BPI Bank",
+      // ),
+      body: WebviewScaffold(
+        appBar: SubAppbarWidget(
+          title: "BPI Bank",
+        ),
+        url: widget.uri,
       ),
-      body: WebView(
-        onWebViewCreated: (WebViewController webViewController) {
-          _controllerCompleter.future.then((value) async {
-            _controller = value;
-            print(await value.currentUrl());
-          });
-          _controllerCompleter.complete(webViewController);
-        },
-        initialUrl: widget.uri,
-      ),
+      // body: WebView(
+      //   onWebViewCreated: (WebViewController webViewController) {
+      //     _controllerCompleter.future.then((value) async {
+      //       _controller = value;
+      //       print(await value.currentUrl());
+      //     });
+      //     _controllerCompleter.complete(webViewController);
+      //   },
+      //   initialUrl: widget.uri,
+      // ),
     );
   }
 }

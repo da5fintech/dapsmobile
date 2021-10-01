@@ -56,6 +56,8 @@ abstract class _ApplicationStore with Store {
   @observable
   File faceImage;
 
+  String bpiAccessToken;
+
   //used to track user registration
   UserModel registrant;
 

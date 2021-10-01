@@ -305,7 +305,7 @@ class _VerificationPhotoIdScreenState extends State<VerificationPhotoIdScreen> {
         (await getApplicationDocumentsDirectory()).path,
         '${_appUtil.generateUid()}.png',
       );
-      await _controller.takePicture(path);
+      await _controller.takePicture();
       store.verification.id = File(path);
       store.setId(store.verification.id);
       setState(() {
