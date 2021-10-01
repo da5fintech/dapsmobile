@@ -7,6 +7,9 @@ import 'package:swipe/screens/bills_payment/transportation/autosweep-biller-form
 import 'package:swipe/screens/buy_load/buy-load-recipient-screen.dart';
 import 'package:swipe/screens/buy_load/buy-load-amount-screen.dart';
 import 'package:swipe/screens/cash-in/cash-in-main-screen.dart';
+import 'package:swipe/screens/links-account/bpi-bank/bpi-accounts-screen.dart';
+import 'package:swipe/screens/links-account/bpi-bank/bpi-otp-screen.dart';
+import 'package:swipe/screens/links-account/bpi-bank/bpi-success-screen.dart';
 import 'package:swipe/screens/onboarding/onboard-main-screen.dart';
 import 'package:swipe/screens/cash-out/cash-out.main-screen.dart';
 import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
@@ -50,6 +53,7 @@ import 'package:swipe/screens/user-profile/user-verification/verification-user-i
 import 'package:swipe/screens/voucher-pockets/voucher-pockets-screen.dart';
 import 'package:swipe/screens/bills_payment/transportation/transportation-categories-screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class Router {
   static Route<dynamic> generateRouting(RouteSettings settings) {
@@ -63,13 +67,13 @@ class Router {
       case '/login/login-mpin-screen':
         return MaterialPageRoute(builder: (_) => LoginMpinScreen());
       case '/registration/registration-details-screen':
-        return MaterialPageRoute(
+        return CupertinoPageRoute(
             builder: (_) => RegistrationDetailsScreen());
       case '/registration/registration-otp-screen':
-        return MaterialPageRoute(
+        return CupertinoPageRoute(
             builder: (_) => RegistrationOptScreen());
       case '/registration/registration-create-mpin-screen':
-        return MaterialPageRoute(
+        return CupertinoPageRoute(
             builder: (_) => RegistrationCreateMpinScreen());
       case '/transactions/transaction-history-screen':
         return MaterialPageRoute(
@@ -92,6 +96,12 @@ class Router {
         return MaterialPageRoute(builder: (_) => LinksAccountScreen());
       case '/links-account/union-bank':
         return MaterialPageRoute(builder: (_) => UnionBankLoginScreen());
+      case '/links-account/bpi':
+        return CupertinoPageRoute(builder: (_) => BpiAccountsScreen());
+      case '/link-account/bpi/otp':
+        return CupertinoPageRoute(builder: (_) => BpiOtpScreen());
+      case '/link-account/bpi/success':
+        return CupertinoPageRoute(builder: (_) => BpiSuccessScreen());
       case '/partner-merchants':
         return MaterialPageRoute(
             builder: (_) => PartnerMerchantsScreen());

@@ -13,6 +13,7 @@ Future main() async {
     properties: {
       namespaceKey: "dev_",
       packageIdKey: "ph.kabootek.swipeapp.dev",
+      dapsUrl: "https://accounts.daps.ph/staging/index.php",
     },
   );
   setupApp();

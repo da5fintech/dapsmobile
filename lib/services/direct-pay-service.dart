@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flavor/flavor.dart';
 import 'package:intl/intl.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/errors.dart';
@@ -44,7 +45,7 @@ class DirectPayFeeResponse extends TransactionProcessingResponse {
 class DirectPayService extends Da5Service {
   DirectPayService()
       : super(
-            endpoint: DIRECT_PAY_API_STAGING_ENDPOINT,
+            endpoint: Flavor.instance.properties['dapsUrl'],
             networkId: DIRECT_PAY_AUTH_NETWORK_ID,
             merchantId: DIRECT_PAY_AUTH_MERCHANT_ID,
             username: DIRECT_PAY_AUTH_USERNAME,

@@ -103,10 +103,13 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                               color: Constants.COLOR_DARK_PURPLE,
                               letterSpacing: 15),
                         ),
-                        Image.asset(
-                          'assets/icons/swipe-logo.png',
-                          height: height * 0.25,
-                          width: width,
+                        Hero(
+                          tag: 'swipe',
+                          child: Image.asset(
+                            'assets/icons/swipe-logo.png',
+                            height: height * 0.25,
+                            width: width,
+                          ),
                         ),
                         SizedBox(
                           height: 5,
@@ -129,7 +132,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                             children: [
                               TextFormField(
                                 controller: email,
-                                autofocus: true,
+                                autofocus: false,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.emailAddress,
                                 onSaved: (v) {},
@@ -139,7 +142,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                 ),
                               ),
                               TextFormField(
-                                autofocus: true,
+                                autofocus: false,
                                 controller: password,
                                 onFieldSubmitted: (val) {
                                   FocusScope.of(context).unfocus();

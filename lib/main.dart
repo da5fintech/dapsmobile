@@ -23,6 +23,7 @@ import 'common/constants.dart';
 
 const String namespaceKey = 'namespace';
 const String packageIdKey = 'packageId';
+const String dapsUrl = 'dapsUrl';
 
 GetIt getIt = GetIt.instance;
 
@@ -72,29 +73,29 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     super.initState();
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-    ///detect app if it's in the background
-    switch(state) {
-      case AppLifecycleState.paused:
-        print('paused');
-        _timer = Timer.periodic(Duration(seconds: 60), (timer) {
-          _timer?.cancel();
-          exit(0);
-        });
-        setState(() {});
-        break;
-      case AppLifecycleState.resumed:
-        print('resumed');
-        _timer?.cancel();
-        break;
-      case AppLifecycleState.inactive:
-        break;
-      case AppLifecycleState.detached:
-        break;
-    }
-  }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   super.didChangeAppLifecycleState(state);
+  //   ///detect app if it's in the background
+  //   switch(state) {
+  //     case AppLifecycleState.paused:
+  //       print('paused');
+  //       _timer = Timer.periodic(Duration(seconds: 60), (timer) {
+  //         _timer?.cancel();
+  //         exit(0);
+  //       });
+  //       setState(() {});
+  //       break;
+  //     case AppLifecycleState.resumed:
+  //       print('resumed');
+  //       _timer?.cancel();
+  //       break;
+  //     case AppLifecycleState.inactive:
+  //       break;
+  //     case AppLifecycleState.detached:
+  //       break;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +104,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         child: MaterialApp(
           navigatorKey: Get.key,
           debugShowCheckedModeBanner: false,
-          title: 'Curiociti',
+          title: 'Swipe',
           theme: createTheme(context),
           // darkTheme: ThemeData.dark(),
           // builder: (context, widget) => Navigator(

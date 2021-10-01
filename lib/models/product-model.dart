@@ -271,4 +271,3 @@ class CashInProduct extends ProductModel {
 
   CashInProduct({this.referenceNumber, this.timestamp, double amount, String name}) : super(name: name, amount: amount);
 }
-

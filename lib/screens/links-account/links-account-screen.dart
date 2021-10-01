@@ -16,7 +16,7 @@ class LinksAccountScreen extends StatefulWidget {
 }
 
 class _LinksAccountScreenState extends State<LinksAccountScreen> {
-  String isSelected = "union";
+  String isSelected = "BPI";
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +56,10 @@ class _LinksAccountScreenState extends State<LinksAccountScreen> {
                     builder: (_) => UnionBankWebView(uri: url)));
               } else {
                 OverlayScreen().pop();
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (_) => BpiBankMainScreen(uri: BPI_BANK_ENDPOINT),
-                ));
+                // Navigator.push(context, MaterialPageRoute(
+                //   builder: (_) => BpiBankMainScreen(uri: BPI_BANK_ENDPOINT),
+                // ));
+                Get.toNamed('/link-account/bpi/success');
               }
               // return null;
             },
@@ -99,31 +100,31 @@ class _LinksAccountScreenState extends State<LinksAccountScreen> {
                   color: Colors.grey.withOpacity(0.5),
                   thickness: 0.5,
                 ),
-                ListTile(
-                    onTap: () {
-                      setState(() {
-                        isSelected = "union";
-                      });
-                      OverlayScreen().show(
-                          context,
-                          identifier: 'enroll'
-                      );
-                    },
-                    visualDensity: VisualDensity(vertical: -4, horizontal: 0),
-                    title: Transform(
-                      transform: Matrix4.translationValues(-20, 0.0, 0),
-                    ),
-                    trailing: Icon(Icons.arrow_forward_ios, size: 16,
-                        color: Colors.black.withOpacity(.54)),
-                    leading: ImageIcon(
-                      AssetImage('assets/icons/links-accounts/unionbank.png'),
-                      size: 50,
-                    )
-                ),
-                Divider(
-                  color: Colors.grey.withOpacity(0.5),
-                  thickness: 0.5,
-                ),
+                // ListTile(
+                //     onTap: () {
+                //       setState(() {
+                //         isSelected = "union";
+                //       });
+                //       OverlayScreen().show(
+                //           context,
+                //           identifier: 'enroll'
+                //       );
+                //     },
+                //     visualDensity: VisualDensity(vertical: -4, horizontal: 0),
+                //     title: Transform(
+                //       transform: Matrix4.translationValues(-20, 0.0, 0),
+                //     ),
+                //     trailing: Icon(Icons.arrow_forward_ios, size: 16,
+                //         color: Colors.black.withOpacity(.54)),
+                //     leading: ImageIcon(
+                //       AssetImage('assets/icons/links-accounts/unionbank.png'),
+                //       size: 50,
+                //     )
+                // ),
+                // Divider(
+                //   color: Colors.grey.withOpacity(0.5),
+                //   thickness: 0.5,
+                // ),
               ],
             )
         )
