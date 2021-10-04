@@ -447,7 +447,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                             Padding(
                               padding: EdgeInsets.only(top: 2, left: SizeConfig.blockSizeVertical * 2),
                               child: Text(
-                                SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT,
+                                SERVICES_SCREEN_ADVANTAGE_DAPS_TEXT,
                                 style: GoogleFonts.roboto(
                                   color: Colors.black,
                                   fontSize: SizeConfig.blockSizeVertical * 2,

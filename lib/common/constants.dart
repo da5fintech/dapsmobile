@@ -7,7 +7,7 @@ import 'package:hive/hive.dart';
 
 part 'constants.g.dart';
 
-const APP_NAME = "SWIPE";
+const APP_NAME = "DAPS";
 const APP_NAME_FONT_SIZE = 20.0;
 const APP_HELP_CENTER = "Help Center";
 const APP_VERSION = "v5.0.1";
@@ -25,7 +25,7 @@ const MPIN_RECOVERY_PROCEED = "Proceed";
 const ONBOARDING_FIRST_SCREEN_TITLE =
     "The Launch of Your New And Secured E-wallet!";
 const ONBOARDING_FIRST_SCREEN_SUB_TITLE =
-    "The SWIPE app was launched to help people accomplish things easily "
+    "The DAPS app was launched to help people accomplish things easily "
     "without the rush and risk of going outside. This mobile application "
     "is perfect for entrepreneurs and individuals who are looking for "
     "a trusted e-wallet with helpful features.";
@@ -33,32 +33,32 @@ const ONBOARDING_FIRST_SCREEN_SUB_TITLE =
 const ONBOARDING_SECOND_SCREEN_TITLE =
     "Made perfect for personal and Business transactions";
 const ONBOARDING_SECOND_SCREEN_SUB_TITLE =
-    "SWIPE app offers an easier and secure payment solution to everyone without any hassle. "
-    "If you are a homeowner and have utility bills to pay, download the SWIPE app and a single "
+    "DAPS app offers an easier and secure payment solution to everyone without any hassle. "
+    "If you are a homeowner and have utility bills to pay, download the DAPS app and a single "
     "tap on your smartphone will do!";
 
 const ONBOARDING_THIRD_SCREEN_TITLE = "Multiple transactions in one app";
 const ONBOARDING_THIRD_SCREEN_SUB_TITLE =
     "Skip the traditional way of dealing with your finances."
-    " SWIPE app has multiple payment solutions and features that you will enjoy."
+    " DAPS app has multiple payment solutions and features that you will enjoy."
     " Once your account is verified, you can start sending or receiving payments from your customers,"
     " shop online, buy load, pay using the hassle-free QR code, and many more. "
     "You do not need to hop on remittance centers, convenience stores, and malls, "
-    "to deal with your finances, the SWIPE app is all you need!";
+    "to deal with your finances, the DAPS app is all you need!";
 
 const ONBOARDING_FOURTH_SCREEN_TITLE = "Easy-to-use interface for all ages";
 const ONBOARDING_FOURTH_SCREEN_SUB_TITLE =
-    "Our developers of the SWIPE app ensure that its interface fits everyone. "
+    "Our developers of the DAPS app ensure that its interface fits everyone. "
     "All the buttons, colors, fonts, and redirected pages were all designed very "
     "carefully to give a pleasing yet straightforward appearance for all. "
     "You do not need to feel overwhelmed by the app's design because it is "
     "purposely made to be beginner and user-friendly. "
-    "SWIPE app is here to help by being your go-to payment solution anytime and anywhere. ";
+    "DAPS app is here to help by being your go-to payment solution anytime and anywhere. ";
 
 const LOGIN_SCREEN_LOGIN_TEXT = "LOG IN";
 const LOGIN_SCREEN_REGISTER_TEXT = "REGISTER";
 const LOGIN_SCREEN_SIGN_UP_TEXT = "OR SIGN-UP USING";
-const LOGIN_SCREEN_APP_NAME = "SWIPE";
+const LOGIN_SCREEN_APP_NAME = "DAPS";
 const LOGIN_SCREEN_APP_NAME_LETTER_SPACING = 15.0;
 const LOGIN_SCREEN_APP_NAME_FONT_SIZE = 20.0;
 
@@ -74,7 +74,7 @@ const LOGIN_FAILED_SUB_TITLE =
 
 const VERIFICATION_MAIN_SCREEN = "Your account is in Basic Level";
 const VERIFICATION_MAIN_UPGRADE =
-    "Verify your account to ensure account security and unlock more SWIPE services.";
+    "Verify your account to ensure account security and unlock more DAPS services.";
 const VERIFICATION_MAIN_SCREE_STEPS = "Get fully verified in just 3 steps";
 const VERIFICATION_MAIN_LABEL_ID = "Take ID Photo";
 const VERIFICATION_MAIN_LABEL_SCAN_FACE = "Scan Face";
@@ -108,7 +108,7 @@ const VERIFICATION_NOTE_NEXT = 'Are you ready? Tap "NEXT" to start scanning.';
 const PAYQR_SCREEN_TITLE_TEXT = "Pay QR/Barcode";
 const PAYQR_SCREEN_UPLOAD_TEXT = "Upload QR";
 const PAYQR_SCREEN_GENERATE_QR_TEXT = "Generate QR / Bar code";
-const PAYQR_SCREEN_SCAN_TEXT = "Swipe Scan Pay";
+const PAYQR_SCREEN_SCAN_TEXT = "DAPS Scan Pay";
 const PAYQR_UPLOAD_SCREEN_TITLE = "Photos";
 const PAYQR_UPLOAD_TAB_1 = "All Photos";
 const PAYQR_UPLOAD_TAB_2 = "Albums";
@@ -125,11 +125,11 @@ const REGISTRATION_SCREEN_USER_CREATION_TEXT =
 const REGISTRATION_SCREEN_USER_LOGIN_TEXT = "PROCEED TO LOGIN";
 const REGISTRATION_SCREEN_OTP_TITLE_TEXT = "Verify Registration";
 const REGISTRATION_SCREEN_INCORRECT_OTP_TEXT = "Invalid OTP! Please try again.";
-const REGISTRATION_SCREEN_OTP_GREET = "Welcome to SWIPE! \n\n"
+const REGISTRATION_SCREEN_OTP_GREET = "Welcome to DAPS! \n\n"
     "Enjoy convenience at your fingertips! \n\n"
-    "Make sure to verify your account to have access to all the services SWIPE has to offer. \n\n"
-    "Directly send money to other SWIPE users, Transfer money to Bank Accounts, Pay your Bills and many more! \n\n"
-    "Do it all with SWIPE!";
+    "Make sure to verify your account to have access to all the services DAPS has to offer. \n\n"
+    "Directly send money to other DAPS users, Transfer money to Bank Accounts, Pay your Bills and many more! \n\n"
+    "Do it all with DAPS!";
 
 const REGISTRATION_FAILED_TITLE = "Failed Registration:";
 const REGISTRATION_FAILED_DIALOG =
@@ -145,13 +145,13 @@ const SETTINGS_SCREEN_ACCOUNT_AUTH_TEXT = "Account Authentication";
 const SETTINGS_SCREEN_BIOMETRIC_LOGIN_TEXT = "Biometric Login";
 const SETTINGS_SCREEN_BIOMETRIC_BANNER_TEXT = "Biometric Log in";
 const SETTINGS_SCREEN_BIOMETRIC_BANNER_NOTE_TEXT =
-    "Login faster to SWIPE using Biometric Authentication";
+    "Login faster to DAPS using Biometric Authentication";
 const SETTINGS_SCREEN_BIOMETRIC_ENABLE_TEXT = "Enable Biometric";
 const SETTINGS_SCREEN_BIOMETRIC_NOT_AVAILABLE =
     "Biometric is not available on your device.";
 const SETTINGS_SCREEN_BIOMETRIC_DISCLAIMER_TEXT =
-    'By enabling Biometric login, you allow SWIPE to access your saved\nbiometrics'
-    'data on your device to create and save data in SWIPE that\n'
+    'By enabling Biometric login, you allow DAPS to access your saved\nbiometrics'
+    'data on your device to create and save data in DAPS that\n'
     'shall be used for securing your login. The data will not be used for\n'
     'any other purposes.';
 const SETTINGS_SCREEN_BIOMETRIC_OTP_GREET = "Fantastic!";
@@ -163,9 +163,9 @@ const SETTINGS_SCREEN_BIOMETRIC_OTP_RESEND_CODE = "Resend Code";
 const SETTINGS_SCREEN_BIOMETRIC_OTP_ENROLL_NOW = "ENROLL NOW";
 const SETTINGS_SCREEN_SWIPE_DIALOG_CONFIRMATION = "Confirmation";
 const SETTINGS_SCREEN_SWIPE_BIOMETRIC_NOTE_TEXT =
-    "SWIPE would like to use your Biometric for additional Security.";
+    "DAPS would like to use your Biometric for additional Security.";
 const SETTINGS_SCREEN_SWIPE_FACEID_NOTE_TEXT =
-    "SWIPE would like to use your Face ID for additional Security.";
+    "DAPS would like to use your Face ID for additional Security.";
 const SETTINGS_SCREEN_SWIPE_DISABLE_TEXT = "Disable Biometric Login";
 const SETTINGS_SCREEN_SWIPE_DISABLE_CONFIRMATION_TEXT =
     "Are you sure you want to disable Biometric login?";
@@ -196,7 +196,7 @@ const PARTNER_MERCHANT_GADGETS_TEXT = "Gadgets";
 const PARTNER_MERCHANT_SERVICES_TEXT = "Services";
 
 const PROMOS_SCREEN_TITLE_TEXT = "Promos";
-const PROMOS_SCREEN_TITLE_DO_MORE_TEXT = "Do more with SWIPE!";
+const PROMOS_SCREEN_TITLE_DO_MORE_TEXT = "Do more with DAPS!";
 const PROMOS_SCREEN_TITLE_EXTENDS_TEXT =
     "Increase your wallet limit up to PHP 500K!";
 const PROMOS_SCREEN_TITLE_SAVE = "Save for the future!";
@@ -208,7 +208,7 @@ const VOUCHER_POCKETS_TAB_1_TITLE = "Active";
 const VOUCHER_POCKETS_TAB_2_TITLE = "Used";
 const VOUCHER_POCKETS_TAB_3_TITLE = "Expired";
 const VOUCHER_POCKETS_NOTE_TEXT =
-    "Get voucher by scanning the Promo QR Code, Pay using QR Code, or buying a load with SWIPE";
+    "Get voucher by scanning the Promo QR Code, Pay using QR Code, or buying a load with DAPS";
 const VOUCHER_POCKETS_INFORMATION_TEXT = "Learn more about voucher";
 
 const SERVICES_SCREEN_VERIFIED_TEXT = "VERIFIED";
@@ -223,7 +223,7 @@ const SERVICES_SCREEN_PAY_QR_TEXT = "Pay QR";
 const SERVICES_SCREEN_INSURANCE_TEXT = "Insurance";
 const SERVICES_SCREEN_MORE_TEXT = "More";
 const SERVICES_SCREEN_TRANSACTION_TEXT = "Transaction History";
-const SERVICES_SCREEN_ADVANTAGE_SWIPE_TEXT = "Know more about SWIPE";
+const SERVICES_SCREEN_ADVANTAGE_DAPS_TEXT = "Know more about DAPS";
 const SERVICES_SCREEN_REASON_SWIPE_TEXT = "We can do things better";
 
 const HELP_SCREEN_TITLE_TEXT = "Help";
@@ -233,7 +233,7 @@ const CASH_IN_LINKED_ACCOUNTS_TEXT = "My Linked Accounts";
 const CASH_IN_MANAGED_TEXT = "Manage";
 const CASH_IN_LINKED_NOTE_TEXT = "Link your accounts for easy access";
 const CASH_IN_LINKED_SUBNOTE_TEXT =
-    "Connect your accounts with SWIPE wallet for\neasy cash-in process.";
+    "Connect your accounts with DAPS wallet for\neasy cash-in process.";
 const CASH_IN_OTC_TEXT = "Over the Counter";
 const CASH_IN_ONLINE_BANK = "Online Bank";
 const CASH_IN_REMITTANCE = "Remittance";
@@ -246,12 +246,12 @@ const CASH_IN_PARTNER_DETAILS_TITLE = "Partner Details";
 const CASH_IN_VIEW_NEARBY_STORES = "View nearby branches";
 const CASH_IN_GENERATE_BARCODE = "Generate Barcode";
 const CASH_IN_SUBNOTE_BARCODE =
-    "Have the cashier scan this barcode linked to your SWIPE account.";
+    "Have the cashier scan this barcode linked to your DAPS account.";
 const CASH_IN_HOW_TO_CASH = "How to Cash In";
 const CASH_IN_HOW_TO_CASH_SUBNOTE =
     "You can cash in at any available branch of our official partners.";
 const CASH_IN_STEP_1 =
-    "Inform the cashier that you would like to ‘Cash In’ to your SWIPE wallet.";
+    "Inform the cashier that you would like to ‘Cash In’ to your DAPS wallet.";
 const CASH_IN_STEP_2 =
     'Tap on the ‘Generate Barcode’ button above. Enter the amount that you wish to cash in then tap ‘Next’.';
 const CASH_IN_STEP_3 =
@@ -269,7 +269,7 @@ const CASH_IN_DOWNLOAD_CODE = "Photo has been Saved to the Gallery";
 
 const DIRECT_SEND_SCREEN_TITLE_TEXT = "Send / Request Money";
 const DIRECT_SEND_SCREEN_SWIPE_SEND_TEXT =
-    "Send Money to another SWIPE account";
+    "Send Money to another DAPS account";
 const DIRECT_SEND_SCREEN_DIRECT_SEND_TEXT = "Direct Send";
 const DIRECT_SEND_SCREEN_SEND_QR_TEXT = "Send Via QR";
 const DIRECT_SEND_SCREEN_SEND_TO_BANK_TEXT = "Send Money to Bank Account";

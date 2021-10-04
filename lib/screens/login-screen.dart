@@ -122,79 +122,79 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: Divider(
-                                thickness: 1.5,
-                                color: Constants.COLOR_DARK_PURPLE,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(Constants.LOGIN_SCREEN_SIGN_UP_TEXT,
-                                  style: GoogleFonts.roboto(
-                                    color: Constants.COLOR_DARK_PURPLE,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: SizeConfig.blockSizeVertical * 2,
-                                  )),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                thickness: 1.5,
-                                color: Constants.COLOR_DARK_PURPLE,
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: <Widget>[
+                        //     Expanded(
+                        //       child: Divider(
+                        //         thickness: 1.5,
+                        //         color: Constants.COLOR_DARK_PURPLE,
+                        //       ),
+                        //     ),
+                        //     Padding(
+                        //       padding: const EdgeInsets.symmetric(horizontal: 10),
+                        //       child: Text(Constants.LOGIN_SCREEN_SIGN_UP_TEXT,
+                        //           style: GoogleFonts.roboto(
+                        //             color: Constants.COLOR_DARK_PURPLE,
+                        //             fontWeight: FontWeight.w500,
+                        //             fontSize: SizeConfig.blockSizeVertical * 2,
+                        //           )),
+                        //     ),
+                        //     Expanded(
+                        //       child: Divider(
+                        //         thickness: 1.5,
+                        //         color: Constants.COLOR_DARK_PURPLE,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         SizedBox(
                           height: 15,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 8),
-                              child: CircleAvatar(
-                                radius: SizeConfig.blockSizeVertical * 3.5,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                  radius: SizeConfig.blockSizeVertical * 3.5,
-                                  child: IconButton(
-                                    iconSize: SizeConfig.blockSizeVertical * 3,
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.facebookF,
-                                      color: Colors.white.withOpacity(.87),
-                                    ),
-                                    onPressed: () {
-                                      _handleSignup(LoginProvider.FACEBOOK);
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 8),
-                              child: CircleAvatar(
-                                radius: SizeConfig.blockSizeVertical * 3.5,
-                                backgroundColor: Colors.white,
-                                child: CircleAvatar(
-                                  backgroundColor: Constants.COLOR_DARK_PURPLE,
-                                  radius: SizeConfig.blockSizeVertical * 3.5,
-                                  child: IconButton(
-                                    iconSize: SizeConfig.blockSizeVertical * 3,
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.google,
-                                      color: Colors.white.withOpacity(.87),
-                                    ),
-                                    onPressed: () {
-                                      _handleSignup(LoginProvider.GOOGLE);
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // Container(
+                            //   margin: EdgeInsets.only(right: 8),
+                            //   child: CircleAvatar(
+                            //     radius: SizeConfig.blockSizeVertical * 3.5,
+                            //     backgroundColor: Colors.white,
+                            //     child: CircleAvatar(
+                            //       backgroundColor: Constants.COLOR_DARK_PURPLE,
+                            //       radius: SizeConfig.blockSizeVertical * 3.5,
+                            //       child: IconButton(
+                            //         iconSize: SizeConfig.blockSizeVertical * 3,
+                            //         icon: FaIcon(
+                            //           FontAwesomeIcons.facebookF,
+                            //           color: Colors.white.withOpacity(.87),
+                            //         ),
+                            //         onPressed: () {
+                            //           _handleSignup(LoginProvider.FACEBOOK);
+                            //         },
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+                            // Container(
+                            //   margin: EdgeInsets.only(right: 8),
+                            //   child: CircleAvatar(
+                            //     radius: SizeConfig.blockSizeVertical * 3.5,
+                            //     backgroundColor: Colors.white,
+                            //     child: CircleAvatar(
+                            //       backgroundColor: Constants.COLOR_DARK_PURPLE,
+                            //       radius: SizeConfig.blockSizeVertical * 3.5,
+                            //       child: IconButton(
+                            //         iconSize: SizeConfig.blockSizeVertical * 3,
+                            //         icon: FaIcon(
+                            //           FontAwesomeIcons.google,
+                            //           color: Colors.white.withOpacity(.87),
+                            //         ),
+                            //         onPressed: () {
+                            //           _handleSignup(LoginProvider.GOOGLE);
+                            //         },
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                             // CircleAvatar(
                             //   radius: SizeConfig.blockSizeVertical * 3.5,
                             //   backgroundColor: Colors.white,
