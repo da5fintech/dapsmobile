@@ -150,9 +150,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: [
                             // Container(
                             //   margin: EdgeInsets.only(right: 8),
                             //   child: CircleAvatar(
@@ -211,8 +211,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             //     ),
                             //   ),
                             // ),
-                          ],
-                        ),
+                        //   ],
+                        // ),
                         SizedBox(
                           height: 20,
                         ),
