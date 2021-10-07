@@ -130,7 +130,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                     CASH_IN_GENERATE_BARCODE,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w500,
-                      color: COLOR_DARK_PURPLE,
+                      color: COLOR_DAPS,
                       fontSize: SizeConfig.blockSizeVertical * 2,
                     ),
                   ),
@@ -155,7 +155,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
                     fontSize: SizeConfig.blockSizeVertical * 2.2,
-                    color: COLOR_DARK_PURPLE,
+                    color: COLOR_DAPS,
                   )
                 ),
               ),
@@ -175,6 +175,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ListTile(
                   leading: CircleAvatar(
+                    backgroundColor: COLOR_DAPS,
                     radius: SizeConfig.blockSizeVertical * 2.8,
                     child: Text('1')
                   ),
@@ -192,8 +193,9 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ListTile(
                   leading: CircleAvatar(
-                      radius: SizeConfig.blockSizeVertical * 2.8,
-                      child: Text('2')
+                    backgroundColor: COLOR_DAPS,
+                    radius: SizeConfig.blockSizeVertical * 2.8,
+                    child: Text('2')
                   ),
                   subtitle: Text(
                     CASH_IN_STEP_2,
@@ -209,6 +211,7 @@ class CashInPartnerDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ListTile(
                   leading: CircleAvatar(
+                      backgroundColor: COLOR_DAPS,
                       radius: SizeConfig.blockSizeVertical * 2.8,
                       child: Text('3')
                   ),

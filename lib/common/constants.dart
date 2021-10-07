@@ -7,7 +7,7 @@ import 'package:hive/hive.dart';
 
 part 'constants.g.dart';
 
-const APP_NAME = "DAPS";
+const APP_NAME = "DA5";
 const APP_NAME_FONT_SIZE = 20.0;
 const APP_HELP_CENTER = "Help Center";
 const APP_VERSION = "v5.0.1";
@@ -58,7 +58,7 @@ const ONBOARDING_FOURTH_SCREEN_SUB_TITLE =
 const LOGIN_SCREEN_LOGIN_TEXT = "LOG IN";
 const LOGIN_SCREEN_REGISTER_TEXT = "REGISTER";
 const LOGIN_SCREEN_SIGN_UP_TEXT = "OR SIGN-UP USING";
-const LOGIN_SCREEN_APP_NAME = "DAPS";
+const LOGIN_SCREEN_APP_NAME = "DA5";
 const LOGIN_SCREEN_APP_NAME_LETTER_SPACING = 15.0;
 const LOGIN_SCREEN_APP_NAME_FONT_SIZE = 20.0;
 
@@ -586,6 +586,7 @@ const COLOR_DARK_GRAY = Color(0xff545454);
 const COLOR_GLOBE_BLUE = Color(0xff46C4F2);
 const COLOR_SMART_GREEN = Color(0xff25BA96);
 const COLOR_DANGER = Color(0xffeb4034);
+const COLOR_DAPS = Color(0xff3F51B5);
 
 const INSTAPAY_SENDER_NAME = 'SWIPE INSTAPAY';
 const INSTAPAY_ADDRESS1 = 'Torino';
@@ -671,7 +672,7 @@ TextStyle primaryButtonText = GoogleFonts.roboto(color: COLOR_DARK_PURPLE);
 
 final appBarTheme = AppBarTheme(
     textTheme: TextTheme(headline6: pageTitleWhite),
-    color: COLOR_DARK_PURPLE,
+    color: COLOR_DAPS,
     elevation: 2,
     shadowColor: Colors.grey,
     centerTitle: false,
@@ -756,19 +757,19 @@ ThemeData createThemePurpleOnWhite(BuildContext context) {
       toggleableActiveColor: COLOR_DARK_PURPLE,
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: COLOR_DARK_PURPLE)),
+            borderSide: BorderSide(color: Colors.white)),
         disabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.black.withOpacity(.6))),
         focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: COLOR_DARK_PURPLE)),
+            borderSide: BorderSide(color: Colors.white, width: 1.5)),
         labelStyle: GoogleFonts.roboto(fontSize: 14, color: COLOR_DARK_PURPLE),
         hintStyle: GoogleFonts.roboto(
           fontSize: 16,
-          color: Colors.black.withOpacity(.6),
+          color: Colors.white.withOpacity(.6),
         ),
       ),
       buttonTheme: ButtonThemeData(
-          buttonColor: COLOR_DARK_PURPLE,
+          buttonColor: COLOR_DAPS,
           textTheme: ButtonTextTheme.primary,
           colorScheme: Theme.of(context).colorScheme.copyWith(
               primary: COLOR_DARK_PURPLE,

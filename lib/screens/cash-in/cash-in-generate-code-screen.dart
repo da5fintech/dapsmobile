@@ -121,8 +121,8 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                     child: QrImage(
                       data: barcodeNumber,
                       size: height * 0.25,
-                      embeddedImage: AssetImage('assets/images/ic_launcher.png'),
-                      embeddedImageEmitsError: true,
+                      // embeddedImage: AssetImage('assets/images/ic_launcher.png'),
+                      // embeddedImageEmitsError: true,
                     ),
                   ),
                 ),
@@ -170,6 +170,7 @@ class _CashInGenerateCodeScreenState extends State<CashInGenerateCodeScreen> {
                 ),
                 ButtonTheme(
                   height: SizeConfig.blockSizeVertical * 5,
+                  buttonColor: COLOR_DAPS,
                   child: RaisedButton(
                     elevation: 0,
                     // shape: ,

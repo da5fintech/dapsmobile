@@ -142,7 +142,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                     style: GoogleFonts.roboto(
                       fontSize: SizeConfig.blockSizeVertical * 2,
                       fontWeight: FontWeight.w500,
-                      color: COLOR_DARK_PURPLE,
+                      color: COLOR_DAPS,
                     ),
                   ),
                 )
@@ -230,7 +230,7 @@ class _CashInMainScreen extends State<CashInMainScreen>{
                             'View nearby partners',
                             textAlign: TextAlign.center,
                             style: GoogleFonts.roboto(
-                              color: COLOR_DARK_PURPLE,
+                              color: COLOR_DAPS,
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                             ),

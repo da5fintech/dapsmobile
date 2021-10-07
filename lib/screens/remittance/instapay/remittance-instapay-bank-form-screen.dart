@@ -105,7 +105,6 @@ class _RemittanceInstapayBankFormScreenState
       child: Theme(
         data: td,
         child: Scaffold(
-          // backgroundColor: Constants.backgroundColor2,
           appBar: SubAppbarWidget(
             elevation: 0,
             title: REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_SEND_TEXT,
@@ -121,7 +120,7 @@ class _RemittanceInstapayBankFormScreenState
                     left: 5,
                     right: 5,
                   ),
-                  color: COLOR_DARK_PURPLE,
+                  color: COLOR_DAPS,
                   child: Row(
                     children: [
                       avatar,
@@ -170,6 +169,20 @@ class _RemittanceInstapayBankFormScreenState
                                 },
                                 controller: amountController,
                                 decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(.6),
+                                      ),
+                                    ),
+                                    disabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(.6),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 2),
+                                    ),
                                     prefixIconConstraints: BoxConstraints(
                                         minWidth: 0, minHeight: 0),
                                     labelText:
@@ -202,15 +215,31 @@ class _RemittanceInstapayBankFormScreenState
                                             : store.saveSuggestionsServices
                                                 .listAccountNumbers
                                                 .where((el) => el.accountNumber
-                                                    .contains(text)).toList();
+                                                    .contains(text))
+                                                .toList();
                                       });
                                     },
                                     decoration: InputDecoration(
-                                        prefixIconConstraints: BoxConstraints(
-                                            minWidth: 0, minHeight: 0),
-                                        labelText:
-                                            "${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_ACCOUNT_TEXT} number",
-                                        hintText: ""),
+                                      prefixIconConstraints: BoxConstraints(
+                                          minWidth: 0, minHeight: 0),
+                                      labelText:
+                                          "${REMITTANCE_INSTAPAY_BANK_FORM_SCREEN_ACCOUNT_TEXT} number",
+                                      hintText: "",
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.grey.withOpacity(.6),
+                                        ),
+                                      ),
+                                      disabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.grey.withOpacity(.6),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.grey, width: 2),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -225,6 +254,20 @@ class _RemittanceInstapayBankFormScreenState
                                 },
                                 controller: fullnameController,
                                 decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(.6),
+                                      ),
+                                    ),
+                                    disabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(.6),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 2),
+                                    ),
                                     prefixIconConstraints: BoxConstraints(
                                         minWidth: 0, minHeight: 0),
                                     labelText:

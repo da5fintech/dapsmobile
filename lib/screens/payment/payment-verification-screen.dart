@@ -43,7 +43,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
               Text(
                 PAYMENT_VERIFICATION_SCREEN_LOAD_FOR_TEXT,
                 style: GoogleFonts.roboto(
-                  color: COLOR_DARK_PURPLE.withOpacity(.87),
+                  color: COLOR_DAPS.withOpacity(.87),
                   fontSize: SizeConfig.blockSizeVertical * 2,
                   fontWeight: FontWeight.w500,
                 ),
@@ -171,7 +171,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
               Text(
                 PAYMENT_VERIFICATION_SCREEN_SEND_MONEY_TEXT,
                 style: GoogleFonts.roboto(
-                  color: COLOR_DARK_PURPLE.withOpacity(.87),
+                  color: COLOR_DAPS.withOpacity(.87),
                   fontWeight: FontWeight.w500,
                   fontSize: SizeConfig.blockSizeVertical * 2,
                 ),
@@ -401,7 +401,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
               Text(
                 PAYMENT_VERIFICATION_SCREEN_SEND_MONEY_TEXT,
                 style: GoogleFonts.roboto(
-                    color: COLOR_DARK_PURPLE.withOpacity(.87),
+                    color: COLOR_DAPS.withOpacity(.87),
                     fontSize: SizeConfig.blockSizeVertical * 2,
                     fontWeight: FontWeight.w500),
               ),
@@ -553,7 +553,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                             Text(
                               PAYMENT_VERIFICATION_SCREEN_PAY_WALLET_TEXT,
                               style: GoogleFonts.roboto(
-                                color: COLOR_DARK_PURPLE.withOpacity(.87),
+                                color: COLOR_DAPS.withOpacity(.87),
                                 fontWeight: FontWeight.w500,
                                 fontSize: SizeConfig.blockSizeVertical * 2
                               ),
@@ -604,7 +604,7 @@ class _PaymentVerificationScreenState extends State<PaymentVerificationScreen> {
                             Text(
                               PAYMENT_VERIFICATION_SCREEN_ABOUT_TO_PAY_TEXT,
                               style: GoogleFonts.roboto(
-                                color: COLOR_DARK_PURPLE.withOpacity(.87),
+                                color: COLOR_DAPS.withOpacity(.87),
                                 fontWeight: FontWeight.w500,
                                 fontSize: SizeConfig.blockSizeVertical * 2,
                               ),

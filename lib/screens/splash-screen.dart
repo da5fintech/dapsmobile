@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Theme(
       data: td,
       child: Scaffold(
-        // backgroundColor: Constants.backgroundColor2,
+        backgroundColor: Constants.COLOR_DAPS,
         body: Column(
           children: <Widget>[
             Expanded(
@@ -83,15 +83,11 @@ class _SplashScreenState extends State<SplashScreen> {
                         Constants.APP_NAME,
                         style: GoogleFonts.roboto(
                             fontSize: 20,
-                            color: Constants.COLOR_DARK_PURPLE,
+                            color: Colors.white,
                             fontWeight: FontWeight.w800,
                             letterSpacing: 15),
                       ),
-                      Image.asset(
-                        'assets/icons/swipe-logo.png',
-                        height: height * 0.35,
-                        width: width,
-                      ),
+                      Spacer(),
                       SizedBox(
                         height: 5,
                       ),

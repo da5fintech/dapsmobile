@@ -58,7 +58,7 @@ class SwipeDialog extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10),
               width: MediaQuery.of(context).size.width,
               child: ButtonTheme(
-                buttonColor: COLOR_DARK_PURPLE,
+                buttonColor: COLOR_DAPS,
                 height:  SizeConfig.blockSizeVertical * 5,
                 child: RaisedButton(
                   elevation: 0,
@@ -85,7 +85,7 @@ class SwipeDialog extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(0),
                     side: BorderSide(
-                      color: COLOR_DARK_PURPLE,
+                      color: COLOR_DAPS,
                     ),
                   ),
                   child: RaisedButton(
@@ -98,7 +98,7 @@ class SwipeDialog extends StatelessWidget {
                       style: GoogleFonts.roboto(
                         fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DAPS,
                       ),
                     ),
                   ),

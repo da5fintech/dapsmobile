@@ -83,7 +83,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
     return Theme(
       data: td,
       child: Scaffold(
-        // backgroundColor: Constants.backgroundColor2,
+        backgroundColor: Constants.COLOR_DAPS,
         body: Container(
           child: Column(
             children: <Widget>[
@@ -100,16 +100,12 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                           style: GoogleFonts.roboto(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
-                              color: Constants.COLOR_DARK_PURPLE,
+                              color: Colors.white,
                               letterSpacing: 15),
                         ),
-                        Hero(
-                          tag: 'swipe',
-                          child: Image.asset(
-                            'assets/icons/swipe-logo.png',
-                            height: height * 0.25,
-                            width: width,
-                          ),
+                        SizedBox(
+                          height:  height * .25,
+                          width: width,
                         ),
                         SizedBox(
                           height: 5,
@@ -137,6 +133,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                 keyboardType: TextInputType.emailAddress,
                                 onSaved: (v) {},
                                 validator: _appUtil.validateEmail,
+                                style: TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
                                   hintText: Constants.LOGIN_EMAIL_SCREEN_EMAIL_TEXT,
                                 ),
@@ -144,6 +141,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                               TextFormField(
                                 autofocus: false,
                                 controller: password,
+                                style: TextStyle(color: Colors.white),
                                 onFieldSubmitted: (val) {
                                   FocusScope.of(context).unfocus();
                                   _handleLogin();
@@ -165,10 +163,10 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                         setState(() => obscureText = !obscureText),
                                     icon: obscureText
                                         ? Icon(Icons.visibility_off,
-                                            color: Constants.COLOR_DARK_GRAY.withOpacity(.6))
+                                            color: Colors.white.withOpacity(.6))
                                         : Icon(
                                             Icons.visibility,
-                                            color: Constants.COLOR_DARK_GRAY.withOpacity(.6),
+                                            color: Colors.white.withOpacity(.6),
                                           ),
                                   ),
                                 ),
@@ -191,29 +189,29 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                 ),
                               ),
                               SizedBox(height: 15),
-                              Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Divider(
-                                      thickness: 1.5,
-                                      color: Constants.COLOR_DARK_PURPLE,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 5, right: 5),
-                                    child: Text(Constants
-                                        .LOGIN_EMAIL_SCREEN_ALTERNATE_LOGIN_TEXT,
-                                        style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 2, fontWeight: FontWeight.w500, color: Constants.COLOR_DARK_PURPLE)),
-                                  ),
-                                  Expanded(
-                                    child: Divider(
-                                      thickness: 1.5,
-                                      color: Constants.COLOR_DARK_PURPLE,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              // Row(
+                              //   children: <Widget>[
+                              //     Expanded(
+                              //       child: Divider(
+                              //         thickness: 1.5,
+                              //         color: Constants.COLOR_DARK_PURPLE,
+                              //       ),
+                              //     ),
+                              //     Padding(
+                              //       padding: const EdgeInsets.only(
+                              //           left: 5, right: 5),
+                              //       child: Text(Constants
+                              //           .LOGIN_EMAIL_SCREEN_ALTERNATE_LOGIN_TEXT,
+                              //           style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 2, fontWeight: FontWeight.w500, color: Constants.COLOR_DARK_PURPLE)),
+                              //     ),
+                              //     Expanded(
+                              //       child: Divider(
+                              //         thickness: 1.5,
+                              //         color: Constants.COLOR_DARK_PURPLE,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                               SizedBox(
                                 height: 15,
                               ),
@@ -302,9 +300,9 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                       onTap: () {
                         Get.toNamed('/help');
                       },
-                      child: Text(Constants.APP_HELP_CENTER, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
+                      child: Text(Constants.APP_HELP_CENTER, style: TextStyle(color: Colors.white, fontSize: SizeConfig.blockSizeVertical * 2)),
                     ),
-                    Text(store.versionNumber, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
+                    Text(store.versionNumber, style: TextStyle(color: Colors.white, fontSize: SizeConfig.blockSizeVertical * 2)),
                   ],
                 ),
               ),

@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Theme(
         data: td,
         child: Scaffold(
-          // backgroundColor: Constants.backgroundColor2,
+          backgroundColor: Constants.COLOR_DAPS,
           body: Container(
             child: Column(
               children: <Widget>[
@@ -75,17 +75,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.w800,
                             letterSpacing:
                                 Constants.LOGIN_SCREEN_APP_NAME_LETTER_SPACING,
-                            color: Constants.COLOR_DARK_PURPLE,
+                            color: Colors.white,
                           ),
                         ),
-                        Hero(
-                          tag: 'swipe',
-                          child: Image.asset(
-                            'assets/icons/swipe-logo.png',
-                            height: height * 0.35,
-                            width: width,
-                          ),
-                        ),
+                        Spacer(),
                         SizedBox(
                           height: 5,
                         ),
@@ -117,6 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             text: Constants.LOGIN_SCREEN_REGISTER_TEXT,
                             color: Colors.white,
+                            colorText: Constants.COLOR_DAPS,
                           ),
                         ),
                         SizedBox(
@@ -223,9 +217,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               onTap: () {
                                 Get.toNamed('/help');
                               },
-                              child: Text(Constants.APP_HELP_CENTER, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
+                              child: Text(Constants.APP_HELP_CENTER, style: TextStyle(color: Colors.white, fontSize: SizeConfig.blockSizeVertical * 2)),
                             ),
-                            Text(store.versionNumber, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
+                            Text(store.versionNumber, style: TextStyle(color: Colors.white, fontSize: SizeConfig.blockSizeVertical * 2)),
                           ],
                         ),
                         SizedBox(

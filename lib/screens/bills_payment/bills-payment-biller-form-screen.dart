@@ -62,6 +62,12 @@ class _BillsPaymentBillerFormScreenState
       },
       // controller: controller,
       decoration: InputDecoration(
+          enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+          disabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+          focusedBorder:
+          UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 2)),
           prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
           labelText: "${field.label}", suffixIcon: field.label == "Meralco Reference No / Account Number" ? IconButton(
             onPressed: () async {
@@ -156,7 +162,7 @@ class _BillsPaymentBillerFormScreenState
                   left: 5,
                   right: 5,
                 ),
-                color: COLOR_DARK_PURPLE,
+                color: COLOR_DAPS,
                 child: Row(
                   children: [
                     avatar,

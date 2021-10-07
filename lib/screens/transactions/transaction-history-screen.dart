@@ -43,7 +43,7 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
-            color: COLOR_DARK_PURPLE,
+            color: COLOR_DAPS,
           ),
         ),
         child: RaisedButton(
@@ -58,8 +58,8 @@ class _BillsPaymentBillersScreenState extends State<TransactionHistoryScreen> {
               filteredTransactions = [];
             }
           },
-          textColor: activeButton == text ? Colors.white : COLOR_DARK_PURPLE,
-          color: activeButton == text ? COLOR_DARK_PURPLE : Colors.white,
+          textColor: activeButton == text ? Colors.white : COLOR_DAPS,
+          color: activeButton == text ? COLOR_DAPS : Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             text,

@@ -96,6 +96,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
               Form(
                 key: _formKey,
                 child: AmountMasking(
+                  noUnderline: false,
                   controller: amountText,
                   type: 'Amount',
                   onChanged: (string) {
@@ -124,7 +125,7 @@ class _CashInViaCodeScreenState extends State<CashInViaCodeScreen> {
                       width: double.infinity,
                       child: ButtonTheme(
                         height: SizeConfig.blockSizeVertical * 5,
-                        buttonColor: COLOR_DARK_PURPLE,
+                        buttonColor: COLOR_DAPS,
                         child: RaisedButton(
                           // shape: ,
                           onPressed: _handleNext,

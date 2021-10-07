@@ -111,7 +111,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
     return Theme(
       data: td,
       child: Scaffold(
-        // backgroundColor: Constants.backgroundColor2,
+        backgroundColor: Constants.COLOR_DAPS,
         body: Container(
           child: SingleChildScrollView(
             child: Container(
@@ -130,12 +130,11 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                               Constants.APP_NAME,
                               style: GoogleFonts.roboto(
                                   fontSize: SizeConfig.blockSizeVertical * 3.5,
-                                  color: COLOR_DARK_PURPLE,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w800,
                                   letterSpacing: 15),
                             ),
-                            Image.asset(
-                              'assets/icons/swipe-logo.png',
+                            SizedBox(
                               height: height * 0.25,
                               width: width,
                             ),
@@ -152,7 +151,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(Constants.LOGIN_MPIN_SCREEN_LOGIN_TEXT),
+                        Text(Constants.LOGIN_MPIN_SCREEN_LOGIN_TEXT, style: TextStyle(color: Colors.white)),
                         SizedBox(
                           height: 20,
                         ),
@@ -174,7 +173,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                               margin: EdgeInsets.only(left: 10),
                               child: Text(
                                 store.user.displayName,
-                                style: GoogleFonts.roboto(fontSize: SizeConfig.blockSizeVertical * 2),
+                                style: GoogleFonts.roboto(color: Colors.white, fontSize: SizeConfig.blockSizeVertical * 2),
                               ),
                             ),
                           ],
@@ -190,6 +189,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                         Column(
                           children: [
                             TextFormField(
+                              style: TextStyle(color: Colors.white),
                               maxLength: 6,
                               controller: mpin,
                               keyboardType: TextInputType.number,
@@ -210,10 +210,10 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                                       setState(() => obscureText = !obscureText),
                                   icon: obscureText
                                       ? Icon(Icons.visibility_off,
-                                          color: COLOR_DARK_GRAY.withOpacity(.6))
+                                          color: Colors.white.withOpacity(.6))
                                       : Icon(
                                           Icons.visibility,
-                                          color: COLOR_DARK_GRAY.withOpacity(.6),
+                                          color: Colors.white.withOpacity(.6),
                                         ),
                                 ),
                               ),
@@ -256,6 +256,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                                 style: GoogleFonts.roboto(
                                   fontSize: SizeConfig.blockSizeVertical * 1.7,
                                   fontWeight: FontWeight.w500,
+                                  color: Colors.white,
                                 )
                             ),
                           ),
@@ -269,6 +270,7 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                                 style: GoogleFonts.roboto(
                                   fontSize: SizeConfig.blockSizeVertical * 1.7,
                                   fontWeight: FontWeight.w500,
+                                  color: Colors.white,
                                 )
                             ),
                           ),
@@ -285,9 +287,9 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                           onTap: () {
                             Get.toNamed('/help');
                           },
-                          child: Text(Constants.APP_HELP_CENTER, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
+                          child: Text(Constants.APP_HELP_CENTER, style: TextStyle(color: Colors.white, fontSize: SizeConfig.blockSizeVertical * 2)),
                         ),
-                        Text(store.versionNumber, style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2)),
+                        Text(store.versionNumber, style: TextStyle(color: Colors.white, fontSize: SizeConfig.blockSizeVertical * 2)),
                       ],
                     ),
                   ),

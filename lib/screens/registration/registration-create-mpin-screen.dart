@@ -66,7 +66,7 @@ class _RegistrationCreateMpinScreenState
     });
 
     return Scaffold(
-      // backgroundColor: Constants.backgroundColor2,
+      backgroundColor: COLOR_DAPS,
       body: Form(
         key: _formKey,
         child: Column(
@@ -310,7 +310,7 @@ class _RegistrationCreateMpinScreenState
                             if (!checkTerms) return;
                             _handleRegister();
                           },
-                          child: Text('Next'),
+                          child: Text('Next', style: TextStyle(color: COLOR_DAPS)),
                         ),
                       ),
                       SizedBox(height: 10),

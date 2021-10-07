@@ -92,7 +92,7 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
                       Icon(
                         Icons.mobile_friendly,
                         size: 45,
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DAPS,
                       ),
                       SizedBox(
                         height: 20,
@@ -101,7 +101,7 @@ class _PaymentMpinScreenState extends State<PaymentMpinScreen> {
                         PAYMENT_MPIN_SCREEN_GREET,
                         style: GoogleFonts.roboto(
                           fontSize: SizeConfig.blockSizeVertical * 2.3,
-                          color: COLOR_DARK_PURPLE,
+                          color: COLOR_DAPS,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

@@ -184,6 +184,7 @@ class _RequestListScreenState extends State<RequestListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: COLOR_DAPS,
       appBar: SubAppbarWidget(
         elevation: 0,
         title: 'Request Money',

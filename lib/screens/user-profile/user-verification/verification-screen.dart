@@ -43,6 +43,7 @@ class VerificationScreen extends StatelessWidget {
 
 
     return Scaffold(
+      backgroundColor: COLOR_DAPS,
       appBar: SubAppbarWidget(
         title: 'Verification',
       ),
@@ -168,7 +169,7 @@ class VerificationScreen extends StatelessWidget {
                   Text(
                     VERIFICATION_MAIN_LEARN_MORE,
                     style: GoogleFonts.roboto(
-                      color: COLOR_DARK_PURPLE,
+                      color: COLOR_DAPS,
                       fontWeight: FontWeight.w500,
                       fontSize: SizeConfig.blockSizeVertical * 2,
                     ),
@@ -180,7 +181,7 @@ class VerificationScreen extends StatelessWidget {
                       width: double.infinity,
                       child: ButtonTheme(
                         height: SizeConfig.blockSizeVertical * 5,
-                        buttonColor: COLOR_DARK_PURPLE,
+                        buttonColor: COLOR_DAPS,
                         child: RaisedButton(
                           onPressed: () async {
                             if(await Permission.camera.request().isGranted) {

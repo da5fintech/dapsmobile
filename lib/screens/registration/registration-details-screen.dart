@@ -52,7 +52,7 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
     double scrollHeight = MediaQuery.of(context).size.height * 0.85;
 
     return Scaffold(
-      // backgroundColor: Constants.backgroundColor2,
+      backgroundColor: COLOR_DAPS,
       body: Form( key: _formKey,
         child: Column(
           children: <Widget>[
@@ -348,6 +348,8 @@ class _RegistrationDetailsScreenState extends State<RegistrationDetailsScreen> {
                       SizedBox(
                         width: double.infinity,
                         child: PrimaryButtonWidget(
+                          colorText: COLOR_DAPS,
+                            color: Colors.white,
                             onPressed: () {
                               _handleNext();
                             },

@@ -21,11 +21,11 @@ class SecondaryButtonWidget extends StatelessWidget {
     return ButtonTheme(
       height: SizeConfig.blockSizeVertical * 5,
       child: OutlineButton(
-        borderSide: BorderSide(color: COLOR_DARK_PURPLE, width: 1.5),
+        borderSide: BorderSide(color: Colors.white, width: 1.5),
         onPressed: onPressed,
         child: Text(
           text,
-          style: GoogleFonts.roboto(color: COLOR_DARK_PURPLE, fontWeight: FontWeight.w500),
+          style: GoogleFonts.roboto(color: Colors.white, fontWeight: FontWeight.w500),
         ),
       ),
     );

@@ -90,7 +90,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       style: GoogleFonts.roboto(
                         fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DAPS,
                       ),
                     ),
                   ),
@@ -170,7 +170,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       style: GoogleFonts.roboto(
                         fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DAPS,
                       ),
                     ),
                   ),
@@ -200,7 +200,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                       style: GoogleFonts.roboto(
                         fontSize: SizeConfig.blockSizeVertical * 2,
                         fontWeight: FontWeight.w500,
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DAPS,
                       ),
                     ),
                   ),

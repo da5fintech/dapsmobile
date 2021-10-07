@@ -53,7 +53,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                 style: GoogleFonts.roboto(
                   fontSize: SizeConfig.blockSizeVertical * 2.5,
                   fontWeight: FontWeight.bold,
-                  color: COLOR_DARK_PURPLE,
+                  color: COLOR_DAPS,
                 )
             ),
             SizedBox(height: 20),
@@ -126,7 +126,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                           height: SizeConfig.blockSizeVertical * 3,
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           decoration: BoxDecoration(
-                              color: COLOR_DARK_PURPLE,
+                              color: COLOR_DAPS,
                               borderRadius: BorderRadius.all(Radius.circular(20))
                           ),
                           child: Center(
@@ -157,7 +157,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                       await _confirmationModal(res);
                     }
                   },
-                  child: Icon(Icons.send_to_mobile, color: res.status != 'Closed' ? COLOR_DARK_PURPLE : COLOR_DARK_GRAY)
+                  child: Icon(Icons.send_to_mobile, color: res.status != 'Closed' ? COLOR_DAPS : COLOR_DARK_GRAY)
                 ),
               );
             })?.toList() ?? []
@@ -236,7 +236,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
           ButtonTheme(
             minWidth: double.infinity,
             child: RaisedButton(
-              color: COLOR_DARK_PURPLE,
+              color: COLOR_DAPS,
               onPressed: () async {
                 getNotifications();
               },

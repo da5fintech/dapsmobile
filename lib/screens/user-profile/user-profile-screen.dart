@@ -73,7 +73,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       Container(
                         width: width,
                         height: height * 0.25,
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DAPS,
                         padding: EdgeInsets.only(top: 20, right: 20),
                         child: ListTile(
                           leading: IconButton(
@@ -183,6 +183,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             controller: firstname,
                             decoration: InputDecoration(
                               labelText: REGISTER_SCREEN_FIRSTNAME_TEXT,
+                              labelStyle: TextStyle(color: COLOR_DAPS),
                               floatingLabelBehavior: FloatingLabelBehavior.always,
                               errorStyle: TextStyle(
                                   color: COLOR_GRAY, fontSize: 12, height: 0.3),
@@ -194,6 +195,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             controller: lastname,
                             decoration: InputDecoration(
                               labelText: REGISTER_SCREEN_LASTNAME_TEXT,
+                              labelStyle: TextStyle(color: COLOR_DAPS),
                               floatingLabelBehavior: FloatingLabelBehavior.always,
                               errorStyle: TextStyle(
                                   color: COLOR_GRAY, fontSize: 12, height: 0.3),
@@ -206,6 +208,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             controller: address,
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
+                              labelStyle: TextStyle(color: COLOR_DAPS),
                               labelText: REGISTER_SCREEN_ADDRESS_TEXT,
                               floatingLabelBehavior: FloatingLabelBehavior.always,
                               errorStyle: TextStyle(
@@ -219,6 +222,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             showCursor: true,
                             initialValue: store.user.dateOfBirth,
                             decoration: InputDecoration(
+                              labelStyle: TextStyle(color: COLOR_DAPS),
                               labelText: REGISTER_SCREEN_BIRTHDAY_TEXT,
                               floatingLabelBehavior: FloatingLabelBehavior.always,
                               errorStyle: TextStyle(
@@ -232,6 +236,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             initialValue: store.user.emailAddress,
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
+                              labelStyle: TextStyle(color: COLOR_DAPS),
                               labelText: REGISTER_SCREEN_EMAIL_TEXT,
                               floatingLabelBehavior: FloatingLabelBehavior.always,
                               errorStyle: TextStyle(
@@ -244,6 +249,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
+                              labelStyle: TextStyle(color: COLOR_DAPS),
                               errorStyle: TextStyle(
                                   color: COLOR_GRAY, fontSize: 12, height: 0.3),
                               labelText: REGISTER_SCREEN_MOBIILE_TEXT,

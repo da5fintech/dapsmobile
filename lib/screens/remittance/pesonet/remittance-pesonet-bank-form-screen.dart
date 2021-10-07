@@ -121,7 +121,7 @@ class _RemittancePesonetBankFormScreenState
                     left: 5,
                     right: 5,
                   ),
-                  color: COLOR_DARK_PURPLE,
+                  color: COLOR_DAPS,
                   child: Row(
                     children: [
                       avatar,
@@ -170,6 +170,20 @@ class _RemittancePesonetBankFormScreenState
                                 },
                                 controller: amountController,
                                 decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(.6),
+                                      ),
+                                    ),
+                                    disabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(.6),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 2),
+                                    ),
                                     prefixIconConstraints: BoxConstraints(
                                         minWidth: 0, minHeight: 0),
                                     labelText:
@@ -206,6 +220,20 @@ class _RemittancePesonetBankFormScreenState
                                       });
                                     },
                                     decoration: InputDecoration(
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.grey.withOpacity(.6),
+                                          ),
+                                        ),
+                                        disabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.grey.withOpacity(.6),
+                                          ),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 2),
+                                        ),
                                         prefixIconConstraints: BoxConstraints(
                                             minWidth: 0, minHeight: 0),
                                         labelText:
@@ -225,6 +253,20 @@ class _RemittancePesonetBankFormScreenState
                                 },
                                 controller: fullnameController,
                                 decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(.6),
+                                      ),
+                                    ),
+                                    disabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.withOpacity(.6),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 2),
+                                    ),
                                     prefixIconConstraints: BoxConstraints(
                                         minWidth: 0, minHeight: 0),
                                     labelText:

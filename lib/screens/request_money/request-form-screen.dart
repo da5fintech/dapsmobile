@@ -41,12 +41,14 @@ class _RequestFormScreenState extends State<RequestFormScreen> {
   void initState () {
     subjectRequest.text = widget.subjectRequest.text;
     messageRequest.text = widget.messageRequest.text;
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: COLOR_DAPS,
       appBar: SubAppbarWidget(
         elevation: 0,
         title: 'Request Money',

@@ -73,7 +73,7 @@ class _ImportQrScreenState extends State<ImportQrScreen> {
             _image == null ?
             Icon(
               Icons.photo,
-              color: COLOR_DARK_PURPLE,
+              color: COLOR_DAPS,
               size: SizeConfig.blockSizeVertical * 12,
             ) : Image.file(_image, height: SizeConfig.screenHeight * .60),
             Padding(
@@ -90,6 +90,7 @@ class _ImportQrScreenState extends State<ImportQrScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: ButtonTheme(
+                buttonColor: COLOR_DAPS,
                 child: RaisedButton(
                   onPressed: () {
                     handleNext();

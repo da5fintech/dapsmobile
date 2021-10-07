@@ -66,7 +66,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontSize: SizeConfig.blockSizeVertical * 2.2,
                   fontWeight: FontWeight.w500,
-                  color: COLOR_DARK_PURPLE,
+                  color: COLOR_DAPS,
                 ),
               ),
             ),
@@ -99,9 +99,9 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.circle, color: COLOR_DARK_PURPLE, size: 10),
-                      Icon(Icons.circle, color: COLOR_DARK_PURPLE, size: 10),
-                      Icon(Icons.circle, color: COLOR_DARK_PURPLE, size: 10),
+                      Icon(Icons.circle, color: COLOR_DAPS, size: 10),
+                      Icon(Icons.circle, color: COLOR_DAPS, size: 10),
+                      Icon(Icons.circle, color: COLOR_DAPS, size: 10),
                     ],
                   ),
                   Padding(
@@ -159,7 +159,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ButtonTheme(
                   height: SizeConfig.blockSizeVertical * 5,
-                  buttonColor: COLOR_DARK_PURPLE,
+                  buttonColor: COLOR_DAPS,
                   child: RaisedButton(
                     // shape: ,
                     onPressed: () async {

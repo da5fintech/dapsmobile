@@ -62,7 +62,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
       width: SizeConfig.screenWidth,
       child: Drawer(
         child: Container(
-          color: COLOR_DARK_PURPLE,
+          color: COLOR_DAPS,
           child: ListView(
             children: <Widget>[
               Align(
@@ -132,7 +132,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget> {
                               ),
                               padding: EdgeInsets.only(
                                   bottom: 10, left: 10, right: 10),
-                              backgroundColor: COLOR_DARK_PURPLE,
+                              backgroundColor: COLOR_DAPS,
                               label: Text(
                                 store.user.level <= 2 ? DRAWER_MENU_SCREEN_VIEW_NOW : "Verified",
                                 style: GoogleFonts.roboto(

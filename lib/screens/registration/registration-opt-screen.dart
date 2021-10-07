@@ -73,6 +73,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
     });
 
     return Scaffold(
+      backgroundColor: COLOR_DAPS,
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
@@ -163,7 +164,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                               width: width * 0.60,
                               child: PinCodeTextField(
                                 textStyle: TextStyle(color: Colors.white, fontSize: 18),
-                                backgroundColor: COLOR_DARK_PURPLE,
+                                backgroundColor: COLOR_DAPS,
                                 controller: controller,
                                 obscureText: true,
                                 keyboardType: TextInputType.number,

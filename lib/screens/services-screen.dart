@@ -102,6 +102,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
       child: Scaffold(
         // backgroundColor: Constants.backgroundColor2,
         key: _drawerKey,
+        backgroundColor: COLOR_DAPS,
         drawer: DrawerMenuWidget(level: store.user.level),
         endDrawer: NotificationDrawer(
           notifications: store.notifications,

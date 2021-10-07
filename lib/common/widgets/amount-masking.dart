@@ -44,11 +44,17 @@ class _AmountMaskingState extends State<AmountMasking> {
         );
       },
       decoration: InputDecoration(
-        border: widget.noUnderline ? InputBorder.none : null,
-        focusedBorder: widget.noUnderline ? InputBorder.none : null,
-        enabledBorder: widget.noUnderline ? InputBorder.none : null,
-        errorBorder: widget.noUnderline ? InputBorder.none : null,
-        disabledBorder: widget.noUnderline ? InputBorder.none : null,
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+        disabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+        focusedBorder:
+        UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 2)),
+        // border: widget.noUnderline ? InputBorder.none : null,
+        // focusedBorder: widget.noUnderline ? InputBorder.none : null,
+        // enabledBorder: widget.noUnderline ? InputBorder.none : null,
+        // errorBorder: widget.noUnderline ? InputBorder.none : null,
+        // disabledBorder: widget.noUnderline ? InputBorder.none : null,
         labelText: widget.type,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         errorText: widget.hasError ? '${widget.type} is required' : null,

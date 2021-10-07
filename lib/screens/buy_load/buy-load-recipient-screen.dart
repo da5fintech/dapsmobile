@@ -101,6 +101,20 @@ class _BuyLoadRecipientScreenState extends State<BuyLoadRecipientScreen> {
                                     },
                                     controller: controller,
                                     decoration: InputDecoration(
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.grey.withOpacity(.6),
+                                          ),
+                                        ),
+                                        disabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.grey.withOpacity(.6),
+                                          ),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 2),
+                                        ),
                                         prefixIconConstraints: BoxConstraints(
                                             minWidth: 0, minHeight: 0),
                                         prefix: Container(

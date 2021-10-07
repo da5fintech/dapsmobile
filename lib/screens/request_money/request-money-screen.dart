@@ -139,6 +139,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
           _discardMessage();
         },
         child: Scaffold(
+          backgroundColor: COLOR_DAPS,
           key: _scaffoldKey,
           appBar: AppBar(
             leading: IconButton(
@@ -458,7 +459,7 @@ class _RequestMoneyScreenState extends State<RequestMoneyScreen> {
                         _handleNext();
                       }
                     },
-                    child: Text('Request Now'),
+                    child: Text('Request Now', style: TextStyle(color: COLOR_DAPS)),
                   ),
                 )
               ]

@@ -261,7 +261,7 @@ class _BillsPaymentCategoriesScreenState
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20.0),
         child: FloatingActionButton(
-          backgroundColor: COLOR_DARK_PURPLE,
+          backgroundColor: COLOR_DAPS,
           onPressed: () {
             Get.toNamed(
                 '/services/bills-payment/bills-payment-biller-list-screen');
