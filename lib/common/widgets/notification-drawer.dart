@@ -204,7 +204,6 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
           },
         )
     );
-
   }
 
   @override
