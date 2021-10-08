@@ -227,6 +227,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
             trailing: IconButton(
               onPressed: () async {
                 widget.close();
+
               },
               icon: Icon(Icons.close, color: COLOR_DARK_GRAY),
             ),
