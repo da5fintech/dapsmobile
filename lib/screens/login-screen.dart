@@ -106,7 +106,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: double.infinity,
                           child: PrimaryButtonWidget(
                             onPressed: () {
-                              _handleRegister();
                             },
                             text: Constants.LOGIN_SCREEN_REGISTER_TEXT,
                             color: Colors.white,

@@ -56,7 +56,7 @@ const ONBOARDING_FOURTH_SCREEN_SUB_TITLE =
     "DAPS app is here to help by being your go-to payment solution anytime and anywhere. ";
 
 const LOGIN_SCREEN_LOGIN_TEXT = "LOG IN";
-const LOGIN_SCREEN_REGISTER_TEXT = "REGISTER";
+const LOGIN_SCREEN_REGISTER_TEXT = "LOGIN AS DA5 ACCOUNT";
 const LOGIN_SCREEN_SIGN_UP_TEXT = "OR SIGN-UP USING";
 const LOGIN_SCREEN_APP_NAME = "DA5";
 const LOGIN_SCREEN_APP_NAME_LETTER_SPACING = 15.0;
