@@ -104,7 +104,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         child: MaterialApp(
           navigatorKey: Get.key,
           debugShowCheckedModeBanner: false,
-          title: 'Swipe',
+          title: 'DA5',
           theme: createTheme(context),
           // darkTheme: ThemeData.dark(),
           // builder: (context, widget) => Navigator(
