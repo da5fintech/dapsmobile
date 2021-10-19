@@ -1,37 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 864 864">
-  <defs>
-    <linearGradient id="linear-gradient" x1="187.127" y1="154.7258" x2="507.873" y2="710.2742" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#d5bafe"/>
-      <stop offset="0.2971" stop-color="#b98ef9"/>
-      <stop offset="0.3008" stop-color="#b88df9"/>
-      <stop offset="0.4638" stop-color="#9e6aed"/>
-      <stop offset="0.6169" stop-color="#8b50e4"/>
-      <stop offset="0.755" stop-color="#8040df"/>
-      <stop offset="0.8648" stop-color="#7c3bdd"/>
-    </linearGradient>
-    <linearGradient id="linear-gradient-2" x1="384.7915" y1="339.039" x2="552.1015" y2="506.349" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#fedb9a"/>
-      <stop offset="0.5535" stop-color="#fbc157"/>
-      <stop offset="1" stop-color="#f6a717"/>
-    </linearGradient>
-    <linearGradient id="linear-gradient-3" x1="764.2326" y1="428" x2="606" y2="428" xlink:href="#linear-gradient-2"/>
-    <linearGradient id="linear-gradient-4" x1="702" y1="371" x2="587" y2="371" xlink:href="#linear-gradient-2"/>
-    <linearGradient id="linear-gradient-5" x1="685" y1="492" x2="587" y2="492" xlink:href="#linear-gradient-2"/>
-  </defs>
-  <title>ICONS</title>
-  <g id="BUY_LOAD" data-name="BUY LOAD">
-    <rect x="166" y="139" width="363" height="587" rx="65.9286" style="fill: url(#linear-gradient)"/>
-    <rect x="204" y="193" width="286.3186" height="448" rx="29.5" style="fill: #d5bafe"/>
-    <circle cx="347" cy="683" r="22" style="fill: #fff"/>
-    <rect x="296" y="165" width="104" height="9" rx="4.5" style="fill: #fff"/>
-    <circle cx="468.4465" cy="422.694" r="118.306" style="fill: url(#linear-gradient-2)"/>
-    <g>
-      <path d="M500.4047,370.8472c15.1328-.2534,27.97,19.51,27.7514,43.0877.2185,23.4957-12.6186,43.427-27.7514,43.0877H458.2865v27.82H429.6609V370.8472Zm-7.1558,52.7591c1.6929,0,3.1685-.9341,4.37-2.8a12.3965,12.3965,0,0,0,1.8574-6.8713,12.011,12.011,0,0,0-1.8574-6.8692c-1.2018-1.9519-2.6774-2.8838-4.37-2.8838H458.2865v19.4244Z" style="fill: #fff"/>
-      <rect x="403" y="404.6985" width="37.6822" height="18.8411" rx="7" style="fill: #fff"/>
-      <rect x="509.3178" y="404.6985" width="37.6822" height="18.8411" rx="7" style="fill: #fff"/>
-    </g>
-    <path d="M746.2326,446H624a18.0529,18.0529,0,0,1-18-18h0a18.0529,18.0529,0,0,1,18-18H746.2326a18.0529,18.0529,0,0,1,18,18h0A18.0529,18.0529,0,0,1,746.2326,446Z" style="fill: url(#linear-gradient-3)"/>
-    <path d="M685,388H604a17.05,17.05,0,0,1-17-17h0a17.05,17.05,0,0,1,17-17h81a17.05,17.05,0,0,1,17,17h0A17.05,17.05,0,0,1,685,388Z" style="fill: url(#linear-gradient-4)"/>
-    <path d="M669,508H603a16.047,16.047,0,0,1-16-16h0a16.047,16.047,0,0,1,16-16h66a16.047,16.047,0,0,1,16,16h0A16.047,16.047,0,0,1,669,508Z" style="fill: url(#linear-gradient-5)"/>
-  </g>
+<svg width="31" height="40" viewBox="0 0 31 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="31" height="40" fill="#E5E5E5"/>
+<g clip-path="url(#clip0_0:1)">
+<rect width="411" height="857" transform="translate(-65 -364)" fill="#F9F8FC"/>
+<rect x="-65" y="-154" width="411" height="435" fill="white"/>
+<rect x="-49" y="-27" width="126" height="126" fill="white"/>
+<g clip-path="url(#clip1_0:1)">
+<path d="M19.5704 26C19.1238 26 18.7584 26.36 18.7584 26.8V32.68H1.6241V7.48H18.7584V13.2C18.7584 13.64 19.1238 14 19.5704 14C20.017 14 20.3825 13.64 20.3825 13.2V3.18C20.3825 1.42 18.9411 0 17.1546 0H3.2279C1.44139 0 0 1.42 0 3.18V36.82C0 38.58 1.44139 40 3.2279 40H17.1546C18.9411 40 20.3825 38.58 20.3825 36.82V26.8C20.3825 26.36 20.017 26 19.5704 26ZM1.6241 3.18C1.6241 2.3 2.33464 1.6 3.2279 1.6H17.1546C18.0478 1.6 18.7584 2.3 18.7584 3.18V5.88H1.6241V3.18ZM18.7584 36.82C18.7584 37.7 18.0275 38.4 17.1546 38.4H3.2279C2.33464 38.4 1.6241 37.7 1.6241 36.82V34.28H18.7584V36.82Z" fill="#3F51B5"/>
+<path d="M30.1474 19.2H26.0465H24.4427H17.8245L20.078 16.98C20.4028 16.66 20.4028 16.16 20.078 15.84C19.7531 15.52 19.2456 15.52 18.9208 15.84L15.2666 19.44C14.9417 19.76 14.9417 20.26 15.2666 20.58L18.9208 24.18C19.0832 24.34 19.2862 24.42 19.4892 24.42C19.6922 24.42 19.8952 24.34 20.0577 24.18C20.3825 23.86 20.3825 23.36 20.0577 23.04L17.8245 20.8H24.4427H26.0465H30.2083C30.6752 20.8 31.0609 20.4 31.0203 19.92C30.9594 19.5 30.5737 19.2 30.1474 19.2Z" fill="#3F51B5"/>
+<path opacity="0.8" d="M13.3562 20.0426C13.3562 18.3156 11.9414 16.9305 10.1961 16.949C8.45088 16.9674 7.03607 18.3824 7.03607 20.1094C7.03607 21.8364 8.45088 23.2214 10.1961 23.203C11.9414 23.1845 13.3562 21.7696 13.3562 20.0426Z" fill="#F2A819"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0:1">
+<rect width="411" height="857" fill="white" transform="translate(-65 -364)"/>
+</clipPath>
+<clipPath id="clip1_0:1">
+<rect width="31" height="40" fill="white"/>
+</clipPath>
+</defs>
 </svg>
