@@ -9,7 +9,7 @@ Future main() async {
     Environment.production,
     properties: {
       namespaceKey: "",
-      packageIdKey: "ph.kabootek.swipeapp",
+      packageIdKey: "ph.kabootek.dapsmobile",
       dapsUrl: "https://accounts.daps.ph/web/index.php",
     },
   );
