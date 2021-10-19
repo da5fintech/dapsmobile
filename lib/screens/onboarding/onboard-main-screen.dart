@@ -77,7 +77,7 @@ class _OnboardingMainScreenState extends State<OnboardingMainScreen> {
                   },
                   child: Text('Skip'),
                 ) : null,
-              ),
+              ),  
               Expanded(
                 flex: 1,
                 child: CarouselSlider(

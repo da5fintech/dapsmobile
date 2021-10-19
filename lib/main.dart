@@ -48,9 +48,9 @@ void setupApp() async {
   Hive.registerAdapter(ProductModelAdapter());
   getIt.registerSingleton(cache);
 
-  runZoned(() {
+  runZonedGuarded(() {
     runApp(MyApp());
-  }, onError: (error, stack) {
+  }, (Object error, stack) {
     print(error);
     print(stack);
   });
