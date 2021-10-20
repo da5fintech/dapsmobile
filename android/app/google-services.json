@@ -7,6 +7,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:723551623949:android:f78cc12cf2c342b0782e44",
+        "android_client_info": {
+          "package_name": "ph.kabootek.dapsmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCefcbM7lPx_MLnunqEcGiBYSUhqY6ZLko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723551623949-qla2faubce6t2ab3r8djgu2nmdpfo1b5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "723551623949-mtgk968q0v15bj8bdri2dg3tdr4la45n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ph.kabootek.swipeapp.dev"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:723551623949:android:fd8d42037e069df8782e44",
         "android_client_info": {
           "package_name": "ph.kabootek.swipeapp"
@@ -19,6 +55,14 @@
           "android_info": {
             "package_name": "ph.kabootek.swipeapp",
             "certificate_hash": "b9922d3a083d516a51e8d29d96c998a4d58d28a1"
+          }
+        },
+        {
+          "client_id": "723551623949-lhan36oksrbv05ihbbtktbvjsrg3i6i2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ph.kabootek.swipeapp",
+            "certificate_hash": "4834129f8f8eb46d2b2812f2045bf34599cdd7c5"
           }
         },
         {
