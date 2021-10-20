@@ -78,7 +78,7 @@ class _ImportQrScreenState extends State<ImportQrScreen> {
               Icons.photo,
               color: COLOR_DAPS,
               size: SizeConfig.blockSizeVertical * 12,
-            ) : Image.file(_image, height: SizeConfig.screenHeight * .60),
+            ) : Image.file(image, height: SizeConfig.screenHeight * .60),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: RaisedButton.icon(
@@ -111,7 +111,6 @@ class _ImportQrScreenState extends State<ImportQrScreen> {
   Future<void> handleNext() async {
     modalHudLoad(context);
     String code = await decode();
-    print('scanned barcode $code');
     await Future.delayed(Duration(seconds: 2));
     Navigator.pop(context);
     if(code == null) {
