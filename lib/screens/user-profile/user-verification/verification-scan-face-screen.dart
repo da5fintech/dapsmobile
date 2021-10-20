@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
@@ -13,6 +14,7 @@ import 'package:swipe/common/util.dart';
 import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
 import 'package:swipe/main.dart';
 import 'package:swipe/store/application-store.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
 
 final store = getIt<ApplicationStore>();
 
@@ -33,19 +35,19 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
   AppUtil _appUtil = AppUtil();
   double loader = 0.00;
   CameraController _camera;
-  // List<Face> faces;
+  List<Face> faces;
   bool _isDetecting = false;
   bool stopScan = true;
-  // ImageRotation rotation;
+  InputImageRotation rotation;
   String path;
   CameraLensDirection _direction = CameraLensDirection.front;
-  // final FaceDetector faceDetector = FirebaseVision.instance.faceDetector(
-  //     FaceDetectorOptions(
-  //         mode: FaceDetectorMode.accurate,
-  //         enableClassification: true,
-  //         enableLandmarks: true,
-  //         enableContours: true,
-  //         enableTracking: true));
+  final FaceDetector faceDetector = GoogleMlKit.vision.faceDetector(
+      FaceDetectorOptions(
+          mode: FaceDetectorMode.accurate,
+          enableClassification: true,
+          enableLandmarks: true,
+          enableContours: true,
+          enableTracking: true));
 
   @override
   void initState() {
@@ -53,7 +55,7 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
     getPath();
     if(widget.retake) _appUtil.deleteImage(store.verification.face.path);
     if(mounted) {
-      // _initializeCamera();
+      _initializeCamera();
     }
   }
 
@@ -64,74 +66,74 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
     });
   }
 
-  // void _initializeCamera() async {
-  //   CameraDescription description = await _appUtil.getCamera(_direction);
-  //   ImageRotation rotation = _appUtil.rotationIntToImageRotation(
-  //     description.sensorOrientation,
-  //   );
-  //
-  //   _camera = CameraController(
-  //     description,
-  //     defaultTargetPlatform == TargetPlatform.iOS
-  //         ? ResolutionPreset.ultraHigh
-  //         : ResolutionPreset.veryHigh,
-  //   );
-  //   await _camera.initialize();
-  //
-  //   _camera.startImageStream((CameraImage image) {
-  //     if (_isDetecting) return;
-  //
-  //     _isDetecting = true;
-  //
-  //     _appUtil.detect(image, faceDetector.processImage, rotation).then(
-  //       (dynamic result) async {
-  //         setState(() {
-  //           faces = result;
-  //         });
-  //         print(faces);
-  //
-  //         // loader reach 100% capture face
-  //         if (loader >= 1.00 && stopScan) {
-  //           stopScan = false;
-  //           _isDetecting = false;
-  //           final a = await _appUtil.convertImagetoPng(image);
-  //           Uint8List bytes = Uint8List.fromList(a);
-  //           store.verification.face =
-  //               await File('${path}/${_appUtil.generateUid()}.png').writeAsBytes(bytes);
-  //           store.setFace(store.verification.face);
-  //           print(store.faceImage.path);
-  //           setState(() {});
-  //           _camera.stopImageStream();
-  //           if(!widget.retake) {
-  //             Get.toNamed(
-  //                 '/user-profile/user-verification/verification-user-information-screen');
-  //           } else {
-  //             Navigator.pop(context);
-  //             Navigator.pop(context);
-  //           }
-  //         }
-  //
-  //         //check eyes blink
-  //         if (faces[0].rightEyeOpenProbability < 0.1 &&
-  //             faces[0].leftEyeOpenProbability < 0.1) {
-  //           double incrementLoader = 0.15;
-  //           print(loader);
-  //           setState(() {
-  //             loader = loader <= 1.00 ? loader + incrementLoader : 1.00;
-  //             // loader =  loader + incrementLoader ;
-  //           });
-  //         }
-  //
-  //         _isDetecting = false;
-  //         setState(() {});
-  //       },
-  //     ).catchError(
-  //       (_) {
-  //         _isDetecting = false;
-  //       },
-  //     );
-  //   });
-  // }
+  void _initializeCamera() async {
+    CameraDescription description = await _appUtil.getCamera(_direction);
+    InputImageRotation rotation = _appUtil.rotationIntToImageRotation(
+      description.sensorOrientation,
+    );
+
+    _camera = CameraController(
+      description,
+      defaultTargetPlatform == TargetPlatform.iOS
+          ? ResolutionPreset.ultraHigh
+          : ResolutionPreset.veryHigh,
+    );
+    await _camera.initialize();
+
+    _camera.startImageStream((CameraImage image) {
+      if (_isDetecting) return;
+
+      _isDetecting = true;
+
+      _appUtil.detect(image, faceDetector.processImage, rotation).then(
+        (dynamic result) async {
+          setState(() {
+            faces = result;
+          });
+          print(faces);
+
+          // loader reach 100% capture face
+          if (loader >= 1.00 && stopScan) {
+            stopScan = false;
+            _isDetecting = false;
+            final a = await _appUtil.convertImagetoPng(image);
+            Uint8List bytes = Uint8List.fromList(a);
+            store.verification.face =
+                await File('${path}/${_appUtil.generateUid()}.png').writeAsBytes(bytes);
+            store.setFace(store.verification.face);
+            print(store.faceImage.path);
+            setState(() {});
+            _camera.stopImageStream();
+            if(!widget.retake) {
+              Get.toNamed(
+                  '/user-profile/user-verification/verification-user-information-screen');
+            } else {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            }
+          }
+
+          //check eyes blink
+          if (faces[0].rightEyeOpenProbability < 0.1 &&
+              faces[0].leftEyeOpenProbability < 0.1) {
+            double incrementLoader = 0.15;
+            print(loader);
+            setState(() {
+              loader = loader <= 1.00 ? loader + incrementLoader : 1.00;
+              // loader =  loader + incrementLoader ;
+            });
+          }
+
+          _isDetecting = false;
+          setState(() {});
+        },
+      ).catchError(
+        (_) {
+          _isDetecting = false;
+        },
+      );
+    });
+  }
 
   @override
   void dispose() {

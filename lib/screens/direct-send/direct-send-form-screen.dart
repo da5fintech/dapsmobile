@@ -122,7 +122,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                             disabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
                             focusedBorder:
-                            UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 2)),
+                            UnderlineInputBorder(borderSide: BorderSide(color: COLOR_DAPS, width: 2)),
                             errorText: hasError ? "Mobile number is required" : null,
                             errorStyle: TextStyle(
                                 color: COLOR_DANGER, fontSize: 12, height: 1),
@@ -170,7 +170,7 @@ class _DirectSendFormScreenState extends State<DirectSendFormScreen> {
                             disabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
                             focusedBorder:
-                            UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 2)),
+                            UnderlineInputBorder(borderSide: BorderSide(color: COLOR_DAPS, width: 2)),
                             errorStyle: TextStyle(
                                 color: COLOR_GRAY, fontSize: 12, height: 0.3),
                             labelText: DIRECT_SEND_FORM_SCREEN_MESSAGE,

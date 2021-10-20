@@ -17,6 +17,7 @@ import 'package:swipe/common/constants.dart';
 import 'package:swipe/common/size.config.dart';
 import 'dart:io';
 import 'dart:core';
+import 'package:google_ml_kit/google_ml_kit.dart';
 
 import 'package:swipe/models/notification-model.dart';
 
@@ -252,63 +253,67 @@ class AppUtil extends DateUtil {
     return img;
   }
 
-  // Future<CameraDescription> getCamera(CameraLensDirection dir) async {
-  //   return await availableCameras().then(
-  //     (List<CameraDescription> cameras) => cameras.firstWhere(
-  //       (CameraDescription camera) => camera.lensDirection == dir,
-  //     ),
-  //   );
-  // }
-  //
-  // ImageRotation rotationIntToImageRotation(int rotation) {
-  //   switch (rotation) {
-  //     case 0:
-  //       return ImageRotation.rotation0;
-  //     case 90:
-  //       return ImageRotation.rotation90;
-  //     case 180:
-  //       return ImageRotation.rotation180;
-  //     default:
-  //       assert(rotation == 270);
-  //       return ImageRotation.rotation270;
-  //   }
-  // }
-  //
-  // Future<List<Face>> detect(CameraImage image, HandleDetection handleDetection,
-  //     ImageRotation rotation) async {
-  //   return handleDetection(
-  //     FirebaseVisionImage.fromBytes(
-  //       concatenatePlanes(image.planes),
-  //       buildMetaData(image, rotation),
-  //     ),
-  //   );
-  // }
-  //
-  // Uint8List concatenatePlanes(List<Plane> planes) {
-  //   final WriteBuffer allBytes = WriteBuffer();
-  //   planes.forEach((Plane plane) => allBytes.putUint8List(plane.bytes));
-  //   return allBytes.done().buffer.asUint8List();
-  // }
-  //
-  // FirebaseVisionImageMetadata buildMetaData(
-  //   CameraImage image,
-  //   ImageRotation rotation,
-  // ) {
-  //   return FirebaseVisionImageMetadata(
-  //     rawFormat: image.format.raw,
-  //     size: Size(image.width.toDouble(), image.height.toDouble()),
-  //     rotation: rotation,
-  //     planeData: image.planes.map(
-  //       (Plane plane) {
-  //         return FirebaseVisionImagePlaneMetadata(
-  //           bytesPerRow: plane.bytesPerRow,
-  //           height: plane.height,
-  //           width: plane.width,
-  //         );
-  //       },
-  //     ).toList(),
-  //   );
-  // }
+  Future<CameraDescription> getCamera(CameraLensDirection dir) async {
+    return await availableCameras().then(
+          (List<CameraDescription> cameras) => cameras.firstWhere(
+            (CameraDescription camera) => camera.lensDirection == dir,
+      ),
+    );
+  }
+
+  InputImageRotation rotationIntToImageRotation(int rotation) {
+    switch (rotation) {
+      case 0:
+        return InputImageRotation.Rotation_0deg;
+      case 90:
+        return InputImageRotation.Rotation_90deg;
+      case 180:
+        return InputImageRotation.Rotation_180deg;
+      default:
+        assert(rotation == 270);
+        return InputImageRotation.Rotation_270deg;
+    }
+  }
+
+  Future<List<Face>> detect(CameraImage image, handleDetection,
+      InputImageRotation rotation) async {
+    return handleDetection(
+        InputImage.fromBytes(bytes: concatenatePlanes(image.planes), inputImageData: buildMetaData(image, rotation))
+      // FirebaseVisionImage.fromBytes(
+      //   concatenatePlanes(image.planes),
+      //   buildMetaData(image, rotation),
+      // ),
+    );
+  }
+
+  Uint8List concatenatePlanes(List<Plane> planes) {
+    final WriteBuffer allBytes = WriteBuffer();
+    planes.forEach((Plane plane) => allBytes.putUint8List(plane.bytes));
+    return allBytes.done().buffer.asUint8List();
+  }
+
+  InputImageData buildMetaData(
+      CameraImage image,
+      InputImageRotation rotation,
+      ) {
+    final InputImageFormat inputImageFormat =
+        InputImageFormatMethods.fromRawValue(image.format.raw) ?? InputImageFormat.NV21;
+
+    return InputImageData(
+      size: Size(image.width.toDouble(), image.height.toDouble()),
+      imageRotation: rotation,
+      inputImageFormat: inputImageFormat,
+      planeData: image.planes.map(
+            (Plane plane) {
+          return InputImagePlaneMetadata(
+            bytesPerRow: plane.bytesPerRow,
+            height: plane.height,
+            width: plane.width,
+          );
+        },
+      ).toList(),
+    );
+  }
 
   //amount mask formatter
   String formatNumber(String s) =>

@@ -233,6 +233,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
             Container(
               height: height,
               width: width,
+              color: COLOR_DAPS,
               padding: EdgeInsets.only(top: 20, right: 10, left: 10),
               child: Column(
                 children: [
