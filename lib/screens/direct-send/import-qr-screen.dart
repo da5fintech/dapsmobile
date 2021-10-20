@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe/common/size.config.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:swipe/common/util.dart';
 
 class ImportQrScreen extends StatefulWidget {
@@ -18,35 +19,37 @@ class ImportQrScreen extends StatefulWidget {
 }
 
 class _ImportQrScreenState extends State<ImportQrScreen> {
-  File _image;
+  File image;
+  InputImage _image;
   final picker = ImagePicker();
   // FirebaseVisionImage visionImage;
   AppUtil _appUtil = AppUtil();
+  final barcodeScanner = GoogleMlKit.vision.barcodeScanner();
 
   Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
-        _image = File(pickedFile.path);
+        _image = InputImage.fromFile(File(pickedFile.path));
+        image = File(pickedFile.path);
       } else {
         print('No image selected.');
       }
     });
   }
 
-  // Future<String> decode() async {
-  //   String qrCode;
-  //   if(_image == null) return null;
-  //   FirebaseVisionImage ourImage = FirebaseVisionImage.fromFile(_image);
-  //   BarcodeDetector barcodeDetector = FirebaseVision.instance.barcodeDetector();
-  //   List barCodes = await barcodeDetector.detectInImage(ourImage);
-  //
-  //   for (Barcode readableCode in barCodes) {
-  //     qrCode = readableCode.displayValue;
-  //   }
-  //   return qrCode;
-  // }
+  Future<String> decode() async {
+    String qrCode;
+    if(_image == null) return null;
+    List<Barcode> barcodes = await barcodeScanner.processImage(_image);
+
+    for (Barcode readableCode in barcodes) {
+      qrCode = readableCode.value.displayValue;
+    }
+
+    return qrCode;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +110,8 @@ class _ImportQrScreenState extends State<ImportQrScreen> {
 
   Future<void> handleNext() async {
     modalHudLoad(context);
-    String code;
-    // String code = await decode();
+    String code = await decode();
+    print('scanned barcode $code');
     await Future.delayed(Duration(seconds: 2));
     Navigator.pop(context);
     if(code == null) {
