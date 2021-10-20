@@ -11,7 +11,7 @@ Future main() async {
     color: Colors.green,
     name: 'PREVIEW',
     properties: {
-      namespaceKey: "",
+      namespaceKey: "dev_",
       packageIdKey: "ph.kabootek.dapsmobile",
       dapsUrl: "https://accounts.daps.ph/staging/index.php",
     },

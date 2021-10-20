@@ -7,7 +7,7 @@ import 'package:hive/hive.dart';
 
 part 'constants.g.dart';
 
-const APP_NAME = "DA5";
+const APP_NAME = "DAPS";
 const APP_NAME_FONT_SIZE = 20.0;
 const APP_HELP_CENTER = "Help Center";
 const APP_VERSION = "v5.0.1";
@@ -58,7 +58,7 @@ const ONBOARDING_FOURTH_SCREEN_SUB_TITLE =
 const LOGIN_SCREEN_LOGIN_TEXT = "LOG IN";
 const LOGIN_SCREEN_REGISTER_TEXT = "LOGIN AS DA5 ACCOUNT";
 const LOGIN_SCREEN_SIGN_UP_TEXT = "OR SIGN-UP USING";
-const LOGIN_SCREEN_APP_NAME = "DA5";
+const LOGIN_SCREEN_APP_NAME = "DAPS";
 const LOGIN_SCREEN_APP_NAME_LETTER_SPACING = 15.0;
 const LOGIN_SCREEN_APP_NAME_FONT_SIZE = 20.0;
 

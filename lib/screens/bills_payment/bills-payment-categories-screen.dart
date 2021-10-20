@@ -190,7 +190,7 @@ class _BillsPaymentCategoriesScreenState
                           CategoryButtonWidget(
                             category: BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg2/ICONS_AIRLINES.svg'),
+                            icon: SvgPicture.asset('assets/svg/DAPS/AIRLINES.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_AIRLINES_TEXT,
                           ),
                           CategoryButtonWidget(

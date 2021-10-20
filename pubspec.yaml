@@ -101,6 +101,7 @@ flutter:
   assets:
     - assets/svg2/
     - assets/images/
+    - assets/svg/DAPS/
     - assets/svg/services/
     - assets/svg/services/cash-in/
     - assets/svg/promos/
