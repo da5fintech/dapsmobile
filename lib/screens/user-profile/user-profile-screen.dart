@@ -182,6 +182,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             textInputAction: TextInputAction.next,
                             controller: firstname,
                             decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              disabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: COLOR_DAPS, width: 3)),
                               labelText: REGISTER_SCREEN_FIRSTNAME_TEXT,
                               labelStyle: TextStyle(color: COLOR_DAPS),
                               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -194,6 +199,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             textInputAction: TextInputAction.next,
                             controller: lastname,
                             decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              disabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: COLOR_DAPS, width: 3)),
                               labelText: REGISTER_SCREEN_LASTNAME_TEXT,
                               labelStyle: TextStyle(color: COLOR_DAPS),
                               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -208,6 +218,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             controller: address,
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              disabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: COLOR_DAPS, width: 3)),
                               labelStyle: TextStyle(color: COLOR_DAPS),
                               labelText: REGISTER_SCREEN_ADDRESS_TEXT,
                               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -222,6 +237,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             showCursor: true,
                             initialValue: store.user.dateOfBirth,
                             decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              disabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: COLOR_DAPS, width: 3)),
                               labelStyle: TextStyle(color: COLOR_DAPS),
                               labelText: REGISTER_SCREEN_BIRTHDAY_TEXT,
                               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -236,6 +256,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             initialValue: store.user.emailAddress,
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              disabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: COLOR_DAPS, width: 3)),
                               labelStyle: TextStyle(color: COLOR_DAPS),
                               labelText: REGISTER_SCREEN_EMAIL_TEXT,
                               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -249,6 +274,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              disabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: COLOR_DAPS, width: 3)),
                               labelStyle: TextStyle(color: COLOR_DAPS),
                               errorStyle: TextStyle(
                                   color: COLOR_GRAY, fontSize: 12, height: 0.3),

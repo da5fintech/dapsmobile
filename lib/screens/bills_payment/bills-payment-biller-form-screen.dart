@@ -67,7 +67,7 @@ class _BillsPaymentBillerFormScreenState
           disabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.grey.withOpacity(.6))),
           focusedBorder:
-          UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 2)),
+          UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 3)),
           prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
           labelText: "${field.label}", suffixIcon: field.label == "Meralco Reference No / Account Number" ? IconButton(
             onPressed: () async {
