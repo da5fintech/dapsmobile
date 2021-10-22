@@ -197,20 +197,20 @@ class _BillsPaymentCategoriesScreenState
                             category:
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg2/ICONS_CABLE_AND_INTERNET.svg'),
+                            icon: SvgPicture.asset('assets/svg/DAPS/CABLE_INTERNET.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_CABLE_INTERNET_TEXT,
                           ),
                           CategoryButtonWidget(
                             category:
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg2/ICONS_ELECTRIC_UTILITIES.svg'),
+                            icon: SvgPicture.asset('assets/svg/DAPS/Electricity.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_ELECTRICITY_TEXT,
                           ),
                           CategoryButtonWidget(
                             category: BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg2/ICONS_INSURANCE.svg'),
+                            icon: SvgPicture.asset('assets/svg/DAPS/INSURANCE.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_INSURANCE_TEXT,
                           ),
                           CategoryButtonWidget(
@@ -218,33 +218,33 @@ class _BillsPaymentCategoriesScreenState
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
                             onPressed: (category) => Get.toNamed(
                                 '/services/bills-payment/transportation/transportation-categories-screen'),
-                            icon: SvgPicture.asset('assets/svg2/ICONS_TRANSPORTATION.svg'),
+                            icon: SvgPicture.asset('assets/svg/DAPS/TRANSPORTATION.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_TRANSPORTATION_TEXT,
                           ),
                           CategoryButtonWidget(
                             category:
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg2/ICONS_CREDIT_CARD.svg'),
+                            icon: SvgPicture.asset('assets/svg/DAPS/CARD.svg'),
                             text:
                                 BILLS_PAYMENT_CATEGORIES_SCREEN_ONLINE_SHOPPING_TEXT,
                           ),
                           CategoryButtonWidget(
                             category: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg2/ICONS_REAL_ESTATE.svg'),
+                            icon: SvgPicture.asset('assets/svg/DAPS/REALESTATE.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_UTILITIES_TEXT,
                           ),
                           CategoryButtonWidget(
                             category: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg2/ICONS_WATER_UTILITIES.svg'),
+                            icon: SvgPicture.asset('assets/svg/DAPS/WATER_UTILITIES.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_WATER_TEXT,
                           ),
                           CategoryButtonWidget(
                             category: "Others",
                             onPressed: _handleButtonClick,
-                            icon: SvgPicture.asset('assets/svg/services/bills-payment/others.svg'),
+                            icon: SvgPicture.asset('assets/svg/DAPS/others.svg'),
                             text: BILLS_PAYMENT_CATEGORIES_SCREEN_OTHERS_TEXT,
                           ),
                         ],

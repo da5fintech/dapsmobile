@@ -22,11 +22,12 @@ After retrieving the signing key. Register the sha1 and sha2 fingerprints in fir
 - `keytool -genkey -v -keystore ~/swipeapp.jks -keyalg RSA -keysize 2048 -validity 10000 -alias swipekey`
 
 # Running the project
-
 - flutter packages get
 - flutter packages pub run build_runner watch --delete-conflicting-outputs
-- flutter run --flavor dev -t lib/main-dev.dart
+- flutter run --flavor daps -t lib/main-daps.dart
 
-# Generate AppBundle
+# Generate AppBundle for production build
 # Update the pubspec.yaml file for the new version of app
-- flutter build appbundle --flavor prod -t lib/main-prod.dart
+- Go to main-daps.dart
+- Change to the Enviroment.dev into Enviroment.production and remove name key
+- flutter build appbundle --flavor daps -t lib/main-daps.dart
