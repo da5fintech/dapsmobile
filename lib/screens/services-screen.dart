@@ -167,7 +167,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                           margin: EdgeInsets.only(left: 10),
                           child: Observer(
                             builder: (_) => Text(
-                              store.user.displayName,
+                              'Juan Cruz',
                               style: GoogleFonts.roboto(
                                   fontSize: SizeConfig.blockSizeVertical * 2,
                                   color: Colors.white),

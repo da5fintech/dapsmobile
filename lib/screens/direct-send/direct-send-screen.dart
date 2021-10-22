@@ -259,7 +259,6 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                             child: QrImage(
                               data: qrData,
                               size: height * 0.25,
-                              embeddedImage: AssetImage('assets/images/ic_launcher.png'),
                               embeddedImageEmitsError: true,
                             ),
                           ),
@@ -281,7 +280,7 @@ class _DirectSendScreenState extends State<DirectSendScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    store.user.displayName,
+                                    'Juan Cruz',
                                     style: GoogleFonts.roboto(
                                       fontWeight: FontWeight.w500,
                                       fontSize:
