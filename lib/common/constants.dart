@@ -12,6 +12,7 @@ const APP_NAME_FONT_SIZE = 20.0;
 const APP_HELP_CENTER = "Help Center";
 const APP_VERSION = "v5.0.1";
 const APP_EMAIL = "info@swipe.ph";
+const KABOOTEK_URL = "https://kabootekph.co/";
 
 const UPDATE_DIALOG = "IMPORTANT UPDATE!";
 const UPDATE_DIALOG_CONTENT_MESSAGE =

@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ import 'package:swipe/store/application-store.dart';
 import 'package:swipe/common/widgets/primary-button.widget.dart';
 import 'package:swipe/common/widgets/secondary-button.widget.dart';
 import 'package:swipe/common/constants.dart' as Constants;
+import 'package:url_launcher/url_launcher.dart';
 
 import '../main.dart';
 
@@ -142,6 +144,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         // ),
                         SizedBox(
                           height: 15,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            text: 'Powered By: ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: 'Kabootekph',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: SizeConfig.blockSizeVertical * 2.3,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () async {
+                                  await launch("https://kabootekph.co/");
+                                },
+                              )
+                            ]
+                          ),
+
+
                         ),
                         // Row(
                         //   mainAxisAlignment: MainAxisAlignment.center,
