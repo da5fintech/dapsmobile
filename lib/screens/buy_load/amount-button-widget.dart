@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/models/product-model.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/models/product-model.dart';
 
 class AmountButtonWidget extends StatefulWidget {
   final AirtimeProduct promo;

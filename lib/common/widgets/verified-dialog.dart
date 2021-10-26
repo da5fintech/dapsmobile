@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
 
 class VerifiedDialog extends StatelessWidget {
   final Function onOk;

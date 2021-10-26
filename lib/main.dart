@@ -11,13 +11,13 @@ import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:swipe/models/auto-suggest-model.dart';
-import 'package:swipe/models/product-model.dart';
-import 'package:swipe/screens/onboarding/onboard-main-screen.dart';
-import 'package:swipe/screens/splash-screen.dart';
-import 'package:swipe/screens/user-profile/user-verification/verification-user-information-screen.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/router.dart' as onRouter;
+import 'package:daps/models/auto-suggest-model.dart';
+import 'package:daps/models/product-model.dart';
+import 'package:daps/screens/onboarding/onboard-main-screen.dart';
+import 'package:daps/screens/splash-screen.dart';
+import 'package:daps/screens/user-profile/user-verification/verification-user-information-screen.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/router.dart' as onRouter;
 
 import 'common/constants.dart';
 

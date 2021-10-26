@@ -1,12 +1,12 @@
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:swipe/common/constants.dart' as Constants;
+import 'package:daps/common/constants.dart' as Constants;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/widgets/access-permission-dialog.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/widgets/access-permission-dialog.dart';
 
 import '../main.dart';
 

@@ -1,15 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
-import 'package:swipe/models/notification-model.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/screens/direct-send/direct-send-form-screen.dart';
+import 'package:daps/models/notification-model.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/size.config.dart';
+import 'package:daps/common/size.config.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
-import 'package:swipe/common/util.dart';
+import 'package:daps/common/util.dart';
 
 class ImportQrScreen extends StatefulWidget {
   const ImportQrScreen({Key key}) : super(key: key);

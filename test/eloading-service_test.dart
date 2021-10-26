@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:swipe/models/product-model.dart';
-import 'package:swipe/services/eloading-service.dart';
+import 'package:daps/models/product-model.dart';
+import 'package:daps/services/eloading-service.dart';
 
 void main() {
   test('DA5 Must return products', () async {

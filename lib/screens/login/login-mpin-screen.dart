@@ -7,16 +7,16 @@ import 'package:local_auth/local_auth.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/swipe-dialog.dart';
-import 'package:swipe/screens/otp/otp-screen.dart';
-import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
-import 'package:swipe/screens/settings/change-swipe-mpin/change-swipe-mpin-screen.dart';
-import 'package:swipe/services/authentication-service.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/widgets/primary-button.widget.dart';
-import 'package:swipe/common/constants.dart' as Constants;
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/swipe-dialog.dart';
+import 'package:daps/screens/otp/otp-screen.dart';
+import 'package:daps/screens/payment/wrong-mpin-dialog.dart';
+import 'package:daps/screens/settings/change-swipe-mpin/change-swipe-mpin-screen.dart';
+import 'package:daps/services/authentication-service.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/widgets/primary-button.widget.dart';
+import 'package:daps/common/constants.dart' as Constants;
 
 import '../../main.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/util.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/util.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
 
 class PayQrScanSwipePartnersScreen extends StatefulWidget {
   const PayQrScanSwipePartnersScreen({Key key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/common/constants.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/common/constants.dart';
 
 class AmountMasking extends StatefulWidget {
   TextEditingController controller;

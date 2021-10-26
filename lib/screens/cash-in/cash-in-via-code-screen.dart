@@ -4,16 +4,16 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/amount-masking.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/main.dart';
-import 'package:swipe/models/product-model.dart';
-import 'package:swipe/screens/cash-in/cash-in-generate-code-screen.dart';
-import 'package:swipe/screens/payment/processing-failed-dialog.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/util.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/amount-masking.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/main.dart';
+import 'package:daps/models/product-model.dart';
+import 'package:daps/screens/cash-in/cash-in-generate-code-screen.dart';
+import 'package:daps/screens/payment/processing-failed-dialog.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/util.dart';
 
 final store = getIt<ApplicationStore>();
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/size.config.dart';
+import 'package:daps/common/size.config.dart';
 
 class CreditCardWidget extends StatelessWidget {
   const CreditCardWidget({Key key}) : super(key: key);

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:sensitive_http/http.dart' as http;
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/errors.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/errors.dart';
 
 class Da5Service {
   final String endpoint;

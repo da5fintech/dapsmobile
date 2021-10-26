@@ -1,7 +1,7 @@
 import 'package:sensitive_http/http.dart' as http;
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/errors.dart';
-import 'package:swipe/models/user-model.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/errors.dart';
+import 'package:daps/models/user-model.dart';
 
 class OtpService {
 

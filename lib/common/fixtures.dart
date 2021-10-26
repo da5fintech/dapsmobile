@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swipe/common/constants.dart';
+import 'package:daps/common/constants.dart';
 
 List<Map<String, dynamic>> billerList = [
   {

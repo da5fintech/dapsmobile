@@ -8,12 +8,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/main.dart';
-import 'package:swipe/store/application-store.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/main.dart';
+import 'package:daps/store/application-store.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 
 final store = getIt<ApplicationStore>();

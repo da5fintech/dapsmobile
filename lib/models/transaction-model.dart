@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/models/product-model.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/models/product-model.dart';
 
 class TransactionModel {
   String id;

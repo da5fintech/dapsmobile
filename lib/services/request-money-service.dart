@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/models/notification-model.dart';
-import 'package:swipe/models/user-model.dart';
-import 'package:swipe/services/account-service.dart';
-import 'package:swipe/services/firestore-service.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/models/notification-model.dart';
+import 'package:daps/models/user-model.dart';
+import 'package:daps/services/account-service.dart';
+import 'package:daps/services/firestore-service.dart';
 
 class RequestMoneyService extends FireStoreService {
   RequestMoneyService() : super(collectionName: 'accounts');

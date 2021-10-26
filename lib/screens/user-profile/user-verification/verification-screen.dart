@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/models/UserVerificationModel.dart';
-import 'package:swipe/screens/user-profile/user-verification/verification-photo-id-screen.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/models/UserVerificationModel.dart';
+import 'package:daps/screens/user-profile/user-verification/verification-photo-id-screen.dart';
 
 class VerificationScreen extends StatelessWidget {
 

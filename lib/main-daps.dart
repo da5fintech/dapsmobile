@@ -7,13 +7,12 @@ import 'main.dart';
 
 Future main() async {
   Flavor.create(
-    Environment.dev,
+    Environment.production,
     color: Colors.green,
-    name: 'PREVIEW',
     properties: {
-      namespaceKey: "dev_",
+      namespaceKey: "daps_",
       packageIdKey: "ph.kabootek.dapsmobile",
-      dapsUrl: "https://accounts.daps.ph/staging/index.php",
+      dapsUrl: "https://accounts.daps.ph/web/index.php",
     },
   );
   setupApp();

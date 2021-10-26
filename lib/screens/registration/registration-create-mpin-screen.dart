@@ -4,12 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/screens/registration/registration-success-dialog.dart';
-import 'package:swipe/store/application-store.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/screens/registration/registration-success-dialog.dart';
+import 'package:daps/store/application-store.dart';
 import 'package:flutter/gestures.dart';
-import 'package:swipe/screens/markdowns-views/terms-condition-screen.dart';
+import 'package:daps/screens/markdowns-views/terms-condition-screen.dart';
 import '../../main.dart';
 
 final store = getIt<ApplicationStore>();
@@ -236,7 +236,7 @@ class _RegistrationCreateMpinScreenState
                                 children: [
                                   RichText(
                                     text: TextSpan(
-                                      text: "I agree to Swipe app's ",
+                                      text: "I agree to Daps ",
                                       style: GoogleFonts.roboto(
                                         color: Colors.white,
                                         fontSize: SizeConfig.blockSizeVertical * 1.7,

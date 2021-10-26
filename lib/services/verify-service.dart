@@ -4,10 +4,10 @@ import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:http/http.dart';
 import 'package:sensitive_http/http.dart' as http;
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/models/UserVerificationModel.dart';
-import 'package:swipe/models/user-model.dart';
-import 'package:swipe/services/da5-service.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/models/UserVerificationModel.dart';
+import 'package:daps/models/user-model.dart';
+import 'package:daps/services/da5-service.dart';
 
 class VerifyResponse {
   bool result;

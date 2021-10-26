@@ -6,14 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/close-dialog.dart';
-import 'package:swipe/models/user-model.dart';
-import 'package:swipe/services/authentication-service.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/widgets/primary-button.widget.dart';
-import 'package:swipe/common/widgets/secondary-button.widget.dart';
-import 'package:swipe/common/constants.dart' as Constants;
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/close-dialog.dart';
+import 'package:daps/models/user-model.dart';
+import 'package:daps/services/authentication-service.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/widgets/primary-button.widget.dart';
+import 'package:daps/common/widgets/secondary-button.widget.dart';
+import 'package:daps/common/constants.dart' as Constants;
 import 'package:url_launcher/url_launcher.dart';
 
 import '../main.dart';
@@ -104,16 +104,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             text: Constants.LOGIN_SCREEN_LOGIN_TEXT,
                           ),
                         ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: PrimaryButtonWidget(
-                            onPressed: () {
-                            },
-                            text: Constants.LOGIN_SCREEN_REGISTER_TEXT,
-                            color: Colors.white,
-                            colorText: Constants.COLOR_DAPS,
-                          ),
-                        ),
+                        // SizedBox(
+                        //   width: double.infinity,
+                        //   child: PrimaryButtonWidget(
+                        //     onPressed: () {
+                        //     },
+                        //     text: Constants.LOGIN_SCREEN_REGISTER_TEXT,
+                        //     color: Colors.white,
+                        //     colorText: Constants.COLOR_DAPS,
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 20,
                         ),
@@ -165,8 +165,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               )
                             ]
                           ),
-
-
                         ),
                         // Row(
                         //   mainAxisAlignment: MainAxisAlignment.center,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/size.config.dart';
+import 'package:daps/common/size.config.dart';
 import 'package:mobx/mobx.dart';
 
 class SubAppbarWidget extends StatefulWidget implements PreferredSizeWidget {

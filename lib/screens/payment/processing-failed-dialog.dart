@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/store/application-store.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/store/application-store.dart';
 
 import '../../main.dart';
 

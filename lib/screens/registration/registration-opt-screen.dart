@@ -4,13 +4,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/main.dart';
-import 'package:swipe/screens/registration/registration-success-dialog.dart';
-import 'package:swipe/screens/registration/registration-failed-dialog.dart';
-import 'package:swipe/store/application-store.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/main.dart';
+import 'package:daps/screens/registration/registration-success-dialog.dart';
+import 'package:daps/screens/registration/registration-failed-dialog.dart';
+import 'package:daps/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
 
@@ -242,7 +242,7 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
                   onPressed: () {
                     _handleRegister();
                   },
-                  child: Text('REGISTER'),
+                  child: Text('REGISTER', style: TextStyle(color: COLOR_DAPS)),
                 ),
               ),
               Padding(
@@ -295,43 +295,27 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
             context,
             identifier: 'progress',
           );
-          if (store.registrant.isNew) {
-            if(store.registrant.thirdPartySign) {
-              var user = await store.accountService.create(store.registrant);
-              store.registrant.id = user.id;
-              await store.otpService.smsGreeting('${store.registrant.mobileNumber}');
-              store.setUser(store.registrant);
-              OverlayScreen().pop();
-              OverlayScreen().show(
-                context,
-                identifier: 'registration-success',
-              );
-              print('third party sign in');
-            } else {
-              print('USER auth sign up');
-              Map<String, dynamic> creds = await store.authService.createAuth(
-                  email: store.registrant.emailAddress,
-                  password: store.registrant.password);
-              if(creds['success'] == false) {
-                print('no user is created');
-                OverlayScreen().pop();
-                OverlayScreen().show(
-                  context,
-                  identifier: 'failed-registration',
-                );
-              } else {
-                OverlayScreen().pop();
-                store.registrant.id = creds['id'];
-                print('USER creation');
-                await store.accountService.create(store.registrant);
-                await store.otpService.smsGreeting('${store.registrant.mobileNumber}');
-                store.setUser(store.registrant);
-                OverlayScreen().show(
-                  context,
-                  identifier: 'registration-success',
-                );
-              }
-            }
+          Map<String, dynamic> creds = await store.authService.createAuth(
+            email: store.registrant.emailAddress,
+            password: store.registrant.password,
+          );
+          if(creds['success'] == false) {
+            print('No User is created');
+            OverlayScreen().pop();
+            OverlayScreen().show(
+              context,
+              identifier: 'failed-registration',
+            );
+          } else {
+            OverlayScreen().pop();
+            print('User creation');
+            await store.accountService.create(store.registrant);
+            await store.otpService.smsGreeting('${store.registrant.mobileNumber}');
+            store.setUser(store.registrant);
+            OverlayScreen().show(
+              context,
+              identifier: 'registration-success',
+            );
           }
         } catch (e) {
           print(e);

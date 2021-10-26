@@ -1,5 +1,5 @@
-import 'package:swipe/models/phlippines-model.dart';
-import 'package:swipe/services/da5-service.dart';
+import 'package:daps/models/phlippines-model.dart';
+import 'package:daps/services/da5-service.dart';
 
 class PhRegionsService extends Da5Service {
   Future<List<RegionModel>> fetchRegions() async {

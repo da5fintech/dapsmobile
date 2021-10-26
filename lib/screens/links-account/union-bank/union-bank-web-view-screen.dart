@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class UnionBankWebView extends StatefulWidget {

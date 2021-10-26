@@ -7,14 +7,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:package_info/package_info.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:swipe/common/constants.dart' as Constants;
+import 'package:daps/common/constants.dart' as Constants;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/swipe-dialog.dart';
-import 'package:swipe/screens/login-screen.dart';
-import 'package:swipe/screens/setup-screen.dart';
-import 'package:swipe/store/application-store.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/swipe-dialog.dart';
+import 'package:daps/screens/login-screen.dart';
+import 'package:daps/screens/setup-screen.dart';
+import 'package:daps/store/application-store.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../main.dart';
@@ -129,7 +129,7 @@ class _SplashScreenState extends State<SplashScreen> {
     User creds = store.authService.getCurrentUser();
     if (creds != null) {
       print("creds ${creds.uid}");
-      var user = await store.accountService.getAccount(creds.uid);
+      var user = await store.accountService.getAccount(creds.email);
       if (user != null) {
         store.setUser(user);
         Get.offAllNamed("/login/login-mpin-screen");

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:swipe/models/product-model.dart';
-import 'package:swipe/services/local-storage.dart';
+import 'package:daps/models/product-model.dart';
+import 'package:daps/services/local-storage.dart';
 
 class AddBillerService {
   LocalStorage storage = LocalStorage();

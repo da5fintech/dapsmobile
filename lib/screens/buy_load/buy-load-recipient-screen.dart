@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/models/auto-suggest-model.dart';
-import 'package:swipe/services/save-suggestions-services.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/models/auto-suggest-model.dart';
+import 'package:daps/services/save-suggestions-services.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
 
 import '../../main.dart';
 

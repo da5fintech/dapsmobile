@@ -8,7 +8,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:local_auth/auth_strings.dart';
-import 'package:swipe/models/user-model.dart';
+import 'package:daps/models/user-model.dart';
 
 enum LoginProvider {
   GOOGLE,
@@ -200,7 +200,9 @@ class AuthenticationService {
     try {
       print("creating auth user ${email} ${password}");
       var result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+          email: email, password: password).catchError((e) {
+            print(e);
+      });
       _auth.signInWithEmailAndPassword(email: email, password: password);
       await result.user.sendEmailVerification();
       return {

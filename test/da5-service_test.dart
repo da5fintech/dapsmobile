@@ -1,8 +1,8 @@
 // import 'package:flutter_test/flutter_test.dart';
 // import 'package:swipe/common/constants.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/services/da5-service.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/services/da5-service.dart';
 
 void main() {
   test('da5 must return token', () async {

@@ -4,11 +4,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/models/transaction-model.dart';
-import 'package:swipe/store/application-store.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/models/transaction-model.dart';
+import 'package:daps/store/application-store.dart';
 
 import '../../main.dart';
 

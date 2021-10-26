@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/models/auto-suggest-model.dart';
-import 'package:swipe/models/product-model.dart';
-import 'package:swipe/services/local-storage.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/models/auto-suggest-model.dart';
+import 'package:daps/models/product-model.dart';
+import 'package:daps/services/local-storage.dart';
 
 class SaveSuggestionsServices {
   LocalStorage _localStorage = LocalStorage();

@@ -7,14 +7,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/main.dart';
-import 'package:swipe/models/UserVerificationModel.dart';
-import 'package:swipe/screens/user-profile/user-verification/verification-review-information-screen.dart';
-import 'package:swipe/store/application-store.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/main.dart';
+import 'package:daps/models/UserVerificationModel.dart';
+import 'package:daps/screens/user-profile/user-verification/verification-review-information-screen.dart';
+import 'package:daps/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
 

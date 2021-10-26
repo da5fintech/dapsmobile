@@ -5,15 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:native_screenshot/native_screenshot.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/main.dart';
-import 'package:swipe/screens/direct-send/direct-request-form-screen.dart';
-import 'package:swipe/screens/direct-send/direct-send-via-qr-screen.dart';
-import 'package:swipe/screens/direct-send/import-qr-screen.dart';
-import 'package:swipe/store/application-store.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/main.dart';
+import 'package:daps/screens/direct-send/direct-request-form-screen.dart';
+import 'package:daps/screens/direct-send/direct-send-via-qr-screen.dart';
+import 'package:daps/screens/direct-send/import-qr-screen.dart';
+import 'package:daps/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
 

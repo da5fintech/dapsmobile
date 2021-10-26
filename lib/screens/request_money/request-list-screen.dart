@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/main.dart';
-import 'package:swipe/models/notification-model.dart';
-import 'package:swipe/screens/request_money/request-money-screen.dart';
-import 'package:swipe/store/application-store.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/main.dart';
+import 'package:daps/models/notification-model.dart';
+import 'package:daps/screens/request_money/request-money-screen.dart';
+import 'package:daps/store/application-store.dart';
 
 final store = getIt<ApplicationStore>();
 

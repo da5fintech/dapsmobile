@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/models/transaction-model.dart';
-import 'package:swipe/services/account-service.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/main.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/models/transaction-model.dart';
+import 'package:daps/services/account-service.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/main.dart';
 
 final store = getIt<ApplicationStore>();
 

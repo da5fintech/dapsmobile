@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/common/widgets/soon-release-dialog.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/common/widgets/soon-release-dialog.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
 
 import '../../main.dart';
 

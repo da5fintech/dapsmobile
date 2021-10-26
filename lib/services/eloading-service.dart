@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flavor/flavor.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/errors.dart';
-import 'package:swipe/models/product-model.dart';
-import 'package:swipe/models/transaction-model.dart';
-import 'package:swipe/services/da5-service.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/errors.dart';
+import 'package:daps/models/product-model.dart';
+import 'package:daps/models/transaction-model.dart';
+import 'package:daps/services/da5-service.dart';
 
 class EloadProcessResponse extends TransactionProcessingResponse {
   EloadProcessResponse({status, reference, message, result})

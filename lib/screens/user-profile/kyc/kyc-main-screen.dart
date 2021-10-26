@@ -1,14 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/screens/user-profile/kyc/kyc-acr-screen.dart';
-import 'package:swipe/screens/user-profile/kyc/kyc-cis-screen.dart';
-import 'package:swipe/screens/user-profile/kyc/kyc-eccd-lmpt-screen.dart';
-import 'package:swipe/screens/user-profile/kyc/kyc-form-screen.dart';
-import 'package:swipe/screens/user-profile/kyc/kyc-proof-id-screen.dart';
-import 'package:swipe/screens/user-profile/kyc/kyc-selfie-screen.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/screens/user-profile/kyc/kyc-acr-screen.dart';
+import 'package:daps/screens/user-profile/kyc/kyc-cis-screen.dart';
+import 'package:daps/screens/user-profile/kyc/kyc-eccd-lmpt-screen.dart';
+import 'package:daps/screens/user-profile/kyc/kyc-form-screen.dart';
+import 'package:daps/screens/user-profile/kyc/kyc-proof-id-screen.dart';
+import 'package:daps/screens/user-profile/kyc/kyc-selfie-screen.dart';
 
 class KycMainScreen extends StatefulWidget {
   @override

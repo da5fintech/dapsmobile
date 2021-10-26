@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
 
 class CategoryButtonWidget extends StatelessWidget {
   final String category;

@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:swipe/models/product-model.dart';
+import 'package:daps/models/product-model.dart';
 
 // final List<ProductModel> loadPromoProducts = [
 //   ProductModel(

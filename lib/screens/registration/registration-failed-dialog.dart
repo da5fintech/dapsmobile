@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/constants.dart';
+import 'package:daps/common/constants.dart';
 
 class RegistrationFailedDialog extends StatelessWidget {
   final Function onOk;

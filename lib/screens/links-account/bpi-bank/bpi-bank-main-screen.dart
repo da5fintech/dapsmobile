@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/main.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/main.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 final store = getIt<ApplicationStore>();

@@ -8,23 +8,23 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/common/widgets/close-dialog.dart';
-import 'package:swipe/common/widgets/notification-drawer.dart';
-import 'package:swipe/common/widgets/promo-card.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/common/widgets/close-dialog.dart';
+import 'package:daps/common/widgets/notification-drawer.dart';
+import 'package:daps/common/widgets/promo-card.dart';
 
-import 'package:swipe/common/widgets/amount-widget.dart';
-import 'package:swipe/common/widgets/drawer-menu-widget.dart';
-import 'package:swipe/common/widgets/soon-release-dialog.dart';
-import 'package:swipe/common/widgets/verified-dialog.dart';
-import 'package:swipe/models/notification-model.dart';
-import 'package:swipe/screens/direct-send/direct-send-form-screen.dart';
-import 'package:swipe/services/account-service.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/widgets/main-app-bar.widget.dart';
-import 'package:swipe/common/widgets/service-button.dart';
+import 'package:daps/common/widgets/amount-widget.dart';
+import 'package:daps/common/widgets/drawer-menu-widget.dart';
+import 'package:daps/common/widgets/soon-release-dialog.dart';
+import 'package:daps/common/widgets/verified-dialog.dart';
+import 'package:daps/models/notification-model.dart';
+import 'package:daps/screens/direct-send/direct-send-form-screen.dart';
+import 'package:daps/services/account-service.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/widgets/main-app-bar.widget.dart';
+import 'package:daps/common/widgets/service-button.dart';
 
 import '../main.dart';
 
@@ -167,7 +167,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                           margin: EdgeInsets.only(left: 10),
                           child: Observer(
                             builder: (_) => Text(
-                              'Juan Cruz',
+                              store.user.displayName,
                               style: GoogleFonts.roboto(
                                   fontSize: SizeConfig.blockSizeVertical * 2,
                                   color: Colors.white),

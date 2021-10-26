@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:swipe/common/constants.dart';
+import 'package:daps/common/constants.dart';
 
 
 part 'auto-suggest-model.g.dart';

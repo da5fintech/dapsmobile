@@ -4,17 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/errors.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/models/user-model.dart';
-import 'package:swipe/common/util.dart';
-import 'package:swipe/screens/login/failed-login-dialog.dart';
-import 'package:swipe/screens/payment/wrong-mpin-dialog.dart';
-import 'package:swipe/screens/registration/registration-failed-dialog.dart';
-import 'package:swipe/services/authentication-service.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/common/widgets/primary-button.widget.dart';
-import 'package:swipe/common/constants.dart' as Constants;
+import 'package:daps/common/errors.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/models/user-model.dart';
+import 'package:daps/common/util.dart';
+import 'package:daps/screens/login/failed-login-dialog.dart';
+import 'package:daps/screens/payment/wrong-mpin-dialog.dart';
+import 'package:daps/screens/registration/registration-failed-dialog.dart';
+import 'package:daps/services/authentication-service.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/common/widgets/primary-button.widget.dart';
+import 'package:daps/common/constants.dart' as Constants;
 
 import '../../main.dart';
 
@@ -28,7 +28,7 @@ class LoginEmailScreen extends StatefulWidget {
 class _LoginEmailScreenState extends State<LoginEmailScreen> {
   final _formKey = GlobalKey<FormState>();
   AppUtil _appUtil = AppUtil();
-  TextEditingController email = TextEditingController();
+  TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   bool loginError = false;
   bool obscureText = true;
@@ -127,12 +127,17 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                           child: Column(
                             children: [
                               TextFormField(
-                                controller: email,
+                                controller: username,
                                 autofocus: false,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.emailAddress,
                                 onSaved: (v) {},
-                                validator: _appUtil.validateEmail,
+                                validator: (t) {
+                                  if(t.isEmpty) {
+                                    return "Please Enter your Username";
+                                  }
+                                  return null;
+                                },
                                 style: TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
                                   hintText: Constants.LOGIN_EMAIL_SCREEN_EMAIL_TEXT,
@@ -144,7 +149,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                 style: TextStyle(color: Colors.white),
                                 onFieldSubmitted: (val) {
                                   FocusScope.of(context).unfocus();
-                                  _handleLogin();
+                                  _handleDapsLogin();
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 obscureText: obscureText,
@@ -182,7 +187,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                 width: double.infinity,
                                 child: PrimaryButtonWidget(
                                   onPressed: () {
-                                    _handleLogin();
+                                    _handleDapsLogin();
                                   },
                                   text: Constants.LOGIN_EMAIL_SCREEN_LOGIN_TEXT,
                                   color: Colors.white,
@@ -313,61 +318,59 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
     );
   }
 
-  _handleLogin() async {
+  ///DAPS LOGIN
+  _handleDapsLogin () async {
     bool status = _formKey.currentState.validate();
-    if (!status) return null;
+    if(!status) return null;
     try {
       loginError = false;
       setState(() {});
       modalHudLoad(context);
-      await Future.delayed(Duration(seconds: 2));
-      var user = await store.authService
-          .emailLogin(email: email.text, password: password.text);
-      print("user logged in");
-      var account = await store.accountService.getAccount(user.uid);
-      if (account == null) {
-        throw AuthenticationError(message: "Account not found");
-      }
-      Navigator.pop(context);
-      store.setUser(account);
-      Get.toNamed("/services");
-    } catch (e) {
-      loginError = true;
-      Navigator.pop(context);
-      OverlayScreen().show(
-        context,
-        identifier: 'failed-login',
+      UserModel user = await store.dapsAuthenticationService.dapsAuth(
+        username: username.text,
+        password: password.text,
       );
+      var account = await store.accountService.getAccount(user.emailAddress);
+      Navigator.pop(context);
+      if(account == null) {
+        UserModel registrant = user;
+        store.registrant = registrant;
+        Get.toNamed('/registration/registration-create-mpin-screen');
+        return;
+      }
+      await store.authService.emailLogin(email: user.emailAddress, password: password.text);
+      store.setUser(account);
+      Get.toNamed('/services');
+    } on ApiResponseError catch (e) {
+      Navigator.pop(context);
+      errorModal(context, title: "D2066", message: e.message);
+      loginError = true;
       setState(() {});
+    } catch (e) {
+      Navigator.pop(context);
+      print('error $e');
+      loginError = true;
     }
   }
 
   void _handleOk() {
     OverlayScreen().pop();
   }
-
-  void _handleSSOLogin(provider) async {
-    try {
-      print(provider);
-      setState(() {});
-      var user = await store.authService.login(provider);
-      var account = await store.accountService.getAccount(user.uid);
-      if (account == null) {
-        UserModel registrant = UserModel(
-            thirdPartySign: true,
-            id: user.uid,
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-            emailAddress: user.email);
-        store.registrant = registrant;
-        Get.toNamed('/registration/registration-details-screen');
-        throw AuthenticationError(message: "Account not found");
-      }
-      store.setUser(account);
-      Get.toNamed("/services");
-    } catch (e) {
-      loginError = true;
-      setState(() {});
-    }
-  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

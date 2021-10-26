@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/screens/pay_qr/pay-qr-scan-swipe-partners.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/screens/pay_qr/pay-qr-scan-swipe-partners.dart';
 
 enum ScreenNav {pay, generate, scan}
 

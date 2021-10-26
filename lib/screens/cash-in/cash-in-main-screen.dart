@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overlay_screen/overlay_screen.dart';
 import 'package:permission_handler/permission_handler.dart' as handler;
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/fixtures.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/common/widgets/swipe-dialog.dart';
-import 'package:swipe/screens/cash-in/cash-in-map-screen.dart';
-import 'package:swipe/screens/cash-in/cash-in-partner-details-screen.dart';
-import 'package:swipe/screens/cash-in/gcash/gcash-main-screen.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/fixtures.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/common/widgets/swipe-dialog.dart';
+import 'package:daps/screens/cash-in/cash-in-map-screen.dart';
+import 'package:daps/screens/cash-in/cash-in-partner-details-screen.dart';
+import 'package:daps/screens/cash-in/gcash/gcash-main-screen.dart';
 
 class CashInMainScreen extends StatefulWidget {
   @override

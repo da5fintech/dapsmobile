@@ -2,32 +2,33 @@ import 'dart:async';
 import 'dart:io';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/main.dart';
-import 'package:swipe/models/UserVerificationModel.dart';
-import 'package:swipe/models/notification-model.dart';
-import 'package:swipe/models/product-model.dart';
-import 'package:swipe/models/transaction-model.dart';
-import 'package:swipe/models/user-model.dart';
-import 'package:swipe/models/bpi-account-model.dart';
-import 'package:swipe/services/account-service.dart';
-import 'package:swipe/services/add-biller-service.dart';
-import 'package:swipe/services/authentication-service.dart';
-import 'package:swipe/services/autosweep-service.dart';
-import 'package:swipe/services/bills-payment-service.dart';
-import 'package:swipe/services/cashin-service.dart';
-import 'package:swipe/services/request-money-service.dart';
-import 'package:swipe/services/direct-pay-service.dart';
-import 'package:swipe/services/eloading-service.dart';
-import 'package:swipe/services/instapay-service.dart';
-import 'package:swipe/services/opt-service.dart';
-import 'package:swipe/services/pesonet-service.dart';
-import 'package:swipe/services/ph-regions-service.dart';
-import 'package:swipe/services/save-suggestions-services.dart';
-import 'package:swipe/services/transaction-service.dart';
-import 'package:swipe/services/verify-service.dart';
-import 'package:swipe/services/gcash-service.dart';
-import 'package:swipe/services/bpi-service.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/main.dart';
+import 'package:daps/models/UserVerificationModel.dart';
+import 'package:daps/models/notification-model.dart';
+import 'package:daps/models/product-model.dart';
+import 'package:daps/models/transaction-model.dart';
+import 'package:daps/models/user-model.dart';
+import 'package:daps/models/bpi-account-model.dart';
+import 'package:daps/services/account-service.dart';
+import 'package:daps/services/add-biller-service.dart';
+import 'package:daps/services/authentication-service.dart';
+import 'package:daps/services/autosweep-service.dart';
+import 'package:daps/services/bills-payment-service.dart';
+import 'package:daps/services/cashin-service.dart';
+import 'package:daps/services/request-money-service.dart';
+import 'package:daps/services/direct-pay-service.dart';
+import 'package:daps/services/eloading-service.dart';
+import 'package:daps/services/instapay-service.dart';
+import 'package:daps/services/opt-service.dart';
+import 'package:daps/services/pesonet-service.dart';
+import 'package:daps/services/ph-regions-service.dart';
+import 'package:daps/services/save-suggestions-services.dart';
+import 'package:daps/services/transaction-service.dart';
+import 'package:daps/services/verify-service.dart';
+import 'package:daps/services/gcash-service.dart';
+import 'package:daps/services/bpi-service.dart';
+import 'package:daps/services/daps-authentication-service.dart';
 
 
 part 'application-store.g.dart';
@@ -81,6 +82,7 @@ abstract class _ApplicationStore with Store {
   BpiService bpiService;
   SaveSuggestionsServices saveSuggestionsServices;
   PhRegionsService phRegionsService;
+  DapsAuthenticationService dapsAuthenticationService;
 
   bool permissionsGranted;
   SharedPreferences prefs;
@@ -121,6 +123,7 @@ abstract class _ApplicationStore with Store {
     saveSuggestionsServices = SaveSuggestionsServices();
     phRegionsService = PhRegionsService();
     bpiService = BpiService();
+    dapsAuthenticationService = DapsAuthenticationService();
 
     getIt.registerSingleton(accountService);
     getIt.registerSingleton(VerifyService());
@@ -139,6 +142,7 @@ abstract class _ApplicationStore with Store {
     getIt.registerSingleton(saveSuggestionsServices);
     getIt.registerSingleton(PhRegionsService());
     getIt.registerSingleton(gcashService);
+    getIt.registerSingleton(dapsAuthenticationService);
 
     // user = UserModel(id: "", mpin: "888888");
   }

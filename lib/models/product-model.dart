@@ -1,8 +1,8 @@
 import 'package:flavor/flavor.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:swipe/common/constants.dart';
+import 'package:daps/common/constants.dart';
 import 'package:hive/hive.dart';
-import 'package:swipe/models/notification-model.dart';
+import 'package:daps/models/notification-model.dart';
 
 part 'product-model.g.dart';
 

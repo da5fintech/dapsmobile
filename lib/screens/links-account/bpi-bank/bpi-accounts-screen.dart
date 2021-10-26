@@ -3,15 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/screens/links-account/bpi-bank/bpi-bank-main-screen.dart';
-import 'package:swipe/screens/links-account/bpi-bank/widgets/credit-card-widget.dart';
-import 'package:swipe/main.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/models/bpi-account-model.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/screens/links-account/bpi-bank/bpi-bank-main-screen.dart';
+import 'package:daps/screens/links-account/bpi-bank/widgets/credit-card-widget.dart';
+import 'package:daps/main.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/models/bpi-account-model.dart';
 import 'package:get/get.dart';
-import 'package:swipe/common/util.dart';
+import 'package:daps/common/util.dart';
 
 final store = getIt<ApplicationStore>();
 

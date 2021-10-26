@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:swipe/common/errors.dart';
-import 'package:swipe/models/transaction-model.dart';
-import 'package:swipe/models/user-model.dart';
-import 'package:swipe/services/firestore-service.dart';
+import 'package:daps/common/errors.dart';
+import 'package:daps/models/transaction-model.dart';
+import 'package:daps/models/user-model.dart';
+import 'package:daps/services/firestore-service.dart';
 
 class AccountService extends FireStoreService {
   AccountService() : super(collectionName: "accounts");
@@ -27,7 +27,7 @@ class AccountService extends FireStoreService {
   }
 
   Future<UserModel> create(UserModel user) async {
-    await update(user.id, user.toMap());
+    await update(user.emailAddress, user.toMap());
     return user;
   }
 

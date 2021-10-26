@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:overlay_screen/overlay_screen.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/greet-dialog.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/common/widgets/swipe-dialog.dart';
-import 'package:swipe/screens/links-account/bpi-bank/bpi-accounts-screen.dart';
-import 'package:swipe/screens/links-account/bpi-bank/bpi-bank-main-screen.dart';
-import 'package:swipe/screens/links-account/union-bank/union-bank-login-screen.dart';
-import 'package:swipe/screens/links-account/union-bank/union-bank-web-view-screen.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/greet-dialog.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/common/widgets/swipe-dialog.dart';
+import 'package:daps/screens/links-account/bpi-bank/bpi-accounts-screen.dart';
+import 'package:daps/screens/links-account/bpi-bank/bpi-bank-main-screen.dart';
+import 'package:daps/screens/links-account/union-bank/union-bank-login-screen.dart';
+import 'package:daps/screens/links-account/union-bank/union-bank-web-view-screen.dart';
 
 class LinksAccountScreen extends StatefulWidget {
   @override

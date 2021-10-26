@@ -1,16 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:swipe/common/constants.dart';
-import 'package:swipe/common/size.config.dart';
-import 'package:swipe/common/widgets/sub-app-bar.widget.dart';
-import 'package:swipe/screens/onboarding/first-screen.dart';
-import 'package:swipe/screens/onboarding/fourth-screen.dart';
-import 'package:swipe/screens/onboarding/second-screen.dart';
-import 'package:swipe/screens/onboarding/third-screen.dart';
-import 'package:swipe/screens/splash-screen.dart';
-import 'package:swipe/store/application-store.dart';
-import 'package:swipe/main.dart';
+import 'package:daps/common/constants.dart';
+import 'package:daps/common/size.config.dart';
+import 'package:daps/common/widgets/sub-app-bar.widget.dart';
+import 'package:daps/screens/onboarding/first-screen.dart';
+import 'package:daps/screens/onboarding/fourth-screen.dart';
+import 'package:daps/screens/onboarding/second-screen.dart';
+import 'package:daps/screens/onboarding/third-screen.dart';
+import 'package:daps/screens/splash-screen.dart';
+import 'package:daps/store/application-store.dart';
+import 'package:daps/main.dart';
 
 final store = getIt<ApplicationStore>();
 
