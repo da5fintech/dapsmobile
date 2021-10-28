@@ -36,6 +36,13 @@ class Da5Service {
     try {
       String uri = "$endpoint$resource";
 
+      // var authBody = {
+      //   "Username": 'testonly',
+      //   "MerchantID": '1234',
+      //   "NetworkID": '5678',
+      //   "Authentication": '6c093c3205e252b43c36b22124549bfc6b625efd',
+      // };
+
       var authBody = {
         "Username": store.user.credentials.username,
         "MerchantID": store.user.credentials.merchantId,

@@ -110,7 +110,6 @@ abstract class _ApplicationStore with Store {
     accountService = AccountService();
     eloadingService = EloadingService();
     billsPaymentService = BillsPaymentService();
-    transactionService = TransactionService(accountService: accountService);
     instapayService = InstapayService();
     pesonetService = PesonetService();
     requestMoneyService = RequestMoneyService();
@@ -124,6 +123,10 @@ abstract class _ApplicationStore with Store {
     phRegionsService = PhRegionsService();
     bpiService = BpiService();
     dapsAuthenticationService = DapsAuthenticationService(prefs: this.prefs);
+    transactionService = TransactionService(
+        accountService: accountService,
+        dapsAuthenticationService: dapsAuthenticationService
+    );
 
     getIt.registerSingleton(accountService);
     getIt.registerSingleton(VerifyService());

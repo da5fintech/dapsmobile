@@ -105,7 +105,7 @@ class DirectPayService extends Da5Service {
         "ReceiverFirstName": "Jose Paulo",
         "ReceiverMiddleName": "Maniquez",
         "ReceiverLastName": "Dela Cruz",
-        "ReceiverMobileNumber": product.mobileNumber,
+        "ReceiverMobileNumber": "09056535707",
         // "ReceiverDOB": "formattedDate",
         // "ReceiverAddress": INSTAPAY_ADDRESS1,
         // "ReceiverMunicipality": INSTAPAY_CITY,

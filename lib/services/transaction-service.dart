@@ -9,6 +9,7 @@ import 'package:daps/models/user-model.dart';
 import 'package:daps/services/account-service.dart';
 import 'package:daps/services/autosweep-service.dart';
 import 'package:daps/services/bills-payment-service.dart';
+import 'package:daps/services/daps-authentication-service.dart';
 import 'package:daps/services/direct-pay-service.dart';
 import 'package:daps/services/eloading-service.dart';
 import 'package:daps/services/firestore-service.dart';
@@ -22,8 +23,9 @@ import '../main.dart';
 
 class TransactionService extends FireStoreService {
   AccountService accountService;
+  DapsAuthenticationService dapsAuthenticationService;
 
-  TransactionService({this.accountService}) : super(collectionName: "accounts");
+  TransactionService({this.accountService, this.dapsAuthenticationService}) : super(collectionName: "accounts");
 
   Future<TransactionProcessingResponse> process(
       UserModel user, TransactionModel transaction) async {
@@ -116,7 +118,7 @@ class TransactionService extends FireStoreService {
   Future<bool> checkBalance(
       UserModel user, TransactionModel transaction) async {
     double fee = 30;
-    double balance = await accountService.getWalletAmount(user);
+    double balance = await dapsAuthenticationService.balanceSyncing(user.credentials);
     double transactionAmount = getTotalAmount(transaction);
 
     return transactionAmount + fee > balance ? false : true;
@@ -124,7 +126,7 @@ class TransactionService extends FireStoreService {
 
   Future<bool> tryChargeAccount(
       UserModel user, TransactionModel transaction) async {
-    double balance = await accountService.getWalletAmount(user);
+    double balance = await dapsAuthenticationService.balanceSyncing(user.credentials);
     double totalAmount = getTotalAmount(transaction);
     double swipeBalance = await accountService.getSwipePoints(user);
     double totalSwipePoints =
