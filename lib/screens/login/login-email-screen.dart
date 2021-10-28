@@ -35,6 +35,8 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
 
   @override
   void initState() {
+    username.text = "0002";
+    password.text = "4!CN3Qv8";
     super.initState();
   }
 
@@ -338,6 +340,8 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
         Get.toNamed('/registration/registration-create-mpin-screen');
         return;
       }
+      account.credentials = user.credentials;
+      account.balance = await store.dapsAuthenticationService.balanceSyncing(user.credentials);
       await store.authService.emailLogin(email: user.emailAddress, password: password.text);
       store.setUser(account);
       Get.toNamed('/services');

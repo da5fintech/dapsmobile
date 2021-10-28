@@ -131,14 +131,14 @@ class _SplashScreenState extends State<SplashScreen> {
       print("creds ${creds.uid}");
       var user = await store.accountService.getAccount(creds.email);
       if (user != null) {
+        user.credentials = store.dapsAuthenticationService.getCredentials();
+        user.balance = await store.dapsAuthenticationService.balanceSyncing(user.credentials);
+        await store.accountService.create(user);
         store.setUser(user);
         Get.offAllNamed("/login/login-mpin-screen");
       } else {
         Get.offAllNamed("/login");
       }
-
-      // await store.authService.logout();
-
     } else {
       store.setPermissionsGranted();
       print("granted");

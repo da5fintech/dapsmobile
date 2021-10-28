@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:daps/main.dart';
+import 'package:daps/store/application-store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:sensitive_http/http.dart' as http;
 import 'package:daps/common/constants.dart';
 import 'package:daps/common/errors.dart';
+
+final store = getIt<ApplicationStore>();
 
 class Da5Service {
   final String endpoint;
@@ -33,10 +37,10 @@ class Da5Service {
       String uri = "$endpoint$resource";
 
       var authBody = {
-        "Username": username,
-        "MerchantID": merchantId,
-        "NetworkID": networkId,
-        "Authentication": signature
+        "Username": store.user.credentials.username,
+        "MerchantID": store.user.credentials.merchantId,
+        "NetworkID": store.user.credentials.networkId,
+        "Authentication": store.user.credentials.authSignature,
       };
 
       Map<String, String> headers = {"Authorization": token};

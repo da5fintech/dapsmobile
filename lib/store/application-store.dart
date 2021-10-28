@@ -123,7 +123,7 @@ abstract class _ApplicationStore with Store {
     saveSuggestionsServices = SaveSuggestionsServices();
     phRegionsService = PhRegionsService();
     bpiService = BpiService();
-    dapsAuthenticationService = DapsAuthenticationService();
+    dapsAuthenticationService = DapsAuthenticationService(prefs: this.prefs);
 
     getIt.registerSingleton(accountService);
     getIt.registerSingleton(VerifyService());

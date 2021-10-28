@@ -19,6 +19,7 @@ class UserModel {
   DateTime createdAt;
   DateTime updatedAt;
   String password;
+  UserCredentials credentials;
 
   UserModel(
       {this.thirdPartySign = false,
@@ -37,7 +38,8 @@ class UserModel {
       this.balance = 0.00,
       this.swipePoints = 0.00,
       this.level = 1,
-      this.createdAt}) {
+      this.createdAt,
+      this.credentials}) {
     createdAt = createdAt == null ? DateTime.now() : createdAt;
     updatedAt = updatedAt == null ? DateTime.now() : updatedAt;
   }
@@ -90,4 +92,33 @@ class UserModel {
     model.updatedAt = uts.toDate();
     return model;
   }
+}
+
+class UserCredentials {
+  String merchantId;
+  String networkId;
+  String username;
+  String authSignature;
+
+
+  UserCredentials({this.merchantId, this.networkId, this.username, this.authSignature});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'merchantId': merchantId,
+      'networkId': networkId,
+      'username': username,
+      'authSignature': authSignature,
+    };
+  }
+
+  factory UserCredentials.fromMap(Map<String, dynamic> map) {
+    var model = UserCredentials();
+    model.merchantId = map['collection']['api_details'][0]['rem_company_merchant_id'];
+    model.networkId = map['collection']['api_details'][0]['rem_company_network_id'];
+    model.username = map['collection']['api_details'][0]['rem_company_username'];
+    model.authSignature = map['auth'];
+    return model;
+  }
+
 }

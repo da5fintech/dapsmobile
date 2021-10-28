@@ -1,18 +1,18 @@
-
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:sensitive_http/http.dart' as http;
-import 'package:flutter/material.dart';
 import 'package:daps/common/errors.dart';
 import 'package:daps/services/da5-service.dart';
 import 'package:daps/models/user-model.dart';
 import 'package:flavor/flavor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DapsAuthenticationService extends Da5Service {
+  SharedPreferences prefs;
+  final endpoint = Flavor.instance.properties['dapsUrl'];
+  DapsAuthenticationService({this.prefs});
 
   Future<UserModel> dapsAuth({String username, String password}) async {
-    var endpoint = Flavor.instance.properties['dapsUrl'];
     try {
       var url = Uri.parse('$endpoint/API_accounts/validate');
       var request = await http.post(
@@ -40,7 +40,7 @@ class DapsAuthenticationService extends Da5Service {
           emailAddress: userDetails['members_email'],
           photoURL: userDetails['members_avatar'],
           level: 3,
-          // balance: double.parse(userDetails['members_iwallet']),
+          credentials: UserCredentials.fromMap(response),
         );
         return user;
       } else {
@@ -56,6 +56,51 @@ class DapsAuthenticationService extends Da5Service {
       print('service error $e');
       throw e;
     }
+  }
+
+  Future<double> balanceSyncing (UserCredentials creds) async {
+    try {
+      var url = Uri.parse('$endpoint/authtimeout/token');
+      var request = await http.post(
+        url,
+        headers: null,
+        body: {
+          "Username": creds.username,
+          "MerchantID": creds.merchantId,
+          "NetworkID": creds.networkId,
+          "Authentication": creds.authSignature,
+        },
+      );
+
+      var response = jsonDecode(request.body);
+
+      if(request.statusCode >= 200 && request.statusCode < 400) {
+        return double.parse(response['wallet']);
+      } else {
+        String message = response['message'];
+        throw ApiResponseError(message: message);
+      }
+    } catch (e) {
+      print('balance $e');
+      throw e;
+    }
+  }
+
+  Future<void> saveCredentials (UserCredentials creds) async {
+    var credentialsJson = json.encode(creds.toMap());
+    var a = prefs.setString('credentials', credentialsJson);
+    print('saving $a');
+  }
+
+  UserCredentials getCredentials () {
+    var getCredentials = prefs.getString('credentials');
+    var credentialsToMap = jsonDecode(getCredentials);
+    return UserCredentials(
+      networkId: credentialsToMap['networkId'],
+      merchantId: credentialsToMap['merchantId'],
+      username: credentialsToMap['username'],
+      authSignature: credentialsToMap['authSignature'],
+    );
   }
 
   void test() async{

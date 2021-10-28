@@ -364,20 +364,6 @@ class _RegistrationCreateMpinScreenState
         await Future.delayed(Duration(seconds: 5));
         OverlayScreen().pop();
         Get.toNamed('/registration/registration-otp-screen');
-
-        // if (store.registrant.isNew) {
-        //   User creds = await store.authService.createAuth(
-        //       email: store.registrant.email,
-        //       password: store.registrant.password);
-        //   store.registrant.id = creds.uid;
-        // }
-        //
-        // await store.accountService.create(store.registrant);
-        // store.setUser(store.registrant);
-        // OverlayScreen().show(
-        //   context,
-        //   identifier: 'registration-success',
-        // );
       } catch (e) {}
     }
   }

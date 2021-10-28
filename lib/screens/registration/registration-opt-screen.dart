@@ -309,7 +309,9 @@ class _RegistrationOptScreenState extends State<RegistrationOptScreen> {
           } else {
             OverlayScreen().pop();
             print('User creation');
+            store.registrant.balance = await store.dapsAuthenticationService.balanceSyncing(store.registrant.credentials);
             await store.accountService.create(store.registrant);
+            await store.dapsAuthenticationService.saveCredentials(store.registrant.credentials);
             await store.otpService.smsGreeting('${store.registrant.mobileNumber}');
             store.setUser(store.registrant);
             OverlayScreen().show(
