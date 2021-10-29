@@ -342,6 +342,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
       }
       account.credentials = user.credentials;
       account.balance = await store.dapsAuthenticationService.balanceSyncing(user.credentials);
+      await store.dapsAuthenticationService.saveCredentials(account.credentials);
       await store.authService.emailLogin(email: user.emailAddress, password: password.text);
       store.setUser(account);
       Get.toNamed('/services');

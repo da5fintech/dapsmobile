@@ -93,7 +93,9 @@ class DapsAuthenticationService extends Da5Service {
   }
 
   UserCredentials getCredentials () {
-    var getCredentials = prefs.getString('credentials');
+    var getCredentials = prefs.getString('credentials') ?? '';
+    print('getting credentials in local storage');
+    print(getCredentials);
     var credentialsToMap = jsonDecode(getCredentials);
     return UserCredentials(
       networkId: credentialsToMap['networkId'],
