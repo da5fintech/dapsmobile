@@ -25,7 +25,7 @@ class VerificationIdListScreen extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
-                  color: COLOR_DARK_PURPLE,
+                  color: COLOR_DAPS,
                 ),
               ),
             ),
@@ -55,7 +55,7 @@ class VerificationIdListScreen extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
-                  color: COLOR_DARK_PURPLE,
+                  color: COLOR_DAPS,
                 ),
               ),
             ),

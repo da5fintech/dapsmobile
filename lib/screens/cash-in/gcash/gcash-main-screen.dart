@@ -39,8 +39,8 @@ class _GcashMainScreenState extends State<GcashMainScreen> {
               type = text;
             });
           },
-          textColor: type == text ? COLOR_DARK_PURPLE : Colors.white,
-          color: type == text ? Colors.white : COLOR_DARK_PURPLE,
+          textColor: type == text ? COLOR_DAPS : Colors.white,
+          color: type == text ? Colors.white : COLOR_DAPS,
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             text,
@@ -75,7 +75,7 @@ class _GcashMainScreenState extends State<GcashMainScreen> {
                     flex: 1,
                     child: Container(
                       padding: EdgeInsets.all(20),
-                      color: COLOR_DARK_PURPLE,
+                      color: COLOR_DAPS,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [

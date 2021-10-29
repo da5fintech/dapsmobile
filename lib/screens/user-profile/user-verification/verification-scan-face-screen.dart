@@ -164,7 +164,7 @@ class _VerificationScanFaceState extends State<VerificationScanFace> {
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: COLOR_DARK_PURPLE,
+                  color: COLOR_DAPS,
                 ),
               ),
               Align(

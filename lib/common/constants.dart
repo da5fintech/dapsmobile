@@ -763,7 +763,7 @@ ThemeData createThemePurpleOnWhite(BuildContext context) {
             borderSide: BorderSide(color: Colors.black.withOpacity(.6))),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white, width: 1.5)),
-        labelStyle: GoogleFonts.roboto(fontSize: 14, color: COLOR_DARK_PURPLE),
+        labelStyle: GoogleFonts.roboto(fontSize: 14, color: COLOR_DAPS),
         hintStyle: GoogleFonts.roboto(
           fontSize: 16,
           color: Colors.white.withOpacity(.6),

@@ -47,7 +47,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.notification_important, size: SizeConfig.blockSizeVertical * 18, color: COLOR_DARK_PURPLE),
+            Icon(Icons.notification_important, size: SizeConfig.blockSizeVertical * 18, color: COLOR_DAPS),
             Text(
                 'Nothing here!',
                 style: GoogleFonts.roboto(
@@ -227,7 +227,6 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
             trailing: IconButton(
               onPressed: () async {
                 widget.close();
-
               },
               icon: Icon(Icons.close, color: COLOR_DARK_GRAY),
             ),

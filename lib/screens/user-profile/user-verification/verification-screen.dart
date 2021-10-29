@@ -46,6 +46,7 @@ class VerificationScreen extends StatelessWidget {
       backgroundColor: COLOR_DAPS,
       appBar: SubAppbarWidget(
         title: 'Verification',
+        elevation: 0,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +102,7 @@ class VerificationScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    color: COLOR_DARK_PURPLE.withOpacity(0.1),
+                    color: COLOR_DAPS.withOpacity(0.1),
                     padding: EdgeInsets.all(20),
                     height: height * 0.20,
                     child: Column(
@@ -152,15 +153,15 @@ class VerificationScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _iconLabel(
-                          icon: 'assets/svg/services/remittance.svg',
+                          icon: 'assets/svg2/ICONS_DIRECT_SEND.svg',
                           label: VERIFICATION_MAIN_LABEL_REMITTANCE,
                         ),
                         _iconLabel(
-                          icon: 'assets/svg/services/bank-transfer.svg',
+                          icon: 'assets/svg2/ICONS_BANK.svg',
                           label: VERIFICATION_MAIN_LABEL_BANK_TRANSFER,
                         ),
                         _iconLabel(
-                          icon: 'assets/svg/services/request-money.svg',
+                          icon: 'assets/svg2/ICONS_SEND_AND_RECEIVE.svg',
                           label: VERIFICATION_MAIN_LABEL_SEND_REQUEST,
                         ),
                       ],

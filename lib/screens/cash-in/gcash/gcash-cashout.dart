@@ -81,6 +81,20 @@ class _GcashOutState extends State<GCashOut> {
                 return null;
               },
               decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.withOpacity(.6),
+                  ),
+                ),
+                disabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.withOpacity(.6),
+                  ),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: COLOR_DAPS, width: 2),
+                ),
                 counterStyle: TextStyle(color: Colors.white),
                 hintText: "904033902",
                 errorStyle: TextStyle(
@@ -130,6 +144,20 @@ class _GcashOutState extends State<GCashOut> {
                 return null;
               },
               decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.withOpacity(.6),
+                  ),
+                ),
+                disabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.withOpacity(.6),
+                  ),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: COLOR_DAPS, width: 2),
+                ),
                 counterStyle: TextStyle(color: Colors.white),
                 hintText: "₱ 1,000.00",
                 errorStyle: TextStyle(
@@ -157,6 +185,20 @@ class _GcashOutState extends State<GCashOut> {
               readOnly: true,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.withOpacity(.6),
+                  ),
+                ),
+                disabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.withOpacity(.6),
+                  ),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: COLOR_DAPS, width: 2),
+                ),
                 counterStyle: TextStyle(color: Colors.white),
                 hintText: "₱10.00",
                 errorStyle: TextStyle(

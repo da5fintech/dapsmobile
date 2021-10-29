@@ -39,7 +39,7 @@ class DapsAuthenticationService extends Da5Service {
           password: password,
           emailAddress: userDetails['members_email'],
           photoURL: userDetails['members_avatar'],
-          level: 3,
+          level: 1,
           credentials: UserCredentials.fromMap(response),
         );
         return user;

@@ -47,7 +47,7 @@ class _RequestListScreenState extends State<RequestListScreen> {
                 style: GoogleFonts.roboto(
                   fontSize: SizeConfig.blockSizeVertical * 2.5,
                   fontWeight: FontWeight.bold,
-                  color: COLOR_DARK_PURPLE,
+                  color: Colors.white,
                 )
             ),
             SizedBox(height: 20),
@@ -57,7 +57,7 @@ class _RequestListScreenState extends State<RequestListScreen> {
                 style: GoogleFonts.roboto(
                   fontSize: SizeConfig.blockSizeVertical * 2.3,
                   fontWeight: FontWeight.w300,
-                  color: Colors.grey[500],
+                  color: Colors.white
                 )
             )
           ],

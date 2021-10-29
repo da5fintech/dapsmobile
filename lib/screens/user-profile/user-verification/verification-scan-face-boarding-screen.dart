@@ -32,7 +32,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                       height: 5,
                       width: width * 0.15,
                       decoration: BoxDecoration(
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DAPS,
                         borderRadius: BorderRadius.circular(50),
                       ),
                     ),
@@ -41,7 +41,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                       height: 5,
                       width: width * 0.15,
                       decoration: BoxDecoration(
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DAPS,
                         borderRadius: BorderRadius.circular(50),
                       ),
                     ),
@@ -50,7 +50,7 @@ class VerificationScanFaceBoardingScreen extends StatelessWidget {
                       height: 5,
                       width: width * 0.15,
                       decoration: BoxDecoration(
-                        color: COLOR_DARK_PURPLE.withOpacity(0.1),
+                        color: COLOR_DAPS.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(50),
                       ),
                     ),

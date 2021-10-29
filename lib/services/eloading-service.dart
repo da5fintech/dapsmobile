@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:daps/common/util.dart';
 import 'package:flavor/flavor.dart';
 import 'package:daps/common/constants.dart';
 import 'package:daps/common/errors.dart';
@@ -87,7 +88,8 @@ class EloadingService extends Da5Service {
         "Amount": product.amount.toString(),
         "Network": fromNetwork(product.network),
         "Products": product.name,
-        "ProductCode": product.code
+        "ProductCode": product.code,
+        "TransactionNumber": appUtil.generateRefId(length: 10),
       });
 
       return EloadProcessResponse.fromMap(response);
