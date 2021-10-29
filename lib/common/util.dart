@@ -102,6 +102,15 @@ class AppUtil extends DateUtil {
     return mobileNumber.substring(2);
   }
 
+  String generateRefId() {
+    String rndnumber = "";
+    var rnd = new Random();
+    for (var i = 0 ; i < 11 ; i++) {
+      rndnumber = rndnumber + rnd.nextInt(9).toString();
+    }
+    return rndnumber;
+  }
+
   int generateUid() {
     var rndnumber = "";
     var rnd = new Random();

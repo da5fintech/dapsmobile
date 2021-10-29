@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:daps/common/util.dart';
 import 'package:flavor/flavor.dart';
 import 'package:daps/common/constants.dart';
 import 'package:daps/common/errors.dart';
@@ -36,6 +38,7 @@ class InstapayProcessingResponse extends TransactionProcessingResponse {
 }
 
 class InstapayService extends Da5Service {
+  final appUtil = AppUtil();
   InstapayService()
       : super(
             endpoint: Flavor.instance.properties['dapsUrl'],
@@ -102,6 +105,7 @@ class InstapayService extends Da5Service {
         "Amount": formatterWithoutPHP.format(total).replaceFirst(" ", ""),
         "Currency": INSTAPAY_CURRENCY,
         "Bank": product.code,
+        "SenderRefId": appUtil.generateRefId(),
       };
 
       var response = await post("/API_instapay/process", params);
