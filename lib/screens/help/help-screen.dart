@@ -30,7 +30,7 @@ class HelpScreen extends StatelessWidget {
                       Container(
                         width: width,
                         height: height * 0.25,
-                        color: COLOR_DARK_PURPLE,
+                        color: COLOR_DAPS,
                         padding: EdgeInsets.only(top: 20, right: 20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -116,7 +116,7 @@ class HelpScreen extends StatelessWidget {
                                               fontWeight: FontWeight.w500,
                                               fontSize: SizeConfig.blockSizeVertical * 2,
                                               height: 2,
-                                              color: COLOR_DARK_PURPLE,
+                                              color: COLOR_DAPS,
                                             ),
                                           ),
                                           Text(
@@ -360,7 +360,7 @@ class HelpScreen extends StatelessWidget {
                                         fontSize: SizeConfig.blockSizeVertical * 2,
                                         fontWeight: FontWeight.w500,
                                         color:
-                                            COLOR_DARK_PURPLE.withOpacity(.50),
+                                            COLOR_DAPS.withOpacity(.50),
                                       )),
                                 ),
                                 Divider(
@@ -374,7 +374,7 @@ class HelpScreen extends StatelessWidget {
                                     opacity: .40,
                                     child: ListTile(
                                       leading: Icon(Icons.local_library,
-                                          color: COLOR_DARK_PURPLE),
+                                          color: COLOR_DAPS),
                                       visualDensity: VisualDensity(
                                           vertical: -4, horizontal: 0),
                                       title: Text(
@@ -410,7 +410,7 @@ class HelpScreen extends StatelessWidget {
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.w500,
                                         fontSize: SizeConfig.blockSizeVertical * 2,
-                                        color: COLOR_DARK_PURPLE),
+                                        color: COLOR_DAPS),
                                   ),
                                 ),
                                 InkWell(
@@ -422,7 +422,7 @@ class HelpScreen extends StatelessWidget {
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.w500,
                                         fontSize: SizeConfig.blockSizeVertical * 2,
-                                        color: COLOR_DARK_PURPLE),
+                                        color: COLOR_DAPS),
                                   ),
                                 ),
                               ],

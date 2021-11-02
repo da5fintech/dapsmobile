@@ -166,7 +166,9 @@ class _LoginMpinScreenState extends State<LoginMpinScreen> {
                                       style: GoogleFonts.roboto(color: Colors.white),
                                     )
                                   : ClipOval(
-                                      child: Image.network(store.user.photoURL),
+                                      child: Image.network(
+                                        store.user.photoURL,
+                                      ),
                                     ),
                             ),
                             Container(
