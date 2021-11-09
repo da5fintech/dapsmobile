@@ -61,7 +61,7 @@ class _AmountButtonWidgetState extends State<AmountButtonWidget> {
       width: 60,
       child: Column(
         children: [
-          FlatButton(
+          RaisedButton(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16.0),
             ),

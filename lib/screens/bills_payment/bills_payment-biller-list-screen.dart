@@ -1,3 +1,4 @@
+import 'package:daps/common/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -64,14 +65,13 @@ class _BillsPaymentBillerListScreenState
 
   _handleButtonClick(String category) async {
     if (store.selectedBillerCategory != category) {
-      OverlayScreen().show(context);
+      modalHudLoad(context);
       store.selectedBillerCategory = category;
-      print(category);
       var billers =
           await store.billsPaymentService.getBillersByCategory(category);
       store.billers = billers;
 
-      OverlayScreen().pop();
+      Navigator.pop(context);
     }
 
     Get.toNamed('/services/bills-payment/bills-payment-select-biller-screen');

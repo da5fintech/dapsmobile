@@ -19,7 +19,7 @@ class PromoCircleAmountWidget extends StatelessWidget {
     }
 
     return CircleAvatar(
-      backgroundColor: bgColor,
+      backgroundColor: COLOR_DARK_PURPLE,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

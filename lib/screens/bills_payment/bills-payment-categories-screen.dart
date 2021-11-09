@@ -37,6 +37,7 @@ class _BillsPaymentCategoriesScreenState
     // await store.addBillerService.deleteAll();
     List<BillerProduct> a = await store.addBillerService.onLoading();
     store.setNewBiller(a);
+    setState(() {});
   }
 
   @override

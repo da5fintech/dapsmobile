@@ -14,7 +14,6 @@ class AmountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(SizeConfig.blockSizeVertical * 3);
     SizeConfig().init(context);
     return Container(
       child: Row(
