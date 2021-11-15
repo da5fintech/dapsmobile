@@ -23,7 +23,7 @@ class FirstScreen extends StatelessWidget {
             style: GoogleFonts.roboto(
               height: 1.5,
               fontSize: SizeConfig.blockSizeVertical * 2,
-              color: COLOR_DARK_PURPLE,
+              color: COLOR_DAPS,
               fontWeight: FontWeight.w600,
             )
           ),

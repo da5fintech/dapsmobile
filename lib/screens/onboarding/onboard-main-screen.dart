@@ -75,7 +75,7 @@ class _OnboardingMainScreenState extends State<OnboardingMainScreen> {
                       MaterialPageRoute(builder: (_) => SplashScreen()),
                     );
                   },
-                  child: Text('Skip'),
+                  child: Text('Skip', style: TextStyle(color: COLOR_DAPS)),
                 ) : null,
               ),  
               Expanded(
@@ -116,8 +116,8 @@ class _OnboardingMainScreenState extends State<OnboardingMainScreen> {
                           borderRadius: BorderRadius.circular(50),
                           shape: BoxShape.rectangle,
                           color: _current == index
-                              ? COLOR_DARK_PURPLE
-                              : COLOR_DARK_PURPLE.withOpacity(.5),
+                              ? COLOR_DAPS
+                              : COLOR_DAPS.withOpacity(.5),
                         ),
                       ),
                     );
@@ -129,7 +129,7 @@ class _OnboardingMainScreenState extends State<OnboardingMainScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: COLOR_DARK_PURPLE,
+          backgroundColor: COLOR_DAPS,
           onPressed: () {
             if(_current < 3 ) {
               carouselController.nextPage();
